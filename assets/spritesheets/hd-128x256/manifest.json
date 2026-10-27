@@ -114168,7 +114168,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -114181,7 +114181,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -114955,7 +114956,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a8975147cec5e1153be2ff68582d22c807e61390f211fc68b3a6a4bebcdddc6d",
+                "bytes": 24803,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "9816d04e00e910513c519876fe264920a7570f599011e38b5743313bf24c7f88"
+              },
+              "02": {
+                "sha256": "b2a5ba04fd99c49f734443b80c48acaface235193b0a20616d753db95cc07ab8",
+                "bytes": 26161,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "3858e8f337363dda0eb58cb913ee6efa3ee02ea778a1c4fd92b300537dfce37a"
+              },
+              "03": {
+                "sha256": "258675bed9f8b8d1241fc500408ec2f86fa35463d3908588cd544036682f4547",
+                "bytes": 24491,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  92,
+                  104,
+                  248
+                ],
+                "pixelSha256": "0aa770d3ea393f5fdbb934902d00a55cce5db1ff2db21ebc29b5ff899352c7d4"
+              },
+              "04": {
+                "sha256": "623a214e62b0c8b33219352731ae9982db9bd0e3e4273a49dd8b3403f9c99a5d",
+                "bytes": 24825,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "af5c401bcec593d6491f1dc2988c048669841745ebb4e37bf8ae223efd092189"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -115780,6 +115848,44 @@
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "b90664d44453a7a4a2ab8b9c9c46d16dfecc24ecb95f2c4a2f252841507258be",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            648,
+            14,
+            1028,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            20,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Production RPG body sprite strip for Inquisidor FEMALE, Tier 2.5, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+            "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+            "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+            "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -115957,6 +116063,22 @@
         },
         "attack_bow/04": {
           "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
           "frame": 4
         }
       },
