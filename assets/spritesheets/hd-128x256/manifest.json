@@ -81633,12 +81633,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -81852,7 +81853,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1945dc71091438c5fe9a1a484f40e8da18b80ab62908113a69c2c3f6c8150e61",
+                "bytes": 23509,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  89,
+                  103,
+                  249
+                ],
+                "pixelSha256": "36782b78200e5ef6ce57607e3f137cb037be252f5c94c8ca81cd379ca87aeaee"
+              },
+              "02": {
+                "sha256": "1fa48191662c0ad62f4bd16efb002289be0da48e304f8f20699cef841c0b0548",
+                "bytes": 23174,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  89,
+                  103,
+                  249
+                ],
+                "pixelSha256": "811d03c3f2af4b33719c8e414c448ddae8e283a12b3dfae954a615af61aa303e"
+              },
+              "03": {
+                "sha256": "5578da80b7378ab673210bde6b4d30c95c385c29e4978059588c300eb159d550",
+                "bytes": 22518,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  89,
+                  103,
+                  249
+                ],
+                "pixelSha256": "d01916b42e631541c08461c525809e0df9737b7f4bc968e0d1fed3248d3021f3"
+              },
+              "04": {
+                "sha256": "826e2a522fe65a58fa11082595fb31e60817c0b1b98401c71bed45a46e04d1e0",
+                "bytes": 23569,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  89,
+                  103,
+                  249
+                ],
+                "pixelSha256": "802abc01b3dabe087f6dbf004be7a171eeee736e9342509b92582bb52b1e6f64"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -82121,6 +82189,44 @@
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "6820cb3a151da0fb277f4e87f56ef43a6230230cd6fc70e25ed4f991fc35ba78",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Comerciante FEMALE, Tier 2, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. MALE retains his small dark chestnut moustache in ALL four figures, including open mouth, grimacing, pain and exertion; FEMALE has no facial hair. Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -82170,6 +82276,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
