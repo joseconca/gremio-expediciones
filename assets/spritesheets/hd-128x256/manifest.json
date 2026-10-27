@@ -57036,14 +57036,15 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -57397,7 +57398,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "521ab007cfb768dd761d23e3a95d071851f5ceefe4a31913cabf283fc5c498a9",
+                "bytes": 25409,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  98,
+                  111,
+                  250
+                ],
+                "pixelSha256": "7142839e47a699a4438cceb18c2314f3a530144ff1e8b48abb04aaa870d81120"
+              },
+              "02": {
+                "sha256": "9a82e0574300ec85c32b5b53c22f9105d2c2d8ba7bb231543a0d0462f459181b",
+                "bytes": 24547,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  98,
+                  112,
+                  250
+                ],
+                "pixelSha256": "991243752841d267d0aa5a867192208de8d700249f026fd02e893e649d0b23de"
+              },
+              "03": {
+                "sha256": "5ba54326e0bf74f4f09162e9efabc136b7d6afe06016c2aa52bd1bac49b013e6",
+                "bytes": 22356,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  116,
+                  111,
+                  250
+                ],
+                "pixelSha256": "79dbf1c23c8ec92de11886b4c63dcd8daa6bbe47ff58146ab42eb2725a43c22a"
+              },
+              "04": {
+                "sha256": "c4f7c8f7ceed0532e838e8fb250d7ad4f891e9ba9a06fbc70c0b8710291950d0",
+                "bytes": 25368,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  98,
+                  112,
+                  250
+                ],
+                "pixelSha256": "ffc901f6ebe02b18cddff31edb0fb3b85e98ae1b7a2d987d3e8c4615a1cc538d"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -57624,6 +57692,50 @@
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "93683f0df9596988f8a94fae577e515233c9e437c2737f5b570c5c48c88b9fa9",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.027027027027027,
+            "pivotX": 64,
+            "sourceBaseline": 247,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+          "canonicalPoseHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -57705,6 +57817,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       }
