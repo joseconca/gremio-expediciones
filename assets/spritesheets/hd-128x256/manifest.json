@@ -97014,20 +97014,20 @@
                 "pixelSha256": "b27ea1c585780247961b472a1b2395e40b5c7fa4657e447ae7ad0cc994bdb1d6"
               },
               "03": {
-                "sha256": "af7d8751ed70f003ac08bce3145c4a3e61c344ae49423e2244be36816d658d5b",
-                "bytes": 25559,
+                "sha256": "170a7b132b531fde8930edf9f3f5f3b7b7648a15bdae3c4ad959c9719198e743",
+                "bytes": 25867,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  8,
-                  92,
-                  108,
-                  248
+                  6,
+                  91,
+                  106,
+                  247
                 ],
-                "pixelSha256": "ca9a9f41f9205dd36a897cadcc6e7165caf4281b6f14043437e78753c6f0c242"
+                "pixelSha256": "c9fb168666e394fa220bb6de96354dfe38e9911bf48e6263613b0ad2da5c51b8"
               },
               "04": {
                 "sha256": "458cc778f05a88229064c164a6bf0108395f5266fb83bf731cee53add3b6619d",
@@ -97856,7 +97856,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "9bea5d5a7db417420c8740c12545ba88bb6b869551e0cad5d6151b696476643d",
+          "sourceSha256": "3c1c9fcda1c5fa0b4e04157a8bf41ce3eeb13a2a42b24a746868748aa9641f75",
           "sourceDimensions": [
             2172,
             724
@@ -97881,9 +97881,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v4.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Small LOCAL arm correction on Image1 original DRUID strip. Image2 shows SAME bodies equipped with spear and a CYAN CIRCLE showing correct rear fist contact in THIRD figure. In THIRD figure ONLY, lower the closed REAR fist (the nearer hand in front of abdomen) about28 SOURCE PIXELS and move it23 SOURCE PIXELS LEFT, so its CENTER is directly on that cyan circle on brown spear shaft in Image2. Current rear fist center near source1471,285; desired rear fist center source1448,311 on2172x724. This is a SMALL move DOWN-LEFT, NOT a long extension right. Keep same shoulder and elbow and adjust just forearm angle/wrist. FRONT extended fist at far right stays EXACTLY unchanged, as do head, stance, feet and body size. All four costumes, circlets, hair, face, eyes, sage leaf shoulder caps, amber stones, green clothes, boots and compact hip pouch remain identical to Image1. Other three figures unchanged. Output BODY ONLY exactly same four-body transparent strip. NO spear, cyan circle, annotations or background. Empty closed gripping fist exactly around shaft position shown; no weapon drawn.\n",
+          "prompt": "EDIT Image1. Image2 is IDENTICAL source image annotated with RED ARROW and CYAN RING showing exactly WHERE the REAR FIST of THIRD figure must go. Move this closed rear fist following red arrow RIGHT AND UP, placing its center INSIDE THE CYAN RING in presently empty space. This requires extending the rear forearm across body toward RIGHT, and lifting it slightly. Current fist is too far LEFT at BELT. New fist must be farther RIGHT than torso edge, directly BELOW THE ELBOW of front extended arm, almost touching that front elbow from below. Source target x1448,y311; current fist approximately1360,345: move88pixelsRIGHT34UP. Keep the FRONT extended fist entirely unchanged. Retain exact head, ponytail, circlet, face, leaf costume, pouch, feet and all body proportions. Do not shorten or shrink third figure. Other three figures unchanged. Return exact original four-body strip BODY ONLY, true transparent background. NO cyan circle, arrow, weapon, text or background. Only redraw third rear forearm and fist reaching rightward INTO marked empty space.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -97919,7 +97919,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame01-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame01-reference-v5.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -97949,7 +97949,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame02-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame02-reference-v5.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -97979,7 +97979,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v5.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -98186,6 +98186,136 @@
                   "scalePolicy": "canonical-pose-registration",
                   "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
                   "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v3.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "9bea5d5a7db417420c8740c12545ba88bb6b869551e0cad5d6151b696476643d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v4.png",
+              "generator": "built-in imagegen",
+              "prompt": "Small LOCAL arm correction on Image1 original DRUID strip. Image2 shows SAME bodies equipped with spear and a CYAN CIRCLE showing correct rear fist contact in THIRD figure. In THIRD figure ONLY, lower the closed REAR fist (the nearer hand in front of abdomen) about28 SOURCE PIXELS and move it23 SOURCE PIXELS LEFT, so its CENTER is directly on that cyan circle on brown spear shaft in Image2. Current rear fist center near source1471,285; desired rear fist center source1448,311 on2172x724. This is a SMALL move DOWN-LEFT, NOT a long extension right. Keep same shoulder and elbow and adjust just forearm angle/wrist. FRONT extended fist at far right stays EXACTLY unchanged, as do head, stance, feet and body size. All four costumes, circlets, hair, face, eyes, sage leaf shoulder caps, amber stones, green clothes, boots and compact hip pouch remain identical to Image1. Other three figures unchanged. Output BODY ONLY exactly same four-body transparent strip. NO spear, cyan circle, annotations or background. Empty closed gripping fist exactly around shaft position shown; no weapon drawn.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame01-reference-v4.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame02-reference-v4.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v4.png",
                   "selectedFrame": 4,
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
