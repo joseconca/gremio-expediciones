@@ -116897,12 +116897,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -117116,7 +117117,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d77cf5d8460f0a99a7cc46298db5d434b75892fd87425e03820f5637b92b3406",
+                "bytes": 24415,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  91,
+                  113,
+                  250
+                ],
+                "pixelSha256": "08025523a2e4ca6b14288e62a28082bd041bea84b8f9696e61a13b03a529ca21"
+              },
+              "02": {
+                "sha256": "619e63fda30a0ed29169c01e4a23a1d2e30b061edb7add863e36c3df4281401d",
+                "bytes": 23315,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  91,
+                  111,
+                  250
+                ],
+                "pixelSha256": "75a97827186959f3ddfc63e51897118574e01aae01f8171b321c655149ac5dcc"
+              },
+              "03": {
+                "sha256": "89b2b864e71ab7319a1febaba36d0ada96f9d73143c607026a517c53e46f0751",
+                "bytes": 25267,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  108,
+                  250
+                ],
+                "pixelSha256": "9b657833afff7ce94c44f7584f0d25a85c9a5d7a43736054ea523e1d537d708e"
+              },
+              "04": {
+                "sha256": "84239e84a26acf9366996b31049d06343ccf0cb3b9e0e209e0e59b86a4412872",
+                "bytes": 24845,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  109,
+                  250
+                ],
+                "pixelSha256": "b1a2146a308a73eccd353d0818db22a2adf958e109975ad108982234dcedee15"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -117267,6 +117335,44 @@
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "625c485d09e51e855145ca631b34dbac65578c38b2dcf7df99faff2cd639f20c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the THREE specific crimson tabard seals (diamond motif, square spiral, four diamonds) and copper fist-and-quill chest badge from identity reference. Ivory sleeves rolled below elbows, short bare forearms, WHITE fighting wrist/palm wraps and fully exposed fingertips; no dark novice leather gloves or bracers.  Production RPG body sprite strip for Heraldo de guerra MALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose. Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face. Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag. Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -117316,6 +117422,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
