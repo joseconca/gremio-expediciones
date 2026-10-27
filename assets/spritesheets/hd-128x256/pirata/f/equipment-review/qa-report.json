@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "pirata",
   "sex": "f",
   "actions": [
@@ -10,7 +10,8 @@
     "dodge",
     "block_shield",
     "attack_sword",
-    "attack_axe"
+    "attack_axe",
+    "attack_spear"
   ],
   "bodyHashes": {
     "idle": [
@@ -60,10 +61,35 @@
       "3fa8e66aaebb2f6c62ace20839d14bae8f88420bc0d44a64728165fbf90b2514",
       "51477eeba4a018d2fb1d5bbd355f8134715047e30ecb6aa731f6088b3c210a06",
       "38cf92cc258bfde97f43887d3e476c31f14de1530e1d45f66c5041dbeda19867"
+    ],
+    "attack_spear": [
+      "5077f447c1591c75a3a862fa664674ca3e8a0c622561ae724addc6bb55c41a6d",
+      "4daef7b7d1e82c34629f5b624a10ae893322144398a7eae4812fe481115ba7ba",
+      "d917d3a50d6e39441bcc203252de238729025ace295ee3a2d3d1a2a0716e61d3",
+      "18a7cc07a0e9c9b16043d9a0460b18deed0eab7fbd484cc479672eddb8d6aa72"
     ]
   },
-  "contactChecks": 580,
-  "warnings": [],
+  "contactChecks": 596,
+  "warnings": [
+    {
+      "action": "attack_spear",
+      "frame": 3,
+      "item": "lanza_escama",
+      "point": [
+        75,
+        160
+      ]
+    },
+    {
+      "action": "attack_spear",
+      "frame": 3,
+      "item": "lanza_madera",
+      "point": [
+        75,
+        160
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
