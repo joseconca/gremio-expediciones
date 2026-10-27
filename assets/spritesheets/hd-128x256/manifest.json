@@ -77237,14 +77237,15 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -77598,7 +77599,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9ec3e28861606bde0e0e4cbf375ee52641838c44f3910ff0f26499dd9a060c3a",
+                "bytes": 25810,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  112,
+                  248
+                ],
+                "pixelSha256": "180eda2594b5a9c2ad78beb6f99b4402d5cc6b1786aac27ba99a18708e947757"
+              },
+              "02": {
+                "sha256": "3b9f5bc7b21c2f01877956c7dae578fd8d23e677cda03260d300eb67b9fd3aa6",
+                "bytes": 26187,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  112,
+                  248
+                ],
+                "pixelSha256": "86eecff5328b71f57307383afaf2f270d2fbcdd10f055320fe4a5ec1e7fbbd72"
+              },
+              "03": {
+                "sha256": "3532a0c7a90f9837f6012faac94400e69fc5a0916dfa812a1390301ff2190bb6",
+                "bytes": 25165,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  99,
+                  110,
+                  248
+                ],
+                "pixelSha256": "9f0b4772732c6599c79ca6954bf9199c5bc407b81fadd00e1467c067c2f0dda8"
+              },
+              "04": {
+                "sha256": "f4d5762421d2eb7151ba6281e48032cfdcc0388ca1525d89f5eaa50c8e2231ed",
+                "bytes": 25906,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  112,
+                  248
+                ],
+                "pixelSha256": "1a67b9bfae7eb93a82f094ebfc08eafbe0eae2783712e82a89940a266402e36e"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -77859,6 +77927,44 @@
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "3729a40575e6d9c3c2718bd08e531b2685ccbdd5fe42c2fce01083442c340216",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Bardo FEMALE, Tier 2, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. NO NECK SCARF, CAPE, MANTLE or flying shoulder tails. Plum shoulder panels are SHORT and attached closely to upper arms; plum waist sash starts at BELT only. Preserve this in ALL fifteen actions. Adult charismatic feminine troubadour with warm golden-copper hair in a small wavy side ponytail under the compact beret, expressive eyes and confident half-smile; canonical female head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "canonicalPoseHashes": [
+            "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+            "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+            "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+            "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -77940,6 +78046,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       }
