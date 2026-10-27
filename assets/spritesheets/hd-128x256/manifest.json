@@ -75340,8 +75340,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "aece3b77c0b2c7967a0f99706ce2fe83861d03740f82d2f946647a58ea26abc0",
-                "bytes": 27181,
+                "sha256": "339c58da60bba1062624a3275503b0e4aa297c57e70e61adb993c84d76f93e37",
+                "bytes": 26487,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -75350,58 +75350,58 @@
                 "bbox": [
                   21,
                   98,
-                  104,
+                  105,
                   250
                 ],
-                "pixelSha256": "01de9f0d16eef56bdbc350edb60bdac270486b15f53667af3f55fda754665e9f"
+                "pixelSha256": "be2703ec6c1bdecaeab847ab99a19049c7351bc370c3c943c4c56d56391e5668"
               },
               "02": {
-                "sha256": "d9af7865bfbf4e1ed9819d88a2a2294ed6b8fd8120848090821de7a592658978",
-                "bytes": 28446,
+                "sha256": "56ebcadc2d0a45eb961a9b9d1becfb08a565415e20a7835e4337abc27499ffc6",
+                "bytes": 27338,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  98,
-                  122,
+                  21,
+                  99,
+                  121,
                   250
                 ],
-                "pixelSha256": "6ad8c9b9a566af8f49cc764e645275df21ccafb3cba3d1bea34202f898da6b69"
+                "pixelSha256": "efb11d7f1c7469aa3631ad8e55831268dd0c7d4829f007ab5f9b223c1454c9e9"
               },
               "03": {
-                "sha256": "505904c4d80f82cdaf0e806d49682f54dfad6c8fe5e84bd8f29bfdf1af892e9b",
-                "bytes": 27230,
+                "sha256": "4537e7b088d2bab24278fbf0e825f9749df023d85eebd0eb01edc4258c6aa940",
+                "bytes": 26070,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  28,
+                  27,
                   110,
-                  114,
+                  113,
                   250
                 ],
-                "pixelSha256": "e3fa311ac359f1c66bc964e27928d610c14f9b4547d5232e979475f148563f7b"
+                "pixelSha256": "5eebd668e18b3f8ced2f6b2a82048a840dbe90344daee79d561dcb431f632303"
               },
               "04": {
-                "sha256": "dca0495e6836660deae1cac02e1f59ebad55a7f8389daf77aa2f8dbfba3ac119",
-                "bytes": 27366,
+                "sha256": "9796ccf6d33a3dafe32890f89d950bc43112a7d4a7347c4b7b3e445b2e3dc40f",
+                "bytes": 26756,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  21,
                   98,
                   107,
                   250
                 ],
-                "pixelSha256": "56dcced2ebac1dfc0075b9b2595ea07e53728f7fcbb99bf2ab19ce4f2bc708cb"
+                "pixelSha256": "dec6b8fbecbe1584628c9e1c3876478f8d1fbc46f68e358210861551bcdb3a72"
               }
             },
             "distinctFrames": 4
@@ -76262,9 +76262,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "dodge": {
-          "sourceSha256": "28997c683f0a945fab2e92330e3ef72d7d9cbc83a12ed9de710a83d4a6fe7d27",
+          "sourceSha256": "69d7312f00955870efd9514d7ccc9a269e0bcb417f2a6e5ee1472465cbc49c0d",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -76285,15 +76285,15 @@
           ],
           "alphaThreshold": 128,
           "bodyRootCalibration": {
-            "uniformScale": 1.027027027027027,
+            "uniformScale": 1.0133333333333334,
             "pivotX": 64,
-            "sourceBaseline": 243,
+            "sourceBaseline": 244,
             "referenceBaseline": 250,
             "method": "one body-root transform shared by all four poses; equipment unchanged"
           },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/dodge-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
@@ -76303,7 +76303,53 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "28997c683f0a945fab2e92330e3ef72d7d9cbc83a12ed9de710a83d4a6fe7d27",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 1.027027027027027,
+                "pivotX": 64,
+                "sourceBaseline": 243,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+              "canonicalPoseHashes": [
+                "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+                "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+                "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+                "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "block_shield": {
           "sourceSha256": "b7de38e102157a2bd0f9ea96af69d2a6bc36b000243b0c2f3cf781f837e30b1a",
