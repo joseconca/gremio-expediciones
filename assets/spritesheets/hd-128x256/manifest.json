@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "superNovato-m",
+  "nextVariant": "superNovato-f",
   "classes": [
     {
       "id": "novato",
@@ -54764,12 +54764,12 @@
       "tier": 1.5,
       "sex": "f",
       "order": 28,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/superNovato/f/superNovato-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/superNovato/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -54783,12 +54783,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "0500de1118199c9cb3f8106aa6733aee8b443b884b84ebcd8e4891b552c096de",
+                "bytes": 23607,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  91,
+                  109,
+                  248
+                ],
+                "pixelSha256": "1ac072155d09de48baff0edf0487c79b753faaf21268cff1c621af06e3066842"
+              },
+              "02": {
+                "sha256": "13ef3f9b69757e13b98809320349e7a84e8e37c2b8b4a224b7a1453818c861fd",
+                "bytes": 23594,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "e849996a28a85e3b25e058e4121cb57fd28e700737e3f32419585acf293752b8"
+              },
+              "03": {
+                "sha256": "3aef0c287899035f307fceea52c94a6647a7b55f52f73b8fa6d4460ca77ebaf6",
+                "bytes": 23445,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  104,
+                  248
+                ],
+                "pixelSha256": "19aec28ef8fea3143cabbf8e19d93324037acd93201114d9ea963cea7cef3f9e"
+              },
+              "04": {
+                "sha256": "086e53bfea17d501bde57457707a87cec7e0d13ccb73c4f1d5eccb35fbe9dcb7",
+                "bytes": 23536,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  103,
+                  248
+                ],
+                "pixelSha256": "72eac43824ad737e9f32e829f200bebb0c6054d751be84a934852e55775f7d05"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -54832,6 +54901,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "2dc43fabd150fa609a7175fb5355cc9a53b46f3d300b83bbd89c4b1abe1e150d",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG female Super Novato IDLE sprite strip inspired by Ragnarok Online Super Novice, matching the established male new design. Image 1 is canonical FEMALE body, female face, chestnut high ponytail, exact four pose geometry and painted RPG game rendering. Image 2 is male costume reference ONLY; do NOT copy male face or proportions. Female costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue center panel, small white neck cravat, brown leather utility belt with compact pouches and small brass chain at hip, brown loose cropped trousers, off-white knee wraps, dark brown lace-up boots, brown fingerless gloves. Bare upper arms, no sleeves, no white armbands. Feminine tailoring with fully covered torso and practical trousers, same adventurer identity and head size as image1. NO red scarf, NO leather chest harness, NO cream jacket, NO blue trousers. Four separate full-body figures in ONE horizontal row, exactly same hand positions, foot baseline, scale, camera and quarter positions as Image1. Subtle breathing, third figure blink. Facing RIGHT three-quarter view throughout. Genuine transparent alpha background. No weapons shields hats equipment effects ground shadows labels text or grid. Preserve 2172x724 reference canvas and margins. Every pose same costume. Change ONLY wardrobe of Image1, preserve anatomical geometry.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },

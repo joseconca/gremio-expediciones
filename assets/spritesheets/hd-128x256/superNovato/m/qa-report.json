@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T08:52:47.762294+00:00",
+  "classId": "superNovato",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\superNovato-m-sheet.png",
+  "sheetSha256": "e2a79997606c26662cdbdffa259d36088b5c08cd199ce0779c4b2406dfb1bf11",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\idle\\superNovato-m-idle-01.png",
+          "sha256": "724362b09d044c9917412965937f82f165fb0bc5c72c52accd71efc812b0c76e",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\idle\\superNovato-m-idle-02.png",
+          "sha256": "4c2d5053a517436672422b5cb1360a07ee0268650138b3756ec9e6884c736b39",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\idle\\superNovato-m-idle-03.png",
+          "sha256": "0af07f450ddefc73e0161346e2104d61895638e70becbecff89815f645b48dae",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\idle\\superNovato-m-idle-04.png",
+          "sha256": "240d45218d9967b3ab4e3f88f0b2fa895e1edcf9e016b5f74b542baaf1238544",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\walk\\superNovato-m-walk-01.png",
+          "sha256": "f5e0126239507ac6a96e28b5bd436a993a69084a91991fc650fb252bf91ea480",
+          "alpha_bbox": [
+            12,
+            92,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\walk\\superNovato-m-walk-02.png",
+          "sha256": "48eb001073990c4d151047b8bf76d7297b643d145efdf7db18bdb505ae1c5b31",
+          "alpha_bbox": [
+            14,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\walk\\superNovato-m-walk-03.png",
+          "sha256": "ef4583c729a7d65cb7f7be7a8f3059f7c2eb4c20b4953df2bdc3e886d6746478",
+          "alpha_bbox": [
+            12,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\walk\\superNovato-m-walk-04.png",
+          "sha256": "d30f7c1cdb87b163bc59f6752d8170f2cd8ed52574abf1f4f7682e206702d447",
+          "alpha_bbox": [
+            13,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\hurt\\superNovato-m-hurt-01.png",
+          "sha256": "4107e15e909ee530df0bd7b69521753acde8623b152555a83e8f4923beb3f56f",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\hurt\\superNovato-m-hurt-02.png",
+          "sha256": "b5b9ea90cc2940c97d0afe4c310d9ce5001e14f5e491227aa2c7490ff6e58986",
+          "alpha_bbox": [
+            28,
+            101,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\hurt\\superNovato-m-hurt-03.png",
+          "sha256": "55298ef5f4542b944850ab46952fffc92bef89321fe1319d252f604c5bb1bdb7",
+          "alpha_bbox": [
+            16,
+            119,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\hurt\\superNovato-m-hurt-04.png",
+          "sha256": "d181f450b9333efcfdfa9fe27aa7dc4cd202f065788909cd80c1e885dcfb8941",
+          "alpha_bbox": [
+            16,
+            91,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\use_consumable\\superNovato-m-use_consumable-01.png",
+          "sha256": "051c92ed82f18b7c3aa570d10a28f84915df6ed4bee7b3d30fb0101aac727e58",
+          "alpha_bbox": [
+            28,
+            93,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\use_consumable\\superNovato-m-use_consumable-02.png",
+          "sha256": "66091fc7ac025a632575c11f3d53eeb9dc907dca32ca81e1c60fe61025a51dc4",
+          "alpha_bbox": [
+            29,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\use_consumable\\superNovato-m-use_consumable-03.png",
+          "sha256": "bb171db60901b5e8dc60799844f7d947a30b9d09181aedcad062ba8789cd3345",
+          "alpha_bbox": [
+            29,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\use_consumable\\superNovato-m-use_consumable-04.png",
+          "sha256": "8da54104508d2ffe68a1b5d6364336934c22b1dfd51703ae2b96cf3ff405a30c",
+          "alpha_bbox": [
+            23,
+            92,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\dodge\\superNovato-m-dodge-01.png",
+          "sha256": "ba9b78f2bac010a59142fe412562cac5774f2dbf8c4fd88ec8eeecdcd70b6fdc",
+          "alpha_bbox": [
+            16,
+            98,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\dodge\\superNovato-m-dodge-02.png",
+          "sha256": "c0c265208b4953c076f88d0d9e1ea98fc820714c82c9cee951088b39d4a11eea",
+          "alpha_bbox": [
+            18,
+            98,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\dodge\\superNovato-m-dodge-03.png",
+          "sha256": "d6f31e4872622f63e134933e95d82fd6a751b5c25ddb9c7d0266eca368ae21c6",
+          "alpha_bbox": [
+            24,
+            104,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\dodge\\superNovato-m-dodge-04.png",
+          "sha256": "ea0b3943cc77d04f5f1fa2e4e490d99315b47e9720436d60331dfe50de84a39f",
+          "alpha_bbox": [
+            17,
+            97,
+            107,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\block_shield\\superNovato-m-block_shield-01.png",
+          "sha256": "2e504a4b93666c9201f9a64cbf9686f688531261366ca3ee42373bd283262b25",
+          "alpha_bbox": [
+            20,
+            98,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\block_shield\\superNovato-m-block_shield-02.png",
+          "sha256": "faf4791a4ae39c0b889298335736379c40cd0518e1ebfcb6fdd6061982f0102f",
+          "alpha_bbox": [
+            19,
+            98,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\block_shield\\superNovato-m-block_shield-03.png",
+          "sha256": "ccb0d69962328bd0777e744ff27196f60e12621c46a0ef50bb0e5aa0c80f7959",
+          "alpha_bbox": [
+            19,
+            113,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\block_shield\\superNovato-m-block_shield-04.png",
+          "sha256": "1dc6d870da35701da95593f96d5dc01ab953129a3dacf60dea4276da94cf0376",
+          "alpha_bbox": [
+            17,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_sword\\superNovato-m-attack_sword-01.png",
+          "sha256": "e6012011d96e2d15cfbb4ed48238337a4d9ad3a742791cdc45fa1fffe9dcbd16",
+          "alpha_bbox": [
+            14,
+            99,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_sword\\superNovato-m-attack_sword-02.png",
+          "sha256": "bd7c5bd24865e946a795bd4fcd881b6904624df04bc4650dac4ed4285d4a2640",
+          "alpha_bbox": [
+            8,
+            99,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_sword\\superNovato-m-attack_sword-03.png",
+          "sha256": "306528831435f6de5b557c82616a0a4dd3ab64e0f9a5cad4a6efa27b88a61960",
+          "alpha_bbox": [
+            11,
+            102,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_sword\\superNovato-m-attack_sword-04.png",
+          "sha256": "7b39fd530e61a37a8490de79790bf261aa4b785b5830599adf0891630dad4eb9",
+          "alpha_bbox": [
+            20,
+            98,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_axe\\superNovato-m-attack_axe-01.png",
+          "sha256": "fa6b3280d77b4daaaa93a7631efc1efd986c6fe9e8080f3e6e5f47c64e864df2",
+          "alpha_bbox": [
+            10,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_axe\\superNovato-m-attack_axe-02.png",
+          "sha256": "8208bfe6006886fd7d1386320ec0f244d3df0b87e8439d347b3d2d0805ed5ccc",
+          "alpha_bbox": [
+            16,
+            113,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_axe\\superNovato-m-attack_axe-03.png",
+          "sha256": "725e0fc1157910e5cf8d18509643dbdffe15ab95df41ec9c97dfba9374abcd97",
+          "alpha_bbox": [
+            9,
+            122,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_axe\\superNovato-m-attack_axe-04.png",
+          "sha256": "4d6dde6bece96e547ec03ba9fedc84029d1d97829ec2ed987cd7e504b406b4c9",
+          "alpha_bbox": [
+            23,
+            105,
+            118,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_spear\\superNovato-m-attack_spear-01.png",
+          "sha256": "a10cbe77ec83d174f991b26b29803691c3294476d14f9db5954c27dc41501d9e",
+          "alpha_bbox": [
+            11,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_spear\\superNovato-m-attack_spear-02.png",
+          "sha256": "dc2da57ed96d4c49a8efeb114abc2033fde5f274481d3b577ae01adc98b864fd",
+          "alpha_bbox": [
+            14,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_spear\\superNovato-m-attack_spear-03.png",
+          "sha256": "dbd2ad94f425de4d67b45f11ef197c464e70968608bfcadfaf46d480f93c0120",
+          "alpha_bbox": [
+            12,
+            91,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_spear\\superNovato-m-attack_spear-04.png",
+          "sha256": "d89166d5c7446d4d1f359e55544db1c343bed7df18d4b79bb1ff2eee4d0774f5",
+          "alpha_bbox": [
+            19,
+            91,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_dagger\\superNovato-m-attack_dagger-01.png",
+          "sha256": "6ec1b37a57ef81650c8af6ed0f5aff50fad0e78c0f7f5d5c3cc7fcbe53f259f9",
+          "alpha_bbox": [
+            26,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_dagger\\superNovato-m-attack_dagger-02.png",
+          "sha256": "1015b3144cb38de41e6654b71c262e10d66fc282a15ac1711f59be83b4456a01",
+          "alpha_bbox": [
+            27,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_dagger\\superNovato-m-attack_dagger-03.png",
+          "sha256": "a984d6c799198ef988658d6cc1c5f0b6506626d9660acc97de892ae448d8a37a",
+          "alpha_bbox": [
+            25,
+            96,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_dagger\\superNovato-m-attack_dagger-04.png",
+          "sha256": "38e9dd753607fc7b2a499d3b3e7274bbe942b59edda3ad945be081888469493f",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_bow\\superNovato-m-attack_bow-01.png",
+          "sha256": "c3347ba26fb0b2ed71cb7e1afd80b7c008081dcfa1af7fde37c9046cb54077fd",
+          "alpha_bbox": [
+            26,
+            96,
+            120,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_bow\\superNovato-m-attack_bow-02.png",
+          "sha256": "d25f680494bab6211fb944b9f4cbaaf40c7e2879ebbdd70f5f5e569a7f33456c",
+          "alpha_bbox": [
+            24,
+            96,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_bow\\superNovato-m-attack_bow-03.png",
+          "sha256": "37dbdbd3b0211ba416c31bbf50bcd2b8949030a0ac7d6fa7d823cf4a81a9f20d",
+          "alpha_bbox": [
+            19,
+            96,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_bow\\superNovato-m-attack_bow-04.png",
+          "sha256": "61adbfe6bb0a841aff159840214b60a65279dc5695179f3308d8e025992ca387",
+          "alpha_bbox": [
+            15,
+            96,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_staff\\superNovato-m-attack_staff-01.png",
+          "sha256": "70e3a335958ca72be28bd4221341bc2731c8b9d5df70eb7496e1588fe72a61cb",
+          "alpha_bbox": [
+            30,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_staff\\superNovato-m-attack_staff-02.png",
+          "sha256": "30bc959717a6fa9f462faf16d5bfec80e232c11162d2acc00ef154eb3f3d08b4",
+          "alpha_bbox": [
+            27,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_staff\\superNovato-m-attack_staff-03.png",
+          "sha256": "c76f6aeeb0d9aba36f57b50ed31e3d513a6e5d9c47b90ef0192b3e79f33e4779",
+          "alpha_bbox": [
+            28,
+            93,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_staff\\superNovato-m-attack_staff-04.png",
+          "sha256": "f230b5e18bbd66dea1d0d20a488ac839347054da68588e05c537cfae232df79d",
+          "alpha_bbox": [
+            19,
+            93,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_mace\\superNovato-m-attack_mace-01.png",
+          "sha256": "ecc2c36f4d5c42bae8ce218684a578e0c451eb60b60e6d65b04d0eb2e6e4661e",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_mace\\superNovato-m-attack_mace-02.png",
+          "sha256": "80c80249137cc7afcf3ac3ff7e62040398284ff62fdc36c080df6d1f5d154d89",
+          "alpha_bbox": [
+            31,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_mace\\superNovato-m-attack_mace-03.png",
+          "sha256": "17e22b44c982015fcd1fbbb96e63ebc84e7c4f6cfbe5957c30b95cad43d85428",
+          "alpha_bbox": [
+            24,
+            104,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_mace\\superNovato-m-attack_mace-04.png",
+          "sha256": "f5409e0e616feb638466d114451eb142acdc3c67bb6d105580c6e3c2f9b3eefa",
+          "alpha_bbox": [
+            28,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_book\\superNovato-m-attack_book-01.png",
+          "sha256": "0a1509f4ea4b7a566827ff8affe30999a549d80bd45baaed1833079c39c9175b",
+          "alpha_bbox": [
+            24,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_book\\superNovato-m-attack_book-02.png",
+          "sha256": "1206e93315bc39dda88960dce6a856235c03e5b8dce2e6594d3e9739327facda",
+          "alpha_bbox": [
+            23,
+            91,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_book\\superNovato-m-attack_book-03.png",
+          "sha256": "bac296437e2685e7c1b5322d4c1ecd1b4a10c5e1ab5691ec30ee1c272d919419",
+          "alpha_bbox": [
+            21,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_book\\superNovato-m-attack_book-04.png",
+          "sha256": "c3627e61828c71281b797a4501727a798eb83b2dffe78ba24f6a1788c96fcac4",
+          "alpha_bbox": [
+            21,
+            91,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_gloves\\superNovato-m-attack_gloves-01.png",
+          "sha256": "bbd2cc706abcbab151d83824c06eb7c225b699417e471b9fd925648e0e16a99f",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_gloves\\superNovato-m-attack_gloves-02.png",
+          "sha256": "c9a9ee0a45adb155a93c00de1f1131dd63765cd95196f8f0f94d3deef2d2d296",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_gloves\\superNovato-m-attack_gloves-03.png",
+          "sha256": "bd97829ee46608a9d1c9b1bf71e4abd7b498c712b34b9fbf07fa297d1b14064a",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\superNovato\\m\\frames\\attack_gloves\\superNovato-m-attack_gloves-04.png",
+          "sha256": "82ceff85328c84170429057c34b45cf3e30fb301fc9cec132dfaf1ce972526a8",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
