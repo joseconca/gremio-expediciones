@@ -79682,8 +79682,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2410e16155f16685163bc45724a2dbbb6389db46e7aaee2033aac0d16e18fcdc",
-                "bytes": 23879,
+                "sha256": "90e83e5e9c416166c4c6fb36c267cfc22cd019bb0c94f51b2206179860b876d0",
+                "bytes": 23903,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -79695,55 +79695,55 @@
                   106,
                   248
                 ],
-                "pixelSha256": "ec6187f7dfe237c5dfc5f8beed264555dd503a2229ee5c01cfac9eb05b3f0a9c"
+                "pixelSha256": "f981cdebd8c496513ec9f026684bbedd8727dfec97d919d6e5729e1000d96a6a"
               },
               "02": {
-                "sha256": "22493c522b2bb6b7b729c2f6c82863bea839ed3a20502ce2b51f859cb9930e0c",
-                "bytes": 23026,
+                "sha256": "139b1d460b0f85942b4bb614ff541d33935ed5618735dd162b823b713a24aa36",
+                "bytes": 23263,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  28,
-                  98,
-                  114,
+                  27,
+                  97,
+                  113,
                   248
                 ],
-                "pixelSha256": "203e2127c6c91d288f4558134b62b2b3f4aa0859247c0c7a148c47168e5e5a46"
+                "pixelSha256": "c3e21a0568aa9a6eb761f92f609b375678f0fd52c6206b38fdc7a005b53a55a5"
               },
               "03": {
-                "sha256": "326ce85f395b222ab12f1d716d84c816b0dbb86eec0375863d7d7b32cc4c04ed",
-                "bytes": 20546,
+                "sha256": "b8ac2688832e455b9d8460a4bfc0ccd9ee57d303f83c0d56599b449442712292",
+                "bytes": 20723,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
+                  12,
                   119,
-                  105,
+                  102,
                   248
                 ],
-                "pixelSha256": "87e198ff0d5a4b7ddbbc29e1eb69d55af602974a46a0ef1de2382d355b3801e0"
+                "pixelSha256": "a85bdfeb500d363b1695ae6802a564031386b4d5d051654c4f8d350a46fd86dc"
               },
               "04": {
-                "sha256": "e83ec34223d31315348d42a3ca2d2a02d4191739a6c80ec1690ed3e5595c39d6",
-                "bytes": 24061,
+                "sha256": "0548516d30cf48490c8a4742a9da616b7c63af332cd7e2e31710856ba44db6d9",
+                "bytes": 24193,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
+                  12,
                   90,
-                  101,
+                  95,
                   248
                 ],
-                "pixelSha256": "ca8a6e6d05c2287bb66e8634485bd1b9964a79baf1fc9a503829c12d1a24871c"
+                "pixelSha256": "d93e37bccd299b0949dba47435d3aba3566f6630d845884d3901bed6233d807c"
               }
             },
             "distinctFrames": 4
@@ -80668,7 +80668,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "8b8ef25234a52db950587f88d7a8654c103a3f1136d2065823235ef5846e4010",
+          "sourceSha256": "37a4d0932f621e6981a04eeb6d6433f4133e436f158a53d25a9ac04040f290c9",
           "sourceDimensions": [
             2172,
             724
@@ -80693,9 +80693,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise tiny LOCAL facial consistency correction in Image1 only. Every male merchant here MUST HAVE the SAME small tidy dark-chestnut moustache seen in Image2 idle identity. Restore the missing moustache immediately below nose and ABOVE the upper lip on the open-mouth/pain/exertion figures. Keep existing open mouth/teeth and facial expression, brass oval glasses, eyes and head position unchanged. Do NOT turn the mouth into a moustache: draw neat facial hair between nose and upper lip while retaining mouth beneath it. Leave all existing correct moustaches alone. Preserve all four complete figures, exact poses, hand/finger/grip locations, hair, costume, watch chain, pouches and boots,2172x724canvas and true transparent background. Nothing else changes; no props, equipment, scarf or cape.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -80703,7 +80703,47 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "8b8ef25234a52db950587f88d7a8654c103a3f1136d2065823235ef5846e4010",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "ab78e805ecc9c6f812e5ef5233742cd9c25f1df400426a2e50fdc5b0eaf4155b",
@@ -88603,9 +88643,119 @@
       "costume": "Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props.",
       "maleIdentity": "Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size.",
       "femaleIdentity": "Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size.",
-      "armPolicy": "Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points.",
+      "armPolicy": "Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. MALE retains his small dark chestnut moustache in ALL four figures, including open mouth, grimacing, pain and exertion; FEMALE has no facial hair.",
       "unique": "Ochre tailcoat, bottle-green waistcoat, oval spectacles, watch chain and square utility pouches.",
       "advancement": "Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero."
+    },
+    "cruzado": {
+      "id": "cruzado",
+      "name": "Cruzado",
+      "tier": 2.5,
+      "costume": "Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects.",
+      "maleIdentity": "Adult resolute masculine crusader with ash-brown neatly swept hair, blue-gray eyes, clean-shaven face.",
+      "femaleIdentity": "Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes.",
+      "unique": "Ivory enamel half-plate, wine surcoat and flat gold solar-cross medallion.",
+      "advancement": "Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "pirata": {
+      "id": "pirata",
+      "name": "Pirata",
+      "tier": 2.5,
+      "costume": "Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks.",
+      "maleIdentity": "Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows.",
+      "femaleIdentity": "Adult mischievous feminine seafarer, sun-tanned skin, dark auburn tucked short bob under hat and one compact side braid.",
+      "unique": "Small navy bicorne, coral-lined indigo jacket, rust-red waist sash and knot insignia.",
+      "advancement": "Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "druida": {
+      "id": "druida",
+      "name": "Druida",
+      "tier": 2.5,
+      "costume": "Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects.",
+      "maleIdentity": "Adult calm masculine woodland adept with warm russet-red wavy medium-short hair, green eyes and clean-shaven face.",
+      "femaleIdentity": "Adult calm feminine woodland adept with warm russet-red compact braided bun and green eyes.",
+      "unique": "Sage leaf shoulder caps, carved wood leaf circlet, acorn clasp and amber stones.",
+      "advancement": "Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "espadachin_runico": {
+      "id": "espadachin_runico",
+      "name": "EspadachÃ­n rÃºnico",
+      "tier": 2.5,
+      "costume": "Rune duelist outfit: fitted MIDNIGHT-BLUE dueling coat with AMETHYST diagonal inset panels and brushed SILVER compact asymmetrical half-cuirass, three engraved violet geometric rune tiles on breastplate, short narrow split coattails, narrow silver belt with diamond-shaped crystal buckle, fitted navy trousers, dark neat boots and silver bracers over black fingerless gloves. One short close-fitting silver angular shoulder on rear side, front shoulder cloth. No neck scarf, cape, held weapons or glowing effects.",
+      "maleIdentity": "Adult focused masculine arcane duelist with dark violet-black sharply side-parted short hair, pale hazel eyes, clean-shaven.",
+      "femaleIdentity": "Adult focused feminine arcane duelist with dark violet-black compact high braided ponytail and pale hazel eyes.",
+      "unique": "Silver asymmetric breastplate with three violet rune tiles and midnight/amethyst duel coat.",
+      "advancement": "Tier2.5 hybrid Duelista/Brujo: fitted fencing gear plus engraved occult armor. Reserve elaborate translucent veil and richer blade heraldry for Hoja del velo.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "chaman": {
+      "id": "chaman",
+      "name": "ChamÃ¡n",
+      "tier": 2.5,
+      "costume": "Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic.",
+      "maleIdentity": "Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven.",
+      "femaleIdentity": "Adult stern feminine shaman, warm brown skin, dark brown hair in compact braided ponytail and amber eyes.",
+      "unique": "Burnt-sienna/turquoise hide, copper spiral disc, sewn mineral beads and short close feather.",
+      "advancement": "Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "inquisidor": {
+      "id": "inquisidor",
+      "name": "Inquisidor",
+      "tier": 2.5,
+      "costume": "Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon.",
+      "maleIdentity": "Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes.",
+      "femaleIdentity": "Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes.",
+      "unique": "Bone stole over blackened plum, pewter scales brooch, red seal plates.",
+      "advancement": "Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "heraldo_guerra": {
+      "id": "heraldo_guerra",
+      "name": "Heraldo de guerra",
+      "tier": 2.5,
+      "costume": "Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag.",
+      "maleIdentity": "Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face.",
+      "femaleIdentity": "Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin.",
+      "unique": "Copper fist-and-quill emblem, parchment seal tabard over teal martial layers, fighting wraps.",
+      "advancement": "Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "ninja": {
+      "id": "ninja",
+      "name": "Ninja",
+      "tier": 2.5,
+      "costume": "Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic.",
+      "maleIdentity": "Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven.",
+      "femaleIdentity": "Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes.",
+      "unique": "Ink/plum wrap tailoring, silver rhythm diamonds and flat forehead diamond plate.",
+      "advancement": "Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+    },
+    "alquimista": {
+      "id": "alquimista",
+      "name": "Alquimista",
+      "tier": 2.5,
+      "costume": "Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects.",
+      "maleIdentity": "Adult inquisitive masculine alchemist with dark chestnut neatly combed short hair and short tidy moustache, brass oval glasses.",
+      "femaleIdentity": "Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses.",
+      "unique": "Ivory laboratory coat with green circle badge, clipped sealed glass ampoules and oval brass glasses.",
+      "advancement": "Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair."
+    },
+    "herrero": {
+      "id": "herrero",
+      "name": "Herrero",
+      "tier": 2.5,
+      "costume": "Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf.",
+      "maleIdentity": "Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes.",
+      "femaleIdentity": "Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes.",
+      "unique": "Charcoal riveted split apron, brass anvil clasp, forehead goggles and iron toe caps.",
+      "advancement": "Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor.",
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair."
     }
   },
   "classArtDirectionPolicy": {
