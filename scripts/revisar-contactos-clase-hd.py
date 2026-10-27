@@ -20,11 +20,17 @@ def review(c,sex):
                     checks+=1
                     if body.getchannel('A').crop((max(0,x-3),max(0,y-3),min(128,x+4),min(256,y+4))).getextrema()[1]<128:warnings.append({'action':action,'frame':n+1,'item':item_id,'point':[x,y]})
         items=EXAMPLES[action];contact=Image.new('RGB',(1536,len(items)*384+24),'#242630');d=ImageDraw.Draw(contact);d.text((6,5),c+' '+sex+' / '+action+' / '+', '.join(items),fill='white')
+        # Keep the full composition and a separate enlarged view of the hands.
+        # Alpha contact alone can be covered by cloth rather than a real grip.
+        grips=Image.new('RGB',(1408,len(items)*320+24),'#242630')
+        ImageDraw.Draw(grips).text((6,5),c+' '+sex+' / '+action+' / grip detail',fill='white')
         for row,item_id in enumerate(items):
             for n,body in enumerate(bodies):
                 layer=Image.open(ROOT/m['items'][item_id]['sheets'][sex]['actions'][action][n]['path']).convert('RGBA');cfg=m['items'][item_id]['sheets'][sex]['actions'][action][n]['config']
                 combined=r['composite'](body,layer,cfg);tile=Image.new('RGBA',(384,384),'#242630');tile.alpha_composite(combined);contact.paste(tile.convert('RGB'),(n*384,row*384+24))
+                grips.paste(tile.convert('RGB').crop((104,128,280,288)).resize((352,320),Image.Resampling.NEAREST),(n*352,row*320+24))
         contact.save(out/(action+'.png'))
+        grips.save(out/(action+'-grips.png'))
     result={'status':'contact-review-required' if warnings else 'passed','classId':c,'sex':sex,'actions':available,'bodyHashes':hashes,'contactChecks':checks,'warnings':warnings,'equipmentTransforms':'unchanged; exact existing equipment layers per sex, no class offsets','artisticApproval':'not-automatic'}
     (out/'qa-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'class':c,'sex':sex,'actions':len(available),'contactChecks':checks,'warnings':warnings},ensure_ascii=False));return result
