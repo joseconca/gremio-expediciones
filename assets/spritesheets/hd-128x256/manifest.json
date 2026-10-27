@@ -57036,7 +57036,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 56,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -57051,7 +57051,8 @@
           "attack_dagger",
           "attack_bow",
           "attack_staff",
-          "attack_mace"
+          "attack_mace",
+          "attack_book"
         ],
         "actions": {
           "idle": {
@@ -57965,7 +57966,74 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "68809429bbe4f29de4e15b306b08143f07ec85797e8d366e5ec2d153ba43457c",
+                "bytes": 23720,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  102,
+                  249
+                ],
+                "pixelSha256": "21bd81c4b4ed98b5e1e1325c6350f3c141efd55846de3165271729b573f44eb4"
+              },
+              "02": {
+                "sha256": "a118357a63a96e91db0d74e2f10b54dd2aa593c4fc3d3df713b3f2174af1a09b",
+                "bytes": 23335,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  102,
+                  249
+                ],
+                "pixelSha256": "f7d1e0283562b811c7400267acf7942ef9afb66b6e65cd9712964539502d9fd8"
+              },
+              "03": {
+                "sha256": "0170d70de3bcae45bd639dc617379beb3792911a2bbba176e1abd03b7c9ce7b1",
+                "bytes": 24068,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "2d0824c137dc6b8844f71630a4b98f5838ea62db9805936db27429c243ea0711"
+              },
+              "04": {
+                "sha256": "7636fb52d366a232aa32f5ed16188a06bb7ea222bfad7afa61557394339c40ac",
+                "bytes": 23288,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  103,
+                  249
+                ],
+                "pixelSha256": "31fa814209fdc7b4e319d1f10803e8c13755a167a2d0d2776d4573ebb7b47f5f"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
             "status": "missing"
@@ -58478,6 +58546,44 @@
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "eb3e12fe7649f70a8ac9115cdeff06bb8a74d9abfc253faf5762706a6790f8a6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -58687,6 +58793,22 @@
         },
         "attack_mace/04": {
           "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
           "frame": 4
         }
       },
