@@ -111831,7 +111831,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -111847,7 +111847,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -112831,7 +112832,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "405c4252e00adeca6754eb34813f380248f5334a1b93819b2c76592783bf3322",
+                "bytes": 23361,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  106,
+                  247
+                ],
+                "pixelSha256": "5c8eae1fe6ba6a6d03ca7e2870ef7f86725b8873b8d849cc295a018e4adabd28"
+              },
+              "02": {
+                "sha256": "a28529a436f26f7cc6569a0f4204440dba6693ea9359daa57db36f39771553dd",
+                "bytes": 24044,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  106,
+                  247
+                ],
+                "pixelSha256": "7285b23d9e7b880b9552a5e220a420a5a1b1d46eb4644c5bcc377e375f7734a9"
+              },
+              "03": {
+                "sha256": "f0301c455b8fcec63f1fcc6bc6b712e0b89593bc40f51559885a9a3912b249a3",
+                "bytes": 23137,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  106,
+                  246
+                ],
+                "pixelSha256": "58180419d88857be461976111f9f845db486725cc331642ee622473eedebd08c"
+              },
+              "04": {
+                "sha256": "29488bf7a7f77b2a27c5d17878566957391a0f8598efdae6f33a701fc26e35ff",
+                "bytes": 23448,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  106,
+                  247
+                ],
+                "pixelSha256": "cb2298a0446b8ef690455275aa27970d2c91affb26da7a82aeef4d659d0de804"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -113761,6 +113829,44 @@
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "03a24f4d9504299265d68a288ae1e676bb85fd03519bfb9f45a2f4df70eef784",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Production RPG body sprite strip for Inquisidor MALE, Tier 2.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -113986,6 +114092,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
