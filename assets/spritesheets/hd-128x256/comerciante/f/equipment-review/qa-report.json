@@ -3,7 +3,8 @@
   "classId": "comerciante",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "17b01ec6ef2e99fa70cdb42598f8a59d4af4c74a896c3ab6644fbd511f6c92f1",
       "8ce55d9135ece8722fe9550edf780ac76c6960d8784a233e64f408db214dd5c2",
       "ba2ba56133174deb928bcf0bfcf9586a604828ed5f4399e7026ba5b4cf992486"
+    ],
+    "walk": [
+      "92c713db681a1551400a15cbe0381bbe0b8b0fa5f24df528b49c75846c372894",
+      "fae356be9cb65e14966d7604f054ce56b3ba59d16fbd102c43518171d25a1ff3",
+      "1fd699c2b2dbb17501fe4fcbef40628ec9d4693073d03f38b45e67f3577accb9",
+      "d31cca6e86b42b7d4d0ceb734a5b1417ac707df33e5be06a2f8e9528d0f9a08b"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
