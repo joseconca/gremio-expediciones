@@ -81714,8 +81714,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2fc30f94982d5038ca1183450913ace42970f8668b28b0ea97b2f6eade39c72b",
-                "bytes": 23732,
+                "sha256": "7358c7e60308537383f9dee9743f9dd42154694f79d67eaf36934654f5c954fd",
+                "bytes": 23895,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -81727,55 +81727,55 @@
                   109,
                   247
                 ],
-                "pixelSha256": "d436d867938ba293b381828039a4cadb92aed984f86fb2841bb934747aa105ec"
+                "pixelSha256": "1909cbf327e4902f2941cd69545145a06918b84d2464e1a60f1a9fd832d3de82"
               },
               "02": {
-                "sha256": "a286a36053392a5083638f3fdf49bffbb3144d96e4adabfcf0e4b4d38495db4f",
-                "bytes": 21487,
+                "sha256": "d910bc6efc5f5b18c3443d2e1a0a381d49d435c3ab8bc30933c17735563216f6",
+                "bytes": 21735,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  27,
+                  25,
                   89,
-                  96,
-                  248
-                ],
-                "pixelSha256": "6839b7cff36b96fde4f1c0f859b2a8ecb59ee4be96a2379b92206a543ea15d03"
-              },
-              "03": {
-                "sha256": "b6e3810f9a128609a86854b689e9e733525fa69189a5311c6976b2463a25c772",
-                "bytes": 23843,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  9,
-                  89,
-                  120,
-                  246
-                ],
-                "pixelSha256": "67ab8298a04480d4d9012cee0adc9e3d1dc39c791f9dcada34a888afed7b49e7"
-              },
-              "04": {
-                "sha256": "8ca1075d7c2d26bbd7a5e52799f7e7923784f00b4fce72c30bca893bd89735de",
-                "bytes": 21782,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  15,
-                  89,
-                  98,
+                  97,
                   249
                 ],
-                "pixelSha256": "91d0fd613222772d072c84748ecc6760a5d8afb9bc883a86dd0631c38c5f5fe9"
+                "pixelSha256": "cecc5fe84b5705ced49eee74dc619ee94ebad4f24696e635bebf1431877a0540"
+              },
+              "03": {
+                "sha256": "82354de20ba5ab88f0df457464c6a8ece80e558ac9c2376c80d981a034904b12",
+                "bytes": 23817,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  89,
+                  118,
+                  247
+                ],
+                "pixelSha256": "ebf6e56287d002cbd77cfe893a5a4c9e6f6118e47ba4486c0892a7dbad565a15"
+              },
+              "04": {
+                "sha256": "67443207447cb30414532ce2dfc2031aeaf5f8997cb6ead2eed121c8f9c60137",
+                "bytes": 21892,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  89,
+                  93,
+                  249
+                ],
+                "pixelSha256": "27964dbca426d25927fcfc811422747440e55ca086a5d704745f90800da5616d"
               }
             },
             "distinctFrames": 4
@@ -81901,7 +81901,7 @@
           ]
         },
         "walk": {
-          "sourceSha256": "9786da9ac375f04c2616a20b8dd10cafa1091f04e592bd3da3d9727c9014f213",
+          "sourceSha256": "43f0306b98c8cc1565da557c5265c929636f263ff3fc4dcb481be8ce6858561a",
           "sourceDimensions": [
             2169,
             725
@@ -81926,9 +81926,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "LOCAL accessory consistency correction in Image1: FOURTH/rightmost figure has NO spectacles. Add the exact same thin GOLD/BRASS OVAL RIM GLASSES as figures1,2,3 and Image2, with clearly visible oval rims around both eyes, bridge over nose and temple behind ear. Leave her facial expression, eyes, eyebrows, head, hair and all body pose/hand coordinates unchanged. ALL FOUR women must wear identical oval gold glasses; keep the existing glasses on figures1,2,3. No facial hair. Also make the small coat/shirt tails BELOW BELT consistent with Image2 ochre short tailcoat: replace the incorrect WHITE pointed waist flaps on figures2,3,4 with OCHRE coat-tail panels with dark seam lines. Do not alter legs, trousers or belt/pouches. Preserve every other pixel detail in all four complete figures: coat, green waistcoat, chain, hands, fingers, pouches, boots. Same full strip canvas and transparent background. No scarf/cape/props. This is a small correction, not a redesign.\n",
+          "prompt": "Image1: EDIT ONLY FACE OF FOURTH / RIGHTMOST WOMAN. ADD GOLD OVAL EYEGLASSES clearly visible around her two eyes, matching eyeglasses worn by ALL figures in Image2. This fourth woman currently has bare eyes, which is wrong. Draw distinct golden oval rim line around each eye and golden bridge over nose, with thin temples. Make rims visible at sprite size. The FIRST THREE women in Image1 already wear glasses: leave them unchanged. Preserve ALL other details of all four figures EXACTLY, including head positions, eyes, hair, body, ochre tails, hands and boots. No other edits. Same2169x725canvas, true transparent background. No text or props.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -81967,6 +81967,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/walk-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Comerciante FEMALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. MALE retains his small dark chestnut moustache in ALL four figures, including open mouth, grimacing, pain and exertion; FEMALE has no facial hair. Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "9786da9ac375f04c2616a20b8dd10cafa1091f04e592bd3da3d9727c9014f213",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "LOCAL accessory consistency correction in Image1: FOURTH/rightmost figure has NO spectacles. Add the exact same thin GOLD/BRASS OVAL RIM GLASSES as figures1,2,3 and Image2, with clearly visible oval rims around both eyes, bridge over nose and temple behind ear. Leave her facial expression, eyes, eyebrows, head, hair and all body pose/hand coordinates unchanged. ALL FOUR women must wear identical oval gold glasses; keep the existing glasses on figures1,2,3. No facial hair. Also make the small coat/shirt tails BELOW BELT consistent with Image2 ochre short tailcoat: replace the incorrect WHITE pointed waist flaps on figures2,3,4 with OCHRE coat-tail panels with dark seam lines. Do not alter legs, trousers or belt/pouches. Preserve every other pixel detail in all four complete figures: coat, green waistcoat, chain, hands, fingers, pouches, boots. Same full strip canvas and transparent background. No scarf/cape/props. This is a small correction, not a redesign.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
               "canonicalPoseHashes": [
                 "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
