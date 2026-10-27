@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "inquisidor-m",
+  "nextVariant": "inquisidor-f",
   "classes": [
     {
       "id": "novato",
@@ -114168,10 +114168,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -114245,7 +114246,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ba27931b01ed007ccf8fd564ea4f38c8bd9224bbe94c499bccc330d5dbca141f",
+                "bytes": 25856,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  90,
+                  105,
+                  246
+                ],
+                "pixelSha256": "4083ee741eec2def77e81b88cf0e79d4b901715dc2f11f760585f823c3b622a0"
+              },
+              "02": {
+                "sha256": "dfd80cf054b6864c549960c98ad8e2e8cd29e87ded7506e01a897b5ac706477b",
+                "bytes": 22758,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  91,
+                  91,
+                  248
+                ],
+                "pixelSha256": "a6f0195726b22f9c945ff4ec3e541039de574eeea2b5b0844655daab4a9d8788"
+              },
+              "03": {
+                "sha256": "4c2962ec7d4eba66f25843fc9c34a4673c8f434e8ec23b7bad6efdd9bfdf5ccd",
+                "bytes": 24334,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  90,
+                  119,
+                  246
+                ],
+                "pixelSha256": "7e4781bb55920a8e1f0a38f2b93dfb8470ce9bc7ead4b3a75b080d279a84d80e"
+              },
+              "04": {
+                "sha256": "2e36f11bb2a1dcb4f4b0a312a4bc9dcc1efed93a5d310d4b8095ae896eeaae80",
+                "bytes": 22625,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  91,
+                  96,
+                  248
+                ],
+                "pixelSha256": "18d8c6cc6468d4afe7e3f14b59347484f469e4a6dc66a2cf01ffd476865f77e9"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -114326,6 +114394,44 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "67664ec7510b844345985257c041b39dc4511b644194461cf835f1917e3af2f9",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Production RPG body sprite strip for Inquisidor FEMALE, Tier 2.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -114343,6 +114449,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
