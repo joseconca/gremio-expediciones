@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T14:36:38.944509+00:00",
+  "classId": "bardo",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\bardo\\f\\bardo-f-sheet.png",
+  "sheetSha256": "acc87beb23051a913c7b86117c2f3b2e250219fa788b8dd8a35eabb30c4599b2",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\idle\\bardo-f-idle-01.png",
+          "sha256": "f218357ff9afadeb26d45066810e69111015322567b61eb8bd8f4dd97166e837",
+          "alpha_bbox": [
+            29,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\idle\\bardo-f-idle-02.png",
+          "sha256": "972ea3de8fba3d3829d3b96c5aa4989cc63400bd41bce2f5d85b14990d7a41fb",
+          "alpha_bbox": [
+            29,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\idle\\bardo-f-idle-03.png",
+          "sha256": "1ed1816d51e47da1408abd9cea030bbbdd7c366b27a04d9d5881edfbc7f85964",
+          "alpha_bbox": [
+            29,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\idle\\bardo-f-idle-04.png",
+          "sha256": "283c842dcf793b6342fe928b12965b9b3c3437411d1e5bd92f8dc3545ae68259",
+          "alpha_bbox": [
+            29,
+            89,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\walk\\bardo-f-walk-01.png",
+          "sha256": "1bef0be7a9c88cf1fa61bc3386e080244c66ccf3d120bb7ba6cd5170ab449f77",
+          "alpha_bbox": [
+            12,
+            89,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\walk\\bardo-f-walk-02.png",
+          "sha256": "d4bf89b3b3132b04ef091e0e757526f8c18763660e46a7a189e180c5f05f02d2",
+          "alpha_bbox": [
+            30,
+            88,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\walk\\bardo-f-walk-03.png",
+          "sha256": "20e5df4b417307a46aa9d3a478ac6b870041b7b1a0cf8a2bf11101c0264c5e74",
+          "alpha_bbox": [
+            13,
+            89,
+            123,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\walk\\bardo-f-walk-04.png",
+          "sha256": "210ae5049fbe9149d4f2633a30bf8dee5528eb6ece90d28f88190974187162f9",
+          "alpha_bbox": [
+            27,
+            89,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\hurt\\bardo-f-hurt-01.png",
+          "sha256": "d286433f93e4194a072ff44ab2a432457616a9d4ad9ddcd16048939caed6f4f6",
+          "alpha_bbox": [
+            17,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\hurt\\bardo-f-hurt-02.png",
+          "sha256": "75c817e1773b5bae9890e3596390c84365ef1b9a3914347a1b81c5d710584bf4",
+          "alpha_bbox": [
+            21,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\hurt\\bardo-f-hurt-03.png",
+          "sha256": "3662db68dfd8cd3061c50165bd8a824071dcd404c9ff876ff2143ecf8bec6b29",
+          "alpha_bbox": [
+            19,
+            114,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\hurt\\bardo-f-hurt-04.png",
+          "sha256": "b20b453c3d8be6b03492ba0d903f6915ff06eb9c3235b0c89ed773e376398b4b",
+          "alpha_bbox": [
+            21,
+            89,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\use_consumable\\bardo-f-use_consumable-01.png",
+          "sha256": "e0fa55ac30d7af7d604097bfae75b35fd87d64956fb4dd8ae789ae47e79e4ffc",
+          "alpha_bbox": [
+            27,
+            88,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\use_consumable\\bardo-f-use_consumable-02.png",
+          "sha256": "a5d55cf4f6b72edb80b802439d91f8b25475c1fd7bcaaeff0054e8614136a578",
+          "alpha_bbox": [
+            27,
+            88,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\use_consumable\\bardo-f-use_consumable-03.png",
+          "sha256": "126736bdf9538c7abcfae5b93b75f0c4831e632fc985fa2fa1d28711ded3ae4d",
+          "alpha_bbox": [
+            28,
+            88,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\use_consumable\\bardo-f-use_consumable-04.png",
+          "sha256": "eab5354e404dafa4aaf046330c5076b6f12b1577c51570c0f4d2a14ad2487a04",
+          "alpha_bbox": [
+            27,
+            88,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\dodge\\bardo-f-dodge-01.png",
+          "sha256": "61fb6f2bfd6a9002c2e71b7c32db64747263d2dc797ea55bb8cddf8836300d20",
+          "alpha_bbox": [
+            33,
+            90,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\dodge\\bardo-f-dodge-02.png",
+          "sha256": "f4c6667003189d856494c084cff5823474ccf5402d0f88d9bac961a84277bfcf",
+          "alpha_bbox": [
+            34,
+            92,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\dodge\\bardo-f-dodge-03.png",
+          "sha256": "a55c842f916fda9503bae6da756433d5506c532e2480604a1915591e18f88058",
+          "alpha_bbox": [
+            25,
+            124,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\dodge\\bardo-f-dodge-04.png",
+          "sha256": "c054c9fe040a6ffc2bd28546af5cb8761566931f52a0d12b5292179b8c9be601",
+          "alpha_bbox": [
+            18,
+            91,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\block_shield\\bardo-f-block_shield-01.png",
+          "sha256": "9ec3e28861606bde0e0e4cbf375ee52641838c44f3910ff0f26499dd9a060c3a",
+          "alpha_bbox": [
+            27,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\block_shield\\bardo-f-block_shield-02.png",
+          "sha256": "3b9f5bc7b21c2f01877956c7dae578fd8d23e677cda03260d300eb67b9fd3aa6",
+          "alpha_bbox": [
+            27,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\block_shield\\bardo-f-block_shield-03.png",
+          "sha256": "3532a0c7a90f9837f6012faac94400e69fc5a0916dfa812a1390301ff2190bb6",
+          "alpha_bbox": [
+            26,
+            99,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\block_shield\\bardo-f-block_shield-04.png",
+          "sha256": "f4d5762421d2eb7151ba6281e48032cfdcc0388ca1525d89f5eaa50c8e2231ed",
+          "alpha_bbox": [
+            27,
+            90,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_sword\\bardo-f-attack_sword-01.png",
+          "sha256": "c3eac4ee886bbc0b813177a74ff723dc7b32c180174450d947710aa643834b90",
+          "alpha_bbox": [
+            20,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_sword\\bardo-f-attack_sword-02.png",
+          "sha256": "23a32cce15912f5d737685091f03787367bb9dc8e3ffaf4e5162d67b2241cd35",
+          "alpha_bbox": [
+            24,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_sword\\bardo-f-attack_sword-03.png",
+          "sha256": "0962d3fc7cc0e0da7e95f5a45e9d3714fe8b84eeac150257681aad01585ed717",
+          "alpha_bbox": [
+            24,
+            93,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_sword\\bardo-f-attack_sword-04.png",
+          "sha256": "888d53b3e29c335c866d7dcb138bd23ca239bf1c53d861fe9745eaef2436b0d5",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_axe\\bardo-f-attack_axe-01.png",
+          "sha256": "6222309d25eecd1855dd7f0f7e515afbd8a5f82654674b1b779e70964ab5b525",
+          "alpha_bbox": [
+            23,
+            93,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_axe\\bardo-f-attack_axe-02.png",
+          "sha256": "c195d8586b12925aab2d42827e845ef3637a51b5ff720c136e91aa44056a3942",
+          "alpha_bbox": [
+            23,
+            89,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_axe\\bardo-f-attack_axe-03.png",
+          "sha256": "89c09c3d5c083c8b013bfd7e976769764551aa1e36d1073afba4cb83dca20181",
+          "alpha_bbox": [
+            17,
+            105,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_axe\\bardo-f-attack_axe-04.png",
+          "sha256": "2d6fabcce4d9fdd4f7f6942b7d7835d4e2ae35c60d96d6fdcb17d7000cee9f8f",
+          "alpha_bbox": [
+            13,
+            92,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_spear\\bardo-f-attack_spear-01.png",
+          "sha256": "2a34113897673b742934ba6accb5d68b1b461b46cdae7bf06b246b715e011435",
+          "alpha_bbox": [
+            16,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_spear\\bardo-f-attack_spear-02.png",
+          "sha256": "f68f49cc174b1e3ceef6ffcb344280b1370a079fbb0b4426dd63d4994b612f3f",
+          "alpha_bbox": [
+            17,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_spear\\bardo-f-attack_spear-03.png",
+          "sha256": "e6b6ee6f7cc28ce9f79b111b05ceeb11d88029c46e63d1696db201007a9988d8",
+          "alpha_bbox": [
+            15,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_spear\\bardo-f-attack_spear-04.png",
+          "sha256": "961d55a967f23f230187000d5d10198d979f3f2794ef6c74085515257606606d",
+          "alpha_bbox": [
+            16,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_dagger\\bardo-f-attack_dagger-01.png",
+          "sha256": "0c06a60709670a485eee9b3d8fd7a3acc5d13df7b3ad048f5da36127ebf60fde",
+          "alpha_bbox": [
+            20,
+            88,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_dagger\\bardo-f-attack_dagger-02.png",
+          "sha256": "a006e9fe9cf9c31cc40d4bca1e8157ddc1678f6a5e10a6e6d6d58421bbf12632",
+          "alpha_bbox": [
+            16,
+            89,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_dagger\\bardo-f-attack_dagger-03.png",
+          "sha256": "0dcb7c086a4c4dab7f937ac397248c0a9d0f0f8ef208bd67a1bd762bd14b8455",
+          "alpha_bbox": [
+            17,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_dagger\\bardo-f-attack_dagger-04.png",
+          "sha256": "2ee0b9d49067c2ab27b8a26b49f027b355702da6277644d445134e0bf7ad91ae",
+          "alpha_bbox": [
+            24,
+            88,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_bow\\bardo-f-attack_bow-01.png",
+          "sha256": "bdbf5db42c1b5af8f992f0ef07afda05dbbddf1565fda13a28ec55267e6a3d0e",
+          "alpha_bbox": [
+            30,
+            89,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_bow\\bardo-f-attack_bow-02.png",
+          "sha256": "a49b02aefbe9af08282f65f54ceea175a39765f939a49556dacc968298f7bc89",
+          "alpha_bbox": [
+            23,
+            89,
+            120,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_bow\\bardo-f-attack_bow-03.png",
+          "sha256": "5769bf1f6df7b980c26b77550a043e59a36763be16f93e673ec4f3d32b82bbc0",
+          "alpha_bbox": [
+            21,
+            89,
+            122,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_bow\\bardo-f-attack_bow-04.png",
+          "sha256": "6dbf9d8e0993c5b8a4c75f8ef95149f284c1e0a2447c8e5d94b2322976c5a272",
+          "alpha_bbox": [
+            23,
+            89,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_staff\\bardo-f-attack_staff-01.png",
+          "sha256": "2a3489d3498a8cc3434b1ec8a56ae55df6438834be0ef0e9a32f4c07f7296e0c",
+          "alpha_bbox": [
+            25,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_staff\\bardo-f-attack_staff-02.png",
+          "sha256": "9af6092abf8adb3d706ebac4a6a49cbd1438a7b52278420b2f210ec6c30c346e",
+          "alpha_bbox": [
+            25,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_staff\\bardo-f-attack_staff-03.png",
+          "sha256": "cbea0f419a4d5cbf8ae68a4eed1e22dd5bcb3c2b5a5a0079d431a79b66a0bb51",
+          "alpha_bbox": [
+            28,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_staff\\bardo-f-attack_staff-04.png",
+          "sha256": "3c9b20505040748d274883d21b5850d4d02d8ec7d084c6cb9350b459b2ffb131",
+          "alpha_bbox": [
+            26,
+            89,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_mace\\bardo-f-attack_mace-01.png",
+          "sha256": "89e198ea68fb6936b43fdde3e9f1f1a27b8cb52ae5e58be2c6e6d9b7c4f1f67a",
+          "alpha_bbox": [
+            28,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_mace\\bardo-f-attack_mace-02.png",
+          "sha256": "7f3c34ded7b23438f8837a3423c4f773ae8bbcfe06db6f566e56de589c034d09",
+          "alpha_bbox": [
+            22,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_mace\\bardo-f-attack_mace-03.png",
+          "sha256": "7d65d2e99286b2f6e3cbf94cef4f0af75a356f363c108a379aa1eae740b97ab9",
+          "alpha_bbox": [
+            21,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_mace\\bardo-f-attack_mace-04.png",
+          "sha256": "4bfd5a6421fb2f058dee599abb73327db17305c8fba6b7d6681c7285771586f6",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_book\\bardo-f-attack_book-01.png",
+          "sha256": "2397cae0ef7759c197e88affe6ada72aae3ab39a7a040639eceecf73fc64eece",
+          "alpha_bbox": [
+            29,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_book\\bardo-f-attack_book-02.png",
+          "sha256": "485142331e18332199d2b55a7016b9227278f4b60967ec84696e35c8e28f75ac",
+          "alpha_bbox": [
+            28,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_book\\bardo-f-attack_book-03.png",
+          "sha256": "c588516002618c9f488266dd3771293303dd0446d87239bab149dce793990570",
+          "alpha_bbox": [
+            29,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_book\\bardo-f-attack_book-04.png",
+          "sha256": "081f6ba7e18814cd631aa4963aaecfe68767ea4ae0cf91410cd600e71d8e605f",
+          "alpha_bbox": [
+            27,
+            89,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_gloves\\bardo-f-attack_gloves-01.png",
+          "sha256": "074d322e9c0b7ebbf8f6b37ff257b62b0ac34d205b190628a212ba96aabe889d",
+          "alpha_bbox": [
+            20,
+            88,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_gloves\\bardo-f-attack_gloves-02.png",
+          "sha256": "a2f41a8ffc34e723cd8216e5537fb04f5e02a9a3e983935222b0e151aec7d26a",
+          "alpha_bbox": [
+            20,
+            88,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_gloves\\bardo-f-attack_gloves-03.png",
+          "sha256": "3bf3bdd651222e6b9c0bedfb2d6116c1cf8394f54daedb5569c482001c223486",
+          "alpha_bbox": [
+            13,
+            88,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\bardo\\f\\frames\\attack_gloves\\bardo-f-attack_gloves-04.png",
+          "sha256": "928aaab1cbe74aa55f9e08939a1a4c4f1a47d150aa0453e44da9fef401dbdebd",
+          "alpha_bbox": [
+            18,
+            88,
+            104,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
