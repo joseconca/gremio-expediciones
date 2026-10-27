@@ -84210,7 +84210,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 48,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -84224,7 +84224,8 @@
           "attack_spear",
           "attack_dagger",
           "attack_bow",
-          "attack_staff"
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -85068,7 +85069,74 @@
             "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "33437d33c7dbd826e6a06d3ceb3f7b3f3aaea8180f1e99b4eae5be5638e3b875",
+                "bytes": 23194,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  105,
+                  247
+                ],
+                "pixelSha256": "fcbe003a784a8ce27eb924b82f23b1371467e38853bfca5c141d27138c0a5950"
+              },
+              "02": {
+                "sha256": "7af3ed91efe81a4bc38436455857c0a7b646fcbf0fe3efcf4f83633e12e94b7d",
+                "bytes": 24382,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  31,
+                  92,
+                  114,
+                  247
+                ],
+                "pixelSha256": "8e3b58c3a956611c69c4cd873fc6e03c7d348e0ec94c5785980db5e920b72b54"
+              },
+              "03": {
+                "sha256": "bd2fe064131cf544e66c8c1cf4d211183e76b8c14a1226f98dd39d69611f07d3",
+                "bytes": 22171,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  103,
+                  110,
+                  247
+                ],
+                "pixelSha256": "8098e47b8c2625ceacb3571abe8b4d1d5eeb02634071304e82df9f5c5ae76687"
+              },
+              "04": {
+                "sha256": "75f7c70148900e1cf8f3c3d0f4a21bf6b36d030a43ce2bf5e667bb4996eb2a4c",
+                "bytes": 23190,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  91,
+                  110,
+                  247
+                ],
+                "pixelSha256": "7eeb603c087ba930771f97c3ce82fdf10f2f0262a393f17777b9cc6752560921"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -85546,6 +85614,44 @@
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "b318d0653faed92c39863e30157b29135e4f2ccf19b54395ee9f0a85384c8bd4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            622,
+            21,
+            1014,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/m/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Cruzado MALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute masculine crusader with ash-brown neatly swept hair, blue-gray eyes, clean-shaven face. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+            "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+            "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+            "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -85739,6 +85845,22 @@
         },
         "attack_staff/04": {
           "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
           "frame": 4
         }
       },
