@@ -86749,8 +86749,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "25ec049a0dfd58e3f08485aa6c966f21eb1fb6d4e8c1f259281e74fd1139a60a",
-                "bytes": 25735,
+                "sha256": "88fb3f1d7e83dc529aceb35a7e1647f7e31c13ecc6b32ef488a71c2743724dc5",
+                "bytes": 26209,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  92,
+                  112,
+                  249
+                ],
+                "pixelSha256": "555e858b373b0b537f2b5539048d63fc244b4cbd07196c5f08946cb56ce802a1"
+              },
+              "02": {
+                "sha256": "e88105c817a8cb50587f13ef2559c8d6e8f6bfdebb40bfc45b747a261eaa0da1",
+                "bytes": 25340,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86758,59 +86774,43 @@
                 ],
                 "bbox": [
                   15,
-                  93,
-                  112,
-                  249
-                ],
-                "pixelSha256": "1cb59d9c79666f828b6cf95b0e93067287801977583a6bd47de5d8021019ee53"
-              },
-              "02": {
-                "sha256": "dd8650df0e105b46e70c54e6d3c62a1cf60f2b77a01443dc7ba0875fbaf1c3f5",
-                "bytes": 25004,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  17,
                   92,
                   106,
                   249
                 ],
-                "pixelSha256": "ff8efb395c5dfdd83c7c733d6dc7b3146334a5197c023ff76f8d36ba00f4bfa9"
+                "pixelSha256": "a5ebb444177c4b2a1c4016538bade5a69efaf13248bd4a1a325b5a7afc16ffb2"
               },
               "03": {
-                "sha256": "adff8c56923ba5dda81aa91138ab819684ea13bc79af0d3f0c92a085cbb586d4",
-                "bytes": 25291,
+                "sha256": "7d8b37f5a6291bf687eb5f14665d1d1d8ac4cedce75642883a5f8cf3a78f15c2",
+                "bytes": 25677,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  12,
                   92,
-                  113,
+                  109,
                   249
                 ],
-                "pixelSha256": "f626e1f21929c575dce8ba6b2ebdd6393f4a7ad1faa49740c3a577e4ef0d4ebb"
+                "pixelSha256": "c850dc3bcd6e54a15f15774b96a7c3bada19dd53d55d7466a334e27c4c5e4391"
               },
               "04": {
-                "sha256": "1f37f67a810eb7c3e43858ab3e73cb4e65754bec1ca5ee0ac8d67e50e9d759fa",
-                "bytes": 25530,
+                "sha256": "f952ae3fa52f3f40ed207d09be8e7c88dcf7af64cb94f1976da4a87c81cb11c3",
+                "bytes": 25989,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  12,
                   92,
-                  114,
+                  109,
                   249
                 ],
-                "pixelSha256": "4ee3ddc62a9fe14b899f510b445654543564e8dc7d27f378a9bb631e8b9128cc"
+                "pixelSha256": "1044468254639fc5ea6b736416b6565678fd45180abc5160b16a650ca37f5c22"
               }
             },
             "distinctFrames": 4
@@ -87703,7 +87703,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "1992713374ff38ed091035a958d8692bcb6200bbe8fab24cb745842a546f74e0",
+          "sourceSha256": "888fc895adbb9241faa087f254cebdefe5b11a2e5472a652763e540fdd6ed471",
           "sourceDimensions": [
             2172,
             724
@@ -87728,9 +87728,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -87738,7 +87738,47 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "1992713374ff38ed091035a958d8692bcb6200bbe8fab24cb745842a546f74e0",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "3d73565e9db637828f9ff357c7d9576c7cda44f611bd191b6de2fdfaee9c583a",
