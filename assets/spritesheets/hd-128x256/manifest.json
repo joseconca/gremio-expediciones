@@ -82217,20 +82217,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "7fa7b214e3b672573c9cd1cf73453a6b6be13b9452ac78e233a15bf19d1d1d5d",
-                "bytes": 23585,
+                "sha256": "294a63f32a44c50db18b653298159e360d1ac4e337b73faec240ba37c49ffa89",
+                "bytes": 23213,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
+                  16,
                   92,
-                  112,
+                  111,
                   248
                 ],
-                "pixelSha256": "82b53b96361be0a7b24172a28ed777a2bb01c3f4b1aa19c83e6eee8fb02271eb"
+                "pixelSha256": "4b629a042f990eb794f87f9d1edbda0d0c7436090fee5b62d60c2c2c4c260d6f"
               },
               "02": {
                 "sha256": "d0d328a41ecd62d8c724681b6d62266b71a255547ced63269ef925299cf3c83a",
@@ -82249,8 +82249,8 @@
                 "pixelSha256": "6371611d97691505f50a42bea37f016ae6db693bb68e67c11a44e40d2e3d4e2f"
               },
               "03": {
-                "sha256": "ece1a31f9e81cb30c96d22fdfe48de1788c459035f47afd075e980351ef117a7",
-                "bytes": 22775,
+                "sha256": "c5fdc5be37742be5e65ba9b5a56d4cbc35ca12ba4b6733d99705e131bdeae541",
+                "bytes": 22463,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -82262,7 +82262,7 @@
                   112,
                   248
                 ],
-                "pixelSha256": "e66afbbec05739c79ca3429c2c2ca33ea21e1b1a9acfad8af9813d90004c639a"
+                "pixelSha256": "90ce3e6cfb836f79b47b4e8900e028dc0dbbf416230c7f10d6bda31868b3c0e7"
               },
               "04": {
                 "sha256": "d754b513304d429a79de3283b809912c151b44832b820cffd65cce6e80f11758",
@@ -83194,9 +83194,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Image1: EDIT ONLY THE FACE OF SECOND and FOURTH/rightmost figures. They currently have bare eyes, which is wrong. ADD visible GOLD OVAL EYEGLASSES surrounding both eyes, with distinct gold oval rims, nose bridge and thin gold temples, matching the eyeglasses worn by ALL four figures in Image2. Glasses must be clearly visible at sprite scale. Keep their existing eyes, expression, brows, hair and head coordinates. Leave glasses on the other figures unchanged. Preserve ALL other image details EXACTLY: all four complete body poses, hands/fingers/grips, coat, tails, shirt, waistcoat, chain, pouches, trousers and boots. No other edit, no facial hair, no props. Same2172x724canvas and true transparent background. Only add missing GOLD GLASSES to indicated figures.\n",
+          "prompt": "Select complete generated poses from two already preserved versions of this same action. Base is revision2 (gold glasses correct on poses2 and4). Poses1 and3 come from original generated strip (gold glasses correct there). Export every source with the identical Novato canonical transform. No pixel retouching or pose shifting. Preserve both original generation prompts in previousRevisions.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -83205,6 +83205,68 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "9a56e2db0fe353519503e7c341f6a13b82772a50073a6a3574cdfa7cba3a4909",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "9a56e2db0fe353519503e7c341f6a13b82772a50073a6a3574cdfa7cba3a4909",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
           "previousRevisions": [
             {
               "sourceSha256": "9a56e2db0fe353519503e7c341f6a13b82772a50073a6a3574cdfa7cba3a4909",
@@ -83235,6 +83297,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Comerciante FEMALE, Tier 2, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. MALE retains his small dark chestnut moustache in ALL four figures, including open mouth, grimacing, pain and exertion; FEMALE has no facial hair. Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "260924d6805935b0ee47e821fe375c736ce705b96ecff56b33a4a11b54c471e1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Image1: EDIT ONLY THE FACE OF SECOND and FOURTH/rightmost figures. They currently have bare eyes, which is wrong. ADD visible GOLD OVAL EYEGLASSES surrounding both eyes, with distinct gold oval rims, nose bridge and thin gold temples, matching the eyeglasses worn by ALL four figures in Image2. Glasses must be clearly visible at sprite scale. Keep their existing eyes, expression, brows, hair and head coordinates. Leave glasses on the other figures unchanged. Preserve ALL other image details EXACTLY: all four complete body poses, hands/fingers/grips, coat, tails, shirt, waistcoat, chain, pouches, trousers and boots. No other edit, no facial hair, no props. Same2172x724canvas and true transparent background. Only add missing GOLD GLASSES to indicated figures.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
               "canonicalPoseHashes": [
                 "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -83645,7 +83745,7 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
@@ -83653,7 +83753,7 @@
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {

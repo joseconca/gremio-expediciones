@@ -38,8 +38,11 @@ def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=
         selection.update(sourcePath=selected_dest.relative_to(ROOT).as_posix(),selectedFrame=number,selectionPolicy='complete generated pose; unchanged canonical transform; no pixel retouching')
         metadata.setdefault('frameSourceOverrides',{})[f'{number:02d}']=selection
     previous=v.setdefault('sources',{}).get(action)
-    if previous and previous.get('sourceSha256')!=metadata['sourceSha256']:
-        metadata['previousRevisions']=previous.get('previousRevisions',[])+[{k:val for k,val in previous.items() if k!='previousRevisions'}]
+    if previous:
+        history=previous.get('previousRevisions',[])
+        if any(previous.get(key)!=metadata.get(key) for key in ('sourceSha256','sourcePath','frameSourceOverrides')):
+            history=history+[{k:val for k,val in previous.items() if k!='previousRevisions'}]
+        if history:metadata['previousRevisions']=history
     v['sources'][action]=metadata
     direction=v.get('artDirection',{})
     if revision is not None and direction.get('revision')==revision:
