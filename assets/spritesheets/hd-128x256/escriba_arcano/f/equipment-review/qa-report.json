@@ -3,7 +3,8 @@
   "classId": "escriba_arcano",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "c1247f0bcf6ab986d0e13696edd74314cfbf8c5c9edad846b71128727b3b667f",
       "c257754c4918d7e6bd35eec292d3f2c53d6d825ff1d4106b54988c88675167a9",
       "e78acb5603de9ca0dcc237320e2ca38db68d04b725a32271bb36aecf3daa05b9"
+    ],
+    "walk": [
+      "29ad30925a441ce91e0ae8e16c6e40cddff9216a6fc2860113535c54511bf7f1",
+      "7b1115733e0e8eceb2cf85ebe6daf9bf39520d612878005367adc5185a0a440d",
+      "632a547d7bb935002c40d48cabaff8a4b84df0ff5213fd16805fba2c00f3ee97",
+      "b815a96d11c23db8f0e381e92d8d79328d078ee76344ff8ae9cf85c21ab2a993"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
