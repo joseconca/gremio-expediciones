@@ -66498,68 +66498,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "58de4146fcea6915da0c502a1a94ee89d152e1045fbed0f385cecec3f7f2f21e",
-                "bytes": 23082,
+                "sha256": "840b639fd32f2d14fd2374b8f9644bf27431b4594030b3a7adcc43e042820b1c",
+                "bytes": 23305,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  28,
-                  93,
-                  109,
-                  247
+                  27,
+                  92,
+                  110,
+                  248
                 ],
-                "pixelSha256": "e88a053f51714becb15fcae805d39e7ab1b776b3e9b99b537785c62de7d13b66"
+                "pixelSha256": "cdd85fed5504706bbfb062da3143465293ec1235a73b29b985d06ce48d5863e3"
               },
               "02": {
-                "sha256": "642f62443504e821009079cf7432b30ded9322c88d66a83b49819c4b22ad3c3a",
-                "bytes": 23944,
+                "sha256": "d5a7352f31f07a15957c681a8a301bbb5298a55ee34b49c36b84aba0b3c9d5ad",
+                "bytes": 24234,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
+                  23,
                   92,
                   109,
-                  247
+                  248
                 ],
-                "pixelSha256": "9983885f61005a0d9db687d7d7e94510ddf25a29afe39f62a34a96718393b7f4"
+                "pixelSha256": "eb05d1aa2c924892c3a57aceb74690f61f59f1ea406abfda700e522e077aa76c"
               },
               "03": {
-                "sha256": "44beb562e7c9c0081f759eb6978b224503ef6ac6ab5a9d23376c934ac46d42ba",
-                "bytes": 23011,
+                "sha256": "55aac3e99087c652b2df0696df6d1c2560c9359cf37b7f53a03ff654cd9e54ec",
+                "bytes": 23257,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  93,
+                  23,
+                  92,
                   109,
-                  247
+                  248
                 ],
-                "pixelSha256": "40543f91248d8a334ced65944ee9ef3fa13a4c030794125f0a4917e431ec2582"
+                "pixelSha256": "02d264501ca439b5ace8429b60aa705a56ade8cf689b2defddbc5ee4568b7bf0"
               },
               "04": {
-                "sha256": "edd171a5295780035c8dabc4167d667b0046fc1d3db1ef6988e3a5e615ebab44",
-                "bytes": 22997,
+                "sha256": "e0996709ae1c0f1d7b4679a92e49731c66386999d12a26df8cbdc264aa7549ac",
+                "bytes": 23310,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  93,
-                  95,
-                  247
+                  17,
+                  92,
+                  100,
+                  248
                 ],
-                "pixelSha256": "884111000064598c8e97fc0cc5290d3a6404e524d886cc3bea8ba23ba57fb20f"
+                "pixelSha256": "5543acf41d939348c889ba9a751942e2973abf021358875de98df2860178fa31"
               }
             },
             "distinctFrames": 4
@@ -67630,7 +67630,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_staff": {
-          "sourceSha256": "fae3596a25a0d98793ec0d4310dc3206c6658fb806204180c9484ab5d9eb33cb",
+          "sourceSha256": "5c652cc91ce80f97bed3f1488edb0533b986a5d0d285d9af5810b4ff9b6d7ddc",
           "sourceDimensions": [
             2172,
             724
@@ -67655,7 +67655,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_staff-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_staff-reference-v3.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
@@ -67694,6 +67694,44 @@
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
               "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_staff-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+              "canonicalPoseHashes": [
+                "36d33689354a90e90cdf39468f9009bd50b1bae5e02d73894856d967695d0b12",
+                "cb8607b7c51b52e935eca74ac76d098668646d4689a8faf2e9fec4a59b75b6d9",
+                "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
+                "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "fae3596a25a0d98793ec0d4310dc3206c6658fb806204180c9484ab5d9eb33cb",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                615,
+                21,
+                1023,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_staff-reference-v2.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
