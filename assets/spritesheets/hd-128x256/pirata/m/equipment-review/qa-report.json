@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "pirata",
   "sex": "m",
   "actions": [
@@ -14,7 +14,8 @@
     "attack_spear",
     "attack_dagger",
     "attack_bow",
-    "attack_staff"
+    "attack_staff",
+    "attack_mace"
   ],
   "bodyHashes": {
     "idle": [
@@ -88,10 +89,35 @@
       "ac3fb936b7292feb1ed63c63ab1490bd9872454f2bc21236e1fdc6eee764f6ce",
       "f9d3cf9540782566275e1c225bd0f652b572064ebb16ff551e4bb2cca3b6214a",
       "8d053c010d5b2a175fb8b551aa8461e42df9836f702bef8a8f14ba635a6c9d26"
+    ],
+    "attack_mace": [
+      "e7230411e120b5e0a092a83f8d6db2e69dc47fe1695e2a276e506ce81a117da7",
+      "630dc02e91744a33a26d268a8bd49f7fa2db8704c10e8a539b9cb6da3e72a8ad",
+      "05d7aee2408207f9bc3855380c98004ed447799c2e0075b43e1e140ff0e1f983",
+      "0b00b33739d99f76414d0764d599924e44742bc82f4eb639b23f60b08b3b42df"
     ]
   },
-  "contactChecks": 636,
-  "warnings": [],
+  "contactChecks": 652,
+  "warnings": [
+    {
+      "action": "attack_mace",
+      "frame": 4,
+      "item": "maza_enana",
+      "point": [
+        41,
+        135
+      ]
+    },
+    {
+      "action": "attack_mace",
+      "frame": 4,
+      "item": "maza_madera",
+      "point": [
+        41,
+        135
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
