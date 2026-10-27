@@ -52899,8 +52899,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "9f671f3b674a7bdef561c9cc05ff08eee3b4c22f723c1a4f756496b5feb26d2c",
-                "bytes": 24612,
+                "sha256": "fa6b3280d77b4daaaa93a7631efc1efd986c6fe9e8080f3e6e5f47c64e864df2",
+                "bytes": 22191,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52912,11 +52912,11 @@
                   109,
                   249
                 ],
-                "pixelSha256": "99aae0119fb41040bf71a3703c47a26d80ac6d51ad0d64a798bb92e52f26890f"
+                "pixelSha256": "d6c534bac56cfbad03788eb4c8c46daaf30dbefd5d0d00cd004d4adecb557b22"
               },
               "02": {
-                "sha256": "6bbb4ae5a0c20c2127ade946c8f33920e155d9db287b22d3b4de8a06d9172448",
-                "bytes": 21730,
+                "sha256": "8208bfe6006886fd7d1386320ec0f244d3df0b87e8439d347b3d2d0805ed5ccc",
+                "bytes": 19585,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52924,43 +52924,43 @@
                 ],
                 "bbox": [
                   16,
-                  112,
+                  113,
                   115,
-                  248
-                ],
-                "pixelSha256": "746cb88ed6a9a9bb0300ac330859ede48e523ee1d39ad5a68432bf94184f6647"
-              },
-              "03": {
-                "sha256": "4462b1b28b39422cea1a99ef888b2f7a7342090ba88758a5199dc216f3a1c08b",
-                "bytes": 21811,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  10,
-                  120,
-                  116,
                   247
                 ],
-                "pixelSha256": "80aee6cd1abb50b4cf18436a75fc6e7b1d2fc6ceb755aca0f4f6a1972c675b23"
+                "pixelSha256": "7024faac9649ae4a4b4fce56cf6ee084bb63ad713693cbb34fc6aefdaf5b7ce4"
               },
-              "04": {
-                "sha256": "eadb9990d1ef92a85ccb594fea25b20c7f0caf8c837e19d102282c481bdccbd8",
-                "bytes": 22802,
+              "03": {
+                "sha256": "725e0fc1157910e5cf8d18509643dbdffe15ab95df41ec9c97dfba9374abcd97",
+                "bytes": 19444,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  104,
-                  119,
-                  249
+                  9,
+                  122,
+                  114,
+                  247
                 ],
-                "pixelSha256": "e2fca415cf533e919b81b14a23a8b9b6ea7069072f079f08a35e1c1fcaeda603"
+                "pixelSha256": "d4bf67bcc57bb5b069bcf95a26314fa7cf8dffb4dcfe212a5e129d6e501920ca"
+              },
+              "04": {
+                "sha256": "4d6dde6bece96e547ec03ba9fedc84029d1d97829ec2ed987cd7e504b406b4c9",
+                "bytes": 20296,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  105,
+                  118,
+                  248
+                ],
+                "pixelSha256": "d7ee1867d95ca15961f57b4ec356c1f7ca1016b372a3e30e2d9ea1464110d7f5"
               }
             },
             "distinctFrames": 4
@@ -53653,7 +53653,7 @@
           "artDirectionRevision": 2
         },
         "attack_axe": {
-          "sourceSha256": "16562007f162183207886303c90cf4c6ce350589d7f71a3ff3fade6e3fcbabe2",
+          "sourceSha256": "0ef1de369efc73f67de028844d7a7ff45ef9b46c41f83064cc9d496d04e32054",
           "sourceDimensions": [
             2172,
             724
@@ -53678,9 +53678,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_axe-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_axe-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG sprite action attack_axe for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four axe-chop phases matching canonical reference, empty gripping hands. Wind up, raise bent arm, compact downward chop, recover. Axe remains absent. Preserve both hands exactly as reference for shared two-hand axe overlays.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "prompt": "Production RPG sprite action attack_axe for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe edit ONLY, keep all four canonical poses and both hands fixed, preserving exact anatomy, gloves and hand coordinates. Do not reinterpret movement. Remove scarf and chest straps completely. Costume, gloves, boots match image 2. No axe or props visible.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
           "canonicalPoseHashes": [
             "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
@@ -53688,7 +53688,48 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "superseded-costume-rework-required"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "16562007f162183207886303c90cf4c6ce350589d7f71a3ff3fade6e3fcbabe2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                579,
+                42,
+                1045,
+                683
+              ],
+              "scale": 0.23,
+              "origin": [
+                10,
+                101
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_axe-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG sprite action attack_axe for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four axe-chop phases matching canonical reference, empty gripping hands. Wind up, raise bent arm, compact downward chop, recover. Axe remains absent. Preserve both hands exactly as reference for shared two-hand axe overlays.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+              "canonicalPoseHashes": [
+                "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+                "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+                "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+                "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+              ],
+              "visualStatus": "superseded-costume-rework-required"
+            }
+          ],
+          "artDirectionRevision": 2
         }
       },
       "frameProvenance": {
@@ -53859,9 +53900,7 @@
         "referenceImageUrl": "https://ragnarokonline.gungho.jp/gameguide/character/images/novice/supernovice/job_image.jpg",
         "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
         "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
-        "actionsToRework": [
-          "attack_axe"
-        ],
+        "actionsToRework": [],
         "status": "redesign-in-progress"
       }
     },
