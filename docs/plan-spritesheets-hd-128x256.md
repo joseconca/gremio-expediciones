@@ -249,3 +249,19 @@ El usuario ha probado la integración anterior de Novato, Tier 1 y equipo, la co
 
 Los atlas completos son candidatos para revisión del usuario. `revisar-contactos-clase-hd.py` reutiliza las capas de equipo ya existentes, registra los hashes corporales y genera comparativas de las quince acciones. El resultado técnico no sustituye la revisión artística. Las fuentes y revisiones sustituidas permanecen conservadas. Tier 2 no se activa automáticamente en el juego por generar un atlas.
 <!-- TIER2_PROGRESS_END -->
+
+## Ampliación del catálogo de clases — 2026-10-27
+
+Se trabaja en `nuevas-clases`. El catálogo actual contiene 61 clases y 122 variantes; el informe derivado `previews/class-coverage.json` compara las clases reales con el manifiesto para que también figuren las especializaciones intermedias. El usuario ha aprobado el estilo de Super Novato inspirado en Ragnarok Online y solicita continuar con todas las clases pendientes, con una identidad propia y una apariencia más avanzada según su nivel.
+
+| Clase nueva | Masculino | Femenino | Rasgos propios |
+|---|---|---|---|
+| Super Novato | 60 / 15 acciones | 60 / 15 acciones | Blanco y azul; estilo inspirado en Ragnarok Online |
+| Berserker | 60 / 15 acciones; 682 contactos | 60 / 15 acciones; 682 contactos | Hierro oscuro asimétrico, cuello de pelo claro, cuero rojo oscuro y hebilla animal |
+| Luchador | 60 / 15 acciones; 682 contactos | 60 / 15 acciones; 682 contactos | Chaleco turquesa y negro, vendas, coderas de cuero y broche de puño en cobre |
+
+Las dos últimas clases suman 240 fotogramas nuevos; hay 1.920 cuerpos válidos acumulados, ninguno inválido, y 45 clases todavía pendientes (1.350 acciones). Cada sexo y acción conserva su original grande, instrucciones, revisiones y commit. Se corrigieron prendas residuales y puntos de agarre antes de cerrar los atlas. Las comparativas completas están en `previews/berserker-overview.gif` y `previews/luchador-overview.gif`.
+
+El manifiesto conserva la dirección artística de las seis especializaciones nuevas de Tier 2 y una política de diferenciación por nivel: las clases híbridas combinan sus linajes y las superiores añaden materiales e insignias, manteniendo la escala corporal y el equipo compartido. `cerrar-clase-hd.py` comprueba ambos atlas y los hashes de los contactos antes de registrar la clase como candidata y crear su comparativa. Este cierre técnico no concede aprobación artística ni activa recursos en el juego.
+
+Siguiente clase: Centinela, masculino y femenino; después Escriba Arcano, Bardo y Comerciante, antes de las especializaciones intermedias y superiores.

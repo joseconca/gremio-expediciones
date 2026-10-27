@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "assembledAtUtc": "2026-10-27T11:20:25.094031+00:00",
+  "assembledAtUtc": "2026-10-27T11:24:58.504303+00:00",
   "classId": "luchador",
   "sex": "f",
   "sheetPath": "assets\\spritesheets\\hd-128x256\\luchador\\f\\luchador-f-sheet.png",
-  "sheetSha256": "65ba99bf210f21df4a51337eeb56cea5e04edf99a97d5b4aafbaea857bceb793",
+  "sheetSha256": "4c82fbcf3d3762cfed5c87c8c30888a22c857300408c7cb9f41693a982e07a6d",
   "sheetDimensions": [
     512,
     3840
@@ -233,45 +233,45 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-01.png",
-          "sha256": "37abb2a3caa0ffc6227ac4970a0f9d42ceea81b8c35d97d285b4628506fb6db4",
+          "sha256": "208d806120c96534528e3a5dc058fc4a8e2f9c079620b8925e42a4f0cdf079cd",
           "alpha_bbox": [
-            29,
+            35,
             91,
-            115,
-            249
+            117,
+            248
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-02.png",
-          "sha256": "3de1177f6e54366ff87c1386967def8bef7cb41dffb54b5c7ce9e66cbfb1a0a6",
+          "sha256": "597121cb305ec8ca559862e70c825dd310dff4dcc084c6afe0235ed6e3953eae",
           "alpha_bbox": [
-            30,
-            92,
-            118,
-            249
+            35,
+            96,
+            117,
+            248
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-03.png",
-          "sha256": "8ebbd0352b683875bf45922bb672f39f9d9f62c851a64e3c663887f7ded61973",
+          "sha256": "c01706d88182b3003697052af618fc6ef8eaf79f33719240c019110d6c5fe18f",
           "alpha_bbox": [
-            22,
+            25,
             124,
-            109,
-            249
+            107,
+            248
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-04.png",
-          "sha256": "bb7f378e437f0ddc89f5fc14c4bee7674760094910d2ae1bbc9402237aa8fcb8",
+          "sha256": "7bdbbafb51476c4b9d24e0406d6676df0e8ae34a4229f2a87a98850149d8f070",
           "alpha_bbox": [
-            16,
-            91,
-            104,
-            249
+            19,
+            95,
+            102,
+            248
           ]
         }
       ]
@@ -701,44 +701,44 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-01.png",
-          "sha256": "01456c4f86a63556b1cb713af9a3a4d11b3df8ff1899307c94a4bcc77e59d69b",
+          "sha256": "1e74d396c1001694f2bc66b193d21600ae6bb6d450fe6fead3e5c0eb810e1512",
           "alpha_bbox": [
-            31,
+            30,
             90,
-            113,
+            114,
             248
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-02.png",
-          "sha256": "5ade9c08e43669d21e025b935c2de971760a28cd9118f8848d15ce205dacdd20",
+          "sha256": "8bda3d83bb5c4e676ebea178fc31876812e0a8fca0f6c69727e93bc662c1d30c",
           "alpha_bbox": [
-            24,
-            89,
-            105,
+            25,
+            90,
+            111,
             248
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-03.png",
-          "sha256": "b96184bba8e06c14ccc5a54f94176b85200f2d3db4da79efdcc8e1117bca31da",
+          "sha256": "05fd99c4d1b1557ec4d3c29a49d96caabdd5bfb13972b439579bff643981afae",
           "alpha_bbox": [
-            23,
-            89,
-            106,
+            18,
+            90,
+            102,
             248
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-04.png",
-          "sha256": "cfc9ea818a5b19f3b1ae5abb52bdcbbfea2009656f34fe02c0824ecea089b9b8",
+          "sha256": "34447cc1768512d018c82cbd8774b5cc95f94d6ce9ba80d58768af27782b6717",
           "alpha_bbox": [
-            20,
-            89,
-            102,
+            19,
+            90,
+            104,
             248
           ]
         }
