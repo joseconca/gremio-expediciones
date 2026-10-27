@@ -107563,11 +107563,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -107711,7 +107712,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "eb8cc3a4b0934599eb968229cb5155bc972534fd5a1fda75a01ae8c907f2b612",
+                "bytes": 24709,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  104,
+                  248
+                ],
+                "pixelSha256": "94852dabe2295ea0c0100c7ebd9a8786229fbdcf25bff04c8fdb8a5b993bb887"
+              },
+              "02": {
+                "sha256": "728161d32f2000ba314929f08e9112fde97a95c20bb5b4cd27df77ff6205cf09",
+                "bytes": 23875,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  99,
+                  115,
+                  248
+                ],
+                "pixelSha256": "d911d3a706c4f352e8ff1df7b7eb3bf15a4901f973da13b60f56d6b28fe29f58"
+              },
+              "03": {
+                "sha256": "ad1cbc6fa67234df934f67a9efd92fba8dda52f9133c719a54e8faf2cb7667e8",
+                "bytes": 21163,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  120,
+                  108,
+                  248
+                ],
+                "pixelSha256": "fd44a2c4fd0c6a414f56bfeb57dc32af702c49cc208f47b2c964f9e18c1a8801"
+              },
+              "04": {
+                "sha256": "ecbae0a17a9a1580b060b83839efe41faef260dbde29091b1c8e46201bd3a400",
+                "bytes": 24710,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  103,
+                  248
+                ],
+                "pixelSha256": "210ebe09e7f8b650f0b39937e5411891fba23283a0258a113ec0b4e1deb28f5d"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -107827,6 +107895,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "4f838161763728e80efd99d0efdb9c588d9c1c1ac81184cc99dbc22be2af6933",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Chamán MALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven. Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic. Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -107860,6 +107966,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
