@@ -3,7 +3,8 @@
   "classId": "bardo",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "972ea3de8fba3d3829d3b96c5aa4989cc63400bd41bce2f5d85b14990d7a41fb",
       "1ed1816d51e47da1408abd9cea030bbbdd7c366b27a04d9d5881edfbc7f85964",
       "283c842dcf793b6342fe928b12965b9b3c3437411d1e5bd92f8dc3545ae68259"
+    ],
+    "walk": [
+      "1bef0be7a9c88cf1fa61bc3386e080244c66ccf3d120bb7ba6cd5170ab449f77",
+      "d4bf89b3b3132b04ef091e0e757526f8c18763660e46a7a189e180c5f05f02d2",
+      "20e5df4b417307a46aa9d3a478ac6b870041b7b1a0cf8a2bf11101c0264c5e74",
+      "210ae5049fbe9149d4f2633a30bf8dee5528eb6ece90d28f88190974187162f9"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"

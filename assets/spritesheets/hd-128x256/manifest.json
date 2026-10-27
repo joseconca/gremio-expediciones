@@ -77237,10 +77237,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -77314,7 +77315,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1bef0be7a9c88cf1fa61bc3386e080244c66ccf3d120bb7ba6cd5170ab449f77",
+                "bytes": 26612,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  89,
+                  107,
+                  247
+                ],
+                "pixelSha256": "9992a1216ac520ed47f3b76509b0b5ff864e3a4fd4f2b3e9dff29265359ec9d4"
+              },
+              "02": {
+                "sha256": "d4bf89b3b3132b04ef091e0e757526f8c18763660e46a7a189e180c5f05f02d2",
+                "bytes": 23853,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  88,
+                  100,
+                  248
+                ],
+                "pixelSha256": "85ea7743db2b15f82c3104d258785ad7a06dc2a78da49eab09177684a6bbcc7b"
+              },
+              "03": {
+                "sha256": "20e5df4b417307a46aa9d3a478ac6b870041b7b1a0cf8a2bf11101c0264c5e74",
+                "bytes": 25989,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  89,
+                  123,
+                  247
+                ],
+                "pixelSha256": "dca02a3e622da1811934f790bd37d1c64d89fb830a3afa49cdf357b96fcec110"
+              },
+              "04": {
+                "sha256": "210ae5049fbe9149d4f2633a30bf8dee5528eb6ece90d28f88190974187162f9",
+                "bytes": 23958,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  89,
+                  103,
+                  248
+                ],
+                "pixelSha256": "65ba6dd4c458e4f1ba073210254e125d835a3e2a32362a5f46e56c92cd1e2011"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -77395,6 +77463,84 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "a8c7ba32dc5a884eaa98352e79e66b16e41f9511cbc4def766c92a8c7180de2b",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/f/source/walk-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Bardo FEMALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. NO NECK SCARF, CAPE, MANTLE or flying shoulder tails. Plum shoulder panels are SHORT and attached closely to upper arms; plum waist sash starts at BELT only. Preserve this in ALL fifteen actions. Adult charismatic feminine troubadour with warm golden-copper hair in a small wavy side ponytail under the compact beret, expressive eyes and confident half-smile; canonical female head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "fe907d84cb4a46d540c73c7e9564fc357f78d56d379f124d7f78faa516dea0d8",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/bardo/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Bardo FEMALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. NO NECK SCARF, CAPE, MANTLE or flying shoulder tails. Plum shoulder panels are SHORT and attached closely to upper arms; plum waist sash starts at BELT only. Preserve this in ALL fifteen actions. Adult charismatic feminine troubadour with warm golden-copper hair in a small wavy side ponytail under the compact beret, expressive eyes and confident half-smile; canonical female head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
@@ -77412,6 +77558,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
