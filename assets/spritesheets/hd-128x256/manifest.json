@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "chaman-m",
+  "nextVariant": "chaman-f",
   "classes": [
     {
       "id": "novato",
@@ -108147,20 +108147,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "54d586bd94b8278c858623b174cacd3ddd9199cfa1bde6d1e6c90e2e4bca0acf",
-                "bytes": 24570,
+                "sha256": "9cb2dab0e9d4a8deef4548d74ae1eb7dfd03bf1b2ab221131dfd3b17458362f7",
+                "bytes": 25465,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  10,
                   92,
-                  108,
+                  109,
                   248
                 ],
-                "pixelSha256": "b543c6be9f036fad10ed60a2fa6b722a6372522e9a84de3dc3b3e710080707c8"
+                "pixelSha256": "7ad6d77fa3e12f0f6af4853734b33409996474dd4f60f19363fc7bdd3e2a19de"
               },
               "02": {
                 "sha256": "eee84bc3507a2a5b9fc7e8324e37fddad7685a9b5c8055031cfcdb5dd1fb31b1",
@@ -108179,8 +108179,24 @@
                 "pixelSha256": "f925cb0ea6146ac046c3460569572726f759ea4a355cc8f03d118fcc51b116b2"
               },
               "03": {
-                "sha256": "581aa63fb457d5cd4251a0b207efb10cb2bca58db905f5f3913b619b014136b3",
-                "bytes": 24891,
+                "sha256": "e10e719e58df5c4f74d8727d64396e2a017fbd823f5193a8385fc6235f2bd0b6",
+                "bytes": 25513,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  92,
+                  111,
+                  248
+                ],
+                "pixelSha256": "48f34edea9c829e42a70f0f81cadb86a00c0a6a8775d56d66fdfa64be1c97f0d"
+              },
+              "04": {
+                "sha256": "dcea8ea25cdb232b302aea0b6bf101f3b204aa622be2a39ca9e605b9014cd3d9",
+                "bytes": 25600,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -108189,26 +108205,10 @@
                 "bbox": [
                   10,
                   92,
-                  112,
+                  108,
                   248
                 ],
-                "pixelSha256": "c049f723934923c37049efa2e25d7718fd645ffdd42758f223d01098fc1fbadb"
-              },
-              "04": {
-                "sha256": "de21312601a1f70fa7920d9dc83ada4e1c4dfcfc9a0f17c2795d1ed3641db4e5",
-                "bytes": 24615,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  14,
-                  92,
-                  109,
-                  248
-                ],
-                "pixelSha256": "15459f781e6c80084a4369122b7a03c4c113c93e7b666e4c0e0e3eae62264a16"
+                "pixelSha256": "6f89ff166645c76756c73315e3e4150fb7b91693381ca15051c4345a5ccf613b"
               }
             },
             "distinctFrames": 4
@@ -108953,7 +108953,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "c6a34ef56a5db48d1d8f583235622f36aa782bb518d45aa1ae3331c8a06e551e",
+          "sourceSha256": "c86a40ebd39113b5f0d47387168e97304c497f5776d8498f04b8c2fcd9f5ec35",
           "sourceDimensions": [
             2172,
             724
@@ -108978,9 +108978,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Chamán MALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven. Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic. Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Tiny wardrobe continuity edit to Image1 male Chamán spear body strip. Keep all bare upper arms, hands, joints, elbows, positions, poses and every costume detail unchanged. In figures1,3,4 ONLY, add a VERY NARROW SHAGGY IVORY FUR TRIM RING at the ELBOW-SIDE EDGE of the extended front arm's brown forearm bracer, matching Image2 Chamán bow bracers. It is only a thin fur edging attached to the leather bracer, NOT a white cloth sleeve; the entire muscular upper arm remains bare warm-brown skin. Existing back arm fur-edged bronze/brown bracer remains unchanged. No broad sleeve. Preserve exactly2172x724canvas, four distinct complete figures, true alpha transparency, no equipment or effect.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -108988,7 +108988,117 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "c6a34ef56a5db48d1d8f583235622f36aa782bb518d45aa1ae3331c8a06e551e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/attack_spear-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "c6a34ef56a5db48d1d8f583235622f36aa782bb518d45aa1ae3331c8a06e551e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Chamán MALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven. Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic. Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "6ae731304109b50d3b5f3839df94464a298df71e94a037b6704f3d441b684bd9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/chaman/m/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise wardrobe-only correction of Image1, MALE Chamán attack_spear strip. The EXTENDED FRONT ARM in figures 1, 3 and 4 erroneously retains the NOVICE'S SMOOTH WHITE ROLLED CLOTH SLEEVE between shoulder and forearm. Remove that smooth white sleeve and render the SAME ARM SHAPE as BARE warm-brown skin matching Image2 male Chamán identity. Preserve the narrow SHAGGY pale FUR CUFF belonging to his brown copper bracer, not a broad white sleeve. Chamán wears a SLEEVELESS burnt-sienna/turquoise hide cuirass: bare muscular upper arms, compact copper shoulder caps, brown forearm bracers and dark fingerless gloves. Do not change any hands, fingers, elbows, feet, per-quarter positions, scale or action. Preserve head, feather, fur collar, costume, three orange/turquoise/white chest beads, copper spiral belt and all other pixels as closely as possible. Four full figures, same2172x724 horizontal canvas, true transparent background, no weapons/equipment or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "178400a46da0c4b72a83f6eebc13b3d30f0d712d3de5186a100f95e804ce9a4b",
@@ -109353,7 +109463,7 @@
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -109499,12 +109609,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 50,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/chaman/f/chaman-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/chaman/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -109518,12 +109628,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b82db6e7b8f4b7d73bc30a9d5fbb8386f3f030cc6d1c627f45ff3435a11659f9",
+                "bytes": 25036,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  90,
+                  110,
+                  248
+                ],
+                "pixelSha256": "5bbd9eddc2df89b32c8a1c8ac8ae24bc55b3e258c09b82b914a0adf1d5826950"
+              },
+              "02": {
+                "sha256": "1a914631c723a393cd1653ed7e697219603550c48e830a1d3929d5ffde258c5b",
+                "bytes": 25159,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  90,
+                  110,
+                  248
+                ],
+                "pixelSha256": "c00f7683f41f5c4450a6a4d5ba0fb77c4f19938714d0067e8e3d6ed5adfdfe15"
+              },
+              "03": {
+                "sha256": "c46e89d75b464cdabf8e44ed16010c6d3bb063d44d730e01fda6018d47c4e37e",
+                "bytes": 25019,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  110,
+                  248
+                ],
+                "pixelSha256": "5df22e941160aa0ddfee5bf9300610fe98015bfb1c08e8411fe2fe23a3de28cb"
+              },
+              "04": {
+                "sha256": "5e6adbbec25bc9e5af87faef0e176de694b0981946ed9aeb82e7ce90ddf1ceeb",
+                "bytes": 24851,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "363d445ae562c88b1400707222d6e44efac2d94db03477a6f4c0f8c51e4e8b7e"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -109567,6 +109746,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "7b92e4b99dded69a379860ca0a401ba9185182f65c195574cb6d9a82779db483",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/chaman/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Chamán FEMALE Tier 2.5, action idle. Image1 defines ONLY exact canonical FEMALE body geometry: preserve four poses, exact hands, elbows, head size, feet, cell centers, full canvas dimensions and margins. Image2 defines costume only from MALE Chamán: use exact leather, fur cuffs, fur collar, copper spiral belt disc, turquoise borders and geometric motifs, three chest beads orange/turquoise/white, brown boots and fingerless gloves. DO NOT copy male face or body proportions. Adult stern feminine shaman, warm brown skin, dark brown hair in compact braided ponytail and amber eyes. Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic. Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Replace all novice clothing and hairstyle completely, no scarf. All four costumes identical, four distinct complete bodies in one horizontal row facing RIGHT three-quarter view. Same crisp painted anime pixel-inspired RPG finish and compact body scale as references. Full hair, fingers and boots fit in each quarter. No equipment, weapon, potion, staff, shield, shadows, effects, text or grid. True transparent background.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
