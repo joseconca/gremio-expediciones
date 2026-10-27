@@ -68239,10 +68239,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -68316,7 +68317,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "793d40100e125c2edecb0f5aa97da33cc16b0963b058e1290e8c760ddda11d19",
+                "bytes": 26744,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  89,
+                  108,
+                  246
+                ],
+                "pixelSha256": "970de7fc44d70bfea3c6aaf722db3b035aa1c9a03303cc9fc7b6c6681c5a0624"
+              },
+              "02": {
+                "sha256": "d759a6c82ad3cf1e8aac13fb8d380c7ebc4bc9fad15af91f43efdf9b4fe8d25b",
+                "bytes": 23849,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  89,
+                  101,
+                  248
+                ],
+                "pixelSha256": "7bf1fc8cbe2d3a04804f010a7aaf5143358f1f6de92fdde17307731ca76be66a"
+              },
+              "03": {
+                "sha256": "6eca5ec3244de3ec5cca50c6a6b4fb8e3b976f8a6013f2037685cef6dbd33364",
+                "bytes": 26732,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  89,
+                  119,
+                  246
+                ],
+                "pixelSha256": "238b0bf103d396bc46938a9378d132761319e6c4869b71c4c0a216d5aaa58365"
+              },
+              "04": {
+                "sha256": "426f06ab7abc6bd3048ceb86ca3ffaae57a0db72c8b781bbdefc17a9e4311837",
+                "bytes": 24528,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  104,
+                  248
+                ],
+                "pixelSha256": "993114933e85f5b089d8845db049cbccae7c98e038f52983c553f2ecd5d18f54"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -68397,6 +68465,44 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "8bd6c5e0d224a3632f39d8519ecb5eb3751986cc7b435891d76c27876224ee29",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Centinela FEMALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. BOTH wrists always have polished BRONZE segmented metal bracers, including raised and retracted arms, never novice brown wraps. The outer hip tasset is FOUR HORIZONTAL OVERLAPPING BRONZE ARMOR PLATES, not a leather pouch: no flap, clasp or bag buckle. Adult vigilant feminine border guard, sandy-blond hair in a close braided low ponytail, focused gray-green eyes; canonical female head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -68414,6 +68520,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
