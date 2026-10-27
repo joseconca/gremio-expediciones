@@ -86469,24 +86469,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "150547c95d4f5d81b66cdeed0234515b4903147e01d99bed740b756ffc314bab",
-                "bytes": 24742,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  31,
-                  92,
-                  115,
-                  247
-                ],
-                "pixelSha256": "bc8c2e3042aa1ebb8e22055f3598d23d48e4ef3b6d738231578596581504f8ef"
-              },
-              "02": {
-                "sha256": "d24bd4c204c784d8e84052f92b1fcf291f89fbb009a27a34f8f1aeb51b7eff37",
-                "bytes": 24335,
+                "sha256": "2534b4a2c6891847910ed0f602faf018e77cccf0612db0fb7d925a32f0d10a19",
+                "bytes": 25311,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86494,31 +86478,47 @@
                 ],
                 "bbox": [
                   30,
-                  92,
+                  91,
                   115,
-                  247
+                  248
                 ],
-                "pixelSha256": "c1068b2c5c519c5755473c1c096cf289b0a44b83eece177c44000c94db4412d2"
+                "pixelSha256": "9b55758349a65404658e8761692fce7c914cc1aeb743316c3f649dcdca95ed46"
               },
-              "03": {
-                "sha256": "be772c11171294b868bea348a64276a34514fd8f8f1cf3e2aa5f003a9a72fe41",
-                "bytes": 21091,
+              "02": {
+                "sha256": "a99a88f02de3c08625a217ea448968811e32f651981a40f77cd468b4107fbc40",
+                "bytes": 24755,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  30,
+                  91,
+                  115,
+                  248
+                ],
+                "pixelSha256": "600098e364690f20791469b230394447fef33bb5c760576cbfa102cd87ccd491"
+              },
+              "03": {
+                "sha256": "76708f1c2ede8a742dc0ea1209e5bc7b5f124271d4000c7005e6e01aaafc4cad",
+                "bytes": 21550,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
                   124,
                   107,
-                  247
+                  248
                 ],
-                "pixelSha256": "c8d36c0b8a7a49ea2e4c4cfebe9a8ecee314623b825dd790b25aa0649e5dcd28"
+                "pixelSha256": "a192be5e1e0af2b1fa3571c2554df6e92216fe99c0718fb505d75e15deacf3da"
               },
               "04": {
-                "sha256": "51b4b556468ac10da2ef57c96c52b8368d7ab66e410820ff2e843990e0e0d433",
-                "bytes": 24512,
+                "sha256": "e4ebb69c3bc9bc2413b6013a52e9ca8422e69439445eb1cc63565fa04b4f38fc",
+                "bytes": 25011,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86526,11 +86526,11 @@
                 ],
                 "bbox": [
                   20,
-                  92,
+                  91,
                   106,
-                  247
+                  248
                 ],
-                "pixelSha256": "190b78c6b9d9d7e728d8af4840b6447fd1ab3b14f4d6bcb5a059c41515399af5"
+                "pixelSha256": "2d399f30ad031a255d463b2fa03381a44546c3479f99acd9ade886fc74cab03f"
               }
             },
             "distinctFrames": 4
@@ -87431,7 +87431,7 @@
           ]
         },
         "dodge": {
-          "sourceSha256": "59accf3a7188e8b5d1e029b2e58a47ff3270028bd40dd51b7ecb0c0f43227a6c",
+          "sourceSha256": "4c5b79843cf74bdabe4c10a131282cd4983e44a184990f619f50fcaaf8da4c8d",
           "sourceDimensions": [
             2172,
             724
@@ -87456,9 +87456,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/dodge-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -87466,7 +87466,47 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "59accf3a7188e8b5d1e029b2e58a47ff3270028bd40dd51b7ecb0c0f43227a6c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "block_shield": {
           "sourceSha256": "d988b805acb59060965da46c034846c815b09499b0f971b8d96c39c79c1f53bc",
