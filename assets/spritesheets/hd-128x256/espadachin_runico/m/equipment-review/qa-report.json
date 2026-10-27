@@ -15,7 +15,8 @@
     "attack_dagger",
     "attack_bow",
     "attack_staff",
-    "attack_mace"
+    "attack_mace",
+    "attack_book"
   ],
   "bodyHashes": {
     "idle": [
@@ -95,9 +96,15 @@
       "d613bfbcff988898e6247c461fda10d997508c45f557401ede5c45ac21e056f3",
       "4131a5714b79c5fbb14ebccf6ae0609c8dbf1a285a6b48e61b2d88f5d0f3de0b",
       "f0410f4bc4e3d17817424f8d9c8f896ff2f67ee80f70430589829eee4f790860"
+    ],
+    "attack_book": [
+      "b4e3ddcc729090f1187785a46d92ce2664f581478847401cfe1bbcd4bbd847b6",
+      "e6d97f2dc0ca651269efb085cf801bac6243dbd76593a115099eaf3cfa61adbc",
+      "7bcf1675262de2f57d32493c6e8c9d7b146ebdb4ae198f7ca6b1541226c2a589",
+      "6a33ac006746629add4f86e639b0d21cebd380abac6589d07df5285748a03cec"
     ]
   },
-  "contactChecks": 652,
+  "contactChecks": 666,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 2,
