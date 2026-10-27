@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "superNovato-m",
+  "nextVariant": "duelista-m",
   "classes": [
     {
       "id": "novato",
@@ -19730,7 +19730,7 @@
       "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/caballero/m/caballero-m-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
+      "sourceStatus": "hires-library-in-progress",
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames",
       "audit": {
@@ -20420,20 +20420,20 @@
                 "pixelSha256": "45e0436fdacdf06efd825012f95c11524d6581fe850a51dc208ad01a89a38542"
               },
               "03": {
-                "sha256": "9effc61267732a0a158f14d5bbf36d4a0dba092d323add9fb162ee229378a8ec",
-                "bytes": 22919,
+                "sha256": "44d8ef865aa4f9fcab10d5f93b6e23047a1775be78c84bcf4386e59c114938d4",
+                "bytes": 23680,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  21,
                   95,
-                  107,
+                  103,
                   248
                 ],
-                "pixelSha256": "9227d1a9a851f60a88cd50e6b8a171e266300678771e2c1991114a2daf7920be"
+                "pixelSha256": "3292498708e1f022bbc1051547b67b31aa3dc01263afd96d894e2ef7f6267c90"
               },
               "04": {
                 "sha256": "48bfd7d78333e2b12b12b2d8f91f3b3df9d7e8f7120c95e070a1b6dd7db6dd2c",
@@ -21203,9 +21203,9 @@
           "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_dagger": {
-          "sourceSha256": "eaf525171115e83b8bd547faa29cb3ed621a293559bc8039a65fb52ae6932c46",
+          "sourceSha256": "86ba4f939db196c868f344c0fd10d013cfc6bffd7f00aeceb21ce0af976933c0",
           "sourceDimensions": [
-            2171,
+            2172,
             724
           ],
           "registeredSourceDimensions": [
@@ -21228,9 +21228,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_dagger. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (228,374), other hand (363,274); figure 2: primary contact (797,274), other hand (915,287); figure 3: primary contact (1462,318), other hand (1458,261); figure 4: primary contact (1861,374), other hand (1992,274). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "LOCAL GRIP CORRECTION for caballero MALE dagger action. Image1 is existing approved class body strip. Image2 is the SAME strip with RED ARROW and CYAN RING marking required FRONT FIST position in THIRD figure. Move ONLY THIRD figure's lower/front closed fist along red arrow RIGHT AND UP, extending its forearm until closed fist CENTER fills the CYAN RING. Correct center is source x1462,y318 on2172x724 (body84,161), roughly90 source pixelsRIGHT35UP from old low fist beside belt. The fist must protrude to RIGHT of torso at waist, horizontally thrust forward. Rear guarding fist near chest/face stays exactly unchanged. Keep third head, hair, expression, eyes, pose, stance and foot coordinates unchanged. Preserve EXACT original class identity and every clothing material, color, insignia, shoulder armor, wrist guard, belt, pouch, robe/coattails/cape and boots. No new druid costume or other redesign. Other three figures unchanged. Output same full FOUR-body strip, facing right as original, same dimensions, TRUE transparent background. BODY ONLY with EMPTY CLOSED FIST where ring is. NO dagger/weapon, cyan ring, red arrow, annotation, text or background. Only redraw third front forearm and fist reaching into marked empty space.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -21238,7 +21238,139 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "eaf525171115e83b8bd547faa29cb3ed621a293559bc8039a65fb52ae6932c46",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "eaf525171115e83b8bd547faa29cb3ed621a293559bc8039a65fb52ae6932c46",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "eaf525171115e83b8bd547faa29cb3ed621a293559bc8039a65fb52ae6932c46",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "eaf525171115e83b8bd547faa29cb3ed621a293559bc8039a65fb52ae6932c46",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_dagger. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (228,374), other hand (363,274); figure 2: primary contact (797,274), other hand (915,287); figure 3: primary contact (1462,318), other hand (1458,261); figure 4: primary contact (1861,374), other hand (1992,274). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
+            }
+          ]
         },
         "attack_bow": {
           "sourceSha256": "c3ca7c00c54f4aede7b7f10f8ce61e85f5acd71a68a757079a562b98a7c3582c",
@@ -21577,11 +21709,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -21589,7 +21721,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
@@ -23668,7 +23800,7 @@
       "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/duelista/m/duelista-m-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
+      "sourceStatus": "hires-library-in-progress",
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/duelista/m/frames",
       "audit": {
@@ -24358,8 +24490,8 @@
                 "pixelSha256": "0ac7373574b1a53a4bf03e6842415bae9d7ba3891c69e05c5acaf3fe13a9c440"
               },
               "03": {
-                "sha256": "5292b2f406283ea03a223c4788f0919bd134be6dc063c0ec5a60d82d30002cba",
-                "bytes": 22771,
+                "sha256": "598f9634d8da8c6cf94df415abf27de630ae1716dfd380c69253c177bf063d15",
+                "bytes": 23274,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -24367,11 +24499,11 @@
                 ],
                 "bbox": [
                   25,
-                  94,
-                  108,
+                  92,
+                  110,
                   249
                 ],
-                "pixelSha256": "f42f92f87c0d4601bc1c14424973523ba2bc1447f993ac1049020c1d2dcde22a"
+                "pixelSha256": "97f13822e31507b50e18e7319d8e60fa807ba55eb4c3b317ac0297098268308a"
               },
               "04": {
                 "sha256": "2fdf1ebfb13417168292a0eb8729652aa68466c167210592a9a207bc60cf0367",
@@ -25219,7 +25351,7 @@
           ]
         },
         "attack_dagger": {
-          "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
+          "sourceSha256": "def734565c9b285a84ce4659f0bfbfbcdb00b8e8f300c0d5601325b97b957a2f",
           "sourceDimensions": [
             2172,
             724
@@ -25244,9 +25376,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_dagger. Young adult male duelist: short swept spiky red-auburn hair, confident sharp face, fitted crimson long split fencing coat with black leather panels and restrained warm bronze trim, light high-collar inner shirt, dark fitted trousers, red-brown leather belt and boots, small brown fingerless gloves. Slim athletic canonical skeleton; no cape, rapier, sword, dagger or scabbard. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (228,374), other hand (363,274); figure 2: primary contact (797,274), other hand (915,287); figure 3: primary contact (1462,318), other hand (1458,261); figure 4: primary contact (1861,374), other hand (1992,274). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "LOCAL GRIP CORRECTION for duelista MALE dagger action. Image1 is existing approved class body strip. Image2 is the SAME strip with RED ARROW and CYAN RING marking required FRONT FIST position in THIRD figure. Move ONLY THIRD figure's lower/front closed fist along red arrow RIGHT AND UP, extending its forearm until closed fist CENTER fills the CYAN RING. Correct center is source x1462,y318 on2172x724 (body84,161), roughly90 source pixelsRIGHT35UP from old low fist beside belt. The fist must protrude to RIGHT of torso at waist, horizontally thrust forward. Rear guarding fist near chest/face stays exactly unchanged. Keep third head, hair, expression, eyes, pose, stance and foot coordinates unchanged. Preserve EXACT original class identity and every clothing material, color, insignia, shoulder armor, wrist guard, belt, pouch, robe/coattails/cape and boots. No new druid costume or other redesign. Other three figures unchanged. Output same full FOUR-body strip, facing right as original, same dimensions, TRUE transparent background. BODY ONLY with EMPTY CLOSED FIST where ring is. NO dagger/weapon, cyan ring, red arrow, annotation, text or background. Only redraw third front forearm and fist reaching into marked empty space.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -25254,7 +25386,139 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_dagger. Young adult male duelist: short swept spiky red-auburn hair, confident sharp face, fitted crimson long split fencing coat with black leather panels and restrained warm bronze trim, light high-collar inner shirt, dark fitted trousers, red-brown leather belt and boots, small brown fingerless gloves. Slim athletic canonical skeleton; no cape, rapier, sword, dagger or scabbard. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (228,374), other hand (363,274); figure 2: primary contact (797,274), other hand (915,287); figure 3: primary contact (1462,318), other hand (1458,261); figure 4: primary contact (1861,374), other hand (1992,274). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
+            }
+          ]
         },
         "attack_bow": {
           "sourceSha256": "87647ae6fab978f9a22c3a8e326466650d04e36e6a89859dbc56850c58b457a7",
@@ -25593,11 +25857,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -25605,7 +25869,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
@@ -105285,7 +105549,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1.5 in class order: Super Novato; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo, Berserker, Luchador, Centinela, Escriba arcano, Bardo, Comerciante; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
