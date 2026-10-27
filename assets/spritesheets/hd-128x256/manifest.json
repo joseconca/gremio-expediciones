@@ -111831,7 +111831,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -111839,7 +111839,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -112263,7 +112264,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8524865fbcfa39ef5f7473f92689a3f8d2553f12bc7facc8903bef314f8d8c06",
+                "bytes": 24813,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  99,
+                  107,
+                  249
+                ],
+                "pixelSha256": "3c9875505b6db8b844d3231584d55c82a97fcc13a1b37bf217306695df4253ed"
+              },
+              "02": {
+                "sha256": "1d833ba1683514962c535d98157943d1e9773a5c2801efa876b0ebb040b14029",
+                "bytes": 23506,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  99,
+                  109,
+                  248
+                ],
+                "pixelSha256": "2807a266a39167bba05d6c619fa5a40a748d21d4454a523b207561c735d3eab7"
+              },
+              "03": {
+                "sha256": "aeee2600cfa63a7b86adf325ae18039ea30f49a5d5716cdb5fcf008e95f7212c",
+                "bytes": 25385,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  102,
+                  119,
+                  249
+                ],
+                "pixelSha256": "315484826471636eea92641349ad28934f1b67ee2756ab59beb3f7d0a16cce11"
+              },
+              "04": {
+                "sha256": "a2f46455d570d2724e8b9df5b32df3ab80453476706168897353656cc6baf295",
+                "bytes": 24702,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  98,
+                  113,
+                  248
+                ],
+                "pixelSha256": "391d0b57ba842ec6db0c2c55b1b3bd67b07bf1f4acbe51e933ef91934e6c0094"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -112531,6 +112599,44 @@
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "8fd7c8a9ec8ddbe36667e659bfd6a9ec6d0d300e45de3f63ba13d443c2ba1a4e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            592,
+            31,
+            1088,
+            680
+          ],
+          "scale": 0.23,
+          "origin": [
+            7,
+            99
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/m/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Inquisidor MALE, Tier 2.5, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+            "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+            "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+            "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -112629,6 +112735,53 @@
         "block_shield/04": {
           "source": "sources.block_shield",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "8524865fbcfa39ef5f7473f92689a3f8d2553f12bc7facc8903bef314f8d8c06"
+            },
+            {
+              "bodySha256": "1d833ba1683514962c535d98157943d1e9773a5c2801efa876b0ebb040b14029"
+            },
+            {
+              "bodySha256": "aeee2600cfa63a7b86adf325ae18039ea30f49a5d5716cdb5fcf008e95f7212c"
+            },
+            {
+              "bodySha256": "a2f46455d570d2724e8b9df5b32df3ab80453476706168897353656cc6baf295"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
