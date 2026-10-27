@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "heraldo_guerra-f",
+  "nextVariant": "ninja-m",
   "classes": [
     {
       "id": "novato",
@@ -247,7 +247,7 @@
       "name": "Heraldo de guerra",
       "tier": 2.5,
       "order": 27,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "ninja",
@@ -116882,7 +116882,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/heraldo_guerra-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/heraldo_guerra/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -118006,7 +118006,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "0e6b8436569e7ea58bfa213ee5916eba478591eb53ab0b80d316dfec49c5dcd9",
@@ -118044,7 +118045,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "3a430ca3eef64bc28e0e5e270a38d8f2f63412c789964da802c2380e7cb4c627",
@@ -118082,7 +118084,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "625c485d09e51e855145ca631b34dbac65578c38b2dcf7df99faff2cd639f20c",
@@ -118120,7 +118123,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "301497f11bae5e6e1f1bb53a67f8afcdeec998b37c9c66f72c5908de33c3ee3c",
@@ -118164,7 +118168,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "af21160a2e9c64e6615753595779667c949d3ff99ccbaeb0368add0b59b510ae",
@@ -118208,7 +118213,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "6ee5774f0f9441e11727ab521f7b72794aabf6d16ba2af024e5337ab958ea43d",
@@ -118246,7 +118252,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "0a9f3573150bd7aff01e2694444345e44dfc382fdfeccbf9765fe7d88d025110",
@@ -118284,7 +118291,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "3787d6ffc3028e1b8919a4130185c8c52d7694a8d30a9064d0bfc9f639ea4f34",
@@ -118322,7 +118330,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "9edaceb53d751628c02acff02582cd089d1ee1f2142c2353420f20693938fdcd",
@@ -118360,7 +118369,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "21d94ccb32f619283fcaa8ae289518be6f8d165d15bfd4be92620935ccc7e301",
@@ -118398,7 +118408,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "04565d6fe19e12282fc9b5bba5b8cfe84aad50088b7a29adc95e1ff4b101ba9d",
@@ -118436,7 +118447,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "b9b578ea89ad6fe730dadfb1c0f326be66dc1be7de005f3da0564081b4482f51",
@@ -118474,7 +118486,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "f8ffac37596d08a00cec388bb8306ed91c3c22e32d79f6be45cdba3d4dd87413",
@@ -118512,7 +118525,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "3bf599a2f42b6bc0c5d9b92412ff4fe8628910e26d2c02a9f82f12b679e47354",
@@ -118550,7 +118564,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -118825,6 +118840,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "heraldo_guerra",
+        "name": "Heraldo de guerra",
+        "tier": 2.5,
+        "costume": "Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag.",
+        "maleIdentity": "Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face.",
+        "femaleIdentity": "Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin.",
+        "unique": "Copper fist-and-quill emblem, parchment seal tabard over teal martial layers, fighting wraps.",
+        "advancement": "Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "c0dabeb864c9185ad70e13e809f1ae523b3f595833291952b5db4ff377a5eb25",
+            "f59076d05a7b47dd25ab903a91d3e7dfd43e16530e18aa2d618d91fc0556c24f",
+            "7ce0749f1ff31a3f12ff21b3d670c7ff7eef2768767e78ba8e31bc3b576938a3",
+            "a4ece6efff111d7cfc55a28ad3f02d8503f855539770981e713b594612e75768"
+          ],
+          "walk": [
+            "b342206521ce388bf42fc4279799a0a3a9ac9e84868363c7ff3f88728fd8c166",
+            "a212eabc9d1e66c6d7e2761a89cbbefef0437ef9f2f0cdf73dfef40280e0a135",
+            "286889c6e89a0ba3b53a85d1f648ef051ab1a1443962fdcf53de3d9d59efafac",
+            "19dbe44318343436bdfb4ba2dc9b484739421d8ec5ca2987abeb55af9d35f0ab"
+          ],
+          "hurt": [
+            "ef7546e8d435d9aaddd83e7a1f30c30d6ad7c4d1fe313da068c8608688140748",
+            "976d7ba1460bdc9957152e8a9275370f0f384cc72ecec557e0e383caf83895ca",
+            "72da8aa38f0fd4caab48c662802dae0df3d31db90b72b5d7248377e4108609d1",
+            "91cd0c4e5cde0cfc45f4d5e3b0e859ccf9a3911e18d6092003abaaefeb5d0d4e"
+          ],
+          "use_consumable": [
+            "d77cf5d8460f0a99a7cc46298db5d434b75892fd87425e03820f5637b92b3406",
+            "619e63fda30a0ed29169c01e4a23a1d2e30b061edb7add863e36c3df4281401d",
+            "89b2b864e71ab7319a1febaba36d0ada96f9d73143c607026a517c53e46f0751",
+            "84239e84a26acf9366996b31049d06343ccf0cb3b9e0e209e0e59b86a4412872"
+          ],
+          "dodge": [
+            "e2e5f15d563ee0cb7c0b5385b56a9aeeb91ac48d7cb72f154b0bcb5d46209fa4",
+            "d0ae1b9d81fb1b3c23d0437f481f6c59c7a997b9dd0a2f05b7c6c37a1f4b9201",
+            "2d463d6430b5d381a55af4e0bf54dda972a258747e0b33e576ed05705d099b24",
+            "1f32eb486dd5c6d635755f3c9ddcd588af136f0e4c2132a87e91069a56d8d5f4"
+          ],
+          "block_shield": [
+            "dabd2b2b319dd5b7610bbcd0b6087e1dad1bda7a75ceb3624e2f74dec6b9d742",
+            "7d31c770bb66c702911d81830c5b44505a048147c4c608cecbe1e0212e516e4d",
+            "f71f4a4af85e47948835ac4946bcbb95d69df3b145ad166ed059fb7e3c825a1c",
+            "017258d059382f4423a83de35b1be53b894e377e319bb0b9ae4ab49a927ece9f"
+          ],
+          "attack_sword": [
+            "1aaa09231c9bf39c603ebb494f50619b8d2e3a669a9dd3d66497ce62082a3e4e",
+            "d853a19d05104c27a2c29d399e882ffa4b1181157b7016f2d3c31d1b4231a8da",
+            "b1a8ad458d2c26641481ba169b1256ba16300d711a9a1cc015b207017f31f964",
+            "2dcf3c6e84935326c0a1f69d029f450f1abd5dd1bcc847625dafffd9c5231c1a"
+          ],
+          "attack_axe": [
+            "9a7bc28842e6d76168acc2605db581ec3492cc827cfda74456c848e2ee078df3",
+            "7f3526a135c1efedc2ef620ee8598ac01dfa3a77bdbd4499d04388d51ccb6c43",
+            "14d7d54b2826b704ae7b0c3ea03fb35bba1cd128334aebb20de278ced2245306",
+            "c81eb796c3d6940cea260c632e7b2048c08388975030ce4283db4e33789201e8"
+          ],
+          "attack_spear": [
+            "6be89a7c57e9015f45b6a3dc8c5643594e3fe2d7c9292d242345f3ada8fa9772",
+            "a5d1df35e5e0760456851ff43c9295d00526719f2f0e381ae765423019e0ec53",
+            "0bbc39b1a5f9a9f079332868be29e03588a7b4a59d80b3c113c998663eff1228",
+            "a98068f7e37834ccb8d78b6988f7a5f8f33ec805b58048e085edfd5276a8d1ee"
+          ],
+          "attack_dagger": [
+            "71f753e871444cb8a7a4691e7c43f9636fd685f8302d5470eaa233d290f01a07",
+            "cdcbb58e437963dd37476c360e51772ea213be85e488b48316724aa86d1abb98",
+            "1d9e3937925967d5204c9b0bf3adc9b83e2297d48bc6bfc97e4b07d980eb3359",
+            "d0b170a3119c28cc68c75186f907053beddc8c86385776000bb75c8ebe07fc13"
+          ],
+          "attack_bow": [
+            "d8957f8a8ba671d11160e28b12c5965673a7f7bec259fa993b37102a3219a97f",
+            "f1455b80eee9b88e2513d86b889b12bee8417534362936df53eced8cfb9e7175",
+            "3126e459175a901b2e5c335df2c97ef05b521091940ac8355349cb2146f0dad3",
+            "1270893bc8c2ffb87e14be797efc64f9f04f2873021c3b172750ca374673ae4c"
+          ],
+          "attack_staff": [
+            "dae24552de594f6d05623a6d9a97904a0eb2d22d4993ee3b50be4a11df530a3d",
+            "604516e3306e1ac90f933a90990ac9604af49e1c45e8167826835d4e4e197c27",
+            "33a7b2f4696a3df01bb3a6bdb645fa98c11dc9a6e3571777dbfab289bbbd2df1",
+            "3d051cbee880a83e22b6c55b0042ce9b3a27ce5f248125c37bcba9bb19172ebc"
+          ],
+          "attack_mace": [
+            "36c668f1d1490155a9db90c716891215d3c4b0f0b6711971f924872479fedc24",
+            "ae2e2d42a9278ee29b706c4795faf00a39810bdb5e3c0b1e7a7dd77405da9ad1",
+            "91641942bc9f3f90c0227a75d5fe515bf401fa369b01493b408568a2d7784502",
+            "6a8746b06d5cb4a69c0dbcfd81158800d14246804270047e4c658d99cd2733f2"
+          ],
+          "attack_book": [
+            "ed90235caab56c1cb6021df0f47824d01fef5fab09b50e5822867ab94d614e3e",
+            "597933bf688e70a4eb9b915f22276690c507b88a796f6346bf8a1ef484e57e66",
+            "82b496e35afad0ceb1d5b37de0ed3013f5cb5a6317e220fa7adaf5ca13e1a2c6",
+            "6d55b06e0665f5ed33d468b6e869e8fa7f4416295f23781c64f29ce86f2930c6"
+          ],
+          "attack_gloves": [
+            "655885403dfb730ad05648a757776f7cbd7a2cb2bc56bac2ffbe9b99de063816",
+            "44034aa12a3f2870a9064cf8e844630908f71991b4685e4430396a14344d478c",
+            "8013569354a3e4577c7edc23ef1c6cb1882cf650e89f83cfbd9b1fe9e7c9b66f",
+            "2d2b705abd53e6d373e1ae8229316641735e150f3a8e04272489dfdf897e83f7"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -118837,7 +118967,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/heraldo_guerra/f/heraldo_guerra-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/heraldo_guerra/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -119961,7 +120091,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "38da99116acc10c1ad900016de7d707579a4fcc47ae6e8393415e64e644cc0f8",
@@ -119999,7 +120130,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "ee064549e807c8361de3c503bfbd84592237ff95318ef36ca4a9bc90ff9f4597",
@@ -120037,7 +120169,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "a8e1bb0cebba7c9e851d7b6944703d836d66de40d23aa6b45f133d36c7f9d647",
@@ -120075,7 +120208,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "b010b34b00cd3fb18e45ced45ae6a526b3d11c7be3538ca3b50f2be34a3e3dd9",
@@ -120113,7 +120247,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "536e36ed7294a916bef2f41f4aafe0d78625617798451e375ba74a34983691ab",
@@ -120151,7 +120286,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "c2c56b6d12287006a84fca77676bfc5aa147a24b2f6ba157b95c01df3900f0ac",
@@ -120189,7 +120325,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "89f7f3c57a0b92ee4ede9b1c35f4538fa7ec97c93aec10de4a6b0d31b4b20d26",
@@ -120227,7 +120364,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "2714c332f1337fdda96367d1c6b0672cd5e419c7dc123858654673dd4c1c3ba9",
@@ -120265,7 +120403,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "49edba8a1f2b4544786157bf44ac1a0ca99920d5732e540a07c92839f7ab30a4",
@@ -120303,7 +120442,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "cb7651be00bb8281a40f8ad5ea73217eb7661cc7be4293e8a70e4e58d075fef3",
@@ -120341,7 +120481,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "308e27bdf060fc93289ebd6a463df8de93a86c8f11bddbbd19148c3f9f2e4aeb",
@@ -120379,7 +120520,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "2da924f4d32c00d511153e8c93cec64b7117b80da25369fa8f5c8ecb390e1c0a",
@@ -120417,7 +120559,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "b462fb0a2b4e7bd843ed280e3c1f98e6d6fcc155b93c9705e870c8f79d645499",
@@ -120455,7 +120598,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "73cca8be99a77db965a408b50f46d99afe4a65b71da076bf1c89809ae735dc09",
@@ -120493,7 +120637,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -120768,6 +120913,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "heraldo_guerra",
+        "name": "Heraldo de guerra",
+        "tier": 2.5,
+        "costume": "Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag.",
+        "maleIdentity": "Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face.",
+        "femaleIdentity": "Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin.",
+        "unique": "Copper fist-and-quill emblem, parchment seal tabard over teal martial layers, fighting wraps.",
+        "advancement": "Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/heraldo_guerra/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "72ee927df774d6b60a274308ef23296417e0742c5ce1a8d7e2f94a7157b43cc3",
+            "e74d552212e7490185a202c1bab99ca1f63e5cb38b4b8d50cac9d09ee57f4b51",
+            "a19182ca54674ef7f488ad73c6e2f06bbd3a1310e9104144bf70136c0a626d88",
+            "3cddb1fc162b92f4c54bdbacba804a65fbef6211430ea02f26a7bf8c306c2e5d"
+          ],
+          "walk": [
+            "53dc6483b708f2d0845b2b4834603176bf397b19088a36558ccdbe6bab48fb13",
+            "2a43fe251fce6d30b48c0cf5de40ef545e163853d88f42166577d3ad73ef80fe",
+            "f9b529304c5de3c2a71d0e58c46a77c59282e13dde9a0c4dbc55477df78235ca",
+            "ce5086c24243a67f977d8cd3d0990b2848508c74b6f7ef736e5b095770e720fe"
+          ],
+          "hurt": [
+            "4b27aa539289b81d9c153f0c95b3faaa1df1d8aeee567a9ad71c2291a230dfd1",
+            "0677a79bd391444021811bf802e79b0b61aa21f2198a2900c62ccfaa5512075c",
+            "13774cec82a9039b147c88ce555677be0f7dc5aa3a4f550d49ed39d11af2ab58",
+            "b59cb1fb3bbe4be83b605e2cfd46f739359a8889fe1b01be0befb8b0f95e06d4"
+          ],
+          "use_consumable": [
+            "1120626d5370448472578fcb6a17cb0896eb56223e7c68b0571cfcf161fce068",
+            "77a6712ed92884c94a7db984b23af18557ad3a869828570b9e6b8d0938054979",
+            "af9527bcfc93ffdb5fa90dfe23766bcc03cd0354962b7c383d00de62354403a7",
+            "198c1592b6b75cf713e0c280196e6cc3148d8db234aba71afa1fb9649eec5e6f"
+          ],
+          "dodge": [
+            "5747fb80dfa6e519c1a15d44c06aa5f986ad3048d4127cb06a06bd9374e3ac00",
+            "c09c14338fbd4f0b774f76b62a92bac254455eb2ab730479cc453d4fc82f51e8",
+            "171fc53e84c9c6b19c7a9563efb0af8fc9371aa4445d8b362b3ecd5f3e7028a1",
+            "914c77c33d977d2cd8fd36155a2a50fd59e76b5defa0f1fbdd78f26d6dce470a"
+          ],
+          "block_shield": [
+            "d0b2ee2cac459c8c50f9d7ee2e5d684821cfe6b395f301e6daeee817ff1a09e7",
+            "58321ff45c560e601d3c22a89d826a2babb00733152c8ce217068bc010a5b286",
+            "102d7e7a9b06870d62699e4a5b1edae31d1dfdc3dc9f507f6a32d33f7d39d064",
+            "5baa9a8a71dd429e62de53b6864fd0d57153dc1e9626832fc6ff1d0403b853ef"
+          ],
+          "attack_sword": [
+            "02d078c8bfcef31773a071d7ba4b1b859e04b2aedd6ee4147148e1e427b1510f",
+            "d5cf3d9d5f90e60415da8c9c941d4964b5be8b86888c456180252f02aeb2cba8",
+            "78f6df23b271d5c874b4256f914e6009318e38a76dcdeb8f80e9d700554113b1",
+            "4048d3b7cbe6f697ef8290b8f0e051d92beb5a88cd61943abcd8ae2dc18e3dbb"
+          ],
+          "attack_axe": [
+            "f807d6ddfc8f8dacae9d515d88296a044326ff84dc3493d2940649ab80b8939a",
+            "77b898746a01ac39fe3a2567f527cbf6f82a2e627c7d73d664c12b5a6c3fb160",
+            "7692b6cfd5daebe2af6d33ea7196dbdb3158bfdad312f98a657cd427f924f9d9",
+            "999a6c0ff2062f6f2502570f41d8c80ec18078c1973b211ea751c5b5ab26ad37"
+          ],
+          "attack_spear": [
+            "68940e3f1220aa2891ca87d62d2b58b8dee85c4e698a1d51618cb88a3c53d8c9",
+            "cacc2d2ffbacb3858c5240958c10308d344b7bf96a882e570e74ded6713083ef",
+            "97612f8b6dfe37721d7c41ca88baa9d4819a7cffe31c6b0b296d3a775d7b1bab",
+            "9a617a7014431d3ddac06fb18dff4cc8a60b794a4e7892a8ea3b4def6119931b"
+          ],
+          "attack_dagger": [
+            "bea62472144f8528ad90a05289fcdd1dc12ec0ede894009169b3fcb6fe11dc27",
+            "1988d9be15abadf9fecebfdaf6595b8a930efff25cddfe760ac4049bc3a59c50",
+            "b9a8c86bce715ae78c0031ec8e4619eada36e5e61ca4fa7633fa9b75296a9c30",
+            "b89c200f600ed2028d0e08c3b641bc79eb5f0cb62d9aba0d30b9bf1d2dd1d8f0"
+          ],
+          "attack_bow": [
+            "2c52267fb4b8afe1a7525ea75f815a4d1d143046c3ca7eaf31bab1989d3efcc6",
+            "4cb2750820c3211fdf698f86b379bed0cb7419513fb51cbd88ec86266fc91376",
+            "cd4f4176486e0fbe49b376132853ec4f85acf1226a6aac6c1e950c5b71aae908",
+            "b6b5c55b555c789a6f5d05a883a13be7a34ffa7e9f20f81031ab64a3a15fb553"
+          ],
+          "attack_staff": [
+            "204b5b54cf522af4c31e27ca975a9f39b8f02ac5c465bf63b47798cec8a46cb8",
+            "eb49ba7077cf1906ed66dd4917ed98917b780b008dda09aac53ca5c317b0393c",
+            "e44db06d5177969bad126f0ec862b693b96940c55125ec43e1870a2ab584bf39",
+            "24ee77f79546738f9381fba5bb31be2ad6ed59df1c72cd712bf36c7ffcb5e839"
+          ],
+          "attack_mace": [
+            "e9e6f16b6e9d9821cd310dca773d1b3dd0975a77892717796d758a5cac6d1662",
+            "83edd441d28d5c589ed506e9c44e7c2984d364c9ef75a1d9d6759a1a5cb961ed",
+            "716859052fc80302bd4abd5af1fd32b6beafb961ce05f3b183b15046c4b33762",
+            "29ad6a01d1066549759fec000931e051a31107fcfdd85f076b6aeedbae40b3ad"
+          ],
+          "attack_book": [
+            "a131d470ee9d9069ba98af80ca4a63be133d3ee32da60fb9598051febf479603",
+            "8d628c1bc33cf26a4ea2cdd74904a77bfd81259fbb137816a3f6dbb1084d0af5",
+            "141e5322757331d863941c395f1ea15c7ccda37716cfa18fd463d029dc46be8d",
+            "8f1f7d38c915e389d5c1703c7ef9d262e78c3c58d1912418065f610a525e3899"
+          ],
+          "attack_gloves": [
+            "ba26bad3785b5eb06505316ea3478e7eb884a4178e3c22821f7dbcd456599ead",
+            "d0002fab81beebf0448e26d3527d9676e2b06397dd7eb58e321bb7b9f7f04fbb",
+            "608dad4fc20f7c59565c006bb314fca6121db3646bd826ee5cfbb8197aefecfa",
+            "71e945e4c79b57e90e4609f0678d07dc415d9d837b27f868875f210258db3571"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -126168,7 +126428,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T23:45:07.308617+00:00",
+  "classId": "heraldo_guerra",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\heraldo_guerra-m-sheet.png",
+  "sheetSha256": "02462e998032f64ecebed273ff2b0de030d45affe05e5a349b5cfdfa09195215",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\idle\\heraldo_guerra-m-idle-01.png",
+          "sha256": "c0dabeb864c9185ad70e13e809f1ae523b3f595833291952b5db4ff377a5eb25",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\idle\\heraldo_guerra-m-idle-02.png",
+          "sha256": "f59076d05a7b47dd25ab903a91d3e7dfd43e16530e18aa2d618d91fc0556c24f",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\idle\\heraldo_guerra-m-idle-03.png",
+          "sha256": "7ce0749f1ff31a3f12ff21b3d670c7ff7eef2768767e78ba8e31bc3b576938a3",
+          "alpha_bbox": [
+            25,
+            91,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\idle\\heraldo_guerra-m-idle-04.png",
+          "sha256": "a4ece6efff111d7cfc55a28ad3f02d8503f855539770981e713b594612e75768",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\walk\\heraldo_guerra-m-walk-01.png",
+          "sha256": "b342206521ce388bf42fc4279799a0a3a9ac9e84868363c7ff3f88728fd8c166",
+          "alpha_bbox": [
+            11,
+            91,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\walk\\heraldo_guerra-m-walk-02.png",
+          "sha256": "a212eabc9d1e66c6d7e2761a89cbbefef0437ef9f2f0cdf73dfef40280e0a135",
+          "alpha_bbox": [
+            6,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\walk\\heraldo_guerra-m-walk-03.png",
+          "sha256": "286889c6e89a0ba3b53a85d1f648ef051ab1a1443962fdcf53de3d9d59efafac",
+          "alpha_bbox": [
+            10,
+            91,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\walk\\heraldo_guerra-m-walk-04.png",
+          "sha256": "19dbe44318343436bdfb4ba2dc9b484739421d8ec5ca2987abeb55af9d35f0ab",
+          "alpha_bbox": [
+            12,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\hurt\\heraldo_guerra-m-hurt-01.png",
+          "sha256": "ef7546e8d435d9aaddd83e7a1f30c30d6ad7c4d1fe313da068c8608688140748",
+          "alpha_bbox": [
+            22,
+            91,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\hurt\\heraldo_guerra-m-hurt-02.png",
+          "sha256": "976d7ba1460bdc9957152e8a9275370f0f384cc72ecec557e0e383caf83895ca",
+          "alpha_bbox": [
+            28,
+            94,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\hurt\\heraldo_guerra-m-hurt-03.png",
+          "sha256": "72da8aa38f0fd4caab48c662802dae0df3d31db90b72b5d7248377e4108609d1",
+          "alpha_bbox": [
+            19,
+            121,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\hurt\\heraldo_guerra-m-hurt-04.png",
+          "sha256": "91cd0c4e5cde0cfc45f4d5e3b0e859ccf9a3911e18d6092003abaaefeb5d0d4e",
+          "alpha_bbox": [
+            28,
+            91,
+            112,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\use_consumable\\heraldo_guerra-m-use_consumable-01.png",
+          "sha256": "d77cf5d8460f0a99a7cc46298db5d434b75892fd87425e03820f5637b92b3406",
+          "alpha_bbox": [
+            29,
+            91,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\use_consumable\\heraldo_guerra-m-use_consumable-02.png",
+          "sha256": "619e63fda30a0ed29169c01e4a23a1d2e30b061edb7add863e36c3df4281401d",
+          "alpha_bbox": [
+            27,
+            91,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\use_consumable\\heraldo_guerra-m-use_consumable-03.png",
+          "sha256": "89b2b864e71ab7319a1febaba36d0ada96f9d73143c607026a517c53e46f0751",
+          "alpha_bbox": [
+            22,
+            92,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\use_consumable\\heraldo_guerra-m-use_consumable-04.png",
+          "sha256": "84239e84a26acf9366996b31049d06343ccf0cb3b9e0e209e0e59b86a4412872",
+          "alpha_bbox": [
+            24,
+            91,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\dodge\\heraldo_guerra-m-dodge-01.png",
+          "sha256": "e2e5f15d563ee0cb7c0b5385b56a9aeeb91ac48d7cb72f154b0bcb5d46209fa4",
+          "alpha_bbox": [
+            20,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\dodge\\heraldo_guerra-m-dodge-02.png",
+          "sha256": "d0ae1b9d81fb1b3c23d0437f481f6c59c7a997b9dd0a2f05b7c6c37a1f4b9201",
+          "alpha_bbox": [
+            21,
+            99,
+            115,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\dodge\\heraldo_guerra-m-dodge-03.png",
+          "sha256": "2d463d6430b5d381a55af4e0bf54dda972a258747e0b33e576ed05705d099b24",
+          "alpha_bbox": [
+            23,
+            100,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\dodge\\heraldo_guerra-m-dodge-04.png",
+          "sha256": "1f32eb486dd5c6d635755f3c9ddcd588af136f0e4c2132a87e91069a56d8d5f4",
+          "alpha_bbox": [
+            15,
+            99,
+            104,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\block_shield\\heraldo_guerra-m-block_shield-01.png",
+          "sha256": "dabd2b2b319dd5b7610bbcd0b6087e1dad1bda7a75ceb3624e2f74dec6b9d742",
+          "alpha_bbox": [
+            23,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\block_shield\\heraldo_guerra-m-block_shield-02.png",
+          "sha256": "7d31c770bb66c702911d81830c5b44505a048147c4c608cecbe1e0212e516e4d",
+          "alpha_bbox": [
+            25,
+            99,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\block_shield\\heraldo_guerra-m-block_shield-03.png",
+          "sha256": "f71f4a4af85e47948835ac4946bcbb95d69df3b145ad166ed059fb7e3c825a1c",
+          "alpha_bbox": [
+            22,
+            116,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\block_shield\\heraldo_guerra-m-block_shield-04.png",
+          "sha256": "017258d059382f4423a83de35b1be53b894e377e319bb0b9ae4ab49a927ece9f",
+          "alpha_bbox": [
+            23,
+            98,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_sword\\heraldo_guerra-m-attack_sword-01.png",
+          "sha256": "1aaa09231c9bf39c603ebb494f50619b8d2e3a669a9dd3d66497ce62082a3e4e",
+          "alpha_bbox": [
+            11,
+            94,
+            109,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_sword\\heraldo_guerra-m-attack_sword-02.png",
+          "sha256": "d853a19d05104c27a2c29d399e882ffa4b1181157b7016f2d3c31d1b4231a8da",
+          "alpha_bbox": [
+            9,
+            95,
+            116,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_sword\\heraldo_guerra-m-attack_sword-03.png",
+          "sha256": "b1a8ad458d2c26641481ba169b1256ba16300d711a9a1cc015b207017f31f964",
+          "alpha_bbox": [
+            12,
+            98,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_sword\\heraldo_guerra-m-attack_sword-04.png",
+          "sha256": "2dcf3c6e84935326c0a1f69d029f450f1abd5dd1bcc847625dafffd9c5231c1a",
+          "alpha_bbox": [
+            21,
+            95,
+            119,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_axe\\heraldo_guerra-m-attack_axe-01.png",
+          "sha256": "9a7bc28842e6d76168acc2605db581ec3492cc827cfda74456c848e2ee078df3",
+          "alpha_bbox": [
+            10,
+            101,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_axe\\heraldo_guerra-m-attack_axe-02.png",
+          "sha256": "7f3526a135c1efedc2ef620ee8598ac01dfa3a77bdbd4499d04388d51ccb6c43",
+          "alpha_bbox": [
+            18,
+            107,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_axe\\heraldo_guerra-m-attack_axe-03.png",
+          "sha256": "14d7d54b2826b704ae7b0c3ea03fb35bba1cd128334aebb20de278ced2245306",
+          "alpha_bbox": [
+            15,
+            116,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_axe\\heraldo_guerra-m-attack_axe-04.png",
+          "sha256": "c81eb796c3d6940cea260c632e7b2048c08388975030ce4283db4e33789201e8",
+          "alpha_bbox": [
+            23,
+            103,
+            126,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_spear\\heraldo_guerra-m-attack_spear-01.png",
+          "sha256": "6be89a7c57e9015f45b6a3dc8c5643594e3fe2d7c9292d242345f3ada8fa9772",
+          "alpha_bbox": [
+            10,
+            91,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_spear\\heraldo_guerra-m-attack_spear-02.png",
+          "sha256": "a5d1df35e5e0760456851ff43c9295d00526719f2f0e381ae765423019e0ec53",
+          "alpha_bbox": [
+            16,
+            91,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_spear\\heraldo_guerra-m-attack_spear-03.png",
+          "sha256": "0bbc39b1a5f9a9f079332868be29e03588a7b4a59d80b3c113c998663eff1228",
+          "alpha_bbox": [
+            14,
+            91,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_spear\\heraldo_guerra-m-attack_spear-04.png",
+          "sha256": "a98068f7e37834ccb8d78b6988f7a5f8f33ec805b58048e085edfd5276a8d1ee",
+          "alpha_bbox": [
+            19,
+            91,
+            116,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_dagger\\heraldo_guerra-m-attack_dagger-01.png",
+          "sha256": "71f753e871444cb8a7a4691e7c43f9636fd685f8302d5470eaa233d290f01a07",
+          "alpha_bbox": [
+            24,
+            91,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_dagger\\heraldo_guerra-m-attack_dagger-02.png",
+          "sha256": "cdcbb58e437963dd37476c360e51772ea213be85e488b48316724aa86d1abb98",
+          "alpha_bbox": [
+            24,
+            91,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_dagger\\heraldo_guerra-m-attack_dagger-03.png",
+          "sha256": "1d9e3937925967d5204c9b0bf3adc9b83e2297d48bc6bfc97e4b07d980eb3359",
+          "alpha_bbox": [
+            25,
+            91,
+            113,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_dagger\\heraldo_guerra-m-attack_dagger-04.png",
+          "sha256": "d0b170a3119c28cc68c75186f907053beddc8c86385776000bb75c8ebe07fc13",
+          "alpha_bbox": [
+            25,
+            91,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_bow\\heraldo_guerra-m-attack_bow-01.png",
+          "sha256": "d8957f8a8ba671d11160e28b12c5965673a7f7bec259fa993b37102a3219a97f",
+          "alpha_bbox": [
+            21,
+            93,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_bow\\heraldo_guerra-m-attack_bow-02.png",
+          "sha256": "f1455b80eee9b88e2513d86b889b12bee8417534362936df53eced8cfb9e7175",
+          "alpha_bbox": [
+            21,
+            93,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_bow\\heraldo_guerra-m-attack_bow-03.png",
+          "sha256": "3126e459175a901b2e5c335df2c97ef05b521091940ac8355349cb2146f0dad3",
+          "alpha_bbox": [
+            21,
+            93,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_bow\\heraldo_guerra-m-attack_bow-04.png",
+          "sha256": "1270893bc8c2ffb87e14be797efc64f9f04f2873021c3b172750ca374673ae4c",
+          "alpha_bbox": [
+            21,
+            93,
+            120,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_staff\\heraldo_guerra-m-attack_staff-01.png",
+          "sha256": "dae24552de594f6d05623a6d9a97904a0eb2d22d4993ee3b50be4a11df530a3d",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_staff\\heraldo_guerra-m-attack_staff-02.png",
+          "sha256": "604516e3306e1ac90f933a90990ac9604af49e1c45e8167826835d4e4e197c27",
+          "alpha_bbox": [
+            27,
+            92,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_staff\\heraldo_guerra-m-attack_staff-03.png",
+          "sha256": "33a7b2f4696a3df01bb3a6bdb645fa98c11dc9a6e3571777dbfab289bbbd2df1",
+          "alpha_bbox": [
+            29,
+            92,
+            120,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_staff\\heraldo_guerra-m-attack_staff-04.png",
+          "sha256": "3d051cbee880a83e22b6c55b0042ce9b3a27ce5f248125c37bcba9bb19172ebc",
+          "alpha_bbox": [
+            28,
+            92,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_mace\\heraldo_guerra-m-attack_mace-01.png",
+          "sha256": "36c668f1d1490155a9db90c716891215d3c4b0f0b6711971f924872479fedc24",
+          "alpha_bbox": [
+            24,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_mace\\heraldo_guerra-m-attack_mace-02.png",
+          "sha256": "ae2e2d42a9278ee29b706c4795faf00a39810bdb5e3c0b1e7a7dd77405da9ad1",
+          "alpha_bbox": [
+            30,
+            90,
+            120,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_mace\\heraldo_guerra-m-attack_mace-03.png",
+          "sha256": "91641942bc9f3f90c0227a75d5fe515bf401fa369b01493b408568a2d7784502",
+          "alpha_bbox": [
+            25,
+            104,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_mace\\heraldo_guerra-m-attack_mace-04.png",
+          "sha256": "6a8746b06d5cb4a69c0dbcfd81158800d14246804270047e4c658d99cd2733f2",
+          "alpha_bbox": [
+            24,
+            90,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_book\\heraldo_guerra-m-attack_book-01.png",
+          "sha256": "ed90235caab56c1cb6021df0f47824d01fef5fab09b50e5822867ab94d614e3e",
+          "alpha_bbox": [
+            25,
+            90,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_book\\heraldo_guerra-m-attack_book-02.png",
+          "sha256": "597933bf688e70a4eb9b915f22276690c507b88a796f6346bf8a1ef484e57e66",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_book\\heraldo_guerra-m-attack_book-03.png",
+          "sha256": "82b496e35afad0ceb1d5b37de0ed3013f5cb5a6317e220fa7adaf5ca13e1a2c6",
+          "alpha_bbox": [
+            26,
+            90,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_book\\heraldo_guerra-m-attack_book-04.png",
+          "sha256": "6d55b06e0665f5ed33d468b6e869e8fa7f4416295f23781c64f29ce86f2930c6",
+          "alpha_bbox": [
+            27,
+            90,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_gloves\\heraldo_guerra-m-attack_gloves-01.png",
+          "sha256": "655885403dfb730ad05648a757776f7cbd7a2cb2bc56bac2ffbe9b99de063816",
+          "alpha_bbox": [
+            23,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_gloves\\heraldo_guerra-m-attack_gloves-02.png",
+          "sha256": "44034aa12a3f2870a9064cf8e844630908f71991b4685e4430396a14344d478c",
+          "alpha_bbox": [
+            21,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_gloves\\heraldo_guerra-m-attack_gloves-03.png",
+          "sha256": "8013569354a3e4577c7edc23ef1c6cb1882cf650e89f83cfbd9b1fe9e7c9b66f",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\heraldo_guerra\\m\\frames\\attack_gloves\\heraldo_guerra-m-attack_gloves-04.png",
+          "sha256": "2d2b705abd53e6d373e1ae8229316641735e150f3a8e04272489dfdf897e83f7",
+          "alpha_bbox": [
+            23,
+            90,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
