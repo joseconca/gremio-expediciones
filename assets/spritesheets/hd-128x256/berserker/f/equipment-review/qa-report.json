@@ -10,7 +10,8 @@
     "dodge",
     "block_shield",
     "attack_sword",
-    "attack_axe"
+    "attack_axe",
+    "attack_spear"
   ],
   "bodyHashes": {
     "idle": [
@@ -60,9 +61,15 @@
       "a649f7028c5e29d2966848687226c96154fa9e1bfd491bc1da036561f66a63ad",
       "1de111b2c89ff72d1dd2d6556d8bff9fdb052c55b3663b45883e1f31c9ff3ae5",
       "f6dbd2ca8852e804a597e57b2b7dccfb9af27180ed0ff8ece2c463a2889ebb4f"
+    ],
+    "attack_spear": [
+      "dc3612cd7de73611fd67f75529f818ec30b138f7c32bff19019aac03a7906aaf",
+      "af2d1d42a0ed3effd4994d85b1ff4ecde078c9cf3940d2e352b7671e2afb5616",
+      "e9373ce8f1f92dbd42b96685b494d13aa1c8fd15091f78d875ce474493b5f7f4",
+      "56995038eed8c676cf278e8b8a4d21b06d26a83381a11c732f505c271744704a"
     ]
   },
-  "contactChecks": 580,
+  "contactChecks": 596,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
