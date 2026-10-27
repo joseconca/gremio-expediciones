@@ -52392,7 +52392,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -52405,7 +52405,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -53179,7 +53180,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "70e3a335958ca72be28bd4221341bc2731c8b9d5df70eb7496e1588fe72a61cb",
+                "bytes": 21773,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  93,
+                  108,
+                  249
+                ],
+                "pixelSha256": "e4b23883a6193d7603fd5eea202a417a87ccb24fc49403148a3407f875bd03b0"
+              },
+              "02": {
+                "sha256": "30bc959717a6fa9f462faf16d5bfec80e232c11162d2acc00ef154eb3f3d08b4",
+                "bytes": 23157,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  108,
+                  249
+                ],
+                "pixelSha256": "5920aafc03faa01e950071a97c75e50c0307717c7ca2a1b44b816509fd6f668c"
+              },
+              "03": {
+                "sha256": "c76f6aeeb0d9aba36f57b50ed31e3d513a6e5d9c47b90ef0192b3e79f33e4779",
+                "bytes": 21967,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  93,
+                  112,
+                  249
+                ],
+                "pixelSha256": "8062682c470ffed534d07ebfd03988e12896e341974b4c981c53a48dd4dcb2ca"
+              },
+              "04": {
+                "sha256": "f230b5e18bbd66dea1d0d20a488ac839347054da68588e05c537cfae232df79d",
+                "bytes": 21641,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  98,
+                  249
+                ],
+                "pixelSha256": "d7e9b20255dce4e1411f723c769371aebba0927a55c368c4fdc7f56d3f3b83d6"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -54048,6 +54116,44 @@
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "368536fe7048a9963f63093a1b0f3bf4ec9d98beb6dd9ea8f43f0267d3a29dbd",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            615,
+            21,
+            1023,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action attack_staff for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe edit ONLY: keep canonical four poses, all finger and grip coordinates exactly unchanged. Bare upper arms, sleeveless white/blue tunic in EVERY figure, no rolled sleeves or white armbands. No staff or magic visible; equipment comes later. No red scarf or chest harness.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "36d33689354a90e90cdf39468f9009bd50b1bae5e02d73894856d967695d0b12",
+            "cb8607b7c51b52e935eca74ac76d098668646d4689a8faf2e9fec4a59b75b6d9",
+            "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
+            "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -54225,6 +54331,22 @@
         },
         "attack_bow/04": {
           "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
           "frame": 4
         }
       },
