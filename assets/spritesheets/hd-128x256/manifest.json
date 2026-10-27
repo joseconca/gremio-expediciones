@@ -61366,8 +61366,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6891eba748d59060b8f7f6ba98dfbe0c8bc6f07d64d970e34afbfc4d9a2d28f6",
-                "bytes": 22650,
+                "sha256": "f16e70246e759141053c74ee805798baab1897459690aa2c1454516b761f73ee",
+                "bytes": 22832,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  113,
+                  248
+                ],
+                "pixelSha256": "fd052c495925bae34031d5d6ace944cff63a1a060696afd1cfe1cbacfd2edc62"
+              },
+              "02": {
+                "sha256": "432bbfbc8a1536233f801a71eaa55a6bf63b7516580c5a8203e24a50d64198ff",
+                "bytes": 21194,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  91,
+                  110,
+                  248
+                ],
+                "pixelSha256": "46ace6c1a41db7a60484ec16446584062b22bda096268c45917679aecda36c3c"
+              },
+              "03": {
+                "sha256": "c5133ced0b5ab4f7e857fc2ef6e8c9388bc41a2fed189de712e9592bfd9fb7bd",
+                "bytes": 22737,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -61375,15 +61407,15 @@
                 ],
                 "bbox": [
                   8,
-                  92,
-                  111,
+                  91,
+                  113,
                   248
                 ],
-                "pixelSha256": "0b8a6ab7a75b50ba6aa60a0d947855859e9d57d4cb6acda075578fe8714eb7eb"
+                "pixelSha256": "c6619168b3984567b1bb37ffb4c047a64abbbe3bb38e2582974d85c067ef7cc3"
               },
-              "02": {
-                "sha256": "2783507ae58dc8489bf314b8d693d6e0438c50873664a2b70a7c19af9b8f8e70",
-                "bytes": 20998,
+              "04": {
+                "sha256": "e89aeed679c18163131498ca13dc0094ba83f1826b9b63ba18f6a4f044095967",
+                "bytes": 22143,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -61391,43 +61423,11 @@
                 ],
                 "bbox": [
                   9,
-                  92,
-                  110,
+                  91,
+                  105,
                   248
                 ],
-                "pixelSha256": "c04e759d271e0d5617241bcea22e49d0233d3cfae4e49d1de6cf98774e6220ca"
-              },
-              "03": {
-                "sha256": "5ff34cf39ee5be61637986ddb36b9571b3dbc1a8c4400f1d3be4bcac25774eec",
-                "bytes": 21638,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  10,
-                  92,
-                  118,
-                  248
-                ],
-                "pixelSha256": "d596c2d6b7ab2d969d3180be938aa0b7ad27e7425fdc1333696c39b6b485247e"
-              },
-              "04": {
-                "sha256": "2d61cd306beef154876afc2d11f0f886d76557fdb54e3065d5f6c82def2e964e",
-                "bytes": 22336,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  13,
-                  92,
-                  109,
-                  248
-                ],
-                "pixelSha256": "620c907a2666ec7863c0ddabf5642e871d17146e837fb52e633cc6281d42d357"
+                "pixelSha256": "92608678b0ebf19cf0f7ee409e8382c6b068942414692597233472012e588c58"
               }
             },
             "distinctFrames": 4
@@ -62384,7 +62384,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "e38e061eb1ba140696ded037ab28d6e0a96c5db17aaf34b9df314eca870057ee",
+          "sourceSha256": "e53111c804210997aef393f2a1c400515de15ebb8b97681f3dc794ca115d9936",
           "sourceDimensions": [
             2172,
             724
@@ -62409,7 +62409,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/luchador/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/luchador/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
           "prompt": "Production RPG body sprite strip for Luchador MALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible. Adult athletic masculine fighter with short jet-black textured cropped hair, determined brows, warm tan skin, clean-shaven face; retain canonical head size. Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak. Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
@@ -62419,7 +62419,85 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "e38e061eb1ba140696ded037ab28d6e0a96c5db17aaf34b9df314eca870057ee",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/luchador/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG body sprite strip for Luchador MALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible. Adult athletic masculine fighter with short jet-black textured cropped hair, determined brows, warm tan skin, clean-shaven face; retain canonical head size. Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak. Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "e9f27b3a86c6458e855eca9c2a257c89b63272c9a2c4a14b973da2c63dc0ab04",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/luchador/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG body sprite strip for Luchador MALE, Tier 2, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible. Adult athletic masculine fighter with short jet-black textured cropped hair, determined brows, warm tan skin, clean-shaven face; retain canonical head size. Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak. Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "e7fae8ed519caaf4bf85c32d80bfb7e048a8dcddcb16c399b64d7898064cb69a",
