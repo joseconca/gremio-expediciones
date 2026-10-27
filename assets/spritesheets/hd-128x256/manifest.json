@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "ninja-m",
+  "nextVariant": "ninja-f",
   "classes": [
     {
       "id": "novato",
@@ -121036,12 +121036,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 55,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/ninja/m/ninja-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/ninja/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -121055,12 +121055,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "24b09b07a19d997c9b6e7fb966858e15a65176019ac3bb95908078be87b86962",
+                "bytes": 20989,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "b9aaa5d0ebc2cdc1572aa0eda0c9198735cfa7172d213de1f5d606a7600d6dd2"
+              },
+              "02": {
+                "sha256": "f0bd4b2e0b843a5ee39115dd1fc1741e4486c0a12190c52c0861f0ca3f2503c4",
+                "bytes": 20916,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "4ffc436896fc10073ab5286a36d7c61ad0192a7ee2380956e8a75bc04768a2e0"
+              },
+              "03": {
+                "sha256": "d0d838766429b47772578d74a18199e162198493da86ac080445415cd12a4e08",
+                "bytes": 20962,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "26017eed9dd5eff9f3b7120a17620cb2f6cf50d6ef43e08957a86066199f7177"
+              },
+              "04": {
+                "sha256": "a56d1e444bdcc30698547ca3b5abdd57224db788b2b5e21ccf5911c4ef8fcce0",
+                "bytes": 20943,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "5518c902bd1347d8beec3ffab2473aff568319e826a3d05d206483679d310a41"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -121105,6 +121174,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "21726bbda21d4911448d22a2080661ac2ecbb662b66fe4876f6ccffcb8d20057",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip NINJA MALE tier2.5 action idle. Use supplied canonical Novato reference ONLY for exact FOUR body poses, head size, hand/finger/elbow/feet positions, camera, per-quarter centers, canvas dimensions and body scale. Replace ALL novice garments, leather accessories and hairstyle with this NEW class. Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures must have identical precise tailoring and physical insignia: exactly three small flat silver rhythm-diamond badges on LEFT chest and ONE flat diamond forehead plate on a narrow plum band. Full fitted navy sleeves, compact plum forearm guards, exposed fingertips. Image1 garment boundaries and bare-skin patches are NOT anatomy constraints: redraw with the new outfit coverage, retaining anatomical pose and joint coordinates. Keep silhouette compact and no dangling cloth. Exactly FOUR distinct complete full bodies in ONE horizontal row facing RIGHT three-quarter view. Crisp painted anime pixel-inspired RPG game rendering and lighting consistent with supplied reference. True transparent alpha background, clean outer contours, no colored fringe, no held or sheathed weapons, equipment, magic, effects, shadow, grid, text or logo. Leave every hand empty with canonical gesture. Full head/hair, fingers and boots with clear margins in every quarter; no individual recentering or rescaling.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -121113,12 +121240,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 56,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/ninja/f/ninja-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/ninja/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -121132,12 +121259,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b2df02ee4b1b1b01214163de01576a7012226edd4eac167107a74f7e8af2407b",
+                "bytes": 22736,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "6420ba35989e2484c1ef0df8a546b5af22eecba96e8ce37797cfb95c62e4dc16"
+              },
+              "02": {
+                "sha256": "3a1b99307f327200f42c39f9684ac251b822f3d6fadd524b3edac0afd727d374",
+                "bytes": 22858,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "825d0ed86e56e1e16f38fb7db4800b5cc3d896d164d82842c20bf12ddf4ad1f2"
+              },
+              "03": {
+                "sha256": "914f5fee823d25d0e65ebaf01b50bfc9dea1bd89e2d79ff7c3ddb832d4c56ec9",
+                "bytes": 22817,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "65435705d533013430e476e228bb17e51e3f1e3023f6c9171d1e11a6adfcbc87"
+              },
+              "04": {
+                "sha256": "00c0a041d7547943562213765db09f67b36b3a9ad6973343eb83e2c0d82007c7",
+                "bytes": 22799,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "9966fc14e44f4ca5e12b5ac490c73bacac6b5b4552bb18d936258a477530800e"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -121181,6 +121377,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "d11f94959eb78345c13160d73e34cefd9756a01c984dc3cd98bcd3e67861412b",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite strip NINJA FEMALE tier2.5 idle. Image1 defines ONLY exact canonical FEMALE four poses, hand/finger/elbow/foot positions, head size, camera, body proportions, per-quarter centers, canvas dimensions and scale. Image2 defines NEW NINJA CLOTHING only, not masculine face or body. Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Copy the identity reference's exact navy/plum fitted wrap tailoring, silver edges, three small silver chest diamonds, diamond forehead plate, plum forearm guards and shin wraps with diamond studs, silver diamond belt clasp and short folded plum sash knot. FEMALE face and proportions with compact high knotted blue-black ponytail. No facial hair. Keep every costume insignia identical across all FOUR figures, including closed-eye pose. Replace every old novice garment and exposed-skin patch using the NEW costume coverage; preserve ONLY anatomical contour and joint/finger coordinates from Image1. Exactly FOUR complete full bodies in one horizontal row, facing RIGHT three-quarter view, transparent alpha background, consistent crisp painted anime pixel-inspired RPG game rendering. No held/sheathed equipment, mask, scarf, cape, long tails, effects, shadow, grid, text, logos or colored fringes. Empty hands with exact canonical gestures. Full hair fingers boots with clear margins in every quarter. Do not recenter or rescale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -126428,7 +126682,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
