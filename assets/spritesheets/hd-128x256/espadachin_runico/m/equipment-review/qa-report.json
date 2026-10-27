@@ -3,7 +3,8 @@
   "classId": "espadachin_runico",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "8f23d2bb31f2cb6803c4b9211e1e9cdf7ea5f44c998e0091fde79b3d1cca9e82",
       "97867282f59b77a796fcd66f4f4ef879ea392494184d78c1514473a6b4d0a306",
       "395f88a01a500886f4028b72f92cdcab2494c9256b38469da06feb76ec1d6e03"
+    ],
+    "walk": [
+      "5f89d7f2aaf9ef61f128d4934f393da256ff149a5040292f8dce534b54eadbec",
+      "48ce0c5d6b4dd6cc98259a0bf316e022e74351108d073ea08107149d6abd9919",
+      "d84e1b0bc988f9f3e13d0e0c6ed53281adfb94dac2350a229f1bf8186a46c932",
+      "e171e1bd0efc1441555982ab919684d0abab7abd872fc941f711232e0dddcec3"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 2,
