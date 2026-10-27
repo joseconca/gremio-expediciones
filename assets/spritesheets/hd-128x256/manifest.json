@@ -52689,68 +52689,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "de9467c40a2066c2ef1acb2e2b7123be1040974bcc96bcd24c79a0d1707d9964",
-                "bytes": 26849,
+                "sha256": "ba9b78f2bac010a59142fe412562cac5774f2dbf8c4fd88ec8eeecdcd70b6fdc",
+                "bytes": 24342,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
+                  16,
                   98,
-                  107,
+                  104,
                   250
                 ],
-                "pixelSha256": "300c2172220b8e3265d8fea56582527bd893076dd81630c08eab7ba410e0c590"
+                "pixelSha256": "541c789f23f57b3b0e29c6f6eafa6ab080b02ffc24709e8660c45056663f3d5c"
               },
               "02": {
-                "sha256": "f826577587c957181d72f51abf5ea156e5fc3682db55434b32791042c9389026",
-                "bytes": 27530,
+                "sha256": "c0c265208b4953c076f88d0d9e1ea98fc820714c82c9cee951088b39d4a11eea",
+                "bytes": 25342,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
+                  18,
                   98,
-                  120,
+                  114,
                   250
                 ],
-                "pixelSha256": "637456abdafe2a393078617f1b644f69db56c14041603b4a65d2dc55ff827036"
+                "pixelSha256": "fd25858d300720df901f624f651a5a057603210ad2aa2511a801ac1cb5e7345c"
               },
               "03": {
-                "sha256": "5f53cef67f801a760e0c30dbe30d1e092e2cd241682ec3f40105f8356e79a576",
-                "bytes": 26468,
+                "sha256": "d6f31e4872622f63e134933e95d82fd6a751b5c25ddb9c7d0266eca368ae21c6",
+                "bytes": 25153,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
-                  109,
+                  24,
+                  104,
                   112,
                   250
                 ],
-                "pixelSha256": "cba5555539159d9df610adb81a26302ee525e6243981d9c3267575c820855e4f"
+                "pixelSha256": "29bb03de4dac016140aafca841169171eb0987a58beb6082727f71f30760b5fb"
               },
               "04": {
-                "sha256": "4d5fa3f53686de0b6c8a676dd9851be0cff5cb2f95af8c40d9224375de79aa93",
-                "bytes": 26711,
+                "sha256": "ea0b3943cc77d04f5f1fa2e4e490d99315b47e9720436d60331dfe50de84a39f",
+                "bytes": 24686,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
-                  98,
-                  106,
+                  17,
+                  97,
+                  107,
                   250
                 ],
-                "pixelSha256": "d9ce465c745695eaabe537bc9abb59586b0ed8ab209dcf0f55451506c30eb462"
+                "pixelSha256": "bdaf26b1677d20ea8f49d2f375881b5ed84003dd1f2ba357558d1ea2bf0b43cd"
               }
             },
             "distinctFrames": 4
@@ -53316,7 +53316,7 @@
           "artDirectionRevision": 2
         },
         "dodge": {
-          "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
+          "sourceSha256": "344d8ad0491ea37e3c44635b8752bc7b10554f1c0c08a74e4e64061e0fee5d39",
           "sourceDimensions": [
             2172,
             724
@@ -53339,7 +53339,7 @@
           ],
           "alphaThreshold": 128,
           "bodyRootCalibration": {
-            "uniformScale": 1.0410958904109588,
+            "uniformScale": 1.062937062937063,
             "pivotX": 64,
             "sourceBaseline": 242,
             "referenceBaseline": 250,
@@ -53347,9 +53347,9 @@
           },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/dodge-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG sprite action dodge for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four distinct dodge phases following reference exactly, ready, crouch evade, shift weight and recover. Keep crouching anatomically smaller in height with same head size, empty hands and no equipment.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "prompt": "Production RPG sprite action dodge for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four dodge phases matching canonical image exactly: guard, shift sideways, crouch lower, recover. Same head size despite crouch. No red scarf or leftover red pixels; transparent behind shoulders and torso.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
           "canonicalPoseHashes": [
             "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
@@ -53357,7 +53357,54 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "superseded-costume-rework-required"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 1.0410958904109588,
+                "pivotX": 64,
+                "sourceBaseline": 242,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG sprite action dodge for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four distinct dodge phases following reference exactly, ready, crouch evade, shift weight and recover. Keep crouching anatomically smaller in height with same head size, empty hands and no equipment.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+              "canonicalPoseHashes": [
+                "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+                "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+                "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+                "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+              ],
+              "visualStatus": "superseded-costume-rework-required"
+            }
+          ],
+          "artDirectionRevision": 2
         },
         "block_shield": {
           "sourceSha256": "fdaea5e4c48690f714ce4be0fc4d8afa82d55e4c2773bb3fb49d7cc9238cfe02",
@@ -53649,7 +53696,6 @@
         "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
         "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
         "actionsToRework": [
-          "dodge",
           "block_shield",
           "attack_sword",
           "attack_axe"
