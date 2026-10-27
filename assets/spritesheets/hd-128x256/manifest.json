@@ -79518,13 +79518,14 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -79808,7 +79809,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4f50f449b0dda3482212ff483e07dc0b680f696669d0eeae71dc69b0f13b703e",
+                "bytes": 25815,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  98,
+                  104,
+                  250
+                ],
+                "pixelSha256": "6cea9d221a47593a29f1e6b7f02f9daa6cc23daaeef5a8aacde6690c7238c6e7"
+              },
+              "02": {
+                "sha256": "26ee5f65433e6e20af3446461cfb4fc17ef8be54e4ea1b691d478bae1c498d2b",
+                "bytes": 26299,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  98,
+                  123,
+                  251
+                ],
+                "pixelSha256": "9cf4cd37cb7973f6ef265d8409dc1da123a3885b6375e2b9486e5aa2d0cecb14"
+              },
+              "03": {
+                "sha256": "cea939ca9150a705f10ee3325d294162867bd242bbf75b8721e1142ca231aa4a",
+                "bytes": 26480,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  101,
+                  113,
+                  251
+                ],
+                "pixelSha256": "3465f1ec98df55333eb5df05ea84a5b76d7fb8861a40fc5ec4c328f0ed33d745"
+              },
+              "04": {
+                "sha256": "edab99f6b037c2f986f3172155063b5cf286079de1f33b1dc98b4dead208c145",
+                "bytes": 25985,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  98,
+                  111,
+                  251
+                ],
+                "pixelSha256": "fb948434e89fe48599d84d0cedc2863f5e99bb23889032c87b126222532c422f"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -79994,6 +80062,50 @@
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "393e9c58918144ce9208a2c9298c178118d5a4bef4de5a0930e65f2e0037a36f",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.062937062937063,
+            "pivotX": 64,
+            "sourceBaseline": 242,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+          "canonicalPoseHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -80059,6 +80171,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       }
