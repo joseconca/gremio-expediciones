@@ -52392,13 +52392,14 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -52682,7 +52683,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "de9467c40a2066c2ef1acb2e2b7123be1040974bcc96bcd24c79a0d1707d9964",
+                "bytes": 26849,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  98,
+                  107,
+                  250
+                ],
+                "pixelSha256": "300c2172220b8e3265d8fea56582527bd893076dd81630c08eab7ba410e0c590"
+              },
+              "02": {
+                "sha256": "f826577587c957181d72f51abf5ea156e5fc3682db55434b32791042c9389026",
+                "bytes": 27530,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  98,
+                  120,
+                  250
+                ],
+                "pixelSha256": "637456abdafe2a393078617f1b644f69db56c14041603b4a65d2dc55ff827036"
+              },
+              "03": {
+                "sha256": "5f53cef67f801a760e0c30dbe30d1e092e2cd241682ec3f40105f8356e79a576",
+                "bytes": 26468,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  109,
+                  112,
+                  250
+                ],
+                "pixelSha256": "cba5555539159d9df610adb81a26302ee525e6243981d9c3267575c820855e4f"
+              },
+              "04": {
+                "sha256": "4d5fa3f53686de0b6c8a676dd9851be0cff5cb2f95af8c40d9224375de79aa93",
+                "bytes": 26711,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  98,
+                  106,
+                  250
+                ],
+                "pixelSha256": "d9ce465c745695eaabe537bc9abb59586b0ed8ab209dcf0f55451506c30eb462"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -52868,6 +52936,50 @@
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.0410958904109588,
+            "pivotX": 64,
+            "sourceBaseline": 242,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action dodge for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four distinct dodge phases following reference exactly, ready, crouch evade, shift weight and recover. Keep crouching anatomically smaller in height with same head size, empty hands and no equipment.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+          "canonicalPoseHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -52933,6 +53045,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       }
