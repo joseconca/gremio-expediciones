@@ -88931,12 +88931,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 43,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/pirata/m/pirata-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/pirata/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -88950,12 +88950,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ca1d0ad8e19c2693366195a837279d16b8691e4a05b438c294e6118fca38ba31",
+                "bytes": 24742,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "7f602402c969037fbd1a83a73198b61483eeb33d9b96d2acf4b269820022a5ea"
+              },
+              "02": {
+                "sha256": "56b54ecf52321c0eaad7d50c1380ec9801588fbcd0a4b160522b9a0ce1783ab1",
+                "bytes": 24710,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "1aec9de26693933bc969eec737c5a4109dfb5db5c0bd315c7ebf52142bbd5133"
+              },
+              "03": {
+                "sha256": "809d64e24f9d0bba6b38f34f0751ca5bea163ac30913670dee0031719067a82b",
+                "bytes": 24757,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "f32ded0f583543be0330001f53164916c606e8a102cc0721663ea99a1d08f3c9"
+              },
+              "04": {
+                "sha256": "f571715ccf20da51a32e96cecdf6617a65f3c4169e13198745e708e019915f77",
+                "bytes": 24728,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "e77fd55fe26fce41ffe84f16e12ad29cd01af6a972b4eaa544c517baacb92b7a"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -88999,6 +89068,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "54c04eea7e7b8e92d48bec6accf3347c7a9fc1115ed5bcd712481ec0e5dd8250",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. No second reference yet: establish this NEW class identity and costume from the written design. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -95247,7 +95374,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
