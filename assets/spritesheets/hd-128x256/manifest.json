@@ -121055,12 +121055,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -121274,7 +121275,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1bf63a2b9574fec7dadfaa6933613a71b7bebf8368a63ea060b580dfac7d29a1",
+                "bytes": 21620,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  91,
+                  110,
+                  249
+                ],
+                "pixelSha256": "2d5d265fe9c7ceb8786456d6d1a6a9a07a595e611f8e423012347e85e9058587"
+              },
+              "02": {
+                "sha256": "ae80f19914d720dbd3cc17a96df5cb0e21b6de8a721c567854d929efe64dae35",
+                "bytes": 20966,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  111,
+                  249
+                ],
+                "pixelSha256": "1f254ffc4fd99a43fe2fa5f5a037e5af1c3a86ecced07a79291cb59d845d0ea3"
+              },
+              "03": {
+                "sha256": "2552b9d43c277d95d46cd375a2e349e79f714ce81ecd5858f2638f57bb106c11",
+                "bytes": 22304,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "72eb3de4a571ca806a9b46c8b551c18353f7e15a9283b5004c32d56c480f834b"
+              },
+              "04": {
+                "sha256": "7b073c8f0b22d17feaf6d3b8c23e40ff1bc935ca57a2d28e6ebfd69c8264f4d5",
+                "bytes": 22009,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  92,
+                  101,
+                  249
+                ],
+                "pixelSha256": "24b31e746e21d06d0e8027168951955d7d829ae98b0acc3ddba84e53929c2aea"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -121425,6 +121493,44 @@
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "726948ad9ecbae03c32dd700cb42be2042ec093f00fffb4dfc9be9fdcd2d0fd4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja MALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -121474,6 +121580,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
