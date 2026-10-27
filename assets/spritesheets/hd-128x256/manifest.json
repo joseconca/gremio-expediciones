@@ -86889,8 +86889,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "eb6fc7512cdbbb2e0c406934bd5dc91688023ca3eac4bd6d2fd0bcbd77e00072",
-                "bytes": 26217,
+                "sha256": "ddc6ba68e0c74965b7c848aed569c5ffdaf6a25996aa7d010bd18e20fb0a2926",
+                "bytes": 26039,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86902,11 +86902,11 @@
                   113,
                   248
                 ],
-                "pixelSha256": "ba02c07d4d59a6da48635a3a978bf09814aa086025fa3784db239f18c2983ef9"
+                "pixelSha256": "2e77d8cb717773e8d2bc76b0552637e9083495d7fa0ee7eebccafa8958ee551e"
               },
               "02": {
-                "sha256": "30e507bbd379bd26008cdc54ab8d713eeff1d38b7db09d48549b8256ad03bb90",
-                "bytes": 26321,
+                "sha256": "d4dcdf863b4962407d912d2735e8ad2b6622cb3e3841e51f8ad4ba24a613ef55",
+                "bytes": 26069,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86914,15 +86914,15 @@
                 ],
                 "bbox": [
                   19,
-                  90,
+                  89,
                   115,
                   248
                 ],
-                "pixelSha256": "be1ed4284ada52204e430e47f5924859c0033fc3cbb8bd29c44e74ef46afc23f"
+                "pixelSha256": "61c50b9324ac698cdf810e79bf2aab99ea1aec6f1d524575826d1d94c91b2cad"
               },
               "03": {
-                "sha256": "24babc598466ae4227c0abd136695a42810660bab011ae36b785bddc49aeff03",
-                "bytes": 26281,
+                "sha256": "abd4671e481d1d0f0fc361bfd999fc7608b414b7d9447f8e09d04891dde76801",
+                "bytes": 26040,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86930,27 +86930,27 @@
                 ],
                 "bbox": [
                   17,
-                  90,
-                  115,
+                  89,
+                  114,
                   248
                 ],
-                "pixelSha256": "0617267a8a609ca99ae5a60ee88ad2c2da60817e25642962be13c7a91fd8a351"
+                "pixelSha256": "b86b9a267788a634f89ccc52e502a90bc7caad8cb63bf91ed5491d2615830a71"
               },
               "04": {
-                "sha256": "eb11054d8c7954fda2427f8da67c7e635ef2ded047c98d4a426afc0e0e61c6fb",
-                "bytes": 26604,
+                "sha256": "0f00d5b8c59a3425cb34b9d8357e2e2ab1f06d6ce211a283ce3ff33f690f6d78",
+                "bytes": 26469,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  10,
-                  90,
-                  105,
+                  8,
+                  89,
+                  102,
                   248
                 ],
-                "pixelSha256": "ad69bb92b6ba85522de7d1c243f80578a49b9504587ba26fb0f443d4691a396e"
+                "pixelSha256": "5b5d461574252fe04bfdd0dd89458e50cd007019a40c64cde7085381d9aadac4"
               }
             },
             "distinctFrames": 4
@@ -87935,7 +87935,7 @@
           ]
         },
         "attack_bow": {
-          "sourceSha256": "4d9ff4d3164f5455a2e0bb8b915b512ae5384975f725b197f46b21959286af42",
+          "sourceSha256": "e21aef5d4570d4656caa886599af12cb1db1c1f8a5b7f8f6f4dcff9b39a62f5c",
           "sourceDimensions": [
             2172,
             724
@@ -87960,9 +87960,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_bow-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_bow-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
+          "prompt": "Edit ONLY FOURTH/rightmost woman's FORWARD CLOSED FIST extended to RIGHT in Image1. LOWER that fist20 SOURCE PIXELS so its glove/fingers COVER source point x2097,y262 on2172x724canvas. Keep x coordinate, adjust forearm angle naturally; her solid hand must overlap that exact point. Preserve ALL newly corrected silver steel bracers, including rear arm, and all other three figures EXACTLY. Do not remove armor or change sleeve colors. Fourth head, body, rear open hand, hips, legs and boots remain unchanged. Samecanvas transparency; no bow, weapons or props. Only lower fourth front fist20sourcepixels.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
@@ -88039,6 +88039,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_bow-reference-v2.png",
               "generator": "built-in imagegen",
               "prompt": "LOCAL grip correction on FOURTH/rightmost woman ONLY in Image1. Her FOREMOST closed gloved fist extended toward RIGHT (holding an invisible bow) sits too HIGH. Lower that fist by about15 SOURCE PIXELS so the solid gloved hand/fingers COVER EXACT canvas point x2097,y262 on2172x724canvas. Keep its x position, adjust forearm angle naturally, no resizing or moving whole body. Leave rear open hand beside her cheek unchanged. Preserve all first three figures EXACTLY and fourth head, costume, boots and legs unchanged. Image2 identity only. True transparent background, samecanvas, empty hands/no bow. Only correct forward hand geometry of fourth figure.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+                "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+                "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+                "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "4d9ff4d3164f5455a2e0bb8b915b512ae5384975f725b197f46b21959286af42",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/attack_bow-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
               "canonicalPoseHashes": [
                 "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
