@@ -96562,8 +96562,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "85b96b5f2289054b8bc69f5cbd72cac09b8aae63973898ac46b9fb70546e94ff",
-                "bytes": 24458,
+                "sha256": "8caa416c7e4a88830bef682863147f4ec4c722f7a97154063bd3093ce52cff9a",
+                "bytes": 24039,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -96571,59 +96571,59 @@
                 ],
                 "bbox": [
                   24,
-                  94,
-                  106,
-                  248
+                  93,
+                  105,
+                  247
                 ],
-                "pixelSha256": "b5e6defede77cf6ef0a98cf3fb96cfedb79bb0f47e5f14adc13cc33c67cbd073"
+                "pixelSha256": "8856df364ba601454184e2614b439a1e78df95cb43c3b58db1a22906def12139"
               },
               "02": {
-                "sha256": "3f5f0c5a267d47b939110dd86931dbf47e818e69cc9a61a058a9e07ec02ec34e",
-                "bytes": 23386,
+                "sha256": "bf0563d7804bed43ce97dcc86a325ca6e538aba3f930d733fce1d1bbf0baeb26",
+                "bytes": 23087,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  21,
                   92,
-                  101,
-                  248
+                  100,
+                  247
                 ],
-                "pixelSha256": "9a50dca54bd91b2aed562c1fbd2ffc3838406aa7115f9c7820bdd2bd5fe388ce"
+                "pixelSha256": "ca0222403a5a7b4ceead0149f144eebaf3e96ee639897af4a30cc2ea5c469d05"
               },
               "03": {
-                "sha256": "af3c137548749cb6fb0c6266dc624ce80508e160d7971a02651d316a7cea00d4",
-                "bytes": 20954,
+                "sha256": "eca349e03704afec6ea5c511c118aec53bc1cfa8c4d38d2e6ed4eb900de1c68f",
+                "bytes": 20593,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
+                  17,
                   113,
-                  91,
-                  248
+                  93,
+                  247
                 ],
-                "pixelSha256": "636a2a9aa071bc2216e23bc056a509b1289650ae2824d9bfa7205f7722800199"
+                "pixelSha256": "b55132343668ada80a094c75c4df583e989c3519ea19718dbf83673214f9bc12"
               },
               "04": {
-                "sha256": "a68867cabe57191fbfc172f3ebcbe540a49f375e309b9c1d1e2dad209a994d62",
-                "bytes": 24969,
+                "sha256": "f00774a7c9b54d422a2228adfaacd5b38bd4f6b19b268c3b64222c7904b59b01",
+                "bytes": 24749,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
+                  13,
                   92,
-                  95,
-                  248
+                  93,
+                  247
                 ],
-                "pixelSha256": "08cd5ade8b79a861a0c2f736d531b02a564d7908f2128117d8bbd5dc03be83cb"
+                "pixelSha256": "f527e5c7a13d5ffd8def37b596fd225b0134ba9d6b9159eb1f188bbb63d5e6c7"
               }
             },
             "distinctFrames": 4
@@ -97548,7 +97548,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "48ad8efeea5b2ef8d8e4b15af3d058a49d87653ee0640789e62100f1c8d8e113",
+          "sourceSha256": "83875015a9fc60c954ac4ac1ea602e356da2329043fb21055eb67a2cda646953",
           "sourceDimensions": [
             2172,
             724
@@ -97573,9 +97573,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL COSTUME CONTINUITY CORRECTION ONLY: preserve every pose, face, expression, hair, circlet, all hands and limbs exactly as Image1. The large rectangular novice pouch on hip is WRONG. On ALL FOUR figures replace with the SAME SMALL FLAT bark-brown pouch with sage LEAF-SHAPED FLAP seen in Image2 Druid idle. It must stay close to belt, not a big square bag hanging to thigh. Preserve all other artwork and four positions exactly.  Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Small FLAT bark-brown hip pouch with SAGE LEAF-SHAPED flap, close to waist; never large rectangular novice pouch hanging down thigh. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -97583,7 +97583,47 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "48ad8efeea5b2ef8d8e4b15af3d058a49d87653ee0640789e62100f1c8d8e113",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "6a67b6fdfdecdfcf72713ad1f7ff398b859cb824b29a1a8278279c1aff52c7b6",
