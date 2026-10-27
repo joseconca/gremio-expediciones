@@ -3,7 +3,8 @@
   "classId": "druida",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "c580e52c20a885c65c43ae7f9a0073d7b9428cb50403e4560ae0c645482b3df8",
       "f8dff0f3fc80a4a879138edd983fb7eec1fc066e09bafb329391fed8d40a1bc0",
       "781bc9aec9c72ca05fb887297571f6adb60ea318e31306f89c117d22af61fa0c"
+    ],
+    "walk": [
+      "a294c91cf57b203810dacaaf6dbe1e3ce3cb9cfa052d18c05b3f76471477f6eb",
+      "1bb8e6565af6522a47be85e763094a02cec565e8255fa374a175b19c58c73de6",
+      "f678e88d4a90e1f3a66b8c48fea8ecf41d942d0818457ff92ba666d5a31c5b22",
+      "5eac241b9ab2551742265d2d8ccff390936f118f952efc9e9674feef6aa6d565"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
