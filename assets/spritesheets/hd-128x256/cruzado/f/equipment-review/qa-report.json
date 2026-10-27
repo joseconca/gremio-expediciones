@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "cruzado",
   "sex": "f",
   "actions": [
@@ -81,10 +81,10 @@
       "84279f3d2cf34d6b7b5d0357459838e346b55f1d0f7a930f9d96eb9ca3f690f9"
     ],
     "attack_bow": [
-      "c0b1001b9f8624efa4c713514eba78e2ca3ce6e4bf6ada1953fbb90e03fbb863",
-      "90ce1508ca59b9bb4842e8b7055b89da746cd23cd14ef0b3512a4403fa8584d0",
-      "15e3f89b1981eb72223b60f4328ccfe26fd0144a14ccb86f156fd81d834e8342",
-      "9c7920f6c0ca2f1dce47cf3bbd767e9ad9b9a8c17092da5653a20f4ed2ff9a28"
+      "eb6fc7512cdbbb2e0c406934bd5dc91688023ca3eac4bd6d2fd0bcbd77e00072",
+      "30e507bbd379bd26008cdc54ab8d713eeff1d38b7db09d48549b8256ad03bb90",
+      "24babc598466ae4227c0abd136695a42810660bab011ae36b785bddc49aeff03",
+      "eb11054d8c7954fda2427f8da67c7e635ef2ded047c98d4a426afc0e0e61c6fb"
     ],
     "attack_staff": [
       "f9755c87868d272d366e69d1b8bb5ed502d540a95a6b660bb1bc18b0ac487b11",
@@ -112,7 +112,26 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [],
+  "warnings": [
+    {
+      "action": "attack_bow",
+      "frame": 4,
+      "item": "arco_cazador",
+      "point": [
+        108,
+        147
+      ]
+    },
+    {
+      "action": "attack_bow",
+      "frame": 4,
+      "item": "arco_madera",
+      "point": [
+        108,
+        147
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
