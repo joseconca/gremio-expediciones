@@ -97014,20 +97014,20 @@
                 "pixelSha256": "b27ea1c585780247961b472a1b2395e40b5c7fa4657e447ae7ad0cc994bdb1d6"
               },
               "03": {
-                "sha256": "2e0b2ab5e1571e85c69c5c147c2703b0d2df6bcbe65abcb9ad242357e49034d3",
-                "bytes": 24761,
+                "sha256": "af7d8751ed70f003ac08bce3145c4a3e61c344ae49423e2244be36816d658d5b",
+                "bytes": 25559,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
+                  8,
                   92,
-                  111,
+                  108,
                   248
                 ],
-                "pixelSha256": "301d4ba9e0e2e4b427bcfae5b4aeee8c4745470ef54570fc3b047e0826861a1d"
+                "pixelSha256": "ca9a9f41f9205dd36a897cadcc6e7165caf4281b6f14043437e78753c6f0c242"
               },
               "04": {
                 "sha256": "458cc778f05a88229064c164a6bf0108395f5266fb83bf731cee53add3b6619d",
@@ -97262,68 +97262,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "45a1410f39fa8fbabbc047f53005cc4507089f648069435e761c0844a89c4ea9",
-                "bytes": 24347,
+                "sha256": "cd73a907f0f0063388fb9afb36958bae424be7d98a4c74cf30489e4565f7965c",
+                "bytes": 24370,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  32,
+                  31,
                   89,
                   113,
                   248
                 ],
-                "pixelSha256": "c47b2143dca7502e53c3a07fc07ad07b435dd5d9b646dc069c4c85a6362fa823"
+                "pixelSha256": "cade6d8d8379bac494dec92d590975e215b51f57166e82d476fce5ce407b9a19"
               },
               "02": {
-                "sha256": "f0156fcb0f222e17a14f3c594f213d03f7397be53d2264320f9979ba0bcc470f",
-                "bytes": 25248,
+                "sha256": "1952c924c04528d42dd444f27eea809b6d380bb064c843ff5a131c0ae2479e2e",
+                "bytes": 25308,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
+                  23,
                   89,
                   111,
                   248
                 ],
-                "pixelSha256": "c21947f1f40a8ba2c9c96706fa518c71ec0ae96d83850f880ba41d038ed4e243"
+                "pixelSha256": "63752183fc648aa22baa2f7e251529ba8c1b28cb3fcc4b8446ce35f69946b08f"
               },
               "03": {
-                "sha256": "cede48948b6752259ef1ba422b9170ce4615f6a44869aa4c79c5ab252a1c3a25",
-                "bytes": 23969,
+                "sha256": "b30e4717853a3b701f52746913859b10b6475bf71bf6d217d8fb5a55334ea725",
+                "bytes": 23828,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  19,
+                  18,
                   95,
-                  107,
+                  106,
                   248
                 ],
-                "pixelSha256": "8699b48a32b76bc8d13e30892baad9be27f2fe6ce3fd4f417b9b9506bdc1ee21"
+                "pixelSha256": "b6a905cebd43ffee539f68f99d4aa6a1c5409a3042613c1803cd335f657ccf9e"
               },
               "04": {
-                "sha256": "7982803184d35884de64dc4d6dbeec6117237e6154ff83444024532980a8bf79",
-                "bytes": 24413,
+                "sha256": "f1c8c36b60a15d2bdb4c7e063a41c47bbe5145371a3136f16affdf0aa59a3892",
+                "bytes": 24568,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  15,
                   89,
                   100,
                   248
                 ],
-                "pixelSha256": "3c37547464c732050c3faf12e12fc044782724c9cf03eed67edab4c18b0a29a0"
+                "pixelSha256": "42835fa264bf51f2cb91f8dac7609fe2b7b340f2fae8d3b2f7b6b96136ecb651"
               }
             },
             "distinctFrames": 4
@@ -97856,9 +97856,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+          "sourceSha256": "9bea5d5a7db417420c8740c12545ba88bb6b869551e0cad5d6151b696476643d",
           "sourceDimensions": [
-            2171,
+            2172,
             724
           ],
           "registeredSourceDimensions": [
@@ -97881,9 +97881,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Small LOCAL arm correction on Image1 original DRUID strip. Image2 shows SAME bodies equipped with spear and a CYAN CIRCLE showing correct rear fist contact in THIRD figure. In THIRD figure ONLY, lower the closed REAR fist (the nearer hand in front of abdomen) about28 SOURCE PIXELS and move it23 SOURCE PIXELS LEFT, so its CENTER is directly on that cyan circle on brown spear shaft in Image2. Current rear fist center near source1471,285; desired rear fist center source1448,311 on2172x724. This is a SMALL move DOWN-LEFT, NOT a long extension right. Keep same shoulder and elbow and adjust just forearm angle/wrist. FRONT extended fist at far right stays EXACTLY unchanged, as do head, stance, feet and body size. All four costumes, circlets, hair, face, eyes, sage leaf shoulder caps, amber stones, green clothes, boots and compact hip pouch remain identical to Image1. Other three figures unchanged. Output BODY ONLY exactly same four-body transparent strip. NO spear, cyan circle, annotations or background. Empty closed gripping fist exactly around shaft position shown; no weapon drawn.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -97891,7 +97891,307 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "f15d3195306335129a65298259de5234d6b7f62ec499033159bd9da23d997f80",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use Image1 ONLY as corrected canonical geometry. Its THIRD pose rear fist is correctly LOW AT WAIST (source x1448,y311 / body75,160); preserve this exact rear elbow/hand position. Both hands must grip existing shared spear positions. Replace ALL pirate clothing, hat, face and hair completely with Image2 FEMALE DRUID costume and identity, no hat or naval details. Keep small flat druid hip pouch with leaf-shaped flap, no large novice rectangular pouch.  Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Small FLAT bark-brown hip pouch with SAGE LEAF-SHAPED flap, close to waist; never large rectangular novice pouch hanging down thigh. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "09e4dea03f8f1fc73dbbe693d0badb3b7088afc3e6890592ac966310c46f7012",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "EDIT Image1 DRUID sprite strip only. Image2 is a diagnostic zoom of THIRD pose, the RIGHT HALF is this druid, with CYAN TARGET RING at exact required rear fist position. THIRD pose currently rear fist lies at left side of waist, about105 pixels LEFT of cyan target. Extend the rear forearm ACROSS THE BELT HORIZONTALLY RIGHT so the center of closed rear fist occupies the CYAN RING, source x1448,y311 on2172x724, not at old position. Move rear fist roughly105 source pixels RIGHT and12 UP. Shoulder and elbow stay where they are; only forearm extends longer across waist to target. Front raised arm/fist stays unchanged. No weapon. Preserve exact face, russet braided ponytail, wood circlet, cream sleeves, sage leaf shoulders, green leaf tunic, acorn and amber details, trousers and boots. Third hip pouch must be SMALL FLAT brown leather with sage leaf flap like original druid, not large rectangular pirate pouch. All other three complete figures unchanged. OUTPUT full four-body strip at same dimensions with true transparent background, no cyan ring, annotations, text, background, spear or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame01-reference-v3.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame02-reference-v3.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "e197dad96fd57d77b3e0975e914d32a71690f374f3606593863063c95cae22d2",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_spear-frame04-reference-v3.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "4493d48e569d2ea999ad2543f4b43a34454471611940abc65e126359dcd5a755",
@@ -98008,7 +98308,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_mace": {
-          "sourceSha256": "4f893062a3c2bdb895c03531372041a37564df15f5760789183ca7b3c09f02ce",
+          "sourceSha256": "039dfaad2d19fe1f22fcc26621382342369e229e22a2eab38fa27e8bfa5a48f4",
           "sourceDimensions": [
             2172,
             724
@@ -98033,9 +98333,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_mace-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL COSTUME CONTINUITY CORRECTION ONLY: preserve every pose, face, expression, hair, circlet, all hands and limbs exactly as Image1. The large rectangular novice pouch on hip is WRONG. On ALL FOUR figures replace with the SAME SMALL FLAT bark-brown pouch with sage LEAF-SHAPED FLAP seen in Image2 Druid idle. It must stay close to belt, not a big square bag hanging to thigh. Preserve all other artwork and four positions exactly.  Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Small FLAT bark-brown hip pouch with SAGE LEAF-SHAPED flap, close to waist; never large rectangular novice pouch hanging down thigh. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
           "canonicalPoseHashes": [
             "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
@@ -98043,7 +98343,47 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "4f893062a3c2bdb895c03531372041a37564df15f5760789183ca7b3c09f02ce",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+                "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+                "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+                "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_book": {
           "sourceSha256": "a72146fb6614e837b7c63d28e4b7b957c424f7dd5a06842042ff7273e8e2b9db",
@@ -98252,11 +98592,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -98264,7 +98604,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
