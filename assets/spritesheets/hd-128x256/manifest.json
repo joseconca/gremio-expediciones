@@ -65868,68 +65868,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2e2b993cdf61626f4a8752bcd0baddebf002563538c07ec7303ea5f948dd5772",
-                "bytes": 24299,
+                "sha256": "0f167506b790956943a5bd50767976289c96077cf7ac921f6b7a27476c2bcce9",
+                "bytes": 24008,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
+                  25,
                   92,
-                  106,
+                  107,
                   248
                 ],
-                "pixelSha256": "1d3a2eb0d4bb0f330ba5ba4c8f7d6da5b9eb2eee4323d443ef41bf32dd7ad10c"
+                "pixelSha256": "c1bc48dde146b67d5260c14a41b6e275282ae387b346135ced673dfaf15da666"
               },
               "02": {
-                "sha256": "8554eab2a338a601dcaa3cb4d8b59c51f88cb292ede141f3fb977e32c74ff226",
-                "bytes": 23380,
+                "sha256": "8e31f6b2306bbe06400475cbf6008549421e561152e69ecbd32cdbdc5125c129",
+                "bytes": 23564,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  27,
-                  100,
-                  113,
+                  30,
+                  101,
+                  116,
                   248
                 ],
-                "pixelSha256": "152d72a5a9e77fe710890b46740c0962bc2e24df58e8c52ba72fe85d2e4e2a49"
+                "pixelSha256": "9f30b83af2a3ac69c28f06275e329edab49c32c11bcaaff3af3e65e1c6d52cc6"
               },
               "03": {
-                "sha256": "e0a70d96594abe44f8b44e50328655e64b3869a81d8dfb729fc242482a38bb3f",
-                "bytes": 20921,
+                "sha256": "82ec6e747a686db6ba4d15ad4300a0fabed79801ee7485d88425464ee4da150c",
+                "bytes": 21161,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
+                  19,
                   119,
-                  106,
+                  109,
                   248
                 ],
-                "pixelSha256": "9a868c22c13128db0adefbbfde573d620e8dc5d85f4bf92b7362c7e73c7fd69e"
+                "pixelSha256": "33819cb09d26c92ab44ed2c061f14f732919ad89ebbfc8aef2005dad55dcf454"
               },
               "04": {
-                "sha256": "aaeccd45ead40aca142eafd148bad376858a2c511e9515565d256ff00a58c659",
-                "bytes": 24280,
+                "sha256": "8b9c625d5c2637b2a4928bed1087c4acc9d7c961c8db5322cb196643121235d4",
+                "bytes": 24028,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
+                  22,
                   92,
-                  102,
+                  103,
                   248
                 ],
-                "pixelSha256": "d73839d0a1e6696b6b391ff1fb14935a292ef3cb6d53b40b0d677f8c757274df"
+                "pixelSha256": "289141b4c3a9ea3a9b3313dbdc6480983f9d5fe9f4f516b51899c30459831e1a"
               }
             },
             "distinctFrames": 4
@@ -66854,7 +66854,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "14cb85d6353964c4986bcf567822b0a68ac6f489de06a5801cbfb7229e128d1d",
+          "sourceSha256": "47fa207fceedb7f6ca5a588bcb77fc6486b5c4f4f154f26d14c4a2b037c26d50",
           "sourceDimensions": [
             2172,
             724
@@ -66879,7 +66879,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
@@ -66889,7 +66889,85 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "14cb85d6353964c4986bcf567822b0a68ac6f489de06a5801cbfb7229e128d1d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "d6ec8ada6869caa63ce03a92f8a66fc6cf39c3943c5bf26e90ac2fed85ec1b92",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/hurt-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "a6892e4e55e85360ee2e0bcf72c37bfb18937c7bedc3c4d7221ecf8940b5678c",
