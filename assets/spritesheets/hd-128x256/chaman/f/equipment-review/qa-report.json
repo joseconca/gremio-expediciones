@@ -3,7 +3,8 @@
   "classId": "chaman",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "1a914631c723a393cd1653ed7e697219603550c48e830a1d3929d5ffde258c5b",
       "c46e89d75b464cdabf8e44ed16010c6d3bb063d44d730e01fda6018d47c4e37e",
       "5e6adbbec25bc9e5af87faef0e176de694b0981946ed9aeb82e7ce90ddf1ceeb"
+    ],
+    "walk": [
+      "ac8d07e9086e7b1609f015a34f3469d59559b08f206312fd8d9f71b2ea8891d6",
+      "cc500b1cd41abc7ac2353d0237fbfc86b3e08090cbc39e34daf5b7fa18fa20a4",
+      "c78eea0fc6a1e73e428e5fd104cebb1ad27067d52473190b7f1fbcea67bb3f31",
+      "e866e48cea019a560d29d5e3946f9be8245956d94f547110b2be8c060cd3463a"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
