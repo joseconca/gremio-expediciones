@@ -678,7 +678,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_hierro/f/espada_hierro-f-sheet.png",
-          "sha256": "ad2c7f5d28b8fc40eee338cd10f0c66f6ffe2900207f6c4eb2a19c7dbf31abc3",
+          "sha256": "23619e62a174a3beb9a2f588e3c4bfb026795bbb63a1f4818d6284837956b875",
           "dimensions": [
             1536,
             5760
@@ -900,11 +900,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_hierro/f/frames/walk/04.png",
-                "sha256": "1082d2d4ff06bd6367f9951ca6c9f1546e4938951c95b450177591dbfd73cdda",
+                "sha256": "50dee0ff42db9dbafe222c5df7c43f67b9b24db667e9155c22f9e87d7b1c19f4",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -919,8 +919,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -932,11 +932,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_hierro/f/frames/hurt/01.png",
-                "sha256": "44a7205dffa033e81ce7e85ad3efdfca9739aabcc56e5bc812421c85811e1a27",
+                "sha256": "9b6e0415c16b6d3deaf8855a3efbc283f4fca1dfab8bc55c3ad75c04a9530209",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -951,8 +951,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -2300,7 +2300,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/arco_cazador/f/arco_cazador-f-sheet.png",
-          "sha256": "b90e34b3589d95a979eced1fd74f7e559c2de509d2145a11957b947e81a3b56e",
+          "sha256": "9b53a564d1c96532da5e88262c3f8b24d1eb704c68225bd36f924d68a5a7550b",
           "dimensions": [
             1536,
             5760
@@ -2648,11 +2648,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/arco_cazador/f/frames/walk/04.png",
-                "sha256": "c7ec46b780cae85d5e507a521ceefadfd7c9a85b265c02509b0e4b1343f8a5b3",
+                "sha256": "212c13cc92e98c394bfd8cbd6d56d7656729e12a63435047981bae75c82e7650",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -2662,17 +2662,17 @@
                   "depth": "front",
                   "handMaskRadius": 5,
                   "bowStringContact": [
-                    147.25,
-                    251
+                    143.25,
+                    240
                   ],
                   "bowTips": [
                     [
-                      147.0,
-                      200
+                      143.0,
+                      189
                     ],
                     [
-                      147.5,
-                      301
+                      143.5,
+                      290
                     ]
                   ],
                   "modelGrip": [
@@ -2681,8 +2681,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -2698,11 +2698,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/arco_cazador/f/frames/hurt/01.png",
-                "sha256": "a3318145974cb369c7465aaf373071396047c6ece96c2ca97804fcb06dbeb3d8",
+                "sha256": "2b45e7fbd81c93e76b6f391f3837f7d407b1053922e5c47374dff9679802d71a",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -2712,17 +2712,17 @@
                   "depth": "front",
                   "handMaskRadius": 5,
                   "bowStringContact": [
-                    157.25,
-                    245
+                    167.25,
+                    237
                   ],
                   "bowTips": [
                     [
-                      157.0,
-                      194
+                      167.0,
+                      186
                     ],
                     [
-                      157.5,
-                      295
+                      167.5,
+                      287
                     ]
                   ],
                   "modelGrip": [
@@ -2731,8 +2731,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -4268,7 +4268,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/arco_madera/f/arco_madera-f-sheet.png",
-          "sha256": "fb6d7c5a750f38ca237baee088249073734edcef694dbd559408a1e3d1b1ecae",
+          "sha256": "657ef21cd0e956664cf29270f531105c5900a5e29f10f1fa55eccc950c0b5de9",
           "dimensions": [
             1536,
             5760
@@ -4616,11 +4616,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/arco_madera/f/frames/walk/04.png",
-                "sha256": "1997ec289a1e760592bd1fa8ccf1921dda818c7d80b839f6fadc31b8b83a64ca",
+                "sha256": "5e174b44f4827f7c233bd98def09b848cb8be2a3a1b7a0a59cc5a949fe05737b",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -4630,17 +4630,17 @@
                   "depth": "front",
                   "handMaskRadius": 5,
                   "bowStringContact": [
-                    143.5,
-                    251
+                    139.5,
+                    240
                   ],
                   "bowTips": [
                     [
-                      143.5,
-                      200
+                      139.5,
+                      189
                     ],
                     [
-                      143.5,
-                      301
+                      139.5,
+                      290
                     ]
                   ],
                   "modelGrip": [
@@ -4649,8 +4649,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -4666,11 +4666,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/arco_madera/f/frames/hurt/01.png",
-                "sha256": "5c03255d4b18ae0ce10dbeb46360eb8677879d43ed9d7401a31acf062df9d6a1",
+                "sha256": "aa904c40b2d0c1d0c00cd1d0ccecf9b9c33b0742a4137e94efecc8cceb0a1ace",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -4680,17 +4680,17 @@
                   "depth": "front",
                   "handMaskRadius": 5,
                   "bowStringContact": [
-                    153.5,
-                    245
+                    163.5,
+                    237
                   ],
                   "bowTips": [
                     [
-                      153.5,
-                      194
+                      163.5,
+                      186
                     ],
                     [
-                      153.5,
-                      295
+                      163.5,
+                      287
                     ]
                   ],
                   "modelGrip": [
@@ -4699,8 +4699,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -5269,7 +5269,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/m/baston_madera-m-sheet.png",
-          "sha256": "4b01a9bd7a0e7910bc1e26a85948572521e0dbed61bc6f94056eb6c706f8c886",
+          "sha256": "330e6d12e94a607c9bcab42d6932785988ab955c5675e89b747a2a5cfef11ca1",
           "dimensions": [
             1536,
             5760
@@ -5855,17 +5855,17 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/m/frames/attack_staff/04.png",
-                "sha256": "69eb0dce06f3c53fb99fbb61bc167aa95a5fd5352d670db05ab149e242c89bcf",
+                "sha256": "f6e112416ce5540c0127fb0173990c3b149cac32e886be3dd13bb882c0cd6143",
                 "config": {
                   "primary": [
-                    82,
-                    151
+                    74,
+                    147
                   ],
                   "secondary": [
                     60,
                     169
                   ],
-                  "angleDegrees": -50.71059313749964,
+                  "angleDegrees": -32.47119229084849,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -5874,8 +5874,8 @@
                   ],
                   "contacts": [
                     [
-                      82,
-                      151
+                      74,
+                      147
                     ],
                     [
                       60,
@@ -5892,7 +5892,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/f/baston_madera-f-sheet.png",
-          "sha256": "42a0eb71e3fee450514c79089d7c19989091e6c26fae2626f892cc6d528b5c1c",
+          "sha256": "6f705be46dd4a88f65c88de09dfc311e2dfab4173a3a399f6468f83013350cba",
           "dimensions": [
             1536,
             5760
@@ -6114,11 +6114,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/f/frames/walk/04.png",
-                "sha256": "faf1ef2e0c9dbf35f3cb89dde15bd2f986c2bc2fae5e9739696875614d5b331b",
+                "sha256": "57aa32b3ebbea9adc81f8829f937abe1424444d8b1e2be4eaf6a58defe899ae7",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -6133,8 +6133,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -6146,11 +6146,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/f/frames/hurt/01.png",
-                "sha256": "18890553de6e4e4127fa03cd8b304e65ddc06c38ed9e5dafe67b0f9000a3f5ae",
+                "sha256": "9707ced7f8a2b9ef308220169855184df63a9dc47c1a49da0806a337f73e03ae",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -6165,8 +6165,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -6478,17 +6478,17 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_madera/f/frames/attack_staff/04.png",
-                "sha256": "c9f0d79944ac03c2a7bb92d515272de48ffc7de08f150785905df8f6112bd5f6",
+                "sha256": "acd91a86223e564ebf633e40b877288e833de6aed1ee8da8fb75603806a78e11",
                 "config": {
                   "primary": [
-                    82,
-                    153
+                    74,
+                    147
                   ],
                   "secondary": [
                     60,
                     166
                   ],
-                  "angleDegrees": -59.42077312751099,
+                  "angleDegrees": -36.384351815835885,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -6497,8 +6497,8 @@
                   ],
                   "contacts": [
                     [
-                      82,
-                      153
+                      74,
+                      147
                     ],
                     [
                       60,
@@ -6549,7 +6549,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/m/baston_runico-m-sheet.png",
-          "sha256": "4bee4b2b14b95b603601a0bbe20d29c1a7359c27eb9b53ae6550d0fd8805bc8c",
+          "sha256": "c37ecce544f0712cf584d9de821de1e9f27eae42d98bcdaaa6a27a923ab1dac6",
           "dimensions": [
             1536,
             5760
@@ -7135,17 +7135,17 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/m/frames/attack_staff/04.png",
-                "sha256": "a856d7cd1b4812fd3c4cb11832df78c0dcbc4dd806e5fba74bd40d0cd8036f6c",
+                "sha256": "e337d38fb2427e7cecbc18e14eff95890fbced8e684f70f8a8c354ffc7b60e82",
                 "config": {
                   "primary": [
-                    82,
-                    151
+                    74,
+                    147
                   ],
                   "secondary": [
                     60,
                     169
                   ],
-                  "angleDegrees": -50.71059313749964,
+                  "angleDegrees": -32.47119229084849,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -7154,8 +7154,8 @@
                   ],
                   "contacts": [
                     [
-                      82,
-                      151
+                      74,
+                      147
                     ],
                     [
                       60,
@@ -7172,7 +7172,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/f/baston_runico-f-sheet.png",
-          "sha256": "41e70da9f467cbce723872d65e96f90faeeb92b18893dd030ff84fb41044f18d",
+          "sha256": "d9c9c66d771b19e8adbada56b6bc17d34ff5c6968864fc9b398c67351ff4b96a",
           "dimensions": [
             1536,
             5760
@@ -7394,11 +7394,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/f/frames/walk/04.png",
-                "sha256": "508f0a4b69fcb4163d3ac35bc2418d2cd1ee5ddb19f3660276de2cdd9a342690",
+                "sha256": "42669da66b1f55fc0b6fff38afc21e19c01fe35df53cb0d87a084961eb9a65a4",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -7413,8 +7413,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -7426,11 +7426,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/f/frames/hurt/01.png",
-                "sha256": "4c6b48d77a8307e76adcdeaa293a4a96112c718e39b0c5fdb47178d59dcebeae",
+                "sha256": "4bcb3ef63820beef25c6c383f31e55b58c321d63c70f244fc36592092c1d4303",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -7445,8 +7445,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -7758,17 +7758,17 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/baston_runico/f/frames/attack_staff/04.png",
-                "sha256": "87cb9826ecaf8a51eeca1a0f8b7e928dd5cfee2ed5b6f656ca25eab1de4f140d",
+                "sha256": "83688366f64aa59c2b308452cfea950758a89eb4451662cb4ed67fb85ff58556",
                 "config": {
                   "primary": [
-                    82,
-                    153
+                    74,
+                    147
                   ],
                   "secondary": [
                     60,
                     166
                   ],
-                  "angleDegrees": -59.42077312751099,
+                  "angleDegrees": -36.384351815835885,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -7777,8 +7777,8 @@
                   ],
                   "contacts": [
                     [
-                      82,
-                      153
+                      74,
+                      147
                     ],
                     [
                       60,
@@ -8450,7 +8450,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/daga_hierro/f/daga_hierro-f-sheet.png",
-          "sha256": "20dbcb8ee22b91231ea685281e21fd1898f7f958326a59995ec6719952a08747",
+          "sha256": "3aa922d7a3e6fe645fb73593b64b47e1b619f5137c51feba3f19818e90899056",
           "dimensions": [
             1536,
             5760
@@ -8672,11 +8672,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_hierro/f/frames/walk/04.png",
-                "sha256": "2b8f1b73b757f1837318add7e80b2afade63c904d40f3a8f43497df13ab1d442",
+                "sha256": "450f406bc60b05b3883af19fdf2330d74fae1be97ab55de5f06d0de009582938",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -8691,8 +8691,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -8704,11 +8704,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_hierro/f/frames/hurt/01.png",
-                "sha256": "1a84ba5da82695f3df7a5069afde7fed223086781b13c0554d6c1303981c8329",
+                "sha256": "bc798f87b3e56741ae9d58b5ab5706709a82aa21238d9c508d7ad73756108afa",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -8723,8 +8723,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -9726,7 +9726,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/daga_sombria/f/daga_sombria-f-sheet.png",
-          "sha256": "08e5507e5f9aab4f9955f4c453717abb42f7b4b7d35e6ab83cba2d56b5db1e91",
+          "sha256": "e7162c5349fde2f39e281e38af1f920af43cd7919453875d7f5c3e7cdb57a480",
           "dimensions": [
             1536,
             5760
@@ -9948,11 +9948,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_sombria/f/frames/walk/04.png",
-                "sha256": "fcfadafe4e2073e026738641cf281fe9e7c8ad58cc9a3ccd172c93a1b1e423b9",
+                "sha256": "617bf095c3839ddf25848f4fcfbc96b44f2f130ca604c09e8bc86618de487118",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -9967,8 +9967,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -9980,11 +9980,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_sombria/f/frames/hurt/01.png",
-                "sha256": "8e279d0d60da22fba01301029ba7c7baf1605f499bcdd6ec5695a880f446e919",
+                "sha256": "5fedbf18f6537e66e50bdb995bb7c3b56d2b3775205a2fcf4786ddf968cb925d",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -9999,8 +9999,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -11002,7 +11002,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_acero/f/espada_acero-f-sheet.png",
-          "sha256": "7a74cd5ea344a0fe2e6a86ddde47a343036f56f42c5b190da4eb011af6e21f86",
+          "sha256": "bf0f946abfcb6bbe6e95e4c3e8f9ed0925c0cf285ee56dcfb9b695ce19d20323",
           "dimensions": [
             1536,
             5760
@@ -11224,11 +11224,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_acero/f/frames/walk/04.png",
-                "sha256": "e059b3a4ba7eb8b4c62d05a0fcdba6b213335aa6f891153bdd02c55d7f27e535",
+                "sha256": "46e5f2a2688d923d5584c54796391b91189c7ed07c1278139ead55720dc0e802",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -11243,8 +11243,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -11256,11 +11256,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_acero/f/frames/hurt/01.png",
-                "sha256": "bf94e4a26adad78dc93e1c15c734e3b21012e10632dad558b982c7ea2b3b18f2",
+                "sha256": "014eab16dd2db553416008ff69bab82b1ead120fae0987815ca749c3af02a408",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -11275,8 +11275,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -12278,7 +12278,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_draconica/f/espada_draconica-f-sheet.png",
-          "sha256": "359bed2f9756a273b512515ece4355704743d941e632d14a61dc603ee8774f6a",
+          "sha256": "629c604a038f30483ae413315360ca77ecf464363b65188c49bba951380de6f5",
           "dimensions": [
             1536,
             5760
@@ -12500,11 +12500,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_draconica/f/frames/walk/04.png",
-                "sha256": "ce2138fcb7ee22c602dcd68a1edb01adaec7cbeac304a9ece291cd741ea73039",
+                "sha256": "18880ce548c0f61b59f220b10d27f18114c46f2c59a2dd34d69c9b2d3c99863b",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -12519,8 +12519,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -12532,11 +12532,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_draconica/f/frames/hurt/01.png",
-                "sha256": "3cca93e689d01bbbdc1923e263e7e31060967752dde08d37e1f7b6185d28e113",
+                "sha256": "cfa507aa635ef285aca1f0b17fd5abb4b2ceaa2ea4280b91ca41ec4330a35087",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -12551,8 +12551,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -13554,7 +13554,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_madera/f/espada_madera-f-sheet.png",
-          "sha256": "d0b73587383c45a7d8df3b71b4560d3119b63bf3ee21f730b8a03bcb2f264f7f",
+          "sha256": "244820104368dae4c44d551ddd17fa8ae59a05238927215bc255955e1242bbba",
           "dimensions": [
             1536,
             5760
@@ -13776,11 +13776,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_madera/f/frames/walk/04.png",
-                "sha256": "9b04dff3a9b6acf9ec0f99837b3ade6aca5ab289695b3d370f00e29a0e9f056c",
+                "sha256": "890bd765d86f6de2726123e88b71763bedde4603d864a7abb25aba2ee3ee2333",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -13795,8 +13795,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -13808,11 +13808,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_madera/f/frames/hurt/01.png",
-                "sha256": "fec44431dcd52465fd66646b832332f7c709600ccae5a5c1ab66bdb5165fa3e0",
+                "sha256": "d476e915899518ac9912573650877d8a8a949c50725fc18042dcbe64ceba5a0b",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -13827,8 +13827,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -14830,7 +14830,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_piedra/f/espada_piedra-f-sheet.png",
-          "sha256": "32ce6f81943afe5693a5a7f7352bd11ecb577a8251674b2e8b934d497c22c356",
+          "sha256": "80ba2da1ee569407ffad418bc25857833f2350f0315c12052e6ebb0c9c3417de",
           "dimensions": [
             1536,
             5760
@@ -15052,11 +15052,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_piedra/f/frames/walk/04.png",
-                "sha256": "b34f8d73a7b5e03e75dc7fff08ad655e34bb873f559d27528cd0b5ad40072131",
+                "sha256": "4ea8d728784ab2407a63ffcbb608b5942ff08633c93a3f4b1c9dbf48e328516f",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -15071,8 +15071,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -15084,11 +15084,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_piedra/f/frames/hurt/01.png",
-                "sha256": "fd40f2a76b8cf5c260cd8978249868299079035fbca9343b13046ae46fc7ce3a",
+                "sha256": "836807b7467b75303955f90157d324c35562d86820f31b919c98c2a2be64b729",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -15103,8 +15103,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -16106,7 +16106,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_runa/f/espada_runa-f-sheet.png",
-          "sha256": "38c09679734b2d62db91423797b2251be29cb85163ab5dd783d9d0cac438e6c4",
+          "sha256": "8d1ee0ad8cb834d041ea804dfe6ee4d0d424940f85a86c518243842ec22eea95",
           "dimensions": [
             1536,
             5760
@@ -16328,11 +16328,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_runa/f/frames/walk/04.png",
-                "sha256": "a8cf92ea5d5c6bd7491d6332ddf3e8495a69c6e40787b079704f2621588af55b",
+                "sha256": "67aaf6721e43be07cdc08876dc6b943a72b0c1c876a8a40675d533810e8e18d9",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -16347,8 +16347,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -16360,11 +16360,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_runa/f/frames/hurt/01.png",
-                "sha256": "1904bcd21b7b7f3f9d8a55a719b02eebc35aa4faefe5f63747d6052551de4c2a",
+                "sha256": "42d0993176c4023a421bb539272106f4c68079b1fdd90cb2c878debe53d1684c",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -16379,8 +16379,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -17382,7 +17382,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/espada_vigia/f/espada_vigia-f-sheet.png",
-          "sha256": "a0ae74d1d4d5fe5272e9278406d1bec291e90be38948272e781ff80da83a4521",
+          "sha256": "9ed0d80fff552a727b275bf4803c71e54bebc138de44a3e859d31f368f20d355",
           "dimensions": [
             1536,
             5760
@@ -17604,11 +17604,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_vigia/f/frames/walk/04.png",
-                "sha256": "e0156e2878b9083ae3612ed36c67b2d4af2757edaa268cf8d347d27f0598f99e",
+                "sha256": "45faa1c699f746d4937ce9622908890ef1d1a2875e22b3e9d096ef0bfbbafd7a",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -17623,8 +17623,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -17636,11 +17636,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/espada_vigia/f/frames/hurt/01.png",
-                "sha256": "e1e2f58c3b42aabc2edb872520f0406fbbf6f45161e2d4bae5d247bac8f335d1",
+                "sha256": "402f930db81645a0d72048cb3e80abb2a7c3f1bf872e5d02723e19ef440abcd1",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -17655,8 +17655,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -18731,7 +18731,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/grimorio_eclipse/f/grimorio_eclipse-f-sheet.png",
-          "sha256": "a64d85d80fcb8e80634aaa109c49a6276e29e2dfcc0345b21b11f6fd47a95ed7",
+          "sha256": "653dfa83bf3144200b024c4beaf91f22f74c9dcff4f4345afa28a26e6541018c",
           "dimensions": [
             1536,
             5760
@@ -18981,11 +18981,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/grimorio_eclipse/f/frames/walk/04.png",
-                "sha256": "ff48f43665ceece36011de7e1adad474537717f8d2f4155afc1519939cab765c",
+                "sha256": "083c1209e241c97a17534103bdb4c22ded12d9c13e38199ee6578dfd2964668a",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -19000,8 +19000,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -19017,11 +19017,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/grimorio_eclipse/f/frames/hurt/01.png",
-                "sha256": "95e8a223c107a3e4250e0c29b8555d9cd9fc6e776fa71cd6d2eeb3002f2a39a3",
+                "sha256": "2625100806b9124c97ddf5ec54f97e9acf43049678274ee23dfa414ef38035e5",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -19036,8 +19036,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -20195,7 +20195,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/guantes_lucha/f/guantes_lucha-f-sheet.png",
-          "sha256": "ac631e5f1ec1220efc1fc3fa32ed3b95a360ad5da9b506b3b46cc155f476c5df",
+          "sha256": "57178b13d0e7390d56f768114692e727ea118eaed333fe03a75134aff0f61a58",
           "dimensions": [
             1536,
             5760
@@ -20445,11 +20445,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/guantes_lucha/f/frames/walk/04.png",
-                "sha256": "694cf8ce7c1ce74e753046fdbb8129fccbb653b50ff2318d98ba32910fe36394",
+                "sha256": "aa0eade3b0230e12782efa34d96a409c2344c3eee59b4517045a50d56a066a66",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -20464,8 +20464,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -20481,11 +20481,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/guantes_lucha/f/frames/hurt/01.png",
-                "sha256": "c890cb48bf78eafe2a3353969c0f4f4743fec1f27e81745ebd227a664d8a945d",
+                "sha256": "dc45fa2570abd603dbc2bc92ef425f960e4a620491d2c3c7bd09ff0bd09d9070",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -20500,8 +20500,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -21567,7 +21567,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_berserker/f/hacha_berserker-f-sheet.png",
-          "sha256": "024dd325f414fa63780b232514b5c595d79b41a5ce2b31aef6cb9516611c7195",
+          "sha256": "8fb9613a9e05e64f86a8c789ab9bc99e886568b57b103df4ccfc6b2efb4edbb7",
           "dimensions": [
             1536,
             5760
@@ -21789,11 +21789,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_berserker/f/frames/walk/04.png",
-                "sha256": "c35b30f7bd3fb0439e54a47e6ca6311150efc4973a7ec9543cb1c36026b00ea0",
+                "sha256": "28414e33c5b7ef5bfa618a2e0e1b1448976436ed7e498a4a409e6f09617154ac",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -21808,8 +21808,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -21821,11 +21821,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_berserker/f/frames/hurt/01.png",
-                "sha256": "0e6b8d398800bc8629525f9925a6f31b702f3175ea18957f3d56b7635b5b7cbf",
+                "sha256": "0b6e28debb8a371d31a722f9376b55ac5fbc1702c59da0088a176b3a20f29506",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -21840,8 +21840,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -22875,7 +22875,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_orca/f/hacha_orca-f-sheet.png",
-          "sha256": "3301782ac94f99ba2ae11082f0b6db4571d19410289dccfbc8c2eea0c6ba1507",
+          "sha256": "329c89d2309ba921795f64bb3ecd9ba80c3d54acb02df36a833ce95fd053f548",
           "dimensions": [
             1536,
             5760
@@ -23097,11 +23097,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_orca/f/frames/walk/04.png",
-                "sha256": "93cb19bc293a93ed26b698e90448c7157444302715aed3a3bd92536aaee7bbf9",
+                "sha256": "fe6fdf12025525d905f3ed307e97cc26f955833c11711fc87dd7d1a6c958f0af",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -23116,8 +23116,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -23129,11 +23129,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_orca/f/frames/hurt/01.png",
-                "sha256": "1aa991b0447bec68e1e9c643478f94b46cfa3eb5b43f1c142e3a326d3950ea00",
+                "sha256": "b0bd452594834696520304526d363ff1680ea4c89c859a7e34263db7ea5f6abe",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -23148,8 +23148,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -24167,7 +24167,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_piedra/f/hacha_piedra-f-sheet.png",
-          "sha256": "b1bfac431c300e85b69cc49ca68916e74e6bc87e09fe734bbd9d74de97459dc1",
+          "sha256": "2e2ecbb73bac5b9c75faa52f0b661fafa144ae6d4c88d065a97659ea307e379a",
           "dimensions": [
             1536,
             5760
@@ -24389,11 +24389,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_piedra/f/frames/walk/04.png",
-                "sha256": "3ae91b46c8632cb224806a7accefb58baa3afcca37635f239c1fc28a07c55241",
+                "sha256": "a43b6774c3937b861d54328145a8fe09c6f25d4e05352bf4530397213851767a",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -24408,8 +24408,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -24421,11 +24421,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_piedra/f/frames/hurt/01.png",
-                "sha256": "b38ea8a26828c22351b1d3cecdaf3878fc8cf33b878d530b1da48c72b00f2c63",
+                "sha256": "d1f910bc57e07c16a11dd9675da2d6c559d10d45a1793e1c01bc794a29f8469a",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -24440,8 +24440,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -24822,7 +24822,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/m/lanza_escama-m-sheet.png",
-          "sha256": "20f82f998451f328f7131c5ef34de3880482767f3a21f788ce4d2dfc9b811f8a",
+          "sha256": "fb7cb2b1546ced63fdf9af0c02a1a3c8da2c933dce4610dec3a1ee8ce784bc82",
           "dimensions": [
             1536,
             5760
@@ -25388,17 +25388,17 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/m/frames/attack_spear/03.png",
-                "sha256": "dce0d75f9812d3217aea10503037797d22260c4ee568b036daaeae734e976e8e",
+                "sha256": "18db650469823f6c15cb3be37f470cb4a08a3a73397825c0aa789e6ef6d6dd76",
                 "config": {
                   "primary": [
-                    73,
-                    152
+                    62,
+                    163
                   ],
                   "secondary": [
                     112,
                     142
                   ],
-                  "angleDegrees": -75.6186054089094,
+                  "angleDegrees": -67.21759426951832,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -25407,8 +25407,8 @@
                   ],
                   "contacts": [
                     [
-                      73,
-                      152
+                      62,
+                      163
                     ],
                     [
                       112,
@@ -25459,7 +25459,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/f/lanza_escama-f-sheet.png",
-          "sha256": "da15d9e30e3bfda607bbe6ebe185a86ee40a9475721d1ac9952ee4586e444cb5",
+          "sha256": "a329aaaa0934e651b2c5efbdb86985fa5a3f11fdcf403bd7a45b111c644c823a",
           "dimensions": [
             1536,
             5760
@@ -25681,11 +25681,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/f/frames/walk/04.png",
-                "sha256": "e19a6e9871500ebe9b6b48063178b4399ac10e67d74d4c272f2877e0c767f86c",
+                "sha256": "407ad8733db6760d5fd22be04b974be2e826942ff165f4325919a01377bdabf8",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -25700,8 +25700,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -25713,11 +25713,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/f/frames/hurt/01.png",
-                "sha256": "e93dbe6f7be759ff869272f1ea910aafa669de5c61ef0590c250f1eddb5ce13b",
+                "sha256": "2d2b6a427b9fcc248d38ef7c3284539caea1f0663128823051120224af2d34f2",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -25732,8 +25732,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -26130,7 +26130,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/m/lanza_madera-m-sheet.png",
-          "sha256": "79f4e0fb58d2d1914cbc7f5944aa2b439c65fa85fa1e2c03814afa5176f3a457",
+          "sha256": "0d0dc52257f059d6d50aee67b7e01658681494ed7d58f439f0132fac07e81be9",
           "dimensions": [
             1536,
             5760
@@ -26696,17 +26696,17 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/m/frames/attack_spear/03.png",
-                "sha256": "d0fa47a32927f0b7bcc73c7faebfabca659d043cecaaf4a8e053f8f1a2f41c5b",
+                "sha256": "15a25642474bc098a4ac8886f72b15ce22ab99fd2675d2fcc79d28183eee08f9",
                 "config": {
                   "primary": [
-                    73,
-                    152
+                    62,
+                    163
                   ],
                   "secondary": [
                     112,
                     142
                   ],
-                  "angleDegrees": -75.6186054089094,
+                  "angleDegrees": -67.21759426951832,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -26715,8 +26715,8 @@
                   ],
                   "contacts": [
                     [
-                      73,
-                      152
+                      62,
+                      163
                     ],
                     [
                       112,
@@ -26767,7 +26767,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/f/lanza_madera-f-sheet.png",
-          "sha256": "5032c97ac099e60107a9f55d1bcbf16045c0e0f47f304c1deb7c8b798d7c8974",
+          "sha256": "b3bc3e0954926b9ced258a23570acedf172e22d5467f953c3e702a254902c18e",
           "dimensions": [
             1536,
             5760
@@ -26989,11 +26989,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/f/frames/walk/04.png",
-                "sha256": "c8e35a8ccc95a1dbba1fa52aefde2fd1f2537842bf3dcc74a5eeafc650d516c0",
+                "sha256": "eb12a76bc8cde0323d98fb171f92bd41b131bf8ff6e03b46ff5fb340e47ca456",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -27008,8 +27008,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -27021,11 +27021,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/f/frames/hurt/01.png",
-                "sha256": "87cfcf1a18a284d8380758b1743e53889e3d19b2667998d17061e0926dc589a6",
+                "sha256": "c96c588c83f13d3e134668a80e7aee0c1e78cda956f6f2d96c9e1cb86ea2b120",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -27040,8 +27040,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -28132,7 +28132,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/libro_aprendiz/f/libro_aprendiz-f-sheet.png",
-          "sha256": "115a8889075f1defa450482367b7191650efb06fe8528e609374d00bb17b7152",
+          "sha256": "bd019b5512dffd872545b36b8162fc3ef0d07c308d96d29b828687323e7d792e",
           "dimensions": [
             1536,
             5760
@@ -28382,11 +28382,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/libro_aprendiz/f/frames/walk/04.png",
-                "sha256": "376d93446a9b0b425dac70c39cd8fdcc867bad402d1f867e52797dfa42376ac5",
+                "sha256": "b1b31fc012d727130520fa9c71aae0fef4869fa102d85f721e7a9c0ecac1fe4c",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -28401,8 +28401,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -28418,11 +28418,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/libro_aprendiz/f/frames/hurt/01.png",
-                "sha256": "4ece4a17cb33ec8d6407fb9de89eddbde2053483c5970c6a588d3a07477f67ff",
+                "sha256": "27fbc3495ddde5834b5134e2f0377bdf73cc491de373c4cc44cb5c235cdb220f",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -28437,8 +28437,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -29481,7 +29481,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/maza_enana/f/maza_enana-f-sheet.png",
-          "sha256": "4871c048463991b7e179819b46c908b559829530ebdd43735379f670ff6adc87",
+          "sha256": "91e4478bf0028554320e78ae46ddbd5e719cf224ab669a1f1a0cf8bc1eaf3271",
           "dimensions": [
             1536,
             5760
@@ -29703,11 +29703,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/maza_enana/f/frames/walk/04.png",
-                "sha256": "63e8e80452f193c7a65cc2c5a7dd89c0f55766aec393bdd1d5c33a648b1e5775",
+                "sha256": "2d0cb7991f24e1fe1710cc3baf5daa00bc43e6a95284407c2d3140d86eb44f0b",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -29722,8 +29722,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -29735,11 +29735,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/maza_enana/f/frames/hurt/01.png",
-                "sha256": "43b6c9c129fbe95e8d28b7024db3fd5ec414e14335108b2473966e0d192d0c5c",
+                "sha256": "8ff14ec9cbb3d40579ff210f6e7adf37cc1e254701bde7718bf336e9e731e0b8",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -29754,8 +29754,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -30757,7 +30757,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/maza_madera/f/maza_madera-f-sheet.png",
-          "sha256": "b752cf2da344803c7d00a0119d6cac77400105fcd2fa0c915968338a633077c0",
+          "sha256": "5218726fee000d5340515295384467db1f257d4baddaed1d80268006b65e9134",
           "dimensions": [
             1536,
             5760
@@ -30979,11 +30979,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/maza_madera/f/frames/walk/04.png",
-                "sha256": "814c9455925f4e3eeb9ed0e92242a086cfb9ed2c452eba1247a71fb301f2fdbb",
+                "sha256": "8c940b452decb6ce4caded92e451c050e1124ef290ce9100feec889ea3f6f002",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -30998,8 +30998,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ]
                   ],
                   "restoreHands": true,
@@ -31011,11 +31011,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/maza_madera/f/frames/hurt/01.png",
-                "sha256": "4e9328770d8ce29ceeada9f0b5d5b1a2bc085247e57f4353df0b67db6e724564",
+                "sha256": "f0ba68e7eb4e0892f25babe88d5f507f2844c812b1f377a391ef849169909fee",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -31030,8 +31030,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ]
                   ],
                   "restoreHands": true,
@@ -32113,7 +32113,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/punos_lobo/f/punos_lobo-f-sheet.png",
-          "sha256": "8408de8a692e170fc538c7af7f62c2d85cf8624069a5a6f959318e0783ce5ba4",
+          "sha256": "381427fc935498bb953d0d7ca247499d577a0a0dd4978cae7ff9bb1e4ff85032",
           "dimensions": [
             1536,
             5760
@@ -32363,11 +32363,11 @@
               {
                 "frame": 4,
                 "path": "assets/spritesheets/hd-128x256/equipment/punos_lobo/f/frames/walk/04.png",
-                "sha256": "fe8faae18736a60cda118a06343471795157644a5b623041fa18fc209e2af0ab",
+                "sha256": "842258c613c8c5154f67e302efe89586820cfc5065d19558dd9024d41387c72d",
                 "config": {
                   "primary": [
-                    41,
-                    187
+                    37,
+                    176
                   ],
                   "secondary": [
                     90,
@@ -32382,8 +32382,8 @@
                   ],
                   "contacts": [
                     [
-                      41,
-                      187
+                      37,
+                      176
                     ],
                     [
                       90,
@@ -32399,11 +32399,11 @@
               {
                 "frame": 1,
                 "path": "assets/spritesheets/hd-128x256/equipment/punos_lobo/f/frames/hurt/01.png",
-                "sha256": "45c99ab4e8afe6cab8896fc7e6527be9f82cbd5292d3fb43689e755affdc51fb",
+                "sha256": "0307493c44c2c377008052f11961e5aeb12a1173f8b58aa9a655d125feab87cf",
                 "config": {
                   "primary": [
-                    51,
-                    181
+                    61,
+                    173
                   ],
                   "secondary": [
                     105,
@@ -32418,8 +32418,8 @@
                   ],
                   "contacts": [
                     [
-                      51,
-                      181
+                      61,
+                      173
                     ],
                     [
                       105,
@@ -37731,8 +37731,8 @@
           },
           {
             "primary": [
-              73,
-              152
+              62,
+              163
             ],
             "secondary": [
               112,
@@ -37894,8 +37894,8 @@
           },
           {
             "primary": [
-              82,
-              151
+              74,
+              147
             ],
             "secondary": [
               60,
@@ -38314,8 +38314,8 @@
           },
           {
             "primary": [
-              41,
-              187
+              37,
+              176
             ],
             "secondary": [
               90,
@@ -38329,8 +38329,8 @@
         "hurt": [
           {
             "primary": [
-              51,
-              181
+              61,
+              173
             ],
             "secondary": [
               105,
@@ -38764,8 +38764,8 @@
           },
           {
             "primary": [
-              82,
-              153
+              74,
+              147
             ],
             "secondary": [
               60,
@@ -40082,74 +40082,216 @@
     "nextStep": "User gameplay verification before further class production."
   },
   "sharedGripCorrection": {
-    "revision": 2,
-    "reason": "Canonical closed-fist centers; previous alpha-radius check accepted wrist or cloth outside fist",
+    "revision": 3,
+    "reason": "Measure canonical hand contacts; exclude boot, pouch, chest and empty space from shared equipment pivots",
     "changes": [
       {
+        "sex": "f",
+        "action": "walk",
+        "frame": 4,
+        "field": "primary",
+        "previous": [
+          41,
+          187
+        ],
+        "corrected": [
+          37,
+          176
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "hurt",
+        "frame": 1,
+        "field": "primary",
+        "previous": [
+          51,
+          181
+        ],
+        "corrected": [
+          61,
+          173
+        ]
+      },
+      {
         "sex": "m",
-        "action": "attack_dagger",
+        "action": "attack_spear",
         "frame": 3,
         "field": "primary",
         "previous": [
-          84,
-          161
-        ],
-        "corrected": [
           73,
-          168
+          152
+        ],
+        "corrected": [
+          62,
+          163
         ]
       },
       {
-        "sex": "f",
-        "action": "attack_spear",
-        "frame": 3,
+        "sex": "m",
+        "action": "attack_staff",
+        "frame": 4,
         "field": "primary",
         "previous": [
-          75,
-          160
+          82,
+          151
         ],
         "corrected": [
-          85,
-          153
+          74,
+          147
         ]
       },
       {
         "sex": "f",
-        "action": "attack_spear",
-        "frame": 3,
-        "field": "secondary",
+        "action": "attack_staff",
+        "frame": 4,
+        "field": "primary",
         "previous": [
-          108,
-          148
+          82,
+          153
         ],
         "corrected": [
-          107,
-          146
+          74,
+          147
         ]
       }
     ],
-    "classSpecificTransforms": false,
-    "bodyPolicy": "Preserve original generated anatomy; one common rig per sex",
-    "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-before-after.png",
-    "canonicalFistRegions": {
-      "m/attack_dagger/03/primary": [
-        68,
-        163,
-        80,
-        176
+    "bodyPolicy": "Preserve canonical anatomy; shared equipment coordinates only; no class offsets",
+    "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-r3-before-after.png",
+    "canonicalHandRegions": [
+      {
+        "sex": "f",
+        "action": "walk",
+        "frame": 4,
+        "field": "primary",
+        "region": [
+          34,
+          173,
+          41,
+          180
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "hurt",
+        "frame": 1,
+        "field": "primary",
+        "region": [
+          58,
+          170,
+          65,
+          177
+        ]
+      },
+      {
+        "sex": "m",
+        "action": "attack_spear",
+        "frame": 3,
+        "field": "primary",
+        "region": [
+          59,
+          160,
+          66,
+          167
+        ]
+      },
+      {
+        "sex": "m",
+        "action": "attack_staff",
+        "frame": 4,
+        "field": "primary",
+        "region": [
+          71,
+          144,
+          78,
+          151
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "attack_staff",
+        "frame": 4,
+        "field": "primary",
+        "region": [
+          71,
+          144,
+          78,
+          151
+        ]
+      }
+    ]
+  },
+  "sharedGripCorrectionHistory": [
+    {
+      "revision": 2,
+      "reason": "Canonical closed-fist centers; previous alpha-radius check accepted wrist or cloth outside fist",
+      "changes": [
+        {
+          "sex": "m",
+          "action": "attack_dagger",
+          "frame": 3,
+          "field": "primary",
+          "previous": [
+            84,
+            161
+          ],
+          "corrected": [
+            73,
+            168
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_spear",
+          "frame": 3,
+          "field": "primary",
+          "previous": [
+            75,
+            160
+          ],
+          "corrected": [
+            85,
+            153
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_spear",
+          "frame": 3,
+          "field": "secondary",
+          "previous": [
+            108,
+            148
+          ],
+          "corrected": [
+            107,
+            146
+          ]
+        }
       ],
-      "f/attack_spear/03/primary": [
-        80,
-        148,
-        91,
-        158
-      ],
-      "f/attack_spear/03/secondary": [
-        103,
-        142,
-        112,
-        151
-      ]
+      "classSpecificTransforms": false,
+      "bodyPolicy": "Preserve original generated anatomy; one common rig per sex",
+      "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-before-after.png",
+      "canonicalFistRegions": {
+        "m/attack_dagger/03/primary": [
+          68,
+          163,
+          80,
+          176
+        ],
+        "f/attack_spear/03/primary": [
+          80,
+          148,
+          91,
+          158
+        ],
+        "f/attack_spear/03/secondary": [
+          103,
+          142,
+          112,
+          151
+        ]
+      }
     }
-  }
+  ]
 }

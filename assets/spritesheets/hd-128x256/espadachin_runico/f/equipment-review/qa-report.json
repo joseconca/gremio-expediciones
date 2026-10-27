@@ -3,7 +3,10 @@
   "classId": "espadachin_runico",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,11 +14,29 @@
       "65f9194b94291e65b61f54b077673df21823fa956d23fe58048874dd1e367313",
       "25ebc4e97874b1a28e9305723511157afdf28408e9038fcb84f445aa6d90576d",
       "28124f52410f311e9e0f491b752e93063da0b7a38a6e9e32eda396c6eac3f5b6"
+    ],
+    "walk": [
+      "9c77d4d22ea9f5d483fea6359c26bdc8071e14f402e3d3ff8f596208bfbca5a2",
+      "6c43647ecb20b907002922b3e1fe03470c3ee444b6a4442bf323ac076167803b",
+      "a75a2fa226b2c356b921c701fd9d0576ff59298e92625326c93d2f7d6aaad530",
+      "fb3248b8bf5846c55f7155db2a4468f0ece967ff4eddb21f2c85546be9a18dc5"
+    ],
+    "hurt": [
+      "56ac24440f318a198f020106e80089c17a19c188d88bba6b834e156575bf6ae7",
+      "5b89d61b08286aeb13cac1716df96b63bd54d7bcbfc5656233486d0d2fdd57ee",
+      "1f1bdbe4a259c649573b2b10436d183daa82c6a5a6e92686919d852b70a0f078",
+      "4d933014b79f1cdb94165fedc381416318e03c98900b6885a0bdb1105c166b39"
+    ],
+    "use_consumable": [
+      "ac37d91080289e394189eafcce22e82990baf181f36f190b232c861aaa82011b",
+      "5b1c686788a641e1135453e29b60c6df89661520e4e82aecfd47282c0ae75f01",
+      "b9b6f94c960c9fc7be3123e994f3a7395f53aae1ecbd28ffcfcfe57088cd6aa8",
+      "c8cb954330bdbcb2f7fefaeac775240b36ed5ee259101ee20aba5a2a62decf3c"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 388,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
-  "equipmentRigRevision": 2,
+  "equipmentRigRevision": 3,
   "artisticApproval": "not-automatic"
 }

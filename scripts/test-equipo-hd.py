@@ -6,6 +6,15 @@ ROOT=Path(__file__).resolve().parents[1]
 render=runpy.run_path(str(ROOT/'scripts/ensamblar-equipo-hd.py'))
 validate=runpy.run_path(str(ROOT/'scripts/validar-equipo-hd.py'))
 class EquipmentTests(unittest.TestCase):
+    def test_shared_contacts_stay_on_measured_canonical_hands(self):
+        m=json.loads((ROOT/'assets/spritesheets/hd-128x256/equipment/manifest.json').read_text(encoding='utf-8'))
+        cases=[('f','walk',4,(34,172,43,181)),('f','hurt',1,(57,169,66,178)),('m','attack_spear',3,(57,158,68,169)),('m','attack_staff',4,(70,140,79,153)),('f','attack_staff',4,(70,140,79,153))]
+        for sex,action,frame,(left,top,right,bottom) in cases:
+            with self.subTest(sex=sex,action=action,frame=frame):
+                x,y=m['rigs'][sex]['actions'][action][frame-1]['primary']
+                self.assertTrue(left<=x<right and top<=y<bottom)
+                body=Image.open(ROOT/f'assets/spritesheets/hd-128x256/novato/{sex}/frames/{action}/novato-{sex}-{action}-{frame:02d}.png').convert('RGBA')
+                self.assertGreaterEqual(body.getpixel((x,y))[3],240)
     def test_impact_grips_stay_inside_canonical_closed_fists(self):
         # Measured hand regions exclude the wrist, torso and cloth accepted by
         # the former radius-only alpha check. See the shared-grip visual review.

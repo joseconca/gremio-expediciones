@@ -1,9 +1,19 @@
 """Review new bodies against existing equipment without changing its shared rig."""
-import argparse,json,runpy,hashlib
+import argparse,json,runpy,hashlib,tempfile
 from pathlib import Path
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[1];HD=ROOT/'assets/spritesheets/hd-128x256';E=HD/'equipment'
 EXAMPLES={'idle':['espada_hierro','arco_cazador','guantes_lucha'],'walk':['espada_hierro','arco_cazador','guantes_lucha'],'hurt':['espada_hierro'],'dodge':['espada_hierro'],'use_consumable':['pocion'],'block_shield':['escudo_guardian'],'attack_sword':['espada_hierro'],'attack_axe':['hacha_piedra','hacha_orca'],'attack_spear':['lanza_madera'],'attack_dagger':['daga_hierro'],'attack_bow':['arco_cazador'],'attack_staff':['baston_runico'],'attack_mace':['maza_enana'],'attack_book':['libro_aprendiz'],'attack_gloves':['guantes_lucha']}
+
+def save_preview(image,path):
+    # Finish the PNG before replacing an existing preview, including on Windows.
+    with tempfile.NamedTemporaryFile(dir=path.parent,suffix='.png',delete=False) as f:
+        temporary=Path(f.name)
+    try:
+        image.save(temporary)
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 def review(c,sex):
     m=json.loads((E/'manifest.json').read_text(encoding='utf-8'));r=runpy.run_path(str(ROOT/'scripts/ensamblar-equipo-hd.py'));out=HD/c/sex/'equipment-review';out.mkdir(parents=True,exist_ok=True)
     warnings=[];checks=0;available=[];hashes={}
@@ -29,8 +39,8 @@ def review(c,sex):
                 layer=Image.open(ROOT/m['items'][item_id]['sheets'][sex]['actions'][action][n]['path']).convert('RGBA');cfg=m['items'][item_id]['sheets'][sex]['actions'][action][n]['config']
                 combined=r['composite'](body,layer,cfg);tile=Image.new('RGBA',(384,384),'#242630');tile.alpha_composite(combined);contact.paste(tile.convert('RGB'),(n*384,row*384+24))
                 grips.paste(tile.convert('RGB').crop((104,128,280,288)).resize((352,320),Image.Resampling.NEAREST),(n*352,row*320+24))
-        contact.save(out/(action+'.png'))
-        grips.save(out/(action+'-grips.png'))
+        save_preview(contact,out/(action+'.png'))
+        save_preview(grips,out/(action+'-grips.png'))
     result={'status':'contact-review-required' if warnings else 'passed','classId':c,'sex':sex,'actions':available,'bodyHashes':hashes,'contactChecks':checks,'warnings':warnings,'equipmentTransforms':'exact shared equipment layers per sex; no class offsets','equipmentRigRevision':m.get('sharedGripCorrection',{}).get('revision',1),'artisticApproval':'not-automatic'}
     (out/'qa-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'class':c,'sex':sex,'actions':len(available),'contactChecks':checks,'warnings':warnings},ensure_ascii=False));return result
