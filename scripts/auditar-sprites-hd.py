@@ -40,12 +40,10 @@ def inspect_frame(path: Path) -> dict:
         if bbox[0] <= 0 or bbox[1] <= 0 or bbox[2] >= 128 or bbox[3] >= 256:
             raise ValueError('clipped-at-cell-edge')
         # Ignore hidden RGB values so metadata/invisible pixels cannot fake poses.
-        pixels = bytearray(rgba.tobytes())
-        for n in range(0, len(pixels), 4):
-            if pixels[n + 3] == 0:
-                pixels[n:n + 3] = b'\0\0\0'
+        pixels = Image.new('RGBA', rgba.size)
+        pixels.paste(rgba, mask=alpha.point([0] + [255] * 255))
         result.update(status='valid', dimensions=[128,256], bbox=list(bbox),
-                      pixelSha256=hashlib.sha256(pixels).hexdigest())
+                      pixelSha256=hashlib.sha256(pixels.tobytes()).hexdigest())
     except (OSError, ValueError, SyntaxError) as error:
         result.update(status='invalid', error=type(error).__name__)
     return result
