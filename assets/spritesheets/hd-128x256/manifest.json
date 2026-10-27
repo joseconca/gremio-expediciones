@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "pirata-f",
+  "nextVariant": "pirata-m",
   "classes": [
     {
       "id": "novato",
@@ -89604,8 +89604,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "eb292d42b11efe83ab2c4dcfc41cb74db7355ed04aa0db5eb85161a94b681243",
-                "bytes": 24356,
+                "sha256": "66d8d1a68a9da46348bb8cd347ceebd9dad925f16ca343d3bb39fb848f534f9c",
+                "bytes": 24321,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -89617,11 +89617,11 @@
                   106,
                   249
                 ],
-                "pixelSha256": "fb4e468fa8c90c499df8c8097612c372cccf40c444f0994df7877bc74b540952"
+                "pixelSha256": "7416202bf74aae75ab6f4047655933279291b317a1f91c55e43fefa453319b50"
               },
               "02": {
-                "sha256": "f33f785ce2c6e9c32d14f2a4ebd650c866cb65e7aa4c5f844a75b3aa80f8d4d5",
-                "bytes": 23992,
+                "sha256": "89fc7119a8ddc6f7608e060f8ef0d45d2cb6144fc4fea7e673d36addcbee1a6f",
+                "bytes": 23988,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -89633,39 +89633,39 @@
                   109,
                   249
                 ],
-                "pixelSha256": "97f8542ad8674d2b97cd749e6c436b7e382acd923d40637766378366e1e208e9"
+                "pixelSha256": "85de89c08e7bbc373e68b6a1c3d60b1dc3708bde4bc088020a271d5a01fa4100"
               },
               "03": {
-                "sha256": "4dcd46cbf3f235a26e2bd8e47880978b6d4f5dfece0a14205e4ff2a7af4f987e",
-                "bytes": 23222,
+                "sha256": "0424fa9bbc707b6c8b97459d02b5ca40e84dc2325e7d29e50845c76597549584",
+                "bytes": 23264,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  26,
                   92,
-                  109,
+                  110,
                   249
                 ],
-                "pixelSha256": "2e08812d89d7bed05376fe5cc2fcd5b7e4947fedf346948a640f7d8bec34b61a"
+                "pixelSha256": "ef3c4fa55a00ed47cd42050128495cf7c369a6a94dfb64b5eb272de881964436"
               },
               "04": {
-                "sha256": "d05aa8aa7dd61b4a8a0a953fe0eedaac6760d6d268cb24c7eb480eedaffae5c0",
-                "bytes": 24530,
+                "sha256": "4081c497a4e42704c0a30bf6187d8e4ce7e10fa356567b63ecc4503e47e6f829",
+                "bytes": 24498,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  24,
                   92,
-                  106,
+                  107,
                   249
                 ],
-                "pixelSha256": "5eb7b623fd571152accaa24fc18cf99aaee5501f89565f6907b7ec8271c18b18"
+                "pixelSha256": "6207fc55e24cbb130e4ada4bb6fd82b94c9e525dae4016c118a53df1d84b6811"
               }
             },
             "distinctFrames": 4
@@ -90378,7 +90378,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_dagger": {
-          "sourceSha256": "7926caf90068125f1059f18bc240da8bdae02a477e1d70507d46285f6ac39623",
+          "sourceSha256": "5d3dd491211bfa0a63bd01f9f24bc2d1b2b17c73e012074fe9af6c3cd34d6b4c",
           "sourceDimensions": [
             2172,
             724
@@ -90403,9 +90403,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL geometry fix on THIRD figure (second from RIGHT) ONLY. The FRONT GLOVED FIST, currently low beside belt, must reach FORWARD TOWARD RIGHT and slightly UP so it actually grips an overlaid dagger. Move this front fist approximately70 SOURCE PIXELS RIGHT and35 SOURCE PIXELS UP, with forearm reaching forward across belly. Center solid glove/fingers precisely ON canvas point x1462,y318 on2172x724canvas. Keep rear guarding hand near chest unchanged; third body's torso, legs, head and scale remainfixed. Preserve all other three figures EXACTLY, and all hats, goatees, navy jackets, waist sashes, pouches, trousers and boots unchanged. Image2 confirms male class identity only. Empty hands, no drawn weapon or equipment. Samecanvas and true transparency. This corrects the third forward hand to the shared equipment grip; DO NOT keep the old low fist position.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -90413,7 +90413,47 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "7926caf90068125f1059f18bc240da8bdae02a477e1d70507d46285f6ac39623",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_bow": {
           "sourceSha256": "b2f50a142c710b08535ad6b1cb747ab0deeeae940d06540539a794c0e1812292",
