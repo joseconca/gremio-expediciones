@@ -111831,11 +111831,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -111979,7 +111980,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ed31f09b93f0485e55979a9515d8880f6f2637e4d2d8d6d962841e18ba59bb7a",
+                "bytes": 25078,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  105,
+                  250
+                ],
+                "pixelSha256": "1f21f5a75ba63e217db60ba198aa6d36dbaeb929b0c2a0358e74c2c3c1bb42ee"
+              },
+              "02": {
+                "sha256": "935c31838ea77e406ab6bb0158fc09951f9c2ae5deb84decf1b797e6b6a6741b",
+                "bytes": 24035,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  99,
+                  114,
+                  249
+                ],
+                "pixelSha256": "6bc9cf3b1c37346c27cce4edaf87b29157397e04ad663f34fda2449de1b298f0"
+              },
+              "03": {
+                "sha256": "11369ea1325c647f7a07d39674ab6bcfa2a2368284cade22bf66342d37c123d8",
+                "bytes": 21494,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  121,
+                  102,
+                  249
+                ],
+                "pixelSha256": "99145d43defe250168c2ddb61d1d6048b08b1f68eceb54461a1fc8db3fd6888f"
+              },
+              "04": {
+                "sha256": "df39d8b66f06a619bf3b39e773361f32adff35520d853acd53eabede24bda04d",
+                "bytes": 25096,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  105,
+                  249
+                ],
+                "pixelSha256": "8b25bde4aa52e4a6a60ab88f4f598dd07f181f32ab8adaa638de86847c40ea8d"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -112095,6 +112163,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "9b565739d8e3a38ee98063bafbff6552f332ee15e8b3e592e3a318886ca499c8",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Inquisidor MALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -112128,6 +112234,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }

@@ -4,7 +4,8 @@
   "sex": "m",
   "actions": [
     "idle",
-    "walk"
+    "walk",
+    "hurt"
   ],
   "bodyHashes": {
     "idle": [
@@ -18,9 +19,15 @@
       "61b1294a6cbeedf22dd2036e76f4396c6732af2c046276226af16a3094c347b2",
       "cfae3b24749c09406ff3f4b2c6653aea27ddc2df68a3c369fc0084a2cfbde612",
       "e92f682627250dd4dd43b0fabcd058663cd3f0dabca72e96ce25e499cf2b508d"
+    ],
+    "hurt": [
+      "ed31f09b93f0485e55979a9515d8880f6f2637e4d2d8d6d962841e18ba59bb7a",
+      "935c31838ea77e406ab6bb0158fc09951f9c2ae5deb84decf1b797e6b6a6741b",
+      "11369ea1325c647f7a07d39674ab6bcfa2a2368284cade22bf66342d37c123d8",
+      "df39d8b66f06a619bf3b39e773361f32adff35520d853acd53eabede24bda04d"
     ]
   },
-  "contactChecks": 256,
+  "contactChecks": 384,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
