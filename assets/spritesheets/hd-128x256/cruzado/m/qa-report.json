@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T15:53:59.215078+00:00",
+  "classId": "cruzado",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\cruzado-m-sheet.png",
+  "sheetSha256": "3794ae097d8cd125d148d09701e6c6a6cad4a8453a265f2f4955244e2f67f05b",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\idle\\cruzado-m-idle-01.png",
+          "sha256": "0f89a336afb2004cc42e49e4106b32d151239c8ff26ce7c2cd41d51a84d5993b",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\idle\\cruzado-m-idle-02.png",
+          "sha256": "6fcfeaec25c612e3467dc607ba08ffd95559d4e9dabf1f438e0157d2ee90850e",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\idle\\cruzado-m-idle-03.png",
+          "sha256": "7fecc4648d2e1c0ec0257d79626e0e44e81cc9e38915ff86a784cf05b441a544",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\idle\\cruzado-m-idle-04.png",
+          "sha256": "f4642c54d2eccda644f6f3c4242211bd9386cd029cebafee0c96a00149f997ce",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\walk\\cruzado-m-walk-01.png",
+          "sha256": "089f2351eaea5f9eaf6a82ff4bb965479ce3a523f24fb4228150b27927f8036b",
+          "alpha_bbox": [
+            11,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\walk\\cruzado-m-walk-02.png",
+          "sha256": "3c7680727158c4c98202e8c59778a2954e0c23a20400427ec7a0bf35f6c33ffe",
+          "alpha_bbox": [
+            13,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\walk\\cruzado-m-walk-03.png",
+          "sha256": "37c06da710e4d30628cc60e792c1b36c127ae2642a953513cf0df3a03915a8ec",
+          "alpha_bbox": [
+            12,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\walk\\cruzado-m-walk-04.png",
+          "sha256": "7d1f28137a77c63cedd218b0cacb89b32301afce1ea4c07bc285dc9c71a46a1c",
+          "alpha_bbox": [
+            15,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\hurt\\cruzado-m-hurt-01.png",
+          "sha256": "ab866428e67a64bbd5bf34c1ade64869801dc7ea24e982df3bb52a2b7f7acc81",
+          "alpha_bbox": [
+            26,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\hurt\\cruzado-m-hurt-02.png",
+          "sha256": "df08719a65f30088c85e2dc2e6c0de70ca64967dcca1c353db4364eaf78bf0d6",
+          "alpha_bbox": [
+            30,
+            101,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\hurt\\cruzado-m-hurt-03.png",
+          "sha256": "8a81cb4d5d742f54dbef4a020f67a1b669b502e805a39908abf1dbf6fdd13a22",
+          "alpha_bbox": [
+            17,
+            120,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\hurt\\cruzado-m-hurt-04.png",
+          "sha256": "fc740241319d62d95b44bdd6e9f3ede72166fe0acbab5b87098bd790e54728dd",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\use_consumable\\cruzado-m-use_consumable-01.png",
+          "sha256": "395ca6eef21c0044e661efe3a5b67444f6c11db3cb0b8498f4ca6deb669ccdc7",
+          "alpha_bbox": [
+            28,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\use_consumable\\cruzado-m-use_consumable-02.png",
+          "sha256": "c4b3f6612420b73abfa9e7d9d4200f435bfcc54f4a436fe374dfedc7854e3c4f",
+          "alpha_bbox": [
+            28,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\use_consumable\\cruzado-m-use_consumable-03.png",
+          "sha256": "2dbf5017ad7d0cbd11ab4ab888fc57b82e275fa94dc518c844f9c313bc96f889",
+          "alpha_bbox": [
+            27,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\use_consumable\\cruzado-m-use_consumable-04.png",
+          "sha256": "60128801905af014c59a6351d95d5c457b7f248d490b747369fe43a6cd47fc52",
+          "alpha_bbox": [
+            24,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\dodge\\cruzado-m-dodge-01.png",
+          "sha256": "f8d22644ae76104a0fc252d56acce903503c2ac1afa140590f0684db11c90282",
+          "alpha_bbox": [
+            16,
+            98,
+            103,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\dodge\\cruzado-m-dodge-02.png",
+          "sha256": "b8527e205d50a74d24630f7bdbcb6ff5dee8855991ece07415a9763a9131fd44",
+          "alpha_bbox": [
+            18,
+            99,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\dodge\\cruzado-m-dodge-03.png",
+          "sha256": "62d4817d320acff7c9d25559039552546f803c5a5b06c5aa976f82239299d6af",
+          "alpha_bbox": [
+            19,
+            100,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\dodge\\cruzado-m-dodge-04.png",
+          "sha256": "b3fcc266105572c3e7493f5db279c9d66d25000042e62fcc660715093585a6f9",
+          "alpha_bbox": [
+            16,
+            98,
+            103,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\block_shield\\cruzado-m-block_shield-01.png",
+          "sha256": "6cc1955d27cca464d3b94b7dc99b93c0b53808e8b578594f852855a036575af8",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\block_shield\\cruzado-m-block_shield-02.png",
+          "sha256": "a639becfc52f061007cd3fddb7bad1c16a9ffc3d9d838bc9508457488da318b8",
+          "alpha_bbox": [
+            21,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\block_shield\\cruzado-m-block_shield-03.png",
+          "sha256": "7745f4b4416b834923283788b8e9cee42e4e3007010529789495f07f30ccc34e",
+          "alpha_bbox": [
+            20,
+            114,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\block_shield\\cruzado-m-block_shield-04.png",
+          "sha256": "f8c7d446177a74d757e06ad059b1b324fee09156f7c0979a6f894434f0aaa20f",
+          "alpha_bbox": [
+            20,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_sword\\cruzado-m-attack_sword-01.png",
+          "sha256": "8694de5ab00bb16ee832091187fab6bfc7a0e38804a663058b4963ca6e0c21d4",
+          "alpha_bbox": [
+            14,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_sword\\cruzado-m-attack_sword-02.png",
+          "sha256": "a1f73c199ce9d6d496b113df7eee362630e67c0b36ef4322d63b7c91070b0424",
+          "alpha_bbox": [
+            9,
+            99,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_sword\\cruzado-m-attack_sword-03.png",
+          "sha256": "903f89a6032d42056913ac8f7a25921e7fd69d6bf76e723ba8b6afd6c9623ce5",
+          "alpha_bbox": [
+            12,
+            101,
+            123,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_sword\\cruzado-m-attack_sword-04.png",
+          "sha256": "ada43466b23b223ed464cbe221ef984a69a2efe12008277ee14df6f83f8220f2",
+          "alpha_bbox": [
+            15,
+            98,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_axe\\cruzado-m-attack_axe-01.png",
+          "sha256": "befd54ef9391a3468e03f9428b42318e2fe0b51a8ed85e16cdee72518667aa79",
+          "alpha_bbox": [
+            9,
+            101,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_axe\\cruzado-m-attack_axe-02.png",
+          "sha256": "3df01d87e31a1c7e349fc2feb0ab9ee918a5a0b70d6f60002fd322f1ab3e304c",
+          "alpha_bbox": [
+            16,
+            112,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_axe\\cruzado-m-attack_axe-03.png",
+          "sha256": "f4d898f296efc1e4c5431eff9548b2c678890f46e1b9e9a26e9e5437ea9d6376",
+          "alpha_bbox": [
+            10,
+            121,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_axe\\cruzado-m-attack_axe-04.png",
+          "sha256": "61f21999595f859bc5e1845d6864e2b5a327735fcfb7f94f0b84b5bd7ec6fd31",
+          "alpha_bbox": [
+            23,
+            104,
+            118,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_spear\\cruzado-m-attack_spear-01.png",
+          "sha256": "d9fc8d521f492be388efce8943616ceacd5a120ca1e74b3d0fd004d8a2d5b0f1",
+          "alpha_bbox": [
+            10,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_spear\\cruzado-m-attack_spear-02.png",
+          "sha256": "a482e871f66c163b4f38e57502357f52b9db3fa4031caefaf7888ffb663a776e",
+          "alpha_bbox": [
+            15,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_spear\\cruzado-m-attack_spear-03.png",
+          "sha256": "df9b9df38ebee0c896211878c5f9507dd1f66005d0c291c0ddb34c57db4e145e",
+          "alpha_bbox": [
+            9,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_spear\\cruzado-m-attack_spear-04.png",
+          "sha256": "f40627813f6cc99db43b1302ba35caf705aba1185a84386b5b2c82c60175b684",
+          "alpha_bbox": [
+            14,
+            92,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_dagger\\cruzado-m-attack_dagger-01.png",
+          "sha256": "fc9765b5611604bf6c538a51b5f2b2eb6cc6f4e8664f5198e5fa5adbb293e886",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_dagger\\cruzado-m-attack_dagger-02.png",
+          "sha256": "b37136bcc4295e19c33829909c7aa8ebd4cab74fc76104aadd649799e6699764",
+          "alpha_bbox": [
+            26,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_dagger\\cruzado-m-attack_dagger-03.png",
+          "sha256": "e0df195b946eef0fa721d541e6eb8fdfc3bbeb4ddc61470aeb8b4a1418103586",
+          "alpha_bbox": [
+            22,
+            96,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_dagger\\cruzado-m-attack_dagger-04.png",
+          "sha256": "ad6075cb8a28c550ffa3c800c08e0917a817a7999b024302987798ca23295f06",
+          "alpha_bbox": [
+            24,
+            93,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_bow\\cruzado-m-attack_bow-01.png",
+          "sha256": "575a15f03a559bbb20ea71f158ba2a713efa880acf79a46004e745d3e0932fca",
+          "alpha_bbox": [
+            25,
+            95,
+            120,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_bow\\cruzado-m-attack_bow-02.png",
+          "sha256": "9e29d37729615b39af98b2d274cb9cdc3dd3ccad032e0b99311a9a6a0129f177",
+          "alpha_bbox": [
+            25,
+            95,
+            120,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_bow\\cruzado-m-attack_bow-03.png",
+          "sha256": "e06938feec016ac2bc128aec7f48d3133ac097b839e44418b56aa37d535f9d5f",
+          "alpha_bbox": [
+            23,
+            95,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_bow\\cruzado-m-attack_bow-04.png",
+          "sha256": "bf8ad3af0e4b2aa87bff15094293027c125e3707bdb160aeee80470d3aafda4e",
+          "alpha_bbox": [
+            22,
+            95,
+            120,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_staff\\cruzado-m-attack_staff-01.png",
+          "sha256": "a64217a182aec4f9736264e986e056c61902c4318dda008fe430aff9c14aed05",
+          "alpha_bbox": [
+            28,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_staff\\cruzado-m-attack_staff-02.png",
+          "sha256": "2b799d0355a217d976528e419db1b6682c209c2f4a59de70860d604e86d14240",
+          "alpha_bbox": [
+            25,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_staff\\cruzado-m-attack_staff-03.png",
+          "sha256": "3befcace8a4bcf69462eb57592d126689f243d6313f41035e2dee0cdde7d0718",
+          "alpha_bbox": [
+            28,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_staff\\cruzado-m-attack_staff-04.png",
+          "sha256": "788e25702a9fbef5c84a82fb9dc4637d29b0e7bedb681a115220cf3a2d90c4bc",
+          "alpha_bbox": [
+            17,
+            93,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_mace\\cruzado-m-attack_mace-01.png",
+          "sha256": "33437d33c7dbd826e6a06d3ceb3f7b3f3aaea8180f1e99b4eae5be5638e3b875",
+          "alpha_bbox": [
+            25,
+            91,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_mace\\cruzado-m-attack_mace-02.png",
+          "sha256": "7af3ed91efe81a4bc38436455857c0a7b646fcbf0fe3efcf4f83633e12e94b7d",
+          "alpha_bbox": [
+            31,
+            92,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_mace\\cruzado-m-attack_mace-03.png",
+          "sha256": "bd2fe064131cf544e66c8c1cf4d211183e76b8c14a1226f98dd39d69611f07d3",
+          "alpha_bbox": [
+            27,
+            103,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_mace\\cruzado-m-attack_mace-04.png",
+          "sha256": "75f7c70148900e1cf8f3c3d0f4a21bf6b36d030a43ce2bf5e667bb4996eb2a4c",
+          "alpha_bbox": [
+            30,
+            91,
+            110,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_book\\cruzado-m-attack_book-01.png",
+          "sha256": "39739424f37d151e1c79ca0493b2c3d2f8d88db9d0ac928fef18ee2acef410dc",
+          "alpha_bbox": [
+            25,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_book\\cruzado-m-attack_book-02.png",
+          "sha256": "063bfa73a1acca35ae7f718ad1f2db94bdb30392d08dae023a7033dbc8718304",
+          "alpha_bbox": [
+            24,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_book\\cruzado-m-attack_book-03.png",
+          "sha256": "cddb0c8b9046201feab3496986dc9cf1a6c074512122c5cfe1aad9fccde24f03",
+          "alpha_bbox": [
+            24,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_book\\cruzado-m-attack_book-04.png",
+          "sha256": "1395036246de000e7bd8a00008614d52b162d548fd67a06440b1af5dab8dc5f2",
+          "alpha_bbox": [
+            24,
+            92,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_gloves\\cruzado-m-attack_gloves-01.png",
+          "sha256": "423650355ec0bc003c010ac63b51ba23b1c9441bf80ae3bbd19e337095a468bc",
+          "alpha_bbox": [
+            22,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_gloves\\cruzado-m-attack_gloves-02.png",
+          "sha256": "3694d96f177fdaf753f67a92c3f08fb7740da029599fbc15f5c522becba1ff81",
+          "alpha_bbox": [
+            23,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_gloves\\cruzado-m-attack_gloves-03.png",
+          "sha256": "80db60decd61dea4fed1aa47fc091078c8366c05380a904c05fd719f673d4bc9",
+          "alpha_bbox": [
+            20,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cruzado\\m\\frames\\attack_gloves\\cruzado-m-attack_gloves-04.png",
+          "sha256": "ca27d5e6244daca8dd405fd2ba0c61a359d8dcf95bb683c7ebfaa0c08eb5fbac",
+          "alpha_bbox": [
+            22,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
