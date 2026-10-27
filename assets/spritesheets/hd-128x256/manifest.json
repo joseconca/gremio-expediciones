@@ -69103,8 +69103,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "7b97c0026ea486740fe25e27f17c5b285bc1b742154939d62bff2f8b0be03179",
-                "bytes": 25334,
+                "sha256": "19bfbf1b1def0860e2ec33882224fce41efb8c9b499d15c0435bc5c3cb27aaf0",
+                "bytes": 25445,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -69113,14 +69113,14 @@
                 "bbox": [
                   30,
                   89,
-                  112,
+                  113,
                   248
                 ],
-                "pixelSha256": "0037b523c2f45053ff58836ebd2030783f58b91c75c0f786ebe66bd91c120522"
+                "pixelSha256": "706672b6a257272488d976436a92032832e3195d341ef4a34e7e271b3115aad2"
               },
               "02": {
-                "sha256": "db3e1d48836feefc72e7e1363dee6f3b5b6fa4ef9ec454e7e5010b929ff36266",
-                "bytes": 25682,
+                "sha256": "7a122081f5cf423f0c9c35d4f980b5ea318507d3ec3cfbc786e24d48fe36eba7",
+                "bytes": 25742,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -69129,14 +69129,30 @@
                 "bbox": [
                   25,
                   89,
-                  113,
+                  114,
                   248
                 ],
-                "pixelSha256": "27853e4c403229aa3588b641e8876fbb034ae31e2f9618ee680f20f94f4bd2f2"
+                "pixelSha256": "49370d13b88846d408deff69e1329b62824bb53ecbd2f510aed56002379d1c95"
               },
               "03": {
-                "sha256": "f59fae8006f70998daf8b2b094c6d8979fe4bb805cc60e717062e67739385f1a",
-                "bytes": 24986,
+                "sha256": "49cf22f7f3f3d482b3ede9cdfef90db6b07337acf03d564c84ac12b0eae74caa",
+                "bytes": 24942,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  94,
+                  109,
+                  248
+                ],
+                "pixelSha256": "a3f5b07fcb3c6dd2796e5c7f33b56c66ab86271fc2655eb98959946e60af18fc"
+              },
+              "04": {
+                "sha256": "8f784bb2a981d165a8e09596a037eda505b554ef81113577443042005c35d7d9",
+                "bytes": 25421,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -69144,27 +69160,11 @@
                 ],
                 "bbox": [
                   20,
-                  94,
-                  108,
-                  248
-                ],
-                "pixelSha256": "20c9689f1827fd096214953d701bb9da05fef59a7c2d09f073fa646f4ba88bbf"
-              },
-              "04": {
-                "sha256": "a003d665b52d3fc6831a0a7e0cfb272b0adf84fb0970587fd3525844f148ef7c",
-                "bytes": 25349,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  19,
                   89,
-                  103,
+                  105,
                   248
                 ],
-                "pixelSha256": "466a4010f5d1116f0fc21bed6b2a789b1afeaa9f9939165ffbebc7316d017e51"
+                "pixelSha256": "c9b81360c5a68e93a09ba0d337072a9779d2f263a4c0ba6d5941d650d9a368e0"
               }
             },
             "distinctFrames": 4
@@ -69809,7 +69809,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_mace": {
-          "sourceSha256": "e80490c0299710bebbd1766800618d7a588a8db4b04a9f89b713b40e259c0c41",
+          "sourceSha256": "157742a8533f45ee3ece976cab272ecf344f3c976f01ad8463df8ee7e869201c",
           "sourceDimensions": [
             2172,
             724
@@ -69834,7 +69834,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/centinela/f/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/f/source/attack_mace-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Centinela FEMALE, Tier 2, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. BOTH wrists always have polished BRONZE segmented metal bracers, including raised and retracted arms, never novice brown wraps. The outer hip tasset is FOUR HORIZONTAL OVERLAPPING BRONZE ARMOR PLATES, not a leather pouch: no flap, clasp or bag buckle. Adult vigilant feminine border guard, sandy-blond hair in a close braided low ponytail, focused gray-green eyes; canonical female head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
@@ -69844,7 +69844,47 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "e80490c0299710bebbd1766800618d7a588a8db4b04a9f89b713b40e259c0c41",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/f/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Centinela FEMALE, Tier 2, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. BOTH wrists always have polished BRONZE segmented metal bracers, including raised and retracted arms, never novice brown wraps. The outer hip tasset is FOUR HORIZONTAL OVERLAPPING BRONZE ARMOR PLATES, not a leather pouch: no flap, clasp or bag buckle. Adult vigilant feminine border guard, sandy-blond hair in a close braided low ponytail, focused gray-green eyes; canonical female head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+                "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+                "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+                "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_book": {
           "sourceSha256": "76334443529c5c323c4ee1fba38b59bdcbe26caba738debd98d95eef2cd0edb6",
