@@ -81633,7 +81633,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 56,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -81648,7 +81648,8 @@
           "attack_dagger",
           "attack_bow",
           "attack_staff",
-          "attack_mace"
+          "attack_mace",
+          "attack_book"
         ],
         "actions": {
           "idle": {
@@ -82562,7 +82563,74 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8254e05c9de588ceb5a2f34571131e107d1266a60dce43e2e3d21794a23b6eef",
+                "bytes": 22751,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "5d848aba3a732b078f261f758e2ef6177ef5b86fb4ceb54f8986f69c74b57953"
+              },
+              "02": {
+                "sha256": "bc82b60783abd19c7b939f35d4e52ae2ead12b2d269d0e7afdfe373d1079e64f",
+                "bytes": 22210,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "8e0b406d3dc7770b96363c05b353a9ea9aebc5befcb9684dbada6d0df5180bbc"
+              },
+              "03": {
+                "sha256": "b131ff3659825c8dc57d333b3b9c8f2daf2f0f7efba0cacab2b05d958d849053",
+                "bytes": 23090,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "f891bb7805999500e29245b404c788c75c5825ba9adf8960198e38e63db7c3c8"
+              },
+              "04": {
+                "sha256": "dbc6bdf0fd749d174b0a8c61c86a718befbfef7d7c1b3ae0e5d6aec10ec1bac6",
+                "bytes": 22001,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "2f018ef386cf28e483eb0f3ab89a68b2de835f1a7792f68cf23ab54af552978d"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
             "status": "missing"
@@ -83181,6 +83249,44 @@
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "1047848bd4003edf2d3d0888eae5a7310a5f37706c4dbc2f09e0cc4026fafbe4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            628,
+            15,
+            1036,
+            703
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/f/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Comerciante FEMALE, Tier 2, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. MALE retains his small dark chestnut moustache in ALL four figures, including open mouth, grimacing, pain and exertion; FEMALE has no facial hair. Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
+            "cb11e7be47ed2129254255f575e0d9e4bf0c0ca90b6b924f8de224873061dfce",
+            "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
+            "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -83390,6 +83496,22 @@
         },
         "attack_mace/04": {
           "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
           "frame": 4
         }
       },
