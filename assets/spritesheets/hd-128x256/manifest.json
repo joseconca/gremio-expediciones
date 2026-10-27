@@ -105460,7 +105460,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 36,
+        "validFrames": 40,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -105471,7 +105471,8 @@
           "block_shield",
           "attack_sword",
           "attack_axe",
-          "attack_spear"
+          "attack_spear",
+          "attack_dagger"
         ],
         "actions": {
           "idle": {
@@ -106105,7 +106106,74 @@
             "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c91fe15db25db05eaafae8a82fcd478f2c45bad66f47b81cf886740eab0aa6fa",
+                "bytes": 25982,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "23b4ebbf3986838df42a9a165c1f0b8e672ef44986108591b599564553911db4"
+              },
+              "02": {
+                "sha256": "c0fcbdfed9cfd8de136afd0c2c518437830cfd973999e303bb96657ea077566f",
+                "bytes": 25722,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "b5796857d4ad173d10db8e31fc6d9831187f86129566fb5418ceaa709780c316"
+              },
+              "03": {
+                "sha256": "9f91e55bb0bda8e41530df9a18e81401e3b1d7655e17632f24391b5fb05e84fc",
+                "bytes": 25337,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  90,
+                  114,
+                  249
+                ],
+                "pixelSha256": "b28fabb198e34990fdd283fdf9b7ff83c0b5272d7d1adddc838e3369c00de5f1"
+              },
+              "04": {
+                "sha256": "257098eeb46b5d06898f1a9eb8262ee6deff41b9bb2fe68a6e2b1b629b9f8459",
+                "bytes": 25750,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  119,
+                  249
+                ],
+                "pixelSha256": "0d51dcdf3ef5398ce36373576480ff8c11e96e382a9a7365b7ddacccfb652760"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
             "status": "missing"
@@ -106466,6 +106534,44 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "b17ace70b04c64ea2f6d15038a5fa6d48edb03edc51d0f8e32ba33f4aaf1cdaf",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            635,
+            14,
+            1036,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            18,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin_runico/f/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Espadachín rúnico FEMALE, Tier 2.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult focused feminine arcane duelist with dark violet-black compact high braided ponytail and pale hazel eyes. Rune duelist outfit: fitted MIDNIGHT-BLUE dueling coat with AMETHYST diagonal inset panels and brushed SILVER compact asymmetrical half-cuirass, three engraved violet geometric rune tiles on breastplate, short narrow split coattails, narrow silver belt with diamond-shaped crystal buckle, fitted navy trousers, dark neat boots and silver bracers over black fingerless gloves. One short close-fitting silver angular shoulder on rear side, front shoulder cloth. No neck scarf, cape, held weapons or glowing effects. Tier2.5 hybrid Duelista/Brujo: fitted fencing gear plus engraved occult armor. Reserve elaborate translucent veil and richer blade heraldry for Hoja del velo. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+            "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+            "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+            "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -106611,6 +106717,22 @@
         },
         "attack_spear/04": {
           "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
           "frame": 4
         }
       },
