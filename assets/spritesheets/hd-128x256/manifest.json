@@ -103251,13 +103251,14 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -103541,7 +103542,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "6ed2496d27c049b0389b3eeead6dd4a3f0be330456c138180ae505cdb77d6e72",
+                "bytes": 25985,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  98,
+                  106,
+                  250
+                ],
+                "pixelSha256": "7dcd527256016471536fe0f5bb33f2518a11564a8a6459c9c5f95972e86c3613"
+              },
+              "02": {
+                "sha256": "0fadc4d6cafeb4fe314832dccc7d8f7d4e5042d2b89b76dbfc00cfb482f1f3ff",
+                "bytes": 25591,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  98,
+                  116,
+                  250
+                ],
+                "pixelSha256": "c17114025647d2a648e3dda73238930c86e10397f2eb6f9d863be66b6603711c"
+              },
+              "03": {
+                "sha256": "cb8cceac5856933e5d69b290c44d3c3475b298a423c8c3d161c991028250bcc5",
+                "bytes": 26255,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  101,
+                  111,
+                  250
+                ],
+                "pixelSha256": "37e1329cd3b5e8be8272d7b5ab9d2101f45f345375a6b9f12aa75f6bf35d055e"
+              },
+              "04": {
+                "sha256": "754a9b83f631d78cb7489940de16dc623f58cbd4be4dd99c60abb398f310c42b",
+                "bytes": 25717,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  98,
+                  110,
+                  250
+                ],
+                "pixelSha256": "0d50b4020e8d81a8f06c06481cb3afc4a9a0ce8cf6c7bbbeafd9eda32948e7f4"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -103727,6 +103795,50 @@
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "95c5ef95e6bd577d8c82acc3911488c5ff8e4c4b0a491209e604e45d1acb8a4d",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.0133333333333334,
+            "pivotX": 64,
+            "sourceBaseline": 246,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin_runico/m/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Espadachín rúnico MALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult focused masculine arcane duelist with dark violet-black sharply side-parted short hair, pale hazel eyes, clean-shaven. Rune duelist outfit: fitted MIDNIGHT-BLUE dueling coat with AMETHYST diagonal inset panels and brushed SILVER compact asymmetrical half-cuirass, three engraved violet geometric rune tiles on breastplate, short narrow split coattails, narrow silver belt with diamond-shaped crystal buckle, fitted navy trousers, dark neat boots and silver bracers over black fingerless gloves. One short close-fitting silver angular shoulder on rear side, front shoulder cloth. No neck scarf, cape, held weapons or glowing effects. Tier2.5 hybrid Duelista/Brujo: fitted fencing gear plus engraved occult armor. Reserve elaborate translucent veil and richer blade heraldry for Hoja del velo. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+          "canonicalPoseHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -103792,6 +103904,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       }
