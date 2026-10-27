@@ -77237,11 +77237,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -77385,7 +77386,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d286433f93e4194a072ff44ab2a432457616a9d4ad9ddcd16048939caed6f4f6",
+                "bytes": 26871,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  89,
+                  112,
+                  248
+                ],
+                "pixelSha256": "900149995fb215cd4de9433d19ee7bc36b1ebcd66ae744a5ffbe9955d960e255"
+              },
+              "02": {
+                "sha256": "75c817e1773b5bae9890e3596390c84365ef1b9a3914347a1b81c5d710584bf4",
+                "bytes": 25202,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  89,
+                  106,
+                  248
+                ],
+                "pixelSha256": "a16e13e291e5464a433d3108be7ef7b7fd9d021cfaa134669ad90c072597c24f"
+              },
+              "03": {
+                "sha256": "3662db68dfd8cd3061c50165bd8a824071dcd404c9ff876ff2143ecf8bec6b29",
+                "bytes": 21466,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  114,
+                  99,
+                  248
+                ],
+                "pixelSha256": "6e89af03bcca26d0a9f16c7469a9687423d6f76558a636212b9ff6f9fb40cfec"
+              },
+              "04": {
+                "sha256": "b20b453c3d8be6b03492ba0d903f6915ff06eb9c3235b0c89ed773e376398b4b",
+                "bytes": 26884,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "514c2018aaac75bbf98c68211df384a4be2e58a792b43a79221faf352f25e7c4"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -77541,6 +77609,44 @@
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
           ]
+        },
+        "hurt": {
+          "sourceSha256": "bf217c6b655f34aff0671306a4af1308754f2153f1324fb7239fe6c1ed6da3f8",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Bardo FEMALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. NO NECK SCARF, CAPE, MANTLE or flying shoulder tails. Plum shoulder panels are SHORT and attached closely to upper arms; plum waist sash starts at BELT only. Preserve this in ALL fifteen actions. Adult charismatic feminine troubadour with warm golden-copper hair in a small wavy side ponytail under the compact beret, expressive eyes and confident half-smile; canonical female head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -77574,6 +77680,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
