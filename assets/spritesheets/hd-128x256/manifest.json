@@ -89812,8 +89812,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e7230411e120b5e0a092a83f8d6db2e69dc47fe1695e2a276e506ce81a117da7",
-                "bytes": 23837,
+                "sha256": "4438007580da1ea19249e51017c817d19b49618048c5ddb4890c8d9c1d0c0a65",
+                "bytes": 23413,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -89821,15 +89821,47 @@
                 ],
                 "bbox": [
                   26,
-                  91,
-                  110,
+                  90,
+                  103,
                   248
                 ],
-                "pixelSha256": "90c76551c9444b159b4723ea9700c8728bf906526e551750cb53e45532bc541b"
+                "pixelSha256": "824ace840adf75d7d511b2690c381e72b2af6aaf3be16d22c3d554e0af356463"
               },
               "02": {
-                "sha256": "630dc02e91744a33a26d268a8bd49f7fa2db8704c10e8a539b9cb6da3e72a8ad",
-                "bytes": 25654,
+                "sha256": "17c73e0edfff2858577863fa67348ca788c926def707af865790ec2fc9c9a330",
+                "bytes": 24707,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  90,
+                  111,
+                  248
+                ],
+                "pixelSha256": "3e43e23e088c25493b08f36e49fd15b647f6f97b85858d6b15b5e85aae2a36d2"
+              },
+              "03": {
+                "sha256": "5c90da5232e2fe5f89800f7a57c9e8a3809cccb84fc276138332241c2c2c6215",
+                "bytes": 21716,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  104,
+                  108,
+                  248
+                ],
+                "pixelSha256": "47137011b2a00dea5acf88e33ec13fc4ef7ede4249c846719aa0bfa0055b054f"
+              },
+              "04": {
+                "sha256": "f960ccc02b4cd36a9704abc5bb29fcdb24b773387fea7ebda624712462857cb2",
+                "bytes": 23155,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -89837,43 +89869,11 @@
                 ],
                 "bbox": [
                   33,
-                  91,
-                  120,
-                  249
-                ],
-                "pixelSha256": "475933ba7165d70775072f9092b335a45bc943e8c193d64cef020f854285242f"
-              },
-              "03": {
-                "sha256": "05d7aee2408207f9bc3855380c98004ed447799c2e0075b43e1e140ff0e1f983",
-                "bytes": 21712,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  26,
-                  105,
+                  90,
                   111,
-                  249
+                  248
                 ],
-                "pixelSha256": "8d8e048f6fca3d87903b8756210d5a541a8c41445868d17a78fa91252d79e5e8"
-              },
-              "04": {
-                "sha256": "0b00b33739d99f76414d0764d599924e44742bc82f4eb639b23f60b08b3b42df",
-                "bytes": 23861,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  34,
-                  91,
-                  118,
-                  249
-                ],
-                "pixelSha256": "137a5274559c283930f7b40f66fe76de9fb578bb004bdb6d57fd3d952c934f6c"
+                "pixelSha256": "0bb3a5f8213024e842ea0c945607c2a09f151f44de1f0687b2ca20690f539ef2"
               }
             },
             "distinctFrames": 4
@@ -90356,7 +90356,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_mace": {
-          "sourceSha256": "3bf994716b1b6922e18398bb4496a9965cc0590f8b830a933f882281d020de27",
+          "sourceSha256": "34d8505a618f170a019a5268a1b5b95f5a483b70b59eee1af76946adb4edb323",
           "sourceDimensions": [
             2172,
             724
@@ -90381,9 +90381,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_mace-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Recreate from exact canonical Image1 hand geometry. Especially FOURTH/rightmost figure's HIGH REAR gripping fist near left side of face must match Image1 exactly, covering sourcepoint x1804,y208 on2172x724canvas. Do not lower it or move it inward. All wrists and fingers must match Image1. Same class costume asImage2.  Production RPG body sprite strip for Pirata MALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
           "canonicalPoseHashes": [
             "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
@@ -90391,7 +90391,47 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "3bf994716b1b6922e18398bb4496a9965cc0590f8b830a933f882281d020de27",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                622,
+                21,
+                1014,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+                "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+                "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+                "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
