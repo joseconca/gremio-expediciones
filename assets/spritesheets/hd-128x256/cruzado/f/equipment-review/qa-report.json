@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "cruzado",
   "sex": "f",
   "actions": [
@@ -12,7 +12,8 @@
     "attack_sword",
     "attack_axe",
     "attack_spear",
-    "attack_dagger"
+    "attack_dagger",
+    "attack_bow"
   ],
   "bodyHashes": {
     "idle": [
@@ -74,10 +75,35 @@
       "a78ae395fff6ee0a9eefee78f414fcda436ed01f58549744c3e4978fbee91c28",
       "2b5c949e9845c03d7c7fd6ef61941fd4e67f5d74f82a51de0b6ea0041e444b31",
       "69306a1ad309f6d0c40e0135766839514287f9e007240dad7f1397a47188942a"
+    ],
+    "attack_bow": [
+      "f63561508bddeb3cf23c672ce7058b499efa950d9865002124581a56bf6b5e87",
+      "c81e8f921e91e642f0005fed8e12ae9199ba64410b3290b3fe0e4b5ba0af5a91",
+      "fd559d0dd5fd182aadb5c8c081337ace3a0f3d507beef06a26fafeae93723297",
+      "368f970e0592f6cf03888015bbde755ee6b82f9f393ff8043e06b20e5a26d93a"
     ]
   },
-  "contactChecks": 612,
-  "warnings": [],
+  "contactChecks": 624,
+  "warnings": [
+    {
+      "action": "attack_bow",
+      "frame": 4,
+      "item": "arco_cazador",
+      "point": [
+        108,
+        147
+      ]
+    },
+    {
+      "action": "attack_bow",
+      "frame": 4,
+      "item": "arco_madera",
+      "point": [
+        108,
+        147
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
