@@ -96398,7 +96398,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -96407,7 +96407,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -96901,7 +96902,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1312024408f19a9f67b68b2939bb07d09b8d797dbb2b4b12c57af6df80e5f2c0",
+                "bytes": 24510,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  113,
+                  249
+                ],
+                "pixelSha256": "dc3ea61d273b2d265c1542c7cc3a3c62c25f219472d22a5972533569306a9326"
+              },
+              "02": {
+                "sha256": "99f3bef7fdc7aa758ee976ad8f71bb4a4766798bbae862e939c8ef460444f011",
+                "bytes": 23959,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  89,
+                  107,
+                  248
+                ],
+                "pixelSha256": "1c7c31c2c8d26fb4947610281eb1e9530dddc213e53cbefdfe7f84c55cfa8f1a"
+              },
+              "03": {
+                "sha256": "8f0b7ead63c4ac55212548ac8b08dd62aab936bd53d82a9626ea5bd0488c0842",
+                "bytes": 22553,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  101,
+                  107,
+                  249
+                ],
+                "pixelSha256": "a7d686f998ced58add21f7c48830c9cf64932b3fee7b0bc7f55a3f5474c48bdc"
+              },
+              "04": {
+                "sha256": "95ea3fda0544030234ba24ea6a6f2e5af71399cc138927338fcdeaee4ebfaff7",
+                "bytes": 24540,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  91,
+                  101,
+                  249
+                ],
+                "pixelSha256": "14ac50a87dc212ee5e1ee8226c53678a6fa7351edcc283bd2edeef18e44dbea7"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -97192,6 +97260,44 @@
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "728586a89390f0592174650bd3d00bf62c160d16dcca0eb60528f4df299a9e21",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+            "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+            "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+            "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -97305,6 +97411,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
