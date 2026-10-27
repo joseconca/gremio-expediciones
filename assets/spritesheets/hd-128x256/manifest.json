@@ -54783,12 +54783,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -55002,7 +55003,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "f7a98fbc9ecd86155cff1b83fbfd1d79f3c12ddf9ab61bd901058bfbcabbc4ca",
+                "bytes": 23321,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "ce20e6b5b5f7e5b42afc66be9cc3481dfd62881fbf486fad7e96d9df986583a1"
+              },
+              "02": {
+                "sha256": "3f35ddcd3065b95cc83c68f4e66c613b2f88b56d9cf58cbdedbf3989caf45981",
+                "bytes": 23163,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "5064d4436410e419769bc3c4b0c414678c300d77d67c6be9a0c4d0c3d9d96f83"
+              },
+              "03": {
+                "sha256": "acf40c3fc4737ec2a8abf4705cd6647c0e84edbe64848e67ca9e65e15f594867",
+                "bytes": 22695,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "be45099ed79259a8424a85f7cdf2801f684fc457203787bde5d5b29eb4ef2da2"
+              },
+              "04": {
+                "sha256": "b75439f6897023c1e50dd17be031336b9b38e4ecbf8b772b2dff74dd94420241",
+                "bytes": 23138,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "ae6e1549fcf874d81a7beb83c9927dcd38415e29e4cd6f32d91ba1287f012b54"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -55153,6 +55221,44 @@
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "e3e88fdd1a99f1e7e69670c730a75619417506afec00682e1b94110275b07d3a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action use_consumable for Super Novato FEMALE feminine brown high-ponytail. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. WARDROBE ONLY: keep all four exact female canonical poses, ALL hand coordinates and expressions. Empty hand moves belt to mouth and back, potion itself invisible. Same white/blue sleeveless costume and brown pants as Image2 in every pose. No old sleeves, red scarf or chest harness.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -55202,6 +55308,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
