@@ -90985,13 +90985,14 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -91275,7 +91276,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "af36c07cbeaa9f8b81c9653e9e0fba935b17d915adda6e96034f1afcca999f51",
+                "bytes": 23966,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  32,
+                  92,
+                  116,
+                  249
+                ],
+                "pixelSha256": "e32ab1f579d95ef7a2b1864963ff73ec86d0e310486874ee310a6bbc5e7d6d14"
+              },
+              "02": {
+                "sha256": "a8c053a8a6b453e07e5ed0899593a711f0e9a8ea6a22887ee95f623bd9da1b10",
+                "bytes": 23285,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  31,
+                  94,
+                  117,
+                  249
+                ],
+                "pixelSha256": "67db244bdeed5cf5a3c347d20a430d45f20bc7da59bb9167e06ec7a5a665f08c"
+              },
+              "03": {
+                "sha256": "11ce06558d2734d566f98bfc9f7309dbac5c6e95b141616c8cc910a12af03acd",
+                "bytes": 19086,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  126,
+                  112,
+                  249
+                ],
+                "pixelSha256": "c209a88891eb586a5319be3563617eb12453e011e16e5efe83081dc295dd599b"
+              },
+              "04": {
+                "sha256": "179ec966d22443727fefb66d93504cc572417a069110663aa0e7c33599bdc6d5",
+                "bytes": 23919,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  106,
+                  249
+                ],
+                "pixelSha256": "f672f69de2a1d3c7f53affdccdb82b1c19a987817df8ef199358e096feb4f932"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -91461,6 +91529,44 @@
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "9f2a0e6373f2751ca14b6d3cd41ef9a160bdf7055b3b0fac3c981b104397ac14",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/pirata/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Pirata FEMALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Coral lining is visible on LAPELS ONLY. No coral/red flap behind shoulders or raised arms. Navy jacket remains fitted to upper body; rust-red sash starts at WAIST BELT only. Adult mischievous feminine seafarer, sun-tanned skin, dark auburn tucked short bob under hat and one compact side braid. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -91526,6 +91632,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       }
