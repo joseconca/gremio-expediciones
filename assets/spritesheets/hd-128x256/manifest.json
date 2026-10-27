@@ -116897,7 +116897,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 56,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -116912,7 +116912,8 @@
           "attack_dagger",
           "attack_bow",
           "attack_staff",
-          "attack_mace"
+          "attack_mace",
+          "attack_book"
         ],
         "actions": {
           "idle": {
@@ -117826,7 +117827,74 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ed90235caab56c1cb6021df0f47824d01fef5fab09b50e5822867ab94d614e3e",
+                "bytes": 22984,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  105,
+                  250
+                ],
+                "pixelSha256": "e575d7fa31b8609e1c3a00e38be3a5c79549a50a91184a1e9bd2a04596eb073a"
+              },
+              "02": {
+                "sha256": "597933bf688e70a4eb9b915f22276690c507b88a796f6346bf8a1ef484e57e66",
+                "bytes": 22584,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  106,
+                  250
+                ],
+                "pixelSha256": "86d409bbedea8755132f903be972caf542634094284ad81c4591e6fcc626effe"
+              },
+              "03": {
+                "sha256": "82b496e35afad0ceb1d5b37de0ed3013f5cb5a6317e220fa7adaf5ca13e1a2c6",
+                "bytes": 23278,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  90,
+                  109,
+                  250
+                ],
+                "pixelSha256": "7dd758999b5d568344c5a2f8a05cf2f6e2d096069109d10584fc6bd94e7f81a4"
+              },
+              "04": {
+                "sha256": "6d55b06e0665f5ed33d468b6e869e8fa7f4416295f23781c64f29ce86f2930c6",
+                "bytes": 22424,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  108,
+                  250
+                ],
+                "pixelSha256": "6c1e0fa434d206089379c7d7b974868ee97f9e950bc9de55ea848827199eef3a"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
             "status": "missing"
@@ -118339,6 +118407,44 @@
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "f8ffac37596d08a00cec388bb8306ed91c3c22e32d79f6be45cdba3d4dd87413",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the THREE specific crimson tabard seals (diamond motif, square spiral, four diamonds) and copper fist-and-quill chest badge from identity reference. Ivory sleeves rolled below elbows, short bare forearms, WHITE fighting wrist/palm wraps and fully exposed fingertips; no dark novice leather gloves or bracers.  Production RPG body sprite strip for Heraldo de guerra MALE, Tier 2.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose. Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face. Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag. Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -118548,6 +118654,22 @@
         },
         "attack_mace/04": {
           "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
           "frame": 4
         }
       },
