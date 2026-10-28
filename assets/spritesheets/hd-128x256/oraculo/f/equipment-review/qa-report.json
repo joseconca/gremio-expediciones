@@ -9,7 +9,8 @@
     "use_consumable",
     "dodge",
     "block_shield",
-    "attack_sword"
+    "attack_sword",
+    "attack_axe"
   ],
   "bodyHashes": {
     "idle": [
@@ -53,9 +54,15 @@
       "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9",
       "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0",
       "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad"
+    ],
+    "attack_axe": [
+      "9d39101f045ce23c6f7eb0888106f922329fbdd6b195a4f581ac2f6987a2521f",
+      "3b7a08cafcd82e9f5db9cf76f3ed30b8fbcc42c5b84750c743d8002c5562c542",
+      "a6883f47c0aefcc885e458899c3f0dead5326ab4c16096d9abb54aded9d80c00",
+      "e28901b845c13562857575700019102d9faea5a89d195141255602f2d82cbe28"
     ]
   },
-  "contactChecks": 560,
+  "contactChecks": 580,
   "warnings": [
     {
       "action": "hurt",
