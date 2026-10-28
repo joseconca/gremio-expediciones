@@ -158667,20 +158667,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "50da87fd9561f67864bbcf7b746925a9d952d5af644394a08973c6ab91ae34a7",
-                "bytes": 25273,
+                "sha256": "96f713453f5d047e834e91f0e9f9fffafd6f0fea2ef68a20ea50e24c782079aa",
+                "bytes": 26090,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  99,
-                  107,
-                  248
+                  14,
+                  98,
+                  108,
+                  249
                 ],
-                "pixelSha256": "7d8d5ff9445e4688e0948b19b86a9aa3fdc59de1bc02c5d4270d9cbe9b457fa0"
+                "pixelSha256": "db18cd86696a2717b1dfc0a3de244204c35c26d5c7cdca4bb4a73e682fd0d055"
               },
               "02": {
                 "sha256": "f60934e92bfcc24cc8ac16f6302108cb782eddb87cc776b7830d8d3f4c1f6112",
@@ -158699,8 +158699,8 @@
                 "pixelSha256": "89293b9e4d12b83a6f8e72ad8970ae2a69bfb1fd333ae00e05b8c0615feec9d3"
               },
               "03": {
-                "sha256": "5e4adb6116b577aea5ff17291e3c41f191601fffb4f80ea8b4d18c1a76c3951a",
-                "bytes": 24243,
+                "sha256": "4cf0795dcb41ac4f16c114534aac26ab7a5b6a7644bede16b6d6dcaed91264aa",
+                "bytes": 24828,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -158709,10 +158709,10 @@
                 "bbox": [
                   11,
                   102,
-                  119,
+                  120,
                   249
                 ],
-                "pixelSha256": "e71272cff49ad48b9ab85d2c11987d7c8485f9ae8858b5ccdf2b37ab52856b90"
+                "pixelSha256": "a14d68d09d3f632dafb61ea3f1c98221ef1c56f092148e1065690f500f616cfe"
               },
               "04": {
                 "sha256": "8a0fbd9b9f9799096c3f41d4e16ca275400b3a42aadb9dd4dbc8402a775476a1",
@@ -158839,20 +158839,20 @@
                 "pixelSha256": "601ce5cc5fe71600f9af87f27985d7699f61783148ce8564b8527f94ad314a39"
               },
               "03": {
-                "sha256": "47a2271d29ba1f4cda8ec5baa9ae2de30693b09a100c4f2a91f704442899362a",
-                "bytes": 25353,
+                "sha256": "19e740498a8f136e90e362051f9d4daa06775741cd220fc1195240e85085314a",
+                "bytes": 25155,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  10,
                   92,
                   114,
                   248
                 ],
-                "pixelSha256": "283f6f8278e85a5d3ea3f3a6fa3ee171b119b28f7c667226bf2a149741f1deca"
+                "pixelSha256": "00ada5348fec9147eb10901f1d946a492c84cf1e095ec1b4f6ac30872b677df8"
               },
               "04": {
                 "sha256": "76e1025b309602a2a5df04847738563b46e4dd8894356f3c19e3ae17a414c5d0",
@@ -158995,20 +158995,20 @@
                 "pixelSha256": "d6a7517b441c84ce9105408f7cf010b328c135e0d4030dd48baa4920fb8c7d77"
               },
               "04": {
-                "sha256": "f39923ee91cab94c40a112eb42c206b6b41867795cf0b5e92a77e8acd42e73ba",
-                "bytes": 24892,
+                "sha256": "823b6c77879d5875d178fd23cec79227df74967b10d3fef5b311912f128726de",
+                "bytes": 23454,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  94,
-                  120,
-                  248
+                  11,
+                  97,
+                  110,
+                  250
                 ],
-                "pixelSha256": "a240d4b696df7e96b53f4ee1e20e94b5fe3a4d4d4f37987afbe0f374a7754891"
+                "pixelSha256": "e5f0a1fe15705ff8142b4be04a301c02e2c8d793e4b3e1d97ab298c893bcb0f9"
               }
             },
             "distinctFrames": 4
@@ -159537,9 +159537,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_sword": {
-          "sourceSha256": "d0cb830d5d44fb4a13e68100d9172b63c8ac45bba2058af54842f9e0e08a8a7a",
+          "sourceSha256": "b4f743ca60c27b49e00edacea15e29717cee130196566953fa830eb85c754246",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -159562,9 +159562,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise minimal LOCAL edit. FIRST figure ONLY: add ONE compact SILVER CRESCENT BROOCH centered inside MAGENTA CIRCLE on REAR/left-side shoulder stole, matching the singlebrooch visible on figure3. Keep FRONT/right-side shoulder plain, NO second crescent. Onlyfirstfigure needsbrooch; keepotherthreeunchanged. Remove magenta annotation. Keep ALL costume and figure positions unchanged: lilac/indigocoat, silver engravedivorystole,3verticalopalbuttons,largeopalbelt,diamondboots,fullsleeves/wristguards. Four entire bodies horizontalrow, identical2172x724canvas, sameheadsize/body scale and margins. Transparentalpha, no weapons/effects/shadow/text, no recentering or resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
@@ -159572,7 +159572,139 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "d0cb830d5d44fb4a13e68100d9172b63c8ac45bba2058af54842f9e0e08a8a7a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "8585a7577464d197a59b9dc68a83e3ea971edec013fd092cb087e29e4f7921f5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d0cb830d5d44fb4a13e68100d9172b63c8ac45bba2058af54842f9e0e08a8a7a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "d0cb830d5d44fb4a13e68100d9172b63c8ac45bba2058af54842f9e0e08a8a7a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+                "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+                "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+                "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_axe": {
           "sourceSha256": "f85f69f61a9710abe1a564326685cd8d53948084e24cceddaa91beeaed2f8d70",
@@ -159613,10 +159745,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "6aad04db51ca05ae7317a4bb1d8e7aa97958a32bd5829d899f7bc2ca498df03a",
+          "sourceSha256": "04ad2cd726fe842e69c1d026612ced977bb7674b38878f437ec08a390ea59893",
           "sourceDimensions": [
-            2172,
-            724
+            2170,
+            725
           ],
           "registeredSourceDimensions": [
             2172,
@@ -159638,9 +159770,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise LOCAL edit of Image1. THIRD figure only: move the nearer LOWER fist at waist RIGHT by about35px until ACTUAL IVORY GLOVE PALM covers MAGENTA CIRCLE currently on top of large belt opal. Palm must occlude partofbelt naturally. Do not move far right forward fist. Keep head/torso/feet and all clothing unchanged. ALL other figures unchanged. Preserve lilac/indigo costume, silver engraved ivory stole with ONErearshouldercrescent,3verticalopalbuttons,roundopalbelt,diamondbuckledboots, full lilac sleeves with silver diamond wristguards. Remove all MAGENTA annotations. EXACT same2172x724canvas and positions, four entire bodies horizontalrow, true transparentalpha. No resizing/recentering, no weapon/effects/shadow/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -159648,7 +159780,139 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "6aad04db51ca05ae7317a4bb1d8e7aa97958a32bd5829d899f7bc2ca498df03a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "6aad04db51ca05ae7317a4bb1d8e7aa97958a32bd5829d899f7bc2ca498df03a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "6aad04db51ca05ae7317a4bb1d8e7aa97958a32bd5829d899f7bc2ca498df03a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "6aad04db51ca05ae7317a4bb1d8e7aa97958a32bd5829d899f7bc2ca498df03a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "0a4630021e3b2d0a54ffcc439838d0b1323b467b545833c3e4ed7d5c03feb846",
@@ -159689,10 +159953,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_bow": {
-          "sourceSha256": "39ec31ff1209abda379abe95d5f16a457919797bb8ba5c7f55a9d11b0f7ea133",
+          "sourceSha256": "45b2a6cbb6b459bf42da0b9f6863d87c6dfcc11bc3e144c7d62c2f728037729f",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -159714,9 +159978,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "ONE complete fullbody MALE Oráculo in exact pose of Image1. Image1 canvas543x724 is the coordinate master: preserve exact head center/size, bodyplacement, both arms, fingers, legs/feet/baseline and transparent margins. Forward right-side closed fist's fingeropening must stay at(x451,y233) on543x724canvas. Keep nearer LEFT hand OPEN beside cheek exactly asreference. No moving fist right past450 or left below430, no recentering or scaling body. Image2 is COSTUMEDETAILS ONLY. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Replace every novice garment, hair, scarf, pouches completely. Full lilacsleeves over silverdiamondwristguards, ivoryfingerlessgloves. ONE character only, exactportraitcomposition543x724 and true transparentalpha, crispanimeRPGpaint. No weapons/effects/shadow/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
@@ -159724,7 +159988,139 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "39ec31ff1209abda379abe95d5f16a457919797bb8ba5c7f55a9d11b0f7ea133",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-frame01-reference-v5.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "39ec31ff1209abda379abe95d5f16a457919797bb8ba5c7f55a9d11b0f7ea133",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "39ec31ff1209abda379abe95d5f16a457919797bb8ba5c7f55a9d11b0f7ea133",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-frame03-reference-v5.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "39ec31ff1209abda379abe95d5f16a457919797bb8ba5c7f55a9d11b0f7ea133",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_staff": {
           "sourceSha256": "849c0e58cb8a4cd013065b1bea628cacc1d271cf43aacde8c436d7a10728a7ad",
@@ -159981,15 +160377,15 @@
           "frame": 1
         },
         "attack_sword/02": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_sword/03": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_sword/04": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_axe/01": {
@@ -160009,11 +160405,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -160021,7 +160417,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -160041,15 +160437,15 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
@@ -160133,13 +160529,13 @@
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "bodySha256": "50da87fd9561f67864bbcf7b746925a9d952d5af644394a08973c6ab91ae34a7"
+              "bodySha256": "96f713453f5d047e834e91f0e9f9fffafd6f0fea2ef68a20ea50e24c782079aa"
             },
             {
               "bodySha256": "f60934e92bfcc24cc8ac16f6302108cb782eddb87cc776b7830d8d3f4c1f6112"
             },
             {
-              "bodySha256": "5e4adb6116b577aea5ff17291e3c41f191601fffb4f80ea8b4d18c1a76c3951a"
+              "bodySha256": "4cf0795dcb41ac4f16c114534aac26ab7a5b6a7644bede16b6d6dcaed91264aa"
             },
             {
               "bodySha256": "8a0fbd9b9f9799096c3f41d4e16ca275400b3a42aadb9dd4dbc8402a775476a1"
@@ -160514,20 +160910,20 @@
                 "pixelSha256": "581f58d5ec3809e7d632ffe51220be2b8d5321785dae4c765965dd79982c391c"
               },
               "03": {
-                "sha256": "268b4376ab28d64e99a0c47743b1f92d1f3f13730ba9dbeda5e0f64ba7c1debb",
-                "bytes": 20507,
+                "sha256": "4b15e4f660942db59f6db3acf65272b1cf445b29008ca3c7bb4ee75a0cef5719",
+                "bytes": 19583,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
-                  124,
-                  103,
-                  248
+                  15,
+                  129,
+                  97,
+                  247
                 ],
-                "pixelSha256": "d3388d56dc750327881d11277b84587a3209d63250c485b40f4db1103116eec1"
+                "pixelSha256": "1b3a5df71d2ac4081e5c05b6b03edad36a926f50b443bb18e5676cb5702b1287"
               },
               "04": {
                 "sha256": "d7b84c866744947be65fc6fc6c5630a9c50ff7f1e4b0b5b35235188bc3d53322",
@@ -160654,20 +161050,20 @@
                 "pixelSha256": "f6e1cf309c7cdbcb55e02d88bc879daaaadd5e49fc422ba215666dd2962fc674"
               },
               "03": {
-                "sha256": "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0",
-                "bytes": 24262,
+                "sha256": "4693a610f367326f5924e51a96244490e2ec9bc9309f72394ef994305fba3e2f",
+                "bytes": 22991,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
-                  92,
-                  108,
+                  9,
+                  101,
+                  104,
                   247
                 ],
-                "pixelSha256": "d094a7f7ad82848acbf6f32d5a79765e0a501bfb0478db7a4179ff4bb2d4d263"
+                "pixelSha256": "6edf9106d6bbfad7b259619f7dcfbb1a716b2d090b240530f4340af8ee234a5e"
               },
               "04": {
                 "sha256": "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad",
@@ -160778,8 +161174,8 @@
                 "pixelSha256": "32999f36e033b42586515489f85391711b57ac7db678ed63b309d0bfed601d76"
               },
               "02": {
-                "sha256": "38fcf65fcdb26e44d5d7c782719d1c912c59d93ab3bf901e878fba6a084dcc38",
-                "bytes": 24420,
+                "sha256": "6e4169f04b49fad6a6f5d943a15aca3819ce14f1ce9e0e1d297af11de3567b89",
+                "bytes": 25146,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -160788,10 +161184,10 @@
                 "bbox": [
                   14,
                   92,
-                  100,
-                  248
+                  101,
+                  249
                 ],
-                "pixelSha256": "569396d922bdda8fdec538a0c46459cad97b2a80415d43956d1b86f3bab06c58"
+                "pixelSha256": "d58bad41e053534278148b16302b6d8fb9ccf6d647a2281f74cbe420dd0929ac"
               },
               "03": {
                 "sha256": "e52238b883da6080a0ae7cab527e96efa9c2db693a6c063d53dd9a8ed9c7a734",
@@ -160934,24 +161330,24 @@
                 "pixelSha256": "a1d61892b3eb379334e7a4601a4ecc8318f9359771182f1aae6728f6a2a0d4ab"
               },
               "03": {
-                "sha256": "76c3698c1b59155de197a67f3bcf38ea3eb5d6fdd15e93a5095b69e37bd9aea6",
-                "bytes": 24861,
+                "sha256": "78a683d1c7b1b79b0a50d8395a310d00c7074cc0e595e80cf8069f725e700995",
+                "bytes": 25293,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  91,
-                  110,
+                  13,
+                  90,
+                  114,
                   247
                 ],
-                "pixelSha256": "993a046d003ba38f9d6d05a9abd3d95be67e24fa2baebc5a82d6c11e4ab212e4"
+                "pixelSha256": "f7327ee2c56ca696d8dd14a1a9e3612f99207dd7192b999e5c04081816a9ecc9"
               },
               "04": {
-                "sha256": "f89df5a86b5316e294f50c392a4e8b2d2c2754b8c594a017643a21065666d1f6",
-                "bytes": 25206,
+                "sha256": "d8668498176606153dd4209c9d7d4342eddae54e3c7e570d59949735d84fc4c5",
+                "bytes": 25798,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -160959,11 +161355,11 @@
                 ],
                 "bbox": [
                   14,
-                  91,
-                  108,
+                  90,
+                  114,
                   247
                 ],
-                "pixelSha256": "77523a618bd61a9ba8ad6e17a33d799cc645807149e5cd3032240dc4e67767c6"
+                "pixelSha256": "08fa297b7eb3bf3796fbb3c778e416ac75837002f7e204abed89be3dbf6e7f3b"
               }
             },
             "distinctFrames": 4
@@ -161182,20 +161578,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "a7a58680bbec0a78b8b5df554d699a498312c8df26897dd731450872de1cd8ff",
-                "bytes": 24306,
+                "sha256": "0ef34a2ad4e1de18a0bd469e653bf273486e48639f30090e4a90cf5811e0fb83",
+                "bytes": 22893,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  90,
-                  100,
-                  246
+                  25,
+                  95,
+                  105,
+                  247
                 ],
-                "pixelSha256": "19b44e533092a906c321d746b9b09efcbcaf02a049a9ec5c5e93266667a42921"
+                "pixelSha256": "0cb1631408aacc7544793b28be80d145f8ffc12c36e09326dd6d69a5298680a7"
               },
               "02": {
                 "sha256": "185ec4528fe0085101a98fd05de0917237d1961e166cd490dab748794d3f8356",
@@ -161214,8 +161610,8 @@
                 "pixelSha256": "b7c9ad0a822556672ddd9990169504976e06fc021956f24d9c6ce95cb99cd97c"
               },
               "03": {
-                "sha256": "2f745288a2798deb8926a9833f808b744dec83f2c3ef4ace43ab26e0fed0a042",
-                "bytes": 25400,
+                "sha256": "b915bb468c0309e845198a466d8ed0e604781c8ae206d6c08803a1f450649683",
+                "bytes": 25940,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -161224,26 +161620,26 @@
                 "bbox": [
                   10,
                   90,
-                  114,
-                  246
+                  115,
+                  248
                 ],
-                "pixelSha256": "b5d8277a1d94de454ef5e7a125fe35e116a5d360fb001817fa477e29f9480dcd"
+                "pixelSha256": "35a0078eb3f798e0a090713e603bc17b3ecd35d0f6fa890da8a727272700732b"
               },
               "04": {
-                "sha256": "bc3a92717412780f17159ab276d68031c1d10977c7ea43fdafc6a6ee94cfdc89",
-                "bytes": 24473,
+                "sha256": "2935669aa0abd6df14f0d05c8f755dbb06a61f6fecb9584c0a8d42abaea2b190",
+                "bytes": 24778,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
+                  17,
                   90,
-                  100,
-                  246
+                  103,
+                  248
                 ],
-                "pixelSha256": "3a179049e9e190d74b7277f4f1baae338547f7dd02c919a7df5965f87eafbb23"
+                "pixelSha256": "be49ab3e11d40577b9342892240eb2e2cb2003649e3836b36ad5c3951b57d56c"
               }
             },
             "distinctFrames": 4
@@ -161628,7 +162024,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "dodge": {
-          "sourceSha256": "d45f0a615f7ed9a7f7042c1f4ead7d8425ba92f3e98f5db4af6d372b25a3cd57",
+          "sourceSha256": "0dc6f57bb88ff4df0eb7ea46fcdebfa5cfed57072963b3622a67aaa531e370b9",
           "sourceDimensions": [
             2172,
             724
@@ -161653,9 +162049,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise minimal LOCAL edit. THIRD crouched woman ONLY: restore the OUTER RIGHT guarded arm position. Move its entire bent forearm/elbow and closed guardfist a little RIGHT (about35px), so outer right sleeve/elbow reaches the MAGENTA CIRCLE to its right. Keep natural bend and compact arm, don't enlarge the sleeve. Keep nearer leftfist, head, torso and feet exactly unchanged. All otherthreefigures exactlyunchanged. Keep all lilac/indigocoatdetails, silver engravedstole/singlecrescent,3verticalopalbuttons,opalbelt,diamondboots/fullivorygloves/lilacsleeves/wristguards. Remove MAGENTA annotation. Four entire bodies horizontalrow on exact2172x724canvas, samebody/head scale and margins. Truealpha, crispRPGgame paint, no weapons/effects/shadow/text, no recentering/resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -161663,7 +162059,139 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d45f0a615f7ed9a7f7042c1f4ead7d8425ba92f3e98f5db4af6d372b25a3cd57",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "d45f0a615f7ed9a7f7042c1f4ead7d8425ba92f3e98f5db4af6d372b25a3cd57",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d45f0a615f7ed9a7f7042c1f4ead7d8425ba92f3e98f5db4af6d372b25a3cd57",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "d45f0a615f7ed9a7f7042c1f4ead7d8425ba92f3e98f5db4af6d372b25a3cd57",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "block_shield": {
           "sourceSha256": "5d4bb11e08ae82c38837964af2f241575c1a9102bb2586089798eb385f3a826e",
@@ -161704,7 +162232,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_sword": {
-          "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+          "sourceSha256": "56e55061228862405222cb2e80063c4f07975a3b19390f7fba21e9b4d80d68c3",
           "sourceDimensions": [
             2172,
             724
@@ -161729,9 +162257,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise minimal LOCAL edit. THIRD woman ONLY: extend diagonal forward forearm/fist RIGHT about40px until ACTUAL IVORY GLOVE PALM CENTER covers MAGENTA CIRCLE just beyond that fist. Do not move nearerguardhand, head, torso or feet. Keep fingers and fist orientationunchanged. All otherthreefigures exactlyunchanged. Keep all lilac/indigocoatdetails, silver engravedstole/singlecrescent,3verticalopalbuttons,opalbelt,diamondboots/fullivorygloves/lilacsleeves/wristguards. Remove MAGENTA annotation. Four entire bodies horizontalrow on exact2172x724canvas, samebody/head scale and margins. Truealpha, crispRPGgame paint, no weapons/effects/shadow/text, no recentering/resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
@@ -161739,7 +162267,139 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+                "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+                "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+                "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_axe": {
           "sourceSha256": "e9d7c2377642e4d4ef4755a616d185cc2fd3caf05832c61ce22fbb2ae4d933c2",
@@ -161780,7 +162440,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "456689d0e9d01069a8539a6857ba1b21b2021f672de0a7f426b9003f6efde53b",
+          "sourceSha256": "ca30a5721c5ce142c621def72fe70ba45812cdcd8f45be3d2717801059f924a3",
           "sourceDimensions": [
             2172,
             724
@@ -161805,9 +162465,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Remove ONLY the tiny fluorescent MAGENTA/PINK stray mark just LEFT of SECOND woman's raised fist, between her fingers and chest. Restore underlying indigo/lilac costume/transparent contour naturally. There must be no magenta annotation fragments. Keep actual fist positions, fingers, forearms, sleeves, all costume details, face and all other art EXACTLY unchanged. This is annotation cleanup ONLY, no pose edit. Four COMPLETE full bodies in samehorizontalrow, exactly2172x724canvas and positions, same head/body scale/margins. Preserve approved Oraculo lilac/indigo/ivory/silver costume, crescent andopalinsignia, diamondboots. True transparentalpha, no weapons/effects/shadow/text, no recentering or resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -161815,7 +162475,139 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "456689d0e9d01069a8539a6857ba1b21b2021f672de0a7f426b9003f6efde53b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "456689d0e9d01069a8539a6857ba1b21b2021f672de0a7f426b9003f6efde53b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "456689d0e9d01069a8539a6857ba1b21b2021f672de0a7f426b9003f6efde53b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "456689d0e9d01069a8539a6857ba1b21b2021f672de0a7f426b9003f6efde53b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "34a4128dc574eb2dcc79630215f8faaa00de56b30b0cda3247036e4d242382f9",
@@ -161856,9 +162648,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_bow": {
-          "sourceSha256": "882cb90c24dad50d769035ca6d2642beeaf35c0c3885742b73cc43bb932862eb",
+          "sourceSha256": "30f8474ebf67edd573aae035664e58f2e0c2a53770b4fd2f5722cd74c15478cb",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -161881,9 +162673,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_bow-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise minimal LOCAL edit of indicated fist(s). THIRD and FOURTH womenONLY: nudge their forward right-side fists RIGHT a small amount until actual PALM/FINGER OPENING covers each MAGENTA circle beside fingertips. Keep verticalfists with fingersright. Do not move body/head/feet or closer arrow-releasehands. Figures1and2unchanged. Keep all other artunchanged: lilac/indigocoat, silver engravedivorystole,singlecrescent,3verticalopalbuttons,roundopalbelt,diamondboots,fullsleeves/wristguards. Remove allmagentaannotations. Four COMPLETE fullbodiesrow, exactsame2172x724canvas, body scale/positions/margins. Truealpha, paintedanimeRPGgame art. No weapons/effects/shadow/text, no recentering/resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
@@ -161891,7 +162683,109 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "882cb90c24dad50d769035ca6d2642beeaf35c0c3885742b73cc43bb932862eb",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_bow-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "882cb90c24dad50d769035ca6d2642beeaf35c0c3885742b73cc43bb932862eb",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_bow-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "882cb90c24dad50d769035ca6d2642beeaf35c0c3885742b73cc43bb932862eb",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+                "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+                "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+                "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_staff": {
           "sourceSha256": "beb7876048e48a0191ed8e5c7baaaa724b9d3d6b2517627e03500b39a95d3a8b",
@@ -162008,10 +162902,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "035a0dc7a55571527bcf46991e0fa242372e181dd88b9020ae3287574e269de1",
+          "sourceSha256": "7c4aee2cbe200e765b246cacfee054bc6693a4c766c0c436ab9c054b7811f117",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -162033,9 +162927,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "ONE complete fullbody FEMALE Oráculo in EXACT guardpose of Image1. Image1 is543x724portraitcoordinate master: preserve headsize/center, bodyplacement, ALL fingers/wrists/elbows, feet/baseline and transparent margins. The nearer left-side guardfist PALM must stay at approximately(x317,y265), in frontofsternum, asImage1. Do NOT shift that fist left, do not liftit. Keep both fists closed with exact orientations. Image2 is COSTUMEDETAILS ONLY. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Replace ALL novice garments andhair. Full lilacsleeves/ivoryfingerlessgloves/silverdiamondwristguards. ONE characteronly, same543x724composition, transparentalpha, crispRPGanimepaint. No equipment/weapons/effects/shadow/text, no bodyrecentring/resizing.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -162043,7 +162937,139 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "035a0dc7a55571527bcf46991e0fa242372e181dd88b9020ae3287574e269de1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "d0a35e43262b72bfa9dd05077c9a4749ef30d586ce4c03844095a50b9f9e2e33",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-frame03-reference-v5.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d0a35e43262b72bfa9dd05077c9a4749ef30d586ce4c03844095a50b9f9e2e33",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-frame04-reference-v5.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "035a0dc7a55571527bcf46991e0fa242372e181dd88b9020ae3287574e269de1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
@@ -162112,11 +163138,11 @@
           "frame": 4
         },
         "dodge/01": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.01",
           "frame": 1
         },
         "dodge/02": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.02",
           "frame": 2
         },
         "dodge/03": {
@@ -162124,7 +163150,7 @@
           "frame": 3
         },
         "dodge/04": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.04",
           "frame": 4
         },
         "block_shield/01": {
@@ -162144,11 +163170,11 @@
           "frame": 4
         },
         "attack_sword/01": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_sword/02": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_sword/03": {
@@ -162156,7 +163182,7 @@
           "frame": 3
         },
         "attack_sword/04": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_axe/01": {
@@ -162176,7 +163202,7 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
@@ -162184,11 +163210,11 @@
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -162208,11 +163234,11 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
@@ -162276,15 +163302,15 @@
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.04",
           "frame": 4
         }
       },
@@ -162306,7 +163332,7 @@
               "bodySha256": "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9"
             },
             {
-              "bodySha256": "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0"
+              "bodySha256": "4693a610f367326f5924e51a96244490e2ec9bc9309f72394ef994305fba3e2f"
             },
             {
               "bodySha256": "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad"
