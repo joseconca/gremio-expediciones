@@ -136566,20 +136566,20 @@
                 "pixelSha256": "e6ff394fa5ace90e6688bdf3d8d739809fecb009cbb77e967b3f3eb5c50dbc16"
               },
               "03": {
-                "sha256": "0669293b3e3c8c3a182a1001e6c8980b6ac308650d3b3e0add5bc8fc3ce40a2d",
-                "bytes": 23489,
+                "sha256": "11c21bade7963c0a0f88ea0a6fa0d4eaa560d3f922d13595a4760635f8d53edf",
+                "bytes": 23764,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  89,
-                  115,
-                  239
+                  10,
+                  90,
+                  113,
+                  248
                 ],
-                "pixelSha256": "7419dd50320f2383e353c4adf42e6c7b8131a4d015a328b97ab78b41e4655cf3"
+                "pixelSha256": "cf93730958831de771b5c9b7b8e60eeee76996afedf79d2910ec89b935a6eddc"
               },
               "04": {
                 "sha256": "b21a3774a394810243c0831facf0ef221d57face236741b09a29ebd7efbb9e4e",
@@ -138148,10 +138148,10 @@
           ]
         },
         "attack_gloves": {
-          "sourceSha256": "ad8f0b69e30446c04f1c7c2024dd92ec049fdb41eaa9a3cb12b680574d358b99",
+          "sourceSha256": "a8d21fed85aab9bd0fdd331c247a777e16e12a109ff5221fdf2d796b64d65468",
           "sourceDimensions": [
-            2159,
-            728
+            2172,
+            724
           ],
           "registeredSourceDimensions": [
             2172,
@@ -138173,9 +138173,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference-v4.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal material recolor ONLY. Image1 THIRD FIGURE has a horizontal outstretched punching arm toward RIGHT. Recolor ONLY its brown wrist band immediately behind the punching fist to SILVER-GRAY METAL like Image2. Keep the SAME band silhouette, width, contour, arm angle and exact location. Do not redraw or shift the body, hands, fingers or head at all. Do NOT change any other pixels or features. First, second, fourth figures unchanged. Third figure retains exact Image1 head/torso/legs and both hand coordinates. Keep4 full figures, same2160x728 canvas, original positions, transparent alpha. No new objects, text or shadows.\n",
+          "prompt": "EDIT IMAGE1 IN PLACE: change only clothes/hair to FEMALE MASTER SMITH; preserve EXACT original four poses and all absolute head/hand/finger/elbow/foot coordinates and body proportions. ESPECIALLY THIRD PUNCHING FIGURE: KEEP outstretched fist at EXACT original height and position, do NOT raise punching arm or fist. On normalized128x256 body THIRD primary fist is(105,139), retracted left-side fist(43,145); original Image1 anatomy is authoritative. Image2 is feminine face/chestnut braided crown low bun with TWO-LENS work goggles ON FOREHEAD, above eyes. Image3 exact CHARCOAL short split apron, THREE SMALL SILVER rivets vertically down chest and brass ANVIL clasp. Image4 exact TWO compact square brown belt pouches with brass fasteners (NO novice silver-buckled pouch), Image5 compact SILVER-GRAY IRON wrist cuffs over dark fingerless gloves, BOTH wrists including fully extended punching arm. Ochre rolled sleeves with short bare forearms, bottle-green fitted side panels, ONE compact iron rear-shoulder plate, charcoal trousers, brown boots with silver rectangular shin buckles and iron toe caps. No novice scarf/straps, no brown wrist wraps. Four COMPLETE full bodies, original2172x724 canvas/quarter placements, transparent alpha, crisp painted anime RPG style, empty hands, no gear/effects/shadows/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -138211,7 +138211,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame01-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame01-reference-v5.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -138241,7 +138241,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame02-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame02-reference-v5.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -138271,7 +138271,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame04-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame04-reference-v5.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -138478,6 +138478,136 @@
                   "scalePolicy": "canonical-pose-registration",
                   "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
                   "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame04-reference-v3.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "ad8f0b69e30446c04f1c7c2024dd92ec049fdb41eaa9a3cb12b680574d358b99",
+              "sourceDimensions": [
+                2159,
+                728
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference-v4.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal material recolor ONLY. Image1 THIRD FIGURE has a horizontal outstretched punching arm toward RIGHT. Recolor ONLY its brown wrist band immediately behind the punching fist to SILVER-GRAY METAL like Image2. Keep the SAME band silhouette, width, contour, arm angle and exact location. Do not redraw or shift the body, hands, fingers or head at all. Do NOT change any other pixels or features. First, second, fourth figures unchanged. Third figure retains exact Image1 head/torso/legs and both hand coordinates. Keep4 full figures, same2160x728 canvas, original positions, transparent alpha. No new objects, text or shadows.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "8b4044bf6e0455f3caf7d717b47f7b4627793cdddcd33394de172f3f6946974c",
+                  "sourceDimensions": [
+                    2160,
+                    728
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame01-reference-v4.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "8b4044bf6e0455f3caf7d717b47f7b4627793cdddcd33394de172f3f6946974c",
+                  "sourceDimensions": [
+                    2160,
+                    728
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame02-reference-v4.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "8b4044bf6e0455f3caf7d717b47f7b4627793cdddcd33394de172f3f6946974c",
+                  "sourceDimensions": [
+                    2160,
+                    728
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-frame04-reference-v4.png",
                   "selectedFrame": 4,
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
