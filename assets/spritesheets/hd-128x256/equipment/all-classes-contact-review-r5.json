@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 84,
-  "contactChecks": 57288,
+  "variants": 86,
+  "contactChecks": 58652,
   "warnings": 0,
   "reports": [
     {
@@ -24,6 +24,18 @@
     },
     {
       "classId": "alquimista",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "archimago",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "archimago",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "classId": "invocador",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield",
+    "attack_sword",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "e1ac3ad3dc34a4e2a996d1696f1b07e49e6ac60cabef451a3fefe8663328fd74",
+      "f7ee9dc1e5c65bae028e707ede50d3979c9974ee840434ecd8a76c3ef162d39e",
+      "19b56e94bb87c2656b8168513668cdfd0dfe1f50e89964e644d09c3d8a8cfbff",
+      "7d35023e44d26f9be26266fb6dfeff056face2eae17dc0761b176cea6868759a"
+    ],
+    "walk": [
+      "ec606b10a731922442fdcb039221f90286c540178bc5f1d521b084d68b7efb5a",
+      "56d544e3f0d26963bf702ec3f1f5c8607f47c4d4e35f18a717deb8ca585e9dbe",
+      "df3d2be18be297b518055a437114ac0fec9e991eed4be02d425a28b90bbf40ad",
+      "1e2d772d8509713e5cfbe12fff77a59b4d26af932675b6257b1b17b71d1a9f2b"
+    ],
+    "hurt": [
+      "6853850dccb2cd81d453c6aa0599b51440532e20757afaa864394338b668ed53",
+      "2b448ab31271ef7dd50afe3cbca3cfdbc1dc1b6df5041ef03c1e306bd52bcac9",
+      "a415a15ea644a8938b2290929e677cb2d26780800166277edcb49eab455b1858",
+      "551f9ab4b572248d9f3295bdebc9f53f9a1d2d6783d4288bb22cbc33dd894f68"
+    ],
+    "use_consumable": [
+      "3ba3b5144593cf5b8812fc06aaceef5b8432cd2f9b28872d3a5060bac8be1185",
+      "bea7fff03242d8a36e6204033c1f43cead24a4c0d36d0631f1830d5aaf7f3d91",
+      "dc97f3a6b8ab1b63c277ce1b13e7b0d789c611c1e6eadba370ff592d2023f397",
+      "7dae8752e9f44f61ebf1ac0b286f37f47e67cb96f9795eeddfe674c627a44d22"
+    ],
+    "dodge": [
+      "08af1c935cda19719d8a7efe89f50d6854a7f86d7f029d57978466d9d0d37fef",
+      "26f2c0eb32322e120b5eeba77d75d56481ae771d03e0af49ef94a76929b8fc6a",
+      "325367b4d03743fd2f43ed5c8eb766c19b1e5b6e6b22eb60da4c578af97cca38",
+      "f432d52fdb8bb17b17db2732bcb1534081a012e9c6b10a78ac0d111f35f26f07"
+    ],
+    "block_shield": [
+      "954ae29fae0095082e06155a86a2b575583bc92d94d9619ecc2cf1f8ad6116d4",
+      "01e28b074a31bd25111dbadab460486376de8f5f17f506e2b1e14b8ed44e9782",
+      "c59f24f8c3e780910f13bfa77f045341ffd6e01e2d46220ab5f13f49a517b236",
+      "5276fb5b75198c4db901113220bf31fc9c14b959be27885bc684c112b05504f6"
+    ],
+    "attack_sword": [
+      "87459e42dfef4cdbef53a6a56abc2045b10a4a557e32ee0b3ea4b7fe689c2cad",
+      "bab39a94ec21f28392cde823c9efc4e9e6d20112405c61b656f72ea9ba108307",
+      "a3828988eb8090f93a04b93a09886713ead3d32dc5f53d9ea664f91cb04dc57d",
+      "773b1c21f5b2a426d883856a541de54658b3baffb88fa537d800cb79464b2cc5"
+    ],
+    "attack_axe": [
+      "7266a2a88f47f31ee6c6cedb3bbaebb37aaf97dfa8d34a108dec860b12c90086",
+      "575b4678f23e1e89a495b58495b6ec2aab06fa212c87d5340eda38b8d77663d7",
+      "19112f3e95c9f6ff2f5eb71b6c6e92817a855bccb37937b89b9aa91548670137",
+      "884e97130be678884292d539cfd2ca0804d971b03f8e299ef37dd24a9aa2014a"
+    ],
+    "attack_spear": [
+      "e90c73ca27b7b6f2a20977dc599a16cdcec3c992e134674dd79d1eaa35296711",
+      "df0506b8691af3b06238bc698c381b4627bbd9ab448e6bd458c076fde267db2f",
+      "5d1a0ba53e868bcd5f5568c0265e59d3da720a2130d0771c0cf72f671163c321",
+      "bc64925ae08393e9f08af6e835374949dc8265cdb0d55d18919dc44f84f69765"
+    ],
+    "attack_dagger": [
+      "328b008e00a47e5baffb0721cee3c756e9551c09f886ac978722bf36c8c6bf2f",
+      "b9b0d61e8e3548b7bdd1362c450861f9a7183318e4b9af7c73db321f34495a24",
+      "7d8bda05d63aa29c4d4ff2fbd557e0e491f40ea300e8d50461ed651d4ca31f04",
+      "1aaa8f8bc30ec505756f49aca4da2dfc49d942c5254d93c76bed071c75adefd9"
+    ],
+    "attack_bow": [
+      "e30913aa1e0faf51cfabd6e71ad016486640cb422b1e5a27fd4ead1d1bdfc543",
+      "8d4ca8fee0e916bc367477b1acc7f3d869c5b0c745a0105199e26f2d873678f7",
+      "af6d4e0a5358753b136c7e60c9812a3f4bc7f366bbe8c6e7a389b38b85f37763",
+      "df7707439899b75cf6f3dea0b74776ea1c93cdd8e2b5156533a1e93fe3ece9e7"
+    ],
+    "attack_staff": [
+      "ace4c9ea7b64dbd038e9134e86afbf91cdc84590239c3f5acc9e764d59325bec",
+      "681c83e19c1bbe2336e957a39378f24da971b655c7242c226c9ba94836ddf597",
+      "fc22bc4ba5454f3f38e422aa30b4c4315d452b9eef1c1142eeac375e2a250f04",
+      "0a406c672b3fcc18e841743d55a90b9688488f69a213ca40fbadc9b7bf4d5f5f"
+    ],
+    "attack_mace": [
+      "47531aa16a8f67eb4a34ea8c99b39b261d7cad362790658d68a19743f233cb3d",
+      "db632a31dfb9257cf8984e8586c1e9d653bf096b329434229e7044761bdc40ea",
+      "ec4b230575a03857b9128dcdb613aa973f0978439a16502b85d54e812809f8b1",
+      "7fd6d5cca8b8ac3b8311862cb28db125fc3d203c21d374012b63c3113ddbdb82"
+    ],
+    "attack_book": [
+      "b0ab536a0fc1583129aa09a3a3b8dccd7e288c0b6246cfb05cc26b95e9aed06c",
+      "0a803d9252dab291cf8afbdef9f34f8dc5bcc360a30ecebd77a4016c23f59af4",
+      "3df8e39895ccdf69e354aac6b45cb2de1a626165ee532a48120d5bf74ee25435",
+      "4f9f792b317a28dc1278e6a996debf45eadd61130c7c117c36d91e25f0867604"
+    ],
+    "attack_gloves": [
+      "fd7e8fecfe9157e24d50216d8eb97621510e3b566389feecefb9d0779766dc78",
+      "f28440086e050bbcd64a506dc2091aa5fae5be8f125d997a542f3e4eb3d21359",
+      "4f8b2507c1749eec7e3ac857cea721bcfbfb4e4d628939237ff894f87676194c",
+      "5c73aace83865a9ba0040cff9aa4355f1e38f0f49ae5600f03e192aae411600f"
+    ]
+  },
+  "contactChecks": 682,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}

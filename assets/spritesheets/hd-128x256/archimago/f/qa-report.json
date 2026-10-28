@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T20:02:36.224742+00:00",
+  "classId": "archimago",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\archimago\\f\\archimago-f-sheet.png",
+  "sheetSha256": "c2deae29eb30e4617f257b82dd4e5c2bc221d15d670467a503654e8d873a1415",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\idle\\archimago-f-idle-01.png",
+          "sha256": "990aebc13ff2dda30bcf954892c62b5e49cfd96d2464caaa9752cb4d5b02463b",
+          "alpha_bbox": [
+            30,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\idle\\archimago-f-idle-02.png",
+          "sha256": "129ccc0ab3ced75e96a329c7ba7ebeb996986c76e2cea2d10aae8d275e6b808e",
+          "alpha_bbox": [
+            30,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\idle\\archimago-f-idle-03.png",
+          "sha256": "be83c3fa32124d624ac771c2dbc03064e353be48adae958d11f3d09299627feb",
+          "alpha_bbox": [
+            30,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\idle\\archimago-f-idle-04.png",
+          "sha256": "c9d28c41d6a98ec411427cd275861b1d899a29adc6ac26db4ec6263469ee7aee",
+          "alpha_bbox": [
+            30,
+            91,
+            106,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\walk\\archimago-f-walk-01.png",
+          "sha256": "ace1a7abd7c0c726eb104b7a141df79512f12128d5235d7870f189662402b08a",
+          "alpha_bbox": [
+            16,
+            97,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\walk\\archimago-f-walk-02.png",
+          "sha256": "9545f8280c538688b08c5e6588c94ee6f19db48169d7ab804ccd5ed7ff7badca",
+          "alpha_bbox": [
+            33,
+            90,
+            91,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\walk\\archimago-f-walk-03.png",
+          "sha256": "a52bc5c6d292b766b2890ae20c989863f33830c98d3787b8ac345297aebd46b2",
+          "alpha_bbox": [
+            11,
+            90,
+            111,
+            244
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\walk\\archimago-f-walk-04.png",
+          "sha256": "e47c8f6c42abf2fa368c46ff0f58620cba30f3bd83b76afa4f35f6f4837d036d",
+          "alpha_bbox": [
+            25,
+            90,
+            95,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\hurt\\archimago-f-hurt-01.png",
+          "sha256": "bed6feaa8cbfa14591e719119e2b9c8a88d968453794096c8c6c4eb61cc76c59",
+          "alpha_bbox": [
+            21,
+            95,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\hurt\\archimago-f-hurt-02.png",
+          "sha256": "8d65706cb39be26253673b04859077aef425ad35cc8e07de16106845015af09b",
+          "alpha_bbox": [
+            20,
+            94,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\hurt\\archimago-f-hurt-03.png",
+          "sha256": "682e6e1d065c430f01d7618b73222334692dd08946eda72bf8dc99a2a0867369",
+          "alpha_bbox": [
+            15,
+            112,
+            93,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\hurt\\archimago-f-hurt-04.png",
+          "sha256": "da13297e2d089c6d9ec9c6717eda5e2dcfb0d7e44f83700c8102c7107bc9ab93",
+          "alpha_bbox": [
+            18,
+            95,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\use_consumable\\archimago-f-use_consumable-01.png",
+          "sha256": "c4c559122945c13bd0746d0f0ef0cc6af830b2d7d05a36c63855845703cf9304",
+          "alpha_bbox": [
+            26,
+            91,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\use_consumable\\archimago-f-use_consumable-02.png",
+          "sha256": "899bc6c40172290dc747fb0ce557651cccf2fd8fb2f2e4438f0c524e320e3464",
+          "alpha_bbox": [
+            26,
+            91,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\use_consumable\\archimago-f-use_consumable-03.png",
+          "sha256": "f6034aa9d60ff229ee591f637bdafc06a745c87205317d869dc51f4f5d555a07",
+          "alpha_bbox": [
+            29,
+            91,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\use_consumable\\archimago-f-use_consumable-04.png",
+          "sha256": "fbe9ac8ab62631fb3191dbeea30346b0933efe5e5f087b14957e159d5d97f427",
+          "alpha_bbox": [
+            29,
+            91,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\dodge\\archimago-f-dodge-01.png",
+          "sha256": "e74078fb5bd834ba0a9c93187bb58401f434a2ce75a89f3a533e400a2bb99b6f",
+          "alpha_bbox": [
+            31,
+            91,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\dodge\\archimago-f-dodge-02.png",
+          "sha256": "cebcee33aa2cc7685a457726323d52182cf21762cd0ff6d38bdc34b7fd4d5532",
+          "alpha_bbox": [
+            30,
+            95,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\dodge\\archimago-f-dodge-03.png",
+          "sha256": "f94034c50b2b9b05895e3adeead015a491d516945666cb75cdcd77e924d1f802",
+          "alpha_bbox": [
+            21,
+            124,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\dodge\\archimago-f-dodge-04.png",
+          "sha256": "92c50e30e29db8b68205833c94c7f38172ba255aa449f70b93a6622821da5d9b",
+          "alpha_bbox": [
+            15,
+            92,
+            97,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\block_shield\\archimago-f-block_shield-01.png",
+          "sha256": "ff8fb9e358dd999bf10f41fefeecfdddd6f36d33b506c0770091ceabdd895799",
+          "alpha_bbox": [
+            27,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\block_shield\\archimago-f-block_shield-02.png",
+          "sha256": "2ce52e93776275e4ce40407b0dd45f749dfc0ef0aae66b262f597c6c84a250f5",
+          "alpha_bbox": [
+            27,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\block_shield\\archimago-f-block_shield-03.png",
+          "sha256": "d5b682c8f8c1c1ce62248d03761e9d8f001736eed01c863b67dfa9f9086e9290",
+          "alpha_bbox": [
+            25,
+            97,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\block_shield\\archimago-f-block_shield-04.png",
+          "sha256": "7244eae065193ec2e0c38b7717be436321166e04cdeeda036f7130a4bc5bcb77",
+          "alpha_bbox": [
+            27,
+            91,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_sword\\archimago-f-attack_sword-01.png",
+          "sha256": "331b6903d7959d2f3ca7fb78ab508d4d6f0011e04ed0ec792c7b268bc75093e5",
+          "alpha_bbox": [
+            22,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_sword\\archimago-f-attack_sword-02.png",
+          "sha256": "54258bffaf54271da71c685600626e9bd0466e3bb001bdd46470ec467b6d2474",
+          "alpha_bbox": [
+            17,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_sword\\archimago-f-attack_sword-03.png",
+          "sha256": "b051598302f8033c3d06c076704cbe047e10531d294b406f02f9c305c328ff9f",
+          "alpha_bbox": [
+            13,
+            96,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_sword\\archimago-f-attack_sword-04.png",
+          "sha256": "59bdf7e69816894a7e2c29690997f8bc29b94dd982f67fc1e7455853ace73c88",
+          "alpha_bbox": [
+            14,
+            91,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_axe\\archimago-f-attack_axe-01.png",
+          "sha256": "c803b1152628f2b3984b17fab5cd0dc697424af0392a0a6628e96d16379ad6b9",
+          "alpha_bbox": [
+            24,
+            95,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_axe\\archimago-f-attack_axe-02.png",
+          "sha256": "3aa7ee5946da5d33f8abd0820c2ed1a7a8e1f01083ee145964095a406db70303",
+          "alpha_bbox": [
+            19,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_axe\\archimago-f-attack_axe-03.png",
+          "sha256": "c230d036d2b514ee56822fb35ca7d4d17ecdf48af570fb7a7a42934d98a65410",
+          "alpha_bbox": [
+            13,
+            105,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_axe\\archimago-f-attack_axe-04.png",
+          "sha256": "1f4527e50f645dc3836ff39f3a65c8832898487fa815b6d60c1dc0f2a2055bbe",
+          "alpha_bbox": [
+            8,
+            95,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_spear\\archimago-f-attack_spear-01.png",
+          "sha256": "797235277dc5766e66dbc1869361aca3cbe8dab49c1cbf3f801ab4cc7a67a687",
+          "alpha_bbox": [
+            11,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_spear\\archimago-f-attack_spear-02.png",
+          "sha256": "a609287ffd62792c469d1e8cbffc188701cfbd15e7f3a0e0828afb4ae63de7fb",
+          "alpha_bbox": [
+            11,
+            92,
+            99,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_spear\\archimago-f-attack_spear-03.png",
+          "sha256": "b2c83cfc172dea2469e71519081ee9b3fc5f9dd9f607b8087d2156d952db5da1",
+          "alpha_bbox": [
+            9,
+            92,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_spear\\archimago-f-attack_spear-04.png",
+          "sha256": "831c4d108757de611c481b32bb12c3ec991478059841d0bc0a539c7bda53a683",
+          "alpha_bbox": [
+            11,
+            92,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_dagger\\archimago-f-attack_dagger-01.png",
+          "sha256": "e88ecd6a883be1e9135559a345a31ed4a0f5802885ce236ca12f701335231d40",
+          "alpha_bbox": [
+            18,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_dagger\\archimago-f-attack_dagger-02.png",
+          "sha256": "f9653e813a2f035bc2686101e574938c3efe7240bb3e8ec465c5cbb27d5ced34",
+          "alpha_bbox": [
+            16,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_dagger\\archimago-f-attack_dagger-03.png",
+          "sha256": "4a97c5f744de11f8dac0267eafd5bc6f32b446adec49748ed055dd2731f631d1",
+          "alpha_bbox": [
+            16,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_dagger\\archimago-f-attack_dagger-04.png",
+          "sha256": "7a6d1d8104ffd53c994a756130c46e6bcdb875fd8b54418970f96047d43a765b",
+          "alpha_bbox": [
+            17,
+            90,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_bow\\archimago-f-attack_bow-01.png",
+          "sha256": "03fac1cc16e49f324664a684034fe795d2d88cc1d365e3eed83b0b5f99634605",
+          "alpha_bbox": [
+            22,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_bow\\archimago-f-attack_bow-02.png",
+          "sha256": "dd93f499eb5bf0cebf9d13115d1c1a723d0936de2207b92e64546b3cf58d8afb",
+          "alpha_bbox": [
+            12,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_bow\\archimago-f-attack_bow-03.png",
+          "sha256": "381cb344c6a1e590fb904020fb2df34e37184916bd532a3cf178f504da50c751",
+          "alpha_bbox": [
+            14,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_bow\\archimago-f-attack_bow-04.png",
+          "sha256": "1d2a7e58222aadc76fe359996436d01729c567dda189c6880eb82e05bac20b8d",
+          "alpha_bbox": [
+            20,
+            91,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_staff\\archimago-f-attack_staff-01.png",
+          "sha256": "a806a5386b92becf63be43a2ed7349d56ec480375277f56dfacae586a6f9808b",
+          "alpha_bbox": [
+            23,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_staff\\archimago-f-attack_staff-02.png",
+          "sha256": "6b04e3fdb9eae763e5b6c34f45356d0e4da34d78bc701ca4482ad01c8afcbc19",
+          "alpha_bbox": [
+            22,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_staff\\archimago-f-attack_staff-03.png",
+          "sha256": "4ecd74f7067c8daea7dd3b31c1192dcf036abee6b4fba31f5ed97b4672d925bd",
+          "alpha_bbox": [
+            20,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_staff\\archimago-f-attack_staff-04.png",
+          "sha256": "9c480acd08c7583c9486a734fa9b1e7fa6cf63e34260dde0cb7fc5c14018e927",
+          "alpha_bbox": [
+            23,
+            90,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_mace\\archimago-f-attack_mace-01.png",
+          "sha256": "ec051d7c60b4b3508b64bf1db6897918dd3a95cc0cfefdcecee19f00a6582bc5",
+          "alpha_bbox": [
+            29,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_mace\\archimago-f-attack_mace-02.png",
+          "sha256": "cde7bf7d8efdc4ffe291868a1401f70477ec9c2379199a04b1e8755f070ee3de",
+          "alpha_bbox": [
+            20,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_mace\\archimago-f-attack_mace-03.png",
+          "sha256": "e3158bafc852c969fee43df6476ff8227d4aa5ca7cf5915af75b6b92a83c50fa",
+          "alpha_bbox": [
+            16,
+            98,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_mace\\archimago-f-attack_mace-04.png",
+          "sha256": "6d2dec4d5608c077527496f0db38875679e583e980adfd7f75878227b6a37966",
+          "alpha_bbox": [
+            15,
+            91,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_book\\archimago-f-attack_book-01.png",
+          "sha256": "1063297a4bc487133da411ad96c6d0dbed868e43a8d30ecf03a89ee7c2f85ab2",
+          "alpha_bbox": [
+            30,
+            91,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_book\\archimago-f-attack_book-02.png",
+          "sha256": "9c723aa8458a0d2756a2cd302d5111b9ab5f9b9dd028dec52c6640a1d83d2c16",
+          "alpha_bbox": [
+            24,
+            91,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_book\\archimago-f-attack_book-03.png",
+          "sha256": "cb0a850256857050a8a6365ff395a31af49febfce45fd0830410d9b7f7f4d271",
+          "alpha_bbox": [
+            20,
+            91,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_book\\archimago-f-attack_book-04.png",
+          "sha256": "0430bbbe26ae20083c795e065762eba5ba3631ee57122524028e752ca40fb83a",
+          "alpha_bbox": [
+            22,
+            91,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_gloves\\archimago-f-attack_gloves-01.png",
+          "sha256": "9df46e529f16e468a8badb8a14e7950c3da1d8200ba2583b73bc9d96d30c54d0",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_gloves\\archimago-f-attack_gloves-02.png",
+          "sha256": "d881a3c085910ffc2829e3b7b567ee75a7fc8ef863871994ce7bdb53d80813f4",
+          "alpha_bbox": [
+            19,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_gloves\\archimago-f-attack_gloves-03.png",
+          "sha256": "2fb28c607941b3c22cacbbc23bca45cee2792d9d4a2f47f1c5e3ef1f0ca8dbf1",
+          "alpha_bbox": [
+            9,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\archimago\\f\\frames\\attack_gloves\\archimago-f-attack_gloves-04.png",
+          "sha256": "3b246d4a739dd90a919fbb18f21c639924c5cdd3b15096ffa5db2748e6cf2e0e",
+          "alpha_bbox": [
+            18,
+            95,
+            99,
+            251
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
