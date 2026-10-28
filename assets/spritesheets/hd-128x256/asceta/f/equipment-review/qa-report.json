@@ -3,232 +3,240 @@
   "classId": "asceta",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield",
+    "attack_sword",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
-      "8375f984fce755f55fd086146bcb4e7115c05b2923545feb8cde02a9b26edaf1",
-      "4efc26fbab04ba2878ec5b72b3bcb8a08012b38c8cc7d72047b68688322a40ab",
-      "b16fee2eae7c64f615c8373bb4c1c8ae0f309b3e3d24b1266eca7fdc85ef06dd",
-      "3ba7de6cf4aba698c12d726c0ad3d655dfe584898419b6afd2c46aa265401c66"
+      "47ba45b7443ffa6e599ed1439c8d116f0b8b9055a196fbb7df5c35d25c1553e1",
+      "2db61501c55e5d784dd3ae8c6e0cbe2d9da2ec3031355d1f7aab82518c28fb8a",
+      "f0fa4e5e0a44fc567fbe5c7c7f853624ad9df1f090722dd7622b4e59c995075b",
+      "fac65e25fdb7f58eed51a906630451b530e087bb485c5240bc1dcfd5ed03a1f0"
+    ],
+    "walk": [
+      "67c74e0d7c8474647d4f60764bf8f9540c2613aa7ec3343e2863c60b1d81ba8c",
+      "840711dea26cd22f076ac68eef217465bec1ebe7c0ffa0fd069b49943d535351",
+      "1824be889a64caa339eeb45d9598f516e0feebf68d7dc3f0d69d4656bee196fd",
+      "035bcb2cf98e4481311e1bdc27e494edc0c4b13f1948d2bdc150dfb474c96b64"
+    ],
+    "hurt": [
+      "2afc675d554eb9e5918835c9e521d41edab685f1b9c46a55af630d061be23db2",
+      "1854920e0aabc4e348d4b9f454df94101401b50c33b92e4dfa2ef9ebd635e5a8",
+      "8ed09d049b90e1b0c6da5d50242b8383beafa044912b7262b07681660ffabf8a",
+      "9096f60a2c839aa72db33547e39efdfab925741ab74b10ec02d511c78856cc2b"
+    ],
+    "use_consumable": [
+      "4425ee447973f02b64e44cc2a872e0d846ddfe62ce9ab04b5f65e7f62b599210",
+      "04f0711abb8ff403d8f4abf6a7ef30bc599820c4c9a862a192a2081fdf7ede4e",
+      "5ca952ce4d439d870ccfbf252a59b3b036155c39c09feb9487289ac1e3ed5711",
+      "5559b4bf4b0e11ed90fa39b7d32b9c56755647e65f8fbed3c54831b97342f35a"
+    ],
+    "dodge": [
+      "426bdd9e35217fb31ea73fcd2afc340b1013079f1afc22da2b798847b44f9a51",
+      "30a4538d07718518c7d30b23638ef069a0612d282c3772a4d3a6d40622554de7",
+      "5b6e41117f4cf01ba4682cf16ba156008eb0894059433ec13fb81223752227ce",
+      "60991b91df72db59577f8f63de06e51901649de36cedaf2e23577810c8778a7a"
+    ],
+    "block_shield": [
+      "192b2b8a7b52eb601812a1eb20d9d8c19dbfbe32c2621ce994d70fe7727ba4b2",
+      "f1a4a41d4daf0692dd88fa15679fc2a79e7de28ceaa03031352201a6a151d5a4",
+      "f89683f5c6425e6bf0487164f03eadf791f50b18d68a660140da1b5ecf0a6bc6",
+      "703435c44c6cccb58e351f42edd62e9aa2e12b6fb4ede17963f99b62004ee5b4"
+    ],
+    "attack_sword": [
+      "5b8d7f8f133d78e0ca1820a0072625653c7e402f655cc3573175269c7535323c",
+      "f12cddb9b4929a3cc6dc8526bcdef14233a30dce6a25a443bca6b9bdddfb8039",
+      "8b083eb1db8ee718c598fa4fdcd1471bdb6d26dfb9a67851ca07d21306d35a39",
+      "c9375002231a02623e7216fb73de36c532a937bbe09a7e62dbc857cd6b474e73"
+    ],
+    "attack_axe": [
+      "5585d7a566b66ed2a1b6c5451e75488ccff3b93ae3202f07a8a10bcc47bee7ac",
+      "dbccb5a87de72974eda982a9b2e1b0592970a1dfd0c237c748f542427ff415bb",
+      "37b79c1427091ccb0177976c081f5aac02b8fd933be290f2c4160a09c0719196",
+      "62191874e3cfb29db194324b3862193a51b22edb97b02f337d32acd9d7669246"
+    ],
+    "attack_spear": [
+      "14244eb2c94f5d4243fadc1631b37b11db1a4cdbf4d043d64f3bce355c5f7b69",
+      "a2f75dd93a978501a3a5cba55846073bae0665cc8f8e522e01645edab0b964f2",
+      "f0e84e32158e09a88ffc33fe8f2d8037f1a89548bb4bef1d7259f0b7962be7b0",
+      "5cf45210f7f1de26bcbf421ebf51f3e92ebdd8eff0988ad4a62d8903e8921037"
+    ],
+    "attack_dagger": [
+      "4af2f06af196434317d5766b27e0d683d93c6d2e173c1aa7f0e75f8b9f523d65",
+      "638ada18317dd77bfaffb9b8370a9251fb24a2e6a514816d61c3342e768f85c9",
+      "05e264a341c77f83dc8068aff8156c3a4b55d2fe2adc61dfae98712aff4001ac",
+      "ade2d48cc00a277c38457baf255b35f6c42323da9bd0f5f456567e375f084e8d"
+    ],
+    "attack_bow": [
+      "6a05f1f419f4311fde53b0e74eb7567f81818de97d36b8b264ce72486f76b060",
+      "77cdf9751bb3965afe0a454d9d9367ae1a4cace8c3c392e816ad51391d62243f",
+      "73f1a5a16250d33ee9ff374bfaac6b9cb7af227cc49c6b4433d0711c37540067",
+      "96a5fee3f6abbee67c589047276e982b8cea68cd11769b3817467eb4c1898042"
+    ],
+    "attack_staff": [
+      "9770bd2d1b43555a1085b5d44f0e4e385fc4955da2d6a34c3eebb0cf08840afe",
+      "3c65fd2b632e3b58c26c756191203eadc7e342993c6a765ed2d7acec819b045c",
+      "ae68106821d3c2c3bdd90f7f2be4c883302625d4585203e20b52f709eaad2e8b",
+      "a376229deaf7681615ece675a78787984b01c173a830c21cc3adac47a286535c"
+    ],
+    "attack_mace": [
+      "17623a56de37a4f18171b1a6d045b6f75c00261d4b24898aa07288edf53c04dd",
+      "79f6c17af713a7df04c518a437514661081669329780d539c65e046b3d83c81e",
+      "99e44139b602980054cdc192fac2122e91211f054b1e7a93765c8527e408f106",
+      "96e95a3dd75ef74be0404ea6dbdb302256c96db7ab0a304ee786053c93d4a3d2"
+    ],
+    "attack_book": [
+      "82b59a65b96c2fe3cee2268e005c80ff5bad8501ad89486cc3b0409fa0e9192e",
+      "11e7f13d9d17b58d3beb86c1d24002c089af36e94d15167a37b87531587a3f00",
+      "a094b1af9fa32b8c446c41c9c24170d0ed85cfe455a1f05c06a94727dc3fbdc8",
+      "0a57ab09a7c5f2b08849f3412184d4d881456d58b1a1f7b222ec82f9530c8b97"
+    ],
+    "attack_gloves": [
+      "1015a642f7627267bf4cf2a618657741f40e12b0b14276c2563c58b32600ef79",
+      "9eba29fe7fdc6cca7c3e164865614d91c3329b4c9bd0ffb6223d93dd45374623",
+      "5121fd5d48be71b7d772183430d5c06654fa1893aa8517309c5cdaa115d97664",
+      "a6199053e904d9e392f8b3d574d8722bfa2f54e832a4722f9d4d5917c154c0aa"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 682,
   "warnings": [
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "arco_cazador",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "arco_cazador",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "arco_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "arco_madera",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "grimorio_eclipse",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "grimorio_eclipse",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "guantes_lucha",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "guantes_lucha",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "libro_aprendiz",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "libro_aprendiz",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "punos_lobo",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "punos_lobo",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "escudo_guardian",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "escudo_guardian",
       "point": [
-        89,
+        88,
         184
       ]
     },
     {
-      "action": "idle",
-      "frame": 2,
-      "item": "escudo_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
+      "action": "hurt",
       "frame": 4,
       "item": "escudo_madera",
       "point": [
-        89,
+        88,
         184
+      ]
+    },
+    {
+      "action": "attack_axe",
+      "frame": 4,
+      "item": "hacha_berserker",
+      "point": [
+        82,
+        157
+      ]
+    },
+    {
+      "action": "attack_axe",
+      "frame": 4,
+      "item": "hacha_orca",
+      "point": [
+        82,
+        157
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 2,
+      "item": "guantes_lucha",
+      "point": [
+        86,
+        144
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 4,
+      "item": "guantes_lucha",
+      "point": [
+        78,
+        145
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 2,
+      "item": "punos_lobo",
+      "point": [
+        86,
+        144
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 4,
+      "item": "punos_lobo",
+      "point": [
+        78,
+        145
       ]
     }
   ],
