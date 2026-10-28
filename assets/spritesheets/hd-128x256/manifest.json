@@ -141030,7 +141030,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -141039,7 +141039,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -141533,7 +141534,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c373fb6d07a26d9acec8392ff3238e9feceb5c0fdc41259481f94bd277643a14",
+                "bytes": 25247,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  92,
+                  118,
+                  249
+                ],
+                "pixelSha256": "1478081013c189c6383f5ab13248ed7148b49857d47c307a088c513a258c8ad5"
+              },
+              "02": {
+                "sha256": "7d17f32557b1958f112a498366c24c07947da3a148696b120459310c2e2e0f15",
+                "bytes": 25258,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  115,
+                  250
+                ],
+                "pixelSha256": "b010dfef6848af0ca0b6a52653fb38c2b0e8912421758b7871f6d8efae60d3aa"
+              },
+              "03": {
+                "sha256": "01a6b967b8f2c072d34e238113d0467a76356a9d81c2e9a36fe85ccc4e81edc1",
+                "bytes": 24292,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  103,
+                  106,
+                  250
+                ],
+                "pixelSha256": "fbb5048c26434e1923ae997664496fcbe9f8f3bd24953f3608fb3e27511afd06"
+              },
+              "04": {
+                "sha256": "24c6efbd531736979b4575c0d2c285b185c68317b5d62033fc1264a23b8d0a9e",
+                "bytes": 25116,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  92,
+                  100,
+                  249
+                ],
+                "pixelSha256": "1313612a67359611ca51c60dfaf6d11029fa33e5be7b7fd4f49bf7624c721ea7"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -141956,6 +142024,44 @@
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "96f03d7b648c67b97936490a57ff3b940492efc749767e0e36f54e615e63b55a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Animate EXACT approved female Paladin costume, GOLD SUNBURST breastplate, sapphire THREE-PANEL short tabard with gold FLEUR CENTER panel, round BLUE-GEM belt clasp, TWO BLUE knee gems, gold laurel circlet, full WHITE/GOLD PLATED arms through wrist cuffs, black fingerless gloves with WHITE knuckle plates. No novice wraps, cream shirt, pouches or bare forearms.  Production RPG body sprite strip for Paladín FEMALE, Tier 3, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved reference's white/gold full plated arms ending at plate cuffs over black fingerless gloves, no bare forearms. Keep the GOLD SUNBURST breastplate, SAPPHIRE THREE-PANEL tabard with small gold fleur motif on CENTER panel, round blue-gem gold belt clasp, TWO BLUE ENAMEL knee gems and close gold-laurel forehead circlet identical in all four figures. Adult experienced feminine Paladín with honey-blond hair in braided crown with low tucked ponytail, attentive determined eyes, canonical female head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+            "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+            "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+            "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -142069,6 +142175,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
