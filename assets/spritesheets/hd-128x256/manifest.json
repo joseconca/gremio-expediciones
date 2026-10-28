@@ -158223,7 +158223,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 48,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -158237,7 +158237,8 @@
           "attack_spear",
           "attack_dagger",
           "attack_bow",
-          "attack_staff"
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -159081,7 +159082,74 @@
             "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4831de1e2978803ce91b4d69cc4577e630a13e0188998f93e4bd2b91b37f0d04",
+                "bytes": 23550,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  105,
+                  247
+                ],
+                "pixelSha256": "9f871762c2b9f78dc96a6a6d110a0580b80824916dd4a966cf56434827c2f7de"
+              },
+              "02": {
+                "sha256": "9850269917987a53194cc13378b650bc5b545acd8802b3272cec8bb4fcc9c367",
+                "bytes": 25165,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  32,
+                  92,
+                  116,
+                  247
+                ],
+                "pixelSha256": "6760a1a69cc753787c45597edd3a96079cd95f11a8d01c3de09a1d5e8dcb4a9f"
+              },
+              "03": {
+                "sha256": "1ce49f89658c4a6d62fbd0b600ef0264e79090a307adea8f4040571d6a271cc8",
+                "bytes": 22397,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  104,
+                  113,
+                  247
+                ],
+                "pixelSha256": "31fa5235ae496b1bf1569efcede9c732708f633aad1191fe0b062758ff69bd75"
+              },
+              "04": {
+                "sha256": "549b0014efb67ce895f70de3b4e98be8e900b6d02c72dc917038bfabbc315947",
+                "bytes": 23492,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  92,
+                  111,
+                  247
+                ],
+                "pixelSha256": "0726ab0a420668b8fdc9fd7c24a60078910ce7f6f3311dc415040d63ad39700f"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -159559,6 +159627,44 @@
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "a99ec81509164f6a658d7fcafb0dff751ef8ca221640c6688eb42fcc4d78c2e1",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            622,
+            21,
+            1014,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Oráculo MALE, Tier 3, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+            "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+            "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+            "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -159752,6 +159858,22 @@
         },
         "attack_staff/04": {
           "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
           "frame": 4
         }
       },
