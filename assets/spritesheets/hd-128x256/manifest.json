@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "ninja-f",
+  "nextVariant": "alquimista-m",
   "classes": [
     {
       "id": "novato",
@@ -254,7 +254,7 @@
       "name": "Ninja",
       "tier": 2.5,
       "order": 28,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "alquimista",
@@ -121040,7 +121040,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/ninja/m/ninja-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/ninja/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -121149,40 +121149,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "a671a190f87be47e2ec28d78cd3ceadfcfd08540618ae5a8ff754593d0493605",
-                "bytes": 22916,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  12,
-                  92,
-                  114,
-                  248
-                ],
-                "pixelSha256": "5f11ec66308bc75fb19f4703a6b05292629447c95b8a4a1a7187b6260b375a5d"
-              },
-              "02": {
-                "sha256": "470a3a252259211f8a14a53bfefa9f1eaa54b0803589fe05dc095f5727536d88",
-                "bytes": 21751,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  13,
-                  91,
-                  110,
-                  248
-                ],
-                "pixelSha256": "641441ceb52eaf1674a7cd6c8fba45b79a420dcb6a1740e75816bda20965328d"
-              },
-              "03": {
-                "sha256": "4b41766b1ecec8e82ea78cf3db43c327429e7401a72b743d5882b37ae4c78d1c",
-                "bytes": 22779,
+                "sha256": "71d5a7ae303e746f936cd962439456eeb2bf2a22139e53df8cc93e52f771029a",
+                "bytes": 23130,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -121191,26 +121159,58 @@
                 "bbox": [
                   11,
                   91,
-                  116,
+                  114,
                   248
                 ],
-                "pixelSha256": "29868e45b7229d6874808dd7df85c73d286d5739001fec42eaf8c94527a2ff28"
+                "pixelSha256": "fddcdfe2c98984ab96a335bb1d029de3943b5e79526abcd489e72196a593a8c7"
               },
-              "04": {
-                "sha256": "2d807e66668c38cf3d59386f8c87f15cf35243289d4e69a880c393ef85a402f5",
-                "bytes": 21891,
+              "02": {
+                "sha256": "067a9c99d067172e7b63dc53483d35c2aa25e05125c99075faa494cf587fc212",
+                "bytes": 22986,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  92,
-                  108,
+                  12,
+                  91,
+                  110,
                   248
                 ],
-                "pixelSha256": "553eba1e171ec7c44c84239fe2a2a1a6924f602de4dc981bf757783bb1b02422"
+                "pixelSha256": "fdee674f1b5883bc68c60b814cc75c20fe24d30125a96d8cc201d6621965c088"
+              },
+              "03": {
+                "sha256": "df0a0fcd04e9005283875bc7313efb050fb6d7569a1fd51690ffe6c2c0c00d56",
+                "bytes": 22729,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  91,
+                  115,
+                  248
+                ],
+                "pixelSha256": "77876cb02083bb811c7e43e105e06eacc793796f26936603b8094decf5717122"
+              },
+              "04": {
+                "sha256": "43a0f82b054444fa5a40e24ad1f1aa9c3562ede2fff57d3376cb76605d9b52b6",
+                "bytes": 21950,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  91,
+                  107,
+                  248
+                ],
+                "pixelSha256": "286f43d335b281ff7f9a7317b011290e976cabdc0d79e1874a6be511cefd700b"
               }
             },
             "distinctFrames": 4
@@ -122164,10 +122164,11 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "f7f46f06bbd888c0a862eb6ae1d82551b123c34e548408905e07b0d2fe8e78ba",
+          "sourceSha256": "7efaf48ce78e38d1215d80440bcd3b8368fb5e1a57acdb5531bd74b2b62b7531",
           "sourceDimensions": [
             2172,
             724
@@ -122192,9 +122193,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja MALE, Tier 2.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Single small costume repair to the supplied four-figure NINJA walking strip. ONLY the SECOND FIGURE FROM THE LEFT is still missing the large faceted SILVER DIAMOND on the CENTER of the UPPER PLUM SHIN FLAP of his FRONT planted leg (the leg to viewer RIGHT of that second body). Add that missing large diamond just below the trouser knee and ABOVE the three horizontal dark shin bands, exactly matching the upper-shin diamond on the other seven visible shin flaps and the close-up in Image2. The second figure front upper plum flap is currently plain: this is the only change. Keep existing smaller silver fasteners below. ALL other pixels, all four body poses, exact hands/fingers, heads, costume colors, faces, anatomy, boots and coordinates stay unchanged as closely as possible. Do not move or resize any figure. Original transparent background and four-body horizontal strip/canvas dimensions preserved. No extra objects, light, shadow, text or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -122202,7 +122203,216 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "2d3f9f33cfd936dbcfe3e1325fd0bc7a1d7498d97ed43be8528c18156463af69",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "2d3f9f33cfd936dbcfe3e1325fd0bc7a1d7498d97ed43be8528c18156463af69",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "2d3f9f33cfd936dbcfe3e1325fd0bc7a1d7498d97ed43be8528c18156463af69",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "f7f46f06bbd888c0a862eb6ae1d82551b123c34e548408905e07b0d2fe8e78ba",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja MALE, Tier 2.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "c416089b2d5f0063deb6fcd6614e5a3cf3c6a91c718eb9ee8eca6b5bd348e950",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise COSTUME CONTINUITY correction ONLY to the FOUR NINJA MALE walking figures of Image1. Image2 is the approved idle clothing reference. In Image1 the lower-leg plum wraps incorrectly lost their flat SILVER DIAMOND insignia and gained ordinary rectangular boot buckles. Replace ONLY that lower-leg clothing detail: copy Image2's plum shin wraps and centered flat silver diamond stud on the upper shin flap, with small angular silver wrap fasteners beneath, on BOTH boots of each figure wherever the front is visible. Rotating or partly hidden legs naturally show the reverse side; do not paste the same frontal ornament onto backs. Remove rectangular novice buckles. Keep original walking leg/boot orientation, toe outlines, boot size, sole shape, anatomy and feet positions EXACTLY; only correct surface costume decoration. Keep everything above knees byte-faithfully unchanged as possible: EXACT same face, hair, forehead plate, three chest badges, shoulder seams, sleeves, forearm guards, wrist/finger geometry, waistband, sash knot and expressions. FOUR full bodies in ONE horizontal row, original canvas dimensions/quarter placement and proportions, true transparent background, same crisp painted anime RPG sprite finish. No additional equipment/effects/shadows/text, no resizing, moving, centering or pose reinterpretation.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "2d3f9f33cfd936dbcfe3e1325fd0bc7a1d7498d97ed43be8528c18156463af69",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/m/source/walk-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Correct one missing NINJA COSTUME DETAIL on the four walking figures in Image1. Image2 shows the approved outfit, and Image3 is a close-up of its shin decoration. On the CENTER of each large UPPER PLUM SHIN FLAP, directly BELOW the KNEE and ABOVE all horizontal wrapping bands, add the same prominent FACETED SILVER DIAMOND stud visible in Image3. This upper diamond is distinct from the smaller silver fastener low on the bands. Keep both. The large plain plum upper flaps in Image1 are missing their diamond: correct ALL FOUR figures, both left and right shin fronts wherever visible. Do not put the diamond on the toes or lower ankle bands. No ordinary rectangular buckles. These are flat sewn-on clothing ornaments, not weapons or glowing effects. Preserve Image1 absolutely everywhere else: four exact walking poses, boot outlines, legs, body, hands/fingers, face, hair, forehead plate, three chest diamonds, sash and forearm guards. Do NOT move, resize, rotate or recenter any figure or limb. Keep full original transparent 4-figure horizontal strip, same dimensions, same crisp painted anime RPG rendering. Only add the missing upper-shin silver diamonds from the close-up reference. No text, background, shadow or extra items.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "27e2d264a12a3b2b249fcacad96ce7893b3bcfc7ebb196e6c9e993529069f595",
@@ -122240,7 +122450,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "726948ad9ecbae03c32dd700cb42be2042ec093f00fffb4dfc9be9fdcd2d0fd4",
@@ -122278,7 +122489,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "98f6b3f9f424dda9e8be7e56dfb2ab9948a73969b000d852ff79e75aaf7a8bcd",
@@ -122322,7 +122534,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "5d517fbce89f6214c16e41ae8851203fc20994fa605aa856155cd9c068059b6f",
@@ -122366,7 +122579,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "b7f13b36e460686a688854a89b8eccdaa5ea7ae51adeac6507f830df0662a5d4",
@@ -122404,7 +122618,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "cde74f8003e205c5e10bb47dfd533fe1d7cf18d93376dd7905e5cc8c7ffab3fc",
@@ -122442,7 +122657,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "fe8d686c3e81a736636662c17559035f094f18b3d5ced4eb2ebb0dc4e2e7bce1",
@@ -122480,7 +122696,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "1c1c881e0e2f6c6954b4e4f029232286f8a391c61315dccc88d01527056a3a66",
@@ -122518,7 +122735,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "f5360613357dfdcc3da4558fc7a9859ef38cbf5e04e6b12a9a2c914b7e0cc761",
@@ -122556,7 +122774,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "8ecab7cfba0f1bd0d870ca14228797c106b9a9300373b7ac1e36b6a09c94aae1",
@@ -122594,7 +122813,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "1a6230b8f595e928ba794499aa4f28ef70dd821ce73c471328b48c87aebdd9aa",
@@ -122632,7 +122852,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "dd7d538b64384f72b8994d4ceb1e7a0ece0da4b3eaa302b37968cb6c4b33ca9f",
@@ -122670,7 +122891,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "719d5f1794c2a2d7c2dcda7b4ef1c7b1be191367558372ae1e789d2cef52a773",
@@ -122708,7 +122930,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -122729,7 +122952,7 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
@@ -122737,11 +122960,11 @@
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -122983,6 +123206,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "ninja",
+        "name": "Ninja",
+        "tier": 2.5,
+        "costume": "Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic.",
+        "maleIdentity": "Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven.",
+        "femaleIdentity": "Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes.",
+        "unique": "Ink/plum wrap tailoring, silver rhythm diamonds and flat forehead diamond plate.",
+        "advancement": "Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/ninja/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "24b09b07a19d997c9b6e7fb966858e15a65176019ac3bb95908078be87b86962",
+            "f0bd4b2e0b843a5ee39115dd1fc1741e4486c0a12190c52c0861f0ca3f2503c4",
+            "d0d838766429b47772578d74a18199e162198493da86ac080445415cd12a4e08",
+            "a56d1e444bdcc30698547ca3b5abdd57224db788b2b5e21ccf5911c4ef8fcce0"
+          ],
+          "walk": [
+            "71d5a7ae303e746f936cd962439456eeb2bf2a22139e53df8cc93e52f771029a",
+            "067a9c99d067172e7b63dc53483d35c2aa25e05125c99075faa494cf587fc212",
+            "df0a0fcd04e9005283875bc7313efb050fb6d7569a1fd51690ffe6c2c0c00d56",
+            "43a0f82b054444fa5a40e24ad1f1aa9c3562ede2fff57d3376cb76605d9b52b6"
+          ],
+          "hurt": [
+            "9d93b95e163cce1ed8b11f231cd0fbc7b354b23cf7ef58390fc95b1ee31a2df2",
+            "b44b3693af49c4aa224c0816e4871e45c48817716809428a4e1cb7f5d5363acb",
+            "7c5a72176cf5696fd74dd6c3d8fafcc6df0ab2bd5ff0d7a6fbdb9afb2953cc47",
+            "9438595dccbfc1793e457954225d4b60a374e7f5299201abf005b14a37b0d732"
+          ],
+          "use_consumable": [
+            "1bf63a2b9574fec7dadfaa6933613a71b7bebf8368a63ea060b580dfac7d29a1",
+            "ae80f19914d720dbd3cc17a96df5cb0e21b6de8a721c567854d929efe64dae35",
+            "2552b9d43c277d95d46cd375a2e349e79f714ce81ecd5858f2638f57bb106c11",
+            "7b073c8f0b22d17feaf6d3b8c23e40ff1bc935ca57a2d28e6ebfd69c8264f4d5"
+          ],
+          "dodge": [
+            "06c00fb275af1049f2c02c4b1ee5e620c66392cb6d108c1d7b436b0735b33c3e",
+            "1423fe24f902199f83464d711db3d9ee1d6ea7202b635e0c1008569cbdcbab3c",
+            "0f9700032376f1444c4197bdef9d303827c096d4874cfa336bed536b2e748b78",
+            "7ede8913c495ab3d17dd7cc4f1b05bf67b5a78b4802cf5c3470ba7dd86358cde"
+          ],
+          "block_shield": [
+            "d4ff568e95979d1ec50cafe7fb17d658629923745b0c78d6ace60f775ebddb59",
+            "1edc34053f0414b209067a6cdf13267d724fb6afee4460e0c74ecff23bf9432f",
+            "88522c30913472b03de6735faccb4e9e4f50653eb31f2f89121ec0c82fcbacc1",
+            "e976f4805e4a0c592b580ceefc864169af8711b4dcdb418f3711c7fc30b67267"
+          ],
+          "attack_sword": [
+            "ee69e451dd5147b9a59b1a1401883c8cef2aeb978e1d53c904a83c9a0a1c5a47",
+            "29ac680b5599962c194abe86f86f7f0972a5a6457f7339a313373aa7e74e2307",
+            "5636fc0f06816ff372e6fc615deb456dcacce81d8f49de1a963076017951349a",
+            "2a6484ca61c4dcc0449cf5941fa827ee4a1b9638fd50995247e79aece6f51027"
+          ],
+          "attack_axe": [
+            "83cff9c9dc96cb6a3f4a5974d730b17d631bc500a34909f1e7209127f410e176",
+            "3c4784d5fa951190fbb4d6e1d2407159c9315e8017ee6ec6f8a98e9937ba457f",
+            "c3bb37479b56b479661e784579582406cc6c0fea4f3933fd613d0d3e0beaf931",
+            "8d967d9ad98fa465940787b3c0c4c644bad81a8019ccce3b640c7c4e53a2a378"
+          ],
+          "attack_spear": [
+            "0f545d08882972e224619744dd2243a5242fed3acd23316492de11acfdf2acce",
+            "65f296765ee39f92e85eba1cdbaea261da8a85f14579f277a7515f6b28b5c888",
+            "9e6529dcc16be9f87de19a6fa5bf90c13f1f290e67ecfcfba1d854cec0cf07e1",
+            "a07766a274fb09153794d3fa9aff8adf514eef233aa63abdf51e1aeb9373da04"
+          ],
+          "attack_dagger": [
+            "2983710722669857fc62f5229aa116046699d73d3f782520644040371c03532a",
+            "a89f2345326974316638d28bc5a8003b14de022d06956e74a03963879f189e0f",
+            "544b71e226bc93cdfc8e8e7606d99f15994ba88e02228f012945115317dac456",
+            "bd3cdc4f16029cd00515b6345dd72f1ceb6ca7b0b8b07dc38bc13f3b3f52f3de"
+          ],
+          "attack_bow": [
+            "1f35cf7d0311b424f39bf748f301adb516a3283837efeb6587300cfbbf9e6c03",
+            "9b0c10e970001ec44863e2f7f37a912231fd0d50a0699db2f0ba545f4b902081",
+            "39a3a250b26d032a415e4fdd26259ea9eb83fbd1f0f4a5c077ffdd9b5309eeb7",
+            "f1b434b2ed2fdc406ed13155c54e06d57db5c9de01de1451532e2128b53474c7"
+          ],
+          "attack_staff": [
+            "50937bb39d768b505a00c175b800de817bcec278d929b2a848b0f91f2b81f92b",
+            "6e7600f2d177efa49654f99345ecc7c12bc043944bbd163ddbfb61d28976b847",
+            "b2c71120c4ae2e8f2e7e8d23c95df8eff7803d4bd79647620f09e9fe90dcbd45",
+            "80c640bba704ed219638c41ebf24d3f591b33c8eb4c1d222ad6685ebe09294dc"
+          ],
+          "attack_mace": [
+            "3f8bc4f0229af18229b2ab7b8de9eee75620bc11981cebb5335656426d0239fa",
+            "e5600c2300ea0b60790b2809109446dac358336fafe4326c55eb71bee6320444",
+            "80f697b3845e274d948cb2465a7bf2d1e3cf65852f13d5ca0b0b5cb0267b8d68",
+            "d861baec61dc1dbf8ad814dfdf55653b40aa279cc2050e436d5dc948f89247f3"
+          ],
+          "attack_book": [
+            "a17a5d95d2cf344746291ef45f56777fbb44537f9746ba3605c0b5ef0b812ade",
+            "70de505848b46ce2c00842acebc3a365f0177979d10e4e99d8660dcb13b7a40c",
+            "ff82cd45d348c1755b7f3ef05800c661cd7a6be2714c6b7d45843cb7821accf3",
+            "d483f2ec8efaffb75b82bcdcd3dc2059ebb2bbe0a854eca72bdb6c2e093214ab"
+          ],
+          "attack_gloves": [
+            "c015c1f062d79b6bb06f7abbf4c162e0483e6082d89d7db18554adc24dbd0919",
+            "bb4c7196e0462457b608b5dc2da43673d0258cc04dfed7e0418167c053477a0e",
+            "b374bf7fb05c6f5938977768dba53a0b4aa3fa5a6058db69d64bf293b5938da9",
+            "a783b9b1ac4ac20ca58b8ebe93d89589bcef181ed3e713fc8961b572052fa029"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -122995,7 +123333,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/ninja/f/ninja-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/ninja/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -123104,8 +123442,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "be81ec6db25fbffffbb7cf2f9f5ebcbfa2ce5e9b8ed769b0ad44070719c53b16",
-                "bytes": 24099,
+                "sha256": "e3ebee3f8e45e518ffc1aa2cb54f7a32234d52dfc6f491a417f10097e0595374",
+                "bytes": 24141,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -123114,10 +123452,10 @@
                 "bbox": [
                   11,
                   89,
-                  106,
-                  246
+                  105,
+                  247
                 ],
-                "pixelSha256": "7d7e0a96709c13c842216becec30012aab5c3b6a44849268939704af34dd5dac"
+                "pixelSha256": "d2fb085166fd0354a9e886fe16a681391870ab9748e54981c43a7019c40aa76f"
               },
               "02": {
                 "sha256": "923d3ceab856a1fe0b3a13e78399bce92513e553d09461448e7097aed6e3a143",
@@ -124119,10 +124457,11 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "9513451578627a24def78fd9b1e872b278a97510d2e178eb200fa9f3eb3609eb",
+          "sourceSha256": "6f20ad51020c12c954105b69bbef4380a684236509173c044443138e563f78c2",
           "sourceDimensions": [
             2169,
             725
@@ -124147,9 +124486,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja FEMALE, Tier 2.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Single small costume repair to the supplied four-figure FEMALE NINJA walking strip. ONLY the FIRST FIGURE FROM THE LEFT is missing the prominent faceted SILVER DIAMOND on the CENTER of the UPPER PLUM SHIN FLAP of her FRONT planted leg (the leg on viewer RIGHT of her body). Add that missing large diamond on that plain plum flap directly BELOW the trouser knee and ABOVE all horizontal shin bands, matching the existing upper-shin diamonds on the other figures and approved costume in Image2. Keep the existing small lower silver wrap fasteners. This is the only change: all FOUR walking body poses, exact hands/fingers/grips, heads, hair, expressions, clothing colors and other insignia, anatomy, legs/boots outlines and coordinates must stay unchanged as closely as possible. Do not move, resize, rotate or recenter any figure or limb. Keep same original full canvas dimensions and transparent background, FOUR full bodies in one horizontal row. Same crisp painted anime RPG sprite finish. No extra objects, light, shadow, text or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -124157,7 +124496,140 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "9513451578627a24def78fd9b1e872b278a97510d2e178eb200fa9f3eb3609eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "9513451578627a24def78fd9b1e872b278a97510d2e178eb200fa9f3eb3609eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "9513451578627a24def78fd9b1e872b278a97510d2e178eb200fa9f3eb3609eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "9513451578627a24def78fd9b1e872b278a97510d2e178eb200fa9f3eb3609eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja FEMALE, Tier 2.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "d659f1988870f93ce19336d2839c4d331ef3ce87081dc4182982dddee2e2b978",
@@ -124195,7 +124667,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "dd5fe465ce522a5ce20f76df6c2b1bfc6982a44a31c3dcd48da097ccffeadadb",
@@ -124233,7 +124706,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "e9a884df4face9a212ac1130d2c9e0d4f5ff521974f983a035ccabf404d7ffb5",
@@ -124271,7 +124745,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "aca0cf59aebca0b3bcf99e3560dab2686b457f18a9c299dac0772311a1b0dd13",
@@ -124309,7 +124784,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "a0a2e0f5aac7cbea3d29394651121b74bf0e7648e2224b31604b83da341de524",
@@ -124347,7 +124823,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "b50e961d74b38101c624eeb731aa1c9c6fec490ca13c52eedb26e87e5476cf44",
@@ -124385,7 +124862,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "9c9c4fc3c89cfa00ff2306a9f6ae4a7dce4e48b5cdfdc568713029a77086ddaa",
@@ -124423,7 +124901,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a4d694552fb8bf019be453573935cb823ced87cc0ea8e2c13ef41dce76f8393f",
@@ -124461,7 +124940,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "8d617db660c03e498c229bffa0f0980a3988cb424a41fa7c5a687d0f8e559415",
@@ -124499,7 +124979,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "00d9f2f3093996fb72cf3ad38ccb171217be9798fd416b330b7393927b422a49",
@@ -124537,7 +125018,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "0143211988b56f25a2cb01f1d964ea4b66875644b95719d205e37e3548b30826",
@@ -124575,7 +125057,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "74f176510f6c9f20401a2bee705ee30188192bf5749ef5c850467e38ab75dccf",
@@ -124613,7 +125096,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "a6774a716fc057fe1253ef2ce49330deb0b30a8f8afcc38e33368acd56b9175e",
@@ -124651,7 +125135,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -124676,15 +125161,15 @@
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -124926,6 +125411,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "ninja",
+        "name": "Ninja",
+        "tier": 2.5,
+        "costume": "Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic.",
+        "maleIdentity": "Adult watchful masculine shinobi with blue-black compact spiky crop, gray-violet eyes, clean-shaven.",
+        "femaleIdentity": "Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes.",
+        "unique": "Ink/plum wrap tailoring, silver rhythm diamonds and flat forehead diamond plate.",
+        "advancement": "Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/ninja/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "b2df02ee4b1b1b01214163de01576a7012226edd4eac167107a74f7e8af2407b",
+            "3a1b99307f327200f42c39f9684ac251b822f3d6fadd524b3edac0afd727d374",
+            "914f5fee823d25d0e65ebaf01b50bfc9dea1bd89e2d79ff7c3ddb832d4c56ec9",
+            "00c0a041d7547943562213765db09f67b36b3a9ad6973343eb83e2c0d82007c7"
+          ],
+          "walk": [
+            "e3ebee3f8e45e518ffc1aa2cb54f7a32234d52dfc6f491a417f10097e0595374",
+            "923d3ceab856a1fe0b3a13e78399bce92513e553d09461448e7097aed6e3a143",
+            "fc5c7dd0871554843ce6743cc9e68d7107719ed34d112e71309388b7981ef97d",
+            "6cf84e08cb34377f211a79c092413a2d20e17c1c129415996bae7bb095fc2968"
+          ],
+          "hurt": [
+            "d0015cf18b74ff4e63abf858617d53d267923dbbf07540318e952d74a32241a3",
+            "9184a2a5ab5cde06580986c363dcaeaeacfabeb293b6d99e1c5f96df37c8b657",
+            "eb226201703acca050805d360527979e3b23eb61a9f8e3a7c14f6c6ecda7ab20",
+            "4de91c8c3b40a5d1262c6d4572c80341559400b7f70008dfaf9398ece2765507"
+          ],
+          "use_consumable": [
+            "2e5d6fb30f3f003549851919c60581f122b5251f2b5bb9e0809c2b75ad4e6263",
+            "86dec4d8e340bde0e208b6e2db15a04f92f1ed8b215aa737513ab471df0f431d",
+            "d843862889d502004d91345f00e7ea640ba24dc117443806022282897c2ed8bd",
+            "ea4eb99b3393631b70dc46901870b67a4f98988c4e31af732940fd0baf619b0a"
+          ],
+          "dodge": [
+            "dd34f5a21ac4a24ca47d6d4772b22e5ead8ef04e507989700da61b78b3b82dcc",
+            "a36aa86412022965d84ba79f33a22d7cd88bb912cc891fe99384f3e450b68128",
+            "751d2d2ad8be2455299da0742e7d43ac16ba695da2c418c6af4eff9150de5c77",
+            "9f4318efe801332cbc28825b940da75e0222476e91d35dad5dcb537056df0879"
+          ],
+          "block_shield": [
+            "188c19d9d03ddd1c59fc1fc96a4f2610a03126cf5d9fa60e37217718f98659be",
+            "834c585e1415e3adfae23d083c7e6ac59c26d851250b2c125f30f087c509fcaf",
+            "2f84436378cbc67fa0cbc5564bc61f68ad11670d769ee795bfcf774136c5746e",
+            "d83bd7a67b818400f38541ccdcef7b90a4f0cb531aab6fdd0a61470e9eb41f9f"
+          ],
+          "attack_sword": [
+            "1d365822331dca13023722a543e60669895852122467ec3bb5b7a28f5474dba4",
+            "c5dd4f2e2eb21022139837d08d19567037f63e7b55f9a66a4aad0f9acb0e948e",
+            "a0e5c5fec6f4858157d57ec8b3c154f5ca96c628404ce89f5a63a2a04e9878ea",
+            "ee6b8f327aea5b0be5ab6b6d64692df3eb3f1c03ca6cc0b2dc78a8babe8e1d4c"
+          ],
+          "attack_axe": [
+            "360a71a1a1114eedd4c2779c76f8852e591b7676ecf4394ab71b54498076a71a",
+            "ef0dc2c643ffc31de5d626f2e61746a5bc9a6b829660304700f672821b996eef",
+            "62403d37f38b6566e0e0c4aca4e21db6afb9d55cc98a09007dc8bcaae13cc0ed",
+            "10cd61a22c6b5829a3825d8abdb61a8db9054bfe5571935d692a7edbe2978e2e"
+          ],
+          "attack_spear": [
+            "2b4c016ecf2fa0c41651bfd7749b5d67f9e9dca403091d48ddb730c9d3fa5218",
+            "fe03fa357aae86714015014deba92732d36f7c42f5142b64b27562a7fffbce4c",
+            "d51a9e056bdad418ecf93a9fdd913dd321803c2b60fa92299238aff6b23b7bf9",
+            "1851b020aaccc9410274f293d2f63a1f3b29b915bd35a3938e5b0acc8bb21e13"
+          ],
+          "attack_dagger": [
+            "d5baf7994eeb7fbfe56dcf1118541457a3bc4e960d59413a193afaf961920d29",
+            "05a4d4b2d46fef436a3b06f6c2d7e32ae33759b3c24056f6b87e495d6cbc8cc8",
+            "9c5bb94dae181fc3dc40984fc4f76b68d5f94f6f5c577cc30b23d329a6a361eb",
+            "60c576513d63efe48a241293a3a9c6df0ea9f1307b631189599781ca36ede721"
+          ],
+          "attack_bow": [
+            "cc28241495b33a83f963e30160f6f0308a397a8d5b5d36cea6c66af3689b6259",
+            "365a025d8629f509d670bbaaeff9ccf24f5d1a466521012cc5c8b6a98af27191",
+            "f9bfed8b503a47e867baf36306b3a1340ae82270c28edc0bc6c5c91623a4275d",
+            "9f32fb5bc525c74cbc599e027cf512783a43d272107fd3093b68ec817af95780"
+          ],
+          "attack_staff": [
+            "972e444f142f37bc3686c4596df75218f76a8ac17ab650ce9ca559917eb94685",
+            "52e157db7420df6e3579dedddaa7037f98fcb6e3730aa4a293897eecc9976512",
+            "a2f3d352159267058622ff63e6035651da9f5a8d53be6f446367f078ca504010",
+            "cc52de63152040607f1000943ab8defb966eca4a2b07fce6c44a3521f31a7be2"
+          ],
+          "attack_mace": [
+            "1d159764b858458e2046b011a9afb8e7a9cb68527b51075def4fbb4260ae7831",
+            "98217dbb5d8595b22fb27dfdd218d288c73a3ee8bc982feef020ab7e82e0b5fc",
+            "3eff0eb01d335b1babef9824ea32f864a8df107a82156778bed11d185fb74035",
+            "a81d7ff95f9649fa58d8de13e72b8478c5a6f002b9eb488ca4df12500cfae526"
+          ],
+          "attack_book": [
+            "2df24124743e004ad01ba060e4f6ddcf06421fec729203f0749d0ea860f151c2",
+            "9aecbf49ef661fe53c22e29bd3b4b0cdb1063716d5c22d447b7a82a8b2c7ce14",
+            "8d961c8e299a5743fcf2163b7ca037ac5da5489c597c366e60e3933bb50fe4e7",
+            "a8219394dd0eef629b9c7fed27d860773208bb335ed4478114d1aa2ce1b65f80"
+          ],
+          "attack_gloves": [
+            "b73f2d81a04cb54664c5933964500eac1f2640fd94f98a7f010dfac291f238a0",
+            "89b43fae29caf8f0d440c0c1a08b20db2cc83a5b5cf2828bab0f48a89a39c692",
+            "ce19fc2ce33e9f7f3c75336351b3ec8c343a39067d2efe705b7ba55f5cb80146",
+            "1fc6b66242f01cdf9bcfb0af33f1551f9813bbe8fe2fc4f18d6af1431176b414"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -130172,7 +130772,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T00:23:33.064111+00:00",
+  "classId": "ninja",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\ninja\\m\\ninja-m-sheet.png",
+  "sheetSha256": "5ae34a18b45f0ccb88618e2fcd23697e4b4cb38f2bb7f72748d771956a173098",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\idle\\ninja-m-idle-01.png",
+          "sha256": "24b09b07a19d997c9b6e7fb966858e15a65176019ac3bb95908078be87b86962",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\idle\\ninja-m-idle-02.png",
+          "sha256": "f0bd4b2e0b843a5ee39115dd1fc1741e4486c0a12190c52c0861f0ca3f2503c4",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\idle\\ninja-m-idle-03.png",
+          "sha256": "d0d838766429b47772578d74a18199e162198493da86ac080445415cd12a4e08",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\idle\\ninja-m-idle-04.png",
+          "sha256": "a56d1e444bdcc30698547ca3b5abdd57224db788b2b5e21ccf5911c4ef8fcce0",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\walk\\ninja-m-walk-01.png",
+          "sha256": "71d5a7ae303e746f936cd962439456eeb2bf2a22139e53df8cc93e52f771029a",
+          "alpha_bbox": [
+            11,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\walk\\ninja-m-walk-02.png",
+          "sha256": "067a9c99d067172e7b63dc53483d35c2aa25e05125c99075faa494cf587fc212",
+          "alpha_bbox": [
+            12,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\walk\\ninja-m-walk-03.png",
+          "sha256": "df0a0fcd04e9005283875bc7313efb050fb6d7569a1fd51690ffe6c2c0c00d56",
+          "alpha_bbox": [
+            9,
+            91,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\walk\\ninja-m-walk-04.png",
+          "sha256": "43a0f82b054444fa5a40e24ad1f1aa9c3562ede2fff57d3376cb76605d9b52b6",
+          "alpha_bbox": [
+            13,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\hurt\\ninja-m-hurt-01.png",
+          "sha256": "9d93b95e163cce1ed8b11f231cd0fbc7b354b23cf7ef58390fc95b1ee31a2df2",
+          "alpha_bbox": [
+            24,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\hurt\\ninja-m-hurt-02.png",
+          "sha256": "b44b3693af49c4aa224c0816e4871e45c48817716809428a4e1cb7f5d5363acb",
+          "alpha_bbox": [
+            26,
+            98,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\hurt\\ninja-m-hurt-03.png",
+          "sha256": "7c5a72176cf5696fd74dd6c3d8fafcc6df0ab2bd5ff0d7a6fbdb9afb2953cc47",
+          "alpha_bbox": [
+            15,
+            119,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\hurt\\ninja-m-hurt-04.png",
+          "sha256": "9438595dccbfc1793e457954225d4b60a374e7f5299201abf005b14a37b0d732",
+          "alpha_bbox": [
+            21,
+            91,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\use_consumable\\ninja-m-use_consumable-01.png",
+          "sha256": "1bf63a2b9574fec7dadfaa6933613a71b7bebf8368a63ea060b580dfac7d29a1",
+          "alpha_bbox": [
+            27,
+            91,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\use_consumable\\ninja-m-use_consumable-02.png",
+          "sha256": "ae80f19914d720dbd3cc17a96df5cb0e21b6de8a721c567854d929efe64dae35",
+          "alpha_bbox": [
+            27,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\use_consumable\\ninja-m-use_consumable-03.png",
+          "sha256": "2552b9d43c277d95d46cd375a2e349e79f714ce81ecd5858f2638f57bb106c11",
+          "alpha_bbox": [
+            23,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\use_consumable\\ninja-m-use_consumable-04.png",
+          "sha256": "7b073c8f0b22d17feaf6d3b8c23e40ff1bc935ca57a2d28e6ebfd69c8264f4d5",
+          "alpha_bbox": [
+            17,
+            92,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\dodge\\ninja-m-dodge-01.png",
+          "sha256": "06c00fb275af1049f2c02c4b1ee5e620c66392cb6d108c1d7b436b0735b33c3e",
+          "alpha_bbox": [
+            19,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\dodge\\ninja-m-dodge-02.png",
+          "sha256": "1423fe24f902199f83464d711db3d9ee1d6ea7202b635e0c1008569cbdcbab3c",
+          "alpha_bbox": [
+            17,
+            99,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\dodge\\ninja-m-dodge-03.png",
+          "sha256": "0f9700032376f1444c4197bdef9d303827c096d4874cfa336bed536b2e748b78",
+          "alpha_bbox": [
+            26,
+            101,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\dodge\\ninja-m-dodge-04.png",
+          "sha256": "7ede8913c495ab3d17dd7cc4f1b05bf67b5a78b4802cf5c3470ba7dd86358cde",
+          "alpha_bbox": [
+            18,
+            98,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\block_shield\\ninja-m-block_shield-01.png",
+          "sha256": "d4ff568e95979d1ec50cafe7fb17d658629923745b0c78d6ace60f775ebddb59",
+          "alpha_bbox": [
+            21,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\block_shield\\ninja-m-block_shield-02.png",
+          "sha256": "1edc34053f0414b209067a6cdf13267d724fb6afee4460e0c74ecff23bf9432f",
+          "alpha_bbox": [
+            22,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\block_shield\\ninja-m-block_shield-03.png",
+          "sha256": "88522c30913472b03de6735faccb4e9e4f50653eb31f2f89121ec0c82fcbacc1",
+          "alpha_bbox": [
+            22,
+            115,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\block_shield\\ninja-m-block_shield-04.png",
+          "sha256": "e976f4805e4a0c592b580ceefc864169af8711b4dcdb418f3711c7fc30b67267",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_sword\\ninja-m-attack_sword-01.png",
+          "sha256": "ee69e451dd5147b9a59b1a1401883c8cef2aeb978e1d53c904a83c9a0a1c5a47",
+          "alpha_bbox": [
+            8,
+            97,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_sword\\ninja-m-attack_sword-02.png",
+          "sha256": "29ac680b5599962c194abe86f86f7f0972a5a6457f7339a313373aa7e74e2307",
+          "alpha_bbox": [
+            5,
+            98,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_sword\\ninja-m-attack_sword-03.png",
+          "sha256": "5636fc0f06816ff372e6fc615deb456dcacce81d8f49de1a963076017951349a",
+          "alpha_bbox": [
+            5,
+            100,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_sword\\ninja-m-attack_sword-04.png",
+          "sha256": "2a6484ca61c4dcc0449cf5941fa827ee4a1b9638fd50995247e79aece6f51027",
+          "alpha_bbox": [
+            15,
+            97,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_axe\\ninja-m-attack_axe-01.png",
+          "sha256": "83cff9c9dc96cb6a3f4a5974d730b17d631bc500a34909f1e7209127f410e176",
+          "alpha_bbox": [
+            10,
+            100,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_axe\\ninja-m-attack_axe-02.png",
+          "sha256": "3c4784d5fa951190fbb4d6e1d2407159c9315e8017ee6ec6f8a98e9937ba457f",
+          "alpha_bbox": [
+            17,
+            112,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_axe\\ninja-m-attack_axe-03.png",
+          "sha256": "c3bb37479b56b479661e784579582406cc6c0fea4f3933fd613d0d3e0beaf931",
+          "alpha_bbox": [
+            11,
+            121,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_axe\\ninja-m-attack_axe-04.png",
+          "sha256": "8d967d9ad98fa465940787b3c0c4c644bad81a8019ccce3b640c7c4e53a2a378",
+          "alpha_bbox": [
+            25,
+            104,
+            120,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_spear\\ninja-m-attack_spear-01.png",
+          "sha256": "0f545d08882972e224619744dd2243a5242fed3acd23316492de11acfdf2acce",
+          "alpha_bbox": [
+            8,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_spear\\ninja-m-attack_spear-02.png",
+          "sha256": "65f296765ee39f92e85eba1cdbaea261da8a85f14579f277a7515f6b28b5c888",
+          "alpha_bbox": [
+            12,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_spear\\ninja-m-attack_spear-03.png",
+          "sha256": "9e6529dcc16be9f87de19a6fa5bf90c13f1f290e67ecfcfba1d854cec0cf07e1",
+          "alpha_bbox": [
+            11,
+            91,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_spear\\ninja-m-attack_spear-04.png",
+          "sha256": "a07766a274fb09153794d3fa9aff8adf514eef233aa63abdf51e1aeb9373da04",
+          "alpha_bbox": [
+            17,
+            91,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_dagger\\ninja-m-attack_dagger-01.png",
+          "sha256": "2983710722669857fc62f5229aa116046699d73d3f782520644040371c03532a",
+          "alpha_bbox": [
+            25,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_dagger\\ninja-m-attack_dagger-02.png",
+          "sha256": "a89f2345326974316638d28bc5a8003b14de022d06956e74a03963879f189e0f",
+          "alpha_bbox": [
+            23,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_dagger\\ninja-m-attack_dagger-03.png",
+          "sha256": "544b71e226bc93cdfc8e8e7606d99f15994ba88e02228f012945115317dac456",
+          "alpha_bbox": [
+            25,
+            96,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_dagger\\ninja-m-attack_dagger-04.png",
+          "sha256": "bd3cdc4f16029cd00515b6345dd72f1ceb6ca7b0b8b07dc38bc13f3b3f52f3de",
+          "alpha_bbox": [
+            25,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_bow\\ninja-m-attack_bow-01.png",
+          "sha256": "1f35cf7d0311b424f39bf748f301adb516a3283837efeb6587300cfbbf9e6c03",
+          "alpha_bbox": [
+            22,
+            95,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_bow\\ninja-m-attack_bow-02.png",
+          "sha256": "9b0c10e970001ec44863e2f7f37a912231fd0d50a0699db2f0ba545f4b902081",
+          "alpha_bbox": [
+            20,
+            95,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_bow\\ninja-m-attack_bow-03.png",
+          "sha256": "39a3a250b26d032a415e4fdd26259ea9eb83fbd1f0f4a5c077ffdd9b5309eeb7",
+          "alpha_bbox": [
+            19,
+            95,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_bow\\ninja-m-attack_bow-04.png",
+          "sha256": "f1b434b2ed2fdc406ed13155c54e06d57db5c9de01de1451532e2128b53474c7",
+          "alpha_bbox": [
+            14,
+            95,
+            117,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_staff\\ninja-m-attack_staff-01.png",
+          "sha256": "50937bb39d768b505a00c175b800de817bcec278d929b2a848b0f91f2b81f92b",
+          "alpha_bbox": [
+            30,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_staff\\ninja-m-attack_staff-02.png",
+          "sha256": "6e7600f2d177efa49654f99345ecc7c12bc043944bbd163ddbfb61d28976b847",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_staff\\ninja-m-attack_staff-03.png",
+          "sha256": "b2c71120c4ae2e8f2e7e8d23c95df8eff7803d4bd79647620f09e9fe90dcbd45",
+          "alpha_bbox": [
+            29,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_staff\\ninja-m-attack_staff-04.png",
+          "sha256": "80c640bba704ed219638c41ebf24d3f591b33c8eb4c1d222ad6685ebe09294dc",
+          "alpha_bbox": [
+            21,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_mace\\ninja-m-attack_mace-01.png",
+          "sha256": "3f8bc4f0229af18229b2ab7b8de9eee75620bc11981cebb5335656426d0239fa",
+          "alpha_bbox": [
+            25,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_mace\\ninja-m-attack_mace-02.png",
+          "sha256": "e5600c2300ea0b60790b2809109446dac358336fafe4326c55eb71bee6320444",
+          "alpha_bbox": [
+            31,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_mace\\ninja-m-attack_mace-03.png",
+          "sha256": "80f697b3845e274d948cb2465a7bf2d1e3cf65852f13d5ca0b0b5cb0267b8d68",
+          "alpha_bbox": [
+            25,
+            102,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_mace\\ninja-m-attack_mace-04.png",
+          "sha256": "d861baec61dc1dbf8ad814dfdf55653b40aa279cc2050e436d5dc948f89247f3",
+          "alpha_bbox": [
+            32,
+            91,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_book\\ninja-m-attack_book-01.png",
+          "sha256": "a17a5d95d2cf344746291ef45f56777fbb44537f9746ba3605c0b5ef0b812ade",
+          "alpha_bbox": [
+            25,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_book\\ninja-m-attack_book-02.png",
+          "sha256": "70de505848b46ce2c00842acebc3a365f0177979d10e4e99d8660dcb13b7a40c",
+          "alpha_bbox": [
+            25,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_book\\ninja-m-attack_book-03.png",
+          "sha256": "ff82cd45d348c1755b7f3ef05800c661cd7a6be2714c6b7d45843cb7821accf3",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_book\\ninja-m-attack_book-04.png",
+          "sha256": "d483f2ec8efaffb75b82bcdcd3dc2059ebb2bbe0a854eca72bdb6c2e093214ab",
+          "alpha_bbox": [
+            25,
+            90,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_gloves\\ninja-m-attack_gloves-01.png",
+          "sha256": "c015c1f062d79b6bb06f7abbf4c162e0483e6082d89d7db18554adc24dbd0919",
+          "alpha_bbox": [
+            25,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_gloves\\ninja-m-attack_gloves-02.png",
+          "sha256": "bb4c7196e0462457b608b5dc2da43673d0258cc04dfed7e0418167c053477a0e",
+          "alpha_bbox": [
+            25,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_gloves\\ninja-m-attack_gloves-03.png",
+          "sha256": "b374bf7fb05c6f5938977768dba53a0b4aa3fa5a6058db69d64bf293b5938da9",
+          "alpha_bbox": [
+            23,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\ninja\\m\\frames\\attack_gloves\\ninja-m-attack_gloves-04.png",
+          "sha256": "a783b9b1ac4ac20ca58b8ebe93d89589bcef181ed3e713fc8961b572052fa029",
+          "alpha_bbox": [
+            25,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
