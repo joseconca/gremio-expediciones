@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "guardian_bosque-f",
+  "nextVariant": "rastreador-m",
   "classes": [
     {
       "id": "novato",
@@ -345,7 +345,7 @@
       "name": "Guardián del bosque",
       "tier": 3,
       "order": 41,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "rastreador",
@@ -189442,7 +189442,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_bosque/m/guardian_bosque-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_bosque/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -190566,7 +190566,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "45eb9515a2a6cd7767c0e5c63f780fd3232b0116a69083dcce7d5b5f275fa18f",
@@ -190604,7 +190605,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "fc4adbd04330ef385f21b8a327e67d8e63e66fc3c4b45705f5a73a25e00b1bec",
@@ -190642,7 +190644,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "79e9259eef2e80ded1a4ef23395bb8ab0315e616595cd3526145b79a19fd72a2",
@@ -190680,7 +190683,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "4fef78186f61fc1b9897fc4183aaf3a027c9848f02e32941949d6a0e9d134a67",
@@ -190724,7 +190728,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "d250b1196696282e5c216aeaed7505164518d3a44cdcf2a7a465e800aa71925f",
@@ -190768,7 +190773,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "bd70c8b688b3a7247f6cef45e2ad962d44517da24f0e12656ec9465775a25172",
@@ -190806,7 +190812,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "05708a9495ca167d5d61220c5a5049d79f30946009c71a18bfe07f84c610ca3c",
@@ -190844,7 +190851,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "b6bf7cd334ccc4cb27aa5593c3159ddd80771633a4dc52ce9b0462989fd04a28",
@@ -190882,7 +190890,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "2ffcd8b298329c6088f42f79811d57ed82196be06de4fc2f47195a7fb8d07e9d",
@@ -190920,7 +190929,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "2fdabd38b2455d2b729d75bf1a1f7acfe26ec4d269881867c229f7020b9697b0",
@@ -190958,7 +190968,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "9718d9d0971c8683174f3b94127db6dcb99746ac202d3a8f1a2059ddb844604e",
@@ -190996,7 +191007,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "266f26ca7282f81501fbc607a26ace3fc36f2149193c49b5015872aa06e266ba",
@@ -191034,7 +191046,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "6d1cfc039fc4d77ab2a0d951e2f03c425d2df45cfb68bece9268553625a1ba6b",
@@ -191072,7 +191085,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "eeb8ba7124e47d5c7b8d60d852f46f70bd731e02d6a174ee26fe827433ee906d",
@@ -191110,7 +191124,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -191385,6 +191400,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "guardian_bosque",
+        "name": "Guardián del bosque",
+        "tier": 3,
+        "costume": "Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth.",
+        "maleIdentity": "Experienced masculine adult Guardián del bosque with deep chestnut short wavy swept hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions.",
+        "armPolicy": "Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle.",
+        "unique": "Emerald scales, sage leaf shoulders and bronze oak insignia",
+        "advancement": "Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/guardian_bosque/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "6dbb576896bf0247df282081060c256f079034d52e827e340c9bbeb195531ac9",
+            "7202e32d16eae90b1679cb0e9626405c5c937a8599ad11e45abe299b7104075f",
+            "9a40fb42f8b8f6db25d9b26b9a9ad408680670849b3ca2cb4b32f342b128fec6",
+            "c9825a6e9f2d1bf7fd0c55f924645e2d23e861ddf0b092cee15f30fe468b2654"
+          ],
+          "walk": [
+            "5078e1a77ba095ca89fb00d65e40206eda69edaa9ad037a64da418108eeb58db",
+            "11e3faee3a321a52c8ab7615daf01cfb5bef1e3d40d9b5f6c1d14af7c066fda7",
+            "f8691e4cdcb582d0da7ca84b1926d22d670207190286351873250336502662e4",
+            "655bc4210eab48eb1f2252c7d50e05fd7c2b9a383185238b813c202eab2c3427"
+          ],
+          "hurt": [
+            "1bc53f5623ae1cf6566a20f1d179ff0128778801fbf1940d487de9bf36b2c2b5",
+            "d4187c07dc396869eb9e1724b281e89b6a1597850ff9a973ceebb26a2ad92883",
+            "0049dfb2a49c77d9f88827deee79a63a5c677f2392869565b5ce8a64e8ac731c",
+            "3e2b6a9b1f444b92f8656a256155b7a8cd6140010528a526d24f7573c90f45d6"
+          ],
+          "use_consumable": [
+            "e702adb78acedb173bdabbda8f3cf507a89e858d6f8427f5920774f842b70cf6",
+            "f0b4f6c8a0bb33bb57676c3cf27010f6ff88c19034db61efdc9e1cd394323ccc",
+            "9bf0fdf885e93dfe76d1a0344168af0b83714a160340610e01de241837ea9696",
+            "c0e08c4fb30f580fc30eca766517a556403ee317deab5e029933aceab4b2523a"
+          ],
+          "dodge": [
+            "32056a7e6b478c22eacd490bc060209299e432249c4029718d26bc185648ed82",
+            "da39f79bab25cb2b8580bd6895f554e085ddd423da895b94fb25de758f339ae6",
+            "8bd83ca3e63c7ddf926b3895b1e7a564264b9049005473bb07a7c2c9ccbd9672",
+            "328711f14f7fe47bb4545148596cc6688627cceb76c4ff6b666a98b11e87fe7c"
+          ],
+          "block_shield": [
+            "6cb428981fc60befdb934bea57b4822b76e2c615be903a8bff8eb7d3adf51760",
+            "829d6b3a782e1bc44a7087db9a50b97c3836afd436e71a3e45d9ab3cf27ab1bf",
+            "cd2199850324819c208a01dd3f139dd7448a08d653098d098368440f8313513f",
+            "735e16ca41fc83511c1ca477b00abb80ed8aa3f61d9b47e233ea8a55be04ef82"
+          ],
+          "attack_sword": [
+            "dc8d0db0ceb054ac7f1bec7d49f2e6a98b83a030320b8e048466b1127485ac28",
+            "e30457711fa303d5629ae0cb888f546f574375e18f05a757ed8930171feb9dd5",
+            "5bc19398837074fc1beb00c8a154db4f0f05335aee2e7304c4fa3fb3f8db2cb5",
+            "7c952a4a1a450ac3e622aad731098c9cbe0d6c8f15b7f72cf178af833e734547"
+          ],
+          "attack_axe": [
+            "0dd0456c63901f5b4b0143585ab1b571d3fec8602fe51cf41f5d831e7480602a",
+            "e7d9584cb5043fa29f1a8adcc8a99df064b3f115aab3d14e19f41180c4303c45",
+            "605303158aa04391ba1290edd74aa63d2fb341d04d7ee434f9a3069c3a4f73ca",
+            "5642943e83437cab4fb2cd4de223509c1b6fd70ffaf604cd933799e5640535e8"
+          ],
+          "attack_spear": [
+            "fcef20034a68e672cbc65e7f4ae40972aa5d89bc1668d32fab59995fd5a11fce",
+            "03d3623edd0bc5d331e74d1c5d49f2ae4320899622cea8fc5105eb0be09e8fc7",
+            "c3dff47eaab410ed323df32e394eb9d30669805c2eb6206cdb17cf155fd60ce0",
+            "c338d41e274f126ca51bd920f527af61e2ebda779f34375a4abb497692789dac"
+          ],
+          "attack_dagger": [
+            "fe1ee17b04cc6b46531820c9e90867369b62558b50aee62a317987349675a43c",
+            "12f6395019b20a482f4ccc65fe6506b42eb6e543ae9e45285d032b3231727a33",
+            "8b3b9974b72e5d1910aef3440d80927a08e0fbe5d4adabdecd2e2b8e422b00dd",
+            "0d05886d693370323f8e394acba1f94f38294c0756be4eecdfd0ec7a5cb36e84"
+          ],
+          "attack_bow": [
+            "6d7faca5b361d09ea3453f735ede19fdaaa05621c3675dcfeba6ed2e61757bd7",
+            "7c2522c64480e4f8ea4b50fcd9c890977a10b8ff9b9a5221ae4a47a103425f9b",
+            "01150559579cffa52343ef5a43c4cce81f5474051a5433af4f7c63709afdb9e0",
+            "2d8f06590806f1325d7106310468257ab1eba416900c07604f69a598f2d94446"
+          ],
+          "attack_staff": [
+            "e5b08a2927c798ed9a288dbd1b6aecff12b848aff7babb899009e79fe65d1f8f",
+            "23a6a91c91408aca2ed771fffd4c5c63da1b32a93fb73e70eb249aef3bf8d57a",
+            "55503b5c54ea59ec611f00701c2a11ec0228e547971e2a71b8359526cbaebd99",
+            "f2e12ef8baba9eb237d646beae97e2da34d5be27c469110c3d79bfa245fadd38"
+          ],
+          "attack_mace": [
+            "75e8b3bf660a27781bfb3e31007a544bed275636a40d2a901a49575b82805eb8",
+            "e072c2f88b6248ecbff767fdd330f4b2052a09ea7dc17fed9c1ac6d59e60ff88",
+            "717b972f5444e957d1d8dcd9a126944d29219d073498ed9c4b608628c9e37b07",
+            "18a15609757e6e38c9b478ab9a8dd0e78673599ccd3ee971052e501a70c9c7cc"
+          ],
+          "attack_book": [
+            "5cf3b6c0c4c87264b90a9ec75d289d356da9c0cba37380054e01d88524751148",
+            "efaa60114fc987c7442a320d89be4d32443431a12c75006c93dc3b16a0b634a1",
+            "21bb8bc2127b038cf1750a72837b242738656203af24ae5ed6e8c742dca27ae2",
+            "2b83698e5a0b5481a5bfd7983acb236871ecede98790293287c482f26d7a87c8"
+          ],
+          "attack_gloves": [
+            "7d66c5f4a53db1b33e68def3156e0b0cc395b9f950b93b4acd2847dd2a6fdfb0",
+            "4782ae11df6d20b037d17ec1a93f03d65610686ed01b9a34467bc13b6f784f58",
+            "b464120010763036a59f141e0b52a252d503df6ed73228d3e0d4fc7f270f866e",
+            "0b4aca45e013dbf47d7968a04b7986941171246db1f82e60e8c90908f782eb0c"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -191397,7 +191527,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_bosque/f/guardian_bosque-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_bosque/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -191506,36 +191636,36 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6cf5e7e301fac0b97261d0e4eca7904ff8fa75bb9a433ed1709df6e2d0659c72",
-                "bytes": 22590,
+                "sha256": "f4e161ef60cab5ad034491a6f9564fc13fe1a9a2a92238a365622bd069e69281",
+                "bytes": 22742,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  98,
-                  102,
-                  246
+                  9,
+                  92,
+                  103,
+                  245
                 ],
-                "pixelSha256": "19bec84399bd6598b28ab223591ec748661c350e1ad627da39e48c2f9442daa2"
+                "pixelSha256": "6759f4b8950d5d7ab014cdeb8681c23108130e01adc221ebcef564e609a96fbd"
               },
               "02": {
-                "sha256": "3477b44eb54e856c6fb60a3e111a01df1febcfcf56a5125244db9618f2899454",
-                "bytes": 19829,
+                "sha256": "26bb883b3f7ddedb400d591230f0981a0c6f24e129f70566ae6c43e254c51bef",
+                "bytes": 20159,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  29,
-                  98,
-                  91,
+                  26,
+                  92,
+                  94,
                   247
                 ],
-                "pixelSha256": "abcb613179c6ab835b6763f29127d3a4f434f95a164a88f875e93318c014b96e"
+                "pixelSha256": "70b71e303d7c85f35b78f16f6eef434cb7ad1690314ffa8a6f56d8e2b2e9bfb7"
               },
               "03": {
                 "sha256": "c2b5bf4060a7aba7c4bf014e105ee11c38823a678b6958ecdcd65a5545e90153",
@@ -191624,20 +191754,20 @@
                 "pixelSha256": "e4c7600b123555f59a444dda570ddc48701f11207cbfe020821ef0fdc30e0ab8"
               },
               "04": {
-                "sha256": "5e50ce6c5429cbfbbd0332757f820ac711edaf8ce3e4d2fcaf2c322c4acfee77",
-                "bytes": 24102,
+                "sha256": "f8ee98ced0ff822cac8f8ba2333ec2dcd2f9a307fe7e8156469ab33b25bb3c46",
+                "bytes": 23495,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  16,
                   93,
-                  99,
-                  248
+                  98,
+                  247
                 ],
-                "pixelSha256": "d0922bdb5597b5f36f1ec28fa20aa76fd83ad63d5a4812750201bd59866a6a05"
+                "pixelSha256": "fcf92a2da5a99c09df097233223e71332cc3ea237b06d47f36c6d3cce8c4a2c6"
               }
             },
             "distinctFrames": 4
@@ -191748,20 +191878,20 @@
                 "pixelSha256": "539c30f4b9a912f1ea9f0df21ff1be9423478fb8699e5ea4a1bed4515cb3b834"
               },
               "03": {
-                "sha256": "b9b0e52a898c166e2d214d6080935539404265d2ec4eefdda63c56b3473abb5e",
-                "bytes": 18974,
+                "sha256": "39ffe1de7d3fb98dc2872b20b40d06017b51099635b25c3213ce5cfb3fd998bd",
+                "bytes": 19539,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  127,
-                  101,
+                  21,
+                  129,
+                  112,
                   248
                 ],
-                "pixelSha256": "a7fcc83f0c38a0e902fb151aa79b001c947bd6e018e22cbb38295b247df7f13f"
+                "pixelSha256": "50ff6029c286723680df788f2d743262018a4be2873fc901302c96a5a2ebde88"
               },
               "04": {
                 "sha256": "9f532d906e7cc8b3a8cda7532161e970296c583e70f27ef9d56611c8de9355d5",
@@ -192521,12 +192651,13 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "2c3ab2a91e023e7ed55f8e3c481e9260d6360cd0f03110223c98a750d47ef323",
+          "sourceSha256": "c091c56eb636f3fa6ce82d58104575013e301ed78dfc08629eb41bb1c14f0908",
           "sourceDimensions": [
-            2170,
+            2168,
             725
           ],
           "registeredSourceDimensions": [
@@ -192549,9 +192680,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit this existing four-pose Guardián del bosque FEMALE sprite strip. Preserve every costume detail, face, hair, emerald sleeves, bronze oak emblems, leaf shoulder plates and brown root-pattern boots, body size, transparent canvas and all four pose positions EXACTLY. Correct the nearest hand placement in poses1/2/3 ONLY: move each entire near fist and connected wrist 25 SOURCE PIXELS RIGHT on the full 2172px canvas, maintaining its current height. Move the far fist of pose1 12 source pixels RIGHT. Preserve pose4 unchanged. Gently adjust connected forearms anatomically; do NOT move torso/head/boots. Exactly four complete bodies, right-facing three-quarter view. Keep boots and hair entirely inside canvas. No equipment or painted markers, no shadows/effects. Image2 is costume detail reference only.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -192559,10 +192690,113 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "03": {
+              "sourceSha256": "2c3ab2a91e023e7ed55f8e3c481e9260d6360cd0f03110223c98a750d47ef323",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "2c3ab2a91e023e7ed55f8e3c481e9260d6360cd0f03110223c98a750d47ef323",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "2c3ab2a91e023e7ed55f8e3c481e9260d6360cd0f03110223c98a750d47ef323",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "04547961e1e98107f9e02d24664f80fcb4d9f66721baa295afb15243c4a1e93f",
+          "sourceSha256": "5502ea0059326781fcdf6358e5b8d39306b93c44fbf01a3f9bd0b36ae5a27ad7",
           "sourceDimensions": [
             2172,
             724
@@ -192587,9 +192821,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Image1 is the EDIT TARGET. Image2 is the SAME image with one MAGENTA CIRCLE showing the required grip location. Change only the screen-LEFT hand/wrist in pose4 (rightmost figure). Move that entire glove LEFT by about 25 source pixels and DOWN by about 6 source pixels, so the MAGENTA CIRCLE of Image2 lands INSIDE THE BLACK PALM/THUMB OPENING of this hand, instead of on leaf clothing. Position the whole fist so its fingers slightly overlap that target location. Naturally bend the connected forearm; do NOT move shoulders, torso, head, legs or boots. The OTHER hand on screen right stays unchanged. Preserve emerald sleeve and bronze oak bracer, exact costume and expression. Preserve poses1/2/3 unchanged. Output the clean original transparent four-figure canvas, with no magenta circle or marks, no weapons, shadows or effects. Same complete full bodies and scale. Only the screen-left glove of rightmost figure changes position to cover the target circle.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -192597,7 +192831,140 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "04547961e1e98107f9e02d24664f80fcb4d9f66721baa295afb15243c4a1e93f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame01-reference-v5.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "04547961e1e98107f9e02d24664f80fcb4d9f66721baa295afb15243c4a1e93f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "04547961e1e98107f9e02d24664f80fcb4d9f66721baa295afb15243c4a1e93f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame03-reference-v5.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "04547961e1e98107f9e02d24664f80fcb4d9f66721baa295afb15243c4a1e93f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "ef9ebca211062a8e732831482be4f1b088bb0de67f368384f281b54c34ef9d00",
@@ -192635,10 +193002,11 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
-          "sourceSha256": "fda590f57408204563e194e6932aa7607203592f65ec5165af7f4c7151c97b68",
+          "sourceSha256": "8ebefcbeb3ede4437cc187e31f62bb382365131c4550167aff3e2a0af9c33164",
           "sourceDimensions": [
             2172,
             724
@@ -192663,9 +193031,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit this existing four-pose Guardián del bosque FEMALE sprite strip. Preserve every costume detail, face, hair, emerald sleeves, bronze oak emblems, leaf shoulder plates and brown root-pattern boots, body size, transparent canvas and all four pose positions EXACTLY. In pose3 ONLY, shift the entire FAR (screen right) forearm and elbow 24 SOURCE PIXELS RIGHT, including its raised fist, while keeping elbow height and fingers unchanged. This brings the outer elbow to its canonical contact position. Preserve all other three poses unchanged. Exactly four complete bodies, right-facing three-quarter view. Keep boots and hair entirely inside canvas. No equipment or painted markers, no shadows/effects. Image2 is costume detail reference only.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -192673,7 +193041,140 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "fda590f57408204563e194e6932aa7607203592f65ec5165af7f4c7151c97b68",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "fda590f57408204563e194e6932aa7607203592f65ec5165af7f4c7151c97b68",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "fda590f57408204563e194e6932aa7607203592f65ec5165af7f4c7151c97b68",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "fda590f57408204563e194e6932aa7607203592f65ec5165af7f4c7151c97b68",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Guardián del bosque FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle. Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions. Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth. Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "974b4f081f662d91c64e34f57e3c3e3af8be050d6c2c397d367e60cc42dfc07d",
@@ -192711,7 +193212,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "02174c11869e253cf522afa6370985f84de38daf6b7d4a34b744bf554143a156",
@@ -192749,7 +193251,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "25196222cdaa14852aa91fe9d1e9a455c57cb96ab23b6c110b8e675461da5160",
@@ -192787,7 +193290,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "1a93c15c9fd30a302583aabff66c29a39e53352f2bfef5c8eb249665e274e3cd",
@@ -192825,7 +193329,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "0c4914c71792dd852e7649c54262881842a6afc8c1ea1b96e191f8bdc1973069",
@@ -192863,7 +193368,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "91599cc6b4916364858c294b974f9aebf80ee3195732ff8e484d570255f65af2",
@@ -192901,7 +193407,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "4850433198a73f4ef56b4718b5550612f05aabf70e00d24509c35708c7e102a7",
@@ -192939,7 +193446,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f7b9a2288965ddd6c5e15119defe54de0f8046b379eda629cc98e13cf0e7ea42",
@@ -192977,7 +193485,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "881781c8e63632a0981a0ba252b010f447782069784f4b87280b1c9c46823b7e",
@@ -193015,7 +193524,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "4276fc2da495b63028545ea874d59471d33635ee30d2863400f9ffb617807e1d",
@@ -193053,7 +193563,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -193082,23 +193593,23 @@
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -193122,11 +193633,11 @@
           "frame": 4
         },
         "dodge/01": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.01",
           "frame": 1
         },
         "dodge/02": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.02",
           "frame": 2
         },
         "dodge/03": {
@@ -193134,7 +193645,7 @@
           "frame": 3
         },
         "dodge/04": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.04",
           "frame": 4
         },
         "block_shield/01": {
@@ -193328,6 +193839,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "guardian_bosque",
+        "name": "Guardián del bosque",
+        "tier": 3,
+        "costume": "Forest guardian armor: fitted DARK EMERALD scaled leather torso, full fitted DARK EMERALD cloth sleeves, SAGE leaf-shaped compact shoulder plates, one BRONZE OAK LEAF chest emblem, close crossed BARK BROWN chest straps with small BRONZE square buckles, BARK BROWN leather belt with flat BRONZE oak clasp and overlapping SHORT leaf-shaped tabard panels close to hips, dark green fitted trousers and brown boots with BRONZE ROOT-pattern shin guards, dark brown fingerless gloves and compact bark bracers with BRONZE OAK LEAF relief. Flat BRONZE OAK circlet close to brow. All arms covered by fitted sleeves, no novice cream sleeves. Bronze oak circlet, leaf shoulder shapes, scales, chest emblem and boot patterns consistent across four poses. No antlers, vines, cloak, cape, floating leaves or equipment. No held/sheathed items, shadows, trailing shoulder cloth.",
+        "maleIdentity": "Experienced masculine adult Guardián del bosque with deep chestnut short wavy swept hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Experienced feminine adult Guardián del bosque with deep chestnut hair in braided crown with compact low knot, attentive determined eyes, canonical feminine proportions.",
+        "armPolicy": "Exact canonical hand/finger/elbow and foot coordinates and head size. Compact fitted sleeves, shoulders and circlet inside body canvas. Replace all novice garments, scarf and hairstyle.",
+        "unique": "Emerald scales, sage leaf shoulders and bronze oak insignia",
+        "advancement": "Tier3 advanced specialization of Explorador. Finer emerald scaled leather, botanical plated armor and bronze oak insignia distinguish a veteran forest guardian beyond parent explorer. Same body scale and unchanged shared equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/guardian_bosque/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "b7ed33907bfaab1da4d4ebf05d24543e1b8113e3dc812b8714890b37cb0ef9e8",
+            "7678e89e48b20bbc95b6aef0f76c1a2ad79d854a20a3c236ea64891b1a723205",
+            "b8f997079eb06e4bbea5bbe83b370df80747cdafdfc8c625860af495f2ffab0c",
+            "af17a363d07939edf9854cda62727b2724401c4162d1f16ecd1ed9afb54b888e"
+          ],
+          "walk": [
+            "f4e161ef60cab5ad034491a6f9564fc13fe1a9a2a92238a365622bd069e69281",
+            "26bb883b3f7ddedb400d591230f0981a0c6f24e129f70566ae6c43e254c51bef",
+            "c2b5bf4060a7aba7c4bf014e105ee11c38823a678b6958ecdcd65a5545e90153",
+            "4961aab9b7f1b22b23148af4980012bf295b1e87d38b9f244126b9b9b398f107"
+          ],
+          "hurt": [
+            "535134cfeb96efa86eb81b9e6b639de7e31e470db714c585a459e54572156189",
+            "61c0ff9237720f1e8b8b5b915f31364586ad62dbd562939e0bc03c5ceee5dc80",
+            "f4fbc6761312454ca229e1beb8e327abaa690591a113f003f68c5c36dababbca",
+            "f8ee98ced0ff822cac8f8ba2333ec2dcd2f9a307fe7e8156469ab33b25bb3c46"
+          ],
+          "use_consumable": [
+            "f33c0ecad060b6b63fda1de4a70a1c0997ff9df69fc94670049f5d7d41d2a0aa",
+            "1e22d9ad21c12e46b2d567704ead06c529f97aab8b3b67c134a2bb42f5f3b92a",
+            "a0345d125adfb90c504fd9c360ef0b6b51f614648d2c5e3d1e3a344d5e8f8bb8",
+            "212ac926efdedf238facd7849ece7ac5284504a29148ef57de9f5a172b2002d4"
+          ],
+          "dodge": [
+            "191e2fa45ac5c68ae83b68730374b6c080b2b85caa264cb8a81e4f6308f8352f",
+            "1eb55c5f416690f8867f80ae036980f09272f9670af94b95e41ce4c08b853197",
+            "39ffe1de7d3fb98dc2872b20b40d06017b51099635b25c3213ce5cfb3fd998bd",
+            "9f532d906e7cc8b3a8cda7532161e970296c583e70f27ef9d56611c8de9355d5"
+          ],
+          "block_shield": [
+            "d1a8a8990bc974999c6190ff6f949df08585f3a701252e1438858b674f91bafc",
+            "0c93b02f08ab131aa07816c40e8076eeb2efa6f6c5d104caf4575db7467c17e2",
+            "7f8e7ff01b1e21babc466ff2ee691d6517196051c39a4bca1c93dae74bac4992",
+            "f2f579484ea7029929acbd96381c66ad0f38519710487fff2c4c3f9169b18689"
+          ],
+          "attack_sword": [
+            "19fb834a1307a71ab99e44fa903dc4577cb08bfd15b253e2c5931ca8bf107f4e",
+            "127c71f7f2bff04bd77898038a7688a14520357e4430e3f939fba2dca6d29ffb",
+            "5166cdf27b76018acac943782b5491d53d1f7c507a0c0b54aa5aa2f9cc79b020",
+            "08ca0de7c118cb245fa5643d05fa246c16189d3edee4964b3aac74002e134466"
+          ],
+          "attack_axe": [
+            "13f09f182fb142b96bc31be5c67d0247895dee69ae1ebba5bc715e7dd439144a",
+            "e8a7e3c55e96da352e8e3d518c381949da352f23c108663b8d1727c5ed9eb229",
+            "8dfe53bcdb1b35a877905769621ed6f8a1e6f8bb21c3935c43a27b51042e1898",
+            "0092ced16379044e6f54deb46ff6f585ae69fdc79835ea3edd46b90e407cb646"
+          ],
+          "attack_spear": [
+            "d801cf7d1d8929f4ec8c65969be91326ab1eeb56e946946b09cb04023ccade05",
+            "0c87edb157c481b4c50fe7fdf497ad86af3a0d89031f46ac2b7b6a1485a57ec0",
+            "2f6fd6fad1c7a08b455093742b0aca8dd0455a942c5db84fb91d1088e7d2bd64",
+            "2a958f1fab6f6830baaa2bbd01f153eb666cd53b08da4fab46ed00c3468fd690"
+          ],
+          "attack_dagger": [
+            "86b97ae54f921c57037965119685ee9987c62da9b3a385c7952cb3201802325f",
+            "94a1784ec6678ef9b013a9f23cac3e0f98fa8aff778ee739acfbfbf6dc3a3bab",
+            "db1a52ce38116863609f732b5e613339332131e3905fe2853f6ddf1fc7e6f515",
+            "135f6120deb82a7bbfe53791c9e06f0db01fbe9f184a6c6a983c3745cb4fdfab"
+          ],
+          "attack_bow": [
+            "c390de3b1136481b2137ce5622f22425d138fc7d56b98e25b04d244de653835b",
+            "66604b2dc9b9f5ad1dbba7a95f85e01b8269fb6b321104c596c673a4ab1d5e67",
+            "7b2e2b79b1f8acee488c08d2eb0c7ae375fb688999adbcfdd96602cc2a3d56b2",
+            "0110d40d5b45a9a5d480cf45e33a64e1f47c0851523f1a274cf0c27ad85106c5"
+          ],
+          "attack_staff": [
+            "7a936b34169a61c491634134924b1a48468d5ec64e437ba03db9e56a69c87d6b",
+            "54a4cff8d7bd3b4a8e77e9161f0dbf780dee86cfced1df63f90893b352ecb242",
+            "4f656c3bd1e9cad887e0b37e8bc332fe65ca25a82db599ab57e919372ea08e37",
+            "87a685deedd7f3be50893219ec65102cc2a307243addac0dae650e7eb4ca01fa"
+          ],
+          "attack_mace": [
+            "53a60e31dcef05ed359dcf085490ba5f78540d09abef171666ae40a0aa9258b8",
+            "9fc70fb9fe5c6a1abab208edc7dc526e3aee9e6a2e1332eb58d9098c8b20fa77",
+            "d5d431d2f2ed1814981e8e47ea356393565735d5192f3cae80bf8581e9b56e4a",
+            "9bef501f8c5b40cb898e7ade758b4efd8b133fd5220ef4a6e1305e6e406e95db"
+          ],
+          "attack_book": [
+            "23002f2b8c5a74e0fd6de42756c259b8713a7b12b0fa2fcfc3adcd376abe6ac1",
+            "2296ad3e85d8f50b848ef8fd5b807e220878eadfdcb2127bcbe4ccf2fce78db1",
+            "3624329fd2a5cba74ce9c9d73e27a570682edd9fac1f2771f2c2da9ca017a47d",
+            "69de049934351d501d2a84ab80b3a46b8a2cf0c30f56feefe00a4559c40163f2"
+          ],
+          "attack_gloves": [
+            "0866c8221d81b71831d3839087f7c63ce2ef23bff9eba8416eec3af19bdb0dac",
+            "e0be80951ca6e7449902998492b6e2da4d1256f9ad81071da9111ca7721ed896",
+            "3849200ebad071bf6ade0dd926c1dbee7cab0e2ed7b62a55214f16ef3facb947",
+            "abd994518c0642154a7d0f6b8fe5ab9f7100f47ad327aa0511a3c0c0e749d60c"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -196572,7 +197198,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T18:15:33.281167+00:00",
+  "classId": "guardian_bosque",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\guardian_bosque-f-sheet.png",
+  "sheetSha256": "0fae8be5fbd616fc6d1450d54288c82f0900a6e745e3051a42c587da77386a91",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\idle\\guardian_bosque-f-idle-01.png",
+          "sha256": "b7ed33907bfaab1da4d4ebf05d24543e1b8113e3dc812b8714890b37cb0ef9e8",
+          "alpha_bbox": [
+            26,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\idle\\guardian_bosque-f-idle-02.png",
+          "sha256": "7678e89e48b20bbc95b6aef0f76c1a2ad79d854a20a3c236ea64891b1a723205",
+          "alpha_bbox": [
+            26,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\idle\\guardian_bosque-f-idle-03.png",
+          "sha256": "b8f997079eb06e4bbea5bbe83b370df80747cdafdfc8c625860af495f2ffab0c",
+          "alpha_bbox": [
+            26,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\idle\\guardian_bosque-f-idle-04.png",
+          "sha256": "af17a363d07939edf9854cda62727b2724401c4162d1f16ecd1ed9afb54b888e",
+          "alpha_bbox": [
+            26,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\walk\\guardian_bosque-f-walk-01.png",
+          "sha256": "f4e161ef60cab5ad034491a6f9564fc13fe1a9a2a92238a365622bd069e69281",
+          "alpha_bbox": [
+            9,
+            92,
+            103,
+            245
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\walk\\guardian_bosque-f-walk-02.png",
+          "sha256": "26bb883b3f7ddedb400d591230f0981a0c6f24e129f70566ae6c43e254c51bef",
+          "alpha_bbox": [
+            26,
+            92,
+            94,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\walk\\guardian_bosque-f-walk-03.png",
+          "sha256": "c2b5bf4060a7aba7c4bf014e105ee11c38823a678b6958ecdcd65a5545e90153",
+          "alpha_bbox": [
+            11,
+            99,
+            112,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\walk\\guardian_bosque-f-walk-04.png",
+          "sha256": "4961aab9b7f1b22b23148af4980012bf295b1e87d38b9f244126b9b9b398f107",
+          "alpha_bbox": [
+            19,
+            99,
+            92,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\hurt\\guardian_bosque-f-hurt-01.png",
+          "sha256": "535134cfeb96efa86eb81b9e6b639de7e31e470db714c585a459e54572156189",
+          "alpha_bbox": [
+            24,
+            95,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\hurt\\guardian_bosque-f-hurt-02.png",
+          "sha256": "61c0ff9237720f1e8b8b5b915f31364586ad62dbd562939e0bc03c5ceee5dc80",
+          "alpha_bbox": [
+            25,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\hurt\\guardian_bosque-f-hurt-03.png",
+          "sha256": "f4fbc6761312454ca229e1beb8e327abaa690591a113f003f68c5c36dababbca",
+          "alpha_bbox": [
+            19,
+            114,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\hurt\\guardian_bosque-f-hurt-04.png",
+          "sha256": "f8ee98ced0ff822cac8f8ba2333ec2dcd2f9a307fe7e8156469ab33b25bb3c46",
+          "alpha_bbox": [
+            16,
+            93,
+            98,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\use_consumable\\guardian_bosque-f-use_consumable-01.png",
+          "sha256": "f33c0ecad060b6b63fda1de4a70a1c0997ff9df69fc94670049f5d7d41d2a0aa",
+          "alpha_bbox": [
+            25,
+            95,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\use_consumable\\guardian_bosque-f-use_consumable-02.png",
+          "sha256": "1e22d9ad21c12e46b2d567704ead06c529f97aab8b3b67c134a2bb42f5f3b92a",
+          "alpha_bbox": [
+            25,
+            95,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\use_consumable\\guardian_bosque-f-use_consumable-03.png",
+          "sha256": "a0345d125adfb90c504fd9c360ef0b6b51f614648d2c5e3d1e3a344d5e8f8bb8",
+          "alpha_bbox": [
+            25,
+            95,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\use_consumable\\guardian_bosque-f-use_consumable-04.png",
+          "sha256": "212ac926efdedf238facd7849ece7ac5284504a29148ef57de9f5a172b2002d4",
+          "alpha_bbox": [
+            25,
+            95,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\dodge\\guardian_bosque-f-dodge-01.png",
+          "sha256": "191e2fa45ac5c68ae83b68730374b6c080b2b85caa264cb8a81e4f6308f8352f",
+          "alpha_bbox": [
+            32,
+            98,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\dodge\\guardian_bosque-f-dodge-02.png",
+          "sha256": "1eb55c5f416690f8867f80ae036980f09272f9670af94b95e41ce4c08b853197",
+          "alpha_bbox": [
+            30,
+            101,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\dodge\\guardian_bosque-f-dodge-03.png",
+          "sha256": "39ffe1de7d3fb98dc2872b20b40d06017b51099635b25c3213ce5cfb3fd998bd",
+          "alpha_bbox": [
+            21,
+            129,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\dodge\\guardian_bosque-f-dodge-04.png",
+          "sha256": "9f532d906e7cc8b3a8cda7532161e970296c583e70f27ef9d56611c8de9355d5",
+          "alpha_bbox": [
+            19,
+            98,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\block_shield\\guardian_bosque-f-block_shield-01.png",
+          "sha256": "d1a8a8990bc974999c6190ff6f949df08585f3a701252e1438858b674f91bafc",
+          "alpha_bbox": [
+            26,
+            96,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\block_shield\\guardian_bosque-f-block_shield-02.png",
+          "sha256": "0c93b02f08ab131aa07816c40e8076eeb2efa6f6c5d104caf4575db7467c17e2",
+          "alpha_bbox": [
+            26,
+            96,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\block_shield\\guardian_bosque-f-block_shield-03.png",
+          "sha256": "7f8e7ff01b1e21babc466ff2ee691d6517196051c39a4bca1c93dae74bac4992",
+          "alpha_bbox": [
+            21,
+            106,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\block_shield\\guardian_bosque-f-block_shield-04.png",
+          "sha256": "f2f579484ea7029929acbd96381c66ad0f38519710487fff2c4c3f9169b18689",
+          "alpha_bbox": [
+            15,
+            96,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_sword\\guardian_bosque-f-attack_sword-01.png",
+          "sha256": "19fb834a1307a71ab99e44fa903dc4577cb08bfd15b253e2c5931ca8bf107f4e",
+          "alpha_bbox": [
+            22,
+            97,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_sword\\guardian_bosque-f-attack_sword-02.png",
+          "sha256": "127c71f7f2bff04bd77898038a7688a14520357e4430e3f939fba2dca6d29ffb",
+          "alpha_bbox": [
+            18,
+            97,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_sword\\guardian_bosque-f-attack_sword-03.png",
+          "sha256": "5166cdf27b76018acac943782b5491d53d1f7c507a0c0b54aa5aa2f9cc79b020",
+          "alpha_bbox": [
+            16,
+            99,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_sword\\guardian_bosque-f-attack_sword-04.png",
+          "sha256": "08ca0de7c118cb245fa5643d05fa246c16189d3edee4964b3aac74002e134466",
+          "alpha_bbox": [
+            15,
+            98,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_axe\\guardian_bosque-f-attack_axe-01.png",
+          "sha256": "13f09f182fb142b96bc31be5c67d0247895dee69ae1ebba5bc715e7dd439144a",
+          "alpha_bbox": [
+            29,
+            95,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_axe\\guardian_bosque-f-attack_axe-02.png",
+          "sha256": "e8a7e3c55e96da352e8e3d518c381949da352f23c108663b8d1727c5ed9eb229",
+          "alpha_bbox": [
+            22,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_axe\\guardian_bosque-f-attack_axe-03.png",
+          "sha256": "8dfe53bcdb1b35a877905769621ed6f8a1e6f8bb21c3935c43a27b51042e1898",
+          "alpha_bbox": [
+            15,
+            105,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_axe\\guardian_bosque-f-attack_axe-04.png",
+          "sha256": "0092ced16379044e6f54deb46ff6f585ae69fdc79835ea3edd46b90e407cb646",
+          "alpha_bbox": [
+            7,
+            96,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_spear\\guardian_bosque-f-attack_spear-01.png",
+          "sha256": "d801cf7d1d8929f4ec8c65969be91326ab1eeb56e946946b09cb04023ccade05",
+          "alpha_bbox": [
+            14,
+            96,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_spear\\guardian_bosque-f-attack_spear-02.png",
+          "sha256": "0c87edb157c481b4c50fe7fdf497ad86af3a0d89031f46ac2b7b6a1485a57ec0",
+          "alpha_bbox": [
+            14,
+            96,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_spear\\guardian_bosque-f-attack_spear-03.png",
+          "sha256": "2f6fd6fad1c7a08b455093742b0aca8dd0455a942c5db84fb91d1088e7d2bd64",
+          "alpha_bbox": [
+            14,
+            96,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_spear\\guardian_bosque-f-attack_spear-04.png",
+          "sha256": "2a958f1fab6f6830baaa2bbd01f153eb666cd53b08da4fab46ed00c3468fd690",
+          "alpha_bbox": [
+            14,
+            96,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_dagger\\guardian_bosque-f-attack_dagger-01.png",
+          "sha256": "86b97ae54f921c57037965119685ee9987c62da9b3a385c7952cb3201802325f",
+          "alpha_bbox": [
+            16,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_dagger\\guardian_bosque-f-attack_dagger-02.png",
+          "sha256": "94a1784ec6678ef9b013a9f23cac3e0f98fa8aff778ee739acfbfbf6dc3a3bab",
+          "alpha_bbox": [
+            17,
+            94,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_dagger\\guardian_bosque-f-attack_dagger-03.png",
+          "sha256": "db1a52ce38116863609f732b5e613339332131e3905fe2853f6ddf1fc7e6f515",
+          "alpha_bbox": [
+            15,
+            94,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_dagger\\guardian_bosque-f-attack_dagger-04.png",
+          "sha256": "135f6120deb82a7bbfe53791c9e06f0db01fbe9f184a6c6a983c3745cb4fdfab",
+          "alpha_bbox": [
+            20,
+            94,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_bow\\guardian_bosque-f-attack_bow-01.png",
+          "sha256": "c390de3b1136481b2137ce5622f22425d138fc7d56b98e25b04d244de653835b",
+          "alpha_bbox": [
+            21,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_bow\\guardian_bosque-f-attack_bow-02.png",
+          "sha256": "66604b2dc9b9f5ad1dbba7a95f85e01b8269fb6b321104c596c673a4ab1d5e67",
+          "alpha_bbox": [
+            16,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_bow\\guardian_bosque-f-attack_bow-03.png",
+          "sha256": "7b2e2b79b1f8acee488c08d2eb0c7ae375fb688999adbcfdd96602cc2a3d56b2",
+          "alpha_bbox": [
+            16,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_bow\\guardian_bosque-f-attack_bow-04.png",
+          "sha256": "0110d40d5b45a9a5d480cf45e33a64e1f47c0851523f1a274cf0c27ad85106c5",
+          "alpha_bbox": [
+            16,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_staff\\guardian_bosque-f-attack_staff-01.png",
+          "sha256": "7a936b34169a61c491634134924b1a48468d5ec64e437ba03db9e56a69c87d6b",
+          "alpha_bbox": [
+            24,
+            93,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_staff\\guardian_bosque-f-attack_staff-02.png",
+          "sha256": "54a4cff8d7bd3b4a8e77e9161f0dbf780dee86cfced1df63f90893b352ecb242",
+          "alpha_bbox": [
+            17,
+            93,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_staff\\guardian_bosque-f-attack_staff-03.png",
+          "sha256": "4f656c3bd1e9cad887e0b37e8bc332fe65ca25a82db599ab57e919372ea08e37",
+          "alpha_bbox": [
+            19,
+            94,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_staff\\guardian_bosque-f-attack_staff-04.png",
+          "sha256": "87a685deedd7f3be50893219ec65102cc2a307243addac0dae650e7eb4ca01fa",
+          "alpha_bbox": [
+            19,
+            94,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_mace\\guardian_bosque-f-attack_mace-01.png",
+          "sha256": "53a60e31dcef05ed359dcf085490ba5f78540d09abef171666ae40a0aa9258b8",
+          "alpha_bbox": [
+            27,
+            92,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_mace\\guardian_bosque-f-attack_mace-02.png",
+          "sha256": "9fc70fb9fe5c6a1abab208edc7dc526e3aee9e6a2e1332eb58d9098c8b20fa77",
+          "alpha_bbox": [
+            22,
+            92,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_mace\\guardian_bosque-f-attack_mace-03.png",
+          "sha256": "d5d431d2f2ed1814981e8e47ea356393565735d5192f3cae80bf8581e9b56e4a",
+          "alpha_bbox": [
+            17,
+            98,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_mace\\guardian_bosque-f-attack_mace-04.png",
+          "sha256": "9bef501f8c5b40cb898e7ade758b4efd8b133fd5220ef4a6e1305e6e406e95db",
+          "alpha_bbox": [
+            21,
+            92,
+            106,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_book\\guardian_bosque-f-attack_book-01.png",
+          "sha256": "23002f2b8c5a74e0fd6de42756c259b8713a7b12b0fa2fcfc3adcd376abe6ac1",
+          "alpha_bbox": [
+            28,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_book\\guardian_bosque-f-attack_book-02.png",
+          "sha256": "2296ad3e85d8f50b848ef8fd5b807e220878eadfdcb2127bcbe4ccf2fce78db1",
+          "alpha_bbox": [
+            22,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_book\\guardian_bosque-f-attack_book-03.png",
+          "sha256": "3624329fd2a5cba74ce9c9d73e27a570682edd9fac1f2771f2c2da9ca017a47d",
+          "alpha_bbox": [
+            20,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_book\\guardian_bosque-f-attack_book-04.png",
+          "sha256": "69de049934351d501d2a84ab80b3a46b8a2cf0c30f56feefe00a4559c40163f2",
+          "alpha_bbox": [
+            22,
+            93,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_gloves\\guardian_bosque-f-attack_gloves-01.png",
+          "sha256": "0866c8221d81b71831d3839087f7c63ce2ef23bff9eba8416eec3af19bdb0dac",
+          "alpha_bbox": [
+            17,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_gloves\\guardian_bosque-f-attack_gloves-02.png",
+          "sha256": "e0be80951ca6e7449902998492b6e2da4d1256f9ad81071da9111ca7721ed896",
+          "alpha_bbox": [
+            18,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_gloves\\guardian_bosque-f-attack_gloves-03.png",
+          "sha256": "3849200ebad071bf6ade0dd926c1dbee7cab0e2ed7b62a55214f16ef3facb947",
+          "alpha_bbox": [
+            10,
+            93,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_bosque\\f\\frames\\attack_gloves\\guardian_bosque-f-attack_gloves-04.png",
+          "sha256": "abd994518c0642154a7d0f6b8fe5ab9f7100f47ad327aa0511a3c0c0e749d60c",
+          "alpha_bbox": [
+            13,
+            92,
+            98,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

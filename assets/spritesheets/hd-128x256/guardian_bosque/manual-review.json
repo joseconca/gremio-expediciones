@@ -1,0 +1,150 @@
+{
+  "classId": "guardian_bosque",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/walk-reference.png",
+      "overrides": {}
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-reference-v3.png",
+      "overrides": {
+        "03": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-reference-v5.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame01-reference-v5.png",
+        "02": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame02-reference-v5.png",
+        "03": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/hurt-frame03-reference-v5.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/dodge-frame04-reference-v3.png"
+      }
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/guardian_bosque/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Escamas esmeralda, hombreras de hojas salvia, insignias de roble en bronce y botas con raíces grabadas distinguen esta evolución de Explorador. Pelo castaño corto masculino y corona trenzada con moño bajo femenina.",
+    "All thirty original action strips, both sexes, representative equipment compositions and both axe structures visually reviewed. Fitted emerald sleeves, leaf shoulders, compact bronze oak circlet and crossed bark straps remain consistent across the actions.",
+    "Female walk revision3 supplies complete poses1/2; poses3/4 remain original. Female dodge revision3 supplies only complete pose3, preserving original1/2/4. Female hurt revision5 supplies only complete pose4, preserving original1/2/3. Earlier generated attempts remain preserved but unselected.",
+    "Compared actual palms, thumb openings, canonical occluded or cloth contacts and final equipment compositions. Female dodge3 uses the canonical outer-elbow contact rather than an invented palm target. Consumable recovery follows the shared waist return. Shared equipment geometry unchanged; no automatic runtime promotion."
+  ]
+}

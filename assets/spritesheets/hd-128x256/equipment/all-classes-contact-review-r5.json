@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 80,
-  "contactChecks": 54560,
+  "variants": 82,
+  "contactChecks": 55924,
   "warnings": 0,
   "reports": [
     {
@@ -288,6 +288,18 @@
     },
     {
       "classId": "gran_maestro",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "guardian_bosque",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "guardian_bosque",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
