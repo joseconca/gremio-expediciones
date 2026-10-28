@@ -148881,12 +148881,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -149100,7 +149101,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "014f981ea1be6f72a58bd0f3219a71fb462fdf274931ebacd10f7c106c2353aa",
+                "bytes": 22875,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  92,
+                  109,
+                  249
+                ],
+                "pixelSha256": "c06dd6a0c28f1807776e24cbe634132b4abd2d68aed7eaf4c1d01054273447f7"
+              },
+              "02": {
+                "sha256": "51b8d98071fe339f616411e483eea3851d1660248e9c92f88e1b8678b3e48799",
+                "bytes": 22502,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  92,
+                  113,
+                  249
+                ],
+                "pixelSha256": "49d47f3ca0cfc8a225b2a8f4230448a12dee7226bac4291815f46d531723be42"
+              },
+              "03": {
+                "sha256": "45967c2cc2eec5939ee69c2f6e403d044525d3b9c723ca1a3b205accb05ed0b1",
+                "bytes": 23346,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  109,
+                  249
+                ],
+                "pixelSha256": "57696813b50f9a0940905c8a8b2a7dd29f8614b8f323c91c6176ea4ef39e5ccd"
+              },
+              "04": {
+                "sha256": "f497dda89dfabc85eee0a04618f1fa34c2497adeb55dc26e5f39db6996ecc235",
+                "bytes": 23391,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "aac4bb170004c10d88c4a4233b885a4188eb0a7a5babe6bbc347c64e7b4ab6f1"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -149251,6 +149319,44 @@
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "34e33573715cb16da42f06fd915ebb44b20031e4d3e2a03018ee94f7b0ce75b4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asesino/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asesino MALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Fitted FULL BLACK LEATHER sleeves from shoulders to wrists under dark-silver segmented forearm guards, NO bare forearms. Preserve approved THREE stepped dark-silver rear shoulder plates, high angular black collar with NO scarf, burgundy diagonal sash with thin crossing brown harness strap, VIOLET TRIANGLE chest clasp, silver DIAMOND belt clasp, TWO burgundy pointed waist tails with silver edging, silver knee plates, burgundy instep boot wraps, black fingerless gloves with tiny silver knuckle studs. Male asymmetrical raven-black fringe; female compact high TIED ponytail, no braid. Same details in all four figures with natural occlusion. Adult experienced masculine Asesino with raven-black with burgundy sheen short asymmetrical swept fringe, attentive determined eyes, clean-shaven, canonical head scale. Fitted MATTE BLACK layered leather with DEEP BURGUNDY diagonal chest sash, compact dark silver segmented shoulder and forearm plates, violet triangular clasp, short fitted split waist panels, slim black trousers, silent dark boots with burgundy instep wraps and black fingerless gloves. Lower face visible, no mask or hood. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -149300,6 +149406,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
