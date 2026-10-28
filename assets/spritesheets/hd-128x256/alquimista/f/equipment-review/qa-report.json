@@ -3,7 +3,8 @@
   "classId": "alquimista",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "4e3adb72ce237000be22c25948598a69f441d58e78a970949cadb5e0dfef3357",
       "89d8299d06036f28d8df8bc0f0f027abfdf3be3e23dead675bb039e3a2bab178",
       "f0030787642346fa00348c8e29034bd3a8347a16aef1209567189282cc34d386"
+    ],
+    "walk": [
+      "1f20f3177127584e144df29078cd466e196be5440d62748b32f6af7dff0b5b34",
+      "36f173f6091fb033008d5fdcad3fc6b0851d339db3306a04b792233001850c7e",
+      "57576926dce3ec8202ea8324c277197562336188488402de5c09107ac49f4051",
+      "fd070e28e35471ceee19dcece99820ec099c2820a1e5b41630a11bfdb34abcb5"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
