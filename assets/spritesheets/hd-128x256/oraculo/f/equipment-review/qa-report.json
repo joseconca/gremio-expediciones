@@ -6,7 +6,9 @@
     "idle",
     "walk",
     "hurt",
-    "use_consumable"
+    "use_consumable",
+    "dodge",
+    "block_shield"
   ],
   "bodyHashes": {
     "idle": [
@@ -32,9 +34,21 @@
       "65f354abc0fd6a38ce3a809458113a8a76684f8d5f9b6a7e82e51781914eb05c",
       "fa832bcbff3507723f057fae7255106be416caf925b153259d932efbe03bc842",
       "77bf7982896fb7701b09f51a185797e2acf1ec07c6519ace151342d5fcfd8a74"
+    ],
+    "dodge": [
+      "49868d70a13416c02c4b2f87dff8fd89ba10dd11def64f92397e63cbc7799363",
+      "fe36ded8a29b1e68b16a96425e12ffd4cdd544cbfe6aa0b097bf812631ba1473",
+      "268b4376ab28d64e99a0c47743b1f92d1f3f13730ba9dbeda5e0f64ba7c1debb",
+      "d7b84c866744947be65fc6fc6c5630a9c50ff7f1e4b0b5b35235188bc3d53322"
+    ],
+    "block_shield": [
+      "d2c81abe6aedbe571c098b0611338b39a783f72fa57f72dfec75dc5641defd03",
+      "135b20f7dc968cd195a8ae7e31a534a8383b8ec4299425702069798f829b0e71",
+      "35b2f4e3eeb121861082581534f4a5eacea481167a80db7e8e18836e413ecccf",
+      "5d923d18357a836b773640b49ffdc145e41dbcad92a88598614547ee88ed1553"
     ]
   },
-  "contactChecks": 388,
+  "contactChecks": 524,
   "warnings": [
     {
       "action": "hurt",
@@ -106,6 +120,78 @@
       "point": [
         75,
         176
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        91,
+        178
+      ]
+    },
+    {
+      "action": "dodge",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        91,
+        178
       ]
     }
   ],
