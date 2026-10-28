@@ -6,7 +6,8 @@
     "idle",
     "walk",
     "hurt",
-    "use_consumable"
+    "use_consumable",
+    "dodge"
   ],
   "bodyHashes": {
     "idle": [
@@ -32,9 +33,15 @@
       "dc6e279782432781c31cf8b92e88624418b59d3ddeeb526f4f6f6134266a6a2d",
       "bff8441e0bee554ac540b5ab7e0cab500dd0436adff270f481506e7503fdc8e9",
       "7a162088a93d11db71268d5153c2d1cb33311a0be07e0e5addac78beddcb637b"
+    ],
+    "dodge": [
+      "a28dc4269775f683c3cbbe896d6350efb44b167a56033fd4c848a890761fb66b",
+      "2776f6e3abc294f37d46af5b73e838bc58d8090d9f9be7eedc189b5481d79f01",
+      "320913bf6ac824982abe130437bf6bb68c67a240bdc753ac617476112797272b",
+      "2b8df78e531ff02206df1c29f589a4c6cf899915d1edb015764a4af90fac2b71"
     ]
   },
-  "contactChecks": 388,
+  "contactChecks": 516,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
