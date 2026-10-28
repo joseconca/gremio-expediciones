@@ -155686,7 +155686,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -155702,7 +155702,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -156686,7 +156687,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c10989a973db0c2030b90a5fe4d4b38dc1bfe7e8f140b8888a937ac70aaec15f",
+                "bytes": 23378,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  89,
+                  102,
+                  248
+                ],
+                "pixelSha256": "01d567f8bc9ab59b242143bbf35fa205948b94c31ea513fa3d229b9ac46e09f1"
+              },
+              "02": {
+                "sha256": "63879d6bc45d20822739e5d7789e4ac3f646dc137ffbc0a6e2820e321734b85b",
+                "bytes": 24291,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  89,
+                  105,
+                  248
+                ],
+                "pixelSha256": "62043f4048f50c69ada532f367888750baf6219177746cfcb87c470a09cf1bb8"
+              },
+              "03": {
+                "sha256": "c6bdb1dac224c4e703123b6d38854aa74210b0439c85e109026ae69c79273a6c",
+                "bytes": 24138,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  89,
+                  116,
+                  248
+                ],
+                "pixelSha256": "20c6c18dd122b9458bc920148b0b0c0e8a0fc0c5789933e59dd1fe100431d2ea"
+              },
+              "04": {
+                "sha256": "ae99d3d0a44588654f978985bb8c33cd6c64ad259ee99924780c7c8ced96917b",
+                "bytes": 23470,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  89,
+                  102,
+                  248
+                ],
+                "pixelSha256": "ddb6d1802f366f0576e158dc8ea52a8ad063b606ebb2cf870b36181f0bd61ecb"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -157294,6 +157362,44 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "7b1e7ea71185bbd4d0fd1a4a300c9efd9d51c90134d45ee378d3ac7920509853",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Maestro de espadas FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -157519,6 +157625,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
