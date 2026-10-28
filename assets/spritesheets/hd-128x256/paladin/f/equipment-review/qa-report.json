@@ -11,7 +11,8 @@
     "block_shield",
     "attack_sword",
     "attack_axe",
-    "attack_spear"
+    "attack_spear",
+    "attack_dagger"
   ],
   "bodyHashes": {
     "idle": [
@@ -67,9 +68,15 @@
       "a1ca7134300ffd86fa1674651dc4036d016082c6fe2a745319bfd35617ee0a61",
       "8f7885dbc1a7c6b38190fa8b035afa8083577cb3aa85e8efa190ee0d4934bb80",
       "3082d91491461299a847387f42f7df23174b23b3ffa2c99b43f05eb5fa122c8d"
+    ],
+    "attack_dagger": [
+      "86973d9319f1b411e32adc3ce3eae06319ba23d7f89691944f1dd9bcd6dabc02",
+      "5a3ef8b6dc2a2fe34867774b010b3a420ceb8892c893ead888855edbee0c6cfd",
+      "20506c4fda24ce9de111d950c0dc82c81673f35f5f5cf2065ed332e3fcf23a27",
+      "366290e2d0077b78288a4352126c20c942ce56bae9e95e9f4f0a0ac3ba58fb62"
     ]
   },
-  "contactChecks": 596,
+  "contactChecks": 612,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,
