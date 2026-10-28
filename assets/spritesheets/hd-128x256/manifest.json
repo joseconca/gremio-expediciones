@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "oraculo-m",
+  "nextVariant": "oraculo-f",
   "classes": [
     {
       "id": "novato",
@@ -160159,12 +160159,12 @@
       "tier": 3,
       "sex": "f",
       "order": 70,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/oraculo/f/oraculo-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/oraculo/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -160178,12 +160178,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "3bbf60381d8844383fc444ffae6d08f8b9419c321c481959e6e9579116097f10",
+                "bytes": 25361,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  105,
+                  249
+                ],
+                "pixelSha256": "8e97b2ef73e90e3f5854b70cbaf598129ca60c4083c9b3f3eef1d6b79ffa2954"
+              },
+              "02": {
+                "sha256": "60e2d60b1a83e245aac7df3b7957f588f6896a80dc25cbc1f37a36b91fc4b2e0",
+                "bytes": 25299,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  106,
+                  249
+                ],
+                "pixelSha256": "807fe908b4259e75ebf47293530adcc9c2557ce85a06d741ecfe1598aa726c9f"
+              },
+              "03": {
+                "sha256": "4f7e8aa49cb6f76d42f9d8addeda5ba48454324a360d60d62108859e92a43c91",
+                "bytes": 25347,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  105,
+                  249
+                ],
+                "pixelSha256": "d7d506a6c2e62e70dae70029707d8cb6fea7a3001bfab93f52549e4346a46f24"
+              },
+              "04": {
+                "sha256": "737ace376213088e20e5f26725e93dc88e9d96e416bde7ab639ff93f36d35b36",
+                "bytes": 25274,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  106,
+                  249
+                ],
+                "pixelSha256": "3c091181d796b9ea3de426c1cd3e553d1ccfb230ed498a1e1280e15fd68b648b"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -160227,6 +160296,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "63b5ac0806a53f18379a09bb333c750bfcd02e5a581dec465be99cc3bbf674a3",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: identity-preserve. Asset: Oráculo Tier3 FEMALE idle sprite reference. Image1 defines ONLY female canonical geometry and exact four idle/breathing poses, head/body/hand/finger/foot coordinates and perquarterplacement, third eyesclosed. Image2 defines ONLY approved class COSTUME, silver crescent shoulder clasp, three opal chestbuttons, round opal belt, lilac/indigo materials, never masculine head/anatomy. Adult experienced feminine OrÃ¡culo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Pale lavender-silver compact braided LOW BUN, attentiveeyes, canonicalfemaleproportions/headscale. Same costume as male with feminine tailoring. ExactlyFOUR separatecompletefullbodyfigures onone2172x724transparentrow, right-facingthreequarter, samecrisp paintedanimepixel-inspiredRPGfinishandlighting. All4 motifsconsistent, no equipment/weapons/sheath/book/potion, scarves, pouches, shadows, effects, text or grid. Clean alpha, no stray coloredfringes.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
