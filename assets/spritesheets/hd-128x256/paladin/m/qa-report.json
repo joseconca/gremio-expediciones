@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T07:32:38.633752+00:00",
+  "classId": "paladin",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\paladin\\m\\paladin-m-sheet.png",
+  "sheetSha256": "8d64d792b036bcacbc7e65e7309ec8a2e482a18097327d924e578303ab213604",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\idle\\paladin-m-idle-01.png",
+          "sha256": "c7cae79163dfed1c8f21e218168ad7ada39edb9204148093a1d1d9179ca5b094",
+          "alpha_bbox": [
+            24,
+            93,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\idle\\paladin-m-idle-02.png",
+          "sha256": "a4479788f814a1309d5b5a1e47e731cdcc630baa7f8ff492af0c38dd75d2ae29",
+          "alpha_bbox": [
+            24,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\idle\\paladin-m-idle-03.png",
+          "sha256": "699877539bc0a9601a37071ea1594e6b14a9c268a1ea51412e0cc245c7dd20b5",
+          "alpha_bbox": [
+            21,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\idle\\paladin-m-idle-04.png",
+          "sha256": "5dfb7b806524cb561225116aa1e6292a7b558e5cb6132d66ebbaedf8ef14dc4f",
+          "alpha_bbox": [
+            21,
+            93,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\walk\\paladin-m-walk-01.png",
+          "sha256": "39965a389f27c59841d8fd9853b881044406acbc69812168e66eba17e2dd7dc3",
+          "alpha_bbox": [
+            11,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\walk\\paladin-m-walk-02.png",
+          "sha256": "c7e1a07749833278f83c18ad56acf1c7330b12824a81910e0629c8bff6ff9abe",
+          "alpha_bbox": [
+            12,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\walk\\paladin-m-walk-03.png",
+          "sha256": "693d17121f85923bdfbd02199bafa07e11567f63e63a55ff8914656b8a4f7f9c",
+          "alpha_bbox": [
+            11,
+            92,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\walk\\paladin-m-walk-04.png",
+          "sha256": "d60428ae944616fe3a476f056b4dea7bac0e2e7f6ea77856009853eff06a52dd",
+          "alpha_bbox": [
+            12,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\hurt\\paladin-m-hurt-01.png",
+          "sha256": "5f2f2f5266d9c88e099ada4e42112a1af7a50498070d193c62154f61a3f5c286",
+          "alpha_bbox": [
+            22,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\hurt\\paladin-m-hurt-02.png",
+          "sha256": "40aa90be9240c27219ed50ba32da9a6481941d830e937ef97cb84b0a517d823b",
+          "alpha_bbox": [
+            24,
+            100,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\hurt\\paladin-m-hurt-03.png",
+          "sha256": "65c0964bce38140ba6ab3262693bb24fb7c20e7984d37a0f72538f6cbc5fbe25",
+          "alpha_bbox": [
+            16,
+            118,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\hurt\\paladin-m-hurt-04.png",
+          "sha256": "5517e1eaf2ca4d960ebfc1d7aacae1d552aea9bbd98321fb620ce469c0f2410d",
+          "alpha_bbox": [
+            20,
+            92,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\use_consumable\\paladin-m-use_consumable-01.png",
+          "sha256": "4a389aa503e6f5d3392969a0611d572977c596156accf2012119802ded147ae8",
+          "alpha_bbox": [
+            26,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\use_consumable\\paladin-m-use_consumable-02.png",
+          "sha256": "ca34f30f4b8963df03e435e1cd811548971f4b8e4c9eb9ba7d65c26d23070094",
+          "alpha_bbox": [
+            27,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\use_consumable\\paladin-m-use_consumable-03.png",
+          "sha256": "feae1cca9d2214f6625b1d1594fd04f9d732cf0ff460bf8b0a386ff78bd1a545",
+          "alpha_bbox": [
+            24,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\use_consumable\\paladin-m-use_consumable-04.png",
+          "sha256": "e752c3a2ee41866f4a15fc3975f49fc95b20b97008309e7d6defe65b68444f9c",
+          "alpha_bbox": [
+            23,
+            93,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\dodge\\paladin-m-dodge-01.png",
+          "sha256": "6cbff78b771ae357d9557beac75f16a4eca7bf3e4c7a4c241e1754dd6bbc9879",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\dodge\\paladin-m-dodge-02.png",
+          "sha256": "3a066bdf43da0aed44a14c22ee5f2935826fdc6a9d507418985dcdfaf4e5f847",
+          "alpha_bbox": [
+            20,
+            101,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\dodge\\paladin-m-dodge-03.png",
+          "sha256": "747d57a668748218623467698ea0b4712d58f45a6a63b4121b94304d884af65c",
+          "alpha_bbox": [
+            23,
+            103,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\dodge\\paladin-m-dodge-04.png",
+          "sha256": "00e0f8efb8419c531532783e87e99a0b3164212379bb5915302f2491a273c69b",
+          "alpha_bbox": [
+            18,
+            101,
+            113,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\block_shield\\paladin-m-block_shield-01.png",
+          "sha256": "83270a12fa85b3ef2bd8e5fba5bd5400c20c2c3c0e019b360145876cee4f47fa",
+          "alpha_bbox": [
+            21,
+            98,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\block_shield\\paladin-m-block_shield-02.png",
+          "sha256": "2b7f5b3afa687a9c5b4054242281fc7e95fa6d79eea18380f475f24e4c24350f",
+          "alpha_bbox": [
+            19,
+            99,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\block_shield\\paladin-m-block_shield-03.png",
+          "sha256": "baf2f4f3f0aedbbfc0b4a02a9f0f6ddda07fd0a3d96dd707a130d31f52a68bd7",
+          "alpha_bbox": [
+            19,
+            114,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\block_shield\\paladin-m-block_shield-04.png",
+          "sha256": "884adad5db7cccbe4517ae8a2c322dd31466227a321f6ae1ec1e3f2e1df0a694",
+          "alpha_bbox": [
+            19,
+            99,
+            114,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_sword\\paladin-m-attack_sword-01.png",
+          "sha256": "ece5c9b48c0e4d4425b91cf70409d858c998ae022986186201584e8fbb6be7f3",
+          "alpha_bbox": [
+            15,
+            97,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_sword\\paladin-m-attack_sword-02.png",
+          "sha256": "f87220634a2c4e7be4e2a096eb68479132aef6d44bf77ac5895bbc613eadf72b",
+          "alpha_bbox": [
+            10,
+            98,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_sword\\paladin-m-attack_sword-03.png",
+          "sha256": "e6a7439e991a089a5080926280fa60683381f45ee573bec5428b71f2f60769cc",
+          "alpha_bbox": [
+            13,
+            100,
+            123,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_sword\\paladin-m-attack_sword-04.png",
+          "sha256": "5d69367100bfd324d08f2e8e882a2375953352f46e0879f16e48fd082bd494d8",
+          "alpha_bbox": [
+            17,
+            98,
+            114,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_axe\\paladin-m-attack_axe-01.png",
+          "sha256": "21441db3a0f048d45a20048d5f676152397894940065a33e74b3edae08c97e10",
+          "alpha_bbox": [
+            9,
+            100,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_axe\\paladin-m-attack_axe-02.png",
+          "sha256": "e524e9d694035dd3adfe83da0fe69a040aee69cb13e063b76deaf43e21e578d3",
+          "alpha_bbox": [
+            16,
+            113,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_axe\\paladin-m-attack_axe-03.png",
+          "sha256": "de9fb12d3253578d7c4f3bbd1f9d7cac306ad9843aa560c2b50643966c96ae76",
+          "alpha_bbox": [
+            12,
+            121,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_axe\\paladin-m-attack_axe-04.png",
+          "sha256": "ffffe2d570205cda2608483f843988b691f3a60df1284c3cb16f37fe1f916519",
+          "alpha_bbox": [
+            17,
+            105,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_spear\\paladin-m-attack_spear-01.png",
+          "sha256": "63bc715c36338d6ec639a73fca7a255dbe33f6bc5f10a26836f33a58bee3cf98",
+          "alpha_bbox": [
+            10,
+            92,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_spear\\paladin-m-attack_spear-02.png",
+          "sha256": "8596877d80173a3fb2324ad41f5554559ee3f47124f373d4360a6b172073f4a7",
+          "alpha_bbox": [
+            16,
+            92,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_spear\\paladin-m-attack_spear-03.png",
+          "sha256": "0b1563cb6eb5aeef15b08224f9fbaeed7254364f202420b0c1df9f175ac67951",
+          "alpha_bbox": [
+            14,
+            92,
+            119,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_spear\\paladin-m-attack_spear-04.png",
+          "sha256": "a8da3a3af28bdf93659c4d12cb5a206a0f9eae01a36d40fa96f10c7340f991b9",
+          "alpha_bbox": [
+            18,
+            92,
+            112,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_dagger\\paladin-m-attack_dagger-01.png",
+          "sha256": "b55e887be38b5b6afabab0087953f5642d147102e2738a2a1848b5a1dbbbc97f",
+          "alpha_bbox": [
+            25,
+            94,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_dagger\\paladin-m-attack_dagger-02.png",
+          "sha256": "c55b2dc955242a76bac6f0f9a65d199f5cde1938d4680eb38974640f829937aa",
+          "alpha_bbox": [
+            25,
+            94,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_dagger\\paladin-m-attack_dagger-03.png",
+          "sha256": "8130b54232bde66ff0c374f6645ef2ba34fa03c035a5f849206787f760dcddc0",
+          "alpha_bbox": [
+            19,
+            97,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_dagger\\paladin-m-attack_dagger-04.png",
+          "sha256": "ceb14519a2ce78c27dadfb9676dfd9371af5228f94a7bfecc8f223fb15b1e1be",
+          "alpha_bbox": [
+            23,
+            93,
+            107,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_bow\\paladin-m-attack_bow-01.png",
+          "sha256": "41920876d55804324e825a73bf2133b82dc49c4a02a80ba1df7ab9182e9991fd",
+          "alpha_bbox": [
+            24,
+            96,
+            123,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_bow\\paladin-m-attack_bow-02.png",
+          "sha256": "91e9b5efca82df8bfd83584cd3a3f5ea7c85a2f25388d98a591a25e6ef17edea",
+          "alpha_bbox": [
+            23,
+            96,
+            123,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_bow\\paladin-m-attack_bow-03.png",
+          "sha256": "7d731c11e68d273824ba64ce5d99f771e7af9152f98dc9a2e8f694cb7efca82e",
+          "alpha_bbox": [
+            18,
+            96,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_bow\\paladin-m-attack_bow-04.png",
+          "sha256": "0e4dd8611f1d3c3d46ff8e71864674a04c24b030acd67a0d59d177d001495d4d",
+          "alpha_bbox": [
+            16,
+            96,
+            118,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_staff\\paladin-m-attack_staff-01.png",
+          "sha256": "6dc9c2b7e3ff9f16aa9d248e4d635f2762607aedaa2434a74efb8a2cbd08967c",
+          "alpha_bbox": [
+            27,
+            93,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_staff\\paladin-m-attack_staff-02.png",
+          "sha256": "b6c5f1dc5d4b35c472638332d5b8c6a7d6fec2ece43875f4c502f9c9f478d735",
+          "alpha_bbox": [
+            25,
+            94,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_staff\\paladin-m-attack_staff-03.png",
+          "sha256": "21a6eb7873a22763f15da7c1d3f7cdaaf236aae6554f95f31951204992623dcd",
+          "alpha_bbox": [
+            25,
+            94,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_staff\\paladin-m-attack_staff-04.png",
+          "sha256": "87d5c8f5b1d7c662dcf2c26e8e6dab38b257783d0901339aea6959e9c706f15c",
+          "alpha_bbox": [
+            18,
+            93,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_mace\\paladin-m-attack_mace-01.png",
+          "sha256": "6723056d1f16a8ec3566ea278143b34044db7c803b1d548b72d65d15890c9b1b",
+          "alpha_bbox": [
+            23,
+            91,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_mace\\paladin-m-attack_mace-02.png",
+          "sha256": "abe356c03d542822dbf93b9218a651ca82424dd93c49c7b30c0a83ed9441c47b",
+          "alpha_bbox": [
+            30,
+            91,
+            116,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_mace\\paladin-m-attack_mace-03.png",
+          "sha256": "acb8d980ab63c7dd97e9bcb26cd0e096280a209a1a81d9061221d2b2bb34a3a5",
+          "alpha_bbox": [
+            23,
+            103,
+            110,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_mace\\paladin-m-attack_mace-04.png",
+          "sha256": "6ba562d640097efa436c0d226af53df1be76b4c38efb44476997ccb22dea60e4",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_book\\paladin-m-attack_book-01.png",
+          "sha256": "a6a500378023bc268992fa075ccb4f4056c04ce8b15e7e8757bbe31626a8284d",
+          "alpha_bbox": [
+            22,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_book\\paladin-m-attack_book-02.png",
+          "sha256": "4cb319f6111af7af7804c7a40b9ec5ccf3a6d98421397cad8cdc998d40f3cc99",
+          "alpha_bbox": [
+            22,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_book\\paladin-m-attack_book-03.png",
+          "sha256": "0ec6a58d8bcbfdbe3c66be231ac6b0dbc0e1639c63a3d0fdc70a5eb50a0e68d2",
+          "alpha_bbox": [
+            23,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_book\\paladin-m-attack_book-04.png",
+          "sha256": "54bfca86cf36b75fba4001499bbd506a3615ec365c33c6eb7d3a5c0be8e53fea",
+          "alpha_bbox": [
+            22,
+            92,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_gloves\\paladin-m-attack_gloves-01.png",
+          "sha256": "2f31c8d238c55b15abceb62170de2fd3e64f13b6bff86e5db6ca7d8ca75a83e8",
+          "alpha_bbox": [
+            23,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_gloves\\paladin-m-attack_gloves-02.png",
+          "sha256": "7445aabc8b0426429449ad5a3a3fb9e5ee0a52e91f7e572aee0606238e02ab25",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_gloves\\paladin-m-attack_gloves-03.png",
+          "sha256": "0156ff2491e9738dbd56cc03856d33d592ec09a0179392ad056214200ba6e2ce",
+          "alpha_bbox": [
+            23,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\paladin\\m\\frames\\attack_gloves\\paladin-m-attack_gloves-04.png",
+          "sha256": "aea78f0fc93bcf5c2720c3acb33ac116e837600edae2aea7dd2e5f682beaa4ff",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
