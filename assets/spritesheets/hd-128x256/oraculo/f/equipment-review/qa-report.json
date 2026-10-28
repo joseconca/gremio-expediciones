@@ -12,7 +12,8 @@
     "attack_sword",
     "attack_axe",
     "attack_spear",
-    "attack_dagger"
+    "attack_dagger",
+    "attack_bow"
   ],
   "bodyHashes": {
     "idle": [
@@ -74,9 +75,15 @@
       "9c811ace8203e9de057ddd01b385b3842a92d027dd1eec1447f0f10b04a21bfc",
       "37dee4afc69ff60bd73d458dca17e566ffce3fc5227ddc02bc4080ecb8d47cfb",
       "2a4ec308b5595f33c2b9d080bed5885db087ffa124c14c7beea72ad4fb091cd7"
+    ],
+    "attack_bow": [
+      "96cf1d799c4dc9eefdd58d081e9ef143a7a307bd6c210123efc8e4f0efc557e5",
+      "4a71a85241b4c417ea1b2d698cace2b12b09a58e2052509220d114a662045b90",
+      "76c3698c1b59155de197a67f3bcf38ea3eb5d6fdd15e93a5095b69e37bd9aea6",
+      "f89df5a86b5316e294f50c392a4e8b2d2c2754b8c594a017643a21065666d1f6"
     ]
   },
-  "contactChecks": 612,
+  "contactChecks": 624,
   "warnings": [
     {
       "action": "hurt",
