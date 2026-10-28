@@ -169192,12 +169192,12 @@
       "tier": 3,
       "sex": "m",
       "order": 73,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/asceta/m/asceta-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/asceta/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -169211,12 +169211,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "6640fc7b00c4596ec86fd632e06594ebe78b2b8de558f5593ce3a41100b5e78f",
+                "bytes": 22106,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  103,
+                  249
+                ],
+                "pixelSha256": "a70353dfedaa04463240b4a0f00ac562dcfab7bf8f265859c7a1b0c3c689e4f6"
+              },
+              "02": {
+                "sha256": "51878d0e9101c027c1e2764912a3132d2a27ef659efa000804d82ac40fe6da8f",
+                "bytes": 22183,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  103,
+                  249
+                ],
+                "pixelSha256": "a0ea83a807dbbed58cdff51d6e0867dd186a7b0ad0613ec7f5019fb5d42cf0c1"
+              },
+              "03": {
+                "sha256": "181ba4ad5c463416133ce54c7a2798467bfabe41cf00f3b4102683fc83d7e727",
+                "bytes": 22181,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  103,
+                  249
+                ],
+                "pixelSha256": "bddec60ac7a4f994abb32ee8e5fccb7935771a34e6d5a93c6cce32c90a084da1"
+              },
+              "04": {
+                "sha256": "13bcb520bfef1c65fbd59fe13329ab38daa55f07c79f8b69dbe9af7374b8fd69",
+                "bytes": 22139,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  103,
+                  249
+                ],
+                "pixelSha256": "f0cbec8831041e633763809f0ff4eae77fb60e1009f8d1ea0fef3e240bc7ee62"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -169260,6 +169329,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "25b383694fa226d8853668db184eebe641b3d987405498fb943d88564dcd9c4d",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip: NEW ASCETA MALE Tier3 advanced Monje specialization. Image1 ONLY canonical body anatomy/geometry: preserve EXACTLY four idle poses, head size/location, all palms/fingers/wrists/elbows/feet coordinates, canonical overallscale, original2172x724canvas/quartercenters/margins. Completely replace Novato identity/garments. Establish mature disciplined masculine Asceta with DARK BROWN CLOSE-CROPPED short hair, angular attentive eyes, clean-shaven, subtle veteran expression, sameanimeheadscale. Refined fitted SAFFRON sleeveless martial wrap tunic with IVORY inset sidepanels, broad DARK BROWN structured waist sash with distinctive flat round AMBER DISC clasp bearing tiny engraved LOTUS motif. Small polished DARK WOODEN beads sewn CLOSE around neckline, no hangingnecklace. Fine restrained copper stitching/trim and layered precisewrap tailoring distinguish master ascetic above simple redbrownMonje. Bare muscular upperarms, snug CREAM forearm/knuckle wraps with darkbrownthinbindings leaving fingers exposed, DARK tapered trousers, neat CREAM calf wraps and DARK split-toe martialshoes. NO novice scarf/creamshirtsleeves/bags/bluepants/beltbuckle/brownboots. Sameprecisecostume/amberdisc/beads/armwraps/shoesall4poses,third eyesclosed. Do NOT increasebody/headsize for advancedtier. Four complete fullbodies in ONE horizontalrow rightfacingthreequarter view, clean paintedanime pixel-inspired RPGgame style/lighting matchingreference. Genuine transparentalpha, cleanopaqueedges no strayred/yellowfringe, no held/sheathedweapons/shields/books/equipment, no shadows/effects/text/logos. Exact palm positions crucial: wraps replace oldgloves but maynotmoveorcover fingers withcloth.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -173198,7 +173325,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -173984,8 +174111,8 @@
       "id": "asceta",
       "name": "Asceta",
       "tier": 3,
-      "costume": "Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
-      "maleIdentity": "Adult experienced masculine Asceta with dark brown close cropped hair, attentive determined eyes, clean-shaven, canonical head scale.",
+      "costume": "Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms.",
+      "maleIdentity": "Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size.",
       "femaleIdentity": "Adult experienced feminine Asceta with dark brown hair in compact dark braided knot, attentive determined eyes, canonical female head scale.",
       "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
       "unique": "Saffron/ivory wraps, amber disc and compact wooden collar beads",
