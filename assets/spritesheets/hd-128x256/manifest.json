@@ -145494,7 +145494,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -145504,7 +145504,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -146068,7 +146069,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8a6a70321745dbd189b2f1bc04fb960d7a585b4bdd22641d46d76f421327be09",
+                "bytes": 25260,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  93,
+                  110,
+                  247
+                ],
+                "pixelSha256": "c3cfffcdc297e0f861083ebc33abd242dbecffaed082200837db6268f5aeeca4"
+              },
+              "02": {
+                "sha256": "f354f7dd7194a51d7391bf6636b8bd7a5088a2a44b5eaa45ac8a50e40f64777a",
+                "bytes": 24584,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  93,
+                  107,
+                  247
+                ],
+                "pixelSha256": "7816af01ce6b10bc912e99e891103b61e63967161273184b7027e798d9ff24d1"
+              },
+              "03": {
+                "sha256": "71c98c96a96d6b1815c38c85bcfa27342fa7a93c8199ea29052003316ecbb235",
+                "bytes": 24196,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  93,
+                  113,
+                  247
+                ],
+                "pixelSha256": "e6d8c8d660cf8bfcf0fb249a8095afd2678c3c060e94b87f2bb60f2d440e079e"
+              },
+              "04": {
+                "sha256": "ff19abc99853ffc1ae04ca314fb11d7e4d54fb4c0db7e02ebfa32e27f5d22486",
+                "bytes": 25014,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  93,
+                  110,
+                  247
+                ],
+                "pixelSha256": "a501885a6e87ac05336a4e4870a9ddaedb3a3db5664d7a8ff1f3cced4355437a"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -146394,6 +146462,44 @@
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "48de0c1fcf0c88df41c59513698e5c7c1e975008019ba3d76b5b3b96e63fedea",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+            "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+            "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+            "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -146523,6 +146629,22 @@
         },
         "attack_axe/04": {
           "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
           "frame": 4
         }
       },
