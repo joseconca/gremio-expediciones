@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "alquimista-f",
+  "nextVariant": "herrero-m",
   "classes": [
     {
       "id": "novato",
@@ -261,7 +261,7 @@
       "name": "Alquimista",
       "tier": 2.5,
       "order": 29,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "herrero",
@@ -125538,7 +125538,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/alquimista/m/alquimista-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/alquimista/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -126662,7 +126662,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "e01f5751a752f6dc2b6a0f61077a692d0e5bb3ee7e4054ce4dcf10d03f675859",
@@ -126700,7 +126701,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "92cc875264387bd0eb9cddff2cfcc378eb34491812c01ac7758d87c07e247592",
@@ -126738,7 +126740,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "b682b0348c3e333a051bae849c492238872b741615bca7ada4272cde16d7217d",
@@ -126776,7 +126779,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "44de4638dd35497eeec49a699c08446347cda05871532a4bf9566235cec3ecbb",
@@ -126820,7 +126824,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "cec040d9991d2b1957fda4ffc977259e35ea86d83c9961ea1f2a51148beef731",
@@ -126864,7 +126869,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "cfcbdd390ddf47dbaaa9147bbcd0eb42beda3711c0aea73c213fef6e2a2d55a2",
@@ -126984,7 +126989,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "9be95251305a3691bb878a7295890a03d5b7c29c39aab4b21d7b15a492f504a6",
@@ -127022,7 +127028,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "e1f34504e2730ca27d43e2c92bc6354bdda88ea012445980de5cd1cbb963fda4",
@@ -127154,7 +127160,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "5966138d4044cc9cd58ff8f700d0089978569d8e67572e4899840d62ad3b9dd4",
@@ -127192,7 +127199,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "3bf5eda9fe1ce50b9d2ec1a5d22a42cd9ff1e6bff3f5ffc83622def76238af8b",
@@ -127230,7 +127238,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f4e3f6fd62993d68b99e69f99fff05e91f4e7f849db9b03cc1e4743bda92ae41",
@@ -127268,7 +127277,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "cfab741a53648ef6252a60cfd028b3b357e680aae5ea1ee68fbc0fa9fafd2c52",
@@ -127306,7 +127316,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "fa6861722d867cf627b0438140b72f6df0dd900f3c9ca6a87b57f93e6993a390",
@@ -127344,7 +127355,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "d98850b8f45ac3d779bc96629f046c19913eb823346d628877978f802d2e00d3",
@@ -127382,7 +127394,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "2fbd8c7e8f91933c1974d384c4dac3ac3f8f74eb8cabba950831858e101ba363",
@@ -127420,7 +127433,7 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "5cea96f3ab775735ca5daef9ce6d52582de884920db6c2517efd959f066c67d8",
@@ -127522,7 +127535,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "98fae23c5d44a6596963b94b39de1d5ebad87de9318cb8b3e8fdeeccb8610582",
@@ -127560,7 +127574,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -127835,6 +127850,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "alquimista",
+        "name": "Alquimista",
+        "tier": 2.5,
+        "costume": "Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects.",
+        "maleIdentity": "Adult inquisitive masculine alchemist with dark chestnut neatly combed short hair and short tidy moustache, brass oval glasses.",
+        "femaleIdentity": "Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses.",
+        "unique": "Ivory laboratory coat with green circle badge, clipped sealed glass ampoules and oval brass glasses.",
+        "advancement": "Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Match approved identity's fitted FULL-LENGTH IVORY sleeves and distinct IVORY cuffs touching black fingerless gloves: NO bare skin between elbows and gloves. Keep exactly TWO clipped green glass ampoules and TWO square brown belt pouches, one green sewn transmutation-circle breast badge, brass oval spectacles in ALL poses. MALE short chestnut moustache must remain, FEMALE no facial hair.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/alquimista/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "358ccdf277ab4baf098afa612852fa61dc46e001654819b9c8a38ec8b4e6e83a",
+            "03b853de353a1bd04467b2fc87557e92b85c418bf1e6201ee2a11604bd0c4e58",
+            "c52ca1aba3491f40b688d623ee81f56894cc96c638178809f308a9bfd792e1a9",
+            "e432728b6c8117a729fcf5775d95ac4ebdc01429543bf3a379c751554568a468"
+          ],
+          "walk": [
+            "219275fbb1dac99830f92193fc50295b06ee9c7f7fea9a242220ecc2b387b589",
+            "2c13ac282066d2ca88fe89d89a6f295628cd72cfa3c0f24f60cdd30d0f21d95d",
+            "ad496a34e8a816c1714200195453c6a3d7714b1dd83fefdbd654763fdbbc32c2",
+            "4cb3815b0110cfa44519aa6bfc9eafeb1eaa08796650c07dd28d8c02b046af03"
+          ],
+          "hurt": [
+            "4d7059d4a2d2a099694b6d6cc17932b8d538125de07583e5c470468ee93257d9",
+            "379718e04f59dbc7f070f7fdac1dcdf774b5e3683a8a78d2b1c4f498afa28b69",
+            "790ea0eba5b5e07193beb1f0ccee665bd3b2e05178a97d55a230f16cf0f238d7",
+            "a693a6d87c68ffcb42d6270ab6421b167d8359ae35d1e2b8e8f0423ec4b01493"
+          ],
+          "use_consumable": [
+            "7eea6ea818b941da0dc93bd206b231b15fa23ae095443569f27fbfbd99f84261",
+            "f0f26fceeaaf4cb286916838189b61ff4180befbce3e3b2be3cda154f2761c8f",
+            "0f69522fb2dc555b3358e871175120fc56c3ca1507d5e34ab78becd4348f770d",
+            "a72f0177abcccbe2fd76a4ad43ad57524741ac8c48dfc1ef19b8c260c4bda5d3"
+          ],
+          "dodge": [
+            "08f55f8f2270daca895b6f6f437f7352b06bee068187f4094f6f90c5067c5921",
+            "95123fdc861517e0d48edb153ead1151bebdde6b2a3bae165cafecd0187d06c4",
+            "6008d34fb8c86b66be1f6661df59cd5b3de3c6efe634dca5336eb4b1e3f67295",
+            "6ddbd2186d854f53f187968210dc60acbdc0a8f176d16bc3a1bc8566545d30d5"
+          ],
+          "block_shield": [
+            "aa75c1e36565e0b8ac75d336542cc81bec2c0722919ba825e5ae3a7d0184b2fd",
+            "4ded4eb24065f38f448a622da882dd2c6f2b3774bf1a7f7a574eed6ee5bfa3b4",
+            "37da57756e8821b084e378b6c31f05c28652d857f1d8ea044914e7889a719676",
+            "4404f2c601093209bc8a4ac7c70f9ac7e5a5fadc58f42742d4816cfafa75f5e8"
+          ],
+          "attack_sword": [
+            "9d991b4ae6b0b0d9fa33911cd3a799566213f965becbe7d36d094dfa4c5b9855",
+            "0278744424d2f8c2aad72565f6425d271ce99af3e74de988b289d751ef5ca0fd",
+            "6907dc8e01162be80bb0c3d604faf39688603ccdb2ad7cfdbc37a6b6e815d63e",
+            "ec9ab7a0b8edcdac4f9cdd04b4a49060461fad3ce7b3decb10b8b799798cd473"
+          ],
+          "attack_axe": [
+            "e4e1e14156f8195f76a93930b70b6a8661c062dbd20f0890f58698ffa1b476bc",
+            "6a9f0b59a4de56b77f46c92cc45221038ad0995acf721babee853237084d1ca2",
+            "78ee06f72a94c89cab69af1fccc48cd2c43f0d402e5f3fa6920f4ccc61d351f0",
+            "facea2b4dde46709f74246efed71605bc45dafb1317982ea994c49739f4d94f0"
+          ],
+          "attack_spear": [
+            "ee0c643890f3cb92373da45e0f1a6d6de447e112b767360d3cf629d1d436b97a",
+            "6f39ab627ba81dc829107fd65a4c0f4d9e4f9045ada7ac7bc00957ca57cdd1aa",
+            "e48d1c939bdf14d6ff08d3f1f0a129ad5e9ecba7a7b6c02b14060952d247075a",
+            "305db83bf2fb04c065f3717211e8944870afc03a205639603fb9cc94e55e8c3e"
+          ],
+          "attack_dagger": [
+            "94d89f38bc2837f160fadc84a0198f8f6a6386d170a2ab26778678b11d825ea6",
+            "6b8b17e9b8dd236c3c7a7717ac82c5a775b15d0deedef105477393a4b88e4bea",
+            "3e9829968244429a2eb42d1c9cdfe0d37a72ac77d4d303bf4cc2a7723043abec",
+            "7dce1cbad4469036af8556b9169e862bbc0811cfc61f1257dfef33d458feedd3"
+          ],
+          "attack_bow": [
+            "fd6b8a260ba4bddfbd99e2a95939547b2540d9380b7daddf156c0802e11dbd4d",
+            "1195372c129e3f06c8cc467ca41c6cd0b5407ec8d43cf5ceb77ec28978d8cae3",
+            "b5ab17525183bb86dc2f240c615135767c18f3ecd8f9e81bf5b9c0e2a48f4e61",
+            "9e10d78ec2527fa018b899f325e796ac6fd3661bfed947f31f17bed4bd899812"
+          ],
+          "attack_staff": [
+            "9a3d6146df594e5ff0e157a4d0f0d974a17fb230c92381329c24ec57c7dc2fdd",
+            "54e54004ea586a8cf7c7819f5b1fbe8e8b214e4a9405d5a8606260a59f0d7930",
+            "79ad112fad873cd493112778c9d7de389dd8ee3f6a2a6960b79ca53a73760532",
+            "60bf502c6eabf6b63f1077f37265554d8f4b088dfd5e3e190a200bab3cce491b"
+          ],
+          "attack_mace": [
+            "c81a6da937745cce10a8967c2383c8b1f94f5995d57bf1cef4e397b08e4a7f97",
+            "bf8d36e5d5f746900513dfce83e002b95eb9578fcf6459e5419260788dbf5273",
+            "44dbeca61dfbcb8ef953deb2dc64601a20d6d6371bd1cf586a5435cb3c12a9a3",
+            "dade3ab42f4aedabd697a9c974b9f89f1c2b925148ca55a8fb5f5856d2676ad9"
+          ],
+          "attack_book": [
+            "a0c851d550680fda789c571a5db64fbe9763624ccbfefe6c9a3d6821c8b079ae",
+            "cfb99a48e1ccdce30c3972c5f68c89dc20502f8ac50e8ec4c60ee2067299067e",
+            "6949bfdc41c50ffe9b3f8674c3afe60018bcc33bd4f1e6457fa99d021e4cbac8",
+            "92548b37ae89fa17cd667fdee5dd83961b2de523e978da772edcf09c7b45f550"
+          ],
+          "attack_gloves": [
+            "4879c690fa14f130f8487500b74b775e2324c5b76420dfb6440f1112743a110d",
+            "029a5cf5a11921db66491f9b9e9c3f56c86b4ca779cfaf0705e34e5fc511dea5",
+            "c0674d037c47f62851530ba8391a167a0267b7753c99e8817d2653707efbbc28",
+            "6b0e3f5a609b1af2dad5963faf252a1fd753bfbfa286b002e7e654cedfc749f4"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -127847,7 +127977,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/alquimista/f/alquimista-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/alquimista/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -128004,20 +128134,20 @@
                 "pixelSha256": "0015a7c85302c55f4209d1025798c3595d119a9a734d9a6bcec5343a60beaa55"
               },
               "04": {
-                "sha256": "5399508271224f25dbe02bc6b7cc384714fcf2f843a5cbb17fcf81b215de0c03",
-                "bytes": 22896,
+                "sha256": "fd1cafa5a2d14808b6548e2f66a02cacd103be2a82e0bbf8311e0acf41620caf",
+                "bytes": 22752,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  20,
                   90,
-                  106,
-                  248
+                  99,
+                  249
                 ],
-                "pixelSha256": "888e1678bc8787536af0059b47af2b8c25ac730aa0a65087c49d7107058fc7e1"
+                "pixelSha256": "e330d1f6bcdc17fd56834cf0e4548f8c528e0ac96143070116dfa200686382ba"
               }
             },
             "distinctFrames": 4
@@ -128971,10 +129101,11 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "38b0ef4b61a9aa442a3e67f1d9a376c122e652bb2325eb11a975958e932c3dcc",
+          "sourceSha256": "28c0a5b9e7dedbb49446635bfac674f1307050213baef9d59b23490bbd0fa0b3",
           "sourceDimensions": [
             2169,
             725
@@ -128999,9 +129130,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v6.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v9.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG sprite strip: exactly FOUR full-body FEMALE ALCHEMIST walking poses, transparent background. Image1 is the full canonical walk strip and MUST define every body's absolute size, head/elbow/palm/foot positions. Image2 supplies ONLY Alchemist identity/costume; never use its idle anatomy or centering. Image3 enlarges canonical FOURTH WALK POSE for precise matching. Image4 supplies gold oval spectacles face identity. Redraw Image1 as Image2's Alchemist: chestnut braided crown low bun, gold oval glasses VISIBLE on ALL FOUR faces including stern fourth face, ivory laboratory coat with gold piping, bottle green buttoned waistcoat and circular green breast badge, TWO green belt ampoules and TWO square brown pouches, charcoal trousers/brown boots, black fingerless gloves. Both arms have opaque full-length IVORY CLOTH sleeves/cuffs to gloves; NO peach bare forearms, NO novice red scarf or leather straps. Exact canonical anatomy is crucial. The fourth figure is deliberately placed FARTHER RIGHT within its quarter than the idle reference: DO NOT RECENTER IT to equal margins! In Image1's 2170x725 canvas, fourth rear palm center is about (1830,390), fourth forward fist center about (2060,386); match actual flesh/gloves at these points, never place a belt pouch there. Match head and both feet to Image1 too. Reproduce the fourth pose directly from Image3 at Image1's absolute placement. Four separate complete characters in original four quarters, no equipment held, no effects, no shadow, no text, exact original canvas and painted anime RPG style.\n",
+          "prompt": "Edit Image1's FOURTH WALKING FIGURE ONLY to match the absolute original placement in Image2. The fourth figure in Image1 is 30 source pixels too far LEFT. On this same 2170x725 transparent canvas, redraw the ENTIRE FOURTH FIGURE 30 pixels farther RIGHT, preserving size, height, pose, clothes and face exactly. Do not recenter the strip or change any other figure. Image2 is authoritative fourth original body placement: head center and both fists and right boot must coincide with Image2. Target rear palm center (1830,390), forward fist center (2060,386). Preserve Image1's ivory long-sleeved gold-edged laboratory coat, crossed forearm, plain cuffs, two green ampoules and two brown pouches, green waistcoat/badge, gold oval glasses, braided crown bun, charcoal trousers and brown boots. No pose change, no scaling, no cropped edges, no added objects, no weapons, text or shadow. All four complete walking figures remain in one horizontal row with transparent alpha. This correction is only the fourth figure's canonical original placement.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -129009,7 +129140,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
@@ -129037,7 +129168,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v6.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v9.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -129067,7 +129198,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v6.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v9.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -129097,7 +129228,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v6.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v9.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -129660,8 +129791,399 @@
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
               }
+            },
+            {
+              "sourceSha256": "38b0ef4b61a9aa442a3e67f1d9a376c122e652bb2325eb11a975958e932c3dcc",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v6.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG sprite strip: exactly FOUR full-body FEMALE ALCHEMIST walking poses, transparent background. Image1 is the full canonical walk strip and MUST define every body's absolute size, head/elbow/palm/foot positions. Image2 supplies ONLY Alchemist identity/costume; never use its idle anatomy or centering. Image3 enlarges canonical FOURTH WALK POSE for precise matching. Image4 supplies gold oval spectacles face identity. Redraw Image1 as Image2's Alchemist: chestnut braided crown low bun, gold oval glasses VISIBLE on ALL FOUR faces including stern fourth face, ivory laboratory coat with gold piping, bottle green buttoned waistcoat and circular green breast badge, TWO green belt ampoules and TWO square brown pouches, charcoal trousers/brown boots, black fingerless gloves. Both arms have opaque full-length IVORY CLOTH sleeves/cuffs to gloves; NO peach bare forearms, NO novice red scarf or leather straps. Exact canonical anatomy is crucial. The fourth figure is deliberately placed FARTHER RIGHT within its quarter than the idle reference: DO NOT RECENTER IT to equal margins! In Image1's 2170x725 canvas, fourth rear palm center is about (1830,390), fourth forward fist center about (2060,386); match actual flesh/gloves at these points, never place a belt pouch there. Match head and both feet to Image1 too. Reproduce the fourth pose directly from Image3 at Image1's absolute placement. Four separate complete characters in original four quarters, no equipment held, no effects, no shadow, no text, exact original canvas and painted anime RPG style.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v6.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v6.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v6.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "284236d2f35d5d8eb5fac1214757806716fc06baa9adb480bfc25bf7e5de28ab",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v7.png",
+              "generator": "built-in imagegen",
+              "prompt": "EDIT IMAGE1 IN PLACE, KEEP ALL FOUR WALK POSES' EXACT ANATOMY AND ABSOLUTE PLACEMENT. Change only clothes and hair, never arm gestures. Especially FOURTH FIGURE: preserve its FRONT ARM BENT ACROSS BELLY FROM UPPER LEFT TO LOWER RIGHT, with forward fist at exactly the existing novice fist; preserve rear fist exactly existing rear fist. DO NOT replace walking arms with idle downward arms. Image2 is enlarged fourth original walk pose showing this crossing forearm, not a different pose. Image3 defines female face/chestnut braided crown low bun and VISIBLE gold oval spectacles on ALL FOUR faces. Costume: ivory gold-piped laboratory coat with fully opaque ivory long sleeves to wrists, green waistcoat with brass buttons and round green breast badge, two clipped green ampoules beside brass belt buckle, TWO square brown pouches, charcoal trousers, brown boots, dark fingerless gloves. No red scarf, no novice straps, no bare forearms. Retain Image1 canvas size 2170x725 and original absolute head/hand/foot positions: fourth rear palm around1830,390, forward fist2060,386. Fourth head stays original farther right within its quarter. Image1 novice body anatomy is authoritative; replace garment surfaces only. Four FULL bodies in one row. Transparent background, crisp painted anime RPG sprite style. Empty hands, no held equipment, no shadows, text or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v7.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v7.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v7.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "c976632c4cb6e564fe016ac7a251a7efc4355bd85ff696d2818993c88c76ed6f",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v8.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise costume-continuity edit of Image1 ONLY. Preserve EXACTLY all four figures' absolute placement, walking poses, head, face, visible gold glasses, hair, elbows, palms, fingers and boots. Image2 is ONLY the approved laboratory-coat finish reference. On Image1 FOURTH FIGURE: remove the extra brown buckle straps encircling ivory sleeve cuffs; use plain ivory cuffs edged with narrow gold/green piping as Image2. Shorten the overlong back coat tail to the compact hip-length split laboratory coat of Image2. Keep opaque full ivory sleeves all the way to the dark fingerless glove; no bare forearms. Preserve crossed-forward forearm across belly and both fist locations EXACTLY Image1; NO centering/scaling/reposing. Keep two square brown pouches, two green ampoules and circular green breast badge, green buttoned waistcoat, brown boots. Do not move any body part. Same original2170x725 canvas, four full figures in one horizontal row, transparent background, no equipment or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v8.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v8.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v8.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "446c99e38cb1850182db62ac6137b761add1c96c0a9868a97f8989061258a70a",
@@ -129699,7 +130221,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "82dac1cf20bcdef5cead4f3337155193da5319329de6bae57cdf5af83db4a3f5",
@@ -129901,7 +130423,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "365374cde1600b5ab27470e989b2c4f5ada0008a098ad205717fcce27eb35337",
@@ -129939,7 +130462,7 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "a9b1bf15689a40c3a8869c4e73fc48133b8b9e07cc503223c2657b8088ed4daa",
@@ -130171,7 +130694,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "756457e9554ffe71c302cdabd72806a1d783669d444aae599f7c266e8dbd7019",
@@ -130209,7 +130733,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "edb8d93a9539a53c84221cc49a9141e8edd7a1c7298c78cf0f6f521ac95a5c17",
@@ -130249,7 +130773,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "1b251c5150cfc740a7ddcbc98f945b3cd27567a22593d030d4284ddd976750c0",
@@ -130287,7 +130812,7 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "034c798f85d1ff133d0a99f43235d5ced66a0432b9bc2fb229d2cbd1d4afcb4e",
@@ -130419,7 +130944,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "9bcc411d47543d14d89ad95c7d64c20dd684d41800abd81302e1e216d09b1ac9",
@@ -130457,7 +130983,7 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c19791d0166e54ff60a20de77ff7b831bd9d96da206faa60f16e0f419a0259c9",
@@ -130627,7 +131153,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "62483fb352b3e7c4452919cfaaaa29289b4232fab5b2ddc0ee1efc6fa247abf5",
@@ -130665,7 +131192,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "cfed11f9b02d53ffa59456f320a6fd5ad2f07881cfa7aec2b9f286ea0bdf2a9f",
@@ -130703,7 +131231,7 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "faa90a535344535b2114ac0dd8757541ccfcf7979273ff4a50e185312fa88cef",
@@ -130805,7 +131333,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "142178b4c5226897beeefbc383981acaad20fdd43f6553409a81d98b38eee017",
@@ -130843,7 +131372,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "47df9d3188660f52f63bb2dd840240333f601048dedd1e76f3d8e6a7fcbf22ac",
@@ -130975,7 +131504,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "0e41d9f86cef656e37d89548efff7a3c11dec1355efedf8fd2a502c89c764256",
@@ -131013,7 +131543,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4cb6e5855471ff3525ae9737e82cf79f462e630094ac4c1b3ef638c6426da856",
@@ -131145,7 +131675,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "020dfc5dec7294e9b0155df5cffbb88c9fe44443e0b7e59c8513db4ee5986cb0",
@@ -131183,7 +131714,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f3916085ad0ee6d6003ee9f3027924d0015544d3553b15edc64999732e2c5c96",
@@ -131221,7 +131753,7 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "720633fe7a8921f9765a289136d1987dd89da469f1dd69904c6cdf61fc4ee75d",
@@ -131353,7 +131885,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "7693f0b863ae9564fbe58d9001299a318ac59a1dbf6dcb40635e5c4f8ac058d7",
@@ -131391,7 +131924,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c6e9a16c566ac1b351a60eb9b37ae669cf06fcb7d1af68dd23f57c49a7e78abe",
@@ -131493,7 +132026,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "cdd82be7ae3c6fad9ba89d7c4c47d8fd46cfb754e995405ac335d0a0ccd97dfd",
@@ -131531,7 +132065,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -131806,6 +132341,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "alquimista",
+        "name": "Alquimista",
+        "tier": 2.5,
+        "costume": "Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects.",
+        "maleIdentity": "Adult inquisitive masculine alchemist with dark chestnut neatly combed short hair and short tidy moustache, brass oval glasses.",
+        "femaleIdentity": "Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses.",
+        "unique": "Ivory laboratory coat with green circle badge, clipped sealed glass ampoules and oval brass glasses.",
+        "advancement": "Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Match approved identity's fitted FULL-LENGTH IVORY sleeves and distinct IVORY cuffs touching black fingerless gloves: NO bare skin between elbows and gloves. Keep exactly TWO clipped green glass ampoules and TWO square brown belt pouches, one green sewn transmutation-circle breast badge, brass oval spectacles in ALL poses. MALE short chestnut moustache must remain, FEMALE no facial hair.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/alquimista/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "c50e526778b849878878680db95f3bf01cd00c997c4a6dd919fdcf2042f3ee8f",
+            "4e3adb72ce237000be22c25948598a69f441d58e78a970949cadb5e0dfef3357",
+            "89d8299d06036f28d8df8bc0f0f027abfdf3be3e23dead675bb039e3a2bab178",
+            "f0030787642346fa00348c8e29034bd3a8347a16aef1209567189282cc34d386"
+          ],
+          "walk": [
+            "1f20f3177127584e144df29078cd466e196be5440d62748b32f6af7dff0b5b34",
+            "36f173f6091fb033008d5fdcad3fc6b0851d339db3306a04b792233001850c7e",
+            "57576926dce3ec8202ea8324c277197562336188488402de5c09107ac49f4051",
+            "fd1cafa5a2d14808b6548e2f66a02cacd103be2a82e0bbf8311e0acf41620caf"
+          ],
+          "hurt": [
+            "deb189d9dc21cfff6d4cfe0c3fd491ecdbe0cb39a122350495a2c1c94bb5b91c",
+            "019f73c968522c1f563c02e778337601303147f28da3faaa24376ff7caccd7dd",
+            "e3e1e0c1f543f7a71a8c10558775397131053356cd36fc520ef20ba4d75b27e5",
+            "342f30687abd0642fb27ceacc23a68062f94fe79e41e1273a9d5e12b1bd83c31"
+          ],
+          "use_consumable": [
+            "734f45c7babc99a20523e91393f843bfe3f998d2ad3c342cd7ba83727975b188",
+            "ab21ced8dabf132fd3b0216ba4c9cf204ea399ed63622225a58703e9f3f8ca8c",
+            "c626543feac9cb0c812fa37fc66b663a973031479b3331a23af94a163e5d1b3a",
+            "19bd4b4acaf4040a12cd44952e3c8fb4c5651742e8aab24bb012ee220193b1ea"
+          ],
+          "dodge": [
+            "07ee93a9e7adc5745fc97ff703b6b9096e83c1a0df134dc8ffe349d896319ed9",
+            "fa7177fcfffca906f91d05e17a5442d19a59f8af35b44196225730fe709eb291",
+            "51a523e7a290834c0e1c7e5f834fdb1165a29b19f4bb8ab108df849b0f6f4c16",
+            "6a322b38d04e4d8475feadeaff32370b684931e9332cc7a8600c2e1eb9c8d132"
+          ],
+          "block_shield": [
+            "3810738c9ac05edc7dccefa1677e561a7925cae7e462c63ff661f5c93bc29a33",
+            "272ac5638749c25d29190dbc71c9992513cd192694b8f0c29fb5fc62b1ee6e38",
+            "fecadd283123b550d06ad1daf989410d9c9439b1e8193ef68a2d9eb6b2dec9ab",
+            "17128ede9d0b716139189a62d08c7a66a7256b4deb600d2ea077d922f79c00b8"
+          ],
+          "attack_sword": [
+            "acfeb54c59c08cf371258306bcd6fa79639c7f14c14c26fb971cf942227b537b",
+            "0b24bc9f8a987ba57a455da84bcf585cb618915396ab535c81ab381d9f54bd83",
+            "584e002f350a9efa9c0ee7a16055571a4f4ca26432f2839ef6459932713e3bf6",
+            "6dc3be3cc67ada43fab1c5ce44233cefe97814b9e6699d1b4da1a86906ee72ce"
+          ],
+          "attack_axe": [
+            "4cd1e5cc220b7b5673e90c606278681f1361a21c6dc6247cc07417e99a5ef177",
+            "52bfca58e47398b4df6fc19a7863f23e80d65f6acb38b608ac56e21430c2dabc",
+            "4ac0689c7e135ef16d292be8c3df2d19c0d03a564e54a85ede405f55991691fe",
+            "984483589a5d7a429713a945613fda87818cb13f551f7428bee9968d09f80abd"
+          ],
+          "attack_spear": [
+            "b8382a7fa77d15b35006ac803add5823d60f266682338714cb252e3c02c8c45a",
+            "583ca0f74b78dfd0ac71e5bd0d0018359284d34bd12638a96b7707cf74760706",
+            "3186d4b86d137429dd6dd6e5b01e5064022e753aece56b93b5d9d2faa5fa838f",
+            "e6101946c6648b13d7d5f9a6af497efc3fd70a4ca2ddc0151e7f5c865f5aa6bd"
+          ],
+          "attack_dagger": [
+            "bd5ce7290d655fde315f560caa741934b3582dc86b9064dbdb88abec48de977b",
+            "79d8dd411e1fe97afb66922111ce7afccf20f35fd14bc7da2564349c8f322cc8",
+            "5370d846231f47892fb46c4ff38899b86770d630baecf688b1aca89d106b7413",
+            "038c4228f106e65753fa058145e5d5f546fde4fbe496d93c907c8610de033ec0"
+          ],
+          "attack_bow": [
+            "e1b09b7b1d0fc7e5e376c0b16d612602f0f4b9592834b9955c928558746d2e21",
+            "68564b51368f85a161b636b9c6b30e1024b5ea9048b488fd2f36b867f732949d",
+            "41d19e0181ed9a4b344ed17a8fe0f1c49ef8fd2b220003ae82232584974ee7f3",
+            "b3cf45d15d45e314c6af16300516fddf4d105b2af89da4e3d968d3c1ca9ee632"
+          ],
+          "attack_staff": [
+            "0bff3b5eb6b7b10f746d004ec896f828f67f9f37d6306255a88f544e087722e9",
+            "26e0a0bc397bfdc6300d387b3961914108069572da46ff98614a756a438968e3",
+            "4d1d10da92cdd33c97e890087b10293129a41d1d0b4e43baace8fa5ae16c026d",
+            "99972359e03f4b3bc0a47b04cbcb7b67977746ccc2fe058eb33308d4f0c9207c"
+          ],
+          "attack_mace": [
+            "e280a7dcb22ed371cc6d2feb9051d9e5aaedd3298809d9193916e62f2b99ffe8",
+            "6ab1b6bed5dfedf974fab680390bf3c664ee2106ca5ae2fe98453fd2e8aa4834",
+            "93a2b165b54e2d8bfc3e37cc61aa915e3b2189e281cfbe1b14bf5030f535a601",
+            "87e43e0f69dd54e8984227ee7c12ced284f7e746b88b42d07cccf1ada12877d8"
+          ],
+          "attack_book": [
+            "761e61e55de8cc8d50b7eb43a4d8e64d7fb61a00a1a18bbcfb32bd7504603772",
+            "ffe2e918f9b8468a6887ddbe7b19e5259539de762b036410c581d41a0d216f88",
+            "7d500e3fd25039d277c36b65eee0f20d2be5c1c552a7ba1f4960d5bb20d01650",
+            "87c0f8086fdabb95cc738a02276cc55ab557c73883428296e20b5e3057ca46ed"
+          ],
+          "attack_gloves": [
+            "6de13d34b6dc18f29a63396252852f6be5804ad96ddc2d32fe42245eb6c34d33",
+            "52b780561549885d4678d0d3ed18f6b57bcc590cc1e27c6bc311a2e9c3ea08d8",
+            "c9addaf1f708d59520681a0aeb5ffa53f5fed544157aa46bd4c8fbf1c4aad75f",
+            "a152061db88d79992878c987afeb1a751d420420855da8a1094ef9a8c4b3de7f"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -137152,7 +137802,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
