@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T22:00:19.739950+00:00",
+  "classId": "verdugo",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\verdugo-m-sheet.png",
+  "sheetSha256": "b5d04f3db6d6f825a70e342a76d6c3afcad091d44a404901e72107095b6f6632",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\idle\\verdugo-m-idle-01.png",
+          "sha256": "c737c568f1df8194b06da44b27fc53d97cf31b53830fd8329e2211b13387deef",
+          "alpha_bbox": [
+            23,
+            92,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\idle\\verdugo-m-idle-02.png",
+          "sha256": "d09f47cf39a834bfd134f5e1feab5510786dafb064c692071212d2911a90c30d",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\idle\\verdugo-m-idle-03.png",
+          "sha256": "3776ded442bf0a164583b93d348f34e9ba8e45eab009a38c37afa7d73b78a259",
+          "alpha_bbox": [
+            25,
+            92,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\idle\\verdugo-m-idle-04.png",
+          "sha256": "8f95ad08cbfb3e4df41e5ff6f856e9a21d993be89cf783a477042e215e7e660a",
+          "alpha_bbox": [
+            25,
+            92,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\walk\\verdugo-m-walk-01.png",
+          "sha256": "2bab7995fbfeea51a79287a8e89bcf27efd9f630e3c9bb307c666185f67779bd",
+          "alpha_bbox": [
+            11,
+            92,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\walk\\verdugo-m-walk-02.png",
+          "sha256": "1c53c8159da97dbb0f3db542c6b19e86e58a2244fae1f99d070f8de353ed0a7f",
+          "alpha_bbox": [
+            12,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\walk\\verdugo-m-walk-03.png",
+          "sha256": "5a80e2f4fc53d103bb98a4872ad79b76c7d8da18af90eedaefb060d05f220018",
+          "alpha_bbox": [
+            11,
+            91,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\walk\\verdugo-m-walk-04.png",
+          "sha256": "a8fd040d4adbfb0eed8d3a04ab913371db1c30ce957002addc143eaaef17d72c",
+          "alpha_bbox": [
+            10,
+            91,
+            105,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\hurt\\verdugo-m-hurt-01.png",
+          "sha256": "1b1fa92768fbe2be8e82b62e23a603e2e4d17b3ea2d93f2e75dfea00e6cc3acd",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\hurt\\verdugo-m-hurt-02.png",
+          "sha256": "9570531345805082231ad1e4ee7befc55c8305974e4c1e7c58d049a42a8a2bf8",
+          "alpha_bbox": [
+            30,
+            101,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\hurt\\verdugo-m-hurt-03.png",
+          "sha256": "b69405944f0ef09e6a96af37481b44de6781918573ba2dc7f431e8e7dca7b1cc",
+          "alpha_bbox": [
+            19,
+            121,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\hurt\\verdugo-m-hurt-04.png",
+          "sha256": "bb4b6dd98c2b03bb554420c23fac535bde853c955db4483b2236e920921b72fc",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\use_consumable\\verdugo-m-use_consumable-01.png",
+          "sha256": "28fb07e64f6a2972fa3b4cb6a507a9219b307fa121e775f8dda3baa9dff1f44b",
+          "alpha_bbox": [
+            28,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\use_consumable\\verdugo-m-use_consumable-02.png",
+          "sha256": "f911abe38aa01b54ed1eac44e01c5fc3c33dbf03d973cc7adb7d543261406d4e",
+          "alpha_bbox": [
+            30,
+            92,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\use_consumable\\verdugo-m-use_consumable-03.png",
+          "sha256": "6213546e088fe7ca7ec86ab08caed4a68cffa320ae00de6e6cd820b102ff0807",
+          "alpha_bbox": [
+            27,
+            93,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\use_consumable\\verdugo-m-use_consumable-04.png",
+          "sha256": "c7c167e27e33ae4cb7596ce7e58bdc611979f6db0b7d129b3be7cdeff2d03dee",
+          "alpha_bbox": [
+            21,
+            93,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\dodge\\verdugo-m-dodge-01.png",
+          "sha256": "a4dde8e2e1303ce7f8850e8ee19e7404d1f32a386853520493b98fb4fb1adc6f",
+          "alpha_bbox": [
+            22,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\dodge\\verdugo-m-dodge-02.png",
+          "sha256": "ef34b007f424fb8142a5449ce8d8a63259df671f4b49a7f67a2c1abf81a94827",
+          "alpha_bbox": [
+            22,
+            98,
+            115,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\dodge\\verdugo-m-dodge-03.png",
+          "sha256": "f4ff9fded16bb799f2331b7c1577aab2b489668215302f6a5d62f8579dfbafab",
+          "alpha_bbox": [
+            24,
+            102,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\dodge\\verdugo-m-dodge-04.png",
+          "sha256": "4784435049cf8667fb4565c3dedf03a29c2888110a18d6599bc3e0f98b45e4a1",
+          "alpha_bbox": [
+            18,
+            98,
+            107,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\block_shield\\verdugo-m-block_shield-01.png",
+          "sha256": "8ea5d62ca39cd43b39ccaeef2be38fcbd436356a339d9e791fa50ab922c140bb",
+          "alpha_bbox": [
+            21,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\block_shield\\verdugo-m-block_shield-02.png",
+          "sha256": "65931053bf078fde15727729492f05800fc60db114e340e314ce0b7643a32358",
+          "alpha_bbox": [
+            21,
+            97,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\block_shield\\verdugo-m-block_shield-03.png",
+          "sha256": "d884cae07dd76eb615e440d4dfa138d8613b41147ba9aad45a6b296ff586efaf",
+          "alpha_bbox": [
+            22,
+            112,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\block_shield\\verdugo-m-block_shield-04.png",
+          "sha256": "51b4c7f3900e3998c75592f0bd58cf083a9ac114d3ac605faa350bc1a14148e3",
+          "alpha_bbox": [
+            21,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_sword\\verdugo-m-attack_sword-01.png",
+          "sha256": "2487cb1e9281ba96c20dcd2aa63ba1c0b4ede7c26fb1f381617fa04a9b3dcd48",
+          "alpha_bbox": [
+            11,
+            99,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_sword\\verdugo-m-attack_sword-02.png",
+          "sha256": "4f82308b28e3fc464ae83699ab89dbbc912a7b6399d3f2ec6752449a98ae315a",
+          "alpha_bbox": [
+            8,
+            99,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_sword\\verdugo-m-attack_sword-03.png",
+          "sha256": "ab8d4f2ea650a721c85f797972719a2bdb54eb73f90c7295610801045dfbb536",
+          "alpha_bbox": [
+            6,
+            101,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_sword\\verdugo-m-attack_sword-04.png",
+          "sha256": "ab8f14456f1ae6f54340511fc43a15693e5e9668ef55a8a663e1a890dd4780f0",
+          "alpha_bbox": [
+            13,
+            98,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_axe\\verdugo-m-attack_axe-01.png",
+          "sha256": "5bff314477c57157f45002017ea190a8241814179a66fcc7ead90ebbb2e8e161",
+          "alpha_bbox": [
+            10,
+            100,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_axe\\verdugo-m-attack_axe-02.png",
+          "sha256": "660ad32a86349d60dfcbc61f2bd1729c4d9ccfe60a17c6ce989c24b064aa6306",
+          "alpha_bbox": [
+            17,
+            112,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_axe\\verdugo-m-attack_axe-03.png",
+          "sha256": "722a5e1ffc17068d73cb3ac21e0abf1c3d77dd3908f7c101a9e83e95535d41d8",
+          "alpha_bbox": [
+            9,
+            122,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_axe\\verdugo-m-attack_axe-04.png",
+          "sha256": "d7989144ff890cd869fe278aa3ec90124d95ec660c2bfdb134e9c8876967408c",
+          "alpha_bbox": [
+            22,
+            104,
+            119,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_spear\\verdugo-m-attack_spear-01.png",
+          "sha256": "7b50112fc0f4eb4c970471b1182c28810cf2616ed0ce26f408a8f5f27e0c9de4",
+          "alpha_bbox": [
+            9,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_spear\\verdugo-m-attack_spear-02.png",
+          "sha256": "a766952cf406890bbe01661c6fabfaf94428137333b5939f343042ef34769471",
+          "alpha_bbox": [
+            10,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_spear\\verdugo-m-attack_spear-03.png",
+          "sha256": "4da52b85b088a58fc2d7350653c886592152d0478e2544a1baf93eec43294939",
+          "alpha_bbox": [
+            8,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_spear\\verdugo-m-attack_spear-04.png",
+          "sha256": "fdf03131e0d96a21960105f6cbb423d8a87376dad9a965048900b435fe655fb5",
+          "alpha_bbox": [
+            12,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_dagger\\verdugo-m-attack_dagger-01.png",
+          "sha256": "47ef2a59c1ceb413cc9d67ce29bb9d787cebccb237a4f28bf167a7582bd6b2bb",
+          "alpha_bbox": [
+            25,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_dagger\\verdugo-m-attack_dagger-02.png",
+          "sha256": "5e13a0bc6579e8448b66b9e7ae0e8a906417b633d82c02ee26d165ff0493c589",
+          "alpha_bbox": [
+            24,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_dagger\\verdugo-m-attack_dagger-03.png",
+          "sha256": "5a30dd7172988e94060d4a2a73b261eb2a61e742f06a1997569f0ecc85903ddc",
+          "alpha_bbox": [
+            20,
+            96,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_dagger\\verdugo-m-attack_dagger-04.png",
+          "sha256": "bf255fcefc47c9b6903377203a735dfa2de1b5c1ab9a099b65671128ae4cb5ed",
+          "alpha_bbox": [
+            21,
+            93,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_bow\\verdugo-m-attack_bow-01.png",
+          "sha256": "1eaf89428971c62c98d40e7d82c91c4fccb950aa2430b963fb2a759c20925f78",
+          "alpha_bbox": [
+            23,
+            96,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_bow\\verdugo-m-attack_bow-02.png",
+          "sha256": "95e8d28e8969825c6bf5627924fca8126558aeded0c682d97827e7a0ce948f5d",
+          "alpha_bbox": [
+            20,
+            96,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_bow\\verdugo-m-attack_bow-03.png",
+          "sha256": "579f1c6cd7e1e180b5c32373b49fc18ee4185b0af22c3576a6704b74ac3bc3d4",
+          "alpha_bbox": [
+            15,
+            96,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_bow\\verdugo-m-attack_bow-04.png",
+          "sha256": "a74430bf698428e10f298cf6c82c0be442af2271458e9c6174572ca205a5045c",
+          "alpha_bbox": [
+            11,
+            96,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_staff\\verdugo-m-attack_staff-01.png",
+          "sha256": "b2291b8dd17364722f03c3cd536f19c1d15dbcd5da47857d23b373ea64cbc4e6",
+          "alpha_bbox": [
+            29,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_staff\\verdugo-m-attack_staff-02.png",
+          "sha256": "b029d12f215cb9610be53ff6c40ce5ce654a6166d771faa035c81cc23fb15970",
+          "alpha_bbox": [
+            24,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_staff\\verdugo-m-attack_staff-03.png",
+          "sha256": "61d2d6ecf33e478b3c0f6a857aa2f7deee0a8195f0fd143b99049c3bbe418aa4",
+          "alpha_bbox": [
+            28,
+            93,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_staff\\verdugo-m-attack_staff-04.png",
+          "sha256": "dca3c1f8e59224bec5d50ddda322bfa891982b11dd45ca6613a8a9528860a419",
+          "alpha_bbox": [
+            20,
+            93,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_mace\\verdugo-m-attack_mace-01.png",
+          "sha256": "d7b66a76fa7c52395cc0cde38612e27052e714ed96ff2291f3a9875074cd32e3",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_mace\\verdugo-m-attack_mace-02.png",
+          "sha256": "c153c43a5c326f70c8ad0bdf145845154a4b619c959a164298b2a08db18855e5",
+          "alpha_bbox": [
+            30,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_mace\\verdugo-m-attack_mace-03.png",
+          "sha256": "81b91a094f7c7f4da055aa878aee6cc02a1eb83b78e9fbc7e16462c7bcd16b0a",
+          "alpha_bbox": [
+            27,
+            104,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_mace\\verdugo-m-attack_mace-04.png",
+          "sha256": "05efd2c571acbc549439672b9ee47715846c2b5ef9ab30fc898a171fc79d1d95",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_book\\verdugo-m-attack_book-01.png",
+          "sha256": "49513435a8abe61b18d7ac89894bc71088029a3ab7991936b6d72d9a056337bf",
+          "alpha_bbox": [
+            25,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_book\\verdugo-m-attack_book-02.png",
+          "sha256": "4eb59af67109156a7272969d89b43f4c39a0b47d775c659e32998b3459f5ef77",
+          "alpha_bbox": [
+            25,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_book\\verdugo-m-attack_book-03.png",
+          "sha256": "f625a38a7aa121c5665eb9460c079199f7bfff9728508bc7a90775412defb30e",
+          "alpha_bbox": [
+            24,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_book\\verdugo-m-attack_book-04.png",
+          "sha256": "f63adf6849328899a1ae1713b5c59bca4cdef857dd2c1691c6a5ad31574e08c3",
+          "alpha_bbox": [
+            25,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_gloves\\verdugo-m-attack_gloves-01.png",
+          "sha256": "d87618867dd0e7ec717e88def88582e366f12ca77923ca4e3bc5ff81b8ca56c1",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_gloves\\verdugo-m-attack_gloves-02.png",
+          "sha256": "6887c5f6339d27bc3c2fb6bdbc0c5432ea1e1e2320e0e5c08f921a933e679066",
+          "alpha_bbox": [
+            23,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_gloves\\verdugo-m-attack_gloves-03.png",
+          "sha256": "4a6bb009584f03467d3a535e01a50415d662a04e7f040c76d6ce94cabd081101",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\verdugo\\m\\frames\\attack_gloves\\verdugo-m-attack_gloves-04.png",
+          "sha256": "8d449bda9e7036f9e4626fa6b6b111228a78af9b2cc7859ed45d150239704938",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            249
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

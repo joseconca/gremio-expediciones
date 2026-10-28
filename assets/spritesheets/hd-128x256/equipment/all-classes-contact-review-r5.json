@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 90,
-  "contactChecks": 61380,
+  "variants": 92,
+  "contactChecks": 62744,
   "warnings": 0,
   "reports": [
     {
@@ -540,6 +540,18 @@
     },
     {
       "classId": "superNovato",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "verdugo",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "verdugo",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

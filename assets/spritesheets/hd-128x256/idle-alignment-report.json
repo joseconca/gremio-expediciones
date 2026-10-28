@@ -5,7 +5,7 @@
   "verticalOffset": 0,
   "equipmentFrame": 0,
   "fingerMaskFrame": 0,
-  "equipmentContactChecks": 11520,
+  "equipmentContactChecks": 12288,
   "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
@@ -2346,6 +2346,162 @@
         67.5,
         67.5,
         68.0
+      ]
+    },
+    "demonologo-m": {
+      "frameHashes": [
+        "fb67927e48b7231844f59f5b946014ebf8216333c71ae9d615515465a44cc1f2",
+        "07343b9b326d6b0572f3b385101b1dd0b6e2dee487595d07734a6cffcbad799f",
+        "4817b1680e51ff7ff5e8fea8d33cc93b9b038509a0c2594b523f120d8e2b2e3b",
+        "ac562d9e54321e2ad7f8bdf8c3fdd9db7e89757b4c88aa2a29e247f49da31c7b"
+      ],
+      "supportCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ]
+    },
+    "demonologo-f": {
+      "frameHashes": [
+        "2768e9c4b1371ea0f511cd2b4b8c0578559fe98c777b11b3da038d01cf82e11c",
+        "64bf66dc6f1653fa64910bc3e878f37bbcc5b3b29ad459dbdc17446fb95d3155",
+        "5495f8582d537d30b1cb711e10c2ecbf09dca57412705728cbc7cf1f14873803",
+        "7f47779b46d0564ff005b5b76842f73cb991af620dba9086ad0db3ac43f1486e"
+      ],
+      "supportCentersX": [
+        70.5,
+        68.5,
+        62.5,
+        60.5
+      ],
+      "offsetsX": [
+        0,
+        2,
+        8,
+        10
+      ],
+      "correctedCentersX": [
+        70.5,
+        70.5,
+        70.5,
+        70.5
+      ]
+    },
+    "verdugo-m": {
+      "frameHashes": [
+        "c737c568f1df8194b06da44b27fc53d97cf31b53830fd8329e2211b13387deef",
+        "d09f47cf39a834bfd134f5e1feab5510786dafb064c692071212d2911a90c30d",
+        "3776ded442bf0a164583b93d348f34e9ba8e45eab009a38c37afa7d73b78a259",
+        "8f95ad08cbfb3e4df41e5ff6f856e9a21d993be89cf783a477042e215e7e660a"
+      ],
+      "supportCentersX": [
+        65.5,
+        66.5,
+        67.5,
+        67.5
+      ],
+      "offsetsX": [
+        0,
+        -1,
+        -2,
+        -2
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ]
+    },
+    "verdugo-f": {
+      "frameHashes": [
+        "a2f2ac42f35dc12c55834d1948c81749b642ab3f85502b70634bc802e2cf6e7a",
+        "e63d5fa7990bbdfb2f3c7ce65a975007c665feb7ae8c2375cf4fd8a32a0a143f",
+        "7193d975b86a2005377bf98f96391976be35dbe6abc9236802c4d09e9914097b",
+        "0ef1ed1f2e658ea3d6f36316327c83ea10696b1511e018a054f32d6a328e94df"
+      ],
+      "supportCentersX": [
+        72.0,
+        69.0,
+        63.5,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        3,
+        9,
+        7
+      ],
+      "correctedCentersX": [
+        72.0,
+        72.0,
+        72.5,
+        72.0
+      ]
+    },
+    "saqueador-m": {
+      "frameHashes": [
+        "b0e9a8b13e648dc86b6a9b6edd3585c5d4742b64edbc763f1cd854cf0b3ccb87",
+        "46a16ea36cea7c39ee2fbc5f88a90439fe7230c7d001c2a7deeb5de3eb97a494",
+        "19b364be7eb1e7023735a1a2a34d1f5d7cf3f4ed8e3907a2a23c5053a1249adf",
+        "fc4fb60ecf24961c40182c81e80babb09949863fbc8cfffd5af5c6fb06e7114a"
+      ],
+      "supportCentersX": [
+        65.0,
+        65.0,
+        65.5,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.0,
+        65.0,
+        65.5,
+        65.5
+      ]
+    },
+    "saqueador-f": {
+      "frameHashes": [
+        "d6a3734f28d59824e5aaf8c6d03c05bf98e97141c9de47c81e14a0191fb61b3f",
+        "edfa7e2ecd2f8a3b3839a24a5c6a54ca15480e9bf5c85d597d70cccff9bbd635",
+        "759a7125135328607e4641dd2d6cc000fb0b9a459241991dbed9b94dcab4f958",
+        "4a5c0c20e1278f530a412c9841eba35ef18830903809fa6559e313f14d97f1cc"
+      ],
+      "supportCentersX": [
+        71.0,
+        68.0,
+        64.0,
+        61.0
+      ],
+      "offsetsX": [
+        0,
+        3,
+        7,
+        10
+      ],
+      "correctedCentersX": [
+        71.0,
+        71.0,
+        71.0,
+        71.0
       ]
     }
   }
