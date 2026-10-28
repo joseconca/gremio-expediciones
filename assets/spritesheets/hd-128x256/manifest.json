@@ -146210,68 +146210,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "ab5eb39beb52abf0265f9fbfef28d876b14421271be7320771ea0d8cae4784b2",
-                "bytes": 24804,
+                "sha256": "afe034f7182b0e2148b010cc943b1ab2c97bb61f35c086da59e5e011b08be186",
+                "bytes": 26329,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  96,
-                  108,
-                  249
+                  11,
+                  92,
+                  112,
+                  248
                 ],
-                "pixelSha256": "aff3f574559314ca9d12344eac81532ff09133fde0632c32426119564c85c5e2"
+                "pixelSha256": "c40196d86154d7c6b800fa27a63f444decadc3f8920ab54f5689ab977bc66bb1"
               },
               "02": {
-                "sha256": "8f61b5ac51fee25da4ddf5c18c3e37fbfcf10bdb7262ec85f80780f9a355048f",
-                "bytes": 23973,
+                "sha256": "520070c21fbc58b0bb566effb419d789a03c4fe6016e1b1bb64f13ecf4a72151",
+                "bytes": 25737,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  96,
-                  97,
-                  249
+                  11,
+                  92,
+                  107,
+                  248
                 ],
-                "pixelSha256": "1c47e755989d628be19cb9f19288c0b58735e8d4da37f687321eaf95ca4addc8"
+                "pixelSha256": "650242708273493c730e1f4a036521b6816aa5276e8b277cf638eee180966060"
               },
               "03": {
-                "sha256": "47290f3dc94db4ad68dc96c81d941b9f0cd91f57fd1c72d8c33b28156fb33bcf",
-                "bytes": 24255,
+                "sha256": "1d5a002b379eb89c4e61a33f70fba63fb971ec5f64ce1bc29d9d98ee77d90c0c",
+                "bytes": 25649,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  96,
-                  106,
-                  249
+                  7,
+                  92,
+                  110,
+                  248
                 ],
-                "pixelSha256": "f3553f733d68daa747645a70ac1850022553c99f31119afbedbae889f503b17a"
+                "pixelSha256": "c4ad0c87936f926cb80a0390f159faad28cde4375a9088e6e6fce5cd01fa0b35"
               },
               "04": {
-                "sha256": "c4477351773396229f164651d5b07d69ffcc186b6d012909eb3b6ef7cda7a8f4",
-                "bytes": 24805,
+                "sha256": "fa0529107ecefb14ed8ee31101a30cd6eda004c0a24d7136a9b8c8a970f2b914",
+                "bytes": 26146,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  96,
-                  108,
+                  6,
+                  92,
+                  110,
                   249
                 ],
-                "pixelSha256": "5ecc529e4f1f318b7c30eaddf68ac4e72a55158a23bd4a86f877d3e264b6ab6d"
+                "pixelSha256": "9c41febc65197e4438d0f8dbc0b81fd9df9baefb9f75e77de520d0ac84e9a479"
               }
             },
             "distinctFrames": 4
@@ -147196,9 +147196,9 @@
           ]
         },
         "attack_spear": {
-          "sourceSha256": "dca2f165f9bb4b2a2584a1380e82db25333f9f75c8a3e726b3a741d7897e0ff6",
+          "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
           "sourceDimensions": [
-            2171,
+            2172,
             724
           ],
           "registeredSourceDimensions": [
@@ -147221,9 +147221,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v6.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v7.png",
           "generator": "built-in imagegen",
-          "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear action revision6. Image1 is EDIT TARGET for exact FOUR bodies and especially IMMUTABLE HAND ANATOMY. KEEP ALL EIGHT ORIGINAL CLOSED HANDS/FINGERS at their exact Image1 shapes, size, orientation and absolute positions; only darken the existing fingerless glove leather to dark brown. NEVER replace them with larger fists or bulky gauntlets. Image2 is ONLY approved face/hair/cloth/plate/boot detail montage; it deliberately contains NO hands. Change Image1 face/hair and clothing into this exact Guardian real, with full royalblue sleeves and SILVER METAL forearm guards right down to the unchanged original glove cuffs. Remove novice wrist wraps and bare forearms but DO NOT redraw any hand or finger. Every shared grip point must remain INSIDE the same real glove palm, never on bracer, belt, fingertip edge or empty space. On2172x724canvas phase1 palms/grips253,320 and488,242; phase2 796,311 and922,277; phase3 1491,281 and1587,250; phase4 1887,320 and2130,246. These are geometric guides, do not draw markers. Copy exact Image1 anatomy, compact arms, head/body proportions and perquarterplacement. ALL FOUR bodies stay full-height: hair top around20, boot soles around693, about675pixel height; NO body shrinking, centering, zoom or extra empty margins. Approved identity: adult feminine steelgray braided LOW BUN, attentive eyes, sapphire forehead jewel. Outfit: segmented SILVER/GUNMETAL breastplate, compact BLUE pauldrons with ONE vertical SILVER BAR each and silverdiamond fittings, full royalblue sleeves, close fitted silver vambraces ending in ONE thin dark cuff before original fingerless gloves, angular silverdiamond beltclasp, THREE shortblue tabardpanels with SILVER TOWER on centerpanel, steelkneeguards/greaves/sabatons. No cape, novice scarf/pouches/cream fabric, brownhair, wristbandagewraps, or bare forearms. Exactly4 separate complete right-facing3/4 fullbodies on original2172x724 transparentstrip, same crisp paintedanimepixel-inspiredRPG rendering. No held/sheathed equipment, spear, weapon, shield, book, potion, text, grid, shadows or effects.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE spear correction revision7. Image1 is the EDIT TARGET: approved character/costume/fullbody proportions with MAGENTA X ANNOTATIONS marking the exact required PALM/GRIP centers. Image2 ONLY shows original correct anatomical hand shapes and four pose gestures, NOT its novice clothes or identity. REDRAW/MOVE the eight small closed gloved hands so the dark leather PALM centers cover the magenta X anchors in Image1; adjust only adjoining wrists/forearms naturally to follow. Do not keep old misplaced fists and just erase marks! In FIGURE2, the raised guarding hand currently too near chest MUST move RIGHT and slightly DOWN along magenta arrow to the X currently on silver bracer; the X must end inside real leather glove palm, NEVER forearm armor. In FIGURE4, forward fist MUST move RIGHT and DOWN to the X beyond current hand outline; rearwaist hand moves to its own X. Figures1/3 need small palm corrections to their X marks as well. All hands stay SMALL, identical width/height/finger contours to Image2, no enlarged fists or bulky gauntlets. Both hands grip an IMAGINARY diagonal spear through the marked palm positions; draw no spear. Remove ALL magenta annotations/arrows in final. Keep allotherpixels/art stable: exact head/hair/face/body/feet scale and positions, steelgray braidedlowbun/sapphirejewel, segmented silvergunmetal plate, blue pauldrons with silververticalbars/diamondfittings, full royalblue sleeves, fitted silverforearmguards to ONE thin dark cuff, darkfingerless gloves with exposed fingertips, angular silverdiamondbelt, THREE blue shorttabardpanels with SILVER TOWER centerpanel, silvergreaves/sabatons. No novice scarf, pouches, cream clothes, bare forearms or stacked brown wristwraps. Exactly4 complete separate right-facing3/4 fullbodies on2172x724transparentrow, unchanged bodyheight/headsize/camera. Crisp paintedanimepixel-inspiredRPG render. No equipment, weapon, shield, book, potion, text, grid, effects or shadows.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -147232,6 +147232,38 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "04": {
+              "sourceSha256": "0f073453d0b5f26c4b49d3b10b411eeb3e83f00760c52f0ccc7540d75adeb67e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame04-reference-v7.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
           "previousRevisions": [
             {
               "sourceSha256": "48de0c1fcf0c88df41c59513698e5c7c1e975008019ba3d76b5b3b96e63fedea",
@@ -147698,6 +147730,44 @@
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
               }
+            },
+            {
+              "sourceSha256": "dca2f165f9bb4b2a2584a1380e82db25333f9f75c8a3e726b3a741d7897e0ff6",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v6.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear action revision6. Image1 is EDIT TARGET for exact FOUR bodies and especially IMMUTABLE HAND ANATOMY. KEEP ALL EIGHT ORIGINAL CLOSED HANDS/FINGERS at their exact Image1 shapes, size, orientation and absolute positions; only darken the existing fingerless glove leather to dark brown. NEVER replace them with larger fists or bulky gauntlets. Image2 is ONLY approved face/hair/cloth/plate/boot detail montage; it deliberately contains NO hands. Change Image1 face/hair and clothing into this exact Guardian real, with full royalblue sleeves and SILVER METAL forearm guards right down to the unchanged original glove cuffs. Remove novice wrist wraps and bare forearms but DO NOT redraw any hand or finger. Every shared grip point must remain INSIDE the same real glove palm, never on bracer, belt, fingertip edge or empty space. On2172x724canvas phase1 palms/grips253,320 and488,242; phase2 796,311 and922,277; phase3 1491,281 and1587,250; phase4 1887,320 and2130,246. These are geometric guides, do not draw markers. Copy exact Image1 anatomy, compact arms, head/body proportions and perquarterplacement. ALL FOUR bodies stay full-height: hair top around20, boot soles around693, about675pixel height; NO body shrinking, centering, zoom or extra empty margins. Approved identity: adult feminine steelgray braided LOW BUN, attentive eyes, sapphire forehead jewel. Outfit: segmented SILVER/GUNMETAL breastplate, compact BLUE pauldrons with ONE vertical SILVER BAR each and silverdiamond fittings, full royalblue sleeves, close fitted silver vambraces ending in ONE thin dark cuff before original fingerless gloves, angular silverdiamond beltclasp, THREE shortblue tabardpanels with SILVER TOWER on centerpanel, steelkneeguards/greaves/sabatons. No cape, novice scarf/pouches/cream fabric, brownhair, wristbandagewraps, or bare forearms. Exactly4 separate complete right-facing3/4 fullbodies on original2172x724 transparentstrip, same crisp paintedanimepixel-inspiredRPG rendering. No held/sheathed equipment, spear, weapon, shield, book, potion, text, grid, shadows or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
           ]
         },
@@ -148264,7 +148334,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
