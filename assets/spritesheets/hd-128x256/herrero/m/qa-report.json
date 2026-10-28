@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T02:11:26.093365+00:00",
+  "classId": "herrero",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\herrero\\m\\herrero-m-sheet.png",
+  "sheetSha256": "5b4bf381ba909607ee237f8ac65d63109a6c5d05ec7b2cfacb844103fca15ac5",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\idle\\herrero-m-idle-01.png",
+          "sha256": "25802e4553504d8ad6c52b0fda9df633863a8692c57a8cc482fa30fb83217072",
+          "alpha_bbox": [
+            21,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\idle\\herrero-m-idle-02.png",
+          "sha256": "26a4efa3ab650b6891781e05a8540526fe44a314b794eb401a144f021cab554c",
+          "alpha_bbox": [
+            21,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\idle\\herrero-m-idle-03.png",
+          "sha256": "b00397d92ec332ec1415213bff1e4852683f025560e87653fb23185653dfa9d8",
+          "alpha_bbox": [
+            21,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\idle\\herrero-m-idle-04.png",
+          "sha256": "0948c3edcd7ccedf16b2e6806ee51661ca7a51e36c9af3eaf4d25a036d4c14c7",
+          "alpha_bbox": [
+            21,
+            93,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\walk\\herrero-m-walk-01.png",
+          "sha256": "31450f96d0994e5423fc72fca2f6ca03ab4222a7d96ab63d2630600c85f0e91c",
+          "alpha_bbox": [
+            11,
+            91,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\walk\\herrero-m-walk-02.png",
+          "sha256": "9aeb2cf3b9ae303cd0283837a81ced43de400294d5571c53c8258a66df11ad22",
+          "alpha_bbox": [
+            7,
+            91,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\walk\\herrero-m-walk-03.png",
+          "sha256": "276954176f2f0ccf8d92bf28ddb4289756be91633e40da99ac3c013e80f21ea8",
+          "alpha_bbox": [
+            10,
+            91,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\walk\\herrero-m-walk-04.png",
+          "sha256": "1f4d07a6e843af4509a4e396974f28b25f7f7d9a7d98e70c01c19a9801ca5234",
+          "alpha_bbox": [
+            7,
+            91,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\hurt\\herrero-m-hurt-01.png",
+          "sha256": "cee8d3b25c408789cc66debc429386e0b0ba8a3db13bc50e0e6ab08b16ee171b",
+          "alpha_bbox": [
+            21,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\hurt\\herrero-m-hurt-02.png",
+          "sha256": "8205b13d473da678d55ec29e5918932a3fbaa2e499e4b6fae2e07e7afe3e495e",
+          "alpha_bbox": [
+            26,
+            97,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\hurt\\herrero-m-hurt-03.png",
+          "sha256": "c33c0d4086a3967f38a010041f39dd1e2abaf7a4d4b84a9f4b11df66d85b5ab6",
+          "alpha_bbox": [
+            16,
+            119,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\hurt\\herrero-m-hurt-04.png",
+          "sha256": "7cd5ea81e0b169447bff36a21ef3cabedb7237936278d3ef082b8153085cf643",
+          "alpha_bbox": [
+            21,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\use_consumable\\herrero-m-use_consumable-01.png",
+          "sha256": "be51b9511b6826b66c0b65feb832a73bdd72c66dc99a7944a4b789e7b8d4a4ee",
+          "alpha_bbox": [
+            24,
+            92,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\use_consumable\\herrero-m-use_consumable-02.png",
+          "sha256": "376c55816ad5fb32c318b50c60dcb3226fe50e6e119a144728a72ad3db054a4f",
+          "alpha_bbox": [
+            25,
+            92,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\use_consumable\\herrero-m-use_consumable-03.png",
+          "sha256": "8da37c33d22f55fc0269f165887eb615aadba809d5dd864f3d80179112f04cec",
+          "alpha_bbox": [
+            22,
+            93,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\use_consumable\\herrero-m-use_consumable-04.png",
+          "sha256": "c70da5813db7f5889ca3daaf0087244888289833b416349f41f919994fc151b9",
+          "alpha_bbox": [
+            25,
+            93,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\dodge\\herrero-m-dodge-01.png",
+          "sha256": "27f934463fd27c292a70997310162f82a680489565ed8f8fb0ada164b9542959",
+          "alpha_bbox": [
+            18,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\dodge\\herrero-m-dodge-02.png",
+          "sha256": "7a91cb8ab55abb2b9a96a752bda6fa809990fb3d58f2f2503af8acb68e91466a",
+          "alpha_bbox": [
+            16,
+            100,
+            117,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\dodge\\herrero-m-dodge-03.png",
+          "sha256": "5bbf37391e64e44dd87eaed52c95a8c9645f6c89f44f871390ddc058faba37cc",
+          "alpha_bbox": [
+            32,
+            103,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\dodge\\herrero-m-dodge-04.png",
+          "sha256": "2cf01cb1af70ec6916af42de21e534c3bee506ceed278f1b5bff7fe0a5c1893c",
+          "alpha_bbox": [
+            20,
+            100,
+            116,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\block_shield\\herrero-m-block_shield-01.png",
+          "sha256": "9751b39d5fd5befe858818792ecf01332475c1599827fbf46567e25fec543839",
+          "alpha_bbox": [
+            21,
+            98,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\block_shield\\herrero-m-block_shield-02.png",
+          "sha256": "c4a0b7a784e67d629da84ba28bda33a95f5fdd01ccae21137e2714040fad0284",
+          "alpha_bbox": [
+            22,
+            97,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\block_shield\\herrero-m-block_shield-03.png",
+          "sha256": "922788ca0a4b8ac40e1ae103d5690fac46e097d46948cfbab8533373636a986a",
+          "alpha_bbox": [
+            23,
+            113,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\block_shield\\herrero-m-block_shield-04.png",
+          "sha256": "2da41e8aaef922ebf6b348371bd07a62b249016daf3dcdc0e4d2362328b6d14d",
+          "alpha_bbox": [
+            21,
+            97,
+            112,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_sword\\herrero-m-attack_sword-01.png",
+          "sha256": "ebeda77b4eacc68fb1012cd6840ac66e068c8c5e952c507c3f800c809b452a7c",
+          "alpha_bbox": [
+            13,
+            98,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_sword\\herrero-m-attack_sword-02.png",
+          "sha256": "f0468a866bfa72fa1a856d9252fcf955189c78c0008e7ce88f2d7db1e72d4684",
+          "alpha_bbox": [
+            7,
+            98,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_sword\\herrero-m-attack_sword-03.png",
+          "sha256": "078b7eb4bdc49d42d7e3b2d2140095ed23def7ea08bdf8efa17be6092bba5856",
+          "alpha_bbox": [
+            10,
+            101,
+            124,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_sword\\herrero-m-attack_sword-04.png",
+          "sha256": "db8ada903d6c47a3bacad5bdc7bd2eb212f337b05be0a844a42011754666fe12",
+          "alpha_bbox": [
+            13,
+            98,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_axe\\herrero-m-attack_axe-01.png",
+          "sha256": "5e137fe020f1eb6b88190216141709a946a9d4ab35f2c39c123af5980b35c336",
+          "alpha_bbox": [
+            9,
+            100,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_axe\\herrero-m-attack_axe-02.png",
+          "sha256": "51323b3e69aa9cb655c711d7f052c41dfe1fc110e85e7d579a078b8ccccb467b",
+          "alpha_bbox": [
+            16,
+            110,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_axe\\herrero-m-attack_axe-03.png",
+          "sha256": "55323c9c435c60b6399436ce086994c465d8cc938fbb79800fd8b586e0e2d5f6",
+          "alpha_bbox": [
+            11,
+            120,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_axe\\herrero-m-attack_axe-04.png",
+          "sha256": "eea73374f7d4170943f5dc60751704694a26b174c321e6dc8957d5c15c77b9e9",
+          "alpha_bbox": [
+            17,
+            104,
+            116,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_spear\\herrero-m-attack_spear-01.png",
+          "sha256": "81cdb1af65656e66a8943e3410afe65452925b4a205373aa21d1e7c55cb20efe",
+          "alpha_bbox": [
+            10,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_spear\\herrero-m-attack_spear-02.png",
+          "sha256": "b98be13bd2d8f460e962dd0e4aa40f0a56b57d311add5c721fbd25e11d064e99",
+          "alpha_bbox": [
+            15,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_spear\\herrero-m-attack_spear-03.png",
+          "sha256": "c01821308ea4068d2eaf243a54f34d1c76a1ca18748072cd9539a42b38f131a5",
+          "alpha_bbox": [
+            12,
+            91,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_spear\\herrero-m-attack_spear-04.png",
+          "sha256": "02217551aa42cceea91ac51d3e9a9bfa4cc2fa573a34b8aeb2cd3d89a40f9378",
+          "alpha_bbox": [
+            17,
+            91,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_dagger\\herrero-m-attack_dagger-01.png",
+          "sha256": "0033c5687f7ae9924bfec3883f7c136d7a952a6374e0bb9c5836f00161aeb3ed",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_dagger\\herrero-m-attack_dagger-02.png",
+          "sha256": "577f944380f6e581fbba2c802cde1f276537a0871e9312f1f2a2fb5354d245ea",
+          "alpha_bbox": [
+            26,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_dagger\\herrero-m-attack_dagger-03.png",
+          "sha256": "7843d4b63dc3f15e04448e954ad9d8011b77ace3f7237595c1e50fc38df9090d",
+          "alpha_bbox": [
+            23,
+            95,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_dagger\\herrero-m-attack_dagger-04.png",
+          "sha256": "0c6705f637259816ebf50c18be3ea7e329fb145fcc4ef8134932660af4750367",
+          "alpha_bbox": [
+            18,
+            92,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_bow\\herrero-m-attack_bow-01.png",
+          "sha256": "07ed1e652a96ef2b36f61d0441929e35cc8c1f9b60d03bd5b79caa0a87fed003",
+          "alpha_bbox": [
+            24,
+            95,
+            122,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_bow\\herrero-m-attack_bow-02.png",
+          "sha256": "6159a05994a06ff6fd58c4844e6ba609911d4264d26a3a4f9b42aeda79d926ed",
+          "alpha_bbox": [
+            23,
+            95,
+            122,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_bow\\herrero-m-attack_bow-03.png",
+          "sha256": "7b48a39c9c59c4d6cad8214c70d9329eee3f3273f5ee8811c9b83a533ec5ea6f",
+          "alpha_bbox": [
+            16,
+            95,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_bow\\herrero-m-attack_bow-04.png",
+          "sha256": "40c28c5378f65b448592816a1b0b3b3f6f7aa40cc08f0c8d89cc78c98c927470",
+          "alpha_bbox": [
+            16,
+            95,
+            117,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_staff\\herrero-m-attack_staff-01.png",
+          "sha256": "302387598068eff27c8883514ed16edd0bafd4c59ff04cd0d898b7fb14947342",
+          "alpha_bbox": [
+            25,
+            92,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_staff\\herrero-m-attack_staff-02.png",
+          "sha256": "b2b2de6f30c4ce5347f98104b20da0b513bf1888f794490ee2dd0615a36e7d9d",
+          "alpha_bbox": [
+            24,
+            92,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_staff\\herrero-m-attack_staff-03.png",
+          "sha256": "39038e0ae24102f92eae31759c4e54e3265f62329c9963fdce865a2844acb656",
+          "alpha_bbox": [
+            24,
+            92,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_staff\\herrero-m-attack_staff-04.png",
+          "sha256": "9b7bf2700f0c6c064717509f94ec13f423042176b340a61a115053a8f3c16a1e",
+          "alpha_bbox": [
+            21,
+            92,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_mace\\herrero-m-attack_mace-01.png",
+          "sha256": "f5ec95df87a7d11da03b15c59ac8984d5aabb17dbbda09d41e84fe87640870ce",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_mace\\herrero-m-attack_mace-02.png",
+          "sha256": "7eff925904b2f0f5456ec5c60fb827b4927cf030e75b41aaae6eddb785df6388",
+          "alpha_bbox": [
+            32,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_mace\\herrero-m-attack_mace-03.png",
+          "sha256": "d90033c10138655a178083cc3500adcc3e867c15f00fdc8b865df35f4e2a41d1",
+          "alpha_bbox": [
+            28,
+            103,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_mace\\herrero-m-attack_mace-04.png",
+          "sha256": "26723644aa8bb3713e3cf6334e52d677294472b88f0f45d0c27503094009b6e9",
+          "alpha_bbox": [
+            37,
+            90,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_book\\herrero-m-attack_book-01.png",
+          "sha256": "5855647aa13ac8af6faddcb05f1170e58dedcf58868c1ee5c665c8ec92fabe90",
+          "alpha_bbox": [
+            21,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_book\\herrero-m-attack_book-02.png",
+          "sha256": "850a096563a564f8eae3041b4150c038a081f34e2247c82ee7e93b8d9144ac57",
+          "alpha_bbox": [
+            20,
+            91,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_book\\herrero-m-attack_book-03.png",
+          "sha256": "34b05bd439412858aa1c681587230ac97342ca485f4f1748b3528d2f7bc42f02",
+          "alpha_bbox": [
+            20,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_book\\herrero-m-attack_book-04.png",
+          "sha256": "d020b7675006fd1db33b01b3af6f237eb3f327c41b1f3f53dcc5e15923ac7e51",
+          "alpha_bbox": [
+            20,
+            91,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_gloves\\herrero-m-attack_gloves-01.png",
+          "sha256": "1857cbbcfd45f57c44d521f51ed2de182265294bba0eb6dbf7811f6f21634489",
+          "alpha_bbox": [
+            19,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_gloves\\herrero-m-attack_gloves-02.png",
+          "sha256": "0b49e20c30be8acba409b7f5a371ab937b03581928e1d9ee3ab56be7d039b77c",
+          "alpha_bbox": [
+            22,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_gloves\\herrero-m-attack_gloves-03.png",
+          "sha256": "06ed1021fc2897529c271bc202be6b463a280c4fa6a68d9ae1dc2f7ba801f6aa",
+          "alpha_bbox": [
+            21,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\herrero\\m\\frames\\attack_gloves\\herrero-m-attack_gloves-04.png",
+          "sha256": "c8ab0dd9d88873aa1f17ec3682cedb092b9a2aef743b561c35d6365f09d2fc81",
+          "alpha_bbox": [
+            19,
+            91,
+            106,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
