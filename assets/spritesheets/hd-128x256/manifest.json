@@ -141030,11 +141030,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -141178,7 +141179,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c70c16e5bbd2ad014bbc0cfb185219cc2e657cabf5f3bbaf83907dc8d9b0d4d8",
+                "bytes": 26656,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  112,
+                  247
+                ],
+                "pixelSha256": "bd1738db2db98434db53d9428fec274f2163f717fabe9dd794e660812dc976bb"
+              },
+              "02": {
+                "sha256": "1ae6c94980bbe2a7099ea2a5a0806df7b3c9933f9de7e157eb8397fc4786b26a",
+                "bytes": 25026,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  108,
+                  247
+                ],
+                "pixelSha256": "5c21975eccdb187301638022b63aae1530b57afcdb6bf04c891bfcaf2ec70d2c"
+              },
+              "03": {
+                "sha256": "bd18f285fea9df35fb6748497a8bd5a877b9d381baff5215ce405db89277e6e9",
+                "bytes": 21787,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  114,
+                  95,
+                  247
+                ],
+                "pixelSha256": "4aafdff811e8eace06a54b49c3c9cb9cd573d40b9204114099fca4149ec471ee"
+              },
+              "04": {
+                "sha256": "7bc86cf88b86d2ca866eacb8804cc10e3f54157f09fc4254b6f069b6d2f3f29a",
+                "bytes": 26604,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  98,
+                  247
+                ],
+                "pixelSha256": "c906b1e340ea35dab7a2ea6ac3b72f3b9f42f8a9710ee1d2437259442a9dd97b"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -141294,6 +141362,44 @@
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "96ca8edf0ff67a0205088ddf25f5ccacec42dc6b1c913f034cb59669aa09d715",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Animate the EXACT approved Paladín identity and costume of Image2 in Image1's four poses. Retain FULL WHITE/GOLD plated arms from shoulder to wrist cuffs, no bare forearms, no novice cream fabric, leather wrist wraps, pouches or red scarf. Preserve gold SUNBURST breastplate, THREE sapphire-blue short tabard panels with gold FLEUR on CENTER panel, round BLUE-GEM belt clasp, TWO BLUE knee gems, gold laurel circlet and dark fingerless gloves with WHITE knuckle plates. All4 figures keep every approved insignia, including closed-eye and turned poses.  Production RPG body sprite strip for Paladín FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved reference's white/gold full plated arms ending at plate cuffs over black fingerless gloves, no bare forearms. Keep the GOLD SUNBURST breastplate, SAPPHIRE THREE-PANEL tabard with small gold fleur motif on CENTER panel, round blue-gem gold belt clasp, TWO BLUE ENAMEL knee gems and close gold-laurel forehead circlet identical in all four figures. Adult experienced feminine Paladín with honey-blond hair in braided crown with low tucked ponytail, attentive determined eyes, canonical female head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -141327,6 +141433,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
