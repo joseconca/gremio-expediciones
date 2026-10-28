@@ -127508,11 +127508,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -127656,7 +127657,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "deb189d9dc21cfff6d4cfe0c3fd491ecdbe0cb39a122350495a2c1c94bb5b91c",
+                "bytes": 25132,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  91,
+                  107,
+                  249
+                ],
+                "pixelSha256": "317d273541dc7631dadb63f0d4cc27565a36587ef31c70e5f398cbf7efc45e1a"
+              },
+              "02": {
+                "sha256": "98e8d73c8326e6f2725a602978f31770358575d1c075ecb2b075b1375659368f",
+                "bytes": 23607,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  91,
+                  99,
+                  249
+                ],
+                "pixelSha256": "a542f361f3fb7d2d2debe3409d29be73e7a8e2475515db0b1572db745945026f"
+              },
+              "03": {
+                "sha256": "e3e1e0c1f543f7a71a8c10558775397131053356cd36fc520ef20ba4d75b27e5",
+                "bytes": 19927,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  115,
+                  91,
+                  249
+                ],
+                "pixelSha256": "4a684001e204a05bded7e55ea74cd2820222a0bf0f025a45c3fe09081f966c88"
+              },
+              "04": {
+                "sha256": "8b1fdc8e9db03f5297bb764cebdec2864046cb633b1e07502d518046eecd9f2e",
+                "bytes": 24511,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  91,
+                  97,
+                  249
+                ],
+                "pixelSha256": "3e62f35f16c05467dfa440a0127423307476680533869a4c4ea0cc8c9f567794"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -127772,6 +127840,44 @@
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "82dac1cf20bcdef5cead4f3337155193da5319329de6bae57cdf5af83db4a3f5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the identity reference's precise laboratory outfit and accessories: fitted FULL-LENGTH IVORY sleeves ending at IVORY cuffs touching black fingerless gloves, exposed fingertips but NO bare forearms; TWO clipped green glass ampoules and TWO square brown belt pouches; one green sewn circle breast badge; fine BRASS OVAL SPECTACLES in EVERY pose even closed eyes. MALE retains short tidy chestnut moustache, FEMALE has no facial hair. All fixed costume details identical across all four figures.  Production RPG body sprite strip for Alquimista FEMALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Match approved identity's fitted FULL-LENGTH IVORY sleeves and distinct IVORY cuffs touching black fingerless gloves: NO bare skin between elbows and gloves. Keep exactly TWO clipped green glass ampoules and TWO square brown belt pouches, one green sewn transmutation-circle breast badge, brass oval spectacles in ALL poses. MALE short chestnut moustache must remain, FEMALE no facial hair. Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses. Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects. Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -127805,6 +127911,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
