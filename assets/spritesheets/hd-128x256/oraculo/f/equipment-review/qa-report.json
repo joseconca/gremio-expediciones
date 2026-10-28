@@ -11,7 +11,8 @@
     "block_shield",
     "attack_sword",
     "attack_axe",
-    "attack_spear"
+    "attack_spear",
+    "attack_dagger"
   ],
   "bodyHashes": {
     "idle": [
@@ -67,9 +68,15 @@
       "38fcf65fcdb26e44d5d7c782719d1c912c59d93ab3bf901e878fba6a084dcc38",
       "e52238b883da6080a0ae7cab527e96efa9c2db693a6c063d53dd9a8ed9c7a734",
       "d452c2a569654dd64e51d5cf5afc078e636ae449407c66066149e70a06488fa7"
+    ],
+    "attack_dagger": [
+      "376b88b1dd06f6ce8a4d14051a0dcc8822de43969d094717155b78b5ecae8ac9",
+      "9c811ace8203e9de057ddd01b385b3842a92d027dd1eec1447f0f10b04a21bfc",
+      "37dee4afc69ff60bd73d458dca17e566ffce3fc5227ddc02bc4080ecb8d47cfb",
+      "2a4ec308b5595f33c2b9d080bed5885db087ffa124c14c7beea72ad4fb091cd7"
     ]
   },
-  "contactChecks": 596,
+  "contactChecks": 612,
   "warnings": [
     {
       "action": "hurt",
