@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "asesino-m",
+  "nextVariant": "asesino-f",
   "classes": [
     {
       "id": "novato",
@@ -148862,12 +148862,12 @@
       "tier": 3,
       "sex": "m",
       "order": 65,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/asesino/m/asesino-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/asesino/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -148881,12 +148881,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8a227c7e230c6d8eafe0df46aba76a5bf43d05d4f09036c8ca6ec127e7ab7a25",
+                "bytes": 22127,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "32805a98488b0552422aa98a22708eba024bfe92fd9c95e500a754dbb4aedd98"
+              },
+              "02": {
+                "sha256": "dff9b52b34a4a8be9eb06239eab3f991fed7a78863a2a0580c0b5db471016f74",
+                "bytes": 22144,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "c66c3bc90687e7055bfcc0a11342c0a9d605ca8d32939a5b9d1150d130f34e47"
+              },
+              "03": {
+                "sha256": "cfb23c9ec82173c4b669820dc15dcf361ac2a1ace5e78af04bf6c04d2ac47d0b",
+                "bytes": 22087,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "5c0fc8b85dd08a62d8830a647d78ea8b37b884eedb8b5e5eb11ca37a01ff6cec"
+              },
+              "04": {
+                "sha256": "7f46b7ee549d3cc23a34c593461ebe2f6c9571c36f78a884bc45ba7d83dc225a",
+                "bytes": 22143,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "3af5526ae8c257bc9263724920258fc5cb4e42cf2c0ab876f45d8ce4ab0f2856"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -148931,6 +149000,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "adf4067e0396fe30128629ec6683f502a391643e9c83df58b9a8fde6eee5b629",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asesino/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite strip for Asesino MALE Tier3 idle. Image1 is canonical geometry ONLY: retain EXACT four original body poses, head size/placement, every hand/finger/elbow/foot coordinate, per-quarter absolute positions and original2172x724 canvas. Establish NEW class identity: Adult experienced masculine Asesino with raven-black with burgundy sheen short asymmetrical swept fringe, attentive determined eyes, clean-shaven, canonical head scale. Fitted MATTE BLACK layered leather with DEEP BURGUNDY diagonal chest sash, compact dark silver segmented shoulder and forearm plates, violet triangular clasp, short fitted split waist panels, slim black trousers, silent dark boots with burgundy instep wraps and black fingerless gloves. Lower face visible, no mask or hood. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Fitted FULL BLACK LEATHER sleeves from shoulders to wrists under compact dark silver segmented forearm plates; NO bare forearms. High angular black leather collar, no cloth scarf. Preserve deep burgundy DIAGONAL chest sash with VIOLET TRIANGULAR clasp, stepped dark-silver leather armor plates and burgundy instep boot wraps exactly in all four figures. No cloth bandage-wrap costume or novice pouch. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Silhouette has fitted angular leather armor, compact tall collar, clean slim waist panels, stealthy dark-silver segmented guards, clearly burgundy diagonal sash and one violet triangle clasp; distinct from cloth martial wraps. Replace all novice clothes/hair/scarf/straps/pouches with this design. Exactly4 COMPLETE full bodies in ONE horizontal row facing right three-quarter view, same crisp painted anime RPG style and lighting. All4 costumes identical, third closed-eye pose keeps insignia. True transparent alpha, no red/yellow fringe. No held/sheathed equipment, effects, text or shadow. Do not enlarge or recenter figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -148939,12 +149066,12 @@
       "tier": 3,
       "sex": "f",
       "order": 66,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/asesino/f/asesino-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/asesino/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -148958,15 +149085,152 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 8,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle",
+          "walk"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4595b3cd62831fb5614ca887bb6febcaf35eb8ff90f1ca0e336a15126365208b",
+                "bytes": 24108,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  89,
+                  111,
+                  249
+                ],
+                "pixelSha256": "acf1296830d48e13aff2356e6a2e94f8292d5ba3bf4fdaaebfcf7e55e3c1556a"
+              },
+              "02": {
+                "sha256": "d3bf7d930e422e06cf6330fdddd36a1a0cdc7d69f55e5f63aed17e09c3d9efda",
+                "bytes": 24140,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  89,
+                  109,
+                  249
+                ],
+                "pixelSha256": "e873d63f1f62345428259a5ad84178e0b7ff8850dd7f1a10d0d7c92057454867"
+              },
+              "03": {
+                "sha256": "ba9870f96691b48904e48ac5e34a294ee9cc9bacf094914e05d0fee4b1a4da71",
+                "bytes": 24387,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  89,
+                  106,
+                  249
+                ],
+                "pixelSha256": "8ea55ab55bb32372198e0bce97bf0598859dfe935d6f478bd62d14838e8a01c1"
+              },
+              "04": {
+                "sha256": "d1ade016e523a3e283075c4c6f1c89f223d547db4f3c55871dfebaf76265d2f6",
+                "bytes": 24445,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  105,
+                  249
+                ],
+                "pixelSha256": "e4c5351eaad00380a1b72e82e38ed8e3abef2bf48fdbc893bb890a016f645092"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "52bb843b544689667c06bf392a2142f093e9fd3d211235cd1b92df3b4ef7db60",
+                "bytes": 23783,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  91,
+                  112,
+                  246
+                ],
+                "pixelSha256": "68947daa92819475782603a2fbb38f277979cca22bb6c5edd0da675fb5e27b24"
+              },
+              "02": {
+                "sha256": "38c7fdc385a98d7568100da7f91f60014a8639102813a4f04b3485d71d9fae70",
+                "bytes": 21848,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  90,
+                  94,
+                  249
+                ],
+                "pixelSha256": "2ba763cd36741e6a62dbe9fbe16d975f2597a2c9c4fb01c1a76457de8c1f7cea"
+              },
+              "03": {
+                "sha256": "10f34741f1330b0da6d762f8315ffd29c51660e26984284c72ae45777c9ba868",
+                "bytes": 23975,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  3,
+                  90,
+                  115,
+                  247
+                ],
+                "pixelSha256": "0b32cb759074daa7483cad43c7f9fcc7fca63f9d9af6fe46b037f6d8fa95cafa"
+              },
+              "04": {
+                "sha256": "e21b56e884bbb425951dcef55f55dad23cc049270f16b14f074f4923e0d37641",
+                "bytes": 21434,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  97,
+                  248
+                ],
+                "pixelSha256": "b34a9eb8b69b18ef289280b20fd252fdb9087743302960a53f50ad1531f1ffcf"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -149007,6 +149271,210 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "f246e00ffbe5b1121e45be69335646ef16ec93104e17c79df05a2f2bf5d3c342",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asesino/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Asesino FEMALE Tier3 idle. Image1 defines ONLY canonical FEMALE geometry: EXACT four original poses, absolute head/hand/finger/elbow/foot positions, proportions and original2172x724 canvas. Image2 defines approved costume ONLY: copy all its matte-black and burgundy fitted leather armor, metallic guards and unique accessories; do NOT copy male face or masculine body. Female identity: Adult experienced feminine Asesino with raven-black with burgundy sheen hair in compact high braided ponytail, attentive determined eyes, canonical female head scale. Fitted MATTE BLACK layered leather with DEEP BURGUNDY diagonal chest sash, compact dark silver segmented shoulder and forearm plates, violet triangular clasp, short fitted split waist panels, slim black trousers, silent dark boots with burgundy instep wraps and black fingerless gloves. Lower face visible, no mask or hood. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Fitted FULL BLACK LEATHER sleeves from shoulders to wrists under compact dark silver segmented forearm plates; NO bare forearms. High angular black leather collar, no cloth scarf. Preserve deep burgundy DIAGONAL chest sash with VIOLET TRIANGULAR clasp, stepped dark-silver leather armor plates and burgundy instep boot wraps exactly in all four figures. No cloth bandage-wrap costume or novice pouch. Match approved costume's THREE stepped dark-silver rear shoulder plates, angular high collar, burgundy diagonal sash with thin crossing brown harness strap, VIOLET TRIANGLE chest clasp, silver DIAMOND belt clasp, TWO burgundy pointed waist tails with silver edging, silver knee plates, burgundy boot wraps and tiny silver knuckle studs on black fingerless gloves. Preserve details with natural occlusion in all four figures. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Replace every old novice garment, hair, cream sleeve, scarf and pouch. Four COMPLETE full bodies in one horizontal row facing RIGHT three-quarter view, third pose closes eyes but keeps every costume motif. Same crisp painted anime RPG rendering/lighting, transparent alpha, clean contours. Compact ponytail within original canonical cell, no larger head or per-figure recentering/scaling. Empty hands; no held/sheathed equipment, weapons, shadows, text or effects.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "9adf82285180d9e3949d9733c8b8f45e39a0feeeb9a15dcef2ea3984ed24276a",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asesino/f/source/walk-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: precise-object-edit. Asset: Asesino FEMALE walk correction revision2. Image1 EDIT TARGET is approved class identity/costume and four walking poses. Image2 is ONLY original female walking ANATOMY/PLACEMENT reference, never its novice costume or hairstyle. ONLY fix FIGURE3 REAR HAND (viewer-left hand behind waist): current rear fist sits too far LEFT. Redraw this third rear forearm and black fingerless-gloved fist to the EXACT Image2 anatomical pose, with its palm/grip at absolute1257,381 on2170x725canvas. The third FORWARD fist already correct, keep it at1509,373 and keep torso/head/feet in place. Preserve silver segmented forearm guard and FULL BLACK sleeve, tiny silver knuckle studs and actual fingers. No change in head/body scale or camera, no perfigurecentering/resizing. Figures1,2,4 are correct and MUST remain unchanged; their complete originals will be selected. All other class costume unchanged: raven-black burgundy sheen high tied ponytail, high black leather collar, THREE stepped dark-silver rearpauldron plates, BURGUNDY diagonal chest sash and thin crossing brown harness strap, VIOLET TRIANGLE chest clasp, silver DIAMOND beltclasp, TWO pointed burgundy waist tails with silver edging, silver kneeplates and burgundy bootwraps. NO novice cream shirt, scarf, pouches, leather wristwraps or brown hair. Four complete separate right-facing3/4 full bodies on2170x725transparentstrip, third eyesclosed. Same crisp paintedanimepixel-inspiredRPG render, no equipment/weapon/sheath, text, shadows, effects or grid.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d28ee7fc8bec1c191b015a081a7b13a4ed371167341ea04237539ba7ffc7e286",
+              "sourceDimensions": [
+                2168,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/asesino/f/source/walk-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "d28ee7fc8bec1c191b015a081a7b13a4ed371167341ea04237539ba7ffc7e286",
+              "sourceDimensions": [
+                2168,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/asesino/f/source/walk-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d28ee7fc8bec1c191b015a081a7b13a4ed371167341ea04237539ba7ffc7e286",
+              "sourceDimensions": [
+                2168,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/asesino/f/source/walk-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          }
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk.frameSourceOverrides.02",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk.frameSourceOverrides.04",
+          "frame": 4
         }
       }
     },
@@ -153484,7 +153952,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
