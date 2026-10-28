@@ -16,7 +16,8 @@
     "attack_bow",
     "attack_staff",
     "attack_mace",
-    "attack_book"
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -102,9 +103,15 @@
       "b2a0ddd07023b7a4ca6fad9e7fe1258af4145dcf6d56b86327366302ff8a8a53",
       "c2b2c2ca54c04b9d65a8fc034595e6c45744c271d9caa79889f44d910370a399",
       "f741f65deb525bca2e97fdc39a236230f77cccc2c4f43553abb7977d3f75d951"
+    ],
+    "attack_gloves": [
+      "a7a58680bbec0a78b8b5df554d699a498312c8df26897dd731450872de1cd8ff",
+      "185ec4528fe0085101a98fd05de0917237d1961e166cd490dab748794d3f8356",
+      "2f745288a2798deb8926a9833f808b744dec83f2c3ef4ace43ab26e0fed0a042",
+      "bc3a92717412780f17159ab276d68031c1d10977c7ea43fdafc6a6ee94cfdc89"
     ]
   },
-  "contactChecks": 666,
+  "contactChecks": 682,
   "warnings": [
     {
       "action": "hurt",
