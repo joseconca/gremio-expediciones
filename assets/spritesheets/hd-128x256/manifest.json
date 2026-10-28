@@ -160178,7 +160178,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -160186,7 +160186,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -160610,7 +160611,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c5a98613dd5c10e09b95751a130151a7e09d53309b337e5be79243d2723bc2a7",
+                "bytes": 24214,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  108,
+                  246
+                ],
+                "pixelSha256": "ed08b7e20616fa617e17dfb3c72256332053bc6984f66ba47214bf4a2d485ad6"
+              },
+              "02": {
+                "sha256": "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9",
+                "bytes": 23377,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  109,
+                  247
+                ],
+                "pixelSha256": "f6e1cf309c7cdbcb55e02d88bc879daaaadd5e49fc422ba215666dd2962fc674"
+              },
+              "03": {
+                "sha256": "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0",
+                "bytes": 24262,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  92,
+                  108,
+                  247
+                ],
+                "pixelSha256": "d094a7f7ad82848acbf6f32d5a79765e0a501bfb0478db7a4179ff4bb2d4d263"
+              },
+              "04": {
+                "sha256": "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad",
+                "bytes": 24267,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  109,
+                  246
+                ],
+                "pixelSha256": "fb1d4ccf4b5815dbec374f51b64ea9851bdfe044e5631a54dadfcecd4f020b60"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -160958,6 +161026,44 @@
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "4b29740a19c9c3cc737a88dfbecd2f08d0ab24ada005e6e6740a567f9fa7205c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Oráculo FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps. Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -161056,6 +161162,53 @@
         "block_shield/04": {
           "source": "sources.block_shield",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "c5a98613dd5c10e09b95751a130151a7e09d53309b337e5be79243d2723bc2a7"
+            },
+            {
+              "bodySha256": "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9"
+            },
+            {
+              "bodySha256": "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0"
+            },
+            {
+              "bodySha256": "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },

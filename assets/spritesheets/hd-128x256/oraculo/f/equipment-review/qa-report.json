@@ -8,7 +8,8 @@
     "hurt",
     "use_consumable",
     "dodge",
-    "block_shield"
+    "block_shield",
+    "attack_sword"
   ],
   "bodyHashes": {
     "idle": [
@@ -46,9 +47,15 @@
       "135b20f7dc968cd195a8ae7e31a534a8383b8ec4299425702069798f829b0e71",
       "35b2f4e3eeb121861082581534f4a5eacea481167a80db7e8e18836e413ecccf",
       "5d923d18357a836b773640b49ffdc145e41dbcad92a88598614547ee88ed1553"
+    ],
+    "attack_sword": [
+      "c5a98613dd5c10e09b95751a130151a7e09d53309b337e5be79243d2723bc2a7",
+      "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9",
+      "2253a4713eda67c81993c5d294233d6ea28876d30cee4954dbd22cedec620bb0",
+      "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad"
     ]
   },
-  "contactChecks": 524,
+  "contactChecks": 560,
   "warnings": [
     {
       "action": "hurt",
@@ -192,6 +199,69 @@
       "point": [
         91,
         178
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_hierro",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_acero",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_draconica",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_madera",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_piedra",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_runa",
+      "point": [
+        96,
+        184
+      ]
+    },
+    {
+      "action": "attack_sword",
+      "frame": 3,
+      "item": "espada_vigia",
+      "point": [
+        96,
+        184
       ]
     }
   ],
