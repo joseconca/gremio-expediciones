@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T23:47:31.570016+00:00",
+  "classId": "campeon_arena",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\campeon_arena-m-sheet.png",
+  "sheetSha256": "4f8c9b994151f4c31f378b2315b84c73a799ec768ee88c5cb53de3e81ea6725d",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\idle\\campeon_arena-m-idle-01.png",
+          "sha256": "5be0a8e8644667afa046248f7e7944c9a1ccc7a0365f7cd4ee6454870bd07f7a",
+          "alpha_bbox": [
+            27,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\idle\\campeon_arena-m-idle-02.png",
+          "sha256": "9baef63f7adeae8940fc80d738c1cd573e125a52c9dfe8a68e2c1b6ea52c18d3",
+          "alpha_bbox": [
+            25,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\idle\\campeon_arena-m-idle-03.png",
+          "sha256": "cdc994721c208dbb8a013431f18fb7a172340b06baff1aafd6063d73a9a41de9",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\idle\\campeon_arena-m-idle-04.png",
+          "sha256": "c50d39a5f0a1f625b3aaf6b1dc8a291e615ac8b61d8ca3b222753e687caa5fce",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\walk\\campeon_arena-m-walk-01.png",
+          "sha256": "532e13aebccbf0d7a3a7c9ea03254fbe98a53fd6ef6e039431ac0b4cf1e4f829",
+          "alpha_bbox": [
+            9,
+            94,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\walk\\campeon_arena-m-walk-02.png",
+          "sha256": "7d6f77324ff157382a9d5867ec66f9b000162e2eb8b2f18a0dd329ba879368c2",
+          "alpha_bbox": [
+            11,
+            97,
+            109,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\walk\\campeon_arena-m-walk-03.png",
+          "sha256": "be344938c229d59bcd07d9d9a96406e9e4d8c308e2d4f2eded7861a1039c73a3",
+          "alpha_bbox": [
+            5,
+            94,
+            114,
+            253
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\walk\\campeon_arena-m-walk-04.png",
+          "sha256": "3e5b62d2d19c85b78d977dfe00adda88c7ca91cec44c22e820e938f32fa68021",
+          "alpha_bbox": [
+            13,
+            97,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\hurt\\campeon_arena-m-hurt-01.png",
+          "sha256": "61e177b60614359d81be37d18b11cd273f33d3b711b6f5f8cf7202f358ddf909",
+          "alpha_bbox": [
+            23,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\hurt\\campeon_arena-m-hurt-02.png",
+          "sha256": "52affba38e7f6948f78b7b9c6b1388835ccda5b74ae010b33055ab3e2a77c70b",
+          "alpha_bbox": [
+            29,
+            94,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\hurt\\campeon_arena-m-hurt-03.png",
+          "sha256": "9cfb0ea94a90c9c75ed4d53cfde4d8c3ec53765f678a0654964103b2c160946b",
+          "alpha_bbox": [
+            17,
+            114,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\hurt\\campeon_arena-m-hurt-04.png",
+          "sha256": "21ecb77655f7106b61be5e452d8f826c442cefcd7d61f39b8e02fdf5896517a2",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\use_consumable\\campeon_arena-m-use_consumable-01.png",
+          "sha256": "a239722420dd3038e9e1c2f94958cb998938701f9945d1038d0e7bcdd8d4486d",
+          "alpha_bbox": [
+            22,
+            92,
+            102,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\use_consumable\\campeon_arena-m-use_consumable-02.png",
+          "sha256": "15bf7f4a73df5bfd06136e37bab862d98e2d8721b0467d513ec8c37900e0ccf3",
+          "alpha_bbox": [
+            24,
+            92,
+            105,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\use_consumable\\campeon_arena-m-use_consumable-03.png",
+          "sha256": "28a104f094179ee9bd5cacd63f39c03abfde1d7c5786dcb41f1a5234ec3993ba",
+          "alpha_bbox": [
+            23,
+            92,
+            105,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\use_consumable\\campeon_arena-m-use_consumable-04.png",
+          "sha256": "93ffb8b2636fd4b30ea2ff496340663b3aba1eb165ba4ee051de190021437e83",
+          "alpha_bbox": [
+            27,
+            92,
+            110,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\dodge\\campeon_arena-m-dodge-01.png",
+          "sha256": "41f9037f5e070c622d6e30eed4a79a76abdaf5dc41874deab1f2661b6b44e945",
+          "alpha_bbox": [
+            17,
+            98,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\dodge\\campeon_arena-m-dodge-02.png",
+          "sha256": "225fc2ae8db86cf9ef44018a6dd982dcc30c6037b2c32ad5445ecf10f8b24380",
+          "alpha_bbox": [
+            18,
+            98,
+            120,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\dodge\\campeon_arena-m-dodge-03.png",
+          "sha256": "d4a9535bfc4def834c6c2c3565463d80d71461e67d7887fdfef549dc5063a531",
+          "alpha_bbox": [
+            29,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\dodge\\campeon_arena-m-dodge-04.png",
+          "sha256": "c42379f917fbbff08f452c5175a8aa3274ea86f0d8777e82946a06a008da7e78",
+          "alpha_bbox": [
+            21,
+            99,
+            112,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\block_shield\\campeon_arena-m-block_shield-01.png",
+          "sha256": "5f014fdf0b08dc5d979a922ba60c5338091a8b3a7d296bae349a37e1f4a5df4c",
+          "alpha_bbox": [
+            21,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\block_shield\\campeon_arena-m-block_shield-02.png",
+          "sha256": "d085d29146987e2b74f98902c47aa02c20acf3b556ef0d902b512e4d5946d400",
+          "alpha_bbox": [
+            20,
+            98,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\block_shield\\campeon_arena-m-block_shield-03.png",
+          "sha256": "35e244aad5527d03c28891e8f079f3afc7384e8ca5cb6226eda957a3ec319dab",
+          "alpha_bbox": [
+            21,
+            113,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\block_shield\\campeon_arena-m-block_shield-04.png",
+          "sha256": "4acff1c148c862e715a370da9d1b13dec0369b850e0b004d0094db070796dc0a",
+          "alpha_bbox": [
+            21,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_sword\\campeon_arena-m-attack_sword-01.png",
+          "sha256": "cd2cd03d79ad7eb08d57d37f84138478623b159f16a591a63e65477c2ef2a540",
+          "alpha_bbox": [
+            7,
+            97,
+            112,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_sword\\campeon_arena-m-attack_sword-02.png",
+          "sha256": "d664460fdd1fadfeac5c7c207c1832ae2d2a57304a2a3874e82fb0274343b540",
+          "alpha_bbox": [
+            7,
+            97,
+            113,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_sword\\campeon_arena-m-attack_sword-03.png",
+          "sha256": "ad48c0fc505b499a25ecdfa46992c470613928be489edf495e0893956ca7189d",
+          "alpha_bbox": [
+            10,
+            99,
+            122,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_sword\\campeon_arena-m-attack_sword-04.png",
+          "sha256": "4a7174354e10971ed5815b2d4150360bc9d5a2984b0915245174ebfc67cbbe43",
+          "alpha_bbox": [
+            28,
+            103,
+            116,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_axe\\campeon_arena-m-attack_axe-01.png",
+          "sha256": "1aeee42f6ec54df54498249a39d844f11b1439aa4e0edcfc2aad3a6e1e71d82b",
+          "alpha_bbox": [
+            11,
+            100,
+            111,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_axe\\campeon_arena-m-attack_axe-02.png",
+          "sha256": "daf07557420a4d64324aa50746077254fadac7a30ec9e3a26ebbe7b63d1e9643",
+          "alpha_bbox": [
+            18,
+            107,
+            119,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_axe\\campeon_arena-m-attack_axe-03.png",
+          "sha256": "367263a0360e1582bb3f46db6709fb289137cb0981a8c1fdb0e22412edfde411",
+          "alpha_bbox": [
+            14,
+            119,
+            117,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_axe\\campeon_arena-m-attack_axe-04.png",
+          "sha256": "a9501699bbb42772292491ed843870f45406340812a7fa17376d35fe9825c149",
+          "alpha_bbox": [
+            22,
+            106,
+            118,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_spear\\campeon_arena-m-attack_spear-01.png",
+          "sha256": "3f5b0c51182fc5ecdde2bf074ddce586e2e4505434155605993739827c9949de",
+          "alpha_bbox": [
+            12,
+            95,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_spear\\campeon_arena-m-attack_spear-02.png",
+          "sha256": "451a407197e3cf9db1204bdec32671549f73c7b98b651e97463787c4488ccd87",
+          "alpha_bbox": [
+            17,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_spear\\campeon_arena-m-attack_spear-03.png",
+          "sha256": "2fe003b05dbedd6889645e1e333f50442df27b243fce98ebe4d439b92089ab32",
+          "alpha_bbox": [
+            15,
+            92,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_spear\\campeon_arena-m-attack_spear-04.png",
+          "sha256": "c1a21e102c31f6a747de9335cd418a2fa99165b7d018aaa10332d53659668a72",
+          "alpha_bbox": [
+            17,
+            92,
+            113,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_dagger\\campeon_arena-m-attack_dagger-01.png",
+          "sha256": "b83e595821c45a940d419a15dd0c88f6b3f89d6c6f64d4443e8154e2820b3bf1",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_dagger\\campeon_arena-m-attack_dagger-02.png",
+          "sha256": "732a646887f611c5b81f542ef256065898fe829bf8d9042e827537b6f1a8ccb5",
+          "alpha_bbox": [
+            23,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_dagger\\campeon_arena-m-attack_dagger-03.png",
+          "sha256": "cd55ef19b97d086f6b4df547a0e9632796f9c0d4818fb3a61693c85d9a133168",
+          "alpha_bbox": [
+            29,
+            97,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_dagger\\campeon_arena-m-attack_dagger-04.png",
+          "sha256": "1ac6d025595e71209bf7e3e796f2125625b072dab3d50da574b73c74008ed642",
+          "alpha_bbox": [
+            27,
+            92,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_bow\\campeon_arena-m-attack_bow-01.png",
+          "sha256": "72bfbdc5139a04248ce694cc5eb1c41776b2c1e41cc9176aa37305c56b65660f",
+          "alpha_bbox": [
+            21,
+            96,
+            123,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_bow\\campeon_arena-m-attack_bow-02.png",
+          "sha256": "9bcac58b7c088763b305d5753f588a3e1dd6d21379d442850d19c5482d5eefcd",
+          "alpha_bbox": [
+            18,
+            96,
+            121,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_bow\\campeon_arena-m-attack_bow-03.png",
+          "sha256": "a480d9d07868ca82b94281d5491728781c02a56c2db5caa9b0c5fbf770e4ebc2",
+          "alpha_bbox": [
+            14,
+            96,
+            116,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_bow\\campeon_arena-m-attack_bow-04.png",
+          "sha256": "fdcae555c7e66d4b2547d86a511f8df0ccc9698701aa5ee4d60b8b541329396a",
+          "alpha_bbox": [
+            10,
+            96,
+            113,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_staff\\campeon_arena-m-attack_staff-01.png",
+          "sha256": "2a6a89731dcae8d962b0bda2bb71c48188f39b7acf4d19c8bd6c076c85e709c9",
+          "alpha_bbox": [
+            25,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_staff\\campeon_arena-m-attack_staff-02.png",
+          "sha256": "1fdd28e2aefa8b49ee0ad2318897153e9ba8823eb205a0a743d30bd7b92cfd64",
+          "alpha_bbox": [
+            24,
+            93,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_staff\\campeon_arena-m-attack_staff-03.png",
+          "sha256": "0ec643a155427735661a59d05f10be23db3803af972fe2e42b50ac461de89de0",
+          "alpha_bbox": [
+            25,
+            94,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_staff\\campeon_arena-m-attack_staff-04.png",
+          "sha256": "1b1f2e313126a3665264dcb537f79b785d02903e701ca1504a9298453e1b68f4",
+          "alpha_bbox": [
+            20,
+            94,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_mace\\campeon_arena-m-attack_mace-01.png",
+          "sha256": "511bc78efd94e4c4ee2864b0fee4649bbd4add7a1aff97662b7adcaa5f9888d9",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_mace\\campeon_arena-m-attack_mace-02.png",
+          "sha256": "42d8a392a4f5e24bfa0b2b8eef4f2cfcd5240dab855863184ae3f45f4f33d8ff",
+          "alpha_bbox": [
+            31,
+            90,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_mace\\campeon_arena-m-attack_mace-03.png",
+          "sha256": "c687b8a7f58e48a32c3566be9048d7c1317eafe0aa0ee8c9a1b62ce94f9ffb43",
+          "alpha_bbox": [
+            27,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_mace\\campeon_arena-m-attack_mace-04.png",
+          "sha256": "73b0d5112153d38b9dabcaf1795de8e922208eb857892afcae98d7e6a4dbaa7a",
+          "alpha_bbox": [
+            26,
+            90,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_book\\campeon_arena-m-attack_book-01.png",
+          "sha256": "63158f6f91552d36a03650747df6ecb66a7385b03268957cf45c9004adbb3dd5",
+          "alpha_bbox": [
+            25,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_book\\campeon_arena-m-attack_book-02.png",
+          "sha256": "71838df4ff794b0b6e5d4d033d6842469ef50f11eb7b3fa4608a3c44f30774f9",
+          "alpha_bbox": [
+            25,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_book\\campeon_arena-m-attack_book-03.png",
+          "sha256": "24b7bebdcc756cf0037afe52a556303bb3fa3820bf7f944a5571d59f480c216e",
+          "alpha_bbox": [
+            22,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_book\\campeon_arena-m-attack_book-04.png",
+          "sha256": "d2c195182c9cb2934c6ab3acd2196771a56ac0f15da4bb581ce58ab9f3f3a259",
+          "alpha_bbox": [
+            24,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_gloves\\campeon_arena-m-attack_gloves-01.png",
+          "sha256": "8ce6a8df607387577d860f122c56b18361e5ddbe30b7d15895eb8c8488473cd6",
+          "alpha_bbox": [
+            20,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_gloves\\campeon_arena-m-attack_gloves-02.png",
+          "sha256": "e82a0dd2a82f0f30d7bb494ae8a934497ab44d2ec81fea5432a0180d7998cbd0",
+          "alpha_bbox": [
+            20,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_gloves\\campeon_arena-m-attack_gloves-03.png",
+          "sha256": "2125be9a0e04d8dd66ff8f0fb1a8ff89408d28d7bc9eb3fcb313002aeef63100",
+          "alpha_bbox": [
+            20,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\campeon_arena\\m\\frames\\attack_gloves\\campeon_arena-m-attack_gloves-04.png",
+          "sha256": "88eebb468f69036840526a26dcff1a30354bfdce13b61fda24d9c65698db108e",
+          "alpha_bbox": [
+            20,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "campeon_arena-f",
+  "nextVariant": "mariscal-m",
   "classes": [
     {
       "id": "novato",
@@ -401,7 +401,7 @@
       "name": "Campeón de arena",
       "tier": 3,
       "order": 49,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "mariscal",
@@ -226398,7 +226398,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/campeon_arena/m/campeon_arena-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/campeon_arena/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -226905,20 +226905,20 @@
                 "pixelSha256": "7ee834fcd092d7e8c404df05f37da2a720bc58de90d2aafe7e2dd275b09ec9f6"
               },
               "04": {
-                "sha256": "ae61fd59736e6f0d2464371e48d3922cdb51175b362a1326239a68112a1f7481",
-                "bytes": 24518,
+                "sha256": "4a7174354e10971ed5815b2d4150360bc9d5a2984b0915245174ebfc67cbbe43",
+                "bytes": 22162,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
-                  97,
+                  28,
+                  103,
                   116,
-                  251
+                  250
                 ],
-                "pixelSha256": "a484a6903ba65b2f2136fe7051c3ccb503f9540b95e0e10fc297267038873b1a"
+                "pixelSha256": "7e133ad87e0c27084781658a48879dd846b76bd2f0b81ea5ede31ca7bc0147f4"
               }
             },
             "distinctFrames": 4
@@ -227522,7 +227522,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "70f7ba28645caf789d49c95067ba947112774b58010af920acb8e061abce9388",
@@ -227560,7 +227561,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "01fc80c7b578afc071d450188f5229cdaa5e45bfdc879bf02cd5d800d1adcace",
@@ -227692,7 +227693,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "6a14d8c1f16a90f3ca0baa4989eec5f0ef81077111cf5782ad540a883cec8f7e",
@@ -227730,7 +227732,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "cdd167ca794b448a36b5ec4f2685d01532368bfd212c04176ce544a7dc06e61c",
@@ -227768,7 +227771,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "37d287910d5fcd7d0dcef12c72e67ad074cb5f932952f455afa7e7f56d0bea20",
@@ -227812,7 +227816,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "43b3c07891ea9d04af4e5f90dcc654da54b5f001a60011b19e9b579bba1ee3ea",
@@ -227856,13 +227861,14 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
-          "sourceSha256": "124632352695c448e5496b78464b5540553241b1c6372e06dd18bb97e7e8d823",
+          "sourceSha256": "8ce92cfdec96db4513fab29ee39f0c87207247dd613b2b0432c194754fd9373a",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -227884,9 +227890,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-reference-v7.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Campeón de arena MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses. Adult athletic masculine champion with JET-BLACK hair swept into a compact high topknot, warm tan skin, determined brows and clean-shaven face; canonical head size. Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow. Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit, source-canvas repair. Keep this ONE complete male champion's HEAD, TORSO and near LEFT RAISED FIST exactly unchanged at their precise current coordinates; the raised black glove position is approved and must not shift at all. ONLY make BOTH BOOTS more compact, especially shorter toes and soles, so each entire boot fits inside the SAME canvas with clear TRANSPARENT margins below and at right. Also bend far RIGHT lowered wrist inward slightly so its entire glove clears the right canvas edge. Do not enlarge or move the full figure. Keep legs and armor design, white wraps, black topknot, bronze laurel armor, teal panels, fist belt and head/body scale unchanged. Entire full-body sprite, transparent background, exact same canvas. No equipment, effects, text, crop, recenter or global rescale.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
@@ -227894,7 +227900,140 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "124632352695c448e5496b78464b5540553241b1c6372e06dd18bb97e7e8d823",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-frame01-reference-v7.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "124632352695c448e5496b78464b5540553241b1c6372e06dd18bb97e7e8d823",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-frame02-reference-v7.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "124632352695c448e5496b78464b5540553241b1c6372e06dd18bb97e7e8d823",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-frame03-reference-v7.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "124632352695c448e5496b78464b5540553241b1c6372e06dd18bb97e7e8d823",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/m/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Campeón de arena MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses. Adult athletic masculine champion with JET-BLACK hair swept into a compact high topknot, warm tan skin, determined brows and clean-shaven face; canonical head size. Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow. Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+                "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+                "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+                "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "4c36bffa761d050f7d8c86f35475662124d293776ddd143814b3194d385472df",
@@ -227932,7 +228071,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "6a34eafaee4725c07c26539966839d0b4f7cec46568bf4f7e76eef411d194c13",
@@ -227970,7 +228110,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "6af3e5f54a7644b19bf0af6bfc61b551eec1c61b6c28c9fdf4f3a529639387b8",
@@ -228102,7 +228242,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "c3e7755c9285b2893c5ecd0eb1602da61eb505add9dfa1db1af719e1d9bad3b4",
@@ -228140,7 +228281,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "ef1f50e535d344792368755714fe3e1f521aa08df5ccd2edc53dd51af3bfec3a",
@@ -228178,7 +228320,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "22c397fb88b80067ddb2daa04cb50aa42b18fa007324c899b5f26d62cac91e60",
@@ -228216,7 +228359,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "9ee94867b6adc90644bfcb68c755dbc61243d1526a07c75b2ca7017455c1fee9",
@@ -228254,7 +228398,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "93ece6fd06fc990bfa4c79c78c53a33f6168fb0d8ca1b4d09605dd4983204879",
@@ -228292,7 +228437,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "7d7df0b3627fdb90b3cf7caa924fa04556351ec676259ca56f58a1daec30c27d",
@@ -228330,7 +228476,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -228431,15 +228578,15 @@
           "frame": 4
         },
         "attack_sword/01": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_sword/02": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_sword/03": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_sword/04": {
@@ -228596,7 +228743,7 @@
               "bodySha256": "ad48c0fc505b499a25ecdfa46992c470613928be489edf495e0893956ca7189d"
             },
             {
-              "bodySha256": "ae61fd59736e6f0d2464371e48d3922cdb51175b362a1326239a68112a1f7481"
+              "bodySha256": "4a7174354e10971ed5815b2d4150360bc9d5a2984b0915245174ebfc67cbbe43"
             }
           ],
           "limitations": [
@@ -228605,6 +228752,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "campeon_arena",
+        "name": "Campeón de arena",
+        "tier": 3,
+        "costume": "Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow.",
+        "maleIdentity": "Adult athletic masculine champion with JET-BLACK hair swept into a compact high topknot, warm tan skin, determined brows and clean-shaven face; canonical head size.",
+        "femaleIdentity": "Adult athletic feminine champion with JET-BLACK hair in a compact high layered ponytail, bronze hair tie and bronze laurel brow band, warm tan skin and determined brows; canonical female head size.",
+        "armPolicy": "Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses.",
+        "unique": "Bronze laurel armor, champion fist medallion and white fighting wraps",
+        "advancement": "Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/campeon_arena/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "5be0a8e8644667afa046248f7e7944c9a1ccc7a0365f7cd4ee6454870bd07f7a",
+            "9baef63f7adeae8940fc80d738c1cd573e125a52c9dfe8a68e2c1b6ea52c18d3",
+            "cdc994721c208dbb8a013431f18fb7a172340b06baff1aafd6063d73a9a41de9",
+            "c50d39a5f0a1f625b3aaf6b1dc8a291e615ac8b61d8ca3b222753e687caa5fce"
+          ],
+          "walk": [
+            "532e13aebccbf0d7a3a7c9ea03254fbe98a53fd6ef6e039431ac0b4cf1e4f829",
+            "7d6f77324ff157382a9d5867ec66f9b000162e2eb8b2f18a0dd329ba879368c2",
+            "be344938c229d59bcd07d9d9a96406e9e4d8c308e2d4f2eded7861a1039c73a3",
+            "3e5b62d2d19c85b78d977dfe00adda88c7ca91cec44c22e820e938f32fa68021"
+          ],
+          "hurt": [
+            "61e177b60614359d81be37d18b11cd273f33d3b711b6f5f8cf7202f358ddf909",
+            "52affba38e7f6948f78b7b9c6b1388835ccda5b74ae010b33055ab3e2a77c70b",
+            "9cfb0ea94a90c9c75ed4d53cfde4d8c3ec53765f678a0654964103b2c160946b",
+            "21ecb77655f7106b61be5e452d8f826c442cefcd7d61f39b8e02fdf5896517a2"
+          ],
+          "use_consumable": [
+            "a239722420dd3038e9e1c2f94958cb998938701f9945d1038d0e7bcdd8d4486d",
+            "15bf7f4a73df5bfd06136e37bab862d98e2d8721b0467d513ec8c37900e0ccf3",
+            "28a104f094179ee9bd5cacd63f39c03abfde1d7c5786dcb41f1a5234ec3993ba",
+            "93ffb8b2636fd4b30ea2ff496340663b3aba1eb165ba4ee051de190021437e83"
+          ],
+          "dodge": [
+            "41f9037f5e070c622d6e30eed4a79a76abdaf5dc41874deab1f2661b6b44e945",
+            "225fc2ae8db86cf9ef44018a6dd982dcc30c6037b2c32ad5445ecf10f8b24380",
+            "d4a9535bfc4def834c6c2c3565463d80d71461e67d7887fdfef549dc5063a531",
+            "c42379f917fbbff08f452c5175a8aa3274ea86f0d8777e82946a06a008da7e78"
+          ],
+          "block_shield": [
+            "5f014fdf0b08dc5d979a922ba60c5338091a8b3a7d296bae349a37e1f4a5df4c",
+            "d085d29146987e2b74f98902c47aa02c20acf3b556ef0d902b512e4d5946d400",
+            "35e244aad5527d03c28891e8f079f3afc7384e8ca5cb6226eda957a3ec319dab",
+            "4acff1c148c862e715a370da9d1b13dec0369b850e0b004d0094db070796dc0a"
+          ],
+          "attack_sword": [
+            "cd2cd03d79ad7eb08d57d37f84138478623b159f16a591a63e65477c2ef2a540",
+            "d664460fdd1fadfeac5c7c207c1832ae2d2a57304a2a3874e82fb0274343b540",
+            "ad48c0fc505b499a25ecdfa46992c470613928be489edf495e0893956ca7189d",
+            "4a7174354e10971ed5815b2d4150360bc9d5a2984b0915245174ebfc67cbbe43"
+          ],
+          "attack_axe": [
+            "1aeee42f6ec54df54498249a39d844f11b1439aa4e0edcfc2aad3a6e1e71d82b",
+            "daf07557420a4d64324aa50746077254fadac7a30ec9e3a26ebbe7b63d1e9643",
+            "367263a0360e1582bb3f46db6709fb289137cb0981a8c1fdb0e22412edfde411",
+            "a9501699bbb42772292491ed843870f45406340812a7fa17376d35fe9825c149"
+          ],
+          "attack_spear": [
+            "3f5b0c51182fc5ecdde2bf074ddce586e2e4505434155605993739827c9949de",
+            "451a407197e3cf9db1204bdec32671549f73c7b98b651e97463787c4488ccd87",
+            "2fe003b05dbedd6889645e1e333f50442df27b243fce98ebe4d439b92089ab32",
+            "c1a21e102c31f6a747de9335cd418a2fa99165b7d018aaa10332d53659668a72"
+          ],
+          "attack_dagger": [
+            "b83e595821c45a940d419a15dd0c88f6b3f89d6c6f64d4443e8154e2820b3bf1",
+            "732a646887f611c5b81f542ef256065898fe829bf8d9042e827537b6f1a8ccb5",
+            "cd55ef19b97d086f6b4df547a0e9632796f9c0d4818fb3a61693c85d9a133168",
+            "1ac6d025595e71209bf7e3e796f2125625b072dab3d50da574b73c74008ed642"
+          ],
+          "attack_bow": [
+            "72bfbdc5139a04248ce694cc5eb1c41776b2c1e41cc9176aa37305c56b65660f",
+            "9bcac58b7c088763b305d5753f588a3e1dd6d21379d442850d19c5482d5eefcd",
+            "a480d9d07868ca82b94281d5491728781c02a56c2db5caa9b0c5fbf770e4ebc2",
+            "fdcae555c7e66d4b2547d86a511f8df0ccc9698701aa5ee4d60b8b541329396a"
+          ],
+          "attack_staff": [
+            "2a6a89731dcae8d962b0bda2bb71c48188f39b7acf4d19c8bd6c076c85e709c9",
+            "1fdd28e2aefa8b49ee0ad2318897153e9ba8823eb205a0a743d30bd7b92cfd64",
+            "0ec643a155427735661a59d05f10be23db3803af972fe2e42b50ac461de89de0",
+            "1b1f2e313126a3665264dcb537f79b785d02903e701ca1504a9298453e1b68f4"
+          ],
+          "attack_mace": [
+            "511bc78efd94e4c4ee2864b0fee4649bbd4add7a1aff97662b7adcaa5f9888d9",
+            "42d8a392a4f5e24bfa0b2b8eef4f2cfcd5240dab855863184ae3f45f4f33d8ff",
+            "c687b8a7f58e48a32c3566be9048d7c1317eafe0aa0ee8c9a1b62ce94f9ffb43",
+            "73b0d5112153d38b9dabcaf1795de8e922208eb857892afcae98d7e6a4dbaa7a"
+          ],
+          "attack_book": [
+            "63158f6f91552d36a03650747df6ecb66a7385b03268957cf45c9004adbb3dd5",
+            "71838df4ff794b0b6e5d4d033d6842469ef50f11eb7b3fa4608a3c44f30774f9",
+            "24b7bebdcc756cf0037afe52a556303bb3fa3820bf7f944a5571d59f480c216e",
+            "d2c195182c9cb2934c6ab3acd2196771a56ac0f15da4bb581ce58ab9f3f3a259"
+          ],
+          "attack_gloves": [
+            "8ce6a8df607387577d860f122c56b18361e5ddbe30b7d15895eb8c8488473cd6",
+            "e82a0dd2a82f0f30d7bb494ae8a934497ab44d2ec81fea5432a0180d7998cbd0",
+            "2125be9a0e04d8dd66ff8f0fb1a8ff89408d28d7bc9eb3fcb313002aeef63100",
+            "88eebb468f69036840526a26dcff1a30354bfdce13b61fda24d9c65698db108e"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -228617,7 +228879,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/campeon_arena/f/campeon_arena-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/campeon_arena/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -228758,36 +229020,36 @@
                 "pixelSha256": "8a57d0d894289eff386d6aafe7e2c11205e94ddd1da635fb4ec77d269d98b2e4"
               },
               "03": {
-                "sha256": "c0ed83b30c088e6103117a5becf30adf3c026036ef7fffc3f4945dcc4860836b",
-                "bytes": 23729,
+                "sha256": "3d496c5ccd2adafbee2431f0968f1c61ab074d342ad9c4fd4780cadcb4d14087",
+                "bytes": 23674,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  4,
-                  89,
-                  108,
-                  247
+                  9,
+                  88,
+                  115,
+                  246
                 ],
-                "pixelSha256": "51991e978e67830b10025e114bc5d0190e08fc9c6eccb25302c3099fd0fb144c"
+                "pixelSha256": "8ad3e1379eb05acaad991ff42bb6e5a47087c974fd937fc0d52854d486512362"
               },
               "04": {
-                "sha256": "7eac6ce9227a98ba63826b1c93804b3f6c6cb85dd2470b1601097ddb613e7e6c",
-                "bytes": 22043,
+                "sha256": "d102367d4825bb7283f2863b4f88035b23f77c39c23e880094740a181a95e14f",
+                "bytes": 22167,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
+                  18,
                   89,
-                  89,
-                  248
+                  99,
+                  249
                 ],
-                "pixelSha256": "a959a393e0f045059b031f4d4d7058f450ca2068c528f6e8f5192caf0f6cf35e"
+                "pixelSha256": "51fdb2e73f982686de609f8f5bce14f2511980f10570ecfff626ee63f26817c4"
               }
             },
             "distinctFrames": 4
@@ -229741,13 +230003,14 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "fa2378b280364a1cfc333307d89c0a2c0029b3cc0c5da0441f7f87f7bf1349eb",
+          "sourceSha256": "91a6b12c4930d2c184ec24606f9d9bc07662f479d00a56cc574b2ef8affff4a4",
           "sourceDimensions": [
-            2169,
-            725
+            4340,
+            1450
           ],
           "registeredSourceDimensions": [
             2170,
@@ -229769,9 +230032,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Campeón de arena FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses. Adult athletic feminine champion with JET-BLACK hair in a compact high layered ponytail, bronze hair tie and bronze laurel brow band, warm tan skin and determined brows; canonical female head size. Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow. Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit of ONE whole champion pose. Move ONLY near LEFT fist DOWN AND LEFT to put black palm center exactly in MAGENTA ring. Last attempt overshot right and up: correct opposite direction. Keep far RIGHT hand entirely unchanged. Rearticulate elbows and wrists naturally while retaining exact head, torso, belt, legs and feet positions, champion costume and both full boots. Black empty fingerless glove palms MUST occupy the ring centers, not white wrap or bare arm. Remove magenta rings. Transparent background, unchanged canvas and full margins. No weapon, effect, injury, text, rescale, crop or recenter.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -229779,7 +230042,140 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "fa2378b280364a1cfc333307d89c0a2c0029b3cc0c5da0441f7f87f7bf1349eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "fa2378b280364a1cfc333307d89c0a2c0029b3cc0c5da0441f7f87f7bf1349eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "0f9fa1485cda186326d1fc88ccfe31460ec1615d05822c69f7aa10b271e4a261",
+              "sourceDimensions": [
+                4340,
+                1450
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "fa2378b280364a1cfc333307d89c0a2c0029b3cc0c5da0441f7f87f7bf1349eb",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/campeon_arena/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Campeón de arena FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses. Adult athletic feminine champion with JET-BLACK hair in a compact high layered ponytail, bronze hair tie and bronze laurel brow band, warm tan skin and determined brows; canonical female head size. Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow. Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "4906d9c67844b9325267895d9b031d0daa2ef8c3ed7a87ede9fc4ed9cf037e08",
@@ -229817,7 +230213,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8ec457fe19d0c72be2b3508afeb155dcac8dbfd540d16fcbc4d67b2987659b4c",
@@ -229949,7 +230345,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "642c370b2b463bf5c6fa76e3b478eef7574396dd16e4000ffb245a47f0c60cc6",
@@ -229987,7 +230384,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "9075e3a7ee1ba3be5a675d059006e60f5e216676f4d922aabe6ba1aee0fd8289",
@@ -230025,7 +230423,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "16c838d3381fac3d1892480341ad7da6754def80507b25a983a4ce9b42d42dbe",
@@ -230063,7 +230462,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "3699784b80ec9e7be3e8d287fcd24e84032944c3acf09dadb19e2663808bbe25",
@@ -230101,7 +230501,7 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8b4c5a48ec79a1c4005f1c639fa5112dd5a616f15881636e7299e34c25acdad7",
@@ -230233,7 +230633,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "802b6af777c769eaab148e15101bfb337f9cc1ce6f61669e6388137ec36b410e",
@@ -230271,7 +230672,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "98b6f0222c6d7ced53e1a22f1f9c56a1353b49d4536d313a368ef6ee161482cd",
@@ -230309,7 +230711,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "9cba31843b83ea02d7fd8184ff8e5248a5ab00b41277059cfa2d373e0eefeba7",
@@ -230347,7 +230750,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "7d41d6ceb3d7c68d4ef3a2aa023617363dfe2e7829bb1027dad268dccd3f9300",
@@ -230479,7 +230882,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "9353c3f0ab2d6710ceb8570b4fdd37be507c2e89368aa82ece04729b8179fac1",
@@ -230517,7 +230921,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "403138bd7ef8a146d47fd3d138d316fba762379c22f0c76223afb86d7dd6a451",
@@ -230555,7 +230960,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "d86dc8ecf4057a90c0e08be5b74d3426ba7e0daf0bc0180f6397b844b366d7dc",
@@ -230593,7 +230999,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "a7e29a9a33ec94402904620e3274b0626bc398182d1c90b13de2aa75d5177944",
@@ -230631,7 +231038,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "0cef74bf9ed826ef2d0f7634eb711b1acce931b45b1b6c95e5359aa9d36c032e",
@@ -230669,7 +231077,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -230690,15 +231099,15 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
@@ -230944,6 +231353,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "campeon_arena",
+        "name": "Campeón de arena",
+        "tier": 3,
+        "costume": "Veteran arena champion armor: fitted DEEP TEAL sleeveless martial tunic with BLACK side panels beneath compact burnished BRONZE angular articulated chest plates and close bronze gorget. Compact BRONZE shoulder caps embossed with LAUREL LEAVES. Broad black waist sash with short teal split tails and large round BRONZE FIST-IN-LAUREL champion medallion on belt. CHARCOAL tapered trousers with teal outer seams. Bare upper arms, compact bronze elbow guards, OFF-WHITE fighting linen wrist/forearm wraps above BLACK fingerless gloves, leaving fingertips exposed. Compact articulated bronze knee guards embossed with LAUREL LEAVES, BLACK fighting boots with bronze toe caps and narrow bronze calf plates. Thin BRONZE LAUREL brow band, fully visible face. No novice shirt, scarf, brown chest harness, cape, fur, prayer beads, helmet, attached/held weapons, effects or shadow.",
+        "maleIdentity": "Adult athletic masculine champion with JET-BLACK hair swept into a compact high topknot, warm tan skin, determined brows and clean-shaven face; canonical head size.",
+        "femaleIdentity": "Adult athletic feminine champion with JET-BLACK hair in a compact high layered ponytail, bronze hair tie and bronze laurel brow band, warm tan skin and determined brows; canonical female head size.",
+        "armPolicy": "Preserve exact canonical head scale, palms, fingertips, elbows, feet and all grip coordinates. Bare upper arms in EVERY pose, off-white wrist/forearm wraps above black fingerless gloves and compact bronze armor consistent. No sleeves or novice cream cuffs. Same bronze laurel insignia and fist-in-laurel belt across all poses.",
+        "unique": "Bronze laurel armor, champion fist medallion and white fighting wraps",
+        "advancement": "Tier3 evolution of Luchador. Retain teal/black athletic lineage and white fighting wraps, add crafted bronze arena armor, laurel insignia and champion brow band. More armored and accomplished, keeping canonical overall body size and shared weapon grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/campeon_arena/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "7377651bb8913255865f4471b8a989a3aaa1abd1139af640ed8d91daeb4eecf6",
+            "6ee1486c240d1df1e08fa39ba3166908ffe66724a60e9455f83fc02fe6c9be67",
+            "5eb0b5eb5737307fc13add1ada0e4944440e6cc9c164f538c181d1ac45bc58d4",
+            "39d059228bb6a4c207681950990bfa9b7284f2da6eff9c2d5b58c09e93ac0703"
+          ],
+          "walk": [
+            "9124fe2d677b60f6c73c2b8ebf1249a02e550e525d66b7e110d7490d5e5b0a9b",
+            "01fdd75d08ad0a93b4dcbbab5f8d40eca16458185cf522b66be072653a233804",
+            "3d496c5ccd2adafbee2431f0968f1c61ab074d342ad9c4fd4780cadcb4d14087",
+            "d102367d4825bb7283f2863b4f88035b23f77c39c23e880094740a181a95e14f"
+          ],
+          "hurt": [
+            "f0261d3b5abe914169720a5bc6b2e16009d82282fe4db9313e04842bb457e0b0",
+            "6873545d2e0b34fc049ca7d91f02032e2deedf46a4e52dde6d4d3a8a3b0338bb",
+            "9c0642c0bda29fdf88f5818ed5cf99bf0b314786b24ef4175e721f7e273fb82d",
+            "478dd8960d7414bed12ec420a23dbdca0f646fa3dc834fc19d4c03890d6aab9c"
+          ],
+          "use_consumable": [
+            "3f6e5b4e5f741266dcb20b4a48b0b2e6562a3b5927094e386248b08cd954bb46",
+            "2ed9c235aa8fff28895ae524384784387e8a8338c43cdbd5d7b6b38b42452361",
+            "0f124775481a835e834c0acb554f844ae7c65476c61ba566bd001973756f68b7",
+            "b409fc3b0891153f60e1282e7282e2d875efd910907781ab3d1460aa5ef6fd89"
+          ],
+          "dodge": [
+            "d5b8148664dba71494ec240ad8e03d29b5b2972c3447f333dd9c02f774f6e1d4",
+            "e7a32cd11f4e7962f109e5e3962929928dd91c0ebd211c25dc48acdbbdc26a84",
+            "db65d9395a769cdfa507aa9c2f686f2b69f1d7822c5f23b8b6944e58068f8923",
+            "4aedc453efeb256d7ba6ae96b56616d4ca074eb2cae1471d00c0f5f6e0bab1e0"
+          ],
+          "block_shield": [
+            "c18b6bb7d4e0a559252e42af94a510871d556f6dbb25a202da42b837636a5429",
+            "ae1e7e94fa7a9f65ef1f9ac5217f818f9cd1170c2b5fc5f8acfb469b52116149",
+            "9448413b481d8735272395c3c92b3532a184fcfb857ad022ab93024982eb19e6",
+            "d30bc8ee5b649886eb8a728c8b9b0c2738d9e73fbdc312464f08cd908e76eea7"
+          ],
+          "attack_sword": [
+            "77ef613e775bbd21ff6802b3344127b088dd10b8166fdb787dc9121b182e36af",
+            "2ef382c1b08363b7cfc559177919402b1be451263f2f29b0e312f47b331b7722",
+            "122ea2da844f5c2a0029151874af531b4a5eb1098f9f959f73d51bf2d89b720d",
+            "e679cd4a6ff833fc19a489f254a0ad48f3f7d649767e89e8a64c69d15b555065"
+          ],
+          "attack_axe": [
+            "fd1b22dc021abc46b20cf229162e8dc480b057caa9651c39a10f0c3b10020089",
+            "ddb24644be79b990dd72f8a6ebc4f86e9153a040274d2d401e892131c3e1d8f3",
+            "e02dce0f9cc64f4591b764183d16124d97cb638a67436db2d0527c991edcf0ef",
+            "89ba3c4c7fdbc1928d0d639b0fd4f2382960069d0309fded79f2d2d07855c2bd"
+          ],
+          "attack_spear": [
+            "792fa33f368bf0aa3c4687ef5b491a06575b46ae0004c1a3d86158677b8593fa",
+            "6df02d18c1a55f2ab36926f8a547e62543085f90526fe094f499562579754560",
+            "01dbdf78612b2a9bd71a2de439da684fd9cc33175e512f01dda46c2cd998cf3b",
+            "57a20d7cdae8be8e8227e9df2c05b5b047bc121fb3813c42bab1b29e572bafbb"
+          ],
+          "attack_dagger": [
+            "206aeacd465a3549f96e4811e23f0efb92760a89c716ed0f7bf631ef9ec493b0",
+            "d80c6ac51e66c3afd3811ee9364b4ddaf2ae29ed7dd67852a8225ebba3536946",
+            "fb0b6d8e54fb9484a033bab62fd446ea9a3e32342039a3b1911f329e56c41095",
+            "f3de406d359c28995c5d9c299ab14c665a12ff8ec11216db21921ccb7d07e127"
+          ],
+          "attack_bow": [
+            "2d0ea3bcb0bf588616dc9a77de641717a7131b97c5a2daa47e6adf187d559ff8",
+            "6cf23e1d1d4e05c6d9eb2c5e87c9927e3e4faa4a62f13987114a7c86615f5f07",
+            "144132884b0ce890985e7d49b34409d4411b84b9cbd1ad65314f16b0e9abdbf5",
+            "de672da3c5f59b54e9d5326e683148aaa9179a0d0a4f893629c17f5cd80234f2"
+          ],
+          "attack_staff": [
+            "9ad406e2e20ccdd9ced992a849968c0e5b8cdc007ad8cd7bcf725af86bedaa6e",
+            "04f947b99261e06524b5fa12fdd5788a8828f02578589d475f851705a43385ce",
+            "e9cfea3c833df5707489d800dea668448e8e0e66694adc1389778b73b3efe587",
+            "4236c0274455a90f875477f5950d27fed616dbece13fd73fc70d20899e59f556"
+          ],
+          "attack_mace": [
+            "5003dc109a88738b800ffa571380a6fece198b319dc4fd9f262dbe675b092965",
+            "e3f48b5ba25b8830f97deece71f4c8bed80476cbb3b33a588b0a73013105fbc7",
+            "b7c0a3bc69ba4334bc33b7371ff47dcd7fb5fdfbec7275a422dcaeeeb6837fa3",
+            "0975887b05c6b56e23da41e62d9a24ac1f5e62c88b69332d7ccd63b32e28b61e"
+          ],
+          "attack_book": [
+            "3857558039778abc9cc5dee175ea49d931227c40f072435388d091214eb04d37",
+            "25dbdcbcdd227442ed60dd8723f3fab78b6e09264b813002c44578dc73d6b41d",
+            "534c552cd2d3ce99092f2c286f0525b15e7f5513561fea4d94d9253e84f40b85",
+            "1c4296ecc519dd6901389371e0a90e52504eb41d982f161432139f6692ef9e6b"
+          ],
+          "attack_gloves": [
+            "191de9731140ea1caf344cf05bcb7f1f1cd0010c9a9c820cefc13b369a318f55",
+            "b172312267172243e988f874998aaa383be31148886d81254b41490b919d0c7f",
+            "7bb2ab8e82f26d58d99cc841143042f6a7362df38af5d2555f51b1255d1af01d",
+            "80b7a3887e29e12639f63c54cefde43788326c5b0847ff1bbe2b3dc842b83109"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -231587,8 +232111,8 @@
                 "pixelSha256": "8190aef80646638266a8dbb21667e9ce54eaa77d26572d7ea0b1080bd28c1efa"
               },
               "03": {
-                "sha256": "ef4b177d004f1b4b5f74136ef1e59bd71ab90664b6745582cabbf5f507def70c",
-                "bytes": 24987,
+                "sha256": "6dbfe5ea2ab74d41aa059fef05be9cfd4e2613ab4076f5f8975629a86c98751a",
+                "bytes": 25373,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -231596,11 +232120,11 @@
                 ],
                 "bbox": [
                   10,
-                  95,
-                  110,
+                  94,
+                  119,
                   247
                 ],
-                "pixelSha256": "4245b8a30a58be6a797fa850f335a86f7135de293e858ed482a65c4579e53da4"
+                "pixelSha256": "77674497fea6982e32f74a02dbe41b6dd8b6f6c9f1bd1ab29fc896f3d43f4cd9"
               },
               "04": {
                 "sha256": "5824317b363b2f0289e2ae998b3265305e434cd3135d2b543bb8b182ce283c22",
@@ -231975,8 +232499,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "d105acfd6732a1d70beb27752f141008e59f549b75d0fe1638dffd6a45493d3d",
-                "bytes": 23661,
+                "sha256": "fac84ab007927078d0bbcd62a5c5d2221312d6adca37032df85cd57d385cf4fb",
+                "bytes": 23328,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -231986,9 +232510,9 @@
                   22,
                   94,
                   108,
-                  245
+                  243
                 ],
-                "pixelSha256": "961c6194b29fa848ebb696c1b8b0397542d16bd3d111dfe1ffe244b394fa948c"
+                "pixelSha256": "97d8dfb87c5ac0202a50ef31a9fb547abc2dc7851fd5b8567e51c54f2988c0d3"
               },
               "02": {
                 "sha256": "2e74c97814ffec6ec788f325b3e0739c242c8627ad21df13deb42362c09b1fd9",
@@ -232023,20 +232547,20 @@
                 "pixelSha256": "529d18cf083451ec586ef0f5360de187722665d0e3e5b31d41a596d765a8bfa2"
               },
               "04": {
-                "sha256": "4d5dae82be411d4a255483b79a148af57cdef22d8dc888f8ce84762c07450441",
-                "bytes": 23630,
+                "sha256": "886d575eb69049b8ca3da4aeed92876fb2e5d929796f01086620b611702ab7d0",
+                "bytes": 22853,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  23,
                   94,
                   108,
-                  245
+                  242
                 ],
-                "pixelSha256": "03b3c2b6cee5e37a0968de28b63a9d1abb8a8d8d7a74705e1693ff29f3611f00"
+                "pixelSha256": "d128fb38d48875112561b54fc984eb32881f1421f3420e0ca47951f4b1f5cf0e"
               }
             },
             "distinctFrames": 4
@@ -232361,10 +232885,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
+          "sourceSha256": "aef3dcdd80f45bc53aef82ce588dcff8b56bfd5610f71756d4dc7260a0d5fb0f",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -232386,9 +232910,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete male Mariscal, exact input pose and canvas, transparent background. Move ONLY the far RIGHT extended fist RIGHT slightly so the ACTUAL BLACK GLOVE PALM CENTER occupies the MAGENTA RING CENTER. Real hand must reach the marker, not bracer, sleeve or chest. Bend/reposition wrist and forearm naturally while keeping compact bronze bracer ABOVE the hand. Keep OTHER hand, entire face, sandy-blond silver-temple hair, bronze gate crest, bronze armor, teal sleeves, ivory officer tabard, fortified-gate belt, legs and BOTH full boots unchanged. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Clear margins. Remove magenta ring and reference fringe. No equipment, weapons, magic or text. No recenter, resizing or crop.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -232396,7 +232920,139 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "c506c6f854d1509607a35e6aed845867f97a7c2bdffcbd6538d4293edc1137a7",
@@ -232589,10 +233245,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "8c9ddb15b1ee805e86afb75ce47743afab031ae3ba3ceb4f87a8dd25f66322ad",
+          "sourceSha256": "8ef187352879ef9e5facb5309844da27f4e580791009d4c9fff9d1f7717fd93a",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -232614,9 +233270,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete male Mariscal, exact input pose and canvas, transparent background. Move ONLY the near LEFT raised fist RIGHT slightly toward center of chest so the ACTUAL BLACK GLOVE PALM CENTER occupies the MAGENTA RING CENTER. Real hand must reach the marker, not bracer, sleeve or chest. Bend/reposition wrist and forearm naturally while keeping compact bronze bracer ABOVE the hand. Keep OTHER hand, entire face, sandy-blond silver-temple hair, bronze gate crest, bronze armor, teal sleeves, ivory officer tabard, fortified-gate belt, legs and BOTH full boots unchanged. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Clear margins. Remove magenta ring and reference fringe. No equipment, weapons, magic or text. No recenter, resizing or crop.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
@@ -232624,7 +233280,139 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "eba9e5822ae85c0e939718c5c4881676e295be169103b39c2e00e1f17a69ae54",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "8c9ddb15b1ee805e86afb75ce47743afab031ae3ba3ceb4f87a8dd25f66322ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "8c9ddb15b1ee805e86afb75ce47743afab031ae3ba3ceb4f87a8dd25f66322ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "8c9ddb15b1ee805e86afb75ce47743afab031ae3ba3ceb4f87a8dd25f66322ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+                "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+                "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+                "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
@@ -232757,11 +233545,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -232769,7 +233557,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -232853,15 +233641,15 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
@@ -233138,20 +233926,20 @@
                 "pixelSha256": "9a9db153b7afe9b5be66a39356cddd7d8b53651a6958a31250a202d9eb509958"
               },
               "04": {
-                "sha256": "d9ba6e2425e03842e50c80a9312e390056eb8485bde5078cc128a75f910bcd80",
-                "bytes": 25319,
+                "sha256": "d25182a4e0ef5c197d4e0d301a86798189c92b414673f22a1b8e3316b0dc2e4a",
+                "bytes": 26504,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  18,
                   92,
-                  98,
-                  248
+                  102,
+                  252
                 ],
-                "pixelSha256": "2139418f687ef75b870d17aa2f9275158e3c85db481d394606064ed1919945f6"
+                "pixelSha256": "9f8cdb28fcbfdcb63dd17d7eea80dd5b262ac8c1e3e865b00d65a31e30dc2847"
               }
             },
             "distinctFrames": 4
@@ -233978,20 +234766,20 @@
                 "pixelSha256": "b303792ad297a6b00604886f5f8f010a3ceba44ea030c8f3313a8b3b7ea67b52"
               },
               "04": {
-                "sha256": "9f9c241e086eca95322bf1eab5915618c659e36ee06a7f2d4c1dda025fcf5573",
-                "bytes": 25620,
+                "sha256": "e2883633cbf3bfc4a255f9ee05f30549c978fae0b1ffe5ddd96774af45abc6e4",
+                "bytes": 25797,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
+                  20,
                   90,
                   108,
-                  249
+                  248
                 ],
-                "pixelSha256": "afb23ce0172e2e173a2a61c2f1a2b6930d0246beec575ac36db2697de5bad72a"
+                "pixelSha256": "e25e445d217be270e086578d1edf61fde6df59d020a940c5b85decace4d3a533"
               }
             },
             "distinctFrames": 4
@@ -234076,10 +234864,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
+          "sourceSha256": "a2e9e8761657f73da63ef4fcdafe7976208078ec1fdc6412518214db3a863b78",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -234101,9 +234889,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Mariscal FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete Mariscal pose, same whole canvas, transparent background. Move ONLY near LEFT fist DOWN to cover the magenta ring on the lower hip plate with its actual black palm center. Last edit moved fist too high; lower it, keep arm bending naturally. Target means REAL HAND PALM, not fingertips, bronze bracer, sleeve, tabard or hip plate. Naturally reposition forearm/elbow minimally. Preserve other hand, face, hair, bronze gate armor, forest-teal sleeves, ivory officer tabard, belt, legs and both full boots. Remove magenta ring. No injury marks/dirt, weapons, effects, text, recentering, crop or scale.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -234111,7 +234899,139 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Mariscal FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "faba0f6db9777dc600084597bdde2c2442b9f50dc5f369637f210d8ff8aa1cb9",
@@ -234532,10 +235452,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
+          "sourceSha256": "d3772659e9c4f692f5d7fed62138c987ea16c82783cd12cec60b1cc6a65014af",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -234557,9 +235477,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Mariscal FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE whole female Mariscal pose. Move ONLY near LEFT raised fist LEFT slightly toward shoulder so the REAL BLACK GLOVE PALM CENTER occupies the MAGENTA RING CENTER. Target requires actual hand, never bronze armor or chest. Bend elbow/shorten bronze bracer ABOVE wrist naturally. Keep other hand, head, sandy-blond high braided ponytail with silver temples, bronze gate crest armor, teal sleeves, ivory officer tabard, belt, legs and both full boots unchanged. Remove magenta ring and reference fringe. Transparent background, full margins, exact canvas. No added bruises/dirt, weapons, effects or text. No crop, recenter or scale.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -234567,7 +235487,139 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Mariscal FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
@@ -234604,15 +235656,15 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -234796,15 +235848,15 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
@@ -236700,7 +237752,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 96,
-  "contactChecks": 65472,
+  "variants": 98,
+  "contactChecks": 66836,
   "warnings": 0,
   "reports": [
     {
@@ -120,6 +120,18 @@
     },
     {
       "classId": "caballero",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "campeon_arena",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "campeon_arena",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

@@ -5,7 +5,7 @@
   "verticalOffset": 0,
   "equipmentFrame": 0,
   "fingerMaskFrame": 0,
-  "equipmentContactChecks": 12288,
+  "equipmentContactChecks": 12800,
   "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
@@ -2502,6 +2502,110 @@
         71.0,
         71.0,
         71.0
+      ]
+    },
+    "campeon_arena-m": {
+      "frameHashes": [
+        "5be0a8e8644667afa046248f7e7944c9a1ccc7a0365f7cd4ee6454870bd07f7a",
+        "9baef63f7adeae8940fc80d738c1cd573e125a52c9dfe8a68e2c1b6ea52c18d3",
+        "cdc994721c208dbb8a013431f18fb7a172340b06baff1aafd6063d73a9a41de9",
+        "c50d39a5f0a1f625b3aaf6b1dc8a291e615ac8b61d8ca3b222753e687caa5fce"
+      ],
+      "supportCentersX": [
+        66.5,
+        65.0,
+        68.5,
+        68.0
+      ],
+      "offsetsX": [
+        0,
+        2,
+        -2,
+        -1
+      ],
+      "correctedCentersX": [
+        66.5,
+        67.0,
+        66.5,
+        67.0
+      ]
+    },
+    "campeon_arena-f": {
+      "frameHashes": [
+        "7377651bb8913255865f4471b8a989a3aaa1abd1139af640ed8d91daeb4eecf6",
+        "6ee1486c240d1df1e08fa39ba3166908ffe66724a60e9455f83fc02fe6c9be67",
+        "5eb0b5eb5737307fc13add1ada0e4944440e6cc9c164f538c181d1ac45bc58d4",
+        "39d059228bb6a4c207681950990bfa9b7284f2da6eff9c2d5b58c09e93ac0703"
+      ],
+      "supportCentersX": [
+        68.0,
+        65.0,
+        64.0,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        3,
+        4,
+        4
+      ],
+      "correctedCentersX": [
+        68.0,
+        68.0,
+        68.0,
+        68.5
+      ]
+    },
+    "mariscal-m": {
+      "frameHashes": [
+        "4870edec96ca9f26a450416685d57ae3a8644b97f0556f7325270bdb56c88612",
+        "b59476451bf81f32b7f646752194646c2d491ebc7cef892742f8bc1cbcdaa771",
+        "6d696bb698e6e6741b80d8e40249103b0eb5994a28f9dbabb546e06cb5430222",
+        "d8bba318cee578c19268d3d12d9643065dd8ae69846a850da2ffc312e9710959"
+      ],
+      "supportCentersX": [
+        64.5,
+        64.5,
+        65.0,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        64.5,
+        64.5,
+        65.0,
+        64.5
+      ]
+    },
+    "mariscal-f": {
+      "frameHashes": [
+        "bdc6888cc829a66c51812e329cdec12496fcb5525266d22e42dcca36b82d5dc6",
+        "5fb5a81cabebf9b0b9d6fb4e97ab666f134d8dea6f6b25589ef38a142441a5f9",
+        "cb46cb4acc4218a83722619c5d625622a1862010a79b19d968238ddc309f09f5",
+        "13db63caca93d2e90a11b3a99c7b90cb4281fd56b235a5f8da2b99d164991386"
+      ],
+      "supportCentersX": [
+        70.0,
+        70.0,
+        70.0,
+        70.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.0,
+        70.0,
+        70.0
       ]
     }
   }
