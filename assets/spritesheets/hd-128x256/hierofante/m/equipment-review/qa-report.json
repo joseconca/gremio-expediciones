@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "classId": "hierofante",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "attack_sword",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "64fa93cbf1d6769a3aa37e35d735e6188d75789a043dfff837f8184720d57307",
+      "f33020531b6c9739c24d0fe485a7e772f9ae5bce076ff71ee6afff2d096ab235",
+      "2eca55a16b8ab9ad82111d0cae0dde5c216adadef885c5aade7180f36dc2521b",
+      "324fc888a489e3ef45c497542587eb82c972d6dcc69e6cd45297935b3ce1a876"
+    ],
+    "walk": [
+      "6a25abbc6bc1be7768131996061a2b68537122d8973e9ef75f61134bb3611567",
+      "0d40ebfac861e65dc3d5a5d5bb2850297ee6a54338851dbbe57856bdc0651ecf",
+      "3654916b925340472ccc78205e803eaf842a3bab5717d14fc5d72f61887eff5c",
+      "f017e5353284c1b96b2633f536ad6489c734e25275ed8a9956e0f8e1bc6e1136"
+    ],
+    "hurt": [
+      "6b4938885aebf8a7f8dbf69b80d0dcf077323010903f7fc0247995324b0a5217",
+      "7e29883f258822fb36c29864f02cfb6031fd6e17baafe7d3c917f4445927e179",
+      "d9f787dee034e0508693cfa9571e4e0d01274134181674105228d192ace810fe",
+      "dbcfe3a00cb254ea9f016ac388cb6aea0aac0408d77b4922a1fba1b77f5763a9"
+    ],
+    "use_consumable": [
+      "920c153885490a6450a313a26f62547ca68e1e0453e35034e76845d357f20a92",
+      "246f4733ff8a67dbbba368d2ca5baa617f3dec7f4361c1a78dbfafeb835a0921",
+      "7b069dfc7eacae7af2d852267ad86407cf7df16815fd536a61216f4373f0da22",
+      "d881238fa603cb191c4e2c8d2569d4600b1bde7e91f2071fc4f51d6b267d2ef6"
+    ],
+    "attack_sword": [
+      "8e6f8130c5636f19e4a8608f5db4ac518c982071ec2d5f710834287f5767732c",
+      "72460abbd0ba3130192c7bc229e746934546ac32ca13da322067f0007ec09ef5",
+      "9368149bec9498e73dd1c9eb27c9b1d2670e64fbb69a49d76570599883f7e49d",
+      "d5521f680ae662c510830fd0867d4052979ffe6ec1e6fde2c5fb0079d384410b"
+    ],
+    "attack_axe": [
+      "e47463c44868f933bfa6dd51e78801d452647af58e33d0191f5bb8680bb6f9f5",
+      "4efb12aadebb81bd4393bf5b2e093dad0d8dd5b3ab33c11ed9ddd405c91ae194",
+      "bb58a4e2ac02afbc1767eb2008e31f2a6d5b74de2559e6c844764a2a4c15ec9c",
+      "d743df2012f565e4c3ef854bae7f9fe7099734ed40ff2ac6fb357181b86fba00"
+    ],
+    "attack_spear": [
+      "802c47304013fe120291cefef2f5f2572494e4c5cb2f6ee0039aca46ace3d5a6",
+      "bb40c279cdea424b942ed1c34173da37beee44362d2098574c8f4428edc5664e",
+      "e7e1d02bacb6e4ec48c269d308f52e967edfb90baf6d2a0131249532f72b2eb8",
+      "28d534c6afe090307e25bf2323ccb56e7185892d449f4f38ed8841ff4d7848fb"
+    ],
+    "attack_dagger": [
+      "e20d65bcb7c3026684c54824862ed149c7cc6be993f9fb9c5a9ac45888b27126",
+      "fffae544b85e6ad0e901a0d23477aae193a095d32637f07a6410149c80a2afdf",
+      "6b4867f3c393a8181ef2fd4ca5f6845e654347f3ce5cf9a0eafcb2273fc7b511",
+      "f45dbd9fc76f3c67300d84af6ad62d51bc4e169b6f2d98bbc7e2c3acd8541c02"
+    ],
+    "attack_bow": [
+      "a9e188805b744e069f450ec0549c26fb6d8f686c211db27cb0a0fe7ecc9d78eb",
+      "e603e56f19b2cf6b66795f498e5030d4d4bea07e003bf629a7e9a5b53d8623df",
+      "81d7355e4aa2bb7f7149085267caf3dbe487fda7ef0049d40b766e64d5f3bd9d",
+      "d406efecf4484e9681068b3ccf34f732f582be44a27feaedcf617b456628b131"
+    ],
+    "attack_staff": [
+      "96684510405349377195bb9d9fb803a14224dbe542d65ee155dd16be19c31749",
+      "371ca794d9e8115e0fd6c3313181f584a1c40e4cab6cac4bf5e5cfc13398f565",
+      "702588df4dcb2029a8624c94090f9639fcf820d64669742634632b6858b65165",
+      "aae797b58f2bbf8e87c9d23186a1d3fd29ecede95f76fef680681d74466c71a7"
+    ],
+    "attack_mace": [
+      "786a20b79432148428a4cacc8a1ecd02e1b16400ae5a3129b53ed1fe982479aa",
+      "e6c2982a63e29ab9a39b1e11eb9b00efb7c8abdffc59b50ae7bbda4156519e78",
+      "c212bfc49daa67cd11d120564c319b72bd74eacc6e910b0286096ab9eb46fa3e",
+      "8f3b99405edab2fabc045b2c0148713b14895671d1ccc11a797a9d8f38fcab9f"
+    ]
+  },
+  "contactChecks": 516,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}
