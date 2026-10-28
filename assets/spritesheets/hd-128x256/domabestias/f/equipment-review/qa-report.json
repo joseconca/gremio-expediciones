@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "domabestias",
   "sex": "f",
   "actions": [
@@ -23,7 +23,7 @@
     "idle": [
       "20c75f6f295106b735272c4d23ccaac3d9b8370efef5bb9dc436a1e02bcc69df",
       "a8e9adaabad7d4e51573fe09f52a5c71f19c826a27d2cc8d02adc428bb2e993f",
-      "22e93035b76ae755b319fee67327d3f3ab5ad7fbacbdfd0c1b4576fa15c036d4",
+      "a8c008af81765e5c2d99d0109dc05c382959885812166471bef3ab76b900a679",
       "6dad2b18e833aa0f6fab30ddc76bbddc5246a6a53ef92c046800c6694c2dbc66"
     ],
     "walk": [
@@ -112,80 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        97,
-        184
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

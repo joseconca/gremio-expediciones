@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 78,
-  "contactChecks": 53196,
+  "variants": 80,
+  "contactChecks": 54560,
   "warnings": 0,
   "reports": [
     {
@@ -168,6 +168,18 @@
     },
     {
       "classId": "cruzado",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "domabestias",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "domabestias",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

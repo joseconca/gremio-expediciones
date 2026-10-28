@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "domabestias-f",
+  "nextVariant": "guardian_bosque-m",
   "classes": [
     {
       "id": "novato",
@@ -338,7 +338,7 @@
       "name": "Domabestias",
       "tier": 3,
       "order": 40,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "guardian_bosque",
@@ -185050,7 +185050,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/domabestias/m/domabestias-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/domabestias/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -185191,36 +185191,36 @@
                 "pixelSha256": "3f2f161240a3f0526b0319d45b05d073d2c275dc48a7bd59d3edd49f316439bf"
               },
               "03": {
-                "sha256": "1969142980bdd96aff853467cb5eafdd1817cc923702c23986e4bcfb3c9567d3",
-                "bytes": 23424,
+                "sha256": "ac4f3acb673d294fdb0148e70a7b8f31ddcccc4ed93a2f1d2e08fbcd4cf109cc",
+                "bytes": 23510,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  7,
-                  92,
+                  12,
+                  90,
+                  122,
+                  249
+                ],
+                "pixelSha256": "e9535ce9e006224585db50a238198cc77bc18ee33ecc885dbea9adbdf3947411"
+              },
+              "04": {
+                "sha256": "e3978c8a717aea251980b05873c61f9549a0d3fcfbea62271e14b46794cacd0f",
+                "bytes": 24047,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  91,
                   114,
                   249
                 ],
-                "pixelSha256": "17226b1f93f5bd674d003d8582a9f7fdfa65507c44622c73c376cb58ad035caa"
-              },
-              "04": {
-                "sha256": "ccb22dcc0737e8238569a087ca8557ee2bd1584e1725c33c5c47534db57b32e1",
-                "bytes": 23956,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  8,
-                  92,
-                  104,
-                  249
-                ],
-                "pixelSha256": "6fe436215c07887170ec417c1cf64659cf5f8639b3518d5dfaace34b943e880e"
+                "pixelSha256": "3ef1b108aaa5b1b490d970229b1d4bfab991496e61bd223c05460fdd3d48d6da"
               }
             },
             "distinctFrames": 4
@@ -186174,10 +186174,11 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "3b806b9564469bdd168b4ddadd102eaaa8e3515e322528f2820b35f77ba0f7cd",
+          "sourceSha256": "66bb348e8754d1862d0bdeccd5cc446ba5e15422cf785f19f906e174a7e7d1b0",
           "sourceDimensions": [
             2172,
             724
@@ -186202,9 +186203,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Domabestias MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf. Experienced masculine adult Domabestias with copper-auburn short rugged swept hair, attentive determined eyes, clean-shaven, canonical head scale. Beastmaster ranger armor: fitted CHESTNUT leather vest over DEEP MOSS GREEN full fitted long sleeves, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat ivory FANG-shaped belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows. Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case identity-preserve. Re-costume this FOUR-pose male WALK sprite sheet. Image1 is validated geometry: preserve EXACT four walking stances, ALL hand/finger/thumb/wrist positions, feet, elbows, head size, body centers and2172x724canvas. Especially third/fourth poses both hands must retain exact Image1 positions. Image2 details define DOMABESTIAS costume and copper-auburn short rugged hair ONLY; never copy idlepose. Replace every silver/blond/green marksman garment with chestnut leather vest crossed diagonal straps small rectangular copper chest buckle, compact pale IVORY FUR collar, two short COPPER claw shoulder plates, dark MOSS sleeves with close cuffs/short wrist gaps, dark brown leather bracers and fingerless gloves, bark brown belt ivory FANG CLUSTER clasp and two compact leather utility pouches, moss trousers, brown boots with overlapping copper shin scales/copper side buckles. Same costume in all4. No silver shoulder caps, hawk, silver temple clip, ivory chest stripe or black riding boots. Four separate full bodies in one row exact same anatomy and layout asImage1, empty hands, true transparent background, no red/yellow fringe, no held/sheathed equipment, shadows, effects or text. Keep complete figures with clear original margins. CLOTHING EDIT ONLY, hands remain at exact Image1 coordinates.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -186212,7 +186213,110 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "3b806b9564469bdd168b4ddadd102eaaa8e3515e322528f2820b35f77ba0f7cd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "3b806b9564469bdd168b4ddadd102eaaa8e3515e322528f2820b35f77ba0f7cd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "3b806b9564469bdd168b4ddadd102eaaa8e3515e322528f2820b35f77ba0f7cd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Domabestias MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf. Experienced masculine adult Domabestias with copper-auburn short rugged swept hair, attentive determined eyes, clean-shaven, canonical head scale. Beastmaster ranger armor: fitted CHESTNUT leather vest over DEEP MOSS GREEN full fitted long sleeves, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat ivory FANG-shaped belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows. Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "9df274173bbccf585fcaebe8d9a53966fc62c0cfd78e17ce7c04a2e37c685afa",
@@ -186250,7 +186354,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "433d2997c8213c36d4542996ba0a49cc1abaf37780954fe208e36a6e464e320f",
@@ -186288,7 +186393,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "82bf9fa5896ef39c669cd8fad155d043e3d8f462cc7d3ab07da2f24a0fc33480",
@@ -186332,7 +186438,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "2148cbe943f689d2709028eba0beaf82318c462aea441017a49ed184a0e880b3",
@@ -186376,7 +186483,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "5d68d3e33bd9abf10fa41b57f2e8415fdce4ab176e1c6af6bb9580c9fb01575d",
@@ -186414,7 +186522,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "943a5439acdb6dc15e9ba93bc179859fd5d2dc4761665cffd66e6b63e7188876",
@@ -186452,7 +186561,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "d62045eda86406722897e53285bf51624637ddef5875312bb68c98165b2f0f89",
@@ -186490,7 +186600,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "3b406ee6a1bc6a3e8dc9404696657bff81d4fa2f7e5bcc6360775fc9116b10a2",
@@ -186528,7 +186639,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "48f8f38ede564839e26f16b960e833c166eb27196d053b647365382f184e5129",
@@ -186566,7 +186678,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "aa937898b89e768c7703a087d045c3b031f00c4589204dc4db1fbca4eacf7650",
@@ -186604,7 +186717,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "5416fdc8045ac696deb9bdf4e6d5a820a01dc776c12123ebcecd55cced45a392",
@@ -186642,7 +186756,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "b9cd9689a3cb02ade4adcec58547a3cd01fee9e2d7fc38e34806b8064b25090d",
@@ -186680,7 +186795,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "44e27d6ffe3039aae4513ec3bb0fa2da65fc8f54574d4147cc9bae44f6e9f9f4",
@@ -186718,7 +186834,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -186739,11 +186856,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -186993,6 +187110,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "domabestias",
+        "name": "Domabestias",
+        "tier": 3,
+        "costume": "Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN fitted sleeves with natural rolled cuffs, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat IVORY FANG CLUSTER belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows.",
+        "maleIdentity": "Experienced masculine adult Domabestias with copper-auburn short rugged swept hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Experienced feminine adult Domabestias with copper-auburn hair tied into a high swept ponytail with braided crown section, attentive determined eyes and canonical feminine proportions. Fitted moss sleeves with short visible wrist gaps above leather bracers; upper arms covered.",
+        "armPolicy": "Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf.",
+        "unique": "Copper claw shoulders, compact pale fur collar and ivory fang clasp",
+        "advancement": "Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/domabestias/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "591744c1aab7ea3f05ae7495ee90776e5883e690c992620080181d77bbcdd70f",
+            "fb2dc44f29597dd86b991ceac151a0069212fadd2174069cb92ae3f687992ab1",
+            "9d6ac7c87e8d37fb5201f96193e7527e929aeca023080cb9ea4ad11666f69abf",
+            "e122116969ba29102b69a737e90f79e3c2a16b21f043c60e245f67064284b5f7"
+          ],
+          "walk": [
+            "f042259280def4c6773fb6a9ce13c918047adc13771dccb2299c4e66be471035",
+            "116500717d256e7d16021babd1dc75e0d92aa3f1cd171f05bc4de1997a87ac34",
+            "ac4f3acb673d294fdb0148e70a7b8f31ddcccc4ed93a2f1d2e08fbcd4cf109cc",
+            "e3978c8a717aea251980b05873c61f9549a0d3fcfbea62271e14b46794cacd0f"
+          ],
+          "hurt": [
+            "69e481ca1d592ca81bf55ce0be0ca2ebc43c3f2ec710770b53e73a7257312d32",
+            "0d785d4c0deeb8afb71137fe0ec624a0bdf8abdf2208428f14ff9634c502dbb4",
+            "7d33bcc4457eb64a8cec4078e24428b6ddb504e5e5e6d8aa7adf2fed70986759",
+            "33a2a5aac41883b78964611f56d568202dfccb18ee6bde899736d353495ab1c4"
+          ],
+          "use_consumable": [
+            "595c53fa98b0fbfb09a8b4b7d5ad251b2c139f1353daebda158321f90ebf8f03",
+            "db4aec3d90410e48aa7168f6e9e819fff39921af997f9a3ca9b5be01e067163d",
+            "94fd18af0f38bcc93af0065b24dc6e1c105b7ab6d92797431446f9325b905871",
+            "34b291d1879bcd2771d93c4ff20a74ffeacdcbab93919b36bbe930d0513b53df"
+          ],
+          "dodge": [
+            "5fd35480408bb67fecc36ef9e8654e261eb1819a97b9becb7d186ec6d5ffdedd",
+            "a3e40118fa92468c64c977913c9ac3f3b84b1c0ddec90593abfea4281ee1e57e",
+            "0368dee2805a51c260204aa79fb7dee553ce13b4957617f4a9c962eaf0644c7b",
+            "3f54ab90e1026ac0dcb57f975982389e6f70f5cba3a93a1af9b37597227544eb"
+          ],
+          "block_shield": [
+            "d6295aa3ee84058e739ea3ee8ea07f0e144bfb5d162a8c32c7fd1b0d1bf5968f",
+            "ea8b47014fc08b5768327d757abf393326ca427313f3a88a6f3f414951ee4215",
+            "452b1d321d17d2c62ffe73c5c5f275b026598baec3062986748b88a30cc4f72e",
+            "36d5934a795de6c6be4ae812c9bacc25e622e76f1e722099778ace3319a1fc7c"
+          ],
+          "attack_sword": [
+            "6b17d8d2887f691b99c540d7ce9b721eba9f85d1fda4530b48059e677f549c79",
+            "408e5b090f03aaa5ef192aaca9a5f0f23c47cfd9dd4deb468861871b04e07a03",
+            "5ca19a92301831fd66dd206652a01a24f0d511154b7601d6f016823003193bcd",
+            "e86499ce85d346c3009a33c8e551a620a4943b61899206885c876f760e1d6b99"
+          ],
+          "attack_axe": [
+            "863238166c911d28b7f0c1fe60b05eb49d8631d630a7769f688a745dc580312d",
+            "f012646e2843402a9a220637573207a1d02b10f125f9affecc1810ed87f6e109",
+            "a7f3d0ce958834d2ad4df151ad7d43cef294dab8c400fec41fb35f42fc8f36a2",
+            "7f422149709eacfffc67c6502476f1f4c6330873377742bc64c0046c99f6cde5"
+          ],
+          "attack_spear": [
+            "576565a369c2b75d79e426633f6e5f5976c74c1ea91b90b94d91e529bf73481c",
+            "6241fa917d6fe9293af51c80e552c8be2f307554c3b93ed65b7518ce55afd6ae",
+            "c42586a2ae1da972daba83d7b2a50b2f80c42943d7a6ff64f62b4db673fe098d",
+            "94e950ccd08f43a1c11819077db64778ff5926365c11fa524fdaee4822e7b886"
+          ],
+          "attack_dagger": [
+            "47601dd3160ec093fabba8d0f0a8e2b11d2fb05330b6ed8f54c8d68d4f345fa0",
+            "8a0c9191699f05068dfece1c55e776f6617dfe99892b947b4cb135e1f6abc117",
+            "0c349310caed204311dc2e564818221e82ac71edfa8755454562d126f798cda4",
+            "5bdafba7e69309b13ddddd428ffcdfb3667edca4f0fa62cb25ecaee4990e9531"
+          ],
+          "attack_bow": [
+            "c8ce621aec285bb75d16554078ae169b2c4e3a3ea59ec96ca927facc8c262340",
+            "7a499b3b8c105e7fd54a14044235a6d53d0388865127851ce5d927fe519becd0",
+            "966618ff352cd0524af90d09237abd2cd0b32e4fcea11dd1d80052185870143f",
+            "43d2a11c5860f3740fed3297b5b33fc9dcab8a98535550af7a776e3562cada6a"
+          ],
+          "attack_staff": [
+            "c84d454f22fa5596cd9232400915e1ff4f002d573a94169f36263e87f7852edf",
+            "5e1656b39b80b5b6a0424f382d464c329eb6eed0c91b1b369f9dbb2d593a5580",
+            "79f5e7b1c8298913e0ae4391f3e06a121b154d47bd9a0b2a42fce2b370bff8d0",
+            "6001d4a20543996478d7c881a2a1d8c03b3219d12044f7093c8f237469850ab4"
+          ],
+          "attack_mace": [
+            "cfd175543df915f136587a166a4754772b5fb5b56e556e76de952ce4b1ee929e",
+            "2d8ae7ba685b97863ca1c654b44fa8702ab3d2030189328b41e6dc2b6058ad3c",
+            "88f9255aaecbb0629e85c86dc10a34159556d118e9ae45159cf66e22ffc851d3",
+            "5d08c127a56caace1131753ec48134526624157ce55912baac0c442de9900a30"
+          ],
+          "attack_book": [
+            "61ae971b1d0394d012f63f54f84cd54e79a09f1fedf3412c8c6145176316f3b8",
+            "ffc5cc2c0aa247fa70213da4ba9d7a44e2b508919e280efe5765ff0708db59e6",
+            "27f971d0c1a4d9d0f86ca56fdddbd8be4f2590150322f2872e0be84d47286bd5",
+            "7958886748b7476226f0c82b6e8b2406833cea9f7f5440e37a085654856664f3"
+          ],
+          "attack_gloves": [
+            "eb31f345cf3b14aff499abd8f272bba5af7606c6aa59216d7358f0191fb0ea1d",
+            "5e78eec4d67e6d7d88e81bea2711999e6cee53d847d0a55aedad1046fdb73545",
+            "5c96289972b36c2bed8511f4e39980f226e2ab35fdbde3c8eda73e2f70948833",
+            "ea86059fbdd0c2d5775cdfa2a1e403c98871ffadc57fc554e52f681f51278a63"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -187005,7 +187237,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/domabestias/f/domabestias-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/domabestias/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -187076,20 +187308,20 @@
                 "pixelSha256": "925897b9361d62c674b3dc059ca1c78bd4cbb38dbbe04160491360fe48140fe2"
               },
               "03": {
-                "sha256": "22e93035b76ae755b319fee67327d3f3ab5ad7fbacbdfd0c1b4576fa15c036d4",
-                "bytes": 24436,
+                "sha256": "a8c008af81765e5c2d99d0109dc05c382959885812166471bef3ab76b900a679",
+                "bytes": 24158,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  90,
-                  101,
-                  248
+                  29,
+                  89,
+                  109,
+                  245
                 ],
-                "pixelSha256": "d189a691be8baaec624be15f3643be4ec16637978c7803112a4c9bda3c49b2ba"
+                "pixelSha256": "57ccd46f0ff74ecf78edca0725b647499fe142d20c76ad30c2768857a7b5fe40"
               },
               "04": {
                 "sha256": "6dad2b18e833aa0f6fab30ddc76bbddc5246a6a53ef92c046800c6694c2dbc66",
@@ -188094,10 +188326,10 @@
       },
       "sources": {
         "idle": {
-          "sourceSha256": "ebbe87d5b368cac1f653fd79a232f2c9b3c5709d7a664a9c79a12a4acaa7cee4",
+          "sourceSha256": "c3800906df70ed1e1f371dfb1eef38f68bef35637cd4a9eb4e9068ef051bcbb7",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -188119,9 +188351,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Domabestias FEMALE, Tier 3, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf. Experienced feminine adult Domabestias with copper-auburn hair tied into compact high braid, attentive determined eyes and canonical feminine proportions. Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN full fitted long sleeves, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat paired IVORY FANGS belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows. Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case identity-preserve. Re-costume ONE female RPG idle blink portrait. Image1 is validated BODY GEOMETRY ONLY. Preserve EXACT its complete body, hand/finger/thumb positions, all joints, feet, scale, head shape, closed eyes expression and framing. Image2 detail board defines DOMABESTIAS identity/costume ONLY. Replace blond hair with COPPER AUBURN swept high ponytail with braided crown. Replace silver green marksman uniform COMPLETELY with CHESTNUT LEATHER VEST with crossed diagonal straps and small rectangular copper chest buckle, compact IVORY FUR collar at neck, short COPPER double claw shoulder plates, DARK MOSS sleeves with short exposed wrist gaps before dark brown leather bracers, dark brown fingerless gloves, bark brown belt with IVORY FANG cluster clasp and TWO compact brown utility pouches at hips, moss trousers, brown boots with copper overlapping shin scales and copper side buckles. No silver temple clip, silver shoulder armor, ivory chest stripe, hawk emblem or black marksman boots. Keep exact Image1 hand silhouettes and locations, empty hands. ONE complete fullbody, clear margin for whole hair/boots, transparent background, no held/sheathed equipment, shadows, text or effects. Never copy idlepose from costume details.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
           "canonicalPoseHashes": [
             "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
@@ -188129,7 +188361,140 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "ebbe87d5b368cac1f653fd79a232f2c9b3c5709d7a664a9c79a12a4acaa7cee4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "ebbe87d5b368cac1f653fd79a232f2c9b3c5709d7a664a9c79a12a4acaa7cee4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "ebbe87d5b368cac1f653fd79a232f2c9b3c5709d7a664a9c79a12a4acaa7cee4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "ebbe87d5b368cac1f653fd79a232f2c9b3c5709d7a664a9c79a12a4acaa7cee4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Domabestias FEMALE, Tier 3, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf. Experienced feminine adult Domabestias with copper-auburn hair tied into compact high braid, attentive determined eyes and canonical feminine proportions. Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN full fitted long sleeves, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat paired IVORY FANGS belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows. Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+              "canonicalPoseHashes": [
+                "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+                "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+                "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+                "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "3d35788ea6c68550bcca73cc89ae161945923e6dc5716f3e27aa716fc7402cc8",
@@ -188167,7 +188532,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "0b85777b9e8aff04469996c5e7fda9bccf68644c3d2d3015dd10ebbaa3952f63",
@@ -188205,7 +188571,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "5c7196f31ab5fed39a6465d4d187e0f16285f60289ee02ba35307e9d49a28680",
@@ -188243,7 +188610,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "a5576bd17843d3c7027750a849a0bbcee4507ee0c539959ed9aa83777310dcbf",
@@ -188281,7 +188649,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "89ca4b75de4f4ce33e2ce39f1672553c7d0faccd7055086eeda6b790ac0fc200",
@@ -188319,7 +188688,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "b56ea6d892a2b393a721fe019b801082359803cc7f34b072baaacfb232d9b1bb",
@@ -188357,7 +188727,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "04dc187be9f85daea7d62956c7417898d660e4f160938d25d814f3781266d02e",
@@ -188395,7 +188766,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "91a410032b4c62b4ca55d9ea6dcd92650e4885277452e6187973d1c779166528",
@@ -188433,7 +188805,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "3e879f77e371330240aca023f084e8ac3e7fa18e1d0ad2404f3079a6ed4d7e54",
@@ -188471,7 +188844,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "a49aa368a967c6c46655834f15942d600db7be11d95f340e1756ab401d12ba6b",
@@ -188509,7 +188883,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "4af53ca5e66bee65172594b85bbcb15ba6a78894457ac1b3299c5bb0e1cba5ff",
@@ -188547,7 +188922,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "38c3506c979238ed8694f396ed6225564a933a86f2aec42ffbe8331b404749b7",
@@ -188585,7 +188961,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "f4a141ef2c323bd831544d2e80ed09461cd74708359824237be9990a8d76358e",
@@ -188623,7 +189000,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "0f64546d552e3601b6b06c7d5858833209d04f0f9b1eb8e54ffc422e6c44dd41",
@@ -188661,16 +189039,17 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
         "idle/01": {
-          "source": "sources.idle",
+          "source": "sources.idle.frameSourceOverrides.01",
           "frame": 1
         },
         "idle/02": {
-          "source": "sources.idle",
+          "source": "sources.idle.frameSourceOverrides.02",
           "frame": 2
         },
         "idle/03": {
@@ -188678,7 +189057,7 @@
           "frame": 3
         },
         "idle/04": {
-          "source": "sources.idle",
+          "source": "sources.idle.frameSourceOverrides.04",
           "frame": 4
         },
         "walk/01": {
@@ -188936,6 +189315,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "domabestias",
+        "name": "Domabestias",
+        "tier": 3,
+        "costume": "Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN fitted sleeves with natural rolled cuffs, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat IVORY FANG CLUSTER belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows.",
+        "maleIdentity": "Experienced masculine adult Domabestias with copper-auburn short rugged swept hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Experienced feminine adult Domabestias with copper-auburn hair tied into a high swept ponytail with braided crown section, attentive determined eyes and canonical feminine proportions. Fitted moss sleeves with short visible wrist gaps above leather bracers; upper arms covered.",
+        "armPolicy": "Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf.",
+        "unique": "Copper claw shoulders, compact pale fur collar and ivory fang clasp",
+        "advancement": "Tier3 advanced specialization of Cazador. Crafted chestnut leather, copper claw armor and fur collar show veteran beastmaster identity beyond parent hunter's simple olive leather layers. Same overall figure scale and shared equipment grip coordinates.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/domabestias/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "20c75f6f295106b735272c4d23ccaac3d9b8370efef5bb9dc436a1e02bcc69df",
+            "a8e9adaabad7d4e51573fe09f52a5c71f19c826a27d2cc8d02adc428bb2e993f",
+            "a8c008af81765e5c2d99d0109dc05c382959885812166471bef3ab76b900a679",
+            "6dad2b18e833aa0f6fab30ddc76bbddc5246a6a53ef92c046800c6694c2dbc66"
+          ],
+          "walk": [
+            "114aefc91f1a8b383107c7010755aef974b549a97543e9c1627cbc876cd30c3b",
+            "0cbf8e6a1ce14a8fd7fbd087d74a9cd8c1d151f7699fee77be6691c2b9b91b03",
+            "b6dc58ec4f8b4d8ed671c2d6e98e83b5c7c6ab0ff621735b7b6555e2d561b860",
+            "8df82b1fc20ac3b137eeaa0bb6c0864f9e3757bc1e111f353309529a1c9e7257"
+          ],
+          "hurt": [
+            "73d3b8f9784ae9eb6f962b26ca92099036ff029eb966d08cfb5bd8ee9a4ca3f3",
+            "8c12a0e814b53f38e2baab540573dad51ce13a562576ca63898b555b64026560",
+            "d1d8b0c118fb395b49e6994a5d92e54616969ae13016336297701b8c67f78afc",
+            "a5e2542cad7c439192d0aa5c217f9c59c5c2efea5edda8d1b3e59f3a27160f98"
+          ],
+          "use_consumable": [
+            "54cba254147f951eee02b2d88302eb632ef2f99ff776bbee7eef3f0eb0dda728",
+            "b1d44a323c2051302da6f36ec72b04a81c77f0f77de2d871733dbf743e3e4d93",
+            "ed14c54403a0255535ff3e39df26adfa02b938c0713f6c7336a6d57234833183",
+            "e97d401864cfbaa4de8276d38322188ab4c54943d222ffa159f8385cbdba657b"
+          ],
+          "dodge": [
+            "af7f2d5b27fca1f998c09a172e73967260a830d12703fe51a2946e722748e6ff",
+            "7a758bc5eb3b43beb7de1e81ea0a4378bf34f13870c16a45a5ed75c8f249d76f",
+            "67fd71967511d10f86bd98501a69c660878a972006653fea0cb450626f932b84",
+            "9b604a5ecb4324abcce02c658a6df29b97bdf569aa4028092a19caa06fcb5d96"
+          ],
+          "block_shield": [
+            "87d30e052e9cff69b083da9ed2444006801d9741e91cd79f5cc167357b2426b8",
+            "e4a987fb4512587ea5399d80acfbbeadcd88ac1598efc97a529f88733f5ac739",
+            "1c2a609428d61a5717b05a25a1482a619bef10372a9fbe42f8c291d598dc4aee",
+            "fee3f4bda8bcffff354c449e1efb7ce9dba982073409568764fc71732246f000"
+          ],
+          "attack_sword": [
+            "be8db0a1ca7ca01495204e288403f84649bd2a5cd451465568e889498193bdbb",
+            "c6dce122a8a628f25b652aec461091eb0ab0662e45955dde14a150558f084ac4",
+            "bb60c6acfaf6deb2b2f1f8602c12229cdfaded0e4c0d5e6d187eff78765bb5b3",
+            "42c22196560091da053c6331c14b805a36c9a2946cd634c1f6b77b93b60a51ea"
+          ],
+          "attack_axe": [
+            "f9af1b6a750f0ad2d63d6884925ae7dabe98b7b004a84d9259c82c74901b04ae",
+            "48273924ca973840904d0cc20a5fc69edd75a244ffbfdfd22ee9fec67a3a5dc0",
+            "681bac779f560d13ecda4a30bd22c97c5704fa766043f308045d1813ebb85363",
+            "67a11c947cef56e1a47b5251d14580383e6c6c1206ca722c9a456a7298847567"
+          ],
+          "attack_spear": [
+            "10622f4a68d00e9468b9d3541e47c7fda6afdbe8606f074db5e17b10f953e430",
+            "8d05aed4af40f358325247aa7e786e03a7f3f143ecc96c2ea70824d5915445c1",
+            "89c8fa06ddf0c489314e390c50303f346e885298e35621497a61a4a8e229057c",
+            "7aa2ffa0b93e7098e9c90b4e5d0bf98a83b4a6aabc56ee3e3cec5e4104c0fd66"
+          ],
+          "attack_dagger": [
+            "8030453afa23aaea1f2dbedd11f5aed3d9b2fedf349da4701a5ab92f0b169a27",
+            "c4f931a95d571016f131b17ac92378567cedc9406e082ed5175e60e9b6386f94",
+            "26e75eb13ea756f1fe1eec42600400edb171b92f45160e1123ef4c79ae2c6953",
+            "6f8703a3ff42da055fac48b20c6a2541e7e5fe0fd865f6e36cbec37d41f5785a"
+          ],
+          "attack_bow": [
+            "9eecb4c0ad01bd2337a0db61cb0e4e0a221083d7372b808f8f2d337a25404c83",
+            "070d8e253eb17e1849b4a0d85f3119aac48abfdaf64b83ff836cd5d94bbb0260",
+            "883af511e81e22a3b80f2f8532b4a32b0b5952516d5dbc89ca25e56050916ee5",
+            "9964e500660c43c3b7d3bf0dfb2b391146d715907e7edf403d95b25b3f307209"
+          ],
+          "attack_staff": [
+            "dc8e94aab199abcf445724e5c38cc8f1379b69f1b42be256035d0519a0e94302",
+            "cc45b99b0817dbff018dde6df96a289962e28ed721dd763d1741345f726d4ba8",
+            "9f205bb7dbed28308eec1f58e02106f0e6010d5fa42fd62f36ca604caa361727",
+            "6c73f748b5840b4e0c6508a0a87795c365ae299bd3ebbbdf9fd386173895b9e5"
+          ],
+          "attack_mace": [
+            "e354e2fec8f75a29cfaf36089b7ba00cd0cae6fc9a98ed3e745416f3d3012bcf",
+            "c436b50f743403d098f6f9eb55f476f02cfc0b3f1f84817ecf824f8453ba8098",
+            "a44b1974192cd2443780fc5e55b186ad2f7a2f6ac4fea0f186608a7e500205ff",
+            "9a3fcfee31c812c3b68319bff2093b7b6eed7be3a0bebc907372e84ca740d72d"
+          ],
+          "attack_book": [
+            "710f35c043e7d11454b993827d125442d51eef702b0803c6c51a59363b7aab36",
+            "e5932de588f5c62029d95b4c3364b4db06e32192b0ab3aaaf83c80a0d2fc241c",
+            "ec28c5dd8122a3083b30c6611b490c76f897a528386eda793b777b5556828605",
+            "e22f2c020dd8a09ad66731d865fc87463f5a1859c48976124d7169445a182b7f"
+          ],
+          "attack_gloves": [
+            "d468f8419d7d36becdb7d3661a18680601337efeeba9e09829f848bb48de7747",
+            "752995c77ec7d93e51aad2810d660ee3d16ea7c518a7dd3a2723b8265ea0130e",
+            "039abbd9207fc0a0b6f2de7edb10e56fad867e1f395a2330a087f056fbb9c15f",
+            "f737f23d1c240049bd964121a5a931b6802091772c4f399302458c8515a7270a"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -192334,7 +192828,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -193153,7 +193647,7 @@
       "id": "domabestias",
       "name": "Domabestias",
       "tier": 3,
-      "costume": "Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN full fitted long sleeves, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat paired IVORY FANGS belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows.",
+      "costume": "Beastmaster ranger armor: fitted CHESTNUT leather vest with close crossed diagonal chest straps and a small rectangular copper chest buckle over DEEP MOSS GREEN fitted sleeves with natural rolled cuffs, compact pale ivory fur collar at neck only, TWO short COPPER claw-shaped shoulder plates per shoulder, flat IVORY FANG CLUSTER belt clasp, TWO compact leather utility pouches at hips, dark moss trousers and heavy dark brown boots with COPPER overlapping shin scales and small copper square side buckles. Dark brown fingerless leather gloves with fitted bracers, fingers exposed. Both sleeves completely cover upper arms in every pose. Same collar, plate counts, emblem, glove material and boots in all poses. Compact silhouette. No animals, fangs on strings, horns, cape or trailing fabric. No held or sheathed equipment, no shadows.",
       "maleIdentity": "Experienced masculine adult Domabestias with copper-auburn short rugged swept hair, attentive determined eyes, clean-shaven, canonical head scale.",
       "femaleIdentity": "Experienced feminine adult Domabestias with copper-auburn hair tied into a high swept ponytail with braided crown section, attentive determined eyes and canonical feminine proportions. Fitted moss sleeves with short visible wrist gaps above leather bracers; upper arms covered.",
       "armPolicy": "Preserve exact canonical joints, palm/finger coordinates, feet and head scale. Compact fitted sleeves, fur and shoulder plates inside canonical body canvas. Replace all Novato garments and hairstyle; no cream sleeves or red scarf.",

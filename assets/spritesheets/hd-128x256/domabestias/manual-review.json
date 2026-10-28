@@ -1,0 +1,146 @@
+{
+  "classId": "domabestias",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/domabestias/m/source/walk-frame02-reference-v2.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/domabestias/f/source/idle-frame04-reference-v2.png"
+      }
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/domabestias/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Cuero castaño, placas de cobre en forma de garra, cuello de piel marfil, broche de colmillos y botas con escamas de cobre distinguen esta evolución de Cazador. Pelo cobrizo corto masculino y coleta alta con corona trenzada femenina.",
+    "All thirty original action strips, both sexes, representative equipment compositions and both axe structures visually reviewed. Moss sleeves keep upper arms covered with naturally rolled cuffs. Fang cluster and asymmetrical shin scales follow the same costume across perspectives.",
+    "Male walk v2 supplies complete poses3/4 with corrected real palm positions; poses1/2 remain original. Female idle blink pose3 uses complete portrait v2, re-costumed from previously validated Francotirador anatomy; poses1/2/4 remain original.",
+    "Compared actual palms, thumb openings, canonical occluded contacts and final equipment compositions. Male consumable recovery returns toward the waist as in Novato. Some legacy markers lie outside the visible hand. Shared equipment geometry unchanged; no automatic runtime promotion."
+  ]
+}
