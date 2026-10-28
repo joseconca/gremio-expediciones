@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "gran_maestro",
   "sex": "f",
   "actions": [
@@ -12,7 +12,12 @@
     "attack_sword",
     "attack_axe",
     "attack_spear",
-    "attack_dagger"
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -23,7 +28,7 @@
     ],
     "walk": [
       "e3312639947fd0c6757f9343bd2861ecca23d05042d9397410b7254db39a2554",
-      "03448edc5c22a12396a020afcf4b911d8505dcb05c3b2ae15f1b3cbcbdd9a6ca",
+      "890b0ed2366ac0ae189c9fcde39de54e0c6f73afa47d66a07480266ae1b833b1",
       "cd892a875fc2293d953e6e785c48673d65e8ba985357ccfd89f18c0904072a99",
       "5a21f018b0b2351beb3d3cfc18198256bde216ce51b27e1e7736e6c5cb7f8baf"
     ],
@@ -74,83 +79,40 @@
       "a3549bafbf694ea9a38b198c802b458fc5cc1314f82650341a4f01938c2787bf",
       "5ece5a17a0d64acb54cc0f595411756da9808b83b92f7662a362b50a70b54b08",
       "72d440efa7d91d18a2e18930ec9ecea28664f5432fb40d047c32c25d46482886"
+    ],
+    "attack_bow": [
+      "48afc969e3a10bed9e8d41ac951efa46de7c1824e7b8fc28762584f1d746fb7c",
+      "3fdadd1be2bb81e30e04189e128985b57043a103afb2228bd0b5639cce4da685",
+      "410303e6c35bb5fcae400ed6ab1dbaec798594d37f5f69c91b75bbc004416e7f",
+      "36d61413ff41d0d2efd916edcfab34cc4a85a18e85cbd1a0e7e078ff99685b36"
+    ],
+    "attack_staff": [
+      "28f810c88ae6553cc0512d88e81dea3b8670358f10c6bbeeb3ebbb4f4dd47865",
+      "e2232bec447cd88c917c921a8485d9c9d519091837462cd1b06b63d9fa425802",
+      "c1106a103af24a8ffcf96fd1131a331f2bf394c98c8f480512276822fb874d63",
+      "98ba2d47d9e2a1df1ed844366410c2229ae8487c11cb50c4cf0b146b78914ae1"
+    ],
+    "attack_mace": [
+      "ef8a93ecb5603482404e7702e8f336ce7c8faba75a0e0a4fd6fba97ff64a7dec",
+      "7f113a2694ae3fad6abeb12d231944ab79e62b6ef276cdb820f9473610f6ce65",
+      "5aa501646f9fb7bec9fd69e123c7ce3d6b70b50aeeb8fff39de6b6b0a5968f27",
+      "ad74991a73647912cb0357f57c2c49c8cabbce828fffeb8270a90f364e72a4f4"
+    ],
+    "attack_book": [
+      "eea60bc6fbd70151d0934c57dfe366c00615329cba2beeb46a9f26d2955a5f7f",
+      "1ef6b9eb2030a8e98d1a72bcfbbbf04e139b3e4a585d055b63bd9ed24161d691",
+      "d610cf815173cc3fa5106751b564879bc153d401c786b67e1c9e36b58f8a120d",
+      "4f135d23832d9a74ba241ca97c1a6025922ad8c1cd35baa4702a1036e9953113"
+    ],
+    "attack_gloves": [
+      "6cd19d46960ca37c58676f3937cdf779e682c8d04052a5c0552e19783469d6d5",
+      "f97839c1e1f5d4d863f45547873dc1e547a01ea39678a11c0bcd9f5b77ad6763",
+      "a3cc9f25b86830ddea3a7379352016793d214acab23cc9bee0b30bca5f123809",
+      "f0b830667a36e369138855a4ad8cf6ac0227fc3bf297a7e5c61d9686a76ada3e"
     ]
   },
-  "contactChecks": 612,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "arco_cazador",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "arco_madera",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "grimorio_eclipse",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "guantes_lucha",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "libro_aprendiz",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "punos_lobo",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "escudo_guardian",
-      "point": [
-        89,
-        176
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 2,
-      "item": "escudo_madera",
-      "point": [
-        89,
-        176
-      ]
-    }
-  ],
+  "contactChecks": 682,
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

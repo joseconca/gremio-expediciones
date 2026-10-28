@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "gran_maestro",
   "sex": "m",
   "actions": [
@@ -9,6 +9,7 @@
     "use_consumable",
     "dodge",
     "block_shield",
+    "attack_sword",
     "attack_axe",
     "attack_spear",
     "attack_dagger",
@@ -28,7 +29,7 @@
     "walk": [
       "a016f3f19fe3fd8a3fc2fcf0c140d70aef63fc6d221844f2bc76aaa1e2b547a2",
       "3f7b8f1c14e1169ea07d4362f5da6f2ea1ba9d3dbf3fa5c811125b711c5ecb2c",
-      "15bd79fbd1eb0cc004c6337545d7539804da87297f0b73a089778b68cb6801e1",
+      "e53d10f1925fbf13384c71573b482f26a61e0341bfb43970a6c9cc254390f655",
       "d975a394e4bc37e5ea6f22de398afe40f02bdb306ce6bb57155c18318387b627"
     ],
     "hurt": [
@@ -55,6 +56,12 @@
       "e71d8201c60e842bcebce28ee4e4010759c48f971fe1182c8ba4868d03ab42cc",
       "df998f94b4a66e8de8b60abcbdf21d068f39f79145094a939549fef6f6c5d283"
     ],
+    "attack_sword": [
+      "fe5ca567d62a2eb9dd9b3533d2e59cf8e6aa289df1bde85325b6d18ebe7d3505",
+      "1543728c0d9fa653a33ce70cec781706dce8cc458669881f41df7551b279b144",
+      "a974fb53a613c941aa4d1aa1b87dd10afc3fe74489d33eed2325d14ac6942029",
+      "969571dd871ce18c418996b6d7b8f53c145204c371fd900f3fd2f0c5e1356d04"
+    ],
     "attack_axe": [
       "9446697a83c2c95e328c5c83c5f530e34f3d8ff7b5110ada911b5d23bb2b0541",
       "c4b1ca3450cf0899551b86ba3f22cdf11a73fb36c74803c3c93b93d24aa35d79",
@@ -74,10 +81,10 @@
       "02b2d406c837f6c727562be61e29beb387a090c463f753a6dd807b596c788134"
     ],
     "attack_bow": [
-      "e4b82d06b78700e9a23daaee289ade53ffd21be82b98095fe0cd834c1fbf1007",
-      "79c793d419972b35b5ed3a8d5311bbda018f4fc8ed56428648245078831349cb",
-      "6f0a6b970124a0fe4fab4639aadb5121827dbcb701fcc87d567d65b7db9dfcf5",
-      "a74b387c919ea1bd73ac8271292a5013b2a3ee582ec5f234c6b33afd4bdcbe24"
+      "882b3279e616acd4b7ade6324bee8d18dfdf2cddce4d6c86017f816a2e9ca350",
+      "b7d5ae69f0417e4717148803aef4e6ec5951f61a3fba29d0ea786231f82a4bc4",
+      "4b9d3adc21ad2cd040dc4dc751976f058618f6c0f495bbd8db5df2e6fe1dd51a",
+      "05cace0ecc3f450d98146a65ba9d7dfcf32454a012ba4f66dea506500039b574"
     ],
     "attack_staff": [
       "38f6ce7f7ee7ab4d7e441d0532efbfe4cf457cb6b67251332d73abc8386c4be6",
@@ -104,81 +111,8 @@
       "b867de818eb5c2aae82fdda016e62951761b3057e28495fc843bc2d29fdd549a"
     ]
   },
-  "contactChecks": 646,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    }
-  ],
+  "contactChecks": 682,
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
