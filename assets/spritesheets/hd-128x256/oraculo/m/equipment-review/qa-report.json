@@ -8,7 +8,8 @@
     "hurt",
     "use_consumable",
     "dodge",
-    "block_shield"
+    "block_shield",
+    "attack_sword"
   ],
   "bodyHashes": {
     "idle": [
@@ -46,9 +47,15 @@
       "fa65c5d48fe5e058d55bef68465596d1b650cf10a84202014ba164e44241f024",
       "6176e61263e43f778bea6fd6788f495b9987bb6656f292c793f58f86123df132",
       "9ac96b9bfc39bff42a747a5277d42dd23e55f275fe2f16678f2c463d570924ee"
+    ],
+    "attack_sword": [
+      "50da87fd9561f67864bbcf7b746925a9d952d5af644394a08973c6ab91ae34a7",
+      "f60934e92bfcc24cc8ac16f6302108cb782eddb87cc776b7830d8d3f4c1f6112",
+      "5e4adb6116b577aea5ff17291e3c41f191601fffb4f80ea8b4d18c1a76c3951a",
+      "8a0fbd9b9f9799096c3f41d4e16ca275400b3a42aadb9dd4dbc8402a775476a1"
     ]
   },
-  "contactChecks": 524,
+  "contactChecks": 560,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
