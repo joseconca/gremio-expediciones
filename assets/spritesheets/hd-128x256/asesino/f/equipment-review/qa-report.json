@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "classId": "asesino",
+  "sex": "f",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "4595b3cd62831fb5614ca887bb6febcaf35eb8ff90f1ca0e336a15126365208b",
+      "d3bf7d930e422e06cf6330fdddd36a1a0cdc7d69f55e5f63aed17e09c3d9efda",
+      "ba9870f96691b48904e48ac5e34a294ee9cc9bacf094914e05d0fee4b1a4da71",
+      "d1ade016e523a3e283075c4c6f1c89f223d547db4f3c55871dfebaf76265d2f6"
+    ],
+    "walk": [
+      "52bb843b544689667c06bf392a2142f093e9fd3d211235cd1b92df3b4ef7db60",
+      "38c7fdc385a98d7568100da7f91f60014a8639102813a4f04b3485d71d9fae70",
+      "10f34741f1330b0da6d762f8315ffd29c51660e26984284c72ae45777c9ba868",
+      "e21b56e884bbb425951dcef55f55dad23cc049270f16b14f074f4923e0d37641"
+    ],
+    "hurt": [
+      "751b257cbef2b1d5884f7d92a954b2e146723e7e25df152b763cdb7a775caabd",
+      "488c376b2b94f6454b24a3ff32af7b2427739f8b016733a92eaf4419a352e6df",
+      "d46582741601f485bc48ae528ec9a232830e67b2dafc5420078296f64dae8ba0",
+      "d499849575e11dc2cdd3a443aa5b4196b020c7b50318080cd8fcd97299d5268b"
+    ]
+  },
+  "contactChecks": 384,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 4,
+  "artisticApproval": "not-automatic"
+}
