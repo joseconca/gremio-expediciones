@@ -135944,8 +135944,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "5cd39c451019f10f92a79826fa120864e89b3aa6cce1067684a95c369b1d8f43",
-                "bytes": 23773,
+                "sha256": "568507652346d636b8c09bd696a9f0cf0647ceca1686b3a7c8ea522dcf3fd52d",
+                "bytes": 24000,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -135954,14 +135954,14 @@
                 "bbox": [
                   23,
                   96,
-                  117,
+                  118,
                   249
                 ],
-                "pixelSha256": "0ccb8d3df1a5b45858a0e808b792332b48b52e3f5ef7c50086a994ab064097c4"
+                "pixelSha256": "5c189d5dcd69fab7137b5a66ee2da416ac3ead25bf02b0966cc6d4fb3ff97598"
               },
               "02": {
-                "sha256": "a6f6d9c298c9673b0f99fa02b9e4e42315c15be09a366937ff82de767dd0eea1",
-                "bytes": 24465,
+                "sha256": "f245b4834308e6fca02504f0f1baa25552d13cf296a6f59d1a482a191cd588f4",
+                "bytes": 24670,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -135970,14 +135970,14 @@
                 "bbox": [
                   19,
                   89,
-                  114,
+                  115,
                   249
                 ],
-                "pixelSha256": "b09b11bba96979e6f72f9168de1f1a7c1f43e78d0905c6144c9475956eaab915"
+                "pixelSha256": "01b8ca3d2bd0c7c02cd3bfe3c2f515724f404e283cad5409c1311c424020fc72"
               },
               "03": {
-                "sha256": "627b79090277741e312af1167b6c57d9a5f112c13ce987442b285c22f66ead4b",
-                "bytes": 22746,
+                "sha256": "93cb04d875f6829bdb7a63972a6e721edd7ebe56f8485c82dea8a09cbc82ad1e",
+                "bytes": 22884,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -135986,26 +135986,26 @@
                 "bbox": [
                   15,
                   104,
-                  110,
+                  112,
                   250
                 ],
-                "pixelSha256": "1fc97dfee52efaded95ac093ba2f4683a87e3146077ac913b30ce2aa2df3aba0"
+                "pixelSha256": "5ed226cb7974caef5b8e0ece25b1516996585fefa77e466e872c78095e22cf41"
               },
               "04": {
-                "sha256": "713adc393e3a63057e2b55400cffd5bd362d77dda056357a713f2268aeaa4145",
-                "bytes": 23701,
+                "sha256": "77be74785fa3cca0e35369fe5a21b9e5ffb721baab73f643b00dd579e9ccd4f5",
+                "bytes": 24078,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  13,
                   96,
-                  105,
+                  107,
                   250
                 ],
-                "pixelSha256": "6152b908b10e09461b49e44ab7b70e9a81d570a14d23541fd018def19508316f"
+                "pixelSha256": "1565e321f8f3b5380b6945d6719e0445f7f02aa17f84758df9c53440c7dfdbc4"
               }
             },
             "distinctFrames": 4
@@ -137074,7 +137074,7 @@
           ]
         },
         "attack_axe": {
-          "sourceSha256": "44fd8e16d1ad929c7c87712b7f3f68440ad7faec84ef7e680366db3de8f177dd",
+          "sourceSha256": "42d7a8039e1ba3a11e38bbb30961b178acdd375b28dd4a1a2da95a303c28be5d",
           "sourceDimensions": [
             2172,
             724
@@ -137099,9 +137099,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_axe-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_axe-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Herrero FEMALE, Tier 2.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise outfit-continuity edit of Image1 ALL FOUR figures. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden: no duplicate old pouch hanging UNDER the new pouch (especially consumption poses2/3). Replace brown novice wrist wraps with compact SILVER-GRAY IRON wrist cuffs from Image3 CLOSE-UP over dark fingerless gloves, at BOTH wrists. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT anatomy, absolute finger/palm/elbow/head/foot coordinates, pose size, goggles on FOREHEAD, feminine face/braided crown bun, single compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron, boots and iron toe caps. No recentering, scaling or arm changes. Same original canvas/quarters, exactly four complete full bodies, transparent alpha, empty hands. No equipment, text or shadow.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
           "canonicalPoseHashes": [
             "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
@@ -137109,7 +137109,47 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "44fd8e16d1ad929c7c87712b7f3f68440ad7faec84ef7e680366db3de8f177dd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                8,
+                1074,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_axe-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Herrero FEMALE, Tier 2.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+              "canonicalPoseHashes": [
+                "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+                "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+                "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+                "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_spear": {
           "sourceSha256": "8e70da1c532b353ecff99abea36b045f9f6dd2a0ea2c11e915dc42d2adbad1b8",
