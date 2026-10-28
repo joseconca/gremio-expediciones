@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "alquimista-m",
+  "nextVariant": "alquimista-f",
   "classes": [
     {
       "id": "novato",
@@ -125534,12 +125534,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 57,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/alquimista/m/alquimista-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/alquimista/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -125553,12 +125553,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "358ccdf277ab4baf098afa612852fa61dc46e001654819b9c8a38ec8b4e6e83a",
+                "bytes": 23452,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  103,
+                  249
+                ],
+                "pixelSha256": "69b16a545e90052638fc81e3cb95df458fa97663172486052aada9cedf66ade3"
+              },
+              "02": {
+                "sha256": "03b853de353a1bd04467b2fc87557e92b85c418bf1e6201ee2a11604bd0c4e58",
+                "bytes": 23479,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  103,
+                  249
+                ],
+                "pixelSha256": "7c687837c98248c755838dbeaa77bd5d57c1c006604e7d2759b287684c0016a4"
+              },
+              "03": {
+                "sha256": "c52ca1aba3491f40b688d623ee81f56894cc96c638178809f308a9bfd792e1a9",
+                "bytes": 23599,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  103,
+                  249
+                ],
+                "pixelSha256": "ad33325587fc43519a6e0e3ce4a10191c3a4979d85cc79e38ea2e212c4a4b062"
+              },
+              "04": {
+                "sha256": "e432728b6c8117a729fcf5775d95ac4ebdc01429543bf3a379c751554568a468",
+                "bytes": 23499,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  103,
+                  249
+                ],
+                "pixelSha256": "1156f96b81773f5027fcdfe62eef809604ea0a6ba47b4a9801b0dee1d6ae4d04"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -125603,6 +125672,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "009957aac80dc5b6e071a022cdf498f406b114ba9f77c42ab4db266bbeb49105",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip ALCHEMIST MALE tier2.5 idle. Use supplied canonical Novato reference ONLY for exact FOUR body poses, head size, hand/finger/elbow/feet positions, camera, per-quarter centers, canvas dimensions and body scale. Replace ALL novice garments, leather accessories and hairstyle with this NEW class. Adult inquisitive masculine alchemist with dark chestnut neatly combed short hair and short tidy moustache, brass oval glasses. Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects. Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Every figure wears identical fine BRASS OVAL SPECTACLES and a short neat CHESTNUT MOUSTACHE, also the third closed-eye pose. Ivory coat has fitted full-length sleeves ending at snug cuffs with dark fingerless gloves and exposed fingertips. Single green stitched circle on left breast, brass clipped green sealed glass ampoules at belt, two square pouches; secured items close to body, no held glass or tools. Image1 garment boundaries and bare-skin patches are NOT anatomy constraints: redraw with the new outfit coverage, retaining anatomical pose and joint coordinates. Keep silhouette compact and no dangling cloth. Exactly FOUR distinct complete full bodies in ONE horizontal row facing RIGHT three-quarter view. Crisp painted anime pixel-inspired RPG game rendering and lighting consistent with supplied reference. True transparent alpha background, clean outer contours, no colored fringe, no held or sheathed weapons, equipment, magic, effects, shadow, grid, text or logo. Leave every hand empty with canonical gesture. Full head/hair, fingers and boots with clear margins in every quarter; no individual recentering or rescaling.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -125611,12 +125738,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 58,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/alquimista/f/alquimista-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/alquimista/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -125630,12 +125757,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c50e526778b849878878680db95f3bf01cd00c997c4a6dd919fdcf2042f3ee8f",
+                "bytes": 23846,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "2f7fff7a32f502497496a227097d7367c489295f4d924751c450cd74e19c001c"
+              },
+              "02": {
+                "sha256": "4e3adb72ce237000be22c25948598a69f441d58e78a970949cadb5e0dfef3357",
+                "bytes": 23830,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "52f40e136922badd3ee01c43c8d50de366868978c416048cd9e5289b7e85218b"
+              },
+              "03": {
+                "sha256": "89d8299d06036f28d8df8bc0f0f027abfdf3be3e23dead675bb039e3a2bab178",
+                "bytes": 23761,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "f1f0d43f70ab9b01295d5bb1ba432c4ebc403d52e2ceff5a2d3ded94afbbf140"
+              },
+              "04": {
+                "sha256": "f0030787642346fa00348c8e29034bd3a8347a16aef1209567189282cc34d386",
+                "bytes": 23823,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "f6f3f562b610140789bf046ea23a3a4f37cf3e490e8f8ef86f1ba8450d211a95"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -125679,6 +125875,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "5f2503fc0046c5d529e70a631bac49fa90518f2d32db6bd1f13bf3262e6a2b28",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite strip ALCHEMIST FEMALE tier2.5 idle. Image1 defines ONLY exact canonical FEMALE four poses, hand/finger/elbow/foot positions, head size, camera, body proportions, per-quarter centers, canvas dimensions and scale. Image2 defines NEW ALCHEMIST CLOTHING only, not masculine face/body/moustache. Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses. Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects. Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Feminine face with chestnut braided crown and compact low bun, NO moustache or other facial hair. Every figure retains BRASS OVAL SPECTACLES including third closed-eye pose. Match image2's identical ivory laboratory coat with gold/ochre narrow edges, green waistcoat, single sewn green circle at breast, two clipped sealed green glass ampoules and two square pouches, fitted long ivory sleeves and ivory cuffs touching black fingerless gloves, exposed fingertips. No bare forearm patches. Replace every old novice garment and exposed-skin patch with NEW outfit coverage, retaining ONLY anatomy/joint/finger coordinates. Exactly FOUR complete full bodies in one horizontal row, facing RIGHT three-quarter view, transparent alpha background, consistent crisp painted anime pixel-inspired RPG game rendering. All FOUR costumes identical. No held or sheathed equipment, long cloth tails, scarf/cape, effects, shadow, grid, text, logos or colored fringes. Empty hands with exact canonical gestures. Full hair fingers boots with clear margins in every quarter. Do not recenter or rescale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -130772,7 +131026,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -131475,7 +131729,7 @@
       "femaleIdentity": "Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses.",
       "unique": "Ivory laboratory coat with green circle badge, clipped sealed glass ampoules and oval brass glasses.",
       "advancement": "Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes.",
-      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair."
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Match approved identity's fitted FULL-LENGTH IVORY sleeves and distinct IVORY cuffs touching black fingerless gloves: NO bare skin between elbows and gloves. Keep exactly TWO clipped green glass ampoules and TWO square brown belt pouches, one green sewn transmutation-circle breast badge, brass oval spectacles in ALL poses. MALE short chestnut moustache must remain, FEMALE no facial hair."
     },
     "herrero": {
       "id": "herrero",
