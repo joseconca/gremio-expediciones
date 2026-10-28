@@ -141840,36 +141840,36 @@
                 "pixelSha256": "57e6ee2aaec3e707994dda2a807d07163150d7d9d4bc11ff46a5a6a9ef7f7f23"
               },
               "02": {
-                "sha256": "7538596d134e4c66a4b8e51424ec3102cfb083c115afc53fc8083d0de1b9cb12",
-                "bytes": 26949,
+                "sha256": "9b8be84612b9ecb3357ce3659d46c6e9a8839dd0cc58a1f410a991371a506f4e",
+                "bytes": 27439,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
+                  19,
                   90,
                   107,
                   247
                 ],
-                "pixelSha256": "0731b7c4169d540fe4fa82b64ecfede436385d0a54f24c59a24f0f5bcc5364f5"
+                "pixelSha256": "f8dd3f35765c268bc8702c6e6faa4857bdb7747f7b413e3cf4e5fc63566ae073"
               },
               "03": {
-                "sha256": "1b7417c54015994abd9a713faa0c07502963c9464f6b94518f12f604e744a512",
-                "bytes": 25587,
+                "sha256": "2aac72b8b5242c6d595f75840e5483d6e1dd13bdd12bef63447bef8fcea60901",
+                "bytes": 26029,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
+                  19,
                   90,
-                  106,
+                  105,
                   248
                 ],
-                "pixelSha256": "056d693b8967a91be9559753bf6a6bae6f6f9d38c37dbaafa8cc2eaabcc9790c"
+                "pixelSha256": "5d6abfd16d79bbc495a5d9bd54e5cd5ce25f7920fe392083efe5ef2292b33a7f"
               },
               "04": {
                 "sha256": "c6d3837f7273839f6bfe4939e93477a046a3faa722c39e3552c2ef0db953533d",
@@ -142654,7 +142654,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_staff": {
-          "sourceSha256": "66ca363b7a593c9e1f9c14837e7d123852ff5abe9e5c491eb3f365709f445019",
+          "sourceSha256": "90289d73e44405f26385729e84366afa03115c70035d12cc376f5ed0338c300a",
           "sourceDimensions": [
             2172,
             724
@@ -142679,9 +142679,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_staff-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_staff-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Animate EXACT approved female Paladin costume, GOLD SUNBURST breastplate, sapphire THREE-PANEL short tabard with gold FLEUR CENTER panel, round BLUE-GEM belt clasp, TWO BLUE knee gems, gold laurel circlet, full WHITE/GOLD PLATED arms through wrist cuffs, black fingerless gloves with WHITE knuckle plates. No novice wraps, cream shirt, pouches or bare forearms.  Production RPG body sprite strip for Paladín FEMALE, Tier 3, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved reference's white/gold full plated arms ending at plate cuffs over black fingerless gloves, no bare forearms. Keep the GOLD SUNBURST breastplate, SAPPHIRE THREE-PANEL tabard with small gold fleur motif on CENTER panel, round blue-gem gold belt clasp, TWO BLUE ENAMEL knee gems and close gold-laurel forehead circlet identical in all four figures. Adult experienced feminine Paladín with honey-blond hair in braided crown with low tucked ponytail, attentive determined eyes, canonical female head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Paladin FEMALE attack_staff correction revision2. Image1 is EDIT TARGET: preserve exact4 action poses, every anatomical hand/finger/elbow/head/foot coordinate, canvas2172x724 and perquarterpositions. Image2 is approved IDENTITY and ARMOR/GLOVE material reference ONLY, not pose. ONLY fix the exposed PEACH/SKIN FOREARM PATCHES in FIGURE2 raised arm and FIGURE3 extended front forearm. Replace BOTH entire exposed forearm sections elbow-to-wrist by fitted PEARL-WHITE METAL VAMBRACES with narrow GOLD rims, same material and construction as approved Image2 full arm armor. Absolutely NO bare forearm, rolled cloth sleeve, cream novice shirt or brown leather wrap. Keep gloves/fingers and EXACT elbow/wrist/hand contours and positions. Figures1/4 are alreadycorrect, leave unchanged. Keep unchanged face, honey-blond braided crown and low ponytail, gold laurelcirclet, gold SUNBURST breastplate, sapphire3panelshorttabard with GOLD FLEUR center, bluebeltgem, TWObluekneegems, whitegoldgreaves/sabatons and all other outfitdetails. No pose recentering, scaling or new anatomy. Same crisp paintedanimepixel-inspiredRPG finish, true transparency. No equipment, weapons, shield, book, potion, text, effects, shadow or grid.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
           "canonicalPoseHashes": [
             "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
@@ -142689,7 +142689,109 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "66ca363b7a593c9e1f9c14837e7d123852ff5abe9e5c491eb3f365709f445019",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_staff-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "66ca363b7a593c9e1f9c14837e7d123852ff5abe9e5c491eb3f365709f445019",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_staff-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "66ca363b7a593c9e1f9c14837e7d123852ff5abe9e5c491eb3f365709f445019",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/attack_staff-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Animate EXACT approved female Paladin costume, GOLD SUNBURST breastplate, sapphire THREE-PANEL short tabard with gold FLEUR CENTER panel, round BLUE-GEM belt clasp, TWO BLUE knee gems, gold laurel circlet, full WHITE/GOLD PLATED arms through wrist cuffs, black fingerless gloves with WHITE knuckle plates. No novice wraps, cream shirt, pouches or bare forearms.  Production RPG body sprite strip for Paladín FEMALE, Tier 3, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved reference's white/gold full plated arms ending at plate cuffs over black fingerless gloves, no bare forearms. Keep the GOLD SUNBURST breastplate, SAPPHIRE THREE-PANEL tabard with small gold fleur motif on CENTER panel, round blue-gem gold belt clasp, TWO BLUE ENAMEL knee gems and close gold-laurel forehead circlet identical in all four figures. Adult experienced feminine Paladín with honey-blond hair in braided crown with low tucked ponytail, attentive determined eyes, canonical female head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+              "canonicalPoseHashes": [
+                "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+                "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+                "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+                "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_mace": {
           "sourceSha256": "f79b6bbb0302bcea2d2f87492edffd4af977df6eb1ac5ca4f32b947e76b628d2",
@@ -142984,7 +143086,7 @@
           "frame": 4
         },
         "attack_staff/01": {
-          "source": "sources.attack_staff",
+          "source": "sources.attack_staff.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_staff/02": {
@@ -142996,7 +143098,7 @@
           "frame": 3
         },
         "attack_staff/04": {
-          "source": "sources.attack_staff",
+          "source": "sources.attack_staff.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_mace/01": {
