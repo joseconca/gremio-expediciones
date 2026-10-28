@@ -146210,8 +146210,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "8a6a70321745dbd189b2f1bc04fb960d7a585b4bdd22641d46d76f421327be09",
-                "bytes": 25260,
+                "sha256": "c05e231b9c8c70e844f3dd74cb411b4caa02b91ce06cf12e8a1ad27a33914143",
+                "bytes": 25682,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -146219,59 +146219,59 @@
                 ],
                 "bbox": [
                   12,
-                  93,
+                  92,
                   110,
-                  247
+                  248
                 ],
-                "pixelSha256": "c3cfffcdc297e0f861083ebc33abd242dbecffaed082200837db6268f5aeeca4"
+                "pixelSha256": "2ee3df309bb8bdfa2be1b18964a9c77436c541baaac7e371e68b8fb00e786e21"
               },
               "02": {
-                "sha256": "f354f7dd7194a51d7391bf6636b8bd7a5088a2a44b5eaa45ac8a50e40f64777a",
-                "bytes": 24584,
+                "sha256": "e0a73be03e0183f3280867a0929da366ec8c2a1aee26ab69f26b097413bf7b3d",
+                "bytes": 25237,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  93,
+                  12,
+                  92,
                   107,
-                  247
+                  248
                 ],
-                "pixelSha256": "7816af01ce6b10bc912e99e891103b61e63967161273184b7027e798d9ff24d1"
+                "pixelSha256": "cb51d4a6d1714a6c69407e6e22893ec99ca5867b7b597e84412e5489c6e2b655"
               },
               "03": {
-                "sha256": "71c98c96a96d6b1815c38c85bcfa27342fa7a93c8199ea29052003316ecbb235",
-                "bytes": 24196,
+                "sha256": "9c43d4f184d23306500c5b41d4d1c1d8c75823afc3325441b391ad96a5fdb06b",
+                "bytes": 24965,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  93,
-                  113,
-                  247
+                  11,
+                  92,
+                  112,
+                  248
                 ],
-                "pixelSha256": "e6d8c8d660cf8bfcf0fb249a8095afd2678c3c060e94b87f2bb60f2d440e079e"
+                "pixelSha256": "7131afd4b3a17efdb09eaf0b863313fb81923fb3798a7fdce4c83e1915538a19"
               },
               "04": {
-                "sha256": "ff19abc99853ffc1ae04ca314fb11d7e4d54fb4c0db7e02ebfa32e27f5d22486",
-                "bytes": 25014,
+                "sha256": "b6a554bc3f0dcd52c432880433160e0f97ab8742104460c34c306084b05b9d9a",
+                "bytes": 25760,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  93,
-                  110,
-                  247
+                  5,
+                  92,
+                  104,
+                  248
                 ],
-                "pixelSha256": "a501885a6e87ac05336a4e4870a9ddaedb3a3db5664d7a8ff1f3cced4355437a"
+                "pixelSha256": "d2f933d2ade7a40d43900d184119c56338ef48a0e8f01bc7df41ae6c8655e9c8"
               }
             },
             "distinctFrames": 4
@@ -146280,8 +146280,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "1d89aa1fadf830d349342d5a0a8acc14a6cffa702ea6d7c436271e4e30653e21",
-                "bytes": 24201,
+                "sha256": "7bb1b83fd1cad377add4f3aeb0c06301d7d88996e60d67fef1128e5f37804609",
+                "bytes": 24739,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  90,
+                  107,
+                  246
+                ],
+                "pixelSha256": "e16c0634f1886f4a104c7920245949719667886f3175eaa3cb60e4f096ca3957"
+              },
+              "02": {
+                "sha256": "6e2dcba8d95f39a24ca1651e155a1789af6502852981edeb579acdf8f12415e3",
+                "bytes": 24617,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -146290,58 +146306,42 @@
                 "bbox": [
                   17,
                   91,
-                  106,
-                  245
-                ],
-                "pixelSha256": "1956fd859a19f9d336bbe8144492986fd79d0019800c93a80744515b6803bba4"
-              },
-              "02": {
-                "sha256": "f322b89e5f5dd164c3041b61c7492a6a4afd36f2e078331ec2aa28a3687162c2",
-                "bytes": 24469,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  18,
-                  92,
                   112,
-                  245
+                  246
                 ],
-                "pixelSha256": "ad15ab0c50f9147412ba14126494f4edd772b8622e5ec7b49ac8fdbc2b7c3c0c"
+                "pixelSha256": "3bd067ac44e08c96f9919f3f92dd9e92209d44bcf5f6a28d776f6280323401b2"
               },
               "03": {
-                "sha256": "86c691f6af899fe2edff3c600c4651e5a1c8d26c388e8972b0800f9b48ea3686",
-                "bytes": 23793,
+                "sha256": "783a6d23ed5482079953148d2864a58871b70c84886d71f99fb1d8c81194b199",
+                "bytes": 24297,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
-                  92,
-                  111,
-                  245
+                  17,
+                  90,
+                  112,
+                  246
                 ],
-                "pixelSha256": "4d49b89bd8d5c01b767c90785f4ee2b35e58b811e21ea84caa4d2ec2989cae35"
+                "pixelSha256": "9c9509eac7d43232e48f6c06b5cbc52d9b3b5de9c6516e269cf00e21575de5f1"
               },
               "04": {
-                "sha256": "4989c9ea929444ffdc8dc3ed29891dc1b33807844f700d59a55545d87be25969",
-                "bytes": 24189,
+                "sha256": "a902f00fe2c9f4e9966f40c743d081581c2f0069b44cec332b24949cc8e058ba",
+                "bytes": 24650,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
+                  17,
                   91,
-                  110,
-                  245
+                  111,
+                  246
                 ],
-                "pixelSha256": "ca58c3f38ffa43d2f224bf63874da5c3fda0cb59829e3c75ee6b16ed01fe00d9"
+                "pixelSha256": "f686dd0bb16f1452a2add5ee39e8dec2570f547c0154234aa729bc42b77d5730"
               }
             },
             "distinctFrames": 4
@@ -146350,56 +146350,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "8eb1766da022e044b58889295bb19aa2b4390de87e0d10df264489af4d4ce844",
-                "bytes": 24448,
+                "sha256": "1474af2a65f17f329ad2264ebba7d623dfbafb1ca0d9a498e053fc62611cae20",
+                "bytes": 25146,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  91,
-                  111,
-                  248
+                  21,
+                  90,
+                  112,
+                  249
                 ],
-                "pixelSha256": "ca7b5aace937924ccc01d18a543dc1edc52909dd53d1940a1faa6b929e8b9aab"
+                "pixelSha256": "203327c5ddf203ddc063bf92ee9e6c8b24c36b394ca1c9852a818f4b44e46615"
               },
               "02": {
-                "sha256": "f81c79c365927a3152303686cd8a0c3bd3c6d9d222a7f99805db1450800d844c",
-                "bytes": 24314,
+                "sha256": "dd7718b03bd646803a25ff1c2ff6d6657fa2b8b0fde7c10add7dfba2c0db8f8e",
+                "bytes": 25156,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  91,
-                  115,
-                  248
+                  21,
+                  90,
+                  116,
+                  249
                 ],
-                "pixelSha256": "570fe66b9f24650b9cee42af923f2d9166024211c4fabaf308d6e55f6265e500"
+                "pixelSha256": "0f6670a4f7a3d9d99085c66faabb4612be8fc70936b5eb63ff3305b0fc843efd"
               },
               "03": {
-                "sha256": "30bb1242d0c81ddc3faa587e14dabf7ea06b902b2425d97f1b66382b8024c525",
-                "bytes": 24112,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  19,
-                  91,
-                  114,
-                  248
-                ],
-                "pixelSha256": "944475da55bde3b9f3b3aaa82acddda4dde1b6d60035c942943ba8259152ad25"
-              },
-              "04": {
-                "sha256": "f5603ad922240453d9ec03779be80918a7a61f2074348b362fddb50edac07972",
-                "bytes": 24719,
+                "sha256": "fc9c0dcb14a69b76de1202e010cab9137afa88463369ebb27ef0fd8a2eb362a6",
+                "bytes": 24798,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -146409,9 +146393,25 @@
                   19,
                   91,
                   115,
-                  248
+                  249
                 ],
-                "pixelSha256": "9b6b450d97e0014088a3b9e75935e7e3ff687eb47c8da742c3854c1078a7058e"
+                "pixelSha256": "4402564d50992350f86403f50d15c63b52f4975f74163973007af657daf77b58"
+              },
+              "04": {
+                "sha256": "c5d03c17d637c617389a6c37ba440ee2c7d3dc8ffc11b1d15411c4dbdf58c509",
+                "bytes": 25699,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  90,
+                  111,
+                  249
+                ],
+                "pixelSha256": "61f5480503351b0f4a6219e7cd911ddc8cf08c045b38e870023b51189c5582d0"
               }
             },
             "distinctFrames": 4
@@ -147196,10 +147196,10 @@
           ]
         },
         "attack_spear": {
-          "sourceSha256": "48de0c1fcf0c88df41c59513698e5c7c1e975008019ba3d76b5b3b96e63fedea",
+          "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
           "sourceDimensions": [
-            2172,
-            724
+            2170,
+            725
           ],
           "registeredSourceDimensions": [
             2172,
@@ -147221,9 +147221,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE attack_spear wrist-armor correction revision2. Image1 is EDIT TARGET and exact four canonical action poses. Image2 is ONLY approved class idle costume/material reference, never posture. ALL FOUR figures, both visible gripping wrists. ONLY replace thick stacked BROWN LEATHER BANDAGE WRAPS between silver forearm guards and dark gloves with fitted SILVER METAL VAMBRACES extending down to wrists. Preserve at most ONE very thin plain dark cuff/seam at glove edge; no broad brown section, no stacked wrap bands, no bare forearm. Keep full ROYAL BLUE sleeves and every fingertip, glove, hand outline, wrist angle, elbow and anatomical coordinate EXACTLY in place. Do NOT change grip, movement, torso, head, camera, scale, per-quarter centers or2172x724 canvas. ALL OTHER ART unchanged: approved face/hair/blue sapphire circlet, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbar/diamond fittings, angular silver diamondbeltclasp, THREE blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Existing correctly fitted armor and other figures unchanged. Same crisp painted anime pixel-inspired RPG rendering, complete four full bodies and true transparency. No gear, weapon, sheath, shield, bow, book, potion, text, grid, shadow or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -147231,10 +147231,50 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "48de0c1fcf0c88df41c59513698e5c7c1e975008019ba3d76b5b3b96e63fedea",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
-          "sourceSha256": "4db32e122862251ef4854b13ac4f3e571bf66f634112976b267aa93a8add9e1e",
+          "sourceSha256": "a28d30fecf197ed985642ad294fd3f75e536b07c5150f4a45eb8c1d7a214160d",
           "sourceDimensions": [
             2172,
             724
@@ -147259,9 +147299,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE attack_dagger wrist-armor correction revision2. Image1 is EDIT TARGET and exact four canonical action poses. Image2 is ONLY approved class idle costume/material reference, never posture. ALL FOUR figures, especially the raised guarding hand's wrist near chest; preserve the already silver attacking wrist except brown stacked bands if present. ONLY replace thick stacked BROWN LEATHER BANDAGE WRAPS between silver forearm guards and dark gloves with fitted SILVER METAL VAMBRACES extending down to wrists. Preserve at most ONE very thin plain dark cuff/seam at glove edge; no broad brown section, no stacked wrap bands, no bare forearm. Keep full ROYAL BLUE sleeves and every fingertip, glove, hand outline, wrist angle, elbow and anatomical coordinate EXACTLY in place. Do NOT change grip, movement, torso, head, camera, scale, per-quarter centers or2172x724 canvas. ALL OTHER ART unchanged: approved face/hair/blue sapphire circlet, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbar/diamond fittings, angular silver diamondbeltclasp, THREE blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Existing correctly fitted armor and other figures unchanged. Same crisp painted anime pixel-inspired RPG rendering, complete four full bodies and true transparency. No gear, weapon, sheath, shield, bow, book, potion, text, grid, shadow or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
@@ -147269,10 +147309,50 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "4db32e122862251ef4854b13ac4f3e571bf66f634112976b267aa93a8add9e1e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+                "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+                "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+                "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_bow": {
-          "sourceSha256": "85ab82c88812548b5d1599c402aa3266f5695379a945d338a22e816e1f49d1b5",
+          "sourceSha256": "5e16da604ede88660c2a821d9fe5e8505a58882b4863323d1605e29a3142340a",
           "sourceDimensions": [
             2172,
             724
@@ -147297,9 +147377,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_bow-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE attack_bow wrist-armor correction revision2. Image1 is EDIT TARGET and exact four canonical action poses. Image2 is ONLY approved class idle costume/material reference, never posture. ALL FOUR figures, both bow-grip and cheek/drawing wrists. ONLY replace thick stacked BROWN LEATHER BANDAGE WRAPS between silver forearm guards and dark gloves with fitted SILVER METAL VAMBRACES extending down to wrists. Preserve at most ONE very thin plain dark cuff/seam at glove edge; no broad brown section, no stacked wrap bands, no bare forearm. Keep full ROYAL BLUE sleeves and every fingertip, glove, hand outline, wrist angle, elbow and anatomical coordinate EXACTLY in place. Do NOT change grip, movement, torso, head, camera, scale, per-quarter centers or2172x724 canvas. ALL OTHER ART unchanged: approved face/hair/blue sapphire circlet, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbar/diamond fittings, angular silver diamondbeltclasp, THREE blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Existing correctly fitted armor and other figures unchanged. Same crisp painted anime pixel-inspired RPG rendering, complete four full bodies and true transparency. No gear, weapon, sheath, shield, bow, book, potion, text, grid, shadow or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
@@ -147307,7 +147387,47 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "85ab82c88812548b5d1599c402aa3266f5695379a945d338a22e816e1f49d1b5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real FEMALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+                "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+                "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+                "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_staff": {
           "sourceSha256": "4cd73cd21d74c078d34d8abb318d444f06418ab77d3c09d756529db6a9558ae4",
