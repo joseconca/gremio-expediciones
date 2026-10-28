@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "guardian_real-f",
+  "nextVariant": "asesino-m",
   "classes": [
     {
       "id": "novato",
@@ -282,7 +282,7 @@
       "name": "Guardián real",
       "tier": 3,
       "order": 32,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "asesino",
@@ -143524,7 +143524,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_real/m/guardian_real-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_real/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -144648,7 +144648,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "33e675dd381982d0e3b4589f47fa3480b4969d8e004ea59ecb7961f55ae74d6e",
@@ -144686,7 +144687,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "7b64888e3c6a3ef82676bdf337e3376a5a774ce572f2f2e887b6bfd15bcd1080",
@@ -144724,7 +144726,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "61454de9a3f919ee4f1bce3871902e5a5d1fc52153e08ac9a63feb028d788cd6",
@@ -144762,7 +144765,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "40b0f4a98cc3a9ccfb73ec69b1ce88511b475f9167d7fc702af0cc7c30dd0720",
@@ -144806,7 +144810,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "9266716f3729898e5db09ef631cb25987eee15a5e3d002e648d72ae2dfb7067c",
@@ -144850,7 +144855,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "2f29b02a0ee02ed8547a51bad7d61accd683f67bce5bffbdc39b49ee0d908ee3",
@@ -144888,7 +144894,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "0860bd7a0512a9ce8c9d420716cbed482774b5b4c0f2681eb06e4e2e29ec1b8e",
@@ -144926,7 +144933,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "7a99595e2e2f73e7e291436f105efea8e6096949a1ab94c43780b43de2cf03a2",
@@ -144964,7 +144972,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "b1264a2af946857d99e59615981aae804cfaf0618b9a5594d5889fba62312368",
@@ -145002,7 +145011,7 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
@@ -145134,7 +145143,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "35641fdc58a868bfc09cc08990f309b1837c86dd9a12f5234f13dce594c8a14b",
@@ -145172,7 +145182,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "c8cc3459f29b62055a75902793382c0c81fb0a0c120a5c236b54545c541a3ae2",
@@ -145210,7 +145221,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "35d9c6a122fac15aa5fda0f61a8c7b81c9d52ea3af652347f9b6dfe4487643d2",
@@ -145248,7 +145260,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "9bac30f60a414540605ab4a82050b50473eb6a1805a9eadcfaed55d94bced961",
@@ -145286,7 +145299,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "e60f04d7e4ec6c7785045b4e081564298e77e7f8af9095ca4f3d45a30b74c320",
@@ -145324,7 +145338,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -145599,6 +145614,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "guardian_real",
+        "name": "Guardián real",
+        "tier": 3,
+        "costume": "Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Guardián real with steel-gray layered swept short crop, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses.",
+        "unique": "Royal-blue tower tabard and squared silver guard plate",
+        "advancement": "Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/guardian_real/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "16569e6bf8f9359f140773bcef70e7575aa96d73feafed91a5aedfcc40115174",
+            "e4a7c6791793f3c331e7fd75eef2f95d970bae38513cd0308427a5c114adeb18",
+            "8662fff09d2c29ceec442a2dd5265de263eb38867c08dbf1594600aecbb7d96b",
+            "7d8b119cb197307dee45dbf2579050ce115c2075ac814122898a7308bda142f8"
+          ],
+          "walk": [
+            "5f39b7c2e38fcaf5f1ebd6f614a8412bdf780d8772fbacefcbc84be2197ecf36",
+            "87df115c5fedba6caa6b833996bfe2b0c5376899a88b2f08b3c2dbb651602486",
+            "b471787fd5578816d9b25f257806b6c320a5ea3eb9aac1f4c97f6b9ea2613e60",
+            "21c93a5f6dce08ff9d9b1b5b108db698c0adacb2efbfaad4812af4360967db9b"
+          ],
+          "hurt": [
+            "d9f97658686ddf181306a1d4d8568a7363d2e80f68355e3ce7b6a4097d48dbe1",
+            "37915e13590f72daa6f9b80ab601e3fd02f4e47adc5e95948fa6b54319ecdc57",
+            "59f660493c1b1c3135e74c7cd39cccbc16e25f58014ef9c0ca326d4d0510a89e",
+            "0a6e40eef91122b7ded9a8be2fbd78843e3579db4859dd05f8e64085d0bee7b4"
+          ],
+          "use_consumable": [
+            "adbe26aa738656afb6570c1b6397ff241ff8f298dce47e98ec6dea4db426264e",
+            "e124fb2424176ac2e2edf268120eb65d6b5a7ee765dd0eb53211610b1138eb1e",
+            "8770cb014cdaae4491142efbf4ba1ba7c1ecf4a0e8866fd64037dc091feeb8fe",
+            "418e9ac20050fec625a9398b42cf561d3002472520cd6cada7a6ae050931cf2b"
+          ],
+          "dodge": [
+            "2f9559ff9749a0bbb69ff8cf6b80eebd54857e4778a5b5f8e26030669c3a614a",
+            "88939a1533e4b61be0fa9598f1fa8cf864d362ddfc3ca3f9ffd435a7bc9ab9d1",
+            "ae47cc9c186c18fc43586d51b0914f7ecc8982fe464a6acea8584c8e92ea8320",
+            "a9126fb930e8b91de7f857a88f7f7ec00077d1a67de12259891dc34c51206cd6"
+          ],
+          "block_shield": [
+            "18f85443ca0af2c5602856fa5f0565817b239a8e47643930b5f050125860773e",
+            "96a71898a41a3f326e27f0526ab0347d453e43a3a7e0ba119a076fc939b94c71",
+            "29393f0cef012ab8f24ec37563c5e86a6bb4a526dace0f363eeb67b4ced21727",
+            "fb8983bf8a78ae143344685409b2aee5cf806ef606ccf458915d91cbe79a462b"
+          ],
+          "attack_sword": [
+            "2e60ef724c67dfa746e7fd225e72602380d72c7e6718b3edbb2d7d32e5453a28",
+            "5f7ef1281c9b97a2a496f314fe52ca52b17209a6edec0faff2456f4f86a4160a",
+            "e867147335977571e08ccbb79430d13056a872fec768d9db6a1ddf3c88064600",
+            "24411529c1bdd971a31aea7a227901a7d6395a220dbde9b937878cd2369cb4fc"
+          ],
+          "attack_axe": [
+            "63c7b6290ec6d7c00be47a8360734ffb0ecf7a89d5c88590b65e3c4be7892647",
+            "ac28770404ff2c788359e9490ab7547f26f2817e7bcbc8a3591b900df681e6bb",
+            "db4487928ae52b34a17de688362d45bb4cb8f81b3e599eac6e7c5f4403c3f406",
+            "c752431487192f1ff98c765f395f23fe30e1c0263c98f5a03b56b412b303b8fb"
+          ],
+          "attack_spear": [
+            "d569cf76dbbc8dc959ae304b380c8f8e9b7321a6d9067692926b3e6c319a2f48",
+            "955d5df8afd90f81870726ef1cf82cb5f1d51927a5e71ee9ea76246254cf9a85",
+            "4a71fb414e652155a381fe6e94d23872509191f2cfe83e4a764b5b5959f397e9",
+            "6094b6546f63f0ccca39c0ccbdd860c9832858b4e5cd84bfba10049a4bad2286"
+          ],
+          "attack_dagger": [
+            "ff3fdbfdb04f540b77fabc77daf053ab6f07251d28ebacec9727e21fbcff9eca",
+            "1d3fddbb208ae4942c6049198931dad86b52fdf34962258c3428e35707f639a1",
+            "93a94861af387ca37f2a2d260fcf3b6490606daa344949fa0eab4c3e032e86ab",
+            "e9cd3ccf90116b523b01f27097b4dc35a52fe0440cfcf86bc67ea4cb2f26ee05"
+          ],
+          "attack_bow": [
+            "aebebc781b3f857d6e2c18d6ae9167896bc8a0eb764c2b92bb6e4e1846f21826",
+            "993510bc83679bb0eed4c1a1022e1cde1cb7de8777193b353725da53489864db",
+            "e5b8d612f0dd1448b48e70568a098d7f830057d620f90498dc717658db93095f",
+            "593a6f35f5627db84016686ec54180a2bb900286b450411f16830746628dbabb"
+          ],
+          "attack_staff": [
+            "c3e9f1bb6200b23e27b6d595cdd07d20685d0670ab99c158bda084988e81476c",
+            "3024c909fd330b5898a328e51caec4d946a34fc5e07acfd54dd49d2aa2f6736f",
+            "036a227976e189b86d7874dfdfd8e2b4c36490ef2c8349a9d7167e12fb9eedd6",
+            "fd644d8e3a42d52607b054179b33469faf4c1677237c954853edc9049fa79c21"
+          ],
+          "attack_mace": [
+            "ba7aaacb66b039693b42f2080fcca73bf4418d6900ccd1a94c258d973de1ba1d",
+            "d3795a3214fabaed447929860a55ca1eccd8e7190e0875a1093bc4749f1db381",
+            "c3bd0f0095c7932e82e3ddfee835078c809667baef8861da57453abb3ad28cfc",
+            "720014968d29c259823c055ffd24e94f213f882c5664c33ad18547fcdf07c0e0"
+          ],
+          "attack_book": [
+            "d74b23a6b669e9c8aad8b84ef5759a0bbbbaa40cd7f2d45435ec14eb9f0c2807",
+            "566ab50c79cc6212ccb0b04fd2cdcbfaefea6b6b42d500ff92d8f4dc82223b9b",
+            "e4de685abe3ced8f6c26d1c55a829007381b741b4529b511e67e9aa1f538dfab",
+            "2f60532d8194aac097beacb1386163f9a801cfbb532ba2e6cfa753c69b72975a"
+          ],
+          "attack_gloves": [
+            "dcb3451e3e3ae03dee0d33befc00eef4ca2cf65895a50bbd1d478fe4e49cc2fa",
+            "1c9eac2de563eaf7d0a2f9e912471dcb6d0965437d0ad399c643e9019fd6c109",
+            "9343c71ac683794da79b5e79d9f3a56e3295d716726c143e589a115d6cb8d3ae",
+            "8d66e3efe98fa2060a2930b500145653615e99ec5e7a03671ee16388f379cccb"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 4
       }
     },
     {
@@ -145611,7 +145741,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_real/f/guardian_real-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_real/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -146258,20 +146388,20 @@
                 "pixelSha256": "c4ad0c87936f926cb80a0390f159faad28cde4375a9088e6e6fce5cd01fa0b35"
               },
               "04": {
-                "sha256": "fa0529107ecefb14ed8ee31101a30cd6eda004c0a24d7136a9b8c8a970f2b914",
-                "bytes": 26146,
+                "sha256": "d34dd52086e93c7df8272c840ab607ff00826aa301e52566a73279b38bd47bf3",
+                "bytes": 24614,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
-                  92,
-                  110,
+                  10,
+                  97,
+                  109,
                   249
                 ],
-                "pixelSha256": "9c41febc65197e4438d0f8dbc0b81fd9df9baefb9f75e77de520d0ac84e9a479"
+                "pixelSha256": "fcbd1725b14013588a687c700e7a27d8fc72c0f62c22a3aa35eadb17f86c82c1"
               }
             },
             "distinctFrames": 4
@@ -146735,7 +146865,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "e75bfa9a7d5e6829a067645211f2dfef4ada41372f509e19cbb46661f3e191d9",
@@ -146773,7 +146904,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "c2e5f1ffbd08ac522cfa1f01382f66c0ab1c0fdfc33661de8ed156f844b69b2a",
@@ -146811,7 +146943,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "04": {
               "sourceSha256": "b41d85d7a8773269f216999f1bbb8a550089b02f518573702f7c0920667eb499",
@@ -146883,7 +147015,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "16a34d2efb4609d53a175788bb84579ae4fecb203fc547891526f33abedf5591",
@@ -146921,7 +147054,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "76a80a81de6a08f8135694a821c7470b9b77bbb7d75ef4f4b9857d860a25346a",
@@ -146959,7 +147093,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "66966e6931b52db5c76fea42ba7cb79fd054551a7a97101c077d8797ef9d2a37",
@@ -146997,7 +147132,7 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "3ffaa9abb919aedded9e0d35eac13c7f32aa8b82f6d1221827c760a60140c21f",
@@ -147037,7 +147172,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "25f84ebfed8d8d41c38ab8121d010fa6f4ec3cc33cf93696e812bdac576fc22b",
@@ -147075,7 +147211,7 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "d0bf44c39b03e6b82bea10baaed7a14f603f5ce5a3fa56f5ba6e73ebf73ec4c8",
@@ -147115,7 +147251,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "3e091d5454f70a97d015f68278fb6c89eed9e8ce22263cc69e797884377f9133",
@@ -147153,7 +147290,7 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "0657e71d5363b168b095f13c379d8c0c749e96568c563f03453ca60357992f23",
@@ -147193,12 +147330,13 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
+          "sourceSha256": "8b6e6c5607378a8d22a8a60ed3c47162f855e97b7983777f82e5280f849d1571",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -147221,9 +147359,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v7.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v8.png",
           "generator": "built-in imagegen",
-          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE spear correction revision7. Image1 is the EDIT TARGET: approved character/costume/fullbody proportions with MAGENTA X ANNOTATIONS marking the exact required PALM/GRIP centers. Image2 ONLY shows original correct anatomical hand shapes and four pose gestures, NOT its novice clothes or identity. REDRAW/MOVE the eight small closed gloved hands so the dark leather PALM centers cover the magenta X anchors in Image1; adjust only adjoining wrists/forearms naturally to follow. Do not keep old misplaced fists and just erase marks! In FIGURE2, the raised guarding hand currently too near chest MUST move RIGHT and slightly DOWN along magenta arrow to the X currently on silver bracer; the X must end inside real leather glove palm, NEVER forearm armor. In FIGURE4, forward fist MUST move RIGHT and DOWN to the X beyond current hand outline; rearwaist hand moves to its own X. Figures1/3 need small palm corrections to their X marks as well. All hands stay SMALL, identical width/height/finger contours to Image2, no enlarged fists or bulky gauntlets. Both hands grip an IMAGINARY diagonal spear through the marked palm positions; draw no spear. Remove ALL magenta annotations/arrows in final. Keep allotherpixels/art stable: exact head/hair/face/body/feet scale and positions, steelgray braidedlowbun/sapphirejewel, segmented silvergunmetal plate, blue pauldrons with silververticalbars/diamondfittings, full royalblue sleeves, fitted silverforearmguards to ONE thin dark cuff, darkfingerless gloves with exposed fingertips, angular silverdiamondbelt, THREE blue shorttabardpanels with SILVER TOWER centerpanel, silvergreaves/sabatons. No novice scarf, pouches, cream clothes, bare forearms or stacked brown wristwraps. Exactly4 complete separate right-facing3/4 fullbodies on2172x724transparentrow, unchanged bodyheight/headsize/camera. Crisp paintedanimepixel-inspiredRPG render. No equipment, weapon, shield, book, potion, text, grid, effects or shadows.\n",
+          "prompt": "Use case: identity-preserve. Production RPG sprite strip, exactly FOUR fullbody poses in one 2172x724 transparent row. IMAGE1 is the edit target and ABSOLUTE anatomy/pose reference. Preserve its exact pixel positions and sizes of head, shoulders, hands, fingertips, boots in all four quarters. Image2 is a costume details board only: transform novice female into GUARDIAN REAL female, silvergray braided lowbun, sapphire silver browband, segmented silver/gunmetal plate, blue pauldrons with silver vertical bars, THREE royalblue short tabard panels SILVER TOWER central emblem, silver diamond belt clasp, silver greaves/sabatons. FULL royalblue sleeves with silver forearm guards reaching wrists and ONE thin dark leather cuff; dark brown fingerless leather gloves. CRITICAL hands retain EXACT Image1 silhouettes and finger contours, recolor the existing hands rather than moving/reposing them. Fourth figure must exactly retain Image1's lower and forward empty fists and both boot locations. No scale changes, no narrower body, no new gesture. All fingertips visible. All four bodies same approved Guardian costume, adult female face. No novice scarf, pouches, cream sleeves, wristwrap bands. No equipment, weapons, text, effects, shadows or annotations. Transparent background. Paint crisp detailed anime RPG style matching references.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -147231,10 +147369,10 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
-            "04": {
-              "sourceSha256": "0f073453d0b5f26c4b49d3b10b411eeb3e83f00760c52f0ccc7540d75adeb67e",
+            "01": {
+              "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
               "sourceDimensions": [
                 2172,
                 724
@@ -147259,8 +147397,68 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame04-reference-v7.png",
-              "selectedFrame": 4,
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v8.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v8.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v8.png",
+              "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -147768,8 +147966,79 @@
                 "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "23bd46b906c82846fd6f5fae6583759a805f41de0bc1962b6ccb0886fce0ac02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v7.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE spear correction revision7. Image1 is the EDIT TARGET: approved character/costume/fullbody proportions with MAGENTA X ANNOTATIONS marking the exact required PALM/GRIP centers. Image2 ONLY shows original correct anatomical hand shapes and four pose gestures, NOT its novice clothes or identity. REDRAW/MOVE the eight small closed gloved hands so the dark leather PALM centers cover the magenta X anchors in Image1; adjust only adjoining wrists/forearms naturally to follow. Do not keep old misplaced fists and just erase marks! In FIGURE2, the raised guarding hand currently too near chest MUST move RIGHT and slightly DOWN along magenta arrow to the X currently on silver bracer; the X must end inside real leather glove palm, NEVER forearm armor. In FIGURE4, forward fist MUST move RIGHT and DOWN to the X beyond current hand outline; rearwaist hand moves to its own X. Figures1/3 need small palm corrections to their X marks as well. All hands stay SMALL, identical width/height/finger contours to Image2, no enlarged fists or bulky gauntlets. Both hands grip an IMAGINARY diagonal spear through the marked palm positions; draw no spear. Remove ALL magenta annotations/arrows in final. Keep allotherpixels/art stable: exact head/hair/face/body/feet scale and positions, steelgray braidedlowbun/sapphirejewel, segmented silvergunmetal plate, blue pauldrons with silververticalbars/diamondfittings, full royalblue sleeves, fitted silverforearmguards to ONE thin dark cuff, darkfingerless gloves with exposed fingertips, angular silverdiamondbelt, THREE blue shorttabardpanels with SILVER TOWER centerpanel, silvergreaves/sabatons. No novice scarf, pouches, cream clothes, bare forearms or stacked brown wristwraps. Exactly4 complete separate right-facing3/4 fullbodies on2172x724transparentrow, unchanged bodyheight/headsize/camera. Crisp paintedanimepixel-inspiredRPG render. No equipment, weapon, shield, book, potion, text, grid, effects or shadows.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "04": {
+                  "sourceSha256": "0f073453d0b5f26c4b49d3b10b411eeb3e83f00760c52f0ccc7540d75adeb67e",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame04-reference-v7.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a28d30fecf197ed985642ad294fd3f75e536b07c5150f4a45eb8c1d7a214160d",
@@ -147807,7 +148076,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "4db32e122862251ef4854b13ac4f3e571bf66f634112976b267aa93a8add9e1e",
@@ -147847,7 +148116,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "5e16da604ede88660c2a821d9fe5e8505a58882b4863323d1605e29a3142340a",
@@ -147885,7 +148155,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "85ab82c88812548b5d1599c402aa3266f5695379a945d338a22e816e1f49d1b5",
@@ -147925,7 +148195,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "4cd73cd21d74c078d34d8abb318d444f06418ab77d3c09d756529db6a9558ae4",
@@ -147963,7 +148234,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "4663dbfed7eafb58a686b94f90e7a170a8736ddba081f05f89ba79c89e369570",
@@ -148001,7 +148273,7 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "17f6e31f935b73ae49b086dd443e964980a067b52f35a75f7b128f11447db327",
@@ -148041,7 +148313,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "f55b7616bd4ba6a86c56d949c2af3a9c0c678c6b61aee6001da709b4cfd32f24",
@@ -148079,7 +148352,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "04": {
               "sourceSha256": "a297a732d4b5b3a25cc77ce934fda6f334a9cc076a7a42ad19cea2d773bbb768",
@@ -148151,7 +148424,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "c847727ccbc4c240e0f07226a9b6db5227d590373879184fbe0a4238f032447e",
@@ -148189,7 +148463,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -148322,19 +148597,19 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear.frameSourceOverrides.04",
+          "source": "sources.attack_spear",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -148464,6 +148739,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "guardian_real",
+        "name": "Guardián real",
+        "tier": 3,
+        "costume": "Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Guardián real with steel-gray layered swept short crop, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses.",
+        "unique": "Royal-blue tower tabard and squared silver guard plate",
+        "advancement": "Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/guardian_real/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "0de2f2e352e7550402cdd4c2d135bc3030f9795c098a6db3a6fc3926445c97c6",
+            "15301319749a97d6d8122f9d5a4e02054d5d2c7fe6ed0384bc5471914846d3cd",
+            "e39b28673cd3924dc1a178742bc475614c50bbbe954238f3053ac091fdc101c1",
+            "d5f450ed5286e0343966538e9041f7d98db2a1b5a8c156caa52c2457e2642530"
+          ],
+          "walk": [
+            "bd17f09f3b8bedb70958f9a3207e55bbade9e1d628c4fc036b90a2227a0b2ad4",
+            "4967bd6bedddaf0c5fb9af7d5bc5a3203f6b3c343e32c8a9f49c9cf200ea624c",
+            "5cf429ab8c2e0c92ceba4639e790e6d0b862811ea5f82cd4ea1436f3b6320f2f",
+            "864cba7469cbce3ea201a4996b6b65b79b1f4ee3f35ba9c95b4600b5fa0643dd"
+          ],
+          "hurt": [
+            "569c4f49aeeb0c087ca4da4fc302ac77290245419d4723bcb7762fb00d7a5b40",
+            "9f5e0ea472b8190e3a554996b572e298782a52c8e47e8de299d0d5dac71394e9",
+            "85c5ebb87aa9a12e6e5e4f2147a8df8630f1e5996b8e0b3ce12425616d728559",
+            "52c7615f2ac1d9216d8917af2c012f3c0ee265f2404fc31caf6181df008767c2"
+          ],
+          "use_consumable": [
+            "bdbb139b7ca06224b5b1fbaea509d49120c7b63fc54b7aea1e02181518294c5e",
+            "f843ed787ae982f57ec2446976309aa2c7c68d1ee6d4e08026b5c1ae1ab85fad",
+            "a34121b1d769831cc9ffd55b8d8b2e8098cf82c2e1e3899f8fcbe4f2ab753a4d",
+            "d7b7234dbd29a3804fa9ea59f458825e811baa02b3206090e5abc305e34dfbb1"
+          ],
+          "dodge": [
+            "1a0bcd9b18e088dff5eaff29f41e93a9443ee526554aa8459b82d9a0962400f0",
+            "b167f2edd740373df531c2b30eeb0da6399ffefedfe4f56e50793e288a94ccf2",
+            "926612d75b23e4a01be8eddf09c20b2b5e24620576820fc376b8772842fc87c3",
+            "4a3b087c59c887bf333833f4fd9ab5d18ee06ae2239066dd042f37d36dbd18e7"
+          ],
+          "block_shield": [
+            "77847ca4aafea83365cfeff89bbbd55fdec0ebb1ae47c579f363cfc23294e627",
+            "97f69535ecd268fcb09f8d0aa9b0e54935af20e1371ac900bc3ea2646b928e09",
+            "781d89581f848838b874a585fe72ffe55004eb08bcefa69bb904eec9d481a630",
+            "bdaf05fccf510ac16096cf48a20daed624790e0a1f5e28b9c326f302204e8117"
+          ],
+          "attack_sword": [
+            "e4ebb22f70ce9132f9d4014e23a0baf82e3d4a794d53fb3e7a7b87c4a5d5165a",
+            "02d2dc1fb72fc6935c702900a7f888351bf3656978de581e52270e5128b9377e",
+            "c870406049286ad9a1695a78a1f74598c1810c9308b399a3e08c897eaa66e5dc",
+            "e2d6265bb32a34f31eac5b8ce0d38ef837036f26c8a2d0459b5f4d1bbee29979"
+          ],
+          "attack_axe": [
+            "55cccf31ca812f92d7e36a6c20fbf21c5e0aa24c1b0a77d4f57ff42873393d8b",
+            "ae74fa257fae31263a2bb3c86a17817000e57df18aee9d728b93d6051e5c5567",
+            "b8cac3686cb42b86a98e15dfbe97ddedee3e69b49295bf4a683299974574fa8d",
+            "9b9763af3317a75d5865bf082341b66ac6764960cec098f9e92ff55b44fefdc9"
+          ],
+          "attack_spear": [
+            "afe034f7182b0e2148b010cc943b1ab2c97bb61f35c086da59e5e011b08be186",
+            "520070c21fbc58b0bb566effb419d789a03c4fe6016e1b1bb64f13ecf4a72151",
+            "1d5a002b379eb89c4e61a33f70fba63fb971ec5f64ce1bc29d9d98ee77d90c0c",
+            "d34dd52086e93c7df8272c840ab607ff00826aa301e52566a73279b38bd47bf3"
+          ],
+          "attack_dagger": [
+            "7bb1b83fd1cad377add4f3aeb0c06301d7d88996e60d67fef1128e5f37804609",
+            "6e2dcba8d95f39a24ca1651e155a1789af6502852981edeb579acdf8f12415e3",
+            "783a6d23ed5482079953148d2864a58871b70c84886d71f99fb1d8c81194b199",
+            "a902f00fe2c9f4e9966f40c743d081581c2f0069b44cec332b24949cc8e058ba"
+          ],
+          "attack_bow": [
+            "1474af2a65f17f329ad2264ebba7d623dfbafb1ca0d9a498e053fc62611cae20",
+            "dd7718b03bd646803a25ff1c2ff6d6657fa2b8b0fde7c10add7dfba2c0db8f8e",
+            "fc9c0dcb14a69b76de1202e010cab9137afa88463369ebb27ef0fd8a2eb362a6",
+            "c5d03c17d637c617389a6c37ba440ee2c7d3dc8ffc11b1d15411c4dbdf58c509"
+          ],
+          "attack_staff": [
+            "0167ee2c04df56bf51deb46e74012633f7b8f79d33f4838d4c8a852a43859dba",
+            "3290f06fac0e1877715726919278af84d1799aca57b0e87dc5aa56a19b0ebedf",
+            "b4e472821795e27ea487e922d72184d0e44915c045a0b16913f17ce98a89224a",
+            "e87a91bb89e1efd1c00adc554f84141805d3565f6fd7e9ef77c23b997457540d"
+          ],
+          "attack_mace": [
+            "690de86c958067112809734432ecdc1adf97afb1c1dbbf1d395de4479daa560f",
+            "c1c36bc131d01f8a294776938e4c64b006232b2d6979c83812ce25a3693afdfc",
+            "79ffd554d0aa17b57a31b142908beb5d0a790c80d3ad09a9b43650224b3089ff",
+            "f724e01d7fa48e399dadfd78f3f201323e852ac4016d7cd667f32390ab56e4e1"
+          ],
+          "attack_book": [
+            "d948490b1b6169eb47cd2818de92c862d79c77abdc51975b988b97a5493d0854",
+            "f228ca4abe75b38a482f3b0a4322914e3a9542da4c1c4899c15622837d91282f",
+            "e58cee50235c21a04bdf28accf6a2e401e8a1d524444e83eb0a6d0fcb88e76d7",
+            "085effbce007d292a13a2fe4c75ad600128e299e47a52fef4aefcc0d6c49ccd8"
+          ],
+          "attack_gloves": [
+            "c79bfa0f49ab6bd339e05177bdd7c33bb11fa0f48f12a5080aaede2afd1017d0",
+            "70962a1544ed16cca3fec72c035f7628c366fa86dee07dd4d76804831e9bddba",
+            "e372d1e88c5d51c4688cdebe0ce39461f0a0c22626e9b016916beb1869ff3e51",
+            "82df4a335a81039d6aeee9ea543093df6217eb58a61caf91b9d03cb30fecd36e"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 4
       }
     },
     {
@@ -153094,7 +153484,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T09:31:23.850719+00:00",
+  "classId": "guardian_real",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\guardian_real-f-sheet.png",
+  "sheetSha256": "55273cb42f01759e51ef71aa909f2de4395192dfd8a7cc497ff9d2671f9eacd1",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\idle\\guardian_real-f-idle-01.png",
+          "sha256": "0de2f2e352e7550402cdd4c2d135bc3030f9795c098a6db3a6fc3926445c97c6",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\idle\\guardian_real-f-idle-02.png",
+          "sha256": "15301319749a97d6d8122f9d5a4e02054d5d2c7fe6ed0384bc5471914846d3cd",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\idle\\guardian_real-f-idle-03.png",
+          "sha256": "e39b28673cd3924dc1a178742bc475614c50bbbe954238f3053ac091fdc101c1",
+          "alpha_bbox": [
+            24,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\idle\\guardian_real-f-idle-04.png",
+          "sha256": "d5f450ed5286e0343966538e9041f7d98db2a1b5a8c156caa52c2457e2642530",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\walk\\guardian_real-f-walk-01.png",
+          "sha256": "bd17f09f3b8bedb70958f9a3207e55bbade9e1d628c4fc036b90a2227a0b2ad4",
+          "alpha_bbox": [
+            13,
+            95,
+            110,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\walk\\guardian_real-f-walk-02.png",
+          "sha256": "4967bd6bedddaf0c5fb9af7d5bc5a3203f6b3c343e32c8a9f49c9cf200ea624c",
+          "alpha_bbox": [
+            25,
+            95,
+            90,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\walk\\guardian_real-f-walk-03.png",
+          "sha256": "5cf429ab8c2e0c92ceba4639e790e6d0b862811ea5f82cd4ea1436f3b6320f2f",
+          "alpha_bbox": [
+            10,
+            95,
+            118,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\walk\\guardian_real-f-walk-04.png",
+          "sha256": "864cba7469cbce3ea201a4996b6b65b79b1f4ee3f35ba9c95b4600b5fa0643dd",
+          "alpha_bbox": [
+            22,
+            95,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\hurt\\guardian_real-f-hurt-01.png",
+          "sha256": "569c4f49aeeb0c087ca4da4fc302ac77290245419d4723bcb7762fb00d7a5b40",
+          "alpha_bbox": [
+            27,
+            93,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\hurt\\guardian_real-f-hurt-02.png",
+          "sha256": "9f5e0ea472b8190e3a554996b572e298782a52c8e47e8de299d0d5dac71394e9",
+          "alpha_bbox": [
+            24,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\hurt\\guardian_real-f-hurt-03.png",
+          "sha256": "85c5ebb87aa9a12e6e5e4f2147a8df8630f1e5996b8e0b3ce12425616d728559",
+          "alpha_bbox": [
+            18,
+            114,
+            98,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\hurt\\guardian_real-f-hurt-04.png",
+          "sha256": "52c7615f2ac1d9216d8917af2c012f3c0ee265f2404fc31caf6181df008767c2",
+          "alpha_bbox": [
+            16,
+            92,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\use_consumable\\guardian_real-f-use_consumable-01.png",
+          "sha256": "bdbb139b7ca06224b5b1fbaea509d49120c7b63fc54b7aea1e02181518294c5e",
+          "alpha_bbox": [
+            22,
+            90,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\use_consumable\\guardian_real-f-use_consumable-02.png",
+          "sha256": "f843ed787ae982f57ec2446976309aa2c7c68d1ee6d4e08026b5c1ae1ab85fad",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\use_consumable\\guardian_real-f-use_consumable-03.png",
+          "sha256": "a34121b1d769831cc9ffd55b8d8b2e8098cf82c2e1e3899f8fcbe4f2ab753a4d",
+          "alpha_bbox": [
+            21,
+            90,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\use_consumable\\guardian_real-f-use_consumable-04.png",
+          "sha256": "d7b7234dbd29a3804fa9ea59f458825e811baa02b3206090e5abc305e34dfbb1",
+          "alpha_bbox": [
+            24,
+            90,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\dodge\\guardian_real-f-dodge-01.png",
+          "sha256": "1a0bcd9b18e088dff5eaff29f41e93a9443ee526554aa8459b82d9a0962400f0",
+          "alpha_bbox": [
+            26,
+            94,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\dodge\\guardian_real-f-dodge-02.png",
+          "sha256": "b167f2edd740373df531c2b30eeb0da6399ffefedfe4f56e50793e288a94ccf2",
+          "alpha_bbox": [
+            29,
+            94,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\dodge\\guardian_real-f-dodge-03.png",
+          "sha256": "926612d75b23e4a01be8eddf09c20b2b5e24620576820fc376b8772842fc87c3",
+          "alpha_bbox": [
+            25,
+            124,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\dodge\\guardian_real-f-dodge-04.png",
+          "sha256": "4a3b087c59c887bf333833f4fd9ab5d18ee06ae2239066dd042f37d36dbd18e7",
+          "alpha_bbox": [
+            16,
+            94,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\block_shield\\guardian_real-f-block_shield-01.png",
+          "sha256": "77847ca4aafea83365cfeff89bbbd55fdec0ebb1ae47c579f363cfc23294e627",
+          "alpha_bbox": [
+            24,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\block_shield\\guardian_real-f-block_shield-02.png",
+          "sha256": "97f69535ecd268fcb09f8d0aa9b0e54935af20e1371ac900bc3ea2646b928e09",
+          "alpha_bbox": [
+            23,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\block_shield\\guardian_real-f-block_shield-03.png",
+          "sha256": "781d89581f848838b874a585fe72ffe55004eb08bcefa69bb904eec9d481a630",
+          "alpha_bbox": [
+            21,
+            99,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\block_shield\\guardian_real-f-block_shield-04.png",
+          "sha256": "bdaf05fccf510ac16096cf48a20daed624790e0a1f5e28b9c326f302204e8117",
+          "alpha_bbox": [
+            23,
+            91,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_sword\\guardian_real-f-attack_sword-01.png",
+          "sha256": "e4ebb22f70ce9132f9d4014e23a0baf82e3d4a794d53fb3e7a7b87c4a5d5165a",
+          "alpha_bbox": [
+            24,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_sword\\guardian_real-f-attack_sword-02.png",
+          "sha256": "02d2dc1fb72fc6935c702900a7f888351bf3656978de581e52270e5128b9377e",
+          "alpha_bbox": [
+            23,
+            90,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_sword\\guardian_real-f-attack_sword-03.png",
+          "sha256": "c870406049286ad9a1695a78a1f74598c1810c9308b399a3e08c897eaa66e5dc",
+          "alpha_bbox": [
+            19,
+            95,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_sword\\guardian_real-f-attack_sword-04.png",
+          "sha256": "e2d6265bb32a34f31eac5b8ce0d38ef837036f26c8a2d0459b5f4d1bbee29979",
+          "alpha_bbox": [
+            20,
+            90,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_axe\\guardian_real-f-attack_axe-01.png",
+          "sha256": "55cccf31ca812f92d7e36a6c20fbf21c5e0aa24c1b0a77d4f57ff42873393d8b",
+          "alpha_bbox": [
+            21,
+            93,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_axe\\guardian_real-f-attack_axe-02.png",
+          "sha256": "ae74fa257fae31263a2bb3c86a17817000e57df18aee9d728b93d6051e5c5567",
+          "alpha_bbox": [
+            18,
+            89,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_axe\\guardian_real-f-attack_axe-03.png",
+          "sha256": "b8cac3686cb42b86a98e15dfbe97ddedee3e69b49295bf4a683299974574fa8d",
+          "alpha_bbox": [
+            10,
+            103,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_axe\\guardian_real-f-attack_axe-04.png",
+          "sha256": "9b9763af3317a75d5865bf082341b66ac6764960cec098f9e92ff55b44fefdc9",
+          "alpha_bbox": [
+            7,
+            93,
+            99,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_spear\\guardian_real-f-attack_spear-01.png",
+          "sha256": "afe034f7182b0e2148b010cc943b1ab2c97bb61f35c086da59e5e011b08be186",
+          "alpha_bbox": [
+            11,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_spear\\guardian_real-f-attack_spear-02.png",
+          "sha256": "520070c21fbc58b0bb566effb419d789a03c4fe6016e1b1bb64f13ecf4a72151",
+          "alpha_bbox": [
+            11,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_spear\\guardian_real-f-attack_spear-03.png",
+          "sha256": "1d5a002b379eb89c4e61a33f70fba63fb971ec5f64ce1bc29d9d98ee77d90c0c",
+          "alpha_bbox": [
+            7,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_spear\\guardian_real-f-attack_spear-04.png",
+          "sha256": "d34dd52086e93c7df8272c840ab607ff00826aa301e52566a73279b38bd47bf3",
+          "alpha_bbox": [
+            10,
+            97,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_dagger\\guardian_real-f-attack_dagger-01.png",
+          "sha256": "7bb1b83fd1cad377add4f3aeb0c06301d7d88996e60d67fef1128e5f37804609",
+          "alpha_bbox": [
+            17,
+            90,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_dagger\\guardian_real-f-attack_dagger-02.png",
+          "sha256": "6e2dcba8d95f39a24ca1651e155a1789af6502852981edeb579acdf8f12415e3",
+          "alpha_bbox": [
+            17,
+            91,
+            112,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_dagger\\guardian_real-f-attack_dagger-03.png",
+          "sha256": "783a6d23ed5482079953148d2864a58871b70c84886d71f99fb1d8c81194b199",
+          "alpha_bbox": [
+            17,
+            90,
+            112,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_dagger\\guardian_real-f-attack_dagger-04.png",
+          "sha256": "a902f00fe2c9f4e9966f40c743d081581c2f0069b44cec332b24949cc8e058ba",
+          "alpha_bbox": [
+            17,
+            91,
+            111,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_bow\\guardian_real-f-attack_bow-01.png",
+          "sha256": "1474af2a65f17f329ad2264ebba7d623dfbafb1ca0d9a498e053fc62611cae20",
+          "alpha_bbox": [
+            21,
+            90,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_bow\\guardian_real-f-attack_bow-02.png",
+          "sha256": "dd7718b03bd646803a25ff1c2ff6d6657fa2b8b0fde7c10add7dfba2c0db8f8e",
+          "alpha_bbox": [
+            21,
+            90,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_bow\\guardian_real-f-attack_bow-03.png",
+          "sha256": "fc9c0dcb14a69b76de1202e010cab9137afa88463369ebb27ef0fd8a2eb362a6",
+          "alpha_bbox": [
+            19,
+            91,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_bow\\guardian_real-f-attack_bow-04.png",
+          "sha256": "c5d03c17d637c617389a6c37ba440ee2c7d3dc8ffc11b1d15411c4dbdf58c509",
+          "alpha_bbox": [
+            13,
+            90,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_staff\\guardian_real-f-attack_staff-01.png",
+          "sha256": "0167ee2c04df56bf51deb46e74012633f7b8f79d33f4838d4c8a852a43859dba",
+          "alpha_bbox": [
+            23,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_staff\\guardian_real-f-attack_staff-02.png",
+          "sha256": "3290f06fac0e1877715726919278af84d1799aca57b0e87dc5aa56a19b0ebedf",
+          "alpha_bbox": [
+            22,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_staff\\guardian_real-f-attack_staff-03.png",
+          "sha256": "b4e472821795e27ea487e922d72184d0e44915c045a0b16913f17ce98a89224a",
+          "alpha_bbox": [
+            22,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_staff\\guardian_real-f-attack_staff-04.png",
+          "sha256": "e87a91bb89e1efd1c00adc554f84141805d3565f6fd7e9ef77c23b997457540d",
+          "alpha_bbox": [
+            22,
+            90,
+            107,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_mace\\guardian_real-f-attack_mace-01.png",
+          "sha256": "690de86c958067112809734432ecdc1adf97afb1c1dbbf1d395de4479daa560f",
+          "alpha_bbox": [
+            24,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_mace\\guardian_real-f-attack_mace-02.png",
+          "sha256": "c1c36bc131d01f8a294776938e4c64b006232b2d6979c83812ce25a3693afdfc",
+          "alpha_bbox": [
+            25,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_mace\\guardian_real-f-attack_mace-03.png",
+          "sha256": "79ffd554d0aa17b57a31b142908beb5d0a790c80d3ad09a9b43650224b3089ff",
+          "alpha_bbox": [
+            20,
+            95,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_mace\\guardian_real-f-attack_mace-04.png",
+          "sha256": "f724e01d7fa48e399dadfd78f3f201323e852ac4016d7cd667f32390ab56e4e1",
+          "alpha_bbox": [
+            16,
+            90,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_book\\guardian_real-f-attack_book-01.png",
+          "sha256": "d948490b1b6169eb47cd2818de92c862d79c77abdc51975b988b97a5493d0854",
+          "alpha_bbox": [
+            24,
+            91,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_book\\guardian_real-f-attack_book-02.png",
+          "sha256": "f228ca4abe75b38a482f3b0a4322914e3a9542da4c1c4899c15622837d91282f",
+          "alpha_bbox": [
+            24,
+            91,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_book\\guardian_real-f-attack_book-03.png",
+          "sha256": "e58cee50235c21a04bdf28accf6a2e401e8a1d524444e83eb0a6d0fcb88e76d7",
+          "alpha_bbox": [
+            24,
+            91,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_book\\guardian_real-f-attack_book-04.png",
+          "sha256": "085effbce007d292a13a2fe4c75ad600128e299e47a52fef4aefcc0d6c49ccd8",
+          "alpha_bbox": [
+            24,
+            91,
+            106,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_gloves\\guardian_real-f-attack_gloves-01.png",
+          "sha256": "c79bfa0f49ab6bd339e05177bdd7c33bb11fa0f48f12a5080aaede2afd1017d0",
+          "alpha_bbox": [
+            16,
+            93,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_gloves\\guardian_real-f-attack_gloves-02.png",
+          "sha256": "70962a1544ed16cca3fec72c035f7628c366fa86dee07dd4d76804831e9bddba",
+          "alpha_bbox": [
+            16,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_gloves\\guardian_real-f-attack_gloves-03.png",
+          "sha256": "e372d1e88c5d51c4688cdebe0ce39461f0a0c22626e9b016916beb1869ff3e51",
+          "alpha_bbox": [
+            10,
+            93,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\guardian_real\\f\\frames\\attack_gloves\\guardian_real-f-attack_gloves-04.png",
+          "sha256": "82df4a335a81039d6aeee9ea543093df6217eb58a61caf91b9d03cb30fecd36e",
+          "alpha_bbox": [
+            15,
+            93,
+            103,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
