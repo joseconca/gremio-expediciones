@@ -158204,12 +158204,12 @@
       "tier": 3,
       "sex": "m",
       "order": 69,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/oraculo/m/oraculo-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/oraculo/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -158223,12 +158223,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b6d0e6c852ebacea924cb966b9192ed1d0101bf57739d8b530ea2b9038175219",
+                "bytes": 24575,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "b28ab0640345cb0793826271d4eae6334da93cfd1ae0e81e27a913557eaa235e"
+              },
+              "02": {
+                "sha256": "aacad330abc8787a67f39dc2ac3849c99ecba9bc1fba095d492d69b8d2c35309",
+                "bytes": 24566,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "5f9a4b29182af85381811c4e221c59913ead0558243279a4d1872dc143114535"
+              },
+              "03": {
+                "sha256": "58718c941a3a5d53f2094fc59a367c999d8681ee8df3f5cf197b1e8816e0624b",
+                "bytes": 24485,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "93d8e9aa47d3dd0eebf97098b10823928b715581f358e69f29855cdf6f5f2d24"
+              },
+              "04": {
+                "sha256": "2be06e3c3371e3e7ea60425c467c6a43efb666597f6e2924f19f1b19f0c8039c",
+                "bytes": 24537,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "b4b12d42f0800a2e5f71143be1c90eade07c9ccb37b83539ac0f16acceeda487"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -158272,6 +158341,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "77dd28de0eaad11f11d7a9cdeae163d7b284e1778627328d58a346e8fd4d5cdc",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: identity-preserve. Asset: Oráculo Tier3 MALE idle sprite reference. Image1 is ONLY canonical BODY GEOMETRY, four exact idle/breathing poses, third eyesclosed, SAME anatomical hand/finger/feet/head positions, head/body proportions and perquarter placement. Create new identity and replace every novice garment. Adult experienced masculine OrÃ¡culo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale. Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Precious quiet mystical ritual tailoring distinct from steel warriors. Small silver crescent circlet, no headgear enlargement. Exactly FOUR complete fullbody figures onehorizontal2172x724 transparentrow, right-facingthreequarter. Crisp same painted anime pixel-inspired RPG game finish and lighting. All4 costume details identical, generous transparent margins, no classscalechanges. No held/sheathed weapons, book, potion, equipment, scarf, bags, shadows, effects, text, grid, logos. Clean alpha without colored fringes.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -162518,7 +162645,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
