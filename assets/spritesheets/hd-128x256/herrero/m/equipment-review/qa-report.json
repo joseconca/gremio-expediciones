@@ -3,7 +3,8 @@
   "classId": "herrero",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "26a4efa3ab650b6891781e05a8540526fe44a314b794eb401a144f021cab554c",
       "b00397d92ec332ec1415213bff1e4852683f025560e87653fb23185653dfa9d8",
       "0948c3edcd7ccedf16b2e6806ee51661ca7a51e36c9af3eaf4d25a036d4c14c7"
+    ],
+    "walk": [
+      "31450f96d0994e5423fc72fca2f6ca03ab4222a7d96ab63d2630600c85f0e91c",
+      "9aeb2cf3b9ae303cd0283837a81ced43de400294d5571c53c8258a66df11ad22",
+      "276954176f2f0ccf8d92bf28ddb4289756be91633e40da99ac3c013e80f21ea8",
+      "1f4d07a6e843af4509a4e396974f28b25f7f7d9a7d98e70c01c19a9801ca5234"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
