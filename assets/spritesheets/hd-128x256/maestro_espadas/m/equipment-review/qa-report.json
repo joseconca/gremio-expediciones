@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "classId": "maestro_espadas",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "eec1e586dfc290d091bf0c240d8f218fc67a185725484eae452dea0cc21bb074",
+      "57bae33c0961225933fcd519b62498e6f274edc176bf6c08b03536515d47af93",
+      "bf6f29dd5d64459964de8ed117eae87b08e94c79d53200c3f4a8923ee2b48250",
+      "99f3c124831796ba7f826ee7001e971d1b80959e49081beae74789804b05f62e"
+    ],
+    "walk": [
+      "ae55ac1e5ad02ed80e2f176627c477536f78b2f3ecdb8a414183f815928a208e",
+      "e844adfa58e36a8bb7d2a712f0aa9c3781d57a8f4ebf87c0c222c24d237b73b5",
+      "cc73a99311a953ea8850ba8d96676f4c5e2c8df14273619b97442eec893b2096",
+      "0ac96566299b220bd11fcd593d88afbb3a1a59bde6b0634fca23e377478bc341"
+    ]
+  },
+  "contactChecks": 256,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 4,
+  "artisticApproval": "not-automatic"
+}
