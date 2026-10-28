@@ -155422,12 +155422,13 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -155641,7 +155642,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "83cdec175e2a4b9e8e3e62fbe4e96293358ce5f3086c3ed8d891f6d5abc04050",
+                "bytes": 23384,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  89,
+                  104,
+                  249
+                ],
+                "pixelSha256": "201e4342252b493d171182d88a9a99b5abd5a6c29dcb12aeb750e8f8eefcf453"
+              },
+              "02": {
+                "sha256": "bea8ff413afc397d9804e612e1dccb5f01e78bf8f4cc0f606a42f4dc43c1bcfc",
+                "bytes": 23299,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  108,
+                  249
+                ],
+                "pixelSha256": "6f5ebb528dd2335d21a3cd55bc4dfc4ae28dfbc7586af4023d6cd6fa7e5a54b9"
+              },
+              "03": {
+                "sha256": "784bad92b02dbd007ceb7c097e2288b750cff26af15df84ff7690176300f2239",
+                "bytes": 22552,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  109,
+                  249
+                ],
+                "pixelSha256": "ab3c8345dee9f3494648f7f4f828dedb670bb028c24dd19fed09b0a594d28783"
+              },
+              "04": {
+                "sha256": "db4573030d44c333a87ce228ceab0b98aeb29457b4111eb9b26062e18befb07e",
+                "bytes": 23363,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  31,
+                  90,
+                  112,
+                  249
+                ],
+                "pixelSha256": "8e41855cc54ba0321170b1a7b5ed3b5adbf6ccbdca92c17e7d5bfcb64927a9bc"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -155792,6 +155860,44 @@
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "20fd917533997e025e268c551089bd8dc0e9b4fb68e266892ea20448f4483e20",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Maestro de espadas FEMALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -155841,6 +155947,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
