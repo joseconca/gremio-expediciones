@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "asceta-m",
+  "nextVariant": "asceta-f",
   "classes": [
     {
       "id": "novato",
@@ -169211,10 +169211,20 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 44,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -169288,13 +169298,214 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ab852af6a1ecf7fa567e0fa3e7032c0d0f1a7b4529d2db14dff3d513b5d4802d",
+                "bytes": 22376,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  5,
+                  93,
+                  104,
+                  248
+                ],
+                "pixelSha256": "a8b873d10877ec734a2753420b079bfa53d6dc1555cd91741fbc7a03c03d2183"
+              },
+              "02": {
+                "sha256": "561c9fb46473ffc3a42a46c743fd556d4de7b30ecfd71866edc28576304346cd",
+                "bytes": 19945,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  93,
+                  103,
+                  247
+                ],
+                "pixelSha256": "52a25c310733e51281b4e410d62182d09b31a12c93531aa0cac77a2d2d66b849"
+              },
+              "03": {
+                "sha256": "42f07d00899334070f04d25f4f65f773e21465e7edb8fc5f097a9e507c83d71f",
+                "bytes": 20660,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  4,
+                  93,
+                  109,
+                  248
+                ],
+                "pixelSha256": "2d78f2186996a97011530e3e07ea76e69408a9fc158b413c0355ff35dc45aec0"
+              },
+              "04": {
+                "sha256": "b962fd88b8df58f1eba551d61f83f0e0f6747ed4ff2a1c2fa4473e603744bf7a",
+                "bytes": 21840,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  4,
+                  94,
+                  102,
+                  248
+                ],
+                "pixelSha256": "0ad012ec86a4af72ed4caf61dcf16a04da801a9fb1c7fd0e90710df98697093a"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e59c5ebf8ded0f8ac836931c09a74d4a883529f9aadbdb25a9a6d2c37b7eeacf",
+                "bytes": 22456,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  105,
+                  248
+                ],
+                "pixelSha256": "66d126c48deba65b14c52536d7b15d8844c2eaa1037642f7b802b8cc400eabd4"
+              },
+              "02": {
+                "sha256": "1f027415bfca2ff51385c2b17d074c61a339e8d29fa871ff15b38342cbf6b8a6",
+                "bytes": 20894,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  101,
+                  111,
+                  248
+                ],
+                "pixelSha256": "75a886c9d632bf3079509fb11891f6210bd09b705ac47f4142e3d24c906555bb"
+              },
+              "03": {
+                "sha256": "888f724f1f04d5094dc1d70de7914e0efa7fd5665a4dcd4dbbec4226a258f87f",
+                "bytes": 19025,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  120,
+                  102,
+                  248
+                ],
+                "pixelSha256": "ff5dc0eaf7c71d6cca404b94ead3f6e7d71a06a87122b7cf01ec2c68b0299e2b"
+              },
+              "04": {
+                "sha256": "75e12dd3c5333af3b7d564ea4e195799cee8a7c38068ebe65a532846cc43f0c9",
+                "bytes": 22158,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  93,
+                  101,
+                  248
+                ],
+                "pixelSha256": "85d045cd2ce6e6449fbbb2b2ea928b60579e209a11115bcaf9cb89d7e3ca10cc"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "7704e6e59787716f0c3ad515098e47be3c1f9b7113a24172473ab38b7a4f1cb1",
+                "bytes": 22129,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  110,
+                  249
+                ],
+                "pixelSha256": "301656a9cba0acd99eb5d6558403f128ebbaed5c3c3e311991b322b8d6ba8a15"
+              },
+              "02": {
+                "sha256": "e4cc99aef8b2af5db89aa8b02553d346692b7d9b63eac629ebc90cb0a905ed0f",
+                "bytes": 21609,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  94,
+                  112,
+                  249
+                ],
+                "pixelSha256": "30fcd2008df39f07aa370e15d7b0d57a8a6dca1eb962813945d315f65368981f"
+              },
+              "03": {
+                "sha256": "993f27c2be55e452ed0c50b13044a32ca8bfcec17c61c154085d68d21444bba3",
+                "bytes": 22773,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  94,
+                  110,
+                  249
+                ],
+                "pixelSha256": "554ca787e86c7e1c8abcb2d066f6f65f5b0e9d2cbb75281cbcd55868586ef6f3"
+              },
+              "04": {
+                "sha256": "5105e3f5eeeb99bb241763807c4d80d330b579ae796779ec87de9b287c27cbb3",
+                "bytes": 22538,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  110,
+                  249
+                ],
+                "pixelSha256": "3f211ac89089698e98690b7d40697f6cd53380566dac5ad95904837ce1766660"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -169303,25 +169514,494 @@
             "status": "missing"
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e5c45ceba8c147072d2ca3649c72de58bd26de6c10e39fc75073709afc05c54e",
+                "bytes": 22581,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  98,
+                  108,
+                  248
+                ],
+                "pixelSha256": "e08aa1610a697e392d1b8831af9d1053da2a9171a47661ac06e48ece18c49280"
+              },
+              "02": {
+                "sha256": "2e7f83ba406ce61ac4a6fd9e15818f40dcca0853278b4a0505d80d696ce820fb",
+                "bytes": 21098,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  99,
+                  114,
+                  248
+                ],
+                "pixelSha256": "7169c4e826849c2c9679b2b6f514cda7de97734660f53d7a1ea97cb403658b34"
+              },
+              "03": {
+                "sha256": "981c1fab92886d9c504dcf06825fac98c36a4ee834a39ab1802bdf984f8c43bb",
+                "bytes": 21746,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  101,
+                  120,
+                  249
+                ],
+                "pixelSha256": "07e4e4894c6c78ca4d3938e72d36e7f5da7f4d395e2ecf65e1de85b5b8ce3149"
+              },
+              "04": {
+                "sha256": "b758b6e64fbaa8be71962e76ba39601856afa313d4c083ae64c1cf07872b94a2",
+                "bytes": 21806,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  98,
+                  115,
+                  249
+                ],
+                "pixelSha256": "47151c4c128eda4633da607e38fd0d9be030796617417a4c074a4ab58645543b"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "95a181d4061c91f43fc5d7252e4cf922c772adbc99f03718d69755b0d5332624",
+                "bytes": 22219,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  100,
+                  111,
+                  250
+                ],
+                "pixelSha256": "26db24f79e1ee28fa62476fb9f595a488fd1d4c47a6eab74010f7b3abc2d8536"
+              },
+              "02": {
+                "sha256": "026b629a7814949bb75a6c9ed67c4fff850893ae17f42ed170a8baeb01422630",
+                "bytes": 19413,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  113,
+                  115,
+                  248
+                ],
+                "pixelSha256": "0043679d071cee6c904b0f3d90f957cc0f000b80b433085829113e9b4c7ce0d5"
+              },
+              "03": {
+                "sha256": "d33281985d25c9bc2cd1b744546acd51528a878f4d7818cfdc8618b24cc43ce0",
+                "bytes": 19180,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  120,
+                  116,
+                  248
+                ],
+                "pixelSha256": "f807b892740672aeaf8f653a5d0319f144bf64978ca6e8d84d884cf2e58c1cd8"
+              },
+              "04": {
+                "sha256": "91c5733139de12272adfab57c19c5616f4b5505c436483e2586d4e76fc7dbbee",
+                "bytes": 20691,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  105,
+                  120,
+                  249
+                ],
+                "pixelSha256": "531e7763255402719bcc5f4c6d0872dcb20f2738d499ba7f448a7edd6e5cf92a"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "201ba1f34c474654a1d3d1897bccf6c2bdc0c08b6674d19c8dcf208e8dcd55ac",
+                "bytes": 22211,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  93,
+                  109,
+                  248
+                ],
+                "pixelSha256": "0dde38b89aedc031daf38ede3a2b9d1e0df0663aaa358451da54a30ecc8b2c39"
+              },
+              "02": {
+                "sha256": "5673ab47b6c74d22fd4196dd753d92615c9b55763d903f40a0988cf84b45ff52",
+                "bytes": 21725,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  93,
+                  104,
+                  248
+                ],
+                "pixelSha256": "bbcdfa661875ee2a836c636e2857b58e3cb1880c78ced11adfc273844d2492ec"
+              },
+              "03": {
+                "sha256": "295dde9cb8a654b82a190711e853846626d3beaedd7d0f6c25070bfefb65dcc7",
+                "bytes": 22497,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  93,
+                  119,
+                  248
+                ],
+                "pixelSha256": "9699a20653443643b8580dd755e6f10006f60dd71b2228f32b9c4bbd718da2a2"
+              },
+              "04": {
+                "sha256": "baa2b4ad67824e3903a90d9611e663a1f2302087a9d086f96d2bc015d3cb60d6",
+                "bytes": 22248,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  115,
+                  248
+                ],
+                "pixelSha256": "3ab05d03b1b625db44257c30fbf84312e3dd6349827f8b419ca08f54afda3934"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a10fef1d9c9a24d858dbdcb7ad462c85691af75d4cbefb317cc2b20e244eedfc",
+                "bytes": 21589,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  104,
+                  249
+                ],
+                "pixelSha256": "f11ef7d846f30411b48a546459c0c7b4f3782169f93f73abfa56bbee6fb6ba24"
+              },
+              "02": {
+                "sha256": "770bec30e2bfd15a5852980338086149a8c31178002a7a3db13040834f48ea60",
+                "bytes": 21501,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  108,
+                  249
+                ],
+                "pixelSha256": "b005e97e0befd277294327abefb2412ef131185cb548018fc55cf303f10088e9"
+              },
+              "03": {
+                "sha256": "1f4f29c47fcb7d5a345ecb73a2dd5d671da4471354bd3f61bf3b97979a94a0c0",
+                "bytes": 20581,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  93,
+                  108,
+                  249
+                ],
+                "pixelSha256": "c18c97dc3d1946477ff002da75ff3128e2e1c28792801c7877ac7eeca7c966fb"
+              },
+              "04": {
+                "sha256": "bff03f4155e2d267da9b2a22e955dc114065f36ed590530147b7a71b5f9979c4",
+                "bytes": 21733,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  93,
+                  108,
+                  249
+                ],
+                "pixelSha256": "4ad07d4a3060d24afbed8686de0f559dc43e5c283249e78f5689c5dcfa8d0ee4"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "6043bbf4fc9b38cf9cbc03606571f8c6b6dfdd8acbaab766f452195a6fb6128b",
+                "bytes": 20994,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  97,
+                  118,
+                  247
+                ],
+                "pixelSha256": "0a68c4784d47de21f803908e935abecf92503072e4a70a8353cc30bf8b205975"
+              },
+              "02": {
+                "sha256": "90aa2d71b6d475ce66e4d37a2c0790cb3d8fbaccd93674872bbaf098002305b8",
+                "bytes": 20827,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  97,
+                  118,
+                  247
+                ],
+                "pixelSha256": "0c494abfd55430d3bcc87e15450b7e06edd21c9b801df5020004ed962208bc72"
+              },
+              "03": {
+                "sha256": "a4763c7bca102c90dfbf6c071ac5d6ecd2ca69cafdef9962f730ca0e1dfba762",
+                "bytes": 20830,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  97,
+                  118,
+                  247
+                ],
+                "pixelSha256": "b5f36ae61d0b2806bce6c7f304d0d68f61feaf2184c8692e9b41474f959a8cc0"
+              },
+              "04": {
+                "sha256": "4067bc5b0997c1623446f9221fdd9448c429d082c466293e154d29a825af4f8c",
+                "bytes": 21194,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  97,
+                  118,
+                  247
+                ],
+                "pixelSha256": "f9ecf7ecb4c76dcc601600bce017238b14588af304bf9996371448d63c94e986"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "7821cabfa989b575bb784538cedab6bf5353a96314e97e001ca289d986b3ed4c",
+                "bytes": 21424,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  108,
+                  250
+                ],
+                "pixelSha256": "daaf6ed1649ea4cd47fd4d5ab999a00079e324e62fe705f78771689b40c69cca"
+              },
+              "02": {
+                "sha256": "65984b62f1e786e58dfbeb37a406aa9e870e7006e8cad18efc336de08e7d4937",
+                "bytes": 22646,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  108,
+                  250
+                ],
+                "pixelSha256": "8090e71cef06042a5809449f9b6756b9a62b78556c562416467816a4984a917b"
+              },
+              "03": {
+                "sha256": "ffa7df6ede16bf257e46d1fd01c8a93bc37552de0cec57acb431b55ff1b59494",
+                "bytes": 21817,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  111,
+                  250
+                ],
+                "pixelSha256": "a7e762669a6fadacc2461d077069aae8e82108d828b9b28abca514576fcad17a"
+              },
+              "04": {
+                "sha256": "7cf5ae49622945c223667f3f85effe6c0bd353aae5e73a1cbcb428e6cc175a42",
+                "bytes": 21410,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  97,
+                  250
+                ],
+                "pixelSha256": "247001e69e164d6188e83f352b902d263f1c733413cc0ba0073149d730820489"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "fd245e85a2d3ce53b1835cc62e88997e7c5d696e3056b2b75490e95649452227",
+                "bytes": 21042,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "e01c374f53b13e8fb74b079862a46908a18c93f6ab3794e3035571bd2d340c2a"
+              },
+              "02": {
+                "sha256": "9748bda7066671d954c585a74dbf7a4a9787a884c0442a4fe70922c8ad536a63",
+                "bytes": 22266,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  32,
+                  92,
+                  115,
+                  248
+                ],
+                "pixelSha256": "a500b3284fd6ac27dbd694589a346a0cfed065bd0575152ffaf224baa1e5ebb4"
+              },
+              "03": {
+                "sha256": "10dc23a6d04a5eefe1c50c4fa74cd7ee2fc19a8ad5899ce5b051b81713eb4ff1",
+                "bytes": 19983,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  104,
+                  109,
+                  248
+                ],
+                "pixelSha256": "3b523bd76deaf630b46e3cafbf95dc3dbb66133731d99581995fdf02e50a37cc"
+              },
+              "04": {
+                "sha256": "6649b007a331187580f0b9ebaa8f1049423dead0ece48b8764554ef98459fdc6",
+                "bytes": 21024,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "dbde15a7425cbfa5d148785eba3e2313756a3788e48d4f51de48e9c0fc11f9af"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -169369,6 +170049,386 @@
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "a7b7425adb5fa51e3d7483abee8cfa8b15ae6ef59398daa665e98d58d52aae80",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            618,
+            18,
+            1069,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            12,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip: ASCETA MALE Tier3 walk. Image1 is EXACT canonical anatomical geometry ONLY. TRACE exactfour distinct poses, palms/fingers/wrists/elbows/feet positions, headsize/location, original2172x724canvas/quadrantcenters andbodyproportions. Image2 cropped COSTUMEdetails ONLY, no bodypose/hair/sex information. Adult experienced masculine Asceta with DARK BROWN SHORT CROPPED hair, determinedangularbrows, clean-shaven. Walkingposes2/3 retain near arm crossing bodyforward with closed fist, otherarmback;1/4arms hanging, as Image1. Fitted SAFFRON sleevelesswraptunicleaving upperarms BARE, IVORY sidepanels, finecoppertrim, broadstructured DARKBROWNwaistsash with ROUNDAMBERLOTUS discclasp, closelysewn smallDARKWOODENBEADS along neckline (no hangingnecklace), CREAM forearm/knucklewraps with narrow DARKBROWNcrossbindings, fingers exposed, DARK tapered trousers, CREAM calfwraps with DARKBROWNcrossbindings, DARK split-toe martialshoes narrowcopperpiping. Samecostumeall4, morecrafted than simple redbrownMonje. No sleeves/scarf/shouldertails/novicebag/bluepants/boots. Exact wrappedhandcoordinates MUST match originalbrown gloves: don'tpullpalms inward or shortenarms. Third eyesclosed. Fourdistinctcompletefullbodies horizontalrow, facingrightthreequarters paintedanimeRPG style/lightingmatchingreference, truealpha cleanedges no strayredyellowfringe. No weapons/equipment/book/potion/effects/shadow/text/logos. Do not enlarge or recenter poses.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+            "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+            "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+            "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "8397bb5b689c8df8f2b71cba5bc640829b0b020acdca5aa7ad06c92a615c69c5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "fe2ccace9955f82ac90dc0ecea7698348aabea2be7846b3f3df2d861e57c604b",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "ce9fb13ede0136d1295168bd899b79b3094048014c8b7990e9cb7588b1c212c6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            592,
+            31,
+            1088,
+            680
+          ],
+          "scale": 0.23,
+          "origin": [
+            7,
+            99
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+            "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+            "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+            "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "1c2bda40f28cd006aeab1e4d39861a7ac54f4012355ecedcb373bdafe8d000e6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.23,
+          "origin": [
+            10,
+            101
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+            "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+            "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+            "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "ed85f71d0b873a405a66bd6f45da6e388e7d034a7520bbe335eb2bbb134faffa",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            604,
+            18,
+            1064,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+            "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+            "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+            "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "4bb8657176b63dbdcbc83d8c63e5cdb0fe1fe326efb18a569a53b1b82fb6e438",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            658,
+            22,
+            1007,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            24,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+            "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+            "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+            "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "0f18b1dc0d5cc4928babed9f48c98a8bfc88312d14700280261c030e7918b77e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.23,
+          "origin": [
+            8,
+            96
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+            "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+            "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+            "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "f56d9fba81fb56513f30fcbc96f1702e39b1c4d92b6cc4c869fffd4a2f7b4179",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            615,
+            21,
+            1023,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "36d33689354a90e90cdf39468f9009bd50b1bae5e02d73894856d967695d0b12",
+            "cb8607b7c51b52e935eca74ac76d098668646d4689a8faf2e9fec4a59b75b6d9",
+            "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
+            "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "43d313315f88e94fcd42ec788264a41c5de6924be6c01f38abe131a57bace3ee",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            622,
+            21,
+            1014,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/m/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta MALE, Tier 3, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Experienced masculine Asceta, short DARK BROWN close cut hair with compact textured top, angular determined brows, clean-shaven, canonical head size. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+            "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+            "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+            "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -169387,6 +170447,197 @@
         "idle/04": {
           "source": "sources.idle",
           "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "e5c45ceba8c147072d2ca3649c72de58bd26de6c10e39fc75073709afc05c54e"
+            },
+            {
+              "bodySha256": "2e7f83ba406ce61ac4a6fd9e15818f40dcca0853278b4a0505d80d696ce820fb"
+            },
+            {
+              "bodySha256": "981c1fab92886d9c504dcf06825fac98c36a4ee834a39ab1802bdf984f8c43bb"
+            },
+            {
+              "bodySha256": "b758b6e64fbaa8be71962e76ba39601856afa313d4c083ae64c1cf07872b94a2"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
@@ -169396,12 +170647,12 @@
       "tier": 3,
       "sex": "f",
       "order": 74,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/asceta/f/asceta-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/asceta/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -169415,24 +170666,365 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 20,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8375f984fce755f55fd086146bcb4e7115c05b2923545feb8cde02a9b26edaf1",
+                "bytes": 20890,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  103,
+                  247
+                ],
+                "pixelSha256": "f8fb057ac5668ea604c3f7dd528c5287ea20b83ae3f4b73b55e9d2e03ca24f84"
+              },
+              "02": {
+                "sha256": "4efc26fbab04ba2878ec5b72b3bcb8a08012b38c8cc7d72047b68688322a40ab",
+                "bytes": 20930,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  98,
+                  247
+                ],
+                "pixelSha256": "97389e36614fbe0be41625810f8ba97cc3771231192028c42be8ce121cc916eb"
+              },
+              "03": {
+                "sha256": "b16fee2eae7c64f615c8373bb4c1c8ae0f309b3e3d24b1266eca7fdc85ef06dd",
+                "bytes": 20911,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  93,
+                  95,
+                  247
+                ],
+                "pixelSha256": "0ccdf6324e630c0e1941615ff1617e34819b656c3a660e67b6b7db699fbf78c4"
+              },
+              "04": {
+                "sha256": "3ba7de6cf4aba698c12d726c0ad3d655dfe584898419b6afd2c46aa265401c66",
+                "bytes": 20723,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  93,
+                  92,
+                  247
+                ],
+                "pixelSha256": "91e56e7d9ba3a50132c4e4471e6cb83c0487bc6883a8e80da3c3ac9b2bba8593"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "98f371c049698a95d875208120cfeef21cd6f7e0aa480335b93f54f0b6cb231e",
+                "bytes": 19657,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  95,
+                  97,
+                  245
+                ],
+                "pixelSha256": "a90ff5bd9e9cfa34c34efd3e8c40f8b02a820311569e19bc9cc839b1ec69652e"
+              },
+              "02": {
+                "sha256": "93c7e296113fc161f5b6f7d7177559eb921bc2b2155fc276b9c5234dbb4205f2",
+                "bytes": 17506,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  95,
+                  87,
+                  246
+                ],
+                "pixelSha256": "de5450d29844c96c16bb3a6ed714343893d80a93e65cee1dc11ba70556e0f4ec"
+              },
+              "03": {
+                "sha256": "58ebe3e90ab5ee3e4148971bb33db296e070579d5f0128721dae8bb3b3ff4356",
+                "bytes": 18813,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  5,
+                  95,
+                  104,
+                  246
+                ],
+                "pixelSha256": "72bde2f874b6aae6e686c19664a418a45bf765fa113e8b288debd455bb590965"
+              },
+              "04": {
+                "sha256": "ac1b395c062add499b6ce1475cb2c50134ee24e718e10b207a0aab98436ae7e7",
+                "bytes": 17023,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  95,
+                  88,
+                  247
+                ],
+                "pixelSha256": "62c401614b0bc832cde499a2b477124cdf569a3c3f002ef54d8992e7a07c2474"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2afc675d554eb9e5918835c9e521d41edab685f1b9c46a55af630d061be23db2",
+                "bytes": 22143,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  107,
+                  248
+                ],
+                "pixelSha256": "28b8cfda5fb22e25ea0fdf8dc0db7a32fa348b91a6153e367b6252a5b1cf9a08"
+              },
+              "02": {
+                "sha256": "1854920e0aabc4e348d4b9f454df94101401b50c33b92e4dfa2ef9ebd635e5a8",
+                "bytes": 20584,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  105,
+                  248
+                ],
+                "pixelSha256": "8c37a66d59934b85e23c5d4f78287968ce7585c4273d633f32172ce7708e3d46"
+              },
+              "03": {
+                "sha256": "8ed09d049b90e1b0c6da5d50242b8383beafa044912b7262b07681660ffabf8a",
+                "bytes": 18180,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  116,
+                  95,
+                  248
+                ],
+                "pixelSha256": "4830f6010b89ec4cbe1a158d7a31eae6560946691d99e92604d96cc986beec89"
+              },
+              "04": {
+                "sha256": "9096f60a2c839aa72db33547e39efdfab925741ab74b10ec02d511c78856cc2b",
+                "bytes": 21746,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  92,
+                  94,
+                  248
+                ],
+                "pixelSha256": "f8bab6c6270cb97ea8f94418b15989eaeac9c108a78028c2919f11a689997c50"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4425ee447973f02b64e44cc2a872e0d846ddfe62ce9ab04b5f65e7f62b599210",
+                "bytes": 21990,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  104,
+                  249
+                ],
+                "pixelSha256": "f78f624d59b3488c55ef243a2de20b8ea6433a85ddf1bb713ec8eeb6810c9b25"
+              },
+              "02": {
+                "sha256": "04f0711abb8ff403d8f4abf6a7ef30bc599820c4c9a862a192a2081fdf7ede4e",
+                "bytes": 21662,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  103,
+                  249
+                ],
+                "pixelSha256": "b0f7169d47869e0784331ff128a2d503cc7f3df458cc683b03a6a6f3a6009aa9"
+              },
+              "03": {
+                "sha256": "5ca952ce4d439d870ccfbf252a59b3b036155c39c09feb9487289ac1e3ed5711",
+                "bytes": 21419,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  103,
+                  249
+                ],
+                "pixelSha256": "c92b4e733902123ea12a70a2bb771cd18449b8b8adaed3c5c4794aa033eddd16"
+              },
+              "04": {
+                "sha256": "5559b4bf4b0e11ed90fa39b7d32b9c56755647e65f8fbed3c54831b97342f35a",
+                "bytes": 21992,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  103,
+                  249
+                ],
+                "pixelSha256": "c3bdf7ec5dbcd1ae06deae6e5f1ae1fc147001643673b28a4145eab0b84f2619"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "426bdd9e35217fb31ea73fcd2afc340b1013079f1afc22da2b798847b44f9a51",
+                "bytes": 20335,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  96,
+                  112,
+                  245
+                ],
+                "pixelSha256": "a8e69df0889c3fee01a9c976975e963eebb326175132849e73e6af8a1145e7b6"
+              },
+              "02": {
+                "sha256": "30a4538d07718518c7d30b23638ef069a0612d282c3772a4d3a6d40622554de7",
+                "bytes": 20099,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  98,
+                  113,
+                  246
+                ],
+                "pixelSha256": "c6df3d6f651fd5e62321a72648f5fcf9fdbc64192cf7cc2093df87733cd8e602"
+              },
+              "03": {
+                "sha256": "5b6e41117f4cf01ba4682cf16ba156008eb0894059433ec13fb81223752227ce",
+                "bytes": 17611,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  126,
+                  104,
+                  246
+                ],
+                "pixelSha256": "658eab7374db98325154c0f884c2237a594833b71e9aa8c4e37a883f66253406"
+              },
+              "04": {
+                "sha256": "60991b91df72db59577f8f63de06e51901649de36cedaf2e23577810c8778a7a",
+                "bytes": 20322,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  96,
+                  99,
+                  246
+                ],
+                "pixelSha256": "e39e04399a40b7e5e316c37647c71f7e678209bf97e1b7853a6adb3470a98ae2"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -169464,6 +171056,280 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "fc7f66cc1bb65b0d56342a354e3957798155cc01dfd03ef0e87ef54546f59782",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip: ASCETA FEMALE Tier3 idle. Image1 is EXACT canonical anatomical geometry ONLY. TRACE exactfour distinct poses, palms/fingers/wrists/elbows/feet positions, headsize/location, original2172x724canvas/quadrantcenters andbodyproportions. Image2 cropped COSTUMEdetails ONLY, no bodypose/hair/sex information. Adult experienced feminine Asceta with DARK BROWN hair in COMPACT BRAIDED KNOT at nape, feminineface/proportions, no noviceponytail. Fitted SAFFRON sleevelesswraptunicleaving upperarms BARE, IVORY sidepanels, finecoppertrim, broadstructured DARKBROWNwaistsash with ROUNDAMBERLOTUS discclasp, closelysewn smallDARKWOODENBEADS along neckline (no hangingnecklace), CREAM forearm/knucklewraps with narrow DARKBROWNcrossbindings, fingers exposed, DARK tapered trousers, CREAM calfwraps with DARKBROWNcrossbindings, DARK split-toe martialshoes narrowcopperpiping. Samecostumeall4, morecrafted than simple redbrownMonje. No sleeves/scarf/shouldertails/novicebag/bluepants/boots. Exact wrappedhandcoordinates MUST match originalbrown gloves: don'tpullpalms inward or shortenarms. Third eyesclosed. Fourdistinctcompletefullbodies horizontalrow, facingrightthreequarters paintedanimeRPG style/lightingmatchingreference, truealpha cleanedges no strayredyellowfringe. No weapons/equipment/book/potion/effects/shadow/text/logos. Do not enlarge or recenter poses.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "f646cd30e8ae7e793f6b35b6918b38a722b44737e20f0f4b5bbc08b07727cc18",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production FOUR distinct WALKING female ASCETA Tier3 bodies. Image1 EXACT anatomicalgeometry/pose/handpositions ONLY; Image2 cropped COSTUME/IDENTITY detail board only, NEVER pose reference. TRACE Image1fourposeswithALLwrists/palms/fingers/elbows/feetpositions and headsize/coordinates. FIRST/SECOND arms hanging asImage1, THIRD/FOURTH FOREGROUND ARM CROSSINGBODY FORWARD into closed fist on RIGHT and otherarmbehind LEFT. Do not straighten forwardcrossedarm or pull either fist inward. Third eyesclosed,othersopen. Femaleexperiencedface, DARKBROWN compact BRAIDEDKNOTatnape, no noviceponytail. Bare muscular upperarms, refined fitted SAFFRONsleeveless wraptunicoverIVORYsidepanels fineCOPPERtrim, DARKBROWNstructuredsash roundAMBERLOTUSdiscclasp, smallDARKWOODENBEADSsewn closelyaroundcollar, no hangingnecklace. CREAMforearm/knucklewraps with thin DARKBROWNcrossbindings leavingfingers exposed, DARKtaperedtrousers, CREAMcalfwraps darkbrowncrossbindings, DARKsplit-toemartialshoes narrowCOPPERpiping. Identicalcostumeall4. Morecraftedveteran than simpleMonje. Samecanonicaloverallbodyscale2172x724canvas/centers/margins. FOURfullbodiesinonehorizontalrow rightthreequarterview paintedanimeRPG style, truealpha cleanedges no redyellowreferencefringe. No weapons/effects/shadow/text/novicegarments, no enlarge/recenter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "393e499e69d3115008f9707f630217b6efea2d20da687904efb4651f6a973499",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Asceta with dark brown hair in compact dark braided knot, attentive determined eyes, canonical female head scale. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "6d8f365fbac001a6fc55aafcb79bdb9070afefefafe3aaa12a4594f3dc27d6c4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta FEMALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Asceta with dark brown hair in compact dark braided knot, attentive determined eyes, canonical female head scale. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "e946d4b9f79a1a010a200f2bd42eaf7f6a38e1c2cb9e084118ac0a2245cf7517",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asceta/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asceta FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Asceta with dark brown hair in compact dark braided knot, attentive determined eyes, canonical female head scale. Refined ascetic martial outfit: fitted SAFFRON sleeveless wrap tunic with IVORY side panels, dark brown broad waist sash and flat amber-disc clasp, small dark wooden beads sewn closely around collar (no hanging necklace), cream forearm wraps leaving fingers exposed, dark tapered trousers, snug cream calf wraps and dark split-toe shoes. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved actual costume: saffron asymmetric sleeveless wrap with ivory inset sides, narrow COPPER edging; DARK BROWN structured broad sash, round AMBER disc with engraved LOTUS; closely sewn DARK WOODEN collar beads. Cream forearm/knuckle wraps with narrow DARK BROWN CROSS bindings leaving fingers exposed; cream calf wraps same crossbindings, DARK split-toe martial shoes with COPPER piping. No armor plates. Bare muscular upper arms. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
+          "frame": 4
         }
       }
     },

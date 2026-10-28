@@ -1,9 +1,10 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "asceta",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,10 +12,89 @@
       "51878d0e9101c027c1e2764912a3132d2a27ef659efa000804d82ac40fe6da8f",
       "181ba4ad5c463416133ce54c7a2798467bfabe41cf00f3b4102683fc83d7e727",
       "13bcb520bfef1c65fbd59fe13329ab38daa55f07c79f8b69dbe9af7374b8fd69"
+    ],
+    "walk": [
+      "ab852af6a1ecf7fa567e0fa3e7032c0d0f1a7b4529d2db14dff3d513b5d4802d",
+      "561c9fb46473ffc3a42a46c743fd556d4de7b30ecfd71866edc28576304346cd",
+      "42f07d00899334070f04d25f4f65f773e21465e7edb8fc5f097a9e507c83d71f",
+      "b962fd88b8df58f1eba551d61f83f0e0f6747ed4ff2a1c2fa4473e603744bf7a"
     ]
   },
-  "contactChecks": 128,
-  "warnings": [],
+  "contactChecks": 256,
+  "warnings": [
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        83,
+        173
+      ]
+    }
+  ],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
