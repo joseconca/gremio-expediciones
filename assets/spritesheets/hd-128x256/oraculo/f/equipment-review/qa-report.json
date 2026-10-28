@@ -3,7 +3,8 @@
   "classId": "oraculo",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "60e2d60b1a83e245aac7df3b7957f588f6896a80dc25cbc1f37a36b91fc4b2e0",
       "4f7e8aa49cb6f76d42f9d8addeda5ba48454324a360d60d62108859e92a43c91",
       "737ace376213088e20e5f26725e93dc88e9d96e416bde7ab639ff93f36d35b36"
+    ],
+    "walk": [
+      "9d51198437b5e4c265c040108806f42d280bf50cb71d22d4020c9c01ea9b2d8d",
+      "d3fd62dfa022cd6f0a17f2f5f2b90700f68efd28f31554b9e972c4a3a95b90e5",
+      "9d9417729b64686fced4d51f9ca4a60fe78179f933c93d15d360889b6acf592e",
+      "424071d4dd37b040c3b36dace86615ce8a2954de896b0dd46af409ed466c1fab"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,

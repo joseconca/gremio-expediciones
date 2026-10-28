@@ -160178,10 +160178,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -160255,7 +160256,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9d51198437b5e4c265c040108806f42d280bf50cb71d22d4020c9c01ea9b2d8d",
+                "bytes": 24854,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  90,
+                  103,
+                  248
+                ],
+                "pixelSha256": "9ad7670fc2a7d33bd4a11753226fbd4b700f16928f6335667697bdc74356d0fd"
+              },
+              "02": {
+                "sha256": "d3fd62dfa022cd6f0a17f2f5f2b90700f68efd28f31554b9e972c4a3a95b90e5",
+                "bytes": 21166,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  90,
+                  89,
+                  249
+                ],
+                "pixelSha256": "d9f20d9a560d991aa469e031fe527296b9eac93b21ee2f320008d51e44a413b7"
+              },
+              "03": {
+                "sha256": "9d9417729b64686fced4d51f9ca4a60fe78179f933c93d15d360889b6acf592e",
+                "bytes": 23118,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  90,
+                  111,
+                  248
+                ],
+                "pixelSha256": "50b670137b0f198e338097118d77b31fc75474e4d835e3c224f24fc856c4a138"
+              },
+              "04": {
+                "sha256": "424071d4dd37b040c3b36dace86615ce8a2954de896b0dd46af409ed466c1fab",
+                "bytes": 21630,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  90,
+                  249
+                ],
+                "pixelSha256": "90204fda48ddd6eb521c0e9d1d6a4c168db093f2bcf5b98e4360634004aed7d3"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -160336,6 +160404,136 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "71bf99e0b9cacbf4cc3d76895d3cf0cad83d6f4e95952897157d73953e2331f6",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/walk-reference-v5.png",
+          "generator": "built-in imagegen",
+          "prompt": "Precise sprite edit ONLY ONE HAND: FOURTH figure's REAR hand (the LEFTMOST low fist beside hip) is too far DOWN and RIGHT. Move this WHOLE small ivory gloved fist UP and LEFT along magenta arrow until actual palm center covers magenta X currently at upper-left wrist. Shorten/angle adjoining forearm naturally. Do not enlarge fist or merely erase mark. Preserve its exact fist size/finger shape. Forward crossing arm and rightmost fist stay unchanged. All head/feet/torso positions and scale, all other3completefigures and all costume pixel details unchanged. Removeallmagentaannotations. Oráculo female lilaccoat, ivory stole/crescent, opals and boots with silverdiamondbuckles must remain exact. Same2170x725transparentfourfullbodyrow. Noequipment/text/effects/shadow.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "a929df252a0285ad03420ebe2b51ffff8ee2db6d150a98fcadfcb6fd9f8b2c79",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/walk-frame01-reference-v5.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "968df04f22a90ee97deb1c54cf8bc993530faedd3e2be4a301442f382c7a6e12",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/walk-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "968df04f22a90ee97deb1c54cf8bc993530faedd3e2be4a301442f382c7a6e12",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/oraculo/f/source/walk-frame03-reference-v5.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          }
         }
       },
       "frameProvenance": {
@@ -160353,6 +160551,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk.frameSourceOverrides.02",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
