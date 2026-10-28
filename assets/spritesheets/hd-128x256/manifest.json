@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "herrero-f",
+  "nextVariant": "paladin-m",
   "classes": [
     {
       "id": "novato",
@@ -268,7 +268,7 @@
       "name": "Herrero",
       "tier": 2.5,
       "order": 30,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "paladin",
@@ -132468,7 +132468,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/herrero/m/herrero-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/herrero/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -133592,7 +133592,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "0517ff66f461ce6ce27cf1fb4fac8048c0ad53972b4aee7e7c3d8b7884c2c615",
@@ -133630,7 +133631,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "cddce9b32c881bab750240580afe011e34e96ba07bd7be3029d7a8379d1006c6",
@@ -133668,7 +133670,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "64f64f49ba179e6df6cc9762b24154d8521f8bc41eb79d2062c384bc5593790f",
@@ -133870,7 +133872,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "1ee5a1ca27e5f629128b676f5e8e0a48bc8b2255a032b1b11b1789f96121931c",
@@ -133908,7 +133911,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "1b1ded77b09b37a0ea60d3d1b122cb9b34d21f71b46de24df8c95b1233909f42",
@@ -134110,7 +134113,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "d7e71be765e7e14b7ff3d861610b02c30d4503ea1a2d300f44720d98430a2a9c",
@@ -134154,7 +134158,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "491cc53c32c7eef791e1a4fc01143a283eb9d12b50b4cbe42d59d6b2308ebb33",
@@ -134244,7 +134248,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "06cc0a7a9b4cceee3e1816b5914e92d4e12599a3c31a5bfbd58622d6a61b21c4",
@@ -134288,7 +134293,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "75fc79f9ae34bb6736e4a8e1117f9e8090eddfeda111cfae47907afa4187ab72",
@@ -134334,7 +134339,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "7e77f7e90899424beffb1fb69589023fb1f5041d467428d05b3b1b9b17c00246",
@@ -134372,7 +134378,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "a44ee5f7a06657c080b36b6e5dab0de84f217b65348058f22d86fbf21756a930",
@@ -134412,7 +134418,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "7892f3e81f9d260a9ae514920b294562bcffab1a4a7043a288938ac2f217ce6f",
@@ -134450,7 +134457,7 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "43cb66a4bfc5f4a2d50e0fc1a851b76004f95243b4df99216ba5b91276ede19e",
@@ -134490,7 +134497,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "a26966abcb8405306de0e148279f1f36af8fcdc7d134bb02e65cc25c456e0deb",
@@ -134528,7 +134536,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "57192e901efef96916e320b9ff116dc6f022bcb3c43c60aa8cf5bbf2af4e1a6e",
@@ -134568,7 +134576,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "dcc002afcd9036a85807e25fe57f3a556f59eb9d3749c0f93dbfa88946727b70",
@@ -134606,7 +134615,7 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "741ce2ba57a9b5e1db2c2fa80fab1bb075319452992254cb9746cd3905de40d2",
@@ -134646,7 +134655,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "9108f5c291db7a8069dfedcc73181ea9d337a344d1286bf4addc2b1cf4ac7658",
@@ -134684,7 +134694,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "47e173f5f53cc30874bbf84abc9311935395f1dd48de3b04ad8df2586e64abe8",
@@ -134724,7 +134734,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "c16b2d19749021d7e93cab278768e8c4bf3c6b20f96e4dd448f0c70c028914d6",
@@ -134762,7 +134773,7 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "d0cdf8697fcc34bbda50305ac70d940749493668e0a6bfd7c71a5545d0cf1e77",
@@ -134802,7 +134813,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "2b7318c18865babcc3e465cd05a8b45989bb22b4b85ecb3823e7df245c2ffcef",
@@ -134840,7 +134852,7 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "a2bfdb709e18680a2aaddb125df02ee3c634140f8083c79c5e49d2d17763f316",
@@ -134880,7 +134892,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "b3af681a25f30e8555b88feaa96b377aab0c5a404f702c3b23e3f26e60d54c5c",
@@ -134918,7 +134931,7 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "a5029f12ae265b8364eac2bb48b4ae65e9303fc3c2f31787e519c4dc55798338",
@@ -135050,7 +135063,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "0219cad8f0a9cd126faf6be7a8ed1e92a812053b6ca1c24c918fe944abb79311",
@@ -135088,7 +135102,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "2db68e29adf225080e90fd41f394d78b5728abf4ec276b2b82d48a37d9acb7f8",
@@ -135128,7 +135142,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -135503,6 +135518,21 @@
         },
         "equipmentTransforms": "Shared by sex; no class offsets",
         "equipmentRigRevision": 4
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "herrero",
+        "name": "Herrero",
+        "tier": 2.5,
+        "costume": "Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf.",
+        "maleIdentity": "Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes.",
+        "femaleIdentity": "Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes.",
+        "unique": "Charcoal riveted split apron, brass anvil clasp, forehead goggles and iron toe caps.",
+        "advancement": "Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
       }
     },
     {
@@ -135515,7 +135545,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/herrero/f/herrero-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/herrero/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -136639,7 +136669,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "b482ad30b8021ef78b816c785671363ac0118472d7c3a8b1b2dfb9ba7e126679",
@@ -136677,7 +136708,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
@@ -137139,7 +137170,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "e04d8ae69e12c1993baa6cd9cfd765d8ae4e8f943647f4291fa17ff2014386da",
@@ -137177,7 +137209,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "04": {
               "sourceSha256": "5d712b0b25aeac57416c1b83e472d1204a099cec0a79f0a7347a69f2c98bda82",
@@ -137249,7 +137281,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "911f6fa6e43ddcde08be351bad4f50a966eed7370785bd437b34bf483802272a",
@@ -137287,7 +137320,7 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "d3c3d8c15e4dc9ff536dd7c545f205b5a928e5baac4855995f2d660a8402b91e",
@@ -137327,7 +137360,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "f6bba63766c5e63f3d8b6eca544ec1aee7b93b485d5ad2fba04874bdc2acd764",
@@ -137365,7 +137399,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "0adfd664f5b4584e7a71204db11dd23d23c75df500cb11ab0f27e838e2c4e48c",
@@ -137443,7 +137477,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "2cc1cc0348b219f385459c80fc018c6dd0330e104e15fc781f55e74eb01c8b6d",
@@ -137481,7 +137516,7 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "f5d3531aee3b315d20fe70030c8ebfc9dc560b63cac4916a41235534176b3dca",
@@ -137521,7 +137556,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "83bcc794d685a25e1553f590a36d3328154b13ab0472c69247250894c851cb92",
@@ -137559,7 +137595,7 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "60dc8b72d6841a56271854dd5bff6d004e86cdcfb7b696e5e098569e81321b64",
@@ -137599,7 +137635,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "42d7a8039e1ba3a11e38bbb30961b178acdd375b28dd4a1a2da95a303c28be5d",
@@ -137637,7 +137674,7 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "44fd8e16d1ad929c7c87712b7f3f68440ad7faec84ef7e680366db3de8f177dd",
@@ -137677,7 +137714,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "690109d03bdfd332df92dd845d502f0e41067fa5b0ef9a13c262972a21ac5ad8",
@@ -137715,7 +137753,7 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "8e70da1c532b353ecff99abea36b045f9f6dd2a0ea2c11e915dc42d2adbad1b8",
@@ -137755,7 +137793,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "d9c7be9e8f44433baba70053881dc36972ffc6945600917a140cc2513a8fae38",
@@ -137793,7 +137832,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "75ffd97ef7d6b076a11c82bff021edbb1cef76dc0964d2a3b5175632a56c6027",
@@ -137833,7 +137872,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "820f14e5dcc6518d44eaf351495e0deb093455d8cef42eaba3213e32cc9d9d73",
@@ -137871,7 +137911,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "9f0116b87ab97315c4c3a1922f7139770a6e2ac273bad274d6753d9cade6b873",
@@ -137911,7 +137951,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "154a1cf095320a2d656fe0b0582be3de3aa1641cd59d38749adfc9512accf028",
@@ -137949,7 +137990,7 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "f61dbb0d6381b50c7e04a123e342c5a52f603251f32e130c43123cbdad1de585",
@@ -137989,7 +138030,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "1f1ea1674df158c88b23ec9d3d4a1b413e1b4f46133b9eef2727ec1ebfa62ca0",
@@ -138027,7 +138069,7 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "bf4829cd3fe0de08b4c5f188855528036dac619dbcacd1173aa4166333d4e4f6",
@@ -138067,7 +138109,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "cba00a3386d99fd9169abecc3bbb2be5148d72fda263df3ae5ed49f9c4762760",
@@ -138105,7 +138148,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "e25053ae7d2bd2dc25837b35ce809a80f39a9d2b2d66ad998c12d8c75e3a6333",
@@ -138145,7 +138188,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "a8d21fed85aab9bd0fdd331c247a777e16e12a109ff5221fdf2d796b64d65468",
@@ -138183,7 +138227,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8b4044bf6e0455f3caf7d717b47f7b4627793cdddcd33394de172f3f6946974c",
@@ -138613,7 +138657,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -138982,12 +139027,27 @@
           "attack_gloves": [
             "76e090d1e48b5bb1270ae8ed947aebef44b2796e04fd8fa2256756d338af96f0",
             "e325ebf97332b8833a47edeaf513702fa6e0ab8040f4007e7d9a4d1e9f74f007",
-            "0669293b3e3c8c3a182a1001e6c8980b6ac308650d3b3e0add5bc8fc3ce40a2d",
+            "11c21bade7963c0a0f88ea0a6fa0d4eaa560d3f922d13595a4760635f8d53edf",
             "b21a3774a394810243c0831facf0ef221d57face236741b09a29ebd7efbb9e4e"
           ]
         },
         "equipmentTransforms": "Shared by sex; no class offsets",
         "equipmentRigRevision": 4
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "herrero",
+        "name": "Herrero",
+        "tier": 2.5,
+        "costume": "Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf.",
+        "maleIdentity": "Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes.",
+        "femaleIdentity": "Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes.",
+        "unique": "Charcoal riveted split apron, brass anvil clasp, forehead goggles and iron toe caps.",
+        "advancement": "Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
       }
     },
     {
@@ -143926,7 +143986,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
