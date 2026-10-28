@@ -135572,20 +135572,20 @@
                 "pixelSha256": "704185fe4ad605941e260690bbf03b23ad0d37978365a44095ee3251802ef02d"
               },
               "04": {
-                "sha256": "19013c12ef19628b5799b82d791794b67a44d4b36c0af20ca0045bc86bb45eba",
-                "bytes": 23023,
+                "sha256": "23b77183ed5220b04565b56b880c78a8a95a8fbb36aef8a73d22ee29afe4d345",
+                "bytes": 20893,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  7,
-                  89,
-                  94,
-                  249
+                  19,
+                  92,
+                  93,
+                  248
                 ],
-                "pixelSha256": "784e6b148ddb9da997d07e99f59b3eee4055e54d894a886e8d44acbf9cf679cc"
+                "pixelSha256": "84cf4865ddf7b37c1a9d1edc9699c4915e62c5e117a5d72117d172ecbd9cf79e"
               }
             },
             "distinctFrames": 4
@@ -136542,7 +136542,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+          "sourceSha256": "b5c9d61e439ea6e4f0025dc8e8e3bb6c13764a7091254461235dffc4d5b27d88",
           "sourceDimensions": [
             2169,
             725
@@ -136567,9 +136567,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise outfit-continuity edit of Image1 figures 1,3,4. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden: no duplicate old pouch hanging UNDER the new pouch (especially consumption poses2/3). Replace brown novice wrist wraps with compact SILVER-GRAY IRON wrist cuffs from Image3 CLOSE-UP over dark fingerless gloves, at BOTH wrists. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT anatomy, absolute finger/palm/elbow/head/foot coordinates, pose size, goggles on FOREHEAD, feminine face/braided crown bun, single compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron, boots and iron toe caps. Figures 2 already correct; unchanged. No recentering, scaling or arm changes. Same original canvas/quarters, exactly four complete full bodies, transparent alpha, empty hands. No equipment, text or shadow.\n",
+          "prompt": "EDIT IMAGE1 IN PLACE. Keep ALL FOUR canonical walking figures' EXACT ANATOMY and ABSOLUTE PLACEMENT. Change clothes/hair only to FEMALE MASTER SMITH. Especially FOURTH figure: KEEP front forearm BENT ACROSS BELLY from upper-left to lower-right, never idle downward arms. KEEP both actual fists/head/boots EXACT original positions. Image2 enlarges this fourth canonical walking pose. Image3 defines feminine face/chestnut braided crown low bun and two-lens work goggles ON FOREHEAD ABOVE EYES. Costume: ochre rolled sleeves with short bare forearms, ONE compact rear iron shoulder plate, charcoal short split riveted apron with THREE vertical chest rivets, bottle-green fitted side panels, brass ANVIL belt clasp, TWO small SQUARE brown belt pouches exactly Image4 (no old silver-buckled novice pouch), SILVER-GRAY IRON wrist cuffs exactly Image5 on BOTH wrists over dark fingerless gloves, charcoal trousers, brown boots with silver rectangular shin-strap buckles and iron toe caps. No scarf or novice straps/wraps. Preserve Image1 canvas2170x725 and original absolute positions: fourth rear palm center1830,390, forward fist2060,386; head/feet also original fartherRIGHT within fourth quarter, NO recentering. Four complete full bodies in one row, transparent alpha, crisp painted anime RPG style, empty hands, no gear/shadow/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -136579,6 +136579,36 @@
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
           "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
             "02": {
               "sourceSha256": "10a75eaa70af53c99d856ae5ccf7bcffa585ea2f2fcb73dcb34ab4abff05c9cd",
               "sourceDimensions": [
@@ -136605,8 +136635,38 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v3.png",
               "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame03-reference-v3.png",
+              "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -136648,6 +136708,76 @@
                 "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise outfit-continuity edit of Image1 figures 1,3,4. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden: no duplicate old pouch hanging UNDER the new pouch (especially consumption poses2/3). Replace brown novice wrist wraps with compact SILVER-GRAY IRON wrist cuffs from Image3 CLOSE-UP over dark fingerless gloves, at BOTH wrists. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT anatomy, absolute finger/palm/elbow/head/foot coordinates, pose size, goggles on FOREHEAD, feminine face/braided crown bun, single compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron, boots and iron toe caps. Figures 2 already correct; unchanged. No recentering, scaling or arm changes. Same original canvas/quarters, exactly four complete full bodies, transparent alpha, empty hands. No equipment, text or shadow.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "02": {
+                  "sourceSha256": "10a75eaa70af53c99d856ae5ccf7bcffa585ea2f2fcb73dcb34ab4abff05c9cd",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
           ]
         },
@@ -137716,7 +137846,7 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
@@ -137724,7 +137854,7 @@
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
