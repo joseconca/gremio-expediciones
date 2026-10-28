@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "herrero",
   "sex": "f",
   "actions": [
@@ -112,27 +112,8 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_gloves",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        78,
-        143
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        78,
-        143
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
-  "equipmentRigRevision": 3,
+  "equipmentRigRevision": 4,
   "artisticApproval": "not-automatic"
 }

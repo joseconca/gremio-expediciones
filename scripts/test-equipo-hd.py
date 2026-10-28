@@ -6,6 +6,15 @@ ROOT=Path(__file__).resolve().parents[1]
 render=runpy.run_path(str(ROOT/'scripts/ensamblar-equipo-hd.py'))
 validate=runpy.run_path(str(ROOT/'scripts/validar-equipo-hd.py'))
 class EquipmentTests(unittest.TestCase):
+    def test_glove_pivots_stay_inside_closed_palms(self):
+        m=json.loads((ROOT/'assets/spritesheets/hd-128x256/equipment/manifest.json').read_text(encoding='utf-8'))
+        corrections=runpy.run_path(str(ROOT/'scripts/corregir-punos-compartidos-hd.py'))['CHANGES']
+        for sex,frame,key,old,new,(left,top,right,bottom) in corrections:
+            with self.subTest(sex=sex,frame=frame,key=key):
+                x,y=m['rigs'][sex]['actions']['attack_gloves'][frame-1][key]
+                self.assertTrue(left<=x<right and top<=y<bottom,'Glove must cover the closed palm, not the elbow or wrist wrap')
+                body=Image.open(ROOT/f'assets/spritesheets/hd-128x256/novato/{sex}/frames/attack_gloves/novato-{sex}-attack_gloves-{frame:02d}.png').convert('RGBA')
+                self.assertGreaterEqual(body.getpixel((x,y))[3],240)
     def test_shared_contacts_stay_on_measured_canonical_hands(self):
         m=json.loads((ROOT/'assets/spritesheets/hd-128x256/equipment/manifest.json').read_text(encoding='utf-8'))
         cases=[('f','walk',4,(34,172,43,181)),('f','hurt',1,(57,169,66,178)),('m','attack_spear',3,(57,158,68,169)),('m','attack_staff',4,(70,140,79,153)),('f','attack_staff',4,(70,140,79,153))]
