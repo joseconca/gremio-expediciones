@@ -132483,7 +132483,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -132492,7 +132492,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -132986,7 +132987,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4293c093f377c3b4d1474f4d6e602bab2d4b27670236121add3fe4bf7226264c",
+                "bytes": 23339,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  100,
+                  110,
+                  249
+                ],
+                "pixelSha256": "9aa6daa7b5528f2a918e09369b8f9e38c38e53a6148a7762a15330803b17b98b"
+              },
+              "02": {
+                "sha256": "b54984833133c54fc624df61dc8c0b1e1cfaa310a7e8458e567a89ea851f2496",
+                "bytes": 20928,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  111,
+                  115,
+                  248
+                ],
+                "pixelSha256": "0ae6d11d92b90f1c14672447d368225274a5ad1f431138aab4074ccd5c9aee89"
+              },
+              "03": {
+                "sha256": "96fffc49de4e8be7b74c189ac772c1f863fa0a42ce567827a307300c3684013c",
+                "bytes": 20587,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  121,
+                  115,
+                  249
+                ],
+                "pixelSha256": "80e31f22f77180558c9f5d1cadf282484a718ae979c6c3b1ce2c69ba8e8ba384"
+              },
+              "04": {
+                "sha256": "b03cb45b44e1474490141358fa746dce4580189b2f4464c08cfe8a5371ea7559",
+                "bytes": 22110,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  104,
+                  119,
+                  249
+                ],
+                "pixelSha256": "1f4561dbe76b2f14760e7977971eebfa8b8d616ca5cfd40348f60208d5bbca8d"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -133289,6 +133357,44 @@
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "43cb66a4bfc5f4a2d50e0fc1a851b76004f95243b4df99216ba5b91276ede19e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.23,
+          "origin": [
+            10,
+            101
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Herrero MALE, Tier 2.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+            "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+            "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+            "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -133402,6 +133508,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
