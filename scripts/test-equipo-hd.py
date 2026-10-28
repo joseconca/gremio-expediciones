@@ -28,7 +28,7 @@ class EquipmentTests(unittest.TestCase):
         # Measured hand regions exclude the wrist, torso and cloth accepted by
         # the former radius-only alpha check. See the shared-grip visual review.
         m=json.loads((ROOT/'assets/spritesheets/hd-128x256/equipment/manifest.json').read_text(encoding='utf-8'))
-        cases=[('m','attack_dagger','primary',(68,163,80,176)),('f','attack_spear','primary',(80,148,91,158)),('f','attack_spear','secondary',(103,142,112,151))]
+        cases=[('m','attack_dagger','primary',(68,163,80,176)),('f','attack_spear','primary',(80,148,91,158)),('f','attack_spear','secondary',(103,142,112,151)),('f','attack_axe','primary',(72,183,85,198)),('f','attack_axe','secondary',(71,162,85,177))]
         for sex,action,key,(left,top,right,bottom) in cases:
             with self.subTest(sex=sex,action=action,key=key):
                 x,y=m['rigs'][sex]['actions'][action][2][key]

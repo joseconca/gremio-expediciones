@@ -21567,7 +21567,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_berserker/f/hacha_berserker-f-sheet.png",
-          "sha256": "8fb9613a9e05e64f86a8c789ab9bc99e886568b57b103df4ccfc6b2efb4edbb7",
+          "sha256": "8e28aa75e7c6c139be9531af1f48e02a348a451ab0d21640dacd2a87f1e2f8a3",
           "dimensions": [
             1536,
             5760
@@ -22133,31 +22133,31 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_berserker/f/frames/attack_axe/03.png",
-                "sha256": "a5026a7999c13bbb5c15eff01a774b84ee2588af0213b5015cb96a38ff70a149",
+                "sha256": "e0706baa187a7c75b79757cf652c7210276b28a81c4b28a38d2571eef72a5ff1",
                 "config": {
                   "primary": [
-                    88,
-                    196
+                    78,
+                    190
                   ],
                   "secondary": [
-                    77,
-                    155
+                    78,
+                    169
                   ],
-                  "angleDegrees": -164.98163936884933,
+                  "angleDegrees": 180.0,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
                     32,
-                    103
+                    124
                   ],
                   "contacts": [
                     [
-                      88,
-                      196
+                      78,
+                      190
                     ],
                     [
-                      77,
-                      155
+                      78,
+                      169
                     ]
                   ],
                   "restoreHands": true,
@@ -22875,7 +22875,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_orca/f/hacha_orca-f-sheet.png",
-          "sha256": "329c89d2309ba921795f64bb3ecd9ba80c3d54acb02df36a833ce95fd053f548",
+          "sha256": "4ddb0953c5b51e249437d16f945f65be40ce5d6ee15235207e49be21fb117bc8",
           "dimensions": [
             1536,
             5760
@@ -23441,31 +23441,31 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_orca/f/frames/attack_axe/03.png",
-                "sha256": "b0db78fcedad11a54b67ebf1c28b0e7e8ab82860fd1e73e52ab07ffc175f6995",
+                "sha256": "f6b8611408c7df4e4f7861d085c269084e533fb33e78af97e507e09189867ee9",
                 "config": {
                   "primary": [
-                    88,
-                    196
+                    78,
+                    190
                   ],
                   "secondary": [
-                    77,
-                    155
+                    78,
+                    169
                   ],
-                  "angleDegrees": -164.98163936884933,
+                  "angleDegrees": 180.0,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
                     36,
-                    103
+                    124
                   ],
                   "contacts": [
                     [
-                      88,
-                      196
+                      78,
+                      190
                     ],
                     [
-                      77,
-                      155
+                      78,
+                      169
                     ]
                   ],
                   "restoreHands": true,
@@ -24167,7 +24167,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/hacha_piedra/f/hacha_piedra-f-sheet.png",
-          "sha256": "2e2ecbb73bac5b9c75faa52f0b661fafa144ae6d4c88d065a97659ea307e379a",
+          "sha256": "076853e87bd2787d7c8b64f66b4d49a102489a12fc7d73e34ab9b03a8057f478",
           "dimensions": [
             1536,
             5760
@@ -24725,15 +24725,15 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/hacha_piedra/f/frames/attack_axe/03.png",
-                "sha256": "ad8f7138b110243599afa5888f0c7c6e1468502c5d18021bb8f0a2ebc9a3202a",
+                "sha256": "a0af1b0ebede128ecdcd94be9ebb35a3db7fe246005cab23cc8b64da28006643",
                 "config": {
                   "primary": [
-                    88,
-                    196
+                    78,
+                    190
                   ],
                   "secondary": [
-                    77,
-                    155
+                    78,
+                    169
                   ],
                   "angleDegrees": -135,
                   "depth": "front",
@@ -24744,8 +24744,8 @@
                   ],
                   "contacts": [
                     [
-                      88,
-                      196
+                      78,
+                      190
                     ]
                   ],
                   "restoreHands": true,
@@ -38547,12 +38547,12 @@
           },
           {
             "primary": [
-              88,
-              196
+              78,
+              190
             ],
             "secondary": [
-              77,
-              155
+              78,
+              169
             ],
             "angleDegrees": -135,
             "depth": "front",
@@ -40082,144 +40082,66 @@
     "nextStep": "User gameplay verification before further class production."
   },
   "sharedGripCorrection": {
-    "revision": 4,
-    "reason": "Combat glove pivots belong inside canonical closed palms, not wrist wraps or the forward elbow",
+    "revision": 5,
+    "reason": "Female axe impact contacts were on scarf/air and trousers instead of the two closed fists",
     "changes": [
       {
-        "sex": "m",
-        "action": "attack_gloves",
-        "frame": 1,
-        "field": "primary",
-        "previous": [
-          60,
-          149
-        ],
-        "corrected": [
-          65,
-          140
-        ]
-      },
-      {
-        "sex": "m",
-        "action": "attack_gloves",
-        "frame": 3,
-        "field": "secondary",
-        "previous": [
-          80,
-          142
-        ],
-        "corrected": [
-          86,
-          139
-        ]
-      },
-      {
-        "sex": "m",
-        "action": "attack_gloves",
-        "frame": 4,
-        "field": "primary",
-        "previous": [
-          60,
-          149
-        ],
-        "corrected": [
-          65,
-          140
-        ]
-      },
-      {
         "sex": "f",
-        "action": "attack_gloves",
-        "frame": 1,
+        "action": "attack_axe",
+        "frame": 3,
         "field": "primary",
         "previous": [
-          60,
-          149
+          88,
+          196
         ],
         "corrected": [
-          65,
-          147
-        ]
-      },
-      {
-        "sex": "f",
-        "action": "attack_gloves",
-        "frame": 3,
-        "field": "secondary",
-        "previous": [
           78,
-          143
+          190
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "attack_axe",
+        "frame": 3,
+        "field": "secondary",
+        "previous": [
+          77,
+          155
         ],
         "corrected": [
-          43,
-          145
+          78,
+          169
         ]
       }
     ],
     "canonicalHandRegions": [
       {
-        "sex": "m",
-        "action": "attack_gloves",
-        "frame": 1,
-        "field": "primary",
-        "region": [
-          60,
-          134,
-          70,
-          147
-        ]
-      },
-      {
-        "sex": "m",
-        "action": "attack_gloves",
+        "sex": "f",
+        "action": "attack_axe",
         "frame": 3,
-        "field": "secondary",
-        "region": [
-          82,
-          132,
-          91,
-          148
-        ]
-      },
-      {
-        "sex": "m",
-        "action": "attack_gloves",
-        "frame": 4,
         "field": "primary",
         "region": [
-          60,
-          134,
-          70,
-          147
+          72,
+          183,
+          85,
+          198
         ]
       },
       {
         "sex": "f",
-        "action": "attack_gloves",
-        "frame": 1,
-        "field": "primary",
+        "action": "attack_axe",
+        "frame": 3,
+        "field": "secondary",
         "region": [
-          61,
-          141,
           71,
-          154
-        ]
-      },
-      {
-        "sex": "f",
-        "action": "attack_gloves",
-        "frame": 3,
-        "field": "secondary",
-        "region": [
-          38,
-          138,
-          49,
-          153
+          162,
+          85,
+          177
         ]
       }
     ],
-    "bodyPolicy": "Preserve all body artwork; one shared equipment rig per sex; no class offsets",
-    "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-r4-before-after.png"
+    "bodyPolicy": "Preserve all body artwork; one shared rig per sex; no class offsets",
+    "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-axe-impact-r5-before-after.png"
   },
   "sharedGripCorrectionHistory": [
     {
@@ -40432,6 +40354,146 @@
           ]
         }
       ]
+    },
+    {
+      "revision": 4,
+      "reason": "Combat glove pivots belong inside canonical closed palms, not wrist wraps or the forward elbow",
+      "changes": [
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 1,
+          "field": "primary",
+          "previous": [
+            60,
+            149
+          ],
+          "corrected": [
+            65,
+            140
+          ]
+        },
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 3,
+          "field": "secondary",
+          "previous": [
+            80,
+            142
+          ],
+          "corrected": [
+            86,
+            139
+          ]
+        },
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 4,
+          "field": "primary",
+          "previous": [
+            60,
+            149
+          ],
+          "corrected": [
+            65,
+            140
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_gloves",
+          "frame": 1,
+          "field": "primary",
+          "previous": [
+            60,
+            149
+          ],
+          "corrected": [
+            65,
+            147
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_gloves",
+          "frame": 3,
+          "field": "secondary",
+          "previous": [
+            78,
+            143
+          ],
+          "corrected": [
+            43,
+            145
+          ]
+        }
+      ],
+      "canonicalHandRegions": [
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 1,
+          "field": "primary",
+          "region": [
+            60,
+            134,
+            70,
+            147
+          ]
+        },
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 3,
+          "field": "secondary",
+          "region": [
+            82,
+            132,
+            91,
+            148
+          ]
+        },
+        {
+          "sex": "m",
+          "action": "attack_gloves",
+          "frame": 4,
+          "field": "primary",
+          "region": [
+            60,
+            134,
+            70,
+            147
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_gloves",
+          "frame": 1,
+          "field": "primary",
+          "region": [
+            61,
+            141,
+            71,
+            154
+          ]
+        },
+        {
+          "sex": "f",
+          "action": "attack_gloves",
+          "frame": 3,
+          "field": "secondary",
+          "region": [
+            38,
+            138,
+            49,
+            153
+          ]
+        }
+      ],
+      "bodyPolicy": "Preserve all body artwork; one shared equipment rig per sex; no class offsets",
+      "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-r4-before-after.png"
     }
   ]
 }

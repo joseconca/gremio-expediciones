@@ -18,7 +18,7 @@ CHANGES=[
 def main():
     path=HD/'equipment/manifest.json'
     m=json.loads(path.read_text(encoding='utf-8'))
-    if m.get('sharedGripCorrection',{}).get('revision')==4:
+    if m.get('sharedGripCorrection',{}).get('revision',0)>=4:
         assert all(m['rigs'][s]['actions']['attack_gloves'][n-1][key]==new for s,n,key,old,new,roi in CHANGES)
         print('Shared glove palm correction revision 4 already applied.');return
     assert m['sharedGripCorrection']['revision']==3,'Review later rig revisions before applying this measurement'
