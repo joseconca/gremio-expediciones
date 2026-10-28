@@ -135572,20 +135572,20 @@
                 "pixelSha256": "704185fe4ad605941e260690bbf03b23ad0d37978365a44095ee3251802ef02d"
               },
               "04": {
-                "sha256": "7ab568a12d94f514a8c857c085a93af5c71f5f0fc0b38e09adf56c6fc0db8b0c",
-                "bytes": 21161,
+                "sha256": "87d33ebeecf327ef33f20da8599b450fc84d47120d9c99439b5823450b09bc19",
+                "bytes": 20766,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  19,
+                  27,
                   92,
-                  93,
-                  248
+                  101,
+                  246
                 ],
-                "pixelSha256": "200d032fa48e7950bb83b2cdf2e4305ad6bf28c0c025c83499d637abd835eed0"
+                "pixelSha256": "d4264f7f4dae07f76b55be60634cc8dbe9eab3b47e910b0112c7b51c6406cab7"
               }
             },
             "distinctFrames": 4
@@ -136542,7 +136542,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "77dd06f1654f7f3555d2d424d8acce6acece1b879680dbe1c8b19a778099658f",
+          "sourceSha256": "b482ad30b8021ef78b816c785671363ac0118472d7c3a8b1b2dfb9ba7e126679",
           "sourceDimensions": [
             2169,
             725
@@ -136567,9 +136567,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v4.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise apron finish correction ONLY on Image1 FOURTH FIGURE, with its crossed walking forearm unchanged. Image2 CLOSE-UP is the approved charcoal apron material, shape and rivets. Replace the fourth figure's four GOLD chest rivets in square pattern with EXACTLY THREE SMALL SILVER rivets in ONE VERTICAL ROW on charcoal apron chest, naturally partly hidden by crossing arm. Change apron finish from gold-edged brown to approved DARK CHARCOAL leather with small silver corner rivets and NO gold piping. Keep compact short split hip apron of Image2. Brass ANVIL belt buckle, two square brown belt pouches, goggles, face, hair, silver iron cuffs, ochre rolled sleeves/short bare forearms and boots unchanged. Preserve EXACT ALL anatomy, body size, absolute head/hand/finger/foot positions, particularly fourth rear palm1830,390 and front fist2060,386 on original2170x725 canvas. NO recentering or new arm gesture. Other three figures unchanged. Four full walking figures in same canvas, transparent alpha, empty hands, no equipment, shadows or text.\n",
+          "prompt": "Precise canonical placement correction ONLY: Image1 FOURTH WALKING FIGURE is about20 SOURCE PIXELS too far LEFT compared with Image2 original canonical pose. On same2170x725 transparent canvas redraw ENTIRE FOURTH figure20pixels farther RIGHT; same vertical position, size, anatomy, crossed forearm and costume. Target actual rear palm center1830,390, actual forward fist center2060,386. Head/boots coincide with Image2 fourth subject too. Do not recenter strip or change first3figures. Preserve every detail of Image1 FOURTH figure EXACTLY: THREE SILVER chest rivets vertical, charcoal short apron with silver corner rivets, brass anvil clasp, square brown pouches, silver iron wrist cuffs, ochre rolled sleeves/bare forearms, goggles forehead, feminine braided bun face and brown iron-toe boots. No other changes, scaling or pose changes. Four complete full bodies, original2170x725 canvas, transparent alpha, empty hands, no equipment/shadows/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -136605,7 +136605,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame01-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame01-reference-v5.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -136635,7 +136635,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v5.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -136665,7 +136665,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame03-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame03-reference-v5.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -136904,6 +136904,136 @@
                   "scalePolicy": "canonical-pose-registration",
                   "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
                   "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame03-reference-v3.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "77dd06f1654f7f3555d2d424d8acce6acece1b879680dbe1c8b19a778099658f",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-reference-v4.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise apron finish correction ONLY on Image1 FOURTH FIGURE, with its crossed walking forearm unchanged. Image2 CLOSE-UP is the approved charcoal apron material, shape and rivets. Replace the fourth figure's four GOLD chest rivets in square pattern with EXACTLY THREE SMALL SILVER rivets in ONE VERTICAL ROW on charcoal apron chest, naturally partly hidden by crossing arm. Change apron finish from gold-edged brown to approved DARK CHARCOAL leather with small silver corner rivets and NO gold piping. Keep compact short split hip apron of Image2. Brass ANVIL belt buckle, two square brown belt pouches, goggles, face, hair, silver iron cuffs, ochre rolled sleeves/short bare forearms and boots unchanged. Preserve EXACT ALL anatomy, body size, absolute head/hand/finger/foot positions, particularly fourth rear palm1830,390 and front fist2060,386 on original2170x725 canvas. NO recentering or new arm gesture. Other three figures unchanged. Four full walking figures in same canvas, transparent alpha, empty hands, no equipment, shadows or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame01-reference-v4.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "10a75eaa70af53c99d856ae5ccf7bcffa585ea2f2fcb73dcb34ab4abff05c9cd",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame02-reference-v4.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "3784332913728c16eea4ab4e18d8a3b6ef4c829a136f5beba86e9f567789f3e4",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/walk-frame03-reference-v4.png",
                   "selectedFrame": 3,
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
