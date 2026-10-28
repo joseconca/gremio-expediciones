@@ -1,0 +1,14 @@
+{
+  "action": "attack_spear",
+  "status": "physical-palm-correction-pending",
+  "acceptedOriginalPoses": [1, 4],
+  "rejectedCandidates": {
+    "v2": "Guard and thrust hand positions differ from canonical palms.",
+    "v3": "Raised guard fist moved in the wrong direction.",
+    "v4": "Forearm coverage and primary thrust grip still incorrect.",
+    "v5": "Single-pose generation changed guard orientation and lowered the fist; not selected.",
+    "v6": "Primary thrust fist moved left of its shared grip; not selected.",
+    "v7": "Fresh canonical generation shifted several fists left; not selected."
+  },
+  "policy": "Keep all generated candidates and prompts. Automatic alpha contact is insufficient: inspect actual palms and full sleeve/bracer coverage. Never compensate with per-class equipment offsets or limb pixel transplants."
+}
