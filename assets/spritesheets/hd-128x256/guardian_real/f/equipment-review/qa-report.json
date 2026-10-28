@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "guardian_real",
   "sex": "f",
   "actions": [
@@ -72,7 +72,7 @@
       "c05e231b9c8c70e844f3dd74cb411b4caa02b91ce06cf12e8a1ad27a33914143",
       "e0a73be03e0183f3280867a0929da366ec8c2a1aee26ab69f26b097413bf7b3d",
       "9c43d4f184d23306500c5b41d4d1c1d8c75823afc3325441b391ad96a5fdb06b",
-      "dbd421e7314d788791dc98295109555811db3177b3ac90f5058b2d317dd4af36"
+      "696ea565f400ab65e8fcbd6dbadb3540895459c0d9a2ca849c3db7466897e59d"
     ],
     "attack_dagger": [
       "7bb1b83fd1cad377add4f3aeb0c06301d7d88996e60d67fef1128e5f37804609",
@@ -112,26 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_escama",
-      "point": [
-        107,
-        145
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_madera",
-      "point": [
-        107,
-        145
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,
   "artisticApproval": "not-automatic"

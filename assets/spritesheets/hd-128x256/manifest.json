@@ -146258,20 +146258,20 @@
                 "pixelSha256": "7131afd4b3a17efdb09eaf0b863313fb81923fb3798a7fdce4c83e1915538a19"
               },
               "04": {
-                "sha256": "dbd421e7314d788791dc98295109555811db3177b3ac90f5058b2d317dd4af36",
-                "bytes": 25665,
+                "sha256": "696ea565f400ab65e8fcbd6dbadb3540895459c0d9a2ca849c3db7466897e59d",
+                "bytes": 22708,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  5,
-                  92,
-                  104,
-                  248
+                  10,
+                  103,
+                  108,
+                  247
                 ],
-                "pixelSha256": "cf5a229090df5fa11cf6462c9f3aa50afdb417fc051a91cb719dab9e90040cb8"
+                "pixelSha256": "6eff99653a2d101ebde57b7c9bef5d7dd2c341c17cb0fb008af133d3bfd00252"
               }
             },
             "distinctFrames": 4
@@ -147196,9 +147196,9 @@
           ]
         },
         "attack_spear": {
-          "sourceSha256": "65105fe948d49abdb3a6f2df9773d4a897009ebfd0a7c9cafe580b4949263bb7",
+          "sourceSha256": "861a22ebd9c65d2a321883dd68d426dcfdcf373fcd3b908979cd4fe367673caa",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -147221,9 +147221,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE spear correction revision3. Image1 is ORIGINAL CORRECT ANATOMY and absolute placement, use its EXACT four poses and2172x724 canvas. Image2 only approved costume/material reference. ONLY edit FIGURE4's WRIST ARMOR, never fingers or hands. Retain every EXACT original head/body/elbow/wrist/finger/foot coordinate of Image1 figure4. Its forward gripping fist is intentionally far to RIGHT: center2130,246 on2172x724sourcecanvas (normalized shared grip107,145). Do NOT move fist inward, upward or backward because of the armor. Preserve its exact Image1 outline and position. Replace ONLY stacked brown leather wrap bands between forearm guards and gloves with fitted SILVER METAL guards down to wrists, at most one thin plain dark cuff. Keep full royalblue sleeves and dark fingerless gloves/fingertips, no bare forearm. Figures1,2,3 untouched; their complete finished poses will be selected from previous revision. Every other approved identity/costume detail unchanged: steelgray braided lowbun, blue sapphire forehead jewel, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbars/diamondfittings, angular silverdiamondbelt, THREE short blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Four complete fullbodyfigures one transparentrow facingright3/4. Same crisp paintedanimepixel-inspiredRPG render. No equipment/weapon/spear/shield/book/potion, text, grid, effects or shadows. No cropping, centering, resizing or moving bodyparts.\n",
+          "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear pose recovery revision4. Image1 is the ONLY full-body ANATOMY and exact absolute four-pose PLACEMENT target. Image2 contains ONLY disconnected approved face/hair and costume detail crops, NEVER body geometry. Generate Image1's exact four poses as Guardián real, replacing ALL novice clothing/identity. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. FULL royalblue sleeves under fitted SILVER METAL forearm guards which extend to wrists, ONE thin dark cuff at dark fingerless gloves, NO stacked brown wrist wraps. FOURTH figure must follow Image1's actual BOTH empty gripping fists exactly, with fingers at original image positions. Rear/waist hand grip at1887,320 and forward/up hand grip at2130,246 on2172x724source; normalized51,162 and107,145. Do NOT place rear fist on belt or move forward fist inward/upward. Copy actual hand anatomy/placement from Image1, armor conforms to joints. Same torso/head/feet/camera/scale and fourth-quarter position. All4costumes retain silvergunmetal segmented breastplate, blue shoulder caps with vertical silverbar/diamond fittings, angular silverdiamondbelt, THREE shortblue tabardpanels with SILVER TOWER centerpanel, steel kneeplates/greaves/sabatons, steelgray braided lowbun and blue sapphire forehead jewel. Exactly FOUR separate complete right-facing3/4 fullbodies on2172x724transparentcanvas, no centering or resizing individuals. No novice cream fabric, pouches, red scarf, brown hair, bare forearms, equipment/spear/weapon/shield/book/potion, text, shadows, effects orgrid. Same crisp paintedanimepixel-inspiredRPG finish. First three complete figures will be selected from previous good source; prioritize exact canonical FOURTH pose and costume.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -147259,7 +147259,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v4.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -147289,7 +147289,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v4.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -147319,7 +147319,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v4.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -147400,6 +147400,136 @@
                 "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "65105fe948d49abdb3a6f2df9773d4a897009ebfd0a7c9cafe580b4949263bb7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use case: precise-object-edit. Asset: Guardián real FEMALE spear correction revision3. Image1 is ORIGINAL CORRECT ANATOMY and absolute placement, use its EXACT four poses and2172x724 canvas. Image2 only approved costume/material reference. ONLY edit FIGURE4's WRIST ARMOR, never fingers or hands. Retain every EXACT original head/body/elbow/wrist/finger/foot coordinate of Image1 figure4. Its forward gripping fist is intentionally far to RIGHT: center2130,246 on2172x724sourcecanvas (normalized shared grip107,145). Do NOT move fist inward, upward or backward because of the armor. Preserve its exact Image1 outline and position. Replace ONLY stacked brown leather wrap bands between forearm guards and gloves with fitted SILVER METAL guards down to wrists, at most one thin plain dark cuff. Keep full royalblue sleeves and dark fingerless gloves/fingertips, no bare forearm. Figures1,2,3 untouched; their complete finished poses will be selected from previous revision. Every other approved identity/costume detail unchanged: steelgray braided lowbun, blue sapphire forehead jewel, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbars/diamondfittings, angular silverdiamondbelt, THREE short blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Four complete fullbodyfigures one transparentrow facingright3/4. Same crisp paintedanimepixel-inspiredRPG render. No equipment/weapon/spear/shield/book/potion, text, grid, effects or shadows. No cropping, centering, resizing or moving bodyparts.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v3.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v3.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v3.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
           ]
         },
