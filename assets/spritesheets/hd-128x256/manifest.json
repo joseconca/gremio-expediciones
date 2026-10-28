@@ -123010,7 +123010,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 40,
+        "validFrames": 44,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -123022,7 +123022,8 @@
           "attack_sword",
           "attack_axe",
           "attack_spear",
-          "attack_dagger"
+          "attack_dagger",
+          "attack_bow"
         ],
         "actions": {
           "idle": {
@@ -123726,7 +123727,74 @@
             "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "cc28241495b33a83f963e30160f6f0308a397a8d5b5d36cea6c66af3689b6259",
+                "bytes": 23108,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "281aa73dae02504bb7f836af5ec974355fd7c53dcf2e0c02954d2fa0f0999eaf"
+              },
+              "02": {
+                "sha256": "365a025d8629f509d670bbaaeff9ccf24f5d1a466521012cc5c8b6a98af27191",
+                "bytes": 23103,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  90,
+                  112,
+                  248
+                ],
+                "pixelSha256": "8e91ffe524ac3e514df6fd3c759de1bec5f92b7ffa03bf8e0fc85b35acbbb564"
+              },
+              "03": {
+                "sha256": "f9bfed8b503a47e867baf36306b3a1340ae82270c28edc0bc6c5c91623a4275d",
+                "bytes": 22989,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "ffa12da2d0efd672333b3bb5bcb88810443a7e511e24e46750a77b67c6fe2e03"
+              },
+              "04": {
+                "sha256": "9f32fb5bc525c74cbc599e027cf512783a43d272107fd3093b68ec817af95780",
+                "bytes": 23250,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  90,
+                  110,
+                  248
+                ],
+                "pixelSha256": "bce60c86b3fcaf666f5d111cea44a0dc25a606f9df51ce0d3d1c54655fe63b25"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
             "status": "missing"
@@ -124122,6 +124190,44 @@
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "8d617db660c03e498c229bffa0f0980a3988cb424a41fa7c5a687d0f8e559415",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            602,
+            18,
+            1035,
+            701
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/ninja/f/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the exact same NINJA identity costume from image2: close navy sleeves, compact plum forearm guards with silver diamond studs, black fingerless gloves exposing every fingertip, plum band and a single flat silver diamond forehead plate, THREE separate small silver rhythm diamonds stacked on LEFT chest, plum sash and diamond buckle, silver-edged navy wrap panels, plum shin wraps with diamond studs. No inherited novice leather pieces, no mask, no scarf, no attached weapon. All insignia identical in all four figures.  Production RPG body sprite strip for Ninja FEMALE, Tier 2.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult watchful feminine shinobi with blue-black compact high knotted ponytail, gray-violet eyes. Agile fantasy shinobi uniform: fitted INK-NAVY wrap jacket with MUTED PLUM overlapping chest panels, thin silver angular stitching, small compact forearm guards, broad plum sash with a single short folded knot and diamond-shaped steel clasp, dark fitted trousers and dark split-toe boots with plum shin wraps, black fingerless gloves. Narrow plum forehead band with flat silver diamond plate, lower face visible; no mask, scarf, cape, bandana tails or attached weapons. Three small silver rhythm-diamond badges on left chest, no magic. Tier2.5 Bardo/Explorador/Mago hybrid: controlled rhythm badges echo Bardo, fitted stealth layers echo Explorer, precise silver geometry echoes magic. More intricate specialist tailoring, no bulky armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+            "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+            "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+            "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -124283,6 +124389,22 @@
         },
         "attack_dagger/04": {
           "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
           "frame": 4
         }
       },
