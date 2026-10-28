@@ -1,0 +1,156 @@
+{
+  "classId": "invocador",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/walk-reference-v2.png",
+      "overrides": {}
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/hurt-reference-v2.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/use_consumable-reference-v2.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/dodge-reference-v2.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/block_shield-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_sword-reference-v6.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/invocador/m/source/attack_sword-frame01-reference-v6.png",
+        "02": "assets/spritesheets/hd-128x256/invocador/m/source/attack_sword-frame02-reference-v6.png",
+        "03": "assets/spritesheets/hd-128x256/invocador/m/source/attack_sword-frame03-reference-v6.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_axe-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/invocador/m/source/attack_spear-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/invocador/m/source/attack_spear-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/invocador/m/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_dagger-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_bow-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_staff-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_mace-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_book-reference-v2.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/invocador/m/source/attack_gloves-reference-v2.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/invocador/f/source/hurt-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/invocador/f/source/hurt-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/invocador/f/source/hurt-frame04-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/invocador/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/invocador/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/invocador/f/source/attack_gloves-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/invocador/f/source/attack_gloves-frame04-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Abrigo turquesa y azul tinta con ribetes de plata, broche circular con gema aguamarina y tres discos de vinculacion en el cinturon distinguen esta especializacion avanzada de Elementalista. Pelo negro azulado masculino y mono bajo trenzado femenino.",
+    "All fifteen female original strips and male idle were visually reviewed. Fourteen first male non-idle attempts used an incorrect Archimago prompt and were rejected; every selected male non-idle action uses corrected Invocador revision2 or later. A class/brief consistency guard now stops mismatched generation before producing assets.",
+    "Male spear revision3 supplies only complete pose3; other spear poses use revision2. Male sword revision6 supplies only complete pose4 from a whole generated portrait with shortened forearm and compact boot soles; other sword poses use revision2. Earlier sword revision3 and portraits4/5 were rejected for palm position or bounds.",
+    "Female gloves revision2 supplies only complete pose3 with compact complete fingertip outline; original1/2/4 retained. Female hurt revision3 selects complete portraits3 for poses1/2, original pose3, and complete pose4 from hurt revision2. Unselected hurt revision2 poses1/2/3 were rejected. All whole portrait derivations repeat the unchanged entire source canvas before canonical normalization; no limb transplant, body painting or per-pose export offsets.",
+    "Both sexes reviewed with representative equipment for every type, both axe structures, actual source palms and corrected final weapon compositions. Legacy canonical contacts on cloth, wrist or consumable waist-return retained intentionally. Fifteen actions and 682 contacts per sex pass without warnings. No automatic runtime promotion."
+  ]
+}
