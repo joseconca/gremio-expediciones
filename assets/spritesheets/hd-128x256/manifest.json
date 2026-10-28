@@ -146210,68 +146210,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "c05e231b9c8c70e844f3dd74cb411b4caa02b91ce06cf12e8a1ad27a33914143",
-                "bytes": 25682,
+                "sha256": "ab5eb39beb52abf0265f9fbfef28d876b14421271be7320771ea0d8cae4784b2",
+                "bytes": 24804,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  92,
-                  110,
-                  248
-                ],
-                "pixelSha256": "2ee3df309bb8bdfa2be1b18964a9c77436c541baaac7e371e68b8fb00e786e21"
-              },
-              "02": {
-                "sha256": "e0a73be03e0183f3280867a0929da366ec8c2a1aee26ab69f26b097413bf7b3d",
-                "bytes": 25237,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  12,
-                  92,
-                  107,
-                  248
-                ],
-                "pixelSha256": "cb51d4a6d1714a6c69407e6e22893ec99ca5867b7b597e84412e5489c6e2b655"
-              },
-              "03": {
-                "sha256": "9c43d4f184d23306500c5b41d4d1c1d8c75823afc3325441b391ad96a5fdb06b",
-                "bytes": 24965,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  11,
-                  92,
-                  112,
-                  248
-                ],
-                "pixelSha256": "7131afd4b3a17efdb09eaf0b863313fb81923fb3798a7fdce4c83e1915538a19"
-              },
-              "04": {
-                "sha256": "fa0529107ecefb14ed8ee31101a30cd6eda004c0a24d7136a9b8c8a970f2b914",
-                "bytes": 26146,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  6,
-                  92,
-                  110,
+                  9,
+                  96,
+                  108,
                   249
                 ],
-                "pixelSha256": "9c41febc65197e4438d0f8dbc0b81fd9df9baefb9f75e77de520d0ac84e9a479"
+                "pixelSha256": "aff3f574559314ca9d12344eac81532ff09133fde0632c32426119564c85c5e2"
+              },
+              "02": {
+                "sha256": "8f61b5ac51fee25da4ddf5c18c3e37fbfcf10bdb7262ec85f80780f9a355048f",
+                "bytes": 23973,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  96,
+                  97,
+                  249
+                ],
+                "pixelSha256": "1c47e755989d628be19cb9f19288c0b58735e8d4da37f687321eaf95ca4addc8"
+              },
+              "03": {
+                "sha256": "47290f3dc94db4ad68dc96c81d941b9f0cd91f57fd1c72d8c33b28156fb33bcf",
+                "bytes": 24255,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  96,
+                  106,
+                  249
+                ],
+                "pixelSha256": "f3553f733d68daa747645a70ac1850022553c99f31119afbedbae889f503b17a"
+              },
+              "04": {
+                "sha256": "c4477351773396229f164651d5b07d69ffcc186b6d012909eb3b6ef7cda7a8f4",
+                "bytes": 24805,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  96,
+                  108,
+                  249
+                ],
+                "pixelSha256": "5ecc529e4f1f318b7c30eaddf68ac4e72a55158a23bd4a86f877d3e264b6ab6d"
               }
             },
             "distinctFrames": 4
@@ -147196,9 +147196,9 @@
           ]
         },
         "attack_spear": {
-          "sourceSha256": "0f073453d0b5f26c4b49d3b10b411eeb3e83f00760c52f0ccc7540d75adeb67e",
+          "sourceSha256": "dca2f165f9bb4b2a2584a1380e82db25333f9f75c8a3e726b3a741d7897e0ff6",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -147221,9 +147221,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v5.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v6.png",
           "generator": "built-in imagegen",
-          "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear FOURTH pose recovery revision5. MOST IMPORTANT: every figure has the SAME FULL BODY HEIGHT and HEAD SIZE as both references. On2172x724canvas hair TOP near y20 and boot SOLES near y693; body spans about675 pixels high. Do NOT shrink bodies or leave a large empty top margin. Image1 defines EXACT four canonical full-body anatomy/hand/head/foot coordinates and camera. Image2 is the approved full-height Guardián real FIRST spear pose, defining face, hair, costume, materials and full-size body proportions. Recreate Image1 as this exact character. FOURTH figure follows Image1 pose4 exactly: waist grip at1887,320, forward raised grip at2130,246, sameoriginalhead/torso/feet positions. It must remain fullheight like Image2/otherthree poses, while BOTH hands stay at Image1's coordinates. Armor conforms to anatomy; no shrinking or centering a figure to fit it. All4costume: steelgray braidedlowbun, sapphireforeheadjewel, segmented silvergunmetalbreastplate, royalblue shoulder caps with vertical silverbars and silverdiamondfittings, FULL royalblue sleeves, SILVER METAL vambraces down to wrists with onlyone thin dark cuff, darkfingerlessgloves, angular silverdiamondbeltclasp, THREE shortblue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. No novice brown stacked wrist wraps, cream sleeves, redscarf, pouches or bare forearms. Four complete separate fullbody figures, right-facing3/4, exact2172x724transparentstrip, samecrisp paintedanimepixel-inspiredRPGfinish. No held/sheathed equipment/spear/weapon/shield/book/potion, text, grid, shadow or effects. First3 complete final poses will come from alreadyapprovedsource; only FOURTH newpose used, and it MUST have same fullheight/headsize as the other3.\n",
+          "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear action revision6. Image1 is EDIT TARGET for exact FOUR bodies and especially IMMUTABLE HAND ANATOMY. KEEP ALL EIGHT ORIGINAL CLOSED HANDS/FINGERS at their exact Image1 shapes, size, orientation and absolute positions; only darken the existing fingerless glove leather to dark brown. NEVER replace them with larger fists or bulky gauntlets. Image2 is ONLY approved face/hair/cloth/plate/boot detail montage; it deliberately contains NO hands. Change Image1 face/hair and clothing into this exact Guardian real, with full royalblue sleeves and SILVER METAL forearm guards right down to the unchanged original glove cuffs. Remove novice wrist wraps and bare forearms but DO NOT redraw any hand or finger. Every shared grip point must remain INSIDE the same real glove palm, never on bracer, belt, fingertip edge or empty space. On2172x724canvas phase1 palms/grips253,320 and488,242; phase2 796,311 and922,277; phase3 1491,281 and1587,250; phase4 1887,320 and2130,246. These are geometric guides, do not draw markers. Copy exact Image1 anatomy, compact arms, head/body proportions and perquarterplacement. ALL FOUR bodies stay full-height: hair top around20, boot soles around693, about675pixel height; NO body shrinking, centering, zoom or extra empty margins. Approved identity: adult feminine steelgray braided LOW BUN, attentive eyes, sapphire forehead jewel. Outfit: segmented SILVER/GUNMETAL breastplate, compact BLUE pauldrons with ONE vertical SILVER BAR each and silverdiamond fittings, full royalblue sleeves, close fitted silver vambraces ending in ONE thin dark cuff before original fingerless gloves, angular silverdiamond beltclasp, THREE shortblue tabardpanels with SILVER TOWER on centerpanel, steelkneeguards/greaves/sabatons. No cape, novice scarf/pouches/cream fabric, brownhair, wristbandagewraps, or bare forearms. Exactly4 separate complete right-facing3/4 fullbodies on original2172x724 transparentstrip, same crisp paintedanimepixel-inspiredRPG rendering. No held/sheathed equipment, spear, weapon, shield, book, potion, text, grid, shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -147232,98 +147232,6 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
-          "frameSourceOverrides": {
-            "01": {
-              "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
-              "sourceDimensions": [
-                2170,
-                725
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                644,
-                20,
-                1069,
-                693
-              ],
-              "scale": 0.23,
-              "origin": [
-                15,
-                93
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v5.png",
-              "selectedFrame": 1,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "02": {
-              "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
-              "sourceDimensions": [
-                2170,
-                725
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                644,
-                20,
-                1069,
-                693
-              ],
-              "scale": 0.23,
-              "origin": [
-                15,
-                93
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v5.png",
-              "selectedFrame": 2,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "03": {
-              "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
-              "sourceDimensions": [
-                2170,
-                725
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                644,
-                20,
-                1069,
-                693
-              ],
-              "scale": 0.23,
-              "origin": [
-                15,
-                93
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v5.png",
-              "selectedFrame": 3,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            }
-          },
           "previousRevisions": [
             {
               "sourceSha256": "48de0c1fcf0c88df41c59513698e5c7c1e975008019ba3d76b5b3b96e63fedea",
@@ -147656,6 +147564,136 @@
                   "scalePolicy": "canonical-pose-registration",
                   "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
                   "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v4.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "0f073453d0b5f26c4b49d3b10b411eeb3e83f00760c52f0ccc7540d75adeb67e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-reference-v5.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use case: identity-preserve. Asset: Guardián real FEMALE spear FOURTH pose recovery revision5. MOST IMPORTANT: every figure has the SAME FULL BODY HEIGHT and HEAD SIZE as both references. On2172x724canvas hair TOP near y20 and boot SOLES near y693; body spans about675 pixels high. Do NOT shrink bodies or leave a large empty top margin. Image1 defines EXACT four canonical full-body anatomy/hand/head/foot coordinates and camera. Image2 is the approved full-height Guardián real FIRST spear pose, defining face, hair, costume, materials and full-size body proportions. Recreate Image1 as this exact character. FOURTH figure follows Image1 pose4 exactly: waist grip at1887,320, forward raised grip at2130,246, sameoriginalhead/torso/feet positions. It must remain fullheight like Image2/otherthree poses, while BOTH hands stay at Image1's coordinates. Armor conforms to anatomy; no shrinking or centering a figure to fit it. All4costume: steelgray braidedlowbun, sapphireforeheadjewel, segmented silvergunmetalbreastplate, royalblue shoulder caps with vertical silverbars and silverdiamondfittings, FULL royalblue sleeves, SILVER METAL vambraces down to wrists with onlyone thin dark cuff, darkfingerlessgloves, angular silverdiamondbeltclasp, THREE shortblue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. No novice brown stacked wrist wraps, cream sleeves, redscarf, pouches or bare forearms. Four complete separate fullbody figures, right-facing3/4, exact2172x724transparentstrip, samecrisp paintedanimepixel-inspiredRPGfinish. No held/sheathed equipment/spear/weapon/shield/book/potion, text, grid, shadow or effects. First3 complete final poses will come from alreadyapprovedsource; only FOURTH newpose used, and it MUST have same fullheight/headsize as the other3.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame01-reference-v5.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame02-reference-v5.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "310bdd40204090e7c188a90d5f983bc14bc1f1b84b003fbf7e21c614fa05580a",
+                  "sourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/attack_spear-frame03-reference-v5.png",
                   "selectedFrame": 3,
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
@@ -148214,15 +148252,15 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear.frameSourceOverrides.01",
+          "source": "sources.attack_spear",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear.frameSourceOverrides.02",
+          "source": "sources.attack_spear",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear.frameSourceOverrides.03",
+          "source": "sources.attack_spear",
           "frame": 3
         },
         "attack_spear/04": {
