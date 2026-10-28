@@ -1,10 +1,12 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "oraculo",
   "sex": "f",
   "actions": [
     "idle",
-    "walk"
+    "walk",
+    "hurt",
+    "use_consumable"
   ],
   "bodyHashes": {
     "idle": [
@@ -18,10 +20,95 @@
       "d3fd62dfa022cd6f0a17f2f5f2b90700f68efd28f31554b9e972c4a3a95b90e5",
       "9d9417729b64686fced4d51f9ca4a60fe78179f933c93d15d360889b6acf592e",
       "424071d4dd37b040c3b36dace86615ce8a2954de896b0dd46af409ed466c1fab"
+    ],
+    "hurt": [
+      "5f087d4a530cba1e538230132e6e72dbd3426ab79debf3f87927f8c70b427962",
+      "713a849873cb359f18ba638bb8f2fa38e8ae9e6c2527bf30af057737021ec9ca",
+      "db246b61cdb7ca103b814bb773cdaa7d2b8c4b4225ed59d72e0c900f5fca34b5",
+      "c81945926b2d41394893b218559446771d98845885cfe046392a96463c22deb5"
+    ],
+    "use_consumable": [
+      "22e3061d6d2742b4ad734d50105827e9b245142c93720d2ae3ee2acb895e9237",
+      "65f354abc0fd6a38ce3a809458113a8a76684f8d5f9b6a7e82e51781914eb05c",
+      "fa832bcbff3507723f057fae7255106be416caf925b153259d932efbe03bc842",
+      "77bf7982896fb7701b09f51a185797e2acf1ec07c6519ace151342d5fcfd8a74"
     ]
   },
-  "contactChecks": 256,
-  "warnings": [],
+  "contactChecks": 388,
+  "warnings": [
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        75,
+        176
+      ]
+    }
+  ],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
