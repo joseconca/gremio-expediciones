@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "paladin-m",
+  "nextVariant": "paladin-f",
   "classes": [
     {
       "id": "novato",
@@ -139056,12 +139056,12 @@
       "tier": 3,
       "sex": "m",
       "order": 61,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/paladin/m/paladin-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/paladin/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -139075,12 +139075,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c7cae79163dfed1c8f21e218168ad7ada39edb9204148093a1d1d9179ca5b094",
+                "bytes": 26657,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  109,
+                  249
+                ],
+                "pixelSha256": "c7a01a9fbfb912a1b46066a112547d7ca743225101ece7083f1ba34dbebe3acf"
+              },
+              "02": {
+                "sha256": "a4479788f814a1309d5b5a1e47e731cdcc630baa7f8ff492af0c38dd75d2ae29",
+                "bytes": 26606,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  109,
+                  249
+                ],
+                "pixelSha256": "23d3bb8725baf46b88b8ae4252e3cc113bad1771c3a4b03afd254b80639abc15"
+              },
+              "03": {
+                "sha256": "699877539bc0a9601a37071ea1594e6b14a9c268a1ea51412e0cc245c7dd20b5",
+                "bytes": 26680,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "937c85d91d9f20e6f2ed2edcaf33b46ea42881cb592359a7abe1f0c71b6dcd23"
+              },
+              "04": {
+                "sha256": "5dfb7b806524cb561225116aa1e6292a7b558e5cb6132d66ebbaedf8ef14dc4f",
+                "bytes": 26744,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "0e94bc5d9f83bc1d72177be12a19a79b005ebc61d3637f4a94262a1d34587687"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -139125,6 +139194,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "e73f0213eb084e0057d9efb5eec535bf7287bf5ceda4a47c444428872d8dda36",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/paladin/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip PALADIN MALE tier3 idle. Use supplied canonical Novato reference ONLY for EXACT FOUR poses, all hand/finger/elbow/feet coordinates, head size, camera, body proportions, per-quarter centers, canvas dimensions and scale. Replace ALL novice clothing, hairstyle and leather equipment with this NEW higher-tier identity. Adult experienced masculine Paladín with honey-blond short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Clearly advanced PEARL-WHITE fitted FULL PLATE with finely sculpted GOLD sunburst on chest, ivory-white segmented plated arms touching narrow plate wrist cuffs and dark fingerless gloves, no bare forearms or novice cream cloth. Deep SAPPHIRE short three-panel split tabard, physical blue enamel knee gems on both knees, white/gold fitted plated greaves and sabatons. Small close-fitting flat GOLD LAUREL circlet at forehead. All FOUR have identical full plate pieces, sunburst, sapphire tabard, knee gems, belt clasp and circlet, including closed-eye pose. Advanced craftsmanship is expressed through engraving/materials, not larger body or shoulders. Compact fitted pauldrons do not widen canonical body. Image1 garment boundaries and exposed skin patches are NOT pose constraints; redraw for full armor coverage preserving ONLY anatomy and joint/finger coordinates. Exactly FOUR distinct full bodies in ONE horizontal row facing RIGHT three-quarter view. Same crisp painted anime pixel-inspired RPG sprite rendering/lighting. Transparent alpha background, clean outer contours, no colored fringe. Empty hands exact canonical gestures, no held or sheathed equipment/weapons/shield, no glow/magic/effects/shadow/grid/text/logo. Full hair/fingers/boots clear margins each quarter. No individual recentering or resizing.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -139133,12 +139260,12 @@
       "tier": 3,
       "sex": "f",
       "order": 62,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/paladin/f/paladin-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/paladin/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -139152,12 +139279,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b975493c049dc87b09218f506e823b28ce8b54fa1bdcadb5b2174ceacbfafef2",
+                "bytes": 27480,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  109,
+                  249
+                ],
+                "pixelSha256": "647d858b2c5773f0a08f637b95fe0b65840ce037c2529432f99a1c622275db9a"
+              },
+              "02": {
+                "sha256": "78efacb4ad9405b830d9f89f007b989c1af673a5e435a97e08c6912998604bf3",
+                "bytes": 27448,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  109,
+                  249
+                ],
+                "pixelSha256": "fe489a0285c0ff8b9afecffa184f5a11f7640a48f5921a4a177cc4961bc4643b"
+              },
+              "03": {
+                "sha256": "0c9134993bb180341373a9a4b29d91fa886e5a17a8c586aae2c9f26a25c061ce",
+                "bytes": 27430,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  109,
+                  249
+                ],
+                "pixelSha256": "8dc68676c81f95d86a86123610c6dec42dd5be4738fe26887bf160869ddd4718"
+              },
+              "04": {
+                "sha256": "e0d6867ba3d88c457e0da7f933b8953bdf0fcf858b2a31376c49e9d5ca4335b8",
+                "bytes": 27435,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  109,
+                  249
+                ],
+                "pixelSha256": "d228d53272470c24107d1230c87fb0a8cf2ac30c17cb146809aeb4ccf55951c3"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -139201,6 +139397,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "9f0a3ebb0d573e64d09744affe477bee6f3873285b635785c8132602fa17d501",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/paladin/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite strip PALADIN FEMALE tier3 idle. Image1 defines ONLY exact canonical FEMALE four poses, hand/finger/elbow/foot coordinates, head size, camera, body proportions, quarter centers, canvas dimensions and scale. Image2 defines NEW PALADIN COSTUME ONLY; do not copy masculine face/body. Adult experienced feminine Paladín with honey-blond hair in braided crown with low tucked ponytail, attentive determined eyes, canonical female head scale. Pearl-white full fitted plate with sculpted GOLD sunburst breastplate, compact gold-edged pauldrons, deep sapphire short split tabard, blue enamel knee gems and gold-rim sabatons, dark fingerless gloves with plate wrist cuffs. Small flat gold laurel circlet close to forehead. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Feminine face/proportions and honey-blond braided crown with low tucked ponytail, NO facial hair. Copy Image2's identical PEARL-WHITE and GOLD fitted full plate, sculpted gold SUNBURST on chest, sapphire BLUE three-panel short split tabard with narrow gold edges and small gold fleur ornament on center panel, round BLUE GEM gold belt clasp, physical BLUE ENAMEL knee gems on BOTH knees, white/gold greaves and sabatons, compact gold-laurel circlet touching forehead. Full fitted plated arms down to gold-rim white wrist cuffs and black fingerless gloves with exposed fingertips, no bare forearms or old cream sleeves. Every figure keeps exact same armor panels, gems, insignia and circlet, including third closed-eye pose. More advanced craft/details, canonical body scale, compact shoulders fitting cell. Replace all Novato clothing and hair; Image1 garment edges and bare-skin patches are NOT pose constraints, preserve ONLY anatomy/joint/finger coordinates. Exactly FOUR complete full bodies in one horizontal row facing RIGHT three-quarter view, transparent alpha background, same crisp painted anime pixel-inspired RPG rendering. No held/sheathed weapon/shield/equipment, cape, loose tails, glow/magic/effects/shadows/grid/text/logo or colored fringe. Empty hands exact canonical gestures. Full hair fingers boots clear margins each quarter. No individual resizing/recentering.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -143986,7 +144240,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

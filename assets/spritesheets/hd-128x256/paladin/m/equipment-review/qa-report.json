@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "classId": "paladin",
+  "sex": "m",
+  "actions": [
+    "idle"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "c7cae79163dfed1c8f21e218168ad7ada39edb9204148093a1d1d9179ca5b094",
+      "a4479788f814a1309d5b5a1e47e731cdcc630baa7f8ff492af0c38dd75d2ae29",
+      "699877539bc0a9601a37071ea1594e6b14a9c268a1ea51412e0cc245c7dd20b5",
+      "5dfb7b806524cb561225116aa1e6292a7b558e5cb6132d66ebbaedf8ef14dc4f"
+    ]
+  },
+  "contactChecks": 128,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 4,
+  "artisticApproval": "not-automatic"
+}
