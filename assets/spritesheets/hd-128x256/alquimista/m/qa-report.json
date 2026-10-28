@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T00:58:18.527422+00:00",
+  "classId": "alquimista",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\alquimista-m-sheet.png",
+  "sheetSha256": "cbfb6cdcc8c975baf2dd2a32cb2c32137d9fbc1b230176106a0d7d4236a02f74",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\idle\\alquimista-m-idle-01.png",
+          "sha256": "358ccdf277ab4baf098afa612852fa61dc46e001654819b9c8a38ec8b4e6e83a",
+          "alpha_bbox": [
+            23,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\idle\\alquimista-m-idle-02.png",
+          "sha256": "03b853de353a1bd04467b2fc87557e92b85c418bf1e6201ee2a11604bd0c4e58",
+          "alpha_bbox": [
+            23,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\idle\\alquimista-m-idle-03.png",
+          "sha256": "c52ca1aba3491f40b688d623ee81f56894cc96c638178809f308a9bfd792e1a9",
+          "alpha_bbox": [
+            22,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\idle\\alquimista-m-idle-04.png",
+          "sha256": "e432728b6c8117a729fcf5775d95ac4ebdc01429543bf3a379c751554568a468",
+          "alpha_bbox": [
+            23,
+            92,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\walk\\alquimista-m-walk-01.png",
+          "sha256": "219275fbb1dac99830f92193fc50295b06ee9c7f7fea9a242220ecc2b387b589",
+          "alpha_bbox": [
+            10,
+            91,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\walk\\alquimista-m-walk-02.png",
+          "sha256": "2c13ac282066d2ca88fe89d89a6f295628cd72cfa3c0f24f60cdd30d0f21d95d",
+          "alpha_bbox": [
+            13,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\walk\\alquimista-m-walk-03.png",
+          "sha256": "ad496a34e8a816c1714200195453c6a3d7714b1dd83fefdbd654763fdbbc32c2",
+          "alpha_bbox": [
+            10,
+            91,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\walk\\alquimista-m-walk-04.png",
+          "sha256": "4cb3815b0110cfa44519aa6bfc9eafeb1eaa08796650c07dd28d8c02b046af03",
+          "alpha_bbox": [
+            15,
+            92,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\hurt\\alquimista-m-hurt-01.png",
+          "sha256": "4d7059d4a2d2a099694b6d6cc17932b8d538125de07583e5c470468ee93257d9",
+          "alpha_bbox": [
+            23,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\hurt\\alquimista-m-hurt-02.png",
+          "sha256": "379718e04f59dbc7f070f7fdac1dcdf774b5e3683a8a78d2b1c4f498afa28b69",
+          "alpha_bbox": [
+            28,
+            97,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\hurt\\alquimista-m-hurt-03.png",
+          "sha256": "790ea0eba5b5e07193beb1f0ccee665bd3b2e05178a97d55a230f16cf0f238d7",
+          "alpha_bbox": [
+            16,
+            118,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\hurt\\alquimista-m-hurt-04.png",
+          "sha256": "a693a6d87c68ffcb42d6270ab6421b167d8359ae35d1e2b8e8f0423ec4b01493",
+          "alpha_bbox": [
+            23,
+            92,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\use_consumable\\alquimista-m-use_consumable-01.png",
+          "sha256": "7eea6ea818b941da0dc93bd206b231b15fa23ae095443569f27fbfbd99f84261",
+          "alpha_bbox": [
+            26,
+            94,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\use_consumable\\alquimista-m-use_consumable-02.png",
+          "sha256": "f0f26fceeaaf4cb286916838189b61ff4180befbce3e3b2be3cda154f2761c8f",
+          "alpha_bbox": [
+            26,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\use_consumable\\alquimista-m-use_consumable-03.png",
+          "sha256": "0f69522fb2dc555b3358e871175120fc56c3ca1507d5e34ab78becd4348f770d",
+          "alpha_bbox": [
+            22,
+            94,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\use_consumable\\alquimista-m-use_consumable-04.png",
+          "sha256": "a72f0177abcccbe2fd76a4ad43ad57524741ac8c48dfc1ef19b8c260c4bda5d3",
+          "alpha_bbox": [
+            17,
+            94,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\dodge\\alquimista-m-dodge-01.png",
+          "sha256": "08f55f8f2270daca895b6f6f437f7352b06bee068187f4094f6f90c5067c5921",
+          "alpha_bbox": [
+            19,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\dodge\\alquimista-m-dodge-02.png",
+          "sha256": "95123fdc861517e0d48edb153ead1151bebdde6b2a3bae165cafecd0187d06c4",
+          "alpha_bbox": [
+            19,
+            98,
+            118,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\dodge\\alquimista-m-dodge-03.png",
+          "sha256": "6008d34fb8c86b66be1f6661df59cd5b3de3c6efe634dca5336eb4b1e3f67295",
+          "alpha_bbox": [
+            26,
+            101,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\dodge\\alquimista-m-dodge-04.png",
+          "sha256": "6ddbd2186d854f53f187968210dc60acbdc0a8f176d16bc3a1bc8566545d30d5",
+          "alpha_bbox": [
+            23,
+            98,
+            114,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\block_shield\\alquimista-m-block_shield-01.png",
+          "sha256": "aa75c1e36565e0b8ac75d336542cc81bec2c0722919ba825e5ae3a7d0184b2fd",
+          "alpha_bbox": [
+            19,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\block_shield\\alquimista-m-block_shield-02.png",
+          "sha256": "4ded4eb24065f38f448a622da882dd2c6f2b3774bf1a7f7a574eed6ee5bfa3b4",
+          "alpha_bbox": [
+            16,
+            98,
+            109,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\block_shield\\alquimista-m-block_shield-03.png",
+          "sha256": "37da57756e8821b084e378b6c31f05c28652d857f1d8ea044914e7889a719676",
+          "alpha_bbox": [
+            13,
+            117,
+            107,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\block_shield\\alquimista-m-block_shield-04.png",
+          "sha256": "4404f2c601093209bc8a4ac7c70f9ac7e5a5fadc58f42742d4816cfafa75f5e8",
+          "alpha_bbox": [
+            15,
+            98,
+            107,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_sword\\alquimista-m-attack_sword-01.png",
+          "sha256": "9d991b4ae6b0b0d9fa33911cd3a799566213f965becbe7d36d094dfa4c5b9855",
+          "alpha_bbox": [
+            10,
+            95,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_sword\\alquimista-m-attack_sword-02.png",
+          "sha256": "0278744424d2f8c2aad72565f6425d271ce99af3e74de988b289d751ef5ca0fd",
+          "alpha_bbox": [
+            9,
+            95,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_sword\\alquimista-m-attack_sword-03.png",
+          "sha256": "6907dc8e01162be80bb0c3d604faf39688603ccdb2ad7cfdbc37a6b6e815d63e",
+          "alpha_bbox": [
+            8,
+            100,
+            119,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_sword\\alquimista-m-attack_sword-04.png",
+          "sha256": "ec9ab7a0b8edcdac4f9cdd04b4a49060461fad3ce7b3decb10b8b799798cd473",
+          "alpha_bbox": [
+            12,
+            95,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_axe\\alquimista-m-attack_axe-01.png",
+          "sha256": "e4e1e14156f8195f76a93930b70b6a8661c062dbd20f0890f58698ffa1b476bc",
+          "alpha_bbox": [
+            9,
+            100,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_axe\\alquimista-m-attack_axe-02.png",
+          "sha256": "6a9f0b59a4de56b77f46c92cc45221038ad0995acf721babee853237084d1ca2",
+          "alpha_bbox": [
+            17,
+            111,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_axe\\alquimista-m-attack_axe-03.png",
+          "sha256": "78ee06f72a94c89cab69af1fccc48cd2c43f0d402e5f3fa6920f4ccc61d351f0",
+          "alpha_bbox": [
+            9,
+            119,
+            112,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_axe\\alquimista-m-attack_axe-04.png",
+          "sha256": "facea2b4dde46709f74246efed71605bc45dafb1317982ea994c49739f4d94f0",
+          "alpha_bbox": [
+            23,
+            104,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_spear\\alquimista-m-attack_spear-01.png",
+          "sha256": "ee0c643890f3cb92373da45e0f1a6d6de447e112b767360d3cf629d1d436b97a",
+          "alpha_bbox": [
+            8,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_spear\\alquimista-m-attack_spear-02.png",
+          "sha256": "6f39ab627ba81dc829107fd65a4c0f4d9e4f9045ada7ac7bc00957ca57cdd1aa",
+          "alpha_bbox": [
+            13,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_spear\\alquimista-m-attack_spear-03.png",
+          "sha256": "e48d1c939bdf14d6ff08d3f1f0a129ad5e9ecba7a7b6c02b14060952d247075a",
+          "alpha_bbox": [
+            13,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_spear\\alquimista-m-attack_spear-04.png",
+          "sha256": "305db83bf2fb04c065f3717211e8944870afc03a205639603fb9cc94e55e8c3e",
+          "alpha_bbox": [
+            13,
+            92,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_dagger\\alquimista-m-attack_dagger-01.png",
+          "sha256": "94d89f38bc2837f160fadc84a0198f8f6a6386d170a2ab26778678b11d825ea6",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_dagger\\alquimista-m-attack_dagger-02.png",
+          "sha256": "6b8b17e9b8dd236c3c7a7717ac82c5a775b15d0deedef105477393a4b88e4bea",
+          "alpha_bbox": [
+            26,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_dagger\\alquimista-m-attack_dagger-03.png",
+          "sha256": "3e9829968244429a2eb42d1c9cdfe0d37a72ac77d4d303bf4cc2a7723043abec",
+          "alpha_bbox": [
+            25,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_dagger\\alquimista-m-attack_dagger-04.png",
+          "sha256": "7dce1cbad4469036af8556b9169e862bbc0811cfc61f1257dfef33d458feedd3",
+          "alpha_bbox": [
+            26,
+            92,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_bow\\alquimista-m-attack_bow-01.png",
+          "sha256": "fd6b8a260ba4bddfbd99e2a95939547b2540d9380b7daddf156c0802e11dbd4d",
+          "alpha_bbox": [
+            25,
+            94,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_bow\\alquimista-m-attack_bow-02.png",
+          "sha256": "1195372c129e3f06c8cc467ca41c6cd0b5407ec8d43cf5ceb77ec28978d8cae3",
+          "alpha_bbox": [
+            24,
+            94,
+            121,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_bow\\alquimista-m-attack_bow-03.png",
+          "sha256": "b5ab17525183bb86dc2f240c615135767c18f3ecd8f9e81bf5b9c0e2a48f4e61",
+          "alpha_bbox": [
+            24,
+            94,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_bow\\alquimista-m-attack_bow-04.png",
+          "sha256": "9e10d78ec2527fa018b899f325e796ac6fd3661bfed947f31f17bed4bd899812",
+          "alpha_bbox": [
+            21,
+            94,
+            122,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_staff\\alquimista-m-attack_staff-01.png",
+          "sha256": "9a3d6146df594e5ff0e157a4d0f0d974a17fb230c92381329c24ec57c7dc2fdd",
+          "alpha_bbox": [
+            26,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_staff\\alquimista-m-attack_staff-02.png",
+          "sha256": "54e54004ea586a8cf7c7819f5b1fbe8e8b214e4a9405d5a8606260a59f0d7930",
+          "alpha_bbox": [
+            27,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_staff\\alquimista-m-attack_staff-03.png",
+          "sha256": "79ad112fad873cd493112778c9d7de389dd8ee3f6a2a6960b79ca53a73760532",
+          "alpha_bbox": [
+            27,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_staff\\alquimista-m-attack_staff-04.png",
+          "sha256": "60bf502c6eabf6b63f1077f37265554d8f4b088dfd5e3e190a200bab3cce491b",
+          "alpha_bbox": [
+            21,
+            92,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_mace\\alquimista-m-attack_mace-01.png",
+          "sha256": "c81a6da937745cce10a8967c2383c8b1f94f5995d57bf1cef4e397b08e4a7f97",
+          "alpha_bbox": [
+            23,
+            91,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_mace\\alquimista-m-attack_mace-02.png",
+          "sha256": "bf8d36e5d5f746900513dfce83e002b95eb9578fcf6459e5419260788dbf5273",
+          "alpha_bbox": [
+            35,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_mace\\alquimista-m-attack_mace-03.png",
+          "sha256": "44dbeca61dfbcb8ef953deb2dc64601a20d6d6371bd1cf586a5435cb3c12a9a3",
+          "alpha_bbox": [
+            31,
+            105,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_mace\\alquimista-m-attack_mace-04.png",
+          "sha256": "dade3ab42f4aedabd697a9c974b9f89f1c2b925148ca55a8fb5f5856d2676ad9",
+          "alpha_bbox": [
+            32,
+            91,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_book\\alquimista-m-attack_book-01.png",
+          "sha256": "a0c851d550680fda789c571a5db64fbe9763624ccbfefe6c9a3d6821c8b079ae",
+          "alpha_bbox": [
+            26,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_book\\alquimista-m-attack_book-02.png",
+          "sha256": "cfb99a48e1ccdce30c3972c5f68c89dc20502f8ac50e8ec4c60ee2067299067e",
+          "alpha_bbox": [
+            25,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_book\\alquimista-m-attack_book-03.png",
+          "sha256": "6949bfdc41c50ffe9b3f8674c3afe60018bcc33bd4f1e6457fa99d021e4cbac8",
+          "alpha_bbox": [
+            27,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_book\\alquimista-m-attack_book-04.png",
+          "sha256": "92548b37ae89fa17cd667fdee5dd83961b2de523e978da772edcf09c7b45f550",
+          "alpha_bbox": [
+            24,
+            92,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_gloves\\alquimista-m-attack_gloves-01.png",
+          "sha256": "4879c690fa14f130f8487500b74b775e2324c5b76420dfb6440f1112743a110d",
+          "alpha_bbox": [
+            22,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_gloves\\alquimista-m-attack_gloves-02.png",
+          "sha256": "029a5cf5a11921db66491f9b9e9c3f56c86b4ca779cfaf0705e34e5fc511dea5",
+          "alpha_bbox": [
+            22,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_gloves\\alquimista-m-attack_gloves-03.png",
+          "sha256": "c0674d037c47f62851530ba8391a167a0267b7753c99e8817d2653707efbbc28",
+          "alpha_bbox": [
+            22,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\alquimista\\m\\frames\\attack_gloves\\alquimista-m-attack_gloves-04.png",
+          "sha256": "6b0e3f5a609b1af2dad5963faf252a1fd753bfbfa286b002e7e654cedfc749f4",
+          "alpha_bbox": [
+            22,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
