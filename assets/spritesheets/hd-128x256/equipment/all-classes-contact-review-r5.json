@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 76,
-  "contactChecks": 51832,
+  "variants": 78,
+  "contactChecks": 53196,
   "warnings": 0,
   "reports": [
     {
@@ -252,6 +252,18 @@
     },
     {
       "classId": "explorador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "francotirador",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "francotirador",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "francotirador-f",
+  "nextVariant": "domabestias-m",
   "classes": [
     {
       "id": "novato",
@@ -331,7 +331,7 @@
       "name": "Francotirador",
       "tier": 3,
       "order": 39,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "domabestias",
@@ -180720,7 +180720,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/francotirador/m/francotirador-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/francotirador/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -181507,20 +181507,20 @@
                 "pixelSha256": "43db02ed0172053f6cf4a405a31bc7e919bf852380cff4a60bcb6281dd572acb"
               },
               "04": {
-                "sha256": "fe9e222deb2bd88290658a91a2c4875cbe28e66d9fd4bed53236743d89e85055",
-                "bytes": 22486,
+                "sha256": "9c1a7d1ee08d724486df7c0c1ef13de86ec5e8c34631e1b682e82e7c5a9e7166",
+                "bytes": 20571,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  19,
-                  95,
-                  122,
-                  249
+                  10,
+                  103,
+                  112,
+                  252
                 ],
-                "pixelSha256": "65aa01a7513d85b56ac166fb72a619cd3ac89c8722be82f573c2bd1525b6a81d"
+                "pixelSha256": "382fb32b773d84ffb8d54ee92c6179ac25a21cb7f8ddb0d52e70953e06c69267"
               }
             },
             "distinctFrames": 4
@@ -181844,7 +181844,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "3c37ccdbc849465708821128e6b728697291c3951b452351f636d3c02f780904",
@@ -181882,7 +181883,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "1d16e6f8f13c61c1dde62a8b358d56e8487b5ac1ab79eb330ceee505dbb1142e",
@@ -181920,7 +181922,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "a71507ac7ea5ed753fdce2b6f5fd9247741fe5e2de85bcaa29597531a5e35549",
@@ -181958,7 +181961,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "dbf2d34be5065703e8eb4814e2484c77df7f68bebf8e4ad153529d6db1c4c8e9",
@@ -182002,7 +182006,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "cfcd20bf13c8f07d763e236a94f1f90d3592c17ffaefce559c1f68618766fb25",
@@ -182046,7 +182051,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "47564581fa16306aceb36c775784cb35ff12843325fbcc6befce5a45e4cecc2a",
@@ -182084,7 +182090,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "b1c51ebfc0c1cba2455dcf69eca737ace3bf64d427e28de2790dfe94c8671863",
@@ -182122,7 +182129,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "f09a77c55621b9c3aca463686441d5fa8c5c64c85f7544ad9199edf18d87400d",
@@ -182160,7 +182168,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "da692699da6e5080193c81a5b7a74486d4c2138c1c66eea2e5acacf08ff0948d",
@@ -182198,13 +182207,14 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
-          "sourceSha256": "5b6090d0b21d311abdc8436aead3653ef79ace0da26191abb36aa393a4c597b4",
+          "sourceSha256": "b6f39adfb0b73aef699567c923e3046edfad9062af4f75c35c565a3bd8610637",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -182226,9 +182236,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Francotirador MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Francotirador with sandy-blond short swept crop, attentive determined eyes, clean-shaven, canonical head scale. Elite marksman: fitted DEEP PINE-GREEN coat with CHARCOAL reinforced panels, compact SILVER angular shoulder caps with three brass chevrons, narrow ivory chest strip and brass hawk-eye brooch, dark green split waist panels close to hips, charcoal trousers, black riding boots with silver calf clasps and dark fingerless gloves, small silver temple clip. No quiver, scope, bow or cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Full fitted PINE-GREEN sleeves in every pose, CHARCOAL wrist bracers and dark fingerless gloves; no bare upper arms or novice cream sleeves. Short split green coat panels kept close to hips; simple dark belt with flat rectangular SILVER clasp. Silver shoulder caps each show exactly THREE small brass chevrons. One narrow central IVORY chest strip and one BRASS hawk-eye chest brooch. Black riding boots with SILVER calf clasps. No long coat tails, cloak, fur or novice shoulder scarf. Tier3 advanced specialization of Cazador. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Localized anatomy and framing correction of this exact Francotirador male bow recovery portrait. Keep exact1086x1448canvas and body/head/torso size and positions, outfit and identity. Adjust ONLY (1) outstretched RIGHT fist: move entire fist20pixels LEFT and10pixels UP, keep same gesture and natural wrist. (2) both boot soles: make boots slightly shorter from below, raise their bottom contours by25pixels so there is at least30pixels transparent bottom margin; do not move knees or entire body. Preserve complete boots and silver clasps, no cutoffs. Keep green full sleeves, silver three-chevron shoulders, ivory central stripe, hawk brooch, flat silver belt. Other open hand/head/legs unchanged. One complete body empty hands. True transparent background no shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
@@ -182236,7 +182246,140 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "5b6090d0b21d311abdc8436aead3653ef79ace0da26191abb36aa393a4c597b4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "5b6090d0b21d311abdc8436aead3653ef79ace0da26191abb36aa393a4c597b4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "5b6090d0b21d311abdc8436aead3653ef79ace0da26191abb36aa393a4c597b4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "5b6090d0b21d311abdc8436aead3653ef79ace0da26191abb36aa393a4c597b4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/francotirador/m/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Francotirador MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Francotirador with sandy-blond short swept crop, attentive determined eyes, clean-shaven, canonical head scale. Elite marksman: fitted DEEP PINE-GREEN coat with CHARCOAL reinforced panels, compact SILVER angular shoulder caps with three brass chevrons, narrow ivory chest strip and brass hawk-eye brooch, dark green split waist panels close to hips, charcoal trousers, black riding boots with silver calf clasps and dark fingerless gloves, small silver temple clip. No quiver, scope, bow or cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Full fitted PINE-GREEN sleeves in every pose, CHARCOAL wrist bracers and dark fingerless gloves; no bare upper arms or novice cream sleeves. Short split green coat panels kept close to hips; simple dark belt with flat rectangular SILVER clasp. Silver shoulder caps each show exactly THREE small brass chevrons. One narrow central IVORY chest strip and one BRASS hawk-eye chest brooch. Black riding boots with SILVER calf clasps. No long coat tails, cloak, fur or novice shoulder scarf. Tier3 advanced specialization of Cazador. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "a5cef7133b42da5eb1bcffc0039621d07e15213a521fc6dbf29972018572f9b1",
@@ -182274,7 +182417,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "95a704e1169cf692d5885cbe3ec11e2a108097c79b5aa773c467b49caa900414",
@@ -182312,7 +182456,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "ffce92e9db623d7707ba1580304d15df1ba9b9ae05228617647e48efd1bf3502",
@@ -182350,7 +182495,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "01243644b975bbfbd9c89b69c55ade7f682e807d4c0adc9938d0c4596e428255",
@@ -182388,7 +182534,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -182553,15 +182700,15 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
@@ -182663,6 +182810,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "francotirador",
+        "name": "Francotirador",
+        "tier": 3,
+        "costume": "Elite marksman: fitted DEEP PINE-GREEN coat with CHARCOAL reinforced panels, compact SILVER angular shoulder caps with three brass chevrons, narrow ivory chest strip and brass hawk-eye brooch, dark green split waist panels close to hips, charcoal trousers, black riding boots with silver calf clasps and dark fingerless gloves, small silver temple clip. No quiver, scope, bow or cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Full fitted PINE-GREEN sleeves in every pose, CHARCOAL wrist bracers and dark fingerless gloves; no bare upper arms or novice cream sleeves. Short split green coat panels kept close to hips; simple dark belt with flat rectangular SILVER clasp. Silver shoulder caps each show exactly THREE small brass chevrons. One narrow central IVORY chest strip and one BRASS hawk-eye chest brooch. Black riding boots with SILVER calf clasps. No long coat tails, cloak, fur or novice shoulder scarf.",
+        "maleIdentity": "Adult experienced masculine Francotirador with sandy-blond short swept crop, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Francotirador with sandy-blond hair in compact braided ponytail, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Silver angular chevron shoulders and brass hawk-eye brooch",
+        "advancement": "Tier3 advanced specialization of Cazador. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/francotirador/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "41d0bf0d911c1f5421cd86fa4bbded20f38ec4262b42436434bb53e80c33cbb4",
+            "7d0b4110e4baff07954aaa39655b182ab5a659d0d847cdf4f48bf62c670d853d",
+            "7cb2576f6be67273a4c0768925b1e586ea276f8a4105b9ab4b5d377db58018d3",
+            "ec0c414fdfb4310140ad0f693543953e975b69071d5e1a036299e0e5d0d4bfb5"
+          ],
+          "walk": [
+            "46a77dbe4567ebf44474d011667ec90f83fc53ea4a8b6dbf39d259ef66dac347",
+            "3b918e98f664d55b73216ec7c40b71526e47024de25afc1d4b2edc6b3906f300",
+            "3fdb1b5e8a410214ad897118658a9c22195057767994e05b820b77532d986316",
+            "8d9fdcc74a347aaad8c8e14b3b38e86627e6e7a48bf1f842e5cf2bcca0a6ec7a"
+          ],
+          "hurt": [
+            "b3dcf16dabc9b5195368a8230c87944702ce4b6d17cd5caf80b712686526fd07",
+            "7520ef34fc572ced200a87b09c3dbfc63b1646ecda61453447924f0527cac98f",
+            "34764de5a92383d38e3f7f955fde21e3ef3a5ea844079e36ebc0b0148ad0e8a9",
+            "6690ba6dc0bb99c280da186d17df47e864e29f473c2679ee4d819fa18953242a"
+          ],
+          "use_consumable": [
+            "f74bf237219030621189cf94cfc589e82486d0bc08db8ccffdf2bbf588b69708",
+            "b978c609199a461b45189b497a0249385ede5b1fd7379268fd56494cfaf79d86",
+            "cedabd7993bb1891d05900cc9cc8cd789a92a0c7208a13c304e299870b96fcb0",
+            "f80a53cf31a52c4204a37358e97ef8f5676ce00256dc17d533ca21773388e0c7"
+          ],
+          "dodge": [
+            "12771df88f42faefbc629e1d446b1a2177224e02ea6f3a1ec12880dcbbf7851a",
+            "282cbdc59e348a38af4b56c94bece154a4de7600dce1f4d9d4316d7f3e054e92",
+            "c367fcb64e4d66e95117ca5c02a64a41ce152d5192ad94141a2928eb059727b1",
+            "ed5aeeed5f54afea53a62f9d78f6ab059e5217abd721d82a740877566e20b00a"
+          ],
+          "block_shield": [
+            "caa063a65bc80e3eadb44cb6b82fff211581ef4e93e1f8ee9754890cbfee006a",
+            "c3cf712c28b57e90df0bb382415ae131b2d6c194778e715f1d10880f6a31908e",
+            "a7eb1385536bed2f88f859316ccf88d40f4b617be392c3d4116a957b8aaa144f",
+            "fea4789fda591a00c41cc96f491465d156097e44c0c63c270676b4181cfcd81f"
+          ],
+          "attack_sword": [
+            "e3a1468a04087e8b4bd7866fa20a008094a28f68eb2955f36ffd6fa40b47593c",
+            "fd6e1cb78251b8114fcd686402414873ce7c864626c0f1b40c38937e623bc382",
+            "a2100d56e0ed5cc34a98567133e799a8a088ffa505e24233f6dfb5006dd595a4",
+            "dae1dc3893c2714c14c5af496ae39949b4a47f2546a25116e7758460c930bbfd"
+          ],
+          "attack_axe": [
+            "1ccdaa8009ab7ce906f9d59a8a952df3f5142f72f1d3d8f5ce27a1dd5a263acf",
+            "a46b8b03f1fab982fc05772cc285b8f6facde87695be93f12bebf8409f8c3ef7",
+            "643f51a90dc58f3c4716b46b3036a4cf3b447474f8464ac974ef60343492dce8",
+            "81fab995dbdf49ea6a1ff90bbfddd2225d26c6a21f2d15a672505bb2325c3477"
+          ],
+          "attack_spear": [
+            "704c7159832539314bbd34990aee7bb3f163d9dd15d39f55471340b3d94dcc9c",
+            "9c840ae02cfd3c0f41a064cbef06e47345d05e3f307e6e4ff45dcb09190d5e7e",
+            "905f173939252bcb6d2c0be7657bf63434b04dd5f08c65f32f4c6d402d4c93a6",
+            "e5aed5a9559c6186e530cfd0f247acc6d99da02110ee3784a87979ae2034ae5c"
+          ],
+          "attack_dagger": [
+            "a91df83e19b465be4848fd2d31a7e0e37d97083fc4ae1745feff366993514a67",
+            "fadd4bc2fda8cf57f9bc4aacfa25ef2c732d5ca348544e2fd03cb6f45a0f3c9a",
+            "1e59e89e6183c4ecd52a335a02da2020d97cfabdfdcf454eead407a0c87367e5",
+            "37d6b45240a45a568f5c43141bbf8b2e664dc97e15ee1677f0587f1dfffd9cf2"
+          ],
+          "attack_bow": [
+            "b417e0678c8e054e4160ba2cf65dc6271bc427280ffd05e9423e000d29cb4d17",
+            "91c2a4c4bfea1133f50d69236d419ab97a1c9a35284f926bda3f29a2608ab55b",
+            "f2cb54f0063855c5dd012856cc703ef2073b804acc197c87d380da7e320ff43b",
+            "9c1a7d1ee08d724486df7c0c1ef13de86ec5e8c34631e1b682e82e7c5a9e7166"
+          ],
+          "attack_staff": [
+            "92a9a7d9daa0189e911f99531b7ac2834cfd7b6b37d0194e1958bc646ce0775b",
+            "3beac6fee140492e6b7ec54758ad7704a4ae18cd1542dc70c634f3a69377b871",
+            "d8b1f4284f9dc5eaee92feca5c995089afea96e112b15940072edb7662ddd810",
+            "1e3e9fc28b359ff03129a6e6adb1d01bc86d3f1b4e0fed295ee10866728ec048"
+          ],
+          "attack_mace": [
+            "89ab8186243988c4d5e2dbcbabd23353351f51b8258d72633734417439a6e922",
+            "ba4747a010e9278e7b96d1e13bd59b87bd8a289a550b20eaecde1e36e1afa680",
+            "573f0b35af4a9f9804357698db1be110a097f5be23874ab21eb3c02fda4738ce",
+            "278c349d522b4203b87fdbf66ae6a6de70c2a766cf6edc436872ce694a401c6f"
+          ],
+          "attack_book": [
+            "970dc441b6327305205fb6d41748985ac3da6e783420b85e30ed4f9d3df8d3a7",
+            "799e1b896a3e40b0e95a78dc7b6d2127dc67c9e46d630b10deef8d3398a81b85",
+            "c19e2996bbff262761c62d66b565a428304abff5b1642c36e9698855d75483a4",
+            "e278ad4148eda7dd5f93b40f6949980304c2f1524d275919608fce4c1fe6a95a"
+          ],
+          "attack_gloves": [
+            "382f9c8a5ab7f1d111964008f94042df520a383d5c4c2895b26e4c9638029888",
+            "a10602ead03db153ff9851c3076597676c57dd6060b4fe0c4f97d14f16cbaa89",
+            "555956d44d947834b956fc375c46f3c3ff7053546e8de3c63c73d5e4f1e03db2",
+            "f020ddc4fd48a3e57bc8a17dcf409db8bea6a48a0e28e02e682d9ebbcf2e806e"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -182675,7 +182937,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/francotirador/f/francotirador-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/francotirador/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -183799,7 +184061,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "d24e8e55074cca051fec288e26f63eac9d55d8e75e4e81248d234065827ac8bd",
@@ -183837,7 +184100,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "fa618a66ab57f57960659c45bc24b0ee8d65b2f0b1624f63bc46d7b067a8dbd1",
@@ -183875,7 +184139,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "5d0e5934dd8b52637a41da7d5a06e00b2320e2c08eb9dee6666b470300062726",
@@ -183913,7 +184178,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "34231ef6e3c8976af45f86fe128c3bf4ab02b329ff7752cccb5eeaaed2a0a880",
@@ -183951,7 +184217,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "e9c059e54ea4326cd06250b47747d65be165aeacc69f89d66f4a3ac427f3773e",
@@ -183989,7 +184256,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "3055094f45e9deebea86b870b4800073dad65ccdf72829cd6800eda07e52663d",
@@ -184027,7 +184295,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "7c511f05ef2c9f3b3d31ae0c525e3d28ae5619aa27be9ff9b3e6783f2ccf0c3a",
@@ -184065,7 +184334,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "bd7c36053ea3571b3a239f799e12853784af144696c5e1961cf68d82ae38972f",
@@ -184103,7 +184373,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a4d9a2736f9399c546a27175aaae3099975e2484d042f3a1748ab9a48681f4a6",
@@ -184141,7 +184412,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "e88fb05fc61eeaa93e78cec7fc0149c8bba0b40dcd91f2c83a94fbaa029d4134",
@@ -184181,7 +184452,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "fe4cc2e53debef01fb8358a50d59bb6ff3eba0a1fcc75488e965f99a43f369e4",
@@ -184219,7 +184491,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "0ebb0a16a4f25b97bbae445b29d5392927270a90c3dab21636f172bfd49db1f8",
@@ -184257,7 +184530,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "bed9110c71a017d34fd7add2a42fc2439165ac914a37d55ac4e9a637fb8148df",
@@ -184295,7 +184569,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "820632a9916741394c705de0ddc469661f0bbc7a685eef5ca09767ff8fb2bb11",
@@ -184333,7 +184608,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "02bf43eee4f382877d4b59b168b92b4d1ccab894a0458831492aa59de62b0a60",
@@ -184371,7 +184647,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -184646,6 +184923,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "francotirador",
+        "name": "Francotirador",
+        "tier": 3,
+        "costume": "Elite marksman: fitted DEEP PINE-GREEN coat with CHARCOAL reinforced panels, compact SILVER angular shoulder caps with three brass chevrons, narrow ivory chest strip and brass hawk-eye brooch, dark green split waist panels close to hips, charcoal trousers, black riding boots with silver calf clasps and dark fingerless gloves, small silver temple clip. No quiver, scope, bow or cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Full fitted PINE-GREEN sleeves in every pose, CHARCOAL wrist bracers and dark fingerless gloves; no bare upper arms or novice cream sleeves. Short split green coat panels kept close to hips; simple dark belt with flat rectangular SILVER clasp. Silver shoulder caps each show exactly THREE small brass chevrons. One narrow central IVORY chest strip and one BRASS hawk-eye chest brooch. Black riding boots with SILVER calf clasps. No long coat tails, cloak, fur or novice shoulder scarf.",
+        "maleIdentity": "Adult experienced masculine Francotirador with sandy-blond short swept crop, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Francotirador with sandy-blond hair in compact braided ponytail, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Silver angular chevron shoulders and brass hawk-eye brooch",
+        "advancement": "Tier3 advanced specialization of Cazador. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/francotirador/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "231fdc8c68ab252befd800e4fbb569564cecd8855a42fd103dc4b7065b0b249f",
+            "210dad9f7d6329eedd3d968b08c6e2da476f6e29da3de8576464dd37f8f270d4",
+            "22e5daf5eab052d309bbac25401ba110fed32f8088c0073b0a5c767d33d4c6a6",
+            "b21eda4700962fb531b69bc1afc4ac9c16fc0ebfeba8bfe4b7d6794df77669ea"
+          ],
+          "walk": [
+            "18db31f744e0f67be0b5010eb253f4bfc04194824e675ac05ab0b2e1adae714b",
+            "0ecc207688e52a8f2364aa6be36a75be5c3afa8757030d95fe7754c1a3156dfd",
+            "d2ea05e74669b6bcf18dc226c527e5b4cc3f5425f4553a8e01a5dd90a34708c9",
+            "701d1309a9129858ab7505387defc779e1c4041631ec97f47c502ffcd972b77a"
+          ],
+          "hurt": [
+            "615fb0148376a63d7d4174fe32436e048feb8149ac7cad381a93c2abd0352a3a",
+            "bde71eccf9f8f10e856774f45ff2ab05dfb9e166d0e95980c84defb83744ea48",
+            "cb88477091fc7d28219b5b5e1bdd337e0eb6c6aebce53555b6489bf1dbde9e4e",
+            "e1986e0e148ace0e79e2290205de4782c9b8085bde8021f1dcae5c2337239c55"
+          ],
+          "use_consumable": [
+            "37a6c561d6811747f97a6e7132d39d8a34e36114c3c48c99a3af711ea8484b55",
+            "bd69bfa30ab2e9424eeb39f32c81f6a1d5b9b9de713a8dc003738f445910e510",
+            "a68f51e3cc0a1dedccdfd18a9c2e4e12390d1d6c8e79aa6784ca4d19c04ba41b",
+            "4f6f3f1569b75e2e39d62abd23556172745db5a4e48b1f6a1fcdd9c09b395da1"
+          ],
+          "dodge": [
+            "2b52430a62c4e8714b13a4db615ffa2743f6e9d1930112853a4ff5df8d3b542e",
+            "0818e235ebb31ca9a5a1b16ef4d9a9359518ea18eb991efc118d84e9d8ab06a9",
+            "b78f6ce233e0051d877dea6a69a6b008efb5771a703af43123a9e55b4fd51fee",
+            "748a6d59536247b2b531f760069ff720d9c3464be48a932c1ab40aaf7bfbfb88"
+          ],
+          "block_shield": [
+            "f1d428487bd60debb353d323870f8d88d14d3f8fa8d024dbbe64fc31a17e0a20",
+            "820c07e67c83dcb274175a796e3c4ffaa4bc92a2ef1dd7b95c128ef982883add",
+            "ace76898c4bb7f16d037b972058e5b22630ad57e221737fefd0c8e755ab289d5",
+            "bb1e96d661293c5518fd8ffd6fa600ef60ab3f7e41fc64b2769064020656dd37"
+          ],
+          "attack_sword": [
+            "22e14171ce33d682de5d19f1d1fba8862763b5224112d8f7d1bebde76d5c0bb5",
+            "e6ca7cd4564a4349b14903afa66fab48410933d8067b9e42fd446c90fbaeb7f9",
+            "10669a3ee7050c07c5fd4a714978153bdb76eebc61e8cc799680f3df69c8e6b4",
+            "0b6c9568604f6cfa877691b9f855237a8a19556214f05a16dee3c7862f3b5abd"
+          ],
+          "attack_axe": [
+            "5a261301a124070844930a0278c397321cf3092f58e4168024d46a50da5bc15e",
+            "ce774f540430f191052472465fecf5c6ef1e07fe3c00b74edeaee5d020f33f21",
+            "33f976fe68f8ecabf0e31dbaa2bb590a5b4cdcf0b36c71df426e895c1a8870fe",
+            "007fb4df74b8e39908b947279c92779ba770a3cc9e33dc772c042d7d9a80448a"
+          ],
+          "attack_spear": [
+            "fb8720232246cb5684fc42f06a4dcaa846db95f45284fc961704dc196e4e787b",
+            "5bebf143ebdaa2d4e61a147bfd16af15ecd92d3c55dd2102f4ec125999fe4e56",
+            "1eef24006c050701b0e63c6aabb2c858553bd8c8e1ebde3877b9e2746e20d963",
+            "95d22d189e480841c511e2dba6a67a6318693d6ef778cc8bf2d521085b72710c"
+          ],
+          "attack_dagger": [
+            "62fabf8734e1fd56c15c7fe4f6cb0f16390fa26a6518698b168b232027779dff",
+            "6d7f2f2c2440f3d38b2f1e141ca4d3ea971434d6f4ac41c3778245e685ea5b12",
+            "9f27e0494e69708d17fd4074d297cc0e09f5fcc97223e6942ce8e57f9af6a449",
+            "ca02323d05fbc16919b10e180931aefd14bcd220e14092244e0c08fe1259e43b"
+          ],
+          "attack_bow": [
+            "86619b718f8043d7e99876f7aefc1347fffe5872bb156157ce08a222c0c5fb3b",
+            "1e8de8df666180923fc6cd2d66103847b46a23f58665e0e3e49102839b4a4bdf",
+            "7fb2e0c4193de524a1c3421f7c1daf848d592df3fe93eb7c4fe42eed0f775993",
+            "469650f0f87d1f63554a8e7877abd615c165e4b7fef9c486f40546473c120915"
+          ],
+          "attack_staff": [
+            "44888f83c3f1d2eaf20b68a5900a14d8ae5854b8a315ee871aa61c8ff6fbcf51",
+            "4108af45391472605b75a3e743a3b35246d66c4e19adf6432cea63777c0873fd",
+            "8b71f0213f0588082a955264cdb0f33a2b00f15da0c9bd16d38fd651ca28c98c",
+            "5f877a9de6d4663afa192541c6d6ec47f883f7ad1a37aa17dc5c7c1b45063660"
+          ],
+          "attack_mace": [
+            "fadc13a7d1c1a0db85120647bb5d715a9c39af92cdeb569dcdb4ecc30a743211",
+            "08d0a450172f5c8a35c7656a724907dfe037a6a2f8cfd6b723acd1e74a6b1e26",
+            "0678957aff49b244a85a9297363b2bdf3cdd12b4e1fc8e39cd5f49e4ec3955fb",
+            "46a05c54b660feea7cc5c8e8436fd7aae535068fbe40ad2e02c4b0cd55bfa969"
+          ],
+          "attack_book": [
+            "9cd95649751f469ff7eea14fbc304c1a9501fd9b22d31f6d0441760a0d6814d5",
+            "9e3184e81c2c5c2794ebafaf04de091f14898af9f56a34c0755b455bae7d2dcc",
+            "edcc26b2cea2436e753483beeedc5ac65ef7ed6c55d44ea92c79f10d59bf4036",
+            "45db4a1c3f786342b6c89f44cc0dc2ff5eb7e2d8fb24abe53ac94060f3d25ad0"
+          ],
+          "attack_gloves": [
+            "03606d37f7cede63a26cec29a64bda917d26f9e247a5365cefa45037018fb7ed",
+            "7f1f684be27fff5a0f2b30a465a744a41ba1aede2526d6cbef7182109609c4d4",
+            "bf358b8855fbdfe51c12e5071ba55da59fd8977c62212a5471b3196b4e368ba3",
+            "95aa108ceeb797c01da96b414bfff767a008652cd0885164569bf55e0bc4fdd4"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -188198,7 +188590,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

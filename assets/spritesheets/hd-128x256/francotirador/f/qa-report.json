@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T17:07:51.638080+00:00",
+  "classId": "francotirador",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\francotirador-f-sheet.png",
+  "sheetSha256": "832197d654f5b8d9273cabf7cbe1a3cc4d32e3d080f828dd07f268b852175d2b",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\idle\\francotirador-f-idle-01.png",
+          "sha256": "231fdc8c68ab252befd800e4fbb569564cecd8855a42fd103dc4b7065b0b249f",
+          "alpha_bbox": [
+            30,
+            90,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\idle\\francotirador-f-idle-02.png",
+          "sha256": "210dad9f7d6329eedd3d968b08c6e2da476f6e29da3de8576464dd37f8f270d4",
+          "alpha_bbox": [
+            29,
+            90,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\idle\\francotirador-f-idle-03.png",
+          "sha256": "22e5daf5eab052d309bbac25401ba110fed32f8088c0073b0a5c767d33d4c6a6",
+          "alpha_bbox": [
+            29,
+            90,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\idle\\francotirador-f-idle-04.png",
+          "sha256": "b21eda4700962fb531b69bc1afc4ac9c16fc0ebfeba8bfe4b7d6794df77669ea",
+          "alpha_bbox": [
+            29,
+            90,
+            109,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\walk\\francotirador-f-walk-01.png",
+          "sha256": "18db31f744e0f67be0b5010eb253f4bfc04194824e675ac05ab0b2e1adae714b",
+          "alpha_bbox": [
+            14,
+            89,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\walk\\francotirador-f-walk-02.png",
+          "sha256": "0ecc207688e52a8f2364aa6be36a75be5c3afa8757030d95fe7754c1a3156dfd",
+          "alpha_bbox": [
+            27,
+            89,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\walk\\francotirador-f-walk-03.png",
+          "sha256": "d2ea05e74669b6bcf18dc226c527e5b4cc3f5425f4553a8e01a5dd90a34708c9",
+          "alpha_bbox": [
+            10,
+            89,
+            117,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\walk\\francotirador-f-walk-04.png",
+          "sha256": "701d1309a9129858ab7505387defc779e1c4041631ec97f47c502ffcd972b77a",
+          "alpha_bbox": [
+            20,
+            89,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\hurt\\francotirador-f-hurt-01.png",
+          "sha256": "615fb0148376a63d7d4174fe32436e048feb8149ac7cad381a93c2abd0352a3a",
+          "alpha_bbox": [
+            20,
+            96,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\hurt\\francotirador-f-hurt-02.png",
+          "sha256": "bde71eccf9f8f10e856774f45ff2ab05dfb9e166d0e95980c84defb83744ea48",
+          "alpha_bbox": [
+            20,
+            96,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\hurt\\francotirador-f-hurt-03.png",
+          "sha256": "cb88477091fc7d28219b5b5e1bdd337e0eb6c6aebce53555b6489bf1dbde9e4e",
+          "alpha_bbox": [
+            19,
+            113,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\hurt\\francotirador-f-hurt-04.png",
+          "sha256": "e1986e0e148ace0e79e2290205de4782c9b8085bde8021f1dcae5c2337239c55",
+          "alpha_bbox": [
+            16,
+            93,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\use_consumable\\francotirador-f-use_consumable-01.png",
+          "sha256": "37a6c561d6811747f97a6e7132d39d8a34e36114c3c48c99a3af711ea8484b55",
+          "alpha_bbox": [
+            25,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\use_consumable\\francotirador-f-use_consumable-02.png",
+          "sha256": "bd69bfa30ab2e9424eeb39f32c81f6a1d5b9b9de713a8dc003738f445910e510",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\use_consumable\\francotirador-f-use_consumable-03.png",
+          "sha256": "a68f51e3cc0a1dedccdfd18a9c2e4e12390d1d6c8e79aa6784ca4d19c04ba41b",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\use_consumable\\francotirador-f-use_consumable-04.png",
+          "sha256": "4f6f3f1569b75e2e39d62abd23556172745db5a4e48b1f6a1fcdd9c09b395da1",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\dodge\\francotirador-f-dodge-01.png",
+          "sha256": "2b52430a62c4e8714b13a4db615ffa2743f6e9d1930112853a4ff5df8d3b542e",
+          "alpha_bbox": [
+            35,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\dodge\\francotirador-f-dodge-02.png",
+          "sha256": "0818e235ebb31ca9a5a1b16ef4d9a9359518ea18eb991efc118d84e9d8ab06a9",
+          "alpha_bbox": [
+            35,
+            99,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\dodge\\francotirador-f-dodge-03.png",
+          "sha256": "b78f6ce233e0051d877dea6a69a6b008efb5771a703af43123a9e55b4fd51fee",
+          "alpha_bbox": [
+            24,
+            125,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\dodge\\francotirador-f-dodge-04.png",
+          "sha256": "748a6d59536247b2b531f760069ff720d9c3464be48a932c1ab40aaf7bfbfb88",
+          "alpha_bbox": [
+            16,
+            97,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\block_shield\\francotirador-f-block_shield-01.png",
+          "sha256": "f1d428487bd60debb353d323870f8d88d14d3f8fa8d024dbbe64fc31a17e0a20",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\block_shield\\francotirador-f-block_shield-02.png",
+          "sha256": "820c07e67c83dcb274175a796e3c4ffaa4bc92a2ef1dd7b95c128ef982883add",
+          "alpha_bbox": [
+            23,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\block_shield\\francotirador-f-block_shield-03.png",
+          "sha256": "ace76898c4bb7f16d037b972058e5b22630ad57e221737fefd0c8e755ab289d5",
+          "alpha_bbox": [
+            19,
+            104,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\block_shield\\francotirador-f-block_shield-04.png",
+          "sha256": "bb1e96d661293c5518fd8ffd6fa600ef60ab3f7e41fc64b2769064020656dd37",
+          "alpha_bbox": [
+            13,
+            92,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_sword\\francotirador-f-attack_sword-01.png",
+          "sha256": "22e14171ce33d682de5d19f1d1fba8862763b5224112d8f7d1bebde76d5c0bb5",
+          "alpha_bbox": [
+            25,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_sword\\francotirador-f-attack_sword-02.png",
+          "sha256": "e6ca7cd4564a4349b14903afa66fab48410933d8067b9e42fd446c90fbaeb7f9",
+          "alpha_bbox": [
+            25,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_sword\\francotirador-f-attack_sword-03.png",
+          "sha256": "10669a3ee7050c07c5fd4a714978153bdb76eebc61e8cc799680f3df69c8e6b4",
+          "alpha_bbox": [
+            19,
+            97,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_sword\\francotirador-f-attack_sword-04.png",
+          "sha256": "0b6c9568604f6cfa877691b9f855237a8a19556214f05a16dee3c7862f3b5abd",
+          "alpha_bbox": [
+            19,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_axe\\francotirador-f-attack_axe-01.png",
+          "sha256": "5a261301a124070844930a0278c397321cf3092f58e4168024d46a50da5bc15e",
+          "alpha_bbox": [
+            22,
+            93,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_axe\\francotirador-f-attack_axe-02.png",
+          "sha256": "ce774f540430f191052472465fecf5c6ef1e07fe3c00b74edeaee5d020f33f21",
+          "alpha_bbox": [
+            15,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_axe\\francotirador-f-attack_axe-03.png",
+          "sha256": "33f976fe68f8ecabf0e31dbaa2bb590a5b4cdcf0b36c71df426e895c1a8870fe",
+          "alpha_bbox": [
+            13,
+            103,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_axe\\francotirador-f-attack_axe-04.png",
+          "sha256": "007fb4df74b8e39908b947279c92779ba770a3cc9e33dc772c042d7d9a80448a",
+          "alpha_bbox": [
+            7,
+            94,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_spear\\francotirador-f-attack_spear-01.png",
+          "sha256": "fb8720232246cb5684fc42f06a4dcaa846db95f45284fc961704dc196e4e787b",
+          "alpha_bbox": [
+            15,
+            93,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_spear\\francotirador-f-attack_spear-02.png",
+          "sha256": "5bebf143ebdaa2d4e61a147bfd16af15ecd92d3c55dd2102f4ec125999fe4e56",
+          "alpha_bbox": [
+            13,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_spear\\francotirador-f-attack_spear-03.png",
+          "sha256": "1eef24006c050701b0e63c6aabb2c858553bd8c8e1ebde3877b9e2746e20d963",
+          "alpha_bbox": [
+            12,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_spear\\francotirador-f-attack_spear-04.png",
+          "sha256": "95d22d189e480841c511e2dba6a67a6318693d6ef778cc8bf2d521085b72710c",
+          "alpha_bbox": [
+            13,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_dagger\\francotirador-f-attack_dagger-01.png",
+          "sha256": "62fabf8734e1fd56c15c7fe4f6cb0f16390fa26a6518698b168b232027779dff",
+          "alpha_bbox": [
+            19,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_dagger\\francotirador-f-attack_dagger-02.png",
+          "sha256": "6d7f2f2c2440f3d38b2f1e141ca4d3ea971434d6f4ac41c3778245e685ea5b12",
+          "alpha_bbox": [
+            21,
+            89,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_dagger\\francotirador-f-attack_dagger-03.png",
+          "sha256": "9f27e0494e69708d17fd4074d297cc0e09f5fcc97223e6942ce8e57f9af6a449",
+          "alpha_bbox": [
+            19,
+            91,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_dagger\\francotirador-f-attack_dagger-04.png",
+          "sha256": "ca02323d05fbc16919b10e180931aefd14bcd220e14092244e0c08fe1259e43b",
+          "alpha_bbox": [
+            23,
+            89,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_bow\\francotirador-f-attack_bow-01.png",
+          "sha256": "86619b718f8043d7e99876f7aefc1347fffe5872bb156157ce08a222c0c5fb3b",
+          "alpha_bbox": [
+            27,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_bow\\francotirador-f-attack_bow-02.png",
+          "sha256": "1e8de8df666180923fc6cd2d66103847b46a23f58665e0e3e49102839b4a4bdf",
+          "alpha_bbox": [
+            19,
+            90,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_bow\\francotirador-f-attack_bow-03.png",
+          "sha256": "7fb2e0c4193de524a1c3421f7c1daf848d592df3fe93eb7c4fe42eed0f775993",
+          "alpha_bbox": [
+            19,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_bow\\francotirador-f-attack_bow-04.png",
+          "sha256": "469650f0f87d1f63554a8e7877abd615c165e4b7fef9c486f40546473c120915",
+          "alpha_bbox": [
+            19,
+            90,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_staff\\francotirador-f-attack_staff-01.png",
+          "sha256": "44888f83c3f1d2eaf20b68a5900a14d8ae5854b8a315ee871aa61c8ff6fbcf51",
+          "alpha_bbox": [
+            28,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_staff\\francotirador-f-attack_staff-02.png",
+          "sha256": "4108af45391472605b75a3e743a3b35246d66c4e19adf6432cea63777c0873fd",
+          "alpha_bbox": [
+            24,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_staff\\francotirador-f-attack_staff-03.png",
+          "sha256": "8b71f0213f0588082a955264cdb0f33a2b00f15da0c9bd16d38fd651ca28c98c",
+          "alpha_bbox": [
+            25,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_staff\\francotirador-f-attack_staff-04.png",
+          "sha256": "5f877a9de6d4663afa192541c6d6ec47f883f7ad1a37aa17dc5c7c1b45063660",
+          "alpha_bbox": [
+            24,
+            89,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_mace\\francotirador-f-attack_mace-01.png",
+          "sha256": "fadc13a7d1c1a0db85120647bb5d715a9c39af92cdeb569dcdb4ecc30a743211",
+          "alpha_bbox": [
+            31,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_mace\\francotirador-f-attack_mace-02.png",
+          "sha256": "08d0a450172f5c8a35c7656a724907dfe037a6a2f8cfd6b723acd1e74a6b1e26",
+          "alpha_bbox": [
+            24,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_mace\\francotirador-f-attack_mace-03.png",
+          "sha256": "0678957aff49b244a85a9297363b2bdf3cdd12b4e1fc8e39cd5f49e4ec3955fb",
+          "alpha_bbox": [
+            18,
+            96,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_mace\\francotirador-f-attack_mace-04.png",
+          "sha256": "46a05c54b660feea7cc5c8e8436fd7aae535068fbe40ad2e02c4b0cd55bfa969",
+          "alpha_bbox": [
+            17,
+            90,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_book\\francotirador-f-attack_book-01.png",
+          "sha256": "9cd95649751f469ff7eea14fbc304c1a9501fd9b22d31f6d0441760a0d6814d5",
+          "alpha_bbox": [
+            33,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_book\\francotirador-f-attack_book-02.png",
+          "sha256": "9e3184e81c2c5c2794ebafaf04de091f14898af9f56a34c0755b455bae7d2dcc",
+          "alpha_bbox": [
+            25,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_book\\francotirador-f-attack_book-03.png",
+          "sha256": "edcc26b2cea2436e753483beeedc5ac65ef7ed6c55d44ea92c79f10d59bf4036",
+          "alpha_bbox": [
+            21,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_book\\francotirador-f-attack_book-04.png",
+          "sha256": "45db4a1c3f786342b6c89f44cc0dc2ff5eb7e2d8fb24abe53ac94060f3d25ad0",
+          "alpha_bbox": [
+            21,
+            90,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_gloves\\francotirador-f-attack_gloves-01.png",
+          "sha256": "03606d37f7cede63a26cec29a64bda917d26f9e247a5365cefa45037018fb7ed",
+          "alpha_bbox": [
+            24,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_gloves\\francotirador-f-attack_gloves-02.png",
+          "sha256": "7f1f684be27fff5a0f2b30a465a744a41ba1aede2526d6cbef7182109609c4d4",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_gloves\\francotirador-f-attack_gloves-03.png",
+          "sha256": "bf358b8855fbdfe51c12e5071ba55da59fd8977c62212a5471b3196b4e368ba3",
+          "alpha_bbox": [
+            14,
+            90,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\francotirador\\f\\frames\\attack_gloves\\francotirador-f-attack_gloves-04.png",
+          "sha256": "95aa108ceeb797c01da96b414bfff767a008652cd0885164569bf55e0bc4fdd4",
+          "alpha_bbox": [
+            16,
+            90,
+            97,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
