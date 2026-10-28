@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "guardian_real-m",
+  "nextVariant": "guardian_real-f",
   "classes": [
     {
       "id": "novato",
@@ -143724,12 +143724,12 @@
       "tier": 3,
       "sex": "f",
       "order": 64,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_real/f/guardian_real-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_real/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -143743,12 +143743,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "0de2f2e352e7550402cdd4c2d135bc3030f9795c098a6db3a6fc3926445c97c6",
+                "bytes": 25038,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "410304dbf69dab60ba442f9054a4c484c45b71eb8c92b7f92c9586b421f7c991"
+              },
+              "02": {
+                "sha256": "15301319749a97d6d8122f9d5a4e02054d5d2c7fe6ed0384bc5471914846d3cd",
+                "bytes": 24984,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "a8e3985ca25b946d92a59513bb4fcd2b6f69ec35964d0d69b2476250d58d0642"
+              },
+              "03": {
+                "sha256": "e39b28673cd3924dc1a178742bc475614c50bbbe954238f3053ac091fdc101c1",
+                "bytes": 24974,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  105,
+                  249
+                ],
+                "pixelSha256": "4eb03b79a11f6c98ba410d071b578340252688de1a65518ce29ae7028e4d2693"
+              },
+              "04": {
+                "sha256": "d5f450ed5286e0343966538e9041f7d98db2a1b5a8c156caa52c2457e2642530",
+                "bytes": 24940,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  106,
+                  249
+                ],
+                "pixelSha256": "6a92662dc1bd5d1f3b46691b537701dba8cdb366ed9f5739d9b660ee69d53de3"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -143792,6 +143861,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "1d19f34e7f48d3935be11e861fc5c37c9af0778d0a843d4d703f1ded987f2e04",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Guardián real FEMALE Tier3 idle. Image1 defines ONLY EXACT four FEMALE canonical body poses, head/hand/finger/elbow/foot positions, canvas dimensions and proportions. Image2 defines COSTUME ONLY from approved male royal guard: copy its exact silver plate and royal blue scheme, TOWER emblem and insignia. Do NOT copy male face or masculine body. Female identity: Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with square sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Replace novice clothes/scarf/hair completely. Exactly four full bodies in ONE horizontal row facing RIGHT three-quarter view, same crisp painted anime RPG style/light, transparent background. Preserve camera/body scale and absolute placement in each quarter, no per-figure recentering or resizing. Closed-eye third pose keeps every badge. Empty hands, no equipment, weapons, sheaths, effects, shadows or text.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
