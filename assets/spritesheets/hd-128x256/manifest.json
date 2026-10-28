@@ -143743,10 +143743,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -143820,7 +143821,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "bd17f09f3b8bedb70958f9a3207e55bbade9e1d628c4fc036b90a2227a0b2ad4",
+                "bytes": 24838,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  95,
+                  110,
+                  246
+                ],
+                "pixelSha256": "2709c26e44607c154557f363df28dbcc444b6ac38012e76271551aaabe88d2e7"
+              },
+              "02": {
+                "sha256": "4967bd6bedddaf0c5fb9af7d5bc5a3203f6b3c343e32c8a9f49c9cf200ea624c",
+                "bytes": 21515,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  95,
+                  90,
+                  248
+                ],
+                "pixelSha256": "4274cd24f0655d3796c32f92efe59c9eb78fbbccea385af2a7b0c7d5005b901d"
+              },
+              "03": {
+                "sha256": "5cf429ab8c2e0c92ceba4639e790e6d0b862811ea5f82cd4ea1436f3b6320f2f",
+                "bytes": 22773,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  95,
+                  118,
+                  246
+                ],
+                "pixelSha256": "fa50c74a8a2776a6c6ad659c034f6496cff0acd383b14bdd74287005431225c6"
+              },
+              "04": {
+                "sha256": "864cba7469cbce3ea201a4996b6b65b79b1f4ee3f35ba9c95b4600b5fa0643dd",
+                "bytes": 20850,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  95,
+                  97,
+                  248
+                ],
+                "pixelSha256": "1bf4ddd7e47900eec7b42ca917693936d807565b6633e2ec5b8a178aed54dc2f"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -143901,6 +143969,44 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "e75bfa9a7d5e6829a067645211f2dfef4ada41372f509e19cbb46661f3e191d9",
+          "sourceDimensions": [
+            2162,
+            727
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: identity-preserve. Asset: GUARDIAN REAL FEMALE walking four-pose sprite strip. Image1 ONLY determines exact four walking full-body poses and absolute head/hands/feet/camera/size positions. Image2 ONLY disconnected approved FACE and CLOTHING DETAIL crops, not body pose. Adult experienced feminine Guardián real with steel-gray hair in neat compact braided low knot, attentive determined eyes, canonical female head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Approved segmented SILVER/GUNMETAL breastplate, full ROYAL BLUE sleeves to wrist under SILVER FOREARM GUARDS, darkfingerlessgloves, compact BLUE pauldrons with ONE vertical SILVER BAR and silver diamond fittings, THREE short blue tabardpanels with SILVER TOWER on centerpanel, angular silverdiamondbeltclasp, steelgreaves/sabatons, sapphireforeheadjewel. No gold sun or novice items. CRITICAL FIGURES3 AND4: front arm crosses diagonally ACROSS BELLY ending in CLOSED FORWARD fist, rear fist behind waist. Do not hang botharmsdown or imitate idle. Fourth subject remains intentionally far RIGHT in quarter, canonical2170x725canvas rearhand1830,390 andforwardfist2060,386. No recentering/resizing individualfigures. EXACT four separate complete fullbodies onehorizontal transparentrow, facingright3/4, third eyesclosed. Samecrisp paintedanimepixel-inspiredRPGrendering. Everycostumedetailconsistent all4, no held/sheathedweapons/equipment/pouch/scarf, effects, shadows, text orgrid. Clean alpha.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -143918,6 +144024,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
