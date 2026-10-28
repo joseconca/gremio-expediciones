@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "hierofante-m",
+  "nextVariant": "hierofante-f",
   "classes": [
     {
       "id": "novato",
@@ -163631,88 +163631,92 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
+          "dodge",
+          "block_shield",
           "attack_sword",
           "attack_axe",
           "attack_spear",
           "attack_dagger",
           "attack_bow",
           "attack_staff",
-          "attack_mace"
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "64fa93cbf1d6769a3aa37e35d735e6188d75789a043dfff837f8184720d57307",
-                "bytes": 25926,
+                "sha256": "8cf9bd418620473ee941122ff103ea060313be400c060f8076a1fb8c5e7a3031",
+                "bytes": 24079,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  93,
-                  104,
-                  249
+                  27,
+                  94,
+                  105,
+                  248
                 ],
-                "pixelSha256": "3371b042d26cf0a9ce277a4557925b4d8610c71ea054f5923897d99b9f073286"
+                "pixelSha256": "810afaea932a74c173e3801194e12d4d1947741856161acb6401a5e724910f5d"
               },
               "02": {
-                "sha256": "f33020531b6c9739c24d0fe485a7e772f9ae5bce076ff71ee6afff2d096ab235",
-                "bytes": 25941,
+                "sha256": "7d346e58fc25f45643940c5334980c10c8cded307795fa9664c112f935f0a696",
+                "bytes": 24060,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  93,
-                  104,
-                  249
+                  27,
+                  94,
+                  105,
+                  248
                 ],
-                "pixelSha256": "95c7896213892c51dd685548a751317dcef9b6ff86c3dc32571836c34d9ca465"
+                "pixelSha256": "8189023b953061e720ab2ea3795acef4da32e3021f7415f824df8d98d0c7413b"
               },
               "03": {
-                "sha256": "2eca55a16b8ab9ad82111d0cae0dde5c216adadef885c5aade7180f36dc2521b",
-                "bytes": 26087,
+                "sha256": "34de2e525607e0e74ea8ce4ec11ea85bf59053c72754526f0ddf4d92b28910d3",
+                "bytes": 24002,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  93,
+                  27,
+                  94,
                   104,
-                  249
+                  248
                 ],
-                "pixelSha256": "f851d9159ddfd53a55729ff5c44392974825b322458e667398671ab7cdfa7057"
+                "pixelSha256": "becede6583e446d8ef7a20cdc868b4d0ae636712742a9a502fc4fc0991acb6d0"
               },
               "04": {
-                "sha256": "324fc888a489e3ef45c497542587eb82c972d6dcc69e6cd45297935b3ce1a876",
-                "bytes": 26065,
+                "sha256": "06b2cac518083ea20513cefb20ccdd7d3f94baf29eddbb00767ffaeb95aa1391",
+                "bytes": 24046,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  93,
+                  27,
+                  94,
                   104,
-                  249
+                  248
                 ],
-                "pixelSha256": "0c7432793883424698df2b13ea0c0f08038e2aedd3b7af56a773874b066e4d47"
+                "pixelSha256": "53b1ff157f9856dfeb3227d88e05253c9d83598af01e773e32c1b2c9b21769af"
               }
             },
             "distinctFrames": 4
@@ -163721,8 +163725,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6a25abbc6bc1be7768131996061a2b68537122d8973e9ef75f61134bb3611567",
-                "bytes": 23702,
+                "sha256": "e13c57a444d93e9625fbc1a2b3f797223dc94c10d7446a62bc8b61e57c00a50b",
+                "bytes": 26581,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  93,
+                  112,
+                  248
+                ],
+                "pixelSha256": "e5459f78021ba000e25d84dc225f6f9441254a18d3dc25af348be6b07593f2f0"
+              },
+              "02": {
+                "sha256": "9c04dd4e9abaa0eae5f09b7723c3d3043afa528f3d16e7864322afb17261fb58",
+                "bytes": 23710,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -163730,27 +163750,11 @@
                 ],
                 "bbox": [
                   11,
-                  97,
-                  107,
+                  93,
+                  110,
                   247
                 ],
-                "pixelSha256": "bf7a0d275768132b65dab8be80fba0b03b43431368a4304c2c507a8a607a051e"
-              },
-              "02": {
-                "sha256": "0d40ebfac861e65dc3d5a5d5bb2850297ee6a54338851dbbe57856bdc0651ecf",
-                "bytes": 22426,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  8,
-                  97,
-                  109,
-                  246
-                ],
-                "pixelSha256": "ab43c06e8a38c30010e181dcce6c9956e9b40729e9a1897730cad78e40f3328d"
+                "pixelSha256": "3a1a04185d9da6901969b70ec8c096995119dc5203f42c2bf50fdaf49916f962"
               },
               "03": {
                 "sha256": "3654916b925340472ccc78205e803eaf842a3bab5717d14fc5d72f61887eff5c",
@@ -163769,20 +163773,20 @@
                 "pixelSha256": "98f8aab062b3b86dcccd11a7091b7e9332de37648294c2d62e1de5ebd0621175"
               },
               "04": {
-                "sha256": "f017e5353284c1b96b2633f536ad6489c734e25275ed8a9956e0f8e1bc6e1136",
-                "bytes": 23284,
+                "sha256": "bd1ace475283ed8bf4abeb021fe12e2ec5bf9da856e528b06a020582045bd242",
+                "bytes": 25239,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  8,
-                  97,
-                  108,
-                  246
+                  14,
+                  93,
+                  111,
+                  248
                 ],
-                "pixelSha256": "bcac784409844656b362770237ab2a8dda79f1f1b878f445e092b89fd81d96d4"
+                "pixelSha256": "538bdff7ab7279dab3cb2e6c97a20cb0a9ea4bfc20d442a66482b9f300f5e7d4"
               }
             },
             "distinctFrames": 4
@@ -163928,10 +163932,144 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ee7b1ddcd8db36c3b32ca2080f045798b5dd435ef389abeab9441bb4c3326122",
+                "bytes": 29121,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  98,
+                  107,
+                  250
+                ],
+                "pixelSha256": "e0f63966f6aaec9c7b8e8ee497cfd57fab4a2856c6c603c6fa1699cda6a1d065"
+              },
+              "02": {
+                "sha256": "3d835c6ba6a7718ea77c82b40654f8636dc31eee4a00fd11467284d9ed8b39ea",
+                "bytes": 30248,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  99,
+                  118,
+                  250
+                ],
+                "pixelSha256": "dce342961de3b2b45abe302a59d98d275736ec909fc5c8c3b5f2521d983e9f7b"
+              },
+              "03": {
+                "sha256": "793bab1bf29bcf0d05f4b717a211e0675152e0c20353d74eb00387bd39a3da64",
+                "bytes": 30049,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  99,
+                  111,
+                  250
+                ],
+                "pixelSha256": "68b52a852440da679522b7ec24042c1b7702709f6751e8deaa442ef25c1076ea"
+              },
+              "04": {
+                "sha256": "837ea93fc99039a83e8f87701554437c514d66bb0852ece2c16ad54e85df1e3f",
+                "bytes": 29021,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  99,
+                  114,
+                  250
+                ],
+                "pixelSha256": "6a230464da7e73c91f7394fe3d7aa994d229b8816dd95186c20a67adc7160541"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9149c8f2bbf6c1a3faa85ce0ac00aa7fb9dab8ee0fa72c95022eb6035e667481",
+                "bytes": 28260,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  98,
+                  113,
+                  250
+                ],
+                "pixelSha256": "1084d542eabbe710daf2d969a837b1cff4bb3f970f1dafd0ba5a1256693946aa"
+              },
+              "02": {
+                "sha256": "9112092c94a16cbeebf55da90ba1e4915aa3eb972f70d09741c97e57efc03dc0",
+                "bytes": 26979,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  98,
+                  113,
+                  250
+                ],
+                "pixelSha256": "df3afd84c18670d20da1ede3fb7eb2420ccf421d1e2cb94567afe64cb76f656a"
+              },
+              "03": {
+                "sha256": "687afa9513783f296428a3f299ecb98e02ca576c2699cca2200e8feb8fab346f",
+                "bytes": 24383,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  114,
+                  113,
+                  250
+                ],
+                "pixelSha256": "29a608732c253fc7f2f4f925af68e559ccfe8e67ebe86c9b9e685dcef56b0619"
+              },
+              "04": {
+                "sha256": "e80090d774d33ca040c08f7c336284211fb6b1d1e5d8e4f4b44da730f161f901",
+                "bytes": 28100,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  98,
+                  113,
+                  250
+                ],
+                "pixelSha256": "f23ce4054676065860cc0c6067a5ef87055bbaeeaef63b3f458412043b16d157"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "technical-passed",
@@ -164424,18 +164562,152 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "f0e7027147de10e858e474bad2f10c4db193e37a9a3a254ee1e2e59666d4d55c",
+                "bytes": 24100,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  101,
+                  248
+                ],
+                "pixelSha256": "b1dbb140df36e00b8869eca9f8b71024b01766c906f2908652615cf9589c772c"
+              },
+              "02": {
+                "sha256": "446ed60f3080a97846713d68a58f7831a4de0a22e1b67dd3c63c9baf8c5880b3",
+                "bytes": 23437,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  99,
+                  248
+                ],
+                "pixelSha256": "cb8949cef25f2ae039aad6439c37fd9cf71f8fa05e96f21c0711b5273e3df56d"
+              },
+              "03": {
+                "sha256": "d9780243a5f3bcdf1dd1c1b62104df096ece63dfa4df2f811d6eb168e8f31243",
+                "bytes": 24369,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "516a34ee7e82700afba330b73067b006a4f9abbcd16e525125e7bbf0a85d5721"
+              },
+              "04": {
+                "sha256": "13f180933d7f4122c4afbadc2e324752acaf97ae1562c10b5ab2698757bc1cc2",
+                "bytes": 23521,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  99,
+                  248
+                ],
+                "pixelSha256": "3f26c7a5e65fd14055d53c4b098eb99de2726927bf4f76e8aebfe7b57a0fbf66"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e82a5c62495e3e490653ad9c3028f08ce1f4058bb2e919b26f88bdcd39b40cc0",
+                "bytes": 25191,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "b0191c8ea6ef4ce2a6f5f9086741e8100e1046130a1c612d6264ed84b788cf9a"
+              },
+              "02": {
+                "sha256": "e23d231bb23354bcee660ad8d3413e5188470b9923a2a60d4749d553e36a4e85",
+                "bytes": 26373,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "d5b6f2fb83689b3c90a2cc3817f4fe5417c316c3472b37d5ffc5004a437bdc73"
+              },
+              "03": {
+                "sha256": "810155985b4dba70c3cbd3807e82102990d7049cd85c1497bca7b7c6dc3dcf68",
+                "bytes": 25481,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "71e01a98296e678dc2af8a5fc9f704ba91c3cdba5077847d98be6e6493dbbaf6"
+              },
+              "04": {
+                "sha256": "2ebfd2f0722c92df3be88b649288b5144aedeade09372cd54815d00a50d4c2f3",
+                "bytes": 25185,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "2012891e950a8b27ecead7f436802dbe501eac49df03547751037e0325010681"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
       "sources": {
         "idle": {
-          "sourceSha256": "9b48423e4c9ba77b2411c5f8ac79abee6f024335498016c4af6c9f24d416e313",
+          "sourceSha256": "172eecb15d8c25f427baba835abcef49922c5c21b98e2150eef5eb6488b4e6de",
           "sourceDimensions": [
-            2171,
+            2172,
             724
           ],
           "registeredSourceDimensions": [
@@ -164458,9 +164730,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/idle-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/idle-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Create NEW Hierofante male Tier3 identity from Image1 canonical poses. Preserve exact four bodies, hand/finger coordinates, head/body size and feet,2172x724canvas. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. FULL ivory long sleeves to wine inner cuffs and snug gold bracers, no exposed forearms or novice wraps. Distinct gold geometric SANCTUARY seal: compact angular temple gateway with central diamond, identical in all4. Replace novice hair/scarf/vest/belt/boots completely. Flat3pronggold diadem, twin narrow embroidered gold stoles, ivory/wine layered short panels. Four complete bodies horizontal row, third eyesclosedblink, all other eyesopen. True transparentalpha, crisp painted RPG anime style. No weapon,shield,effects,shadow,text. Exact canonical margins, no pose scaling or recentering.\n",
+          "prompt": "Image1 is exact Novato MALE IDLE body geometry, Image2 cropped Hierofante costume and face details ONLY. Redress all FOUR Image1 bodies as Hierofante without changing even ONE hand/wrist/finger or foot position, overall scale, head location, canvas size. Particularly FAR RIGHT hanging hand must retain Image1 location, no moving inward or outward. Dark fingerless gloves exactly cover Image1 brown glove palms, full ivory sleeves with wine cuffs and gold plate bracers. NO posed fullbody identity reference is provided: TRACE Image1 anatomy EXACTLY and simply replace clothing/hair. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult masculine warm silverwhite swept short hair, compact three-prong gold diadem. Third eyesclosed,othersopen. Four complete fullbodies horizontalstrip, rightthreequarter facing. SamepaintedanimeRPG style, transparent alpha, cleanedges, no strayreference red/yellowfringe, weapons,shadows,effects,text. Preserve dimensions2172x724 and margins.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "canonicalPoseHashes": [
             "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
@@ -164468,7 +164740,47 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "9b48423e4c9ba77b2411c5f8ac79abee6f024335498016c4af6c9f24d416e313",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                654,
+                21,
+                1010,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/idle-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Create NEW Hierofante male Tier3 identity from Image1 canonical poses. Preserve exact four bodies, hand/finger coordinates, head/body size and feet,2172x724canvas. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. FULL ivory long sleeves to wine inner cuffs and snug gold bracers, no exposed forearms or novice wraps. Distinct gold geometric SANCTUARY seal: compact angular temple gateway with central diamond, identical in all4. Replace novice hair/scarf/vest/belt/boots completely. Flat3pronggold diadem, twin narrow embroidered gold stoles, ivory/wine layered short panels. Four complete bodies horizontal row, third eyesclosedblink, all other eyesopen. True transparentalpha, crisp painted RPG anime style. No weapon,shield,effects,shadow,text. Exact canonical margins, no pose scaling or recentering.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+              "canonicalPoseHashes": [
+                "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+                "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+                "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+                "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "walk": {
           "sourceSha256": "d403245ce0abcef270b1c15af07a82ecb6d23e506ee650378ae3c5f4a5e18a0a",
@@ -164496,7 +164808,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
           "prompt": "Re-costume Image1 EXACT male WALK template as Hierofante Tier3. CRITICAL: THIRD figure is a WALKING pose with foreground arm CROSSING torso and fist FORWARD TO THE RIGHT, other arm back. It is NOT idle: do NOT give third figure two arms hanging down just because eyes areclosed. Preserve ALL four exact canonical poses, EVERY fingertip/wrist/elbow/foot coordinate, headsize/bodypositions and2172x724canvas. Image2 cropped costume details only. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. FullIVORYlongsleeves towineinnercuffs undergoldplatebracers, blackfingerlessgloves. Twin WINE stoles with GOLD geometricembroidery/fringe, goldangularsanctuarytemplechestseal with hangingornaments, golddiamondbelt, shortivory/winelayeredpanels, winetrousers, ivorygoldbootswithgolddiamondknees/shins andgoldtoecaps, small3pronggold diadem. Allfourcostumesidentical; third eyesclosed BUT WALK geometry. Four entire bodies row, true transparentalpha, crispanimeRPGstyle. No weapons/effects/shadow/text, no recentering or individualscaling.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
@@ -164507,11 +164819,11 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
-          "frameSourceOverrides": {
-            "01": {
-              "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
+          "previousRevisions": [
+            {
+              "sourceSha256": "d403245ce0abcef270b1c15af07a82ecb6d23e506ee650378ae3c5f4a5e18a0a",
               "sourceDimensions": [
-                2172,
+                2171,
                 724
               ],
               "registeredSourceDimensions": [
@@ -164534,71 +164846,111 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame01-reference-v2.png",
-              "selectedFrame": 1,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "02": {
-              "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
-              "sourceDimensions": [
-                2172,
-                724
+              "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Re-costume Image1 EXACT male WALK template as Hierofante Tier3. CRITICAL: THIRD figure is a WALKING pose with foreground arm CROSSING torso and fist FORWARD TO THE RIGHT, other arm back. It is NOT idle: do NOT give third figure two arms hanging down just because eyes areclosed. Preserve ALL four exact canonical poses, EVERY fingertip/wrist/elbow/foot coordinate, headsize/bodypositions and2172x724canvas. Image2 cropped costume details only. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. FullIVORYlongsleeves towineinnercuffs undergoldplatebracers, blackfingerlessgloves. Twin WINE stoles with GOLD geometricembroidery/fringe, goldangularsanctuarytemplechestseal with hangingornaments, golddiamondbelt, shortivory/winelayeredpanels, winetrousers, ivorygoldbootswithgolddiamondknees/shins andgoldtoecaps, small3pronggold diadem. Allfourcostumesidentical; third eyesclosed BUT WALK geometry. Four entire bodies row, true transparentalpha, crispanimeRPGstyle. No weapons/effects/shadow/text, no recentering or individualscaling.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
               ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                618,
-                18,
-                1069,
-                696
-              ],
-              "scale": 0.23,
-              "origin": [
-                12,
-                92
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame02-reference-v2.png",
-              "selectedFrame": 2,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "04": {
-              "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
-              "sourceDimensions": [
-                2172,
-                724
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                618,
-                18,
-                1069,
-                696
-              ],
-              "scale": 0.23,
-              "origin": [
-                12,
-                92
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame04-reference-v2.png",
-              "selectedFrame": 4,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "3805042a8885b1b645485ade394ce43ef5b97ea81e3a57f3beb1c9723a569d4f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/walk-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          }
+          ]
         },
         "hurt": {
           "sourceSha256": "52f9617691f2d57926fed76f478016025f8e4cc1d595febfafc8669296901888",
@@ -164941,6 +165293,170 @@
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "3e28fa5594ed9a289a5b219ebd35b5e4cb38fa35ed152502b765fd5b62e920fb",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante MALE, Tier 3, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "78f58676c4cc984fd0f38d8d959286e2daecba1868a64ed631772a5a5a32af12",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante MALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "55114d18fd9be811a9afe49e7345eaf5f7a19c770759e12f292f4102f958efcd",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.062937062937063,
+            "pivotX": 64,
+            "sourceBaseline": 242,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante MALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+          "canonicalPoseHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "799577e44dfa50962375bf49f71373d6326fbad5370e316aa7136f677e7a7520",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.0555555555555556,
+            "pivotX": 64,
+            "sourceBaseline": 242,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/m/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante MALE, Tier 3, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced masculine Hierofante with warm silver-white neatly swept short hair, attentive determined eyes, clean-shaven, canonical head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+          "canonicalPoseHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -164961,11 +165477,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk.frameSourceOverrides.01",
+          "source": "sources.walk",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk.frameSourceOverrides.02",
+          "source": "sources.walk",
           "frame": 2
         },
         "walk/03": {
@@ -164973,7 +165489,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk.frameSourceOverrides.04",
+          "source": "sources.walk",
           "frame": 4
         },
         "hurt/01": {
@@ -165119,6 +165635,70 @@
         "attack_mace/04": {
           "source": "sources.attack_mace",
           "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
+          "frame": 4
         }
       },
       "equipmentTests": {
@@ -165178,11 +165758,19 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 40,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger"
         ],
         "actions": {
           "idle": {
@@ -165326,28 +165914,564 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8cc7af0321ea008bb34e1ccd9bee1d532dbbf35a4f032f98d6f1a57453f48c70",
+                "bytes": 25204,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  110,
+                  248
+                ],
+                "pixelSha256": "7f7e8ed80f2c73b6af0e7e996061bc357eb10e9da9ba7093297781c278d78f04"
+              },
+              "02": {
+                "sha256": "77a60e474943efe618ba858f36902b1f8dc678ed1a79669b83de19cb5bb0d947",
+                "bytes": 23440,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  105,
+                  248
+                ],
+                "pixelSha256": "f68c74ee6360bb276ef639c717734e42db57df8231eed25b0f31735c043a04bd"
+              },
+              "03": {
+                "sha256": "c05badda4d993351b6e857871c2a6b64987a41bc514a37ae1528a6e6eaba2fce",
+                "bytes": 20173,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  114,
+                  94,
+                  248
+                ],
+                "pixelSha256": "bccc6deb1fe196fea4fb6965772909d6bd13af92fc0c234e984d8abfbe0b12e7"
+              },
+              "04": {
+                "sha256": "9cee9e1e00058a19186ecc052859c5e989ed6d374738c6b4197dcd91ca364290",
+                "bytes": 25100,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  92,
+                  96,
+                  248
+                ],
+                "pixelSha256": "46f2f13644c1f4ae7450f19521615cad7aaccd2405b6734c89654a1488595987"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a91f57d7928f59698a1e779ba5cf78de1e21f6201b60383588e88f1e4cb449fd",
+                "bytes": 24622,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  100,
+                  248
+                ],
+                "pixelSha256": "544ad828d7b920fc50c6f9f53dedf7c0b68edecd24749615bf85659dec1796d9"
+              },
+              "02": {
+                "sha256": "14380705c5c93409bc5cdcf006ceb36c39b8c503e258bfbe90d68b167b27c952",
+                "bytes": 24398,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "ef98c05ae885cde829958ae4fd77136a02f23650d5e01922adcbfaa57ac430b4"
+              },
+              "03": {
+                "sha256": "47243e6aee83fd574733b2426f7a9324334426924e949ddf91d4ed22756d3184",
+                "bytes": 23864,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  92,
+                  98,
+                  248
+                ],
+                "pixelSha256": "67849f27bab846db0c333c999c55789af59c4f704ed6ea9152e391c9f4b40728"
+              },
+              "04": {
+                "sha256": "085901873f628b8c2223e4720845516604206f3d62669b6778913c16059e70df",
+                "bytes": 24629,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  102,
+                  248
+                ],
+                "pixelSha256": "350535c3288c99e57f8cd3b67e6c4df58e6512dfb2c36268288033f03c1cdae4"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "cd5d3ad335ae6ac73f23bb10af879573510ece0e845116276e783cb99011195c",
+                "bytes": 24823,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  113,
+                  247
+                ],
+                "pixelSha256": "936ecb39ff06afa6e26a61d85f630cc198933bb0d38e2e744980a5b14398b414"
+              },
+              "02": {
+                "sha256": "edf5f3b890949d3f7cee7006d2366052d2a1163cf81df81df0468e5dc3272b27",
+                "bytes": 23997,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  94,
+                  117,
+                  247
+                ],
+                "pixelSha256": "f67e285f1730cd1f4dc545bd595c7704b6d2c5b4cf40292f0b1dc20ab694cac4"
+              },
+              "03": {
+                "sha256": "a5a6051e5f0433e751eebf2491ddfcae5ad761b855e5c548237391af16956e3e",
+                "bytes": 20427,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  127,
+                  106,
+                  249
+                ],
+                "pixelSha256": "caffdbf51461c7a573261355e45bd87f54673cc5bd05b5b5705f028ed9e815c3"
+              },
+              "04": {
+                "sha256": "3ccbbc229be210093a04346435d6ba2eb695de505b922e38463a92ec6195c41d",
+                "bytes": 24369,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  104,
+                  247
+                ],
+                "pixelSha256": "9731f6da5fe018bc4182de9a42a36f0a34b33ce6be7228654e968d1e0319f110"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4bf669e2ac0cec6568e7c01bb329d22000fcb8e7791050791520174d9e3cc403",
+                "bytes": 24824,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  109,
+                  246
+                ],
+                "pixelSha256": "821ca6e00c7f5b2fdfd80688bc3ab3f23f92287e840777b1fd2b6a0a82703ba1"
+              },
+              "02": {
+                "sha256": "f4d6cc3c5af873026d89946f6091c7e4c3b6c3c3bcba81ccc4f64bef6216be6e",
+                "bytes": 25197,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  110,
+                  246
+                ],
+                "pixelSha256": "c14cb0cc9488aacb0cc6dfdc2cee5142f835abaeb1b7482c4edef7088bd7f51c"
+              },
+              "03": {
+                "sha256": "e39bc32f13371aa9ccc8967f1c0230d767d8fccbb546ac3ec7b92b2aa9f6b339",
+                "bytes": 23707,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  105,
+                  107,
+                  246
+                ],
+                "pixelSha256": "f177ba21b329627332d0864d2b8d2a8df5965210e6f4109741ce06d309d0d90f"
+              },
+              "04": {
+                "sha256": "f02e97cc82e9a1a0702437bd47b41a31eb9fafa56b1e289693293ea2c7f49d2e",
+                "bytes": 24718,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  93,
+                  99,
+                  246
+                ],
+                "pixelSha256": "6207c8dc31d45c8cac5000f09b5d40c788113ba5a995dbd1e972df6bb1e73f5f"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "940550b8a8a0da5f91791d8bce2e22ea3635788766ebb58c647b66acc1e00f46",
+                "bytes": 25143,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  107,
+                  246
+                ],
+                "pixelSha256": "a13287cad08950eadefa338c70c5381e027c7a886c66717a8ccf2fbf78770a83"
+              },
+              "02": {
+                "sha256": "6ce24435b178e3c29ba26256e1753b748c99c601c3644095a426d354ef9b5d9b",
+                "bytes": 24134,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  110,
+                  246
+                ],
+                "pixelSha256": "629a855f234dcb5d0685d89a2a0aa3fe7d62030190c9527d72d72fe16eccf431"
+              },
+              "03": {
+                "sha256": "b8d02feda112b541cf0230c0db5bef74f00714d218a5337c4ec165669e97e2a2",
+                "bytes": 23770,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  97,
+                  102,
+                  247
+                ],
+                "pixelSha256": "6988e72b7a64fc0d6b4a2589047951c365fbbf94bcd34418ce9543f12f04b1f4"
+              },
+              "04": {
+                "sha256": "a6cd9462e8039a26f7ab8df9975e25f77e49141388484b4f25a3b59d8e061fa6",
+                "bytes": 25108,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  93,
+                  106,
+                  246
+                ],
+                "pixelSha256": "7f51368724e164bd0010fa9c123922fedd24dfbeb72323acf04c15d153474246"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "537052c1674f84da28b77afdcacc40a0154486efc33d44dbc6855c1a1f3f3d11",
+                "bytes": 24117,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  114,
+                  249
+                ],
+                "pixelSha256": "47f29461b729a74990b648ec5e22385f0a8a81eba8e97854f814dadea509ec21"
+              },
+              "02": {
+                "sha256": "125f7cb31c8b4ad82c3015ea9207e8c9f4e79abee68057d4c9c664c3a96569c5",
+                "bytes": 23244,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  113,
+                  249
+                ],
+                "pixelSha256": "314105a7a414964f27680dec622a3fbfc50e47391486e5ef4fe755ebefff9df5"
+              },
+              "03": {
+                "sha256": "3d7cc9611352aecd8e7a4dd07b00d2a24dee391d1063d211f54b18f98df3540a",
+                "bytes": 21517,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  105,
+                  108,
+                  249
+                ],
+                "pixelSha256": "065877e740ffcaad2d61fe7a762122b62a7cb2d010541cd220d4c3387777b5b0"
+              },
+              "04": {
+                "sha256": "953f7636d4f08f7a5c5bfaddcb3a19e92ae54bcf364911438b978dc1c59e1693",
+                "bytes": 24081,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  96,
+                  104,
+                  249
+                ],
+                "pixelSha256": "344fba8ee30f6daae212d97fb06b0649ce12a28b9a82860434f4db7ddb27661f"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "14db41d4934a39bcd9956ad9edde2b49fa70ca42e47e6bb06f1d84dc750ecb29",
+                "bytes": 25057,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  94,
+                  109,
+                  248
+                ],
+                "pixelSha256": "c2e54582f14ebc940d7f31048f9560a7bb597a45500c6e5adb1e3b6f88bdd768"
+              },
+              "02": {
+                "sha256": "3e82d957c3df6aa46f185bcf155446cce39f9d281393237f83877126fa43e8ab",
+                "bytes": 24225,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  94,
+                  103,
+                  248
+                ],
+                "pixelSha256": "507021f0e573fd1c1eeff1964e2e7ee50ad9e12f4c2eeca6d03ec5c68f68331f"
+              },
+              "03": {
+                "sha256": "a6057c03509127d135ffe93403612e966c6f5b6add8e531f9a0623492374348e",
+                "bytes": 24065,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  94,
+                  109,
+                  248
+                ],
+                "pixelSha256": "fe6ea7bf230d7569e0666f09187097715ae698cb830d073210589cf5d16d9e01"
+              },
+              "04": {
+                "sha256": "496c48301e958d247461789fc23c0f02bc459c543e5c5bc70eda5cca605829e3",
+                "bytes": 24947,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  94,
+                  110,
+                  248
+                ],
+                "pixelSha256": "df2e41a1584d1f7ba6decd0f78161b81f284cbf92d6e957ea2c46f3e92501a9c"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "666e5a3a4a740d64aa66bb92a504a4e7e40986cd03f47529b37a07e535389456",
+                "bytes": 25120,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  93,
+                  101,
+                  246
+                ],
+                "pixelSha256": "87dc0b405dd279bea39d587341b4262374891795badefac841469e0e92c70ef9"
+              },
+              "02": {
+                "sha256": "9fd87e3069af51f2ba4fdb8b221d7353cab8e03fbc24f73fc34070e1d78bec8d",
+                "bytes": 25564,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  92,
+                  108,
+                  245
+                ],
+                "pixelSha256": "b1d8a013edc16601a65ab0894d44b45b76a846b7e8cab2d48e1a01c24d60dbb3"
+              },
+              "03": {
+                "sha256": "55707fe6d0f0555b03cc88c0cddb946ce2bbb6bdd6999907efd1aad1e7d55133",
+                "bytes": 24289,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  110,
+                  245
+                ],
+                "pixelSha256": "32fbf01d62fb8579df9e85a9ae2ba82161544606de86585fc794117b153e3b85"
+              },
+              "04": {
+                "sha256": "96f36ed99bcba988c54e678beb17c826ff15a3a9c64ea682e1c1c0013a744469",
+                "bytes": 24744,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  93,
+                  104,
+                  245
+                ],
+                "pixelSha256": "39fef22597e3f106115d81a11f2d0269e838cc25761d1d1f2be076d0f5455d50"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
             "status": "missing"
@@ -165504,6 +166628,310 @@
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           }
+        },
+        "hurt": {
+          "sourceSha256": "4bac4496083fdea036f1b2ff49226ce479ce749edf2dc60d0a570e67465e9317",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "1076ddc729d9f683bde85c63fbefd9a1c86321dd99c26f62d76275f8903bce57",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "19e25e79dc99e89f05c99ac0d68bd106a25c437f13869544ad6b358df116ac93",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "bee08d3b96f2612b413792fe6a817dd68e334dc4f4dccdcc39dc1b5ec57ba971",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+            "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+            "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+            "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "0191ad673e5a4ae694dca8e3936a65599b1af2864c5022924bb3d3cec695f20b",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+            "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+            "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+            "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "951219b1f677daaef691cd3731a6301aeeff9a7ef9d51e65a5dc16a5cf4679db",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            635,
+            14,
+            1036,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            18,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+            "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+            "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+            "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "ac324c57f0e1906dc24b0a64dfcfa1b9b9e879196e4d844518e8f7d26da7b43a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "524cae059ea2dfc2d7590e063d61f56f280de3aeab9118d93919ab94160c664c",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hierofante/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Hierofante FEMALE, Tier 3, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full ivory sleeves to wine inner cuffs under fitted gold plate bracers; no bare forearms or novice wraps. Twin wine stoles have narrow gold geometric embroidery and gold fringe, a gold angular temple-gateway chest seal with small hanging ornaments, gold DIAMOND belt clasp. Ivory boots have gold geometric diamond knee/shin motifs, gold toe caps/rims, narrow diagonal straps. Dark fingerless gloves, no badge required. Female hair compact CROWN BRAID plus small nape bun, NO ponytail. Male warm silver-white neat short swept hair. Flat three-prong diadem. Adult experienced feminine Hierofante with warm silver-white hair in compact crown braid, attentive determined eyes, canonical female head scale. Ceremonial fitted IVORY and DEEP WINE ritual coat with twin narrow GOLD embroidered stoles, compact raised gold collar edges, gold geometric sanctuary chest seal, layered short split robe panels, dark wine trousers and ivory/gold boots, dark fingerless gloves with snug gold cuffs. Compact flat three-pronged gold diadem close to hair, no tall mitre. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "canonicalPoseHashes": [
+            "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+            "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+            "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+            "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -165538,6 +166966,165 @@
         "walk/04": {
           "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "940550b8a8a0da5f91791d8bce2e22ea3635788766ebb58c647b66acc1e00f46"
+            },
+            {
+              "bodySha256": "6ce24435b178e3c29ba26256e1753b748c99c601c3644095a426d354ef9b5d9b"
+            },
+            {
+              "bodySha256": "b8d02feda112b541cf0230c0db5bef74f00714d218a5337c4ec165669e97e2a2"
+            },
+            {
+              "bodySha256": "a6cd9462e8039a26f7ab8df9975e25f77e49141388484b4f25a3b59d8e061fa6"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
