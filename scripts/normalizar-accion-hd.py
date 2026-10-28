@@ -4,7 +4,10 @@ import argparse,json,hashlib
 from pathlib import Path
 from PIL import Image
 
-def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=None, reference_transform=None):
+def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=None, reference_transform=None, selected_frames=None):
+    selected=set(range(1,5)) if selected_frames is None else set(selected_frames)
+    if not selected or not selected.issubset(range(1,5)):raise ValueError('Selected frames must be 1..4')
+    if selected_frames is not None and reference_transform is None:raise ValueError('Pose selection requires the fixed canonical transform')
     with Image.open(source) as opened:
         opened.load();im=opened.convert('RGBA')
     original_size=list(im.size)
@@ -43,9 +46,9 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
         if scale<=0:raise ValueError('Invalid canonical scale')
         x0=crop[0]-origin[0]/scale;y0=crop[1]-origin[1]/scale
         rendered=[]
-        for cell,box in zip(cells,boxes):
+        for number,(cell,box) in enumerate(zip(cells,boxes),1):
             mapped=((box[0]-x0)*scale,(box[1]-y0)*scale,(box[2]-x0)*scale,(box[3]-y0)*scale)
-            if mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255:raise ValueError('Costume exceeds canonical body canvas; revise source, never move class equipment')
+            if number in selected and (mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255):raise ValueError(f'Pose {number} costume exceeds canonical body canvas; revise source, never move class equipment')
             frame=cell.transform((128,256),Image.Transform.AFFINE,(1/scale,0,x0,0,1/scale,y0),Image.Resampling.BICUBIC)
             frame.putalpha(frame.getchannel('A').point(lambda v:0 if v<32 else v));rendered.append(frame)
         calibration=None
@@ -62,7 +65,8 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
             rendered=corrected
             calibration={'uniformScale':factor,'pivotX':64,'sourceBaseline':source_baseline,'referenceBaseline':baseline,'method':'one body-root transform shared by all four poses; equipment unchanged'}
         output.mkdir(parents=True,exist_ok=True)
-        for n,frame in enumerate(rendered,1):frame.save(output/f'{class_id}-{sex}-{action}-{n:02d}.png')
+        for n,frame in enumerate(rendered,1):
+            if n in selected:frame.save(output/f'{class_id}-{sex}-{action}-{n:02d}.png')
         return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':original_size,'registeredSourceDimensions':list(im.size),'sourceCellStep':w,'commonCrop':crop,'scale':scale,'origin':origin,'alphaThreshold':threshold,'bodyRootCalibration':calibration,'scalePolicy':'canonical-pose-registration','method':'fixed canonical transform; no class-dependent crop, centering or equipment offset'}
     common=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
     cw,ch=common[2]-common[0],common[3]-common[1]

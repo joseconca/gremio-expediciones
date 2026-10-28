@@ -30,7 +30,7 @@ def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=
         reference_path=HD/'novato'/sex/'previews'/f'pose-{action}.png';row.save(reference_path)
         reference={'sourceDimensions':[512,256],'commonCrop':[128,0,256,256],'scale':1,'origin':[0,0],'sourcePath':reference_path.relative_to(ROOT).as_posix()}
     normalize=runpy.run_path(str(ROOT/'scripts/normalizar-accion-hd.py'))['normalize']
-    metadata=normalize(dest,base/'frames'/action,class_id,sex,action,reference_transform=reference)
+    metadata=normalize(dest,base/'frames'/action,class_id,sex,action,reference_transform=reference,selected_frames=set(range(1,5))-set(frame_sources or {}))
     metadata.update(sourcePath=dest.relative_to(ROOT).as_posix(),generator='built-in imagegen',prompt=prompt_file.read_text(encoding='utf-8-sig'),canonicalPoseSource=reference['sourcePath'],canonicalPoseHashes=[ref['audit']['actions'][action]['frames'][f'{n:02d}']['sha256'] for n in range(1,5)],visualStatus='candidate-reviewed-equipment-contact-pending')
     # Select complete generated poses from revisions of this same action. Each
     # source uses the identical canonical transform: no painting, limb editing,
@@ -42,7 +42,7 @@ def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=
             if hashlib.sha256(selected_dest.read_bytes()).digest()!=hashlib.sha256(selected.read_bytes()).digest():raise ValueError('Different frame source exists; use --revision')
         else:shutil.copyfile(selected,selected_dest)
         exported=ROOT/'work'/'hd-frame-selection'/class_id/sex/action/f'{number:02d}'
-        selection=normalize(selected_dest,exported,class_id,sex,action,reference_transform=reference)
+        selection=normalize(selected_dest,exported,class_id,sex,action,reference_transform=reference,selected_frames={number})
         frame_name=f'{class_id}-{sex}-{action}-{number:02d}.png'
         shutil.copyfile(exported/frame_name,base/'frames'/action/frame_name)
         selection.update(sourcePath=selected_dest.relative_to(ROOT).as_posix(),selectedFrame=number,selectionPolicy='complete generated pose; unchanged canonical transform; no pixel retouching')
