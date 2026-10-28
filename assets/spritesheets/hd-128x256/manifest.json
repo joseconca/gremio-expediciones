@@ -132733,8 +132733,8 @@
                 "pixelSha256": "e355bad1a2f8650992b86916ff4bfd5954243e4015e01feb8bca5bbbc699855d"
               },
               "02": {
-                "sha256": "cb7624c75867f80e673c49398abd657bc2facaf54f568ecfe823214b24b236b3",
-                "bytes": 23518,
+                "sha256": "376c55816ad5fb32c318b50c60dcb3226fe50e6e119a144728a72ad3db054a4f",
+                "bytes": 23932,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -132746,23 +132746,23 @@
                   113,
                   250
                 ],
-                "pixelSha256": "7d5560541487d8b8ae99d6cbeba6f1cd1d1748e1f36e2f72752d16a05eaf92cd"
+                "pixelSha256": "e052a587bcee93007ad9be661842d6719a241e7127d026d281a2e89dc827ed0a"
               },
               "03": {
-                "sha256": "cd1eef7126dca313739fc43cb2a279eebadb768a5964e7201d878bd4d521ed66",
-                "bytes": 24195,
+                "sha256": "8da37c33d22f55fc0269f165887eb615aadba809d5dd864f3d80179112f04cec",
+                "bytes": 25100,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
+                  22,
                   93,
-                  109,
+                  110,
                   250
                 ],
-                "pixelSha256": "6a19dfa44945b4fb218e4bf92df7d5dea2712107fe24425364f68675bf33d494"
+                "pixelSha256": "782e82c09b1da580f279b8e5520fe4681ada087d3a50ba91eb5f8b1ebc4b13f0"
               },
               "04": {
                 "sha256": "c70da5813db7f5889ca3daaf0087244888289833b416349f41f919994fc151b9",
@@ -133873,7 +133873,7 @@
           ]
         },
         "use_consumable": {
-          "sourceSha256": "1b1ded77b09b37a0ea60d3d1b122cb9b34d21f71b46de24df8c95b1233909f42",
+          "sourceSha256": "1ee5a1ca27e5f629128b676f5e8e0a48bc8b2255a032b1b11b1789f96121931c",
           "sourceDimensions": [
             2172,
             724
@@ -133898,9 +133898,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise small accessory correction: Image1 FIRST AND SECOND figures have the wrong rounded old novice belt pouch with a silver buckle. Replace those pouches with the SAME COMPACT SQUARE brown leather pouch with two small brass studs on flap, shown in Image2 approved class identity. Keep pouch attached to same belt and behind existing hand as needed. All FOUR costumes must use TWO SQUARE BROWN POUCHES and no old rounded pouch. Preserve all anatomy, absolute head/hand/finger positions, moustaches, goggles, sleeves, metal cuffs, three chest rivets, brass anvil clasp, boots and pose scale EXACTLY Image1. Third and fourth figures already correct; leave unchanged. Four full bodies in same canvas/quarters, transparent alpha, empty hands, no held objects, no text or shadows.\n",
+          "prompt": "Precise wrist-armor correction ONLY on Image1 SECOND AND THIRD FIGURES. Replace both brown wrapped novice wrist guards with the compact SILVER-GRAY IRON CUFF from Image2 close-up, worn over dark fingerless glove. Both wrists need clearly silver metal shine, not brown leather bands. Do not cover fingertips or move hands, palms, fingers, elbows or any part of the pose. Preserve every other detail EXACTLY: short chestnut moustache even with open mouth, forehead goggles, ochre rolled sleeves/short bare forearms, square brown belt pouches, anvil clasp, three chest rivets, apron and iron-toe boots. Other figures unchanged. Same 4 complete full bodies, exact original canvas/absolute placements/size, transparent alpha, empty hands, no equipment/text/shadow.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
@@ -133910,8 +133910,8 @@
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
           "frameSourceOverrides": {
-            "03": {
-              "sourceSha256": "8645651364d2ee0372be4c2bf559dbc70f92714ddb984c08acd81911ce0ec79f",
+            "01": {
+              "sourceSha256": "1b1ded77b09b37a0ea60d3d1b122cb9b34d21f71b46de24df8c95b1233909f42",
               "sourceDimensions": [
                 2172,
                 724
@@ -133936,8 +133936,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame03-reference-v2.png",
-              "selectedFrame": 3,
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame01-reference-v3.png",
+              "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "04": {
@@ -133966,7 +133966,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame04-reference-v3.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -134009,6 +134009,106 @@
                 "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "1b1ded77b09b37a0ea60d3d1b122cb9b34d21f71b46de24df8c95b1233909f42",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise small accessory correction: Image1 FIRST AND SECOND figures have the wrong rounded old novice belt pouch with a silver buckle. Replace those pouches with the SAME COMPACT SQUARE brown leather pouch with two small brass studs on flap, shown in Image2 approved class identity. Keep pouch attached to same belt and behind existing hand as needed. All FOUR costumes must use TWO SQUARE BROWN POUCHES and no old rounded pouch. Preserve all anatomy, absolute head/hand/finger positions, moustaches, goggles, sleeves, metal cuffs, three chest rivets, brass anvil clasp, boots and pose scale EXACTLY Image1. Third and fourth figures already correct; leave unchanged. Four full bodies in same canvas/quarters, transparent alpha, empty hands, no held objects, no text or shadows.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+                "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+                "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+                "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "03": {
+                  "sourceSha256": "8645651364d2ee0372be4c2bf559dbc70f92714ddb984c08acd81911ce0ec79f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    627,
+                    16,
+                    1015,
+                    695
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    19,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame03-reference-v2.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "8645651364d2ee0372be4c2bf559dbc70f92714ddb984c08acd81911ce0ec79f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    627,
+                    16,
+                    1015,
+                    695
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    19,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/use_consumable-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
           ]
         },
@@ -134865,7 +134965,7 @@
           "frame": 4
         },
         "use_consumable/01": {
-          "source": "sources.use_consumable",
+          "source": "sources.use_consumable.frameSourceOverrides.01",
           "frame": 1
         },
         "use_consumable/02": {
@@ -134873,7 +134973,7 @@
           "frame": 2
         },
         "use_consumable/03": {
-          "source": "sources.use_consumable.frameSourceOverrides.03",
+          "source": "sources.use_consumable",
           "frame": 3
         },
         "use_consumable/04": {
