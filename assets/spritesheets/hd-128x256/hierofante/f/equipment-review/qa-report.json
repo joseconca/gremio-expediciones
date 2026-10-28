@@ -1,0 +1,101 @@
+{
+  "status": "contact-review-required",
+  "classId": "hierofante",
+  "sex": "f",
+  "actions": [
+    "idle",
+    "walk"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "44d349b0e54fc2163489c5496be27678fd9d9097ea8274b9ea2787c9365e16c9",
+      "ae16072ce739af2d1f9171167da514a8d746c7aa873cba5fa833e6a746b88e3e",
+      "5f86ecc09a566f40d4b8e41cba7c1f8b247a410cbe32b4909a15fb984bcd9092",
+      "87cdb2ee28ed116a02544871ef40433660310e2d9370a89ec418daf68ec6e514"
+    ],
+    "walk": [
+      "3ec7820a296f0face39213693eb1f35bb35b8e44439d262a6311ad8f7eb83e1b",
+      "699a64e20e1e6f4a1d9d3cd32cbd2344a0e3dd46816355c35b0b80632796edbc",
+      "f83ee15cf3f60205955899f970b3fefa3a0664a9a5b8917246df003124a30c4e",
+      "458a367666d354c06af929132b861b90a89056e400309de18cc542ba24cbdf1c"
+    ]
+  },
+  "contactChecks": 256,
+  "warnings": [
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        97,
+        184
+      ]
+    }
+  ],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}
