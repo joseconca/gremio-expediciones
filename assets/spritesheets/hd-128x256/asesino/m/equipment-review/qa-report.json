@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "classId": "asesino",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "8a227c7e230c6d8eafe0df46aba76a5bf43d05d4f09036c8ca6ec127e7ab7a25",
+      "dff9b52b34a4a8be9eb06239eab3f991fed7a78863a2a0580c0b5db471016f74",
+      "cfb23c9ec82173c4b669820dc15dcf361ac2a1ace5e78af04bf6c04d2ac47d0b",
+      "7f46b7ee549d3cc23a34c593461ebe2f6c9571c36f78a884bc45ba7d83dc225a"
+    ],
+    "walk": [
+      "d7c0ed641d7bed2856624d21a40fd1155c5c5a805eb4aaedaf5de511fb903be8",
+      "d2e2102bfb71ce973a52ce9c2169a206de26c5ac0055a68cc3f3d4c7d33ce4ea",
+      "4d97242570481b993d6dca66ac6f1c6b0ad06be384e9a2c48ef15cb4ab6416ec",
+      "5e69e9bed05829df67614d4a305dfff163cf0b8d0bd89716e1d8ed50e4804b88"
+    ]
+  },
+  "contactChecks": 256,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 4,
+  "artisticApproval": "not-automatic"
+}
