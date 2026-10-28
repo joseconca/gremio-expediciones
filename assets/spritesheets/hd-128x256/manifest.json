@@ -136434,8 +136434,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "1649a4544bc2fa3f6f0ee6d8aa51781845723d05bf3207ac9f8b8dfc3ac8a83d",
-                "bytes": 23138,
+                "sha256": "76e090d1e48b5bb1270ae8ed947aebef44b2796e04fd8fa2256756d338af96f0",
+                "bytes": 22965,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -136445,13 +136445,13 @@
                   21,
                   89,
                   107,
-                  245
+                  242
                 ],
-                "pixelSha256": "43920eab43bcedff46566eb84ab9b25cd4b71d8a84e92b418716cab00eecb2e8"
+                "pixelSha256": "8ad516b1dc23c21fcda57935e74742b28d98d8083e6c165a0a9f81c83afb2b6b"
               },
               "02": {
-                "sha256": "ceb2b6f974028ff68ca410fee359a10f1975e71490c3f781b9fb62bb5c376b6b",
-                "bytes": 24093,
+                "sha256": "e325ebf97332b8833a47edeaf513702fa6e0ab8040f4007e7d9a4d1e9f74f007",
+                "bytes": 23745,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -136461,13 +136461,13 @@
                   21,
                   89,
                   109,
-                  245
+                  242
                 ],
-                "pixelSha256": "3b8fa0ce7a16a74d4dc429a82789ec7ea208215e351019293aca078833353776"
+                "pixelSha256": "e6ff394fa5ace90e6688bdf3d8d739809fecb009cbb77e967b3f3eb5c50dbc16"
               },
               "03": {
-                "sha256": "d2a2e6af57908fd712115e10d6329a928c0c166d6fbeaac3dbbfc50a14d75d4a",
-                "bytes": 24387,
+                "sha256": "128835aa989beaa12ff8e3560e118ac67591ccc97ac097d5e2a00b36a48e2403",
+                "bytes": 24003,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -136475,27 +136475,27 @@
                 ],
                 "bbox": [
                   12,
-                  90,
+                  89,
                   118,
-                  245
+                  242
                 ],
-                "pixelSha256": "e8abf24bc4cc8f6b8715da0430bc335f9b1e0da9407edc2a8b8223890fabdd93"
+                "pixelSha256": "19da97a9c64a4127577b1f63bce6abd338af28e350360f9466e0717c68fa1377"
               },
               "04": {
-                "sha256": "b23a7a6af8ecd781bfc5041a0574eee57f8e20dfa89a3da37157d9285d5a5f06",
-                "bytes": 23178,
+                "sha256": "b21a3774a394810243c0831facf0ef221d57face236741b09a29ebd7efbb9e4e",
+                "bytes": 22892,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
+                  15,
                   89,
                   103,
-                  245
+                  242
                 ],
-                "pixelSha256": "168161f22a21f3edc5184bf372975ae951b7a72fff7d6bea52a9c23253a0f7be"
+                "pixelSha256": "c66bd318254bd2988f2f8f30960f9239ecf364cb18fa536a0ae387c55697ae85"
               }
             },
             "distinctFrames": 4
@@ -137620,10 +137620,10 @@
           ]
         },
         "attack_gloves": {
-          "sourceSha256": "57eb3f660d9424c2c035522740a0a6875ecacce1cc7c20847f2d63ce0094be1c",
+          "sourceSha256": "8b4044bf6e0455f3caf7d717b47f7b4627793cdddcd33394de172f3f6946974c",
           "sourceDimensions": [
-            2172,
-            724
+            2160,
+            728
           ],
           "registeredSourceDimensions": [
             2172,
@@ -137645,9 +137645,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Herrero FEMALE, Tier 2.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise outfit-continuity edit of Image1 ALL FOUR figures. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden, no duplicate old pouch under new one. Replace all brown novice wrist wraps at BOTH wrists with compact SILVER-GRAY IRON CUFFS from Image3 CLOSE-UP over dark fingerless gloves. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT poses, absolute fingertip/palm/elbow/head/foot coordinates and body size. Retain forehead goggles, identity face/hair, feminine face with no facial hair, one compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron and iron toe caps. Other figures unchanged. Same original canvas and quarters, four COMPLETE full bodies, transparent alpha, empty hands, no equipment/text/shadow. No recentering or scaling.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -137655,7 +137655,47 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "57eb3f660d9424c2c035522740a0a6875ecacce1cc7c20847f2d63ce0094be1c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Herrero FEMALE, Tier 2.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
