@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "alquimista",
   "sex": "f",
   "actions": [
@@ -30,7 +30,7 @@
       "1f20f3177127584e144df29078cd466e196be5440d62748b32f6af7dff0b5b34",
       "36f173f6091fb033008d5fdcad3fc6b0851d339db3306a04b792233001850c7e",
       "57576926dce3ec8202ea8324c277197562336188488402de5c09107ac49f4051",
-      "b60c62805c70a5cbec0c83e88d83cb8795b970f6d54d32ecc9f1493eb65b75b4"
+      "5399508271224f25dbe02bc6b7cc384714fcf2f843a5cbb17fcf81b215de0c03"
     ],
     "hurt": [
       "deb189d9dc21cfff6d4cfe0c3fd491ecdbe0cb39a122350495a2c1c94bb5b91c",
@@ -112,80 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "arco_cazador",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "arco_madera",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "grimorio_eclipse",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "guantes_lucha",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "libro_aprendiz",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "punos_lobo",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "escudo_guardian",
-      "point": [
-        90,
-        175
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 4,
-      "item": "escudo_madera",
-      "point": [
-        90,
-        175
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
   "artisticApproval": "not-automatic"

@@ -128004,20 +128004,20 @@
                 "pixelSha256": "0015a7c85302c55f4209d1025798c3595d119a9a734d9a6bcec5343a60beaa55"
               },
               "04": {
-                "sha256": "b60c62805c70a5cbec0c83e88d83cb8795b970f6d54d32ecc9f1493eb65b75b4",
-                "bytes": 21637,
+                "sha256": "5399508271224f25dbe02bc6b7cc384714fcf2f843a5cbb17fcf81b215de0c03",
+                "bytes": 22896,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
-                  89,
-                  81,
+                  17,
+                  90,
+                  106,
                   248
                 ],
-                "pixelSha256": "cc9deabbccb6cd0cdc7b9b50e8d594159170aba33dd671894c52dea3c3a31f49"
+                "pixelSha256": "888e1678bc8787536af0059b47af2b8c25ac730aa0a65087c49d7107058fc7e1"
               }
             },
             "distinctFrames": 4
@@ -128974,10 +128974,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "434cc09e5325d30e26409c6696349124456f1f8019fee54c05b951d8b14eff60",
+          "sourceSha256": "38b0ef4b61a9aa442a3e67f1d9a376c122e652bb2325eb11a975958e932c3dcc",
           "sourceDimensions": [
-            2163,
-            727
+            2169,
+            725
           ],
           "registeredSourceDimensions": [
             2170,
@@ -128999,9 +128999,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v5.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v6.png",
           "generator": "built-in imagegen",
-          "prompt": "Repair ONLY CLOTH COVERAGE on the FOURTH (far RIGHT) FEMALE ALCHEMIST walking figure in Image1. Her two forearms still show PEACH BARE SKIN between rolled sleeve edges and black gloves. Replace ALL that bare forearm skin with OPAQUE IVORY LONG-SLEEVE FABRIC, natural tiny fabric folds, continuous ivory cloth from elbow to wrist/glove. Copy ivory cuff cloth material from Image2. Skin remains only on face and exposed fingertips. Absolutely preserve her new exact anatomical contours and hand/finger/wrist/elbow coordinates, arm swing, walking pose, boots/feet, head/glasses/hair, torso, costume details and scale; do not move or resize any limb or figure. FIRST THREE complete figures remain unchanged as closely as possible. Same FOUR full bodies, horizontal strip/canvas dimensions and placement, true transparent background, same painted anime RPG rendering. No new items, effects, shadow or text. ONLY cover fourth figure's bare forearms with ivory cloth.\n",
+          "prompt": "Production RPG sprite strip: exactly FOUR full-body FEMALE ALCHEMIST walking poses, transparent background. Image1 is the full canonical walk strip and MUST define every body's absolute size, head/elbow/palm/foot positions. Image2 supplies ONLY Alchemist identity/costume; never use its idle anatomy or centering. Image3 enlarges canonical FOURTH WALK POSE for precise matching. Image4 supplies gold oval spectacles face identity. Redraw Image1 as Image2's Alchemist: chestnut braided crown low bun, gold oval glasses VISIBLE on ALL FOUR faces including stern fourth face, ivory laboratory coat with gold piping, bottle green buttoned waistcoat and circular green breast badge, TWO green belt ampoules and TWO square brown pouches, charcoal trousers/brown boots, black fingerless gloves. Both arms have opaque full-length IVORY CLOTH sleeves/cuffs to gloves; NO peach bare forearms, NO novice red scarf or leather straps. Exact canonical anatomy is crucial. The fourth figure is deliberately placed FARTHER RIGHT within its quarter than the idle reference: DO NOT RECENTER IT to equal margins! In Image1's 2170x725 canvas, fourth rear palm center is about (1830,390), fourth forward fist center about (2060,386); match actual flesh/gloves at these points, never place a belt pouch there. Match head and both feet to Image1 too. Reproduce the fourth pose directly from Image3 at Image1's absolute placement. Four separate complete characters in original four quarters, no equipment held, no effects, no shadow, no text, exact original canvas and painted anime RPG style.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -129037,7 +129037,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v5.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v6.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -129067,7 +129067,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v5.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v6.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -129097,7 +129097,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v5.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v6.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -129526,6 +129526,136 @@
                   "scalePolicy": "canonical-pose-registration",
                   "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
                   "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v4.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            },
+            {
+              "sourceSha256": "434cc09e5325d30e26409c6696349124456f1f8019fee54c05b951d8b14eff60",
+              "sourceDimensions": [
+                2163,
+                727
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-reference-v5.png",
+              "generator": "built-in imagegen",
+              "prompt": "Repair ONLY CLOTH COVERAGE on the FOURTH (far RIGHT) FEMALE ALCHEMIST walking figure in Image1. Her two forearms still show PEACH BARE SKIN between rolled sleeve edges and black gloves. Replace ALL that bare forearm skin with OPAQUE IVORY LONG-SLEEVE FABRIC, natural tiny fabric folds, continuous ivory cloth from elbow to wrist/glove. Copy ivory cuff cloth material from Image2. Skin remains only on face and exposed fingertips. Absolutely preserve her new exact anatomical contours and hand/finger/wrist/elbow coordinates, arm swing, walking pose, boots/feet, head/glasses/hair, torso, costume details and scale; do not move or resize any limb or figure. FIRST THREE complete figures remain unchanged as closely as possible. Same FOUR full bodies, horizontal strip/canvas dimensions and placement, true transparent background, same painted anime RPG rendering. No new items, effects, shadow or text. ONLY cover fourth figure's bare forearms with ivory cloth.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame01-reference-v5.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame02-reference-v5.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "51966049b23af377ab424a9b7bfa91fb1ae5fe58aa7d5ff98c3fd2b74e20de8b",
+                  "sourceDimensions": [
+                    2169,
+                    725
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/walk-frame03-reference-v5.png",
                   "selectedFrame": 3,
                   "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
                 }
@@ -131684,12 +131814,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 59,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/herrero/m/herrero-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/herrero/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -131703,12 +131833,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "25802e4553504d8ad6c52b0fda9df633863a8692c57a8cc482fa30fb83217072",
+                "bytes": 24253,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "b31ee11798d36a120a054aad8158cf22df31ec3c71383a107f10dcdd6b67e20d"
+              },
+              "02": {
+                "sha256": "26a4efa3ab650b6891781e05a8540526fe44a314b794eb401a144f021cab554c",
+                "bytes": 24390,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  107,
+                  249
+                ],
+                "pixelSha256": "4f514d47b0a5a6f540ecd1272a8d30495773636fc06559095e49c5271286e75d"
+              },
+              "03": {
+                "sha256": "b00397d92ec332ec1415213bff1e4852683f025560e87653fb23185653dfa9d8",
+                "bytes": 24245,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "b1cb458964ae216be623029ff5efe4a107eb97ee446c12014c3b585e42fb9280"
+              },
+              "04": {
+                "sha256": "0948c3edcd7ccedf16b2e6806ee51661ca7a51e36c9af3eaf4d25a036d4c14c7",
+                "bytes": 24301,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "c7140e8a6c8bcab070eac2936d42fef724ff1109f5b75eaf7c15a9a5f8efca2a"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -131753,6 +131952,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "debceb8014c3d39e21a982856e6d520bcc543e60c4f5c4d59347d49c891ed299",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip BLACKSMITH MALE tier2.5 idle. Use supplied canonical Novato reference ONLY for exact FOUR body poses, head size, hand/finger/elbow/feet positions, camera, per-quarter centers, canvas dimensions and body scale. Replace ALL novice garments and hairstyle with this NEW class. Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Every figure has identical short tidy CHESTNUT MOUSTACHE, including third closed-eye figure. Compact brown leather two-lens work GOGGLES pushed onto FOREHEAD above visible eyes, never spectacles over eyes. Compact riveted charcoal smith apron with short split waist flaps, three metal rivets down chest, brass ANVIL-SHAPED belt clasp, two secured square brown pouches. Rolled ochre shirt sleeves below elbows with short bare forearms above IRON wrist guards, dark fingerless gloves, exposed fingertips. Single compact iron plate on rear shoulder. Heavy boots with flat iron toe caps. No held hammer, tongs, weapon, tools or sparks. Image1 garment boundaries and bare-skin patches are NOT anatomy constraints: redraw with new outfit coverage, retaining ONLY anatomical pose/joint/finger coordinates. Keep compact silhouette. Exactly FOUR distinct full bodies in ONE horizontal row facing RIGHT three-quarter view. Consistent crisp painted anime pixel-inspired RPG game rendering/lighting. True transparent alpha background, clean contours, no colored fringe, no held/sheathed equipment, magic, effects, shadow, grid, text or logo. Empty hands exact canonical gesture. Full hair, fingers, boots clear margins every quarter; no individual recentering/rescaling.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -131761,12 +132018,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 60,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/herrero/f/herrero-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/herrero/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -131780,12 +132037,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ded335c26ab63442c8eb02f8769f9328d16f0e45a366acf21d62740c3639736c",
+                "bytes": 24628,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  91,
+                  110,
+                  248
+                ],
+                "pixelSha256": "e022ee06089e5e5b2c91e9bfb8064096308b8f0c13456a947ae06bcbb4b52b9d"
+              },
+              "02": {
+                "sha256": "529727a4f1243273eabc7741eb20b3d1009d731072b73571ff36e5254c596702",
+                "bytes": 24693,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  107,
+                  248
+                ],
+                "pixelSha256": "d7c410fd882d97c17b571c05ba9da37a5d975d54341832edea086500cbabb9de"
+              },
+              "03": {
+                "sha256": "e1a11536a30c978ebfff37e26db7503300f5b36abb82da332c553fd947549509",
+                "bytes": 24668,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  105,
+                  248
+                ],
+                "pixelSha256": "43d3d2042579d1042ee32e4fe685c7c03012bb640b717b3863e30e2b65e1ecf4"
+              },
+              "04": {
+                "sha256": "5bc5c97854611fb8f36ec375c24bf83ab2284e67b89265476f7f61c99653aa45",
+                "bytes": 24707,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "303fe2ce67a432f0933739c9baed71a1bdc96a26326038df2d06033e9d855bd3"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -131829,6 +132155,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "58e3b73482fd438ecfe5da61c3e905e8a7aa877751993c15c7dbd041417d5e09",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite strip BLACKSMITH FEMALE tier2.5 idle. Image1 defines ONLY exact canonical FEMALE four poses, hand/finger/elbow/foot positions, head size, camera, proportions, quarter centers, canvas size and scale. Image2 defines NEW BLACKSMITH COSTUME ONLY; do not copy masculine body or moustache. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Feminine face and body, chestnut braided crown and compact low bun, NO moustache/facial hair. Match image2's exact ochre rolled sleeves, short exposed forearms above iron wrist cuffs, dark fingerless gloves with exposed fingertips, bottle-green side panels, single compact rear iron shoulder plate, charcoal smith apron with THREE silver rivets vertically down chest and short split waist flaps, bronze/brass ANVIL-SHAPED belt clasp, two square leather pouches and flat iron toe caps on heavy boots. Identical compact leather work goggles pushed above eyes onto FOREHEAD in all four figures, including third closed-eye pose. Goggles never sit over eyes. Replace every old novice garment and exposed-skin patch with NEW outfit coverage, retaining ONLY anatomical/joint/finger coordinates. Exactly FOUR complete full bodies in one horizontal row, facing RIGHT three-quarter view, true transparent background, same crisp painted anime pixel-inspired RPG game finish/lighting. All costumes identical across four figures. No held/sheathed weapon, hammer, tongs, tools, sparks, scarf/cape, effects, shadow, grid, text, logos or colored fringe. Empty hands exact canonical gestures. Full hair fingers boots with margins every quarter. No individual recentering/rescaling.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
