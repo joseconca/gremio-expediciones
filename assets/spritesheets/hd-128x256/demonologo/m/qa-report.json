@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T22:12:31.533075+00:00",
+  "classId": "demonologo",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\demonologo-m-sheet.png",
+  "sheetSha256": "6a2c0b6606e71b94d2f7f16303cc07c64474bfbff944722463f1bbf8e7064e01",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\idle\\demonologo-m-idle-01.png",
+          "sha256": "fb67927e48b7231844f59f5b946014ebf8216333c71ae9d615515465a44cc1f2",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\idle\\demonologo-m-idle-02.png",
+          "sha256": "07343b9b326d6b0572f3b385101b1dd0b6e2dee487595d07734a6cffcbad799f",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\idle\\demonologo-m-idle-03.png",
+          "sha256": "4817b1680e51ff7ff5e8fea8d33cc93b9b038509a0c2594b523f120d8e2b2e3b",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\idle\\demonologo-m-idle-04.png",
+          "sha256": "ac562d9e54321e2ad7f8bdf8c3fdd9db7e89757b4c88aa2a29e247f49da31c7b",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\walk\\demonologo-m-walk-01.png",
+          "sha256": "1fdb02d51e47b8bd28f33627416f4896a26abde354102d4459dfd923c26394dd",
+          "alpha_bbox": [
+            12,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\walk\\demonologo-m-walk-02.png",
+          "sha256": "bbac017ec3434e804fd2a09ad272de4e03c1d543374b107c4a6e8ea4150aa1ae",
+          "alpha_bbox": [
+            9,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\walk\\demonologo-m-walk-03.png",
+          "sha256": "dfc629f8854b9b0ac485b15aa71830a4c992fa2fb559a3a7360e045a3d2b0ba4",
+          "alpha_bbox": [
+            10,
+            92,
+            114,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\walk\\demonologo-m-walk-04.png",
+          "sha256": "739652a6b4917e085485e992f8f7e134d0d5722988888e10c0d844b13ee8e04b",
+          "alpha_bbox": [
+            12,
+            93,
+            113,
+            252
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\hurt\\demonologo-m-hurt-01.png",
+          "sha256": "39784a25f79f9076271101fd674948cde30adaaeacf4213f324f3e1a5432c381",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\hurt\\demonologo-m-hurt-02.png",
+          "sha256": "dcfafa03dd77b164299a30e88f4a790f0793e0b27ba589219475f38f2c636c42",
+          "alpha_bbox": [
+            28,
+            101,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\hurt\\demonologo-m-hurt-03.png",
+          "sha256": "57b7f89a41b3a79d9a42ddc90f03fa9dec15cdaea65e395d4ca300a309553a87",
+          "alpha_bbox": [
+            16,
+            119,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\hurt\\demonologo-m-hurt-04.png",
+          "sha256": "de5d72062bc3a7483761b9a43dbf650d85eab479a6c316df71eb860caf28b982",
+          "alpha_bbox": [
+            17,
+            92,
+            97,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\use_consumable\\demonologo-m-use_consumable-01.png",
+          "sha256": "d2ea31fb3423e1668b5453fdae2c17534543a854928bb7c91a0d5acd3d47eb4b",
+          "alpha_bbox": [
+            29,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\use_consumable\\demonologo-m-use_consumable-02.png",
+          "sha256": "55e12deb82715053bf8e4ec73111177f4b217c866f4dc80cace043f7b7414097",
+          "alpha_bbox": [
+            29,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\use_consumable\\demonologo-m-use_consumable-03.png",
+          "sha256": "e2d70e8eb8dab211684e405f9936cc25ab5df981c7e316da8b20a8cb98ef97db",
+          "alpha_bbox": [
+            28,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\use_consumable\\demonologo-m-use_consumable-04.png",
+          "sha256": "5cf25e07b4223c4c8b071dfac740f8b99d33a92f973a48e865ac7b2c53dbdf20",
+          "alpha_bbox": [
+            21,
+            92,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\dodge\\demonologo-m-dodge-01.png",
+          "sha256": "8b111f6645482a626c1695b2cf6c3cf300f398fdb82c2c09cde68cc4cea56a85",
+          "alpha_bbox": [
+            19,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\dodge\\demonologo-m-dodge-02.png",
+          "sha256": "40cf28028370f1feb9b93f5a2627cf4e0341fafc749e2125eef3d52c3ee60966",
+          "alpha_bbox": [
+            18,
+            98,
+            120,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\dodge\\demonologo-m-dodge-03.png",
+          "sha256": "edc1a0b915f518bfca69646f356d3c87c99bf594d106672c2f015ed31f0a8894",
+          "alpha_bbox": [
+            16,
+            100,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\dodge\\demonologo-m-dodge-04.png",
+          "sha256": "e530125d1c5dcd32ae77ec6ce985cf90a62723217bf8fb8a7c50003f78dc48b5",
+          "alpha_bbox": [
+            19,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\block_shield\\demonologo-m-block_shield-01.png",
+          "sha256": "e380a60fe14b94b73ecb4542d70d537e253265de471a2fb04fa5df7096bed266",
+          "alpha_bbox": [
+            19,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\block_shield\\demonologo-m-block_shield-02.png",
+          "sha256": "a8e863ee5270c26dea6cb6f3977665ee9d2062b4607fb7746eb392bf4527fd57",
+          "alpha_bbox": [
+            20,
+            97,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\block_shield\\demonologo-m-block_shield-03.png",
+          "sha256": "13165786f5a38467d282fcb19d58864a7ebb9e0b6a5bfe2477f368314b2a245b",
+          "alpha_bbox": [
+            15,
+            112,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\block_shield\\demonologo-m-block_shield-04.png",
+          "sha256": "642634f417ed5fe6f2f0365ddbceb0d816ec12971249cad90747eeb38631939a",
+          "alpha_bbox": [
+            18,
+            97,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_sword\\demonologo-m-attack_sword-01.png",
+          "sha256": "a228ba44468f1b5ff083445ffcf6c73a23bb3d422634e17c50cbc23a8f89e172",
+          "alpha_bbox": [
+            14,
+            99,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_sword\\demonologo-m-attack_sword-02.png",
+          "sha256": "460aab59cea9532c0cad765946ecfd27ffb689fde14fc9ca730bf58defc0adf5",
+          "alpha_bbox": [
+            8,
+            99,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_sword\\demonologo-m-attack_sword-03.png",
+          "sha256": "b63fb386a19ad744a4d2864e31e73e634ba8b92de718ec2f2e76bbd0396553ec",
+          "alpha_bbox": [
+            11,
+            102,
+            123,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_sword\\demonologo-m-attack_sword-04.png",
+          "sha256": "2f4bf3dd7987fe6e03812580f7ee85644616b47f9b3e7a2a3e2850e96e94b5d2",
+          "alpha_bbox": [
+            19,
+            102,
+            117,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_axe\\demonologo-m-attack_axe-01.png",
+          "sha256": "8ad23a21c5cbb5912d5f7494e40eabdaadb419655b2a0224aa200312fb7abf4b",
+          "alpha_bbox": [
+            11,
+            101,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_axe\\demonologo-m-attack_axe-02.png",
+          "sha256": "be3745e163f769281fe17357641a0b91c24aae1ad072bc644b5dff7748be65e7",
+          "alpha_bbox": [
+            16,
+            112,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_axe\\demonologo-m-attack_axe-03.png",
+          "sha256": "bb92e460effce6b604d045610c2767f7eda31cb3d0234be24257a6e93cec2211",
+          "alpha_bbox": [
+            11,
+            121,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_axe\\demonologo-m-attack_axe-04.png",
+          "sha256": "dd8317df4b2416f5a16c82fabe6c951ae240f8688b7732763ee437f5030461b7",
+          "alpha_bbox": [
+            25,
+            104,
+            121,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_spear\\demonologo-m-attack_spear-01.png",
+          "sha256": "df7def6e1d31d8a7fb7b341af2751126d4f1a5ba4d6b2f8436d35622bd06e0b6",
+          "alpha_bbox": [
+            10,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_spear\\demonologo-m-attack_spear-02.png",
+          "sha256": "33b999b9a320482809fff1c8dff472d45e019c49d5826c92121d1599b8599534",
+          "alpha_bbox": [
+            13,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_spear\\demonologo-m-attack_spear-03.png",
+          "sha256": "becddf83a445feb7f9c36f83fdaca1997138f80c4e2f1c2832ff6d715d908b78",
+          "alpha_bbox": [
+            11,
+            91,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_spear\\demonologo-m-attack_spear-04.png",
+          "sha256": "ffc31c952bda7fcc79aab6ecd089a1591c27d7e2f956ba4680c69899eca04d9b",
+          "alpha_bbox": [
+            16,
+            91,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_dagger\\demonologo-m-attack_dagger-01.png",
+          "sha256": "cee0ed4dbd761af385920d3d80bc4b9c8e2f260b7e877227bc335dafe8cfc624",
+          "alpha_bbox": [
+            26,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_dagger\\demonologo-m-attack_dagger-02.png",
+          "sha256": "ea7c188eed2da7ccf54673479f1d1c74ffdbd08a48ca8a896aed1a8b42efe34d",
+          "alpha_bbox": [
+            25,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_dagger\\demonologo-m-attack_dagger-03.png",
+          "sha256": "e45cb7ff3cd112445ac915e552a950fdc58e38e29a824ee690421a23cfd56a75",
+          "alpha_bbox": [
+            27,
+            96,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_dagger\\demonologo-m-attack_dagger-04.png",
+          "sha256": "fedf380cc48b94f7f88b777db3aa3e86a91bc0001f58b7d7a1ebe999127164e1",
+          "alpha_bbox": [
+            25,
+            93,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_bow\\demonologo-m-attack_bow-01.png",
+          "sha256": "35e1b6572b09dada226ebb7f5f90d844704cfae9e8fb49800b86b531920ce91e",
+          "alpha_bbox": [
+            23,
+            96,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_bow\\demonologo-m-attack_bow-02.png",
+          "sha256": "9e4e3618c9ba2eafc93dbaf8dbf15b8a18040515999fafc20c15654ac35c919e",
+          "alpha_bbox": [
+            18,
+            96,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_bow\\demonologo-m-attack_bow-03.png",
+          "sha256": "1a3d14e8027f265abe0dd864911972a8a17b1b63c08fdc4e60ab3510173a56d1",
+          "alpha_bbox": [
+            15,
+            96,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_bow\\demonologo-m-attack_bow-04.png",
+          "sha256": "78483794f61f3d2bea5eb1947a2a2550b857626fc9722b88c2c025866d221f1e",
+          "alpha_bbox": [
+            9,
+            96,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_staff\\demonologo-m-attack_staff-01.png",
+          "sha256": "36da9dd1cd5f0a178a6387cd54ea130b10484e107d61d46fc263fbc724e310e6",
+          "alpha_bbox": [
+            27,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_staff\\demonologo-m-attack_staff-02.png",
+          "sha256": "f75695256f1a9e775cc825e26cdf77dbac1f4ac9d85123b68ec7c63cc14eae1f",
+          "alpha_bbox": [
+            25,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_staff\\demonologo-m-attack_staff-03.png",
+          "sha256": "d26c37df50a71d2eaea152b31e4b3d41e90b4d8a89da20b7cbbd63f3f444806a",
+          "alpha_bbox": [
+            25,
+            93,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_staff\\demonologo-m-attack_staff-04.png",
+          "sha256": "9edada87a91493fe46b6b0ccb66266184f38ae0c95f22eb765dcac808f3a6fd1",
+          "alpha_bbox": [
+            11,
+            93,
+            92,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_mace\\demonologo-m-attack_mace-01.png",
+          "sha256": "8eb36eceb381f17425b1ff11279dd1781cc019eb4dab345e5b640a859e111b26",
+          "alpha_bbox": [
+            22,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_mace\\demonologo-m-attack_mace-02.png",
+          "sha256": "0c59bd57c5715bbc6ca93694a1d8aea6943d4d3ed457446e4662ff74481360b5",
+          "alpha_bbox": [
+            28,
+            91,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_mace\\demonologo-m-attack_mace-03.png",
+          "sha256": "d6c489152700d08ef280aad25dd57c32edb5ef9a1c99271b48ba45935ac6c42b",
+          "alpha_bbox": [
+            23,
+            103,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_mace\\demonologo-m-attack_mace-04.png",
+          "sha256": "a9d75faf66e9b026bed99e98269489140d884ff89ae3ab707b498ab3e0a4f5ea",
+          "alpha_bbox": [
+            22,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_book\\demonologo-m-attack_book-01.png",
+          "sha256": "7f090a580ba15effc5db5038b85a03449da9dfd17ab8c272455807ba484cfb68",
+          "alpha_bbox": [
+            24,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_book\\demonologo-m-attack_book-02.png",
+          "sha256": "d1b9ac3d81f8c96845ae79af5b6061622977bc6d2f299313bbc70851a38a1c6d",
+          "alpha_bbox": [
+            26,
+            91,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_book\\demonologo-m-attack_book-03.png",
+          "sha256": "79e37bfe2860fa28478ab582248ee92fd5b64d86f61663a0ecf4175b059b01cc",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_book\\demonologo-m-attack_book-04.png",
+          "sha256": "095fa595cb09edd9627744ec6c01aaa7d540894a89d57ce558fe6de8f79732d0",
+          "alpha_bbox": [
+            26,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_gloves\\demonologo-m-attack_gloves-01.png",
+          "sha256": "4a60b2c3a5c8cbc8dcd9057b3c689a1fccaf3f3f370edbfce11c8647d8b05bf9",
+          "alpha_bbox": [
+            24,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_gloves\\demonologo-m-attack_gloves-02.png",
+          "sha256": "a2ee3db3ce86d7fd5e3107a2ce888c1cda662e3bfb353b42bab79fa3cc5021a1",
+          "alpha_bbox": [
+            23,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_gloves\\demonologo-m-attack_gloves-03.png",
+          "sha256": "ea283f70d4ed385f935317562357d71c39fe3016cc9f0baaac93dc0e3952b9ac",
+          "alpha_bbox": [
+            24,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\demonologo\\m\\frames\\attack_gloves\\demonologo-m-attack_gloves-04.png",
+          "sha256": "9a897e74d6a6ce2b1de55199e96f3f0acb03096908566460fe91433542d1591e",
+          "alpha_bbox": [
+            24,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

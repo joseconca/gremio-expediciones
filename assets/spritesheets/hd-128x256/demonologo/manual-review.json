@@ -1,0 +1,159 @@
+{
+  "classId": "demonologo",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-reference-v9.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame01-reference-v9.png",
+        "02": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame02-reference-v9.png",
+        "04": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame04-reference-v9.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/dodge-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/demonologo/m/source/dodge-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/demonologo/m/source/dodge-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/demonologo/m/source/dodge-frame04-reference-v2.png"
+      }
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_sword-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_sword-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_sword-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_sword-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/hurt-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/demonologo/f/source/hurt-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/demonologo/f/source/hurt-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/demonologo/f/source/hurt-frame04-reference-v2.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_gloves-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_gloves-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_gloves-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/demonologo/f/source/attack_gloves-frame03-reference-v4.png"
+      }
+    }
+  },
+  "notes": [
+    "Abrigo negro obsidiana y rojo oscuro con bordados de sellos en oro antiguo, broche hexagonal de rubi y tres placas hexagonales en el cinturon distinguen a esta especializacion avanzada de Brujo. Botas negras reforzadas con oro y rubies, mangas tres cuartos y brazales compactos; pelo carmesi masculino en capas y coleta alta trenzada femenina.",
+    "All thirty original strips, selected corrected whole poses, source palms and representative equipment of every type were visually reviewed for both sexes, including both axe structures. Both sexes have fifteen actions and 682 contacts without warnings.",
+    "Male walk revision9 selects complete portrait9 for pose3 and complete portrait7 for pose4, retaining original poses1 and2. Male sword revision2 replaces only pose4, and male dodge revision2 replaces only pose2 from a complete four-pose generated strip so first-pose calibration remains correct. Female hurt revision2 replaces only pose1, and female gloves revision4 replaces only pose4. All other actions retain originals. Failed or clipped candidates remain archived but are not selected.",
+    "Portrait derivations repeat the entire unchanged raw canvas before fixed canonical normalization and whole-pose selection. The final walking correction preserves actual black glove palms and complete compact boots. No body painting, limb transplants, class-specific equipment offsets or per-pose export adjustments. Legacy cloth, wrist, fingertip and consumable waist-return contacts were checked against actual hilts and shafts. No automatic runtime promotion."
+  ]
+}

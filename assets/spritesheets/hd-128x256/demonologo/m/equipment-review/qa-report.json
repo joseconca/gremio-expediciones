@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "demonologo",
   "sex": "m",
   "actions": [
@@ -29,8 +29,8 @@
     "walk": [
       "1fdb02d51e47b8bd28f33627416f4896a26abde354102d4459dfd923c26394dd",
       "bbac017ec3434e804fd2a09ad272de4e03c1d543374b107c4a6e8ea4150aa1ae",
-      "3a30f6dd237904fb20d7d58828992c42d86ffb3eddebb9a7b8e6820628081fef",
-      "0a13f9d5c5ba6f9b9ec0004dd891033fdd02537f507006aedca19c63d72dbb8c"
+      "dfc629f8854b9b0ac485b15aa71830a4c992fa2fb559a3a7360e045a3d2b0ba4",
+      "739652a6b4917e085485e992f8f7e134d0d5722988888e10c0d844b13ee8e04b"
     ],
     "hurt": [
       "39784a25f79f9076271101fd674948cde30adaaeacf4213f324f3e1a5432c381",
@@ -112,80 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "demonologo-m",
+  "nextVariant": "saqueador-m",
   "classes": [
     {
       "id": "novato",
@@ -380,7 +380,7 @@
       "name": "Demonólogo",
       "tier": 3,
       "order": 46,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "verdugo",
@@ -212448,7 +212448,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/demonologo/m/demonologo-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/demonologo/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -212589,36 +212589,36 @@
                 "pixelSha256": "ba7f47fe939ef82491f63f086cda53dede8859175ddf266506787501229e6550"
               },
               "03": {
-                "sha256": "3a30f6dd237904fb20d7d58828992c42d86ffb3eddebb9a7b8e6820628081fef",
-                "bytes": 22824,
+                "sha256": "dfc629f8854b9b0ac485b15aa71830a4c992fa2fb559a3a7360e045a3d2b0ba4",
+                "bytes": 24533,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  7,
+                  10,
                   92,
                   114,
-                  248
+                  251
                 ],
-                "pixelSha256": "ebf8602eca7f1e870d02245f018a094569707739aa6091af6d41b52f8f945ff5"
+                "pixelSha256": "d386dc02b966b6db10ad393abeb6bf3a42646ea3920c5e9ea9e3c4fad7f8e43e"
               },
               "04": {
-                "sha256": "0a13f9d5c5ba6f9b9ec0004dd891033fdd02537f507006aedca19c63d72dbb8c",
-                "bytes": 23535,
+                "sha256": "739652a6b4917e085485e992f8f7e134d0d5722988888e10c0d844b13ee8e04b",
+                "bytes": 24249,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
-                  92,
-                  105,
-                  248
+                  12,
+                  93,
+                  113,
+                  252
                 ],
-                "pixelSha256": "f0ba5f91bf081efdc9f1ff2323e36bed9273af8f9d4aab563eeabcf13141f737"
+                "pixelSha256": "a1aaa5752cc0187bd89c9c3eb696d867ea41a7e1c704026cf7cd67b359b445c1"
               }
             },
             "distinctFrames": 4
@@ -213572,13 +213572,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "baeb6818344204332e8e2406fde76fd592cffe6185cbb57e2ff61bdb3945c34d",
+          "sourceSha256": "6314a82ad530b460e4cde81cc6022ff8bae820d75d340e472459daccb4814dec",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -213600,9 +213601,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-reference-v9.png",
           "generator": "built-in imagegen",
-          "prompt": "Follow exact obsidian/oxblood/gold/red Demonologo outfit, dark-crimson layered short hair, hex ruby chest seal, THREE red hex belt plates and gold/ruby black reinforced boots in Image2. All three-quarter sleeves black with rolled darkred cuffs and short skin gap above compact bracers. Keep exact canonical hand positions; don't lengthen bracers or push palms away. Production RPG body sprite strip for DemonÃ³logo MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Preserve the established three-quarter black sleeves with dark-red rolled cuffs and only a narrow exposed forearm gap above the compact bracer, consistently across actions. Adult experienced masculine DemonÃ³logo with dark crimson-black short layered swept tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Pact scholar uniform: fitted OBSIDIAN BLACK coat with OXBLOOD pointed high collar, angular lapel/short split thigh panels and compact short dark-red shoulder caps, edged with antique GOLD piping and angular seal embroidery. Compact GOLD HEXAGON chest seal with RUBY enamel center. Broad black belt with exactly THREE GOLD-RIM RED HEXAGON seal plates. BLACK fitted three-quarter sleeves with OXBLOOD turned cuffs; a short exposed forearm gap above the compact black/gold bracers. BLACK fingerless gloves with small GOLD-RIM RUBY DIAMOND hand ornaments. DARK trousers; BLACK reinforced boots with GOLD toe caps/rims, GOLD angular shin guards enclosing RUBY DIAMOND ornaments, dark straps and gold square buckles. No novice brown straps/pouches/boots, horns, wings, tail, creatures, cape, effects, held/sheathed equipment or shadows. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise edit ONLY to boots: the forward RIGHT-ON-IMAGE boot toe is clipped at right canvas edge, and soles reach bottom edge. Make BOTH boots compact below ankle so their complete gold toe caps and dark/gold sole contours are visible with transparent margin at right and bottom. Keep ALL pixels above ankles in the EXACT same positions and same sizes: both fists and ruby glove ornaments, arms, face, hair, head, torso, thighs and knee armor. Preserve overall pose, canvas aspect, figure placement and costume. Do not resize or recenter entire figure. One complete male Demonologo on genuine transparent alpha. No equipment, effects or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -213610,7 +213611,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "baeb6818344204332e8e2406fde76fd592cffe6185cbb57e2ff61bdb3945c34d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame01-reference-v9.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "baeb6818344204332e8e2406fde76fd592cffe6185cbb57e2ff61bdb3945c34d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame02-reference-v9.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "efefb313886f0eafe213f5d90cf9f304be26abc58f33f4e0199bdb715b780455",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-frame04-reference-v9.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "baeb6818344204332e8e2406fde76fd592cffe6185cbb57e2ff61bdb3945c34d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/demonologo/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Follow exact obsidian/oxblood/gold/red Demonologo outfit, dark-crimson layered short hair, hex ruby chest seal, THREE red hex belt plates and gold/ruby black reinforced boots in Image2. All three-quarter sleeves black with rolled darkred cuffs and short skin gap above compact bracers. Keep exact canonical hand positions; don't lengthen bracers or push palms away. Production RPG body sprite strip for DemonÃ³logo MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Preserve the established three-quarter black sleeves with dark-red rolled cuffs and only a narrow exposed forearm gap above the compact bracer, consistently across actions. Adult experienced masculine DemonÃ³logo with dark crimson-black short layered swept tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Pact scholar uniform: fitted OBSIDIAN BLACK coat with OXBLOOD pointed high collar, angular lapel/short split thigh panels and compact short dark-red shoulder caps, edged with antique GOLD piping and angular seal embroidery. Compact GOLD HEXAGON chest seal with RUBY enamel center. Broad black belt with exactly THREE GOLD-RIM RED HEXAGON seal plates. BLACK fitted three-quarter sleeves with OXBLOOD turned cuffs; a short exposed forearm gap above the compact black/gold bracers. BLACK fingerless gloves with small GOLD-RIM RUBY DIAMOND hand ornaments. DARK trousers; BLACK reinforced boots with GOLD toe caps/rims, GOLD angular shin guards enclosing RUBY DIAMOND ornaments, dark straps and gold square buckles. No novice brown straps/pouches/boots, horns, wings, tail, creatures, cape, effects, held/sheathed equipment or shadows. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "c14f13dfdef112153e97ace34c609478fc686ad4c9f5ebd1d39c2f11b4ded10a",
@@ -213648,7 +213782,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "ca49651e7ad92cd958421a724dff7f7f42bbfd2d962d80934cd3a7886f14d44c",
@@ -213686,7 +213821,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "6aaae5e3ca729e390bf9b7f89a76e8011a586468946717cfaa8a695eaac5ee0f",
@@ -213730,7 +213866,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "f2402898b7c6f9064f8e89ae3f1a4a06efcd632a62d66ec3854d8d7e06c6266b",
@@ -213886,7 +214022,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "b2a2ac97a9306d162ceac88ce1de7968c2974c4b3238aebd9bdb4b8a595b5c34",
@@ -213930,7 +214067,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "032a9eef4e1f0e0fd7224137973038a755543c14e40c33fa3a363bcd1aa4a3d4",
@@ -213968,7 +214106,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "d6df421b78fb4ddd29dad5ede6d77aeed5c85575d281b6967d8ff7699814615f",
@@ -214100,7 +214238,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "1b0514ca9baa9a383e9040729368e813b3e1cafa9117b567261cd2017e176b8f",
@@ -214138,7 +214277,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "ef67c67eed18adeb00e8fe273caeba101758dc5080e4e5f1f4a0e4fa4de6e182",
@@ -214176,7 +214316,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f1047bbffe72ba5ae42d46cba523854313724f354892e0fb9e7c78bb85ac1b93",
@@ -214214,7 +214355,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "480fb9fa367c68816a934bfdef46daeeef55632d2a63bed5c9ae13534f99ab86",
@@ -214252,7 +214394,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "31b7f1df8c03bd1bcb6616a566a7b939de5c0ae164c88e852f8c511d052135db",
@@ -214290,7 +214433,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f8b0abae189f4de839fc240b0e194c101232f83e7e0a3cc7d9863b9fe0c106cd",
@@ -214328,7 +214472,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "68f8b3aad3d0be68c28b46c5af2c6470c2b47abbba50e766d03a5ccb3eee9e10",
@@ -214366,7 +214511,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "88b9211be23bd6dedc2f358c256b1a2b46d9c9b271424862bbf37a052d360fd5",
@@ -214404,7 +214550,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -214425,11 +214572,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -214437,7 +214584,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -214679,6 +214826,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "demonologo",
+        "name": "DemonÃ³logo",
+        "tier": 3,
+        "costume": "Pact scholar uniform: fitted OBSIDIAN BLACK coat with OXBLOOD pointed high collar, angular lapel/short split thigh panels and compact short dark-red shoulder caps, edged with antique GOLD piping and angular seal embroidery. Compact GOLD HEXAGON chest seal with RUBY enamel center. Broad black belt with exactly THREE GOLD-RIM RED HEXAGON seal plates. BLACK fitted three-quarter sleeves with OXBLOOD turned cuffs; a short exposed forearm gap above the compact black/gold bracers. BLACK fingerless gloves with small GOLD-RIM RUBY DIAMOND hand ornaments. DARK trousers; BLACK reinforced boots with GOLD toe caps/rims, GOLD angular shin guards enclosing RUBY DIAMOND ornaments, dark straps and gold square buckles. No novice brown straps/pouches/boots, horns, wings, tail, creatures, cape, effects, held/sheathed equipment or shadows.",
+        "maleIdentity": "Adult experienced masculine DemonÃ³logo with dark crimson-black short layered swept tousled hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine DemonÃ³logo with dark crimson-black hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Preserve the established three-quarter black sleeves with dark-red rolled cuffs and only a narrow exposed forearm gap above the compact bracer, consistently across actions.",
+        "unique": "Obsidian/oxblood pact coat, ruby hexagonal seal and antique gold embroidery",
+        "advancement": "Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/demonologo/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "fb67927e48b7231844f59f5b946014ebf8216333c71ae9d615515465a44cc1f2",
+            "07343b9b326d6b0572f3b385101b1dd0b6e2dee487595d07734a6cffcbad799f",
+            "4817b1680e51ff7ff5e8fea8d33cc93b9b038509a0c2594b523f120d8e2b2e3b",
+            "ac562d9e54321e2ad7f8bdf8c3fdd9db7e89757b4c88aa2a29e247f49da31c7b"
+          ],
+          "walk": [
+            "1fdb02d51e47b8bd28f33627416f4896a26abde354102d4459dfd923c26394dd",
+            "bbac017ec3434e804fd2a09ad272de4e03c1d543374b107c4a6e8ea4150aa1ae",
+            "dfc629f8854b9b0ac485b15aa71830a4c992fa2fb559a3a7360e045a3d2b0ba4",
+            "739652a6b4917e085485e992f8f7e134d0d5722988888e10c0d844b13ee8e04b"
+          ],
+          "hurt": [
+            "39784a25f79f9076271101fd674948cde30adaaeacf4213f324f3e1a5432c381",
+            "dcfafa03dd77b164299a30e88f4a790f0793e0b27ba589219475f38f2c636c42",
+            "57b7f89a41b3a79d9a42ddc90f03fa9dec15cdaea65e395d4ca300a309553a87",
+            "de5d72062bc3a7483761b9a43dbf650d85eab479a6c316df71eb860caf28b982"
+          ],
+          "use_consumable": [
+            "d2ea31fb3423e1668b5453fdae2c17534543a854928bb7c91a0d5acd3d47eb4b",
+            "55e12deb82715053bf8e4ec73111177f4b217c866f4dc80cace043f7b7414097",
+            "e2d70e8eb8dab211684e405f9936cc25ab5df981c7e316da8b20a8cb98ef97db",
+            "5cf25e07b4223c4c8b071dfac740f8b99d33a92f973a48e865ac7b2c53dbdf20"
+          ],
+          "dodge": [
+            "8b111f6645482a626c1695b2cf6c3cf300f398fdb82c2c09cde68cc4cea56a85",
+            "40cf28028370f1feb9b93f5a2627cf4e0341fafc749e2125eef3d52c3ee60966",
+            "edc1a0b915f518bfca69646f356d3c87c99bf594d106672c2f015ed31f0a8894",
+            "e530125d1c5dcd32ae77ec6ce985cf90a62723217bf8fb8a7c50003f78dc48b5"
+          ],
+          "block_shield": [
+            "e380a60fe14b94b73ecb4542d70d537e253265de471a2fb04fa5df7096bed266",
+            "a8e863ee5270c26dea6cb6f3977665ee9d2062b4607fb7746eb392bf4527fd57",
+            "13165786f5a38467d282fcb19d58864a7ebb9e0b6a5bfe2477f368314b2a245b",
+            "642634f417ed5fe6f2f0365ddbceb0d816ec12971249cad90747eeb38631939a"
+          ],
+          "attack_sword": [
+            "a228ba44468f1b5ff083445ffcf6c73a23bb3d422634e17c50cbc23a8f89e172",
+            "460aab59cea9532c0cad765946ecfd27ffb689fde14fc9ca730bf58defc0adf5",
+            "b63fb386a19ad744a4d2864e31e73e634ba8b92de718ec2f2e76bbd0396553ec",
+            "2f4bf3dd7987fe6e03812580f7ee85644616b47f9b3e7a2a3e2850e96e94b5d2"
+          ],
+          "attack_axe": [
+            "8ad23a21c5cbb5912d5f7494e40eabdaadb419655b2a0224aa200312fb7abf4b",
+            "be3745e163f769281fe17357641a0b91c24aae1ad072bc644b5dff7748be65e7",
+            "bb92e460effce6b604d045610c2767f7eda31cb3d0234be24257a6e93cec2211",
+            "dd8317df4b2416f5a16c82fabe6c951ae240f8688b7732763ee437f5030461b7"
+          ],
+          "attack_spear": [
+            "df7def6e1d31d8a7fb7b341af2751126d4f1a5ba4d6b2f8436d35622bd06e0b6",
+            "33b999b9a320482809fff1c8dff472d45e019c49d5826c92121d1599b8599534",
+            "becddf83a445feb7f9c36f83fdaca1997138f80c4e2f1c2832ff6d715d908b78",
+            "ffc31c952bda7fcc79aab6ecd089a1591c27d7e2f956ba4680c69899eca04d9b"
+          ],
+          "attack_dagger": [
+            "cee0ed4dbd761af385920d3d80bc4b9c8e2f260b7e877227bc335dafe8cfc624",
+            "ea7c188eed2da7ccf54673479f1d1c74ffdbd08a48ca8a896aed1a8b42efe34d",
+            "e45cb7ff3cd112445ac915e552a950fdc58e38e29a824ee690421a23cfd56a75",
+            "fedf380cc48b94f7f88b777db3aa3e86a91bc0001f58b7d7a1ebe999127164e1"
+          ],
+          "attack_bow": [
+            "35e1b6572b09dada226ebb7f5f90d844704cfae9e8fb49800b86b531920ce91e",
+            "9e4e3618c9ba2eafc93dbaf8dbf15b8a18040515999fafc20c15654ac35c919e",
+            "1a3d14e8027f265abe0dd864911972a8a17b1b63c08fdc4e60ab3510173a56d1",
+            "78483794f61f3d2bea5eb1947a2a2550b857626fc9722b88c2c025866d221f1e"
+          ],
+          "attack_staff": [
+            "36da9dd1cd5f0a178a6387cd54ea130b10484e107d61d46fc263fbc724e310e6",
+            "f75695256f1a9e775cc825e26cdf77dbac1f4ac9d85123b68ec7c63cc14eae1f",
+            "d26c37df50a71d2eaea152b31e4b3d41e90b4d8a89da20b7cbbd63f3f444806a",
+            "9edada87a91493fe46b6b0ccb66266184f38ae0c95f22eb765dcac808f3a6fd1"
+          ],
+          "attack_mace": [
+            "8eb36eceb381f17425b1ff11279dd1781cc019eb4dab345e5b640a859e111b26",
+            "0c59bd57c5715bbc6ca93694a1d8aea6943d4d3ed457446e4662ff74481360b5",
+            "d6c489152700d08ef280aad25dd57c32edb5ef9a1c99271b48ba45935ac6c42b",
+            "a9d75faf66e9b026bed99e98269489140d884ff89ae3ab707b498ab3e0a4f5ea"
+          ],
+          "attack_book": [
+            "7f090a580ba15effc5db5038b85a03449da9dfd17ab8c272455807ba484cfb68",
+            "d1b9ac3d81f8c96845ae79af5b6061622977bc6d2f299313bbc70851a38a1c6d",
+            "79e37bfe2860fa28478ab582248ee92fd5b64d86f61663a0ecf4175b059b01cc",
+            "095fa595cb09edd9627744ec6c01aaa7d540894a89d57ce558fe6de8f79732d0"
+          ],
+          "attack_gloves": [
+            "4a60b2c3a5c8cbc8dcd9057b3c689a1fccaf3f3f370edbfce11c8647d8b05bf9",
+            "a2ee3db3ce86d7fd5e3107a2ce888c1cda662e3bfb353b42bab79fa3cc5021a1",
+            "ea283f70d4ed385f935317562357d71c39fe3016cc9f0baaac93dc0e3952b9ac",
+            "9a897e74d6a6ce2b1de55199e96f3f0acb03096908566460fe91433542d1591e"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -214691,7 +214953,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/demonologo/f/demonologo-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/demonologo/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -215815,7 +216077,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "67bf930fb02109d3e73638e85e0361e997d7e27731e6ba8fc3c1b5ab7832f9a1",
@@ -215853,7 +216116,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "87a31763c7f4643c935c1cfc5cc9b5cf4e05b4951fc9813939e486694c4f6785",
@@ -215891,7 +216155,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "f5982b0b0cdfd2e1e26f7b8fbd172f8ee29cd4e472eb452a38f4b00d35efb1eb",
@@ -216023,7 +216287,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "81d8cbe2658a9cc4e45491788efebf0f3abbfb6e76a8aa8daedb71ad330b5d42",
@@ -216061,7 +216326,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "010384197165222cd6b15f128cf569e58aa7a3a421eed2df6fe717532fd5805b",
@@ -216099,7 +216365,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "c7748e2d8100eb93798a7a7eb221d1c287d780aef2659cc2aab121c6dda22bff",
@@ -216137,7 +216404,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "3969ce79ec5ba204db2c4997ecd4f1cee6296710ebe334437aabfe3b49a10f4b",
@@ -216175,7 +216443,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "7131c9edbcc06997f977115e91287e698ac5264b4f9eec0c88b77fd23409acb6",
@@ -216213,7 +216482,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "97d2dae428b3b2f5e41cfb49ed70568075e5a6de74c1e3c377b0363eb29bb04a",
@@ -216251,7 +216521,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a12ffbd18e3d1941b8264380f5a537a14f9fa962e1ef5d2bc1e01df224ebe0c7",
@@ -216289,7 +216560,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "0af05bcd132c8f083c3554fd4f188c9d834d0e84db9204bf9245a3383c018714",
@@ -216327,7 +216599,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "e6caf9906cdd2eabd944a9011bc5c6bb4f7faa18737766bd7958bef243d68f70",
@@ -216365,7 +216638,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "1fe1f9f1b0a30cabd85c3543919b7f34a509a5a10e91e7b05b369d50e1d78e23",
@@ -216403,7 +216677,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "afcb9921c55ea388382dc9f533f6276c5341bff61de7a628959f29b0aa2ee464",
@@ -216441,7 +216716,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "e6e181aaa9760b8934e8694dbc6a53ce333990b079e0ab8417ad33def87cab31",
@@ -216479,7 +216755,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "1a1429dd6402257940763fd0a73b547e4231875bf6ac97388cb413b4a3d4aab7",
@@ -216611,7 +216887,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -216886,6 +217163,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "demonologo",
+        "name": "DemonÃ³logo",
+        "tier": 3,
+        "costume": "Pact scholar uniform: fitted OBSIDIAN BLACK coat with OXBLOOD pointed high collar, angular lapel/short split thigh panels and compact short dark-red shoulder caps, edged with antique GOLD piping and angular seal embroidery. Compact GOLD HEXAGON chest seal with RUBY enamel center. Broad black belt with exactly THREE GOLD-RIM RED HEXAGON seal plates. BLACK fitted three-quarter sleeves with OXBLOOD turned cuffs; a short exposed forearm gap above the compact black/gold bracers. BLACK fingerless gloves with small GOLD-RIM RUBY DIAMOND hand ornaments. DARK trousers; BLACK reinforced boots with GOLD toe caps/rims, GOLD angular shin guards enclosing RUBY DIAMOND ornaments, dark straps and gold square buckles. No novice brown straps/pouches/boots, horns, wings, tail, creatures, cape, effects, held/sheathed equipment or shadows.",
+        "maleIdentity": "Adult experienced masculine DemonÃ³logo with dark crimson-black short layered swept tousled hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine DemonÃ³logo with dark crimson-black hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Preserve the established three-quarter black sleeves with dark-red rolled cuffs and only a narrow exposed forearm gap above the compact bracer, consistently across actions.",
+        "unique": "Obsidian/oxblood pact coat, ruby hexagonal seal and antique gold embroidery",
+        "advancement": "Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/demonologo/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "2768e9c4b1371ea0f511cd2b4b8c0578559fe98c777b11b3da038d01cf82e11c",
+            "64bf66dc6f1653fa64910bc3e878f37bbcc5b3b29ad459dbdc17446fb95d3155",
+            "5495f8582d537d30b1cb711e10c2ecbf09dca57412705728cbc7cf1f14873803",
+            "7f47779b46d0564ff005b5b76842f73cb991af620dba9086ad0db3ac43f1486e"
+          ],
+          "walk": [
+            "fdb2a91df4a3d9787af2bdd778aad68932f4a2b80594d6fce171d2d56949742b",
+            "4c89651dc11cb2bb389df785fdcf7b9bf61a7c628ec4092a8793b9410c914760",
+            "b39737bda0f948b1497d1cb7917671c495515010d0994cccba4bc8765392dc72",
+            "5cd587fba10f99641f10fb123614266f1f46ae61065f118ccba43e62826bacdf"
+          ],
+          "hurt": [
+            "9cf58a3b316533f3dafb582912dc7b53ab7c01749c5acc71869e41d287c1b315",
+            "ed884dd8bd92540dc6e8ef7283d90c86f6e5354241c850ce3ec9a52e39e4da76",
+            "d595a34e9fd7c45f427d27baa6a0b60d7850a0c53b8b715893553efaeb457612",
+            "84b738edb1bae6fa08c55dd960cf0bb8069c886b16b626e64f7058fbf57a6482"
+          ],
+          "use_consumable": [
+            "38d7d53df11d106fa679244e5b4eb2214109017aab5c9caaa713522d60455563",
+            "72d5357a8ab67e8a54266fddc3d87aafec43c65f77124ed89ab094b7a929f9af",
+            "2a2983869b4f87038bfa5825a89aabba496830638cb830fdc0a3366cc74bd019",
+            "64e66d3cafc5fe209bd7ef418dbe38ba73c2de171c4767e4d3a1fd8b4513f699"
+          ],
+          "dodge": [
+            "ca514305837a322b34fbecd9ccbcab2f71a6ee931089317f2b41a78108365466",
+            "bf42595c85c46679fc7b8dc674bcad3c2a9485a6317b2fc39e8e347c38350d3c",
+            "0e483907ac430017fee7c8cee9eb0c2d5e65a0203c62677e1e3ae83e74b73aa4",
+            "8a12dd3c6de4af4dd1f4454561260274177fbbcdc9824c526c3146ec9023a035"
+          ],
+          "block_shield": [
+            "77160507e17a13313d15d2b01b4e0d36300a3219dffec5a6dd1373d6e0cf7a33",
+            "471e4a8a03dc51b2b31559bd8ede154214aeb3af5817ac062f2fade22f920d2e",
+            "f3fef57c437e59a38602ed6c56d4989cb87b318a9b25c4d1b22522e292bd9a52",
+            "f79e432fe18bc07e39dca0ae6ff4eabbfed7c4849b41f48d4df01b8dde9c6af3"
+          ],
+          "attack_sword": [
+            "305e0ab3076c8f7cfbc22f9dc5b4c7f577ced62898cf6d9193b63b09daa268cd",
+            "d23fae7804ff396016226cc550e4fd46d386ec2c9ba4c69443f734aa269d5750",
+            "43db4a359bd661c6976c90c54c88ef67af65cfc33122a1e05a96526bb71bf0be",
+            "00aa5d1a937aee543c334a4f6553c8269103b9c7d2b2ebc6ff9eb6a2fd1b4c49"
+          ],
+          "attack_axe": [
+            "337d4c80b7ca9e8ccb02deb555c50a09f5d03d96688e48f083c6edf895fca952",
+            "3fa9c17ce764ef3749040eb8b319904c99143f6545e3146a49e9caa357fe75cd",
+            "82e753d97dd3feca5122ed39bd21c1c864d793ce2cedade9053f12b9b3c6deff",
+            "8f15bf9197b650675ec6ce546c6ca3ae0dbf5b9a7f99e99ece1779c97d08179d"
+          ],
+          "attack_spear": [
+            "e43e91dfeab2419793de8c0cbb24c444e245427de28f965047740589bed69aa3",
+            "f29cc628c6370e4a87c8165be8e7999f78f89d1351abfa724d051fe8f4e74077",
+            "f2f73d8760f0b36fc78b8e3d981f7a3ca9c6e87da265244de7fe9cb78e2bf7c3",
+            "98f0ca099f47ee7bc36984504de11c24e5f5fbd2a5e031c3ceade47cccc7a204"
+          ],
+          "attack_dagger": [
+            "ab7bd81edb1e76a83752e7a45acb422499a0dbe7bcf6f09ca5418f1768a612cd",
+            "b0f0ad05bb614faa36c09cf3d56673c1688fa03b9521fd4151049e2566690c21",
+            "9e285885fea23b0798d6c6b4eb0bd044f5a98b913f90c2daae825485c3619568",
+            "1cf8e992f60a27b4f0e1090b728a8daaaed20fedeab387dd6ed0327e77301b45"
+          ],
+          "attack_bow": [
+            "7eea618af34843e49562305dbafb5a58fa249f234c18dd27f1c728f893f6507b",
+            "175d7bcc277256e225ae1e8b2d2467919c4940cde2b0a0789e604544b71854ba",
+            "5b8b61076a06d0c5a998df5268b95baa622251f82fc5f1009757b557c40447a8",
+            "0958ccae6f2a060897d5cb9cee41827bbbff941dd7a7280eee0019d18a0c8e53"
+          ],
+          "attack_staff": [
+            "795bec5540f807a175033e7a787b06ee5840f008a855709d5fdab24b7f04bd21",
+            "c1450b4932f73b48214d32bd54e7683affa5fdd8e87391e17faf838146f275ad",
+            "ad0fe7721a9e65aa2088d16255c2b49c8de5ba8c30fef1cd71a0934602f4dfd9",
+            "8a7495da9ba1887b23bc8dea3fbc18106ba44be176145bce862e77ebf620d40b"
+          ],
+          "attack_mace": [
+            "07a5ffd941f57bbe6eed187247c925a446964b167b22837b0f9ba8fff4c0517b",
+            "f664bdd6d64064126cde875413fd44bdbb47f3a5742f982c720ffbaded216981",
+            "488637a46fc9d29f92471f12a10118155f0229aa127d15c01f3be27256165b0e",
+            "f45d715e3181032b4b27715f0c78619b74b105cb5839d702dcea8db5cdda77d2"
+          ],
+          "attack_book": [
+            "6adcb58eed405d8cd8ac0a39402c5f6a8a8512f6da57fcb9a77a71072d5b20a6",
+            "81ee01532e1dabc9e2e02be66c1be9b6c2d69273e7e22dc6a8a8285b5fc966ed",
+            "59cd5b05f796427a1da7ef3cfc5bd01e8ffd89fb460698b50bf3c3974b5f5cf9",
+            "46a31bacb5a381f94bbf83d5013a2fb19b714e4081c12c122f0df17c51ce2c39"
+          ],
+          "attack_gloves": [
+            "dbc201739bccffb7a82478fe59646e4a6edb7d36c3637654fd2081b11c37b85d",
+            "a90062cad9207fc18ac802231952ba581067b2d32be3ab972c830394d601a0f5",
+            "64704ad0a6cbc80743aa5349ede939155eb7756765da85f19498472b413143bf",
+            "e2a62c1a5519503e4682fc741dbe77b5ef525ec095837585ea347ec971068540"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
