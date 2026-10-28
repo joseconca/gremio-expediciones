@@ -1,0 +1,153 @@
+{
+  "classId": "rastreador",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/idle-reference-v2.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/walk-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/rastreador/m/source/walk-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/rastreador/m/source/walk-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/rastreador/m/source/walk-frame03-reference-v2.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_sword-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_sword-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_sword-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_sword-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/walk-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/rastreador/f/source/walk-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/rastreador/f/source/walk-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/rastreador/f/source/walk-frame04-reference-v2.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/hurt-reference-v4.png",
+      "overrides": {}
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_bow-frame01-reference-v2.png"
+      }
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/rastreador/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Chaqueta arena con panel acolchado carbón, hombreras topográficas de cobre, brújula, estuche de mapas y botas oscuras con refuerzos de cobre distinguen esta especialización avanzada de Explorador. Pelo castaño claro corto masculino y trenza compacta femenina.",
+    "All thirty original action strips, both sexes, representative equipment compositions and both axe structures visually reviewed. Male original idle was superseded by advanced identity revision2. All selected actions use the advanced charcoal/copper boots and fitted sand jacket, without novice chest straps.",
+    "Male walk revision2 supplies only complete pose4; original1/2/3 retained. Male sword revision2 supplies only complete pose2 with correct forward impact rather than duplicated wind-up; original1/3/4 retained. Female walk revision2 supplies only complete pose2. Female bow revision2 supplies complete poses2/3/4, original1 retained. Female hurt revision4 supplies all four complete poses with corrected near-hand locations and fitted sleeves replacing exposed forearm patches.",
+    "Actual palms and thumb openings checked against canonical source and final equipment compositions. Some legacy contacts lie on cloth or occluded forearms; male consumable recovery uses the canonical waist return. Shared weapon structure unchanged, no per-class equipment shifts or automatic runtime promotion."
+  ]
+}

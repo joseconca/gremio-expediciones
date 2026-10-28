@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "rastreador-f",
+  "nextVariant": "archimago-m",
   "classes": [
     {
       "id": "novato",
@@ -352,7 +352,7 @@
       "name": "Rastreador",
       "tier": 3,
       "order": 42,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "archimago",
@@ -193966,7 +193966,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/rastreador/m/rastreador-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/rastreador/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -195090,7 +195090,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "3bc87f347b24c5db33aef299c1f94138db3eb608dbc110d5180b977c3ce30deb",
@@ -195128,7 +195129,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "2d7cdf8c4ac92e99bde4b6c148af8816c2172b43c5e088c8fbf8047ded70d6d3",
@@ -195260,7 +195261,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "bc3d688dd9ee5064bf91220a3e1eef2ab0d919ecf6ce99fd2aff4b77425f5d0a",
@@ -195298,7 +195300,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "e10055132b87ff736fb2c700e0fad49bde6104d354ecf744285d3c06d5c5bac4",
@@ -195336,7 +195339,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "14263591b723aeb03518c4560b636a32e8708c3695722b388e687c252adc897b",
@@ -195380,7 +195384,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "741d015ac0387dda4fb5c354678689c3a5e0576a726c364a5773be9b027ef3ac",
@@ -195424,7 +195429,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "6b97c0e8ffab1efb823a25302b721cbb5ddda004563775d7cff5c80e7b1b01da",
@@ -195462,7 +195468,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "6559d9885206ff7fda47035839473d35f978767f328752046859feec87276ce3",
@@ -195594,7 +195600,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "c523e28a6e6efd55a01638c2d6b658aa9dd6404287c0be8a5999db1d54a839e2",
@@ -195632,7 +195639,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "f17a36f434ddcfc43922c2d750bf3c5c4c17e3fb51a5a45514186d33c7a9f0a3",
@@ -195670,7 +195678,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f24d821fe125e6c2cf348c24d3bf3089a96cad41d8a54e32e1e8e8f6f9ed7700",
@@ -195708,7 +195717,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "4fefa3ebae517d123f06e2535546760cf2cef5220c5ceca335dc76b0660bd190",
@@ -195746,7 +195756,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "a82975ba51cd4c8365a540f7adecf4c4e3974407bcb58761dec2ba14ceadc700",
@@ -195784,7 +195795,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "2aa367917b771565b6b80f26ec9dc7e2d5a342a00e54a760ab4a18dc3a752440",
@@ -195822,7 +195834,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "3303fe9d6e100835620e12fef8a9ada9276d8bf9ce9cc51a3de6cbd076c7a17e",
@@ -195860,7 +195873,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "1b4e513d2f0844efd1c26d03f96937ec9e79256d782301acc711ed6262ffecb3",
@@ -195898,7 +195912,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -196173,6 +196188,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "rastreador",
+        "name": "Rastreador",
+        "tier": 3,
+        "costume": "Advanced expedition tracker: fitted SAND field jacket with asymmetric CHARCOAL DIAMOND-QUILTED chest inset, snug DEEP OLIVE raised collar, compact COPPER angular shoulder armor engraved with contour-map lines, FULL FITTED SAND sleeves. Flat COPPER jacket clasps, prominent COPPER COMPASS ROSE chest brooch. CHARCOAL reinforced bracers with copper edges and dark fingerless gloves. Dark brown belt with copper square buckle, ONE closed square CHARCOAL MAP CASE embossed with COPPER COMPASS at left hip. Short fitted sand waist panels, SLATE trousers with CHARCOAL knee reinforcement patches. MATTE CHARCOAL expedition boots with COPPER angular shin/cuff guards and copper square buckles, olive seams. Dark olive brow band with one flat copper compass disk partly visible under hair. No crossed chest straps, no brown novice boots, no fur, cape or scarf. Identical clothing and details in every pose.",
+        "maleIdentity": "Experienced masculine adult Rastreador with dusty LIGHT BROWN short tousled crop, attentive determined eyes, clean-shaven face and canonical head scale; no orange novice hair.",
+        "femaleIdentity": "Experienced feminine adult Rastreador with dusty LIGHT BROWN hair in a compact LOW braided ponytail, attentive determined eyes and canonical feminine proportions.",
+        "armPolicy": "Preserve exact canonical hand/finger and arm positions, feet and head size. Compact close-fitting costume inside body canvas. All upper arms fully sleeved. Replace all novice garments, shoulder scarf and hairstyle.",
+        "unique": "Sand/charcoal scout layers, compass brooch and closed map case",
+        "advancement": "Tier3 advanced Explorador specialization: finely crafted topographic copper armor, quilted field jacket, compass insignia and cartography case distinguish a veteran tracker. Retain canonical body scale and shared equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/rastreador/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "bff943040d6c279f4a5780dd22333d0cd03046ad1cf985c75028118f992fcb2b",
+            "6e5ee384d9d211f58549828c9d8e7f6ee488adff34a657864987c6104db59aeb",
+            "408181aea60192c9475295b5c12a74d28d02d80361590a72eb3bc15d36285db1",
+            "cc06f1863576d51fea2f2cdba740be481db95cddac8a07f10dd42065aa6a7b8d"
+          ],
+          "walk": [
+            "bfddfabdd6af1da3d5f86f279373a6e094d583562be88aa2d3f9fb1529514c8d",
+            "06874d6b22c8ae3d133a269433687adeb376662b2ef425185c08a5f43dc55105",
+            "5ca74add674875213d071d80d1d56e768b578c6ac3d36dc0728498e5ceb1a0c7",
+            "ddd7308cdd890f4c8d15f2e852fe1aabc3982ca65c6d8dde1ada522b2872c8dd"
+          ],
+          "hurt": [
+            "74ee6a260eb21115d461e2324feffe38820c94d657ceeb8a3b60d31b5cd26eba",
+            "489217ab855a2fe397c0707b16a659fa9804d16b83b714de2b1d4c83db0e5764",
+            "4346968eab41c6f58552d49de49f974dce2ede580fbd9c5ace57241d92c8eb4a",
+            "d6116b75f28a77639010f99c5efb3e91d7da3060d9be916a65ab7de4bc4b5e25"
+          ],
+          "use_consumable": [
+            "f0b8759f0bc41feeffff9a8d76258340749907b1b981f1c85cf25064782b0290",
+            "55ab41730004e81c9a3bebcded09d68b259695233394274d90666c26b4c40b53",
+            "4b1e6c7306929d09283dc11ed0f3bdc35653e6444afdbaa0ad6454e2b621fae7",
+            "211a1f807f450bbe608b05407e432cc4ce69b4d47cd6645b7d210706e52d4185"
+          ],
+          "dodge": [
+            "2691444cc656240879abd1244a2e7f6db652ec16fcae30fb0193fdf5655e82f9",
+            "4c1d6a4bffb6efa87b3b8c4a10d0c5b9edabd9548e8e629e13be24d56bdc3795",
+            "11e67d25c3924db51763724459cbe26d77ccfba99bb981bf484bcf00ed4f3d40",
+            "808caa649b0b70ccc450bfe13ab0fb020bf854fa0cb5195c1ec87ef479a8b88e"
+          ],
+          "block_shield": [
+            "088892b81a43e9b13cfe7c7c19f53f9b3093232d3612653fd28f094a63420c7c",
+            "2cb6e0de75273e1614ad5056d1f13267e128cb924363e4a0073f98bb1163a10e",
+            "58403d85f76ada7934707088af368f9c4581f3468d30f158cbf5803c4ccd9bef",
+            "7cbad3b09190e0b0d9dccce78d634ba05fdafc33a78b3376464ff6117e840338"
+          ],
+          "attack_sword": [
+            "cbe736e54287657953a6f3359a7f5305471d5c9bf79caebd8611f1c6270ec88d",
+            "3dbb762d3f25f12204b3ecd724a733e466f8db32e5475c4e00cd762bbe484818",
+            "0e8e54f00eeda85eb641a431c93f480d19e5d02e94288d9b19a6053368c6e572",
+            "a4ef763924ab57b78459d03a44cf384409e34cb347e66e04f08fe4c06f759fc4"
+          ],
+          "attack_axe": [
+            "d6943ce8fd22eb18d9de26cfbc50d53dacb1d976092220ace71c66edb6a9d574",
+            "7a9befd012cd56ee1c6a591b1fe2e73b539b284f77b72f1cd9219a57f5916fd1",
+            "3f0c4888617898599a2a8be968224296df1eea65f0221157d670850246cd1f63",
+            "0e1d3897079bb656282fc984f910e7fd2315f3e48d5a43b418d00b3ca6d12d13"
+          ],
+          "attack_spear": [
+            "73b0cfa86302c45eeec1f0d76353fe4edb5b6d20f9dda190bd3ccfb38954f0be",
+            "cd1d95d08389811eceaa67e2913243397e07104f7e7cbf7360560e752c7121ec",
+            "d57713f900a4741984963639d523534753eb0d799c77bd64e19f610adea520b8",
+            "24a2e27302d4d9f82b4759b410e6a3eed2019397f70d5fbc5749323e977c84cf"
+          ],
+          "attack_dagger": [
+            "9739c23ea037d03e7f778dc55f7032533161e1301f9e6a31359efbdaf24c1fb5",
+            "d2407735444802cab13d47d70ec1e9b229b0e6ab6fb5996d7586488c7597d731",
+            "dd186911250362e455391f8721972ff18cd7b66bdb6a1124fcf6321853fa8fbb",
+            "b4bf807443c3d64ae63128ababcd384efdf28e8309a65516cf9460217ad0116b"
+          ],
+          "attack_bow": [
+            "d00f1ffdaf10aa1f220d7535a249143e0e38d0b11367c8d7665697187b5940f3",
+            "201498cfd34cc899ce5948415a8fa6d9494d0839a13840204919e0ac694ca1fa",
+            "9ce359d5918a73fd38dbc4760d773be2efbbe61505218a9edd3619bad5bea5b5",
+            "cb9b1237c06bdffe576dda867fd9ce19585b19feadd750401d34a781be65bea2"
+          ],
+          "attack_staff": [
+            "f3be782a8006c3b172f686364d58d6fc12dd6ef6f3e1ee901f292ac4ec29b12a",
+            "54b196b7d51caf67c13be4918ceabf093d17bd19de16955d08b8ad0a7ab85fff",
+            "e54cf94449530d8ba027e71c27185b8c51f0181eba3d3648f26b9a736e7e9130",
+            "7618862deb44e31bbcc706ddeeeb88137b3f5a989801166f76e1dfe95343554b"
+          ],
+          "attack_mace": [
+            "bc7de78cb8acf609b8b4ac8e4e59ff02ab08b8e103631b4c3b35aee6d1b33535",
+            "a53ac8160a990022b2e78940f25f35cc25682c0da476d4c5cdc3f81347067988",
+            "96f704fc2395743d587d8e9eb8b1f7086ed5fca792a6da15b912fe918c3913b6",
+            "e51d4e21713eaed57cb9c5661b5e8a05f0378bde2c0f846cfc515674525fc43c"
+          ],
+          "attack_book": [
+            "89ee321100c6e9b65161841d1cadf9a969d1908d6d6d9653f4764b35e7786dd3",
+            "6c56c918cff8748579b950eb94826150cdd1b254e5fb0d165818f91ec993473c",
+            "af0bb6cbe54d90ce1a7dfda63598ba6a51a3772dcd63a1c19e0e27f101658180",
+            "6a236d7b1be234a0eebbac5c705ab4998594626d1234ec49e2b1f3834604f0d1"
+          ],
+          "attack_gloves": [
+            "104c86def400c6eeaddecd7f2cf62dbd9bf24354982834fe2717405e171cf896",
+            "7aab5278a6fed17419304bdb0fafbd3f8ad6807df5f61da01e36e7910e654e11",
+            "9b1dd0bdbb586e14c0ea50d70caa29bf776a3dd6ddea077664ec532dcdbbefec",
+            "1434e15880dfdf99e779815a67772d3a257d39f5b0642ed87d9649954ae7bc3c"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -196185,7 +196315,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/rastreador/f/rastreador-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/rastreador/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -196364,8 +196494,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "72f04bc768f37a6db811ff704dd1a9b8930546d2729991d92e0aa415d4d1c11b",
-                "bytes": 24149,
+                "sha256": "615cbc8b2f39af7a06319f5a75c074b1d415e4ea026b0006fadcd48f158cc664",
+                "bytes": 24015,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -196373,59 +196503,59 @@
                 ],
                 "bbox": [
                   17,
-                  97,
+                  96,
                   108,
                   248
                 ],
-                "pixelSha256": "da1c73975a181eaf6d4017732793d8d11b2110216c7e15f795115ec120e6b45b"
+                "pixelSha256": "5e1a99eb19b40e2043aa17a81f2127c165b086d51d3b7a9dd31b6dfcf5548b60"
               },
               "02": {
-                "sha256": "e4ffbf652e9b84d740814886487109234d314c74f9d2a2ba1ef053db68dff9d4",
-                "bytes": 22861,
+                "sha256": "ed2b85bf794b14b0a39bbd0473b71e44036cc2d634e52c390ddf83b88b67bca8",
+                "bytes": 22966,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
+                  19,
                   97,
                   107,
                   248
                 ],
-                "pixelSha256": "5fecf33b9e15a65ff4845166179b0405df9b846cf9a809de54bda2b971992196"
+                "pixelSha256": "f6a1203e2820fd0e47cbb1e1b291cb135405594b2f692cb59a133458e70cecfd"
               },
               "03": {
-                "sha256": "35fcd29c7103a0f08e2e17014c6775be2ef5afddfdc4ac0f3f49377b0c9c91a7",
-                "bytes": 20515,
+                "sha256": "eb7cbf6f7c92567058b2142d0ae9de1ab720c8e3de4b03f45513328bdd0786de",
+                "bytes": 20503,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  118,
+                  17,
+                  117,
+                  97,
+                  249
+                ],
+                "pixelSha256": "d377aed6cbf728d835f131f97ac074c8c8406a583d1119e237a2ca7b89657311"
+              },
+              "04": {
+                "sha256": "3427182c63621417c803b38ab768e8cf1e5c153f12b7e9ab642f0d035c195013",
+                "bytes": 23805,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  95,
                   98,
                   248
                 ],
-                "pixelSha256": "32393c4cc0f6783b8b8c5911fa18d4d3ebdc88f352044dc675be2ae6b7056ff7"
-              },
-              "04": {
-                "sha256": "af542c86c2d5f90d182ed2d0f8a2de5e705c3cfc71626cee303e1402e56101fb",
-                "bytes": 24091,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  16,
-                  96,
-                  102,
-                  248
-                ],
-                "pixelSha256": "3e490edc8b9a2747fa0372e6eee013ed843fffe7c2f9b48c5128ef48c753f0b4"
+                "pixelSha256": "6d465905a0cb5e248ce8886b5030eb2ea9855e7935b64183e081f817aa277c1c"
               }
             },
             "distinctFrames": 4
@@ -197309,7 +197439,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "16062862b070c1e0ac37bcbee05212e14880ff06a5b39dab4737e8cd3243584a",
@@ -197347,7 +197478,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "f999febfa94bbcc302a19a4ff24324c50adc8b8c8c2f90ced05a85aa7bc9a58b",
@@ -197479,10 +197610,11 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "5c17889b16bfedf12c5a5174f5eb99f9f97b8f014108ed964e78fbaa1e3342c7",
+          "sourceSha256": "ca3560f781414d57da6fa4187466a17235bef6dbf2c30c45dbb81e97d3e6c841",
           "sourceDimensions": [
             2172,
             724
@@ -197507,9 +197639,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/rastreador/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/rastreador/f/source/hurt-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Rastreador FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical hand/finger and arm positions, feet and head size. Compact close-fitting costume inside body canvas. All upper arms fully sleeved. Replace all novice garments, shoulder scarf and hairstyle. Experienced feminine adult Rastreador with dusty LIGHT BROWN hair in a compact LOW braided ponytail, attentive determined eyes and canonical feminine proportions. Advanced expedition tracker: fitted SAND field jacket with asymmetric CHARCOAL DIAMOND-QUILTED chest inset, snug DEEP OLIVE raised collar, compact COPPER angular shoulder armor engraved with contour-map lines, FULL FITTED SAND sleeves. Flat COPPER jacket clasps, prominent COPPER COMPASS ROSE chest brooch. CHARCOAL reinforced bracers with copper edges and dark fingerless gloves. Dark brown belt with copper square buckle, ONE closed square CHARCOAL MAP CASE embossed with COPPER COMPASS at left hip. Short fitted sand waist panels, SLATE trousers with CHARCOAL knee reinforcement patches. MATTE CHARCOAL expedition boots with COPPER angular shin/cuff guards and copper square buckles, olive seams. Dark olive brow band with one flat copper compass disk partly visible under hair. No crossed chest straps, no brown novice boots, no fur, cape or scarf. Identical clothing and details in every pose. Tier3 advanced Explorador specialization: finely crafted topographic copper armor, quilted field jacket, compass insignia and cartography case distinguish a veteran tracker. Retain canonical body scale and shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal COSTUME COVERAGE edit only to this exact four-pose sprite strip. The advanced Rastreador uniform has FULL LENGTH fitted SAND sleeves extending all the way to the charcoal wrist bracers. In all FOUR poses, replace the rolled cuffs and exposed forearm/elbow skin with smooth fitted SAND sleeve fabric, no bare skin visible between jacket sleeve and dark bracer. Keep ALL four hand/finger/arm/elbow coordinates EXACTLY unchanged from this image, especially the newly positioned near hands of poses1/4. Do not move, rotate, scale or reinterpret any hand, finger or joint; just cover exposed forearm skin with fitted sand cloth and remove rolled sleeve cuffs. Preserve exact same gloves, bracers, copper topographic shoulder plates, compass brooch, left map case, slate trousers, charcoal copper boots, face, hair and every pose position. Four complete full bodies on the same transparent canvas. No weapons, marks, effects or shadows. ONLY sleeve fabric coverage changes.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -197517,7 +197649,48 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "5c17889b16bfedf12c5a5174f5eb99f9f97b8f014108ed964e78fbaa1e3342c7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/rastreador/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Rastreador FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical hand/finger and arm positions, feet and head size. Compact close-fitting costume inside body canvas. All upper arms fully sleeved. Replace all novice garments, shoulder scarf and hairstyle. Experienced feminine adult Rastreador with dusty LIGHT BROWN hair in a compact LOW braided ponytail, attentive determined eyes and canonical feminine proportions. Advanced expedition tracker: fitted SAND field jacket with asymmetric CHARCOAL DIAMOND-QUILTED chest inset, snug DEEP OLIVE raised collar, compact COPPER angular shoulder armor engraved with contour-map lines, FULL FITTED SAND sleeves. Flat COPPER jacket clasps, prominent COPPER COMPASS ROSE chest brooch. CHARCOAL reinforced bracers with copper edges and dark fingerless gloves. Dark brown belt with copper square buckle, ONE closed square CHARCOAL MAP CASE embossed with COPPER COMPASS at left hip. Short fitted sand waist panels, SLATE trousers with CHARCOAL knee reinforcement patches. MATTE CHARCOAL expedition boots with COPPER angular shin/cuff guards and copper square buckles, olive seams. Dark olive brow band with one flat copper compass disk partly visible under hair. No crossed chest straps, no brown novice boots, no fur, cape or scarf. Identical clothing and details in every pose. Tier3 advanced Explorador specialization: finely crafted topographic copper armor, quilted field jacket, compass insignia and cartography case distinguish a veteran tracker. Retain canonical body scale and shared equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "9d72f1ef2bbfa0c30ee8f63becc1a38e4e17506578b823cae8aeafb79b8c1d9f",
@@ -197555,7 +197728,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "137ee593fc00f912d6f518ac1448c03c67f0f014edb8de76579987b2dcd5c37d",
@@ -197593,7 +197767,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "6288d70d4686219a38c314a473033c1463bcfd58e67f0eb2380c978c8d69961c",
@@ -197631,7 +197806,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "cffe15cc165d07e4469179e8a543e8778653dd4bb4f249270a95b42afe05dc41",
@@ -197669,7 +197845,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "ca6ed79f8264bb4090e5a8a04cc49b95b6de64bfc0698df37ffd9fc5839610c1",
@@ -197707,7 +197884,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "56629b1c85c0983b18a91386992826dd6acfe6765366a84efef41e473812db21",
@@ -197745,7 +197923,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "65fa4c0b0dd9670e6850b537bff5ab9fc7db558f10d8bbd56061f73d46d1401f",
@@ -197783,7 +197962,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "557848be0fadf589dc05cab91ef2fc4343dbfa9b42aa558c6dcaed3fd2048913",
@@ -197821,7 +198001,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "506b7f1cb55803dcefc8bdb1984409c444ade48685456cf0545f588049e5d728",
@@ -197893,7 +198073,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "3e2fd343de8ff8ec42007be997d9a8fbd5a19606e817f209f4b7b1331f07f65a",
@@ -197931,7 +198112,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "94d99addf9f13d36747dbcc4d7ae04f239c9d9ff1eac8dcd3900785184ba87b9",
@@ -197969,7 +198151,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "24a8cca1b1cfb21341ebf2cbb4c7ceaa4187d0ec1a25276edb3aadd47701c6aa",
@@ -198007,7 +198190,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "70230cd953fda6f1f607e36f9e2a3ab8c54b97b7843497f4036c06a7cf202c5d",
@@ -198045,7 +198229,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -198320,6 +198505,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "rastreador",
+        "name": "Rastreador",
+        "tier": 3,
+        "costume": "Advanced expedition tracker: fitted SAND field jacket with asymmetric CHARCOAL DIAMOND-QUILTED chest inset, snug DEEP OLIVE raised collar, compact COPPER angular shoulder armor engraved with contour-map lines, FULL FITTED SAND sleeves. Flat COPPER jacket clasps, prominent COPPER COMPASS ROSE chest brooch. CHARCOAL reinforced bracers with copper edges and dark fingerless gloves. Dark brown belt with copper square buckle, ONE closed square CHARCOAL MAP CASE embossed with COPPER COMPASS at left hip. Short fitted sand waist panels, SLATE trousers with CHARCOAL knee reinforcement patches. MATTE CHARCOAL expedition boots with COPPER angular shin/cuff guards and copper square buckles, olive seams. Dark olive brow band with one flat copper compass disk partly visible under hair. No crossed chest straps, no brown novice boots, no fur, cape or scarf. Identical clothing and details in every pose.",
+        "maleIdentity": "Experienced masculine adult Rastreador with dusty LIGHT BROWN short tousled crop, attentive determined eyes, clean-shaven face and canonical head scale; no orange novice hair.",
+        "femaleIdentity": "Experienced feminine adult Rastreador with dusty LIGHT BROWN hair in a compact LOW braided ponytail, attentive determined eyes and canonical feminine proportions.",
+        "armPolicy": "Preserve exact canonical hand/finger and arm positions, feet and head size. Compact close-fitting costume inside body canvas. All upper arms fully sleeved. Replace all novice garments, shoulder scarf and hairstyle.",
+        "unique": "Sand/charcoal scout layers, compass brooch and closed map case",
+        "advancement": "Tier3 advanced Explorador specialization: finely crafted topographic copper armor, quilted field jacket, compass insignia and cartography case distinguish a veteran tracker. Retain canonical body scale and shared equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/rastreador/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "378bc745fa202f5f58e42519874cfdda1168c2af6faab81643c9b4c3de28b6dc",
+            "6f2dd96c75bb4b40441f8cd6b84906027a2a7f2580f7723a81dda1fcbeebfeb7",
+            "43fc159116fb85d391e23fa5e06382249f191fd0bcb7137c475ca8df644123e8",
+            "95f20907c20041f744616569592077e71da458447a0ebc979d82d50a51cd9d03"
+          ],
+          "walk": [
+            "0bbc000a03893e4990f09ac02ec5e265e02b55cf12ea3f6f5bf21cd356725bee",
+            "88cd816867be1433af65aa2d7b3b1794ba8d26d9ac75b0f1998aa99651584855",
+            "067e2876d2b730f7881a5becbb4a668a703f5f5bf2943b6f2a3b97f3f30e9156",
+            "2aa234c25e895ecaffb709bbd09e877a978a9d1a35f4b46e3bb36b29117de6ff"
+          ],
+          "hurt": [
+            "615cbc8b2f39af7a06319f5a75c074b1d415e4ea026b0006fadcd48f158cc664",
+            "ed2b85bf794b14b0a39bbd0473b71e44036cc2d634e52c390ddf83b88b67bca8",
+            "eb7cbf6f7c92567058b2142d0ae9de1ab720c8e3de4b03f45513328bdd0786de",
+            "3427182c63621417c803b38ab768e8cf1e5c153f12b7e9ab642f0d035c195013"
+          ],
+          "use_consumable": [
+            "5e70591fa4146f35c4648c964795e897173ffb33e6a8b768679c955736ef4701",
+            "64a25c556035f597fed07b0e2f21ad83790b37648c838a9041aa9d884a6a5a44",
+            "fd08e9a323f5da6f6d60050713a351a6fd7d1664e23c80a8dab09371871077b4",
+            "0f2636d7648198169fca2776cfab3c3e47479c208b1af643f4a8ec6ef5bf3778"
+          ],
+          "dodge": [
+            "99856fb0d757a3284d5f080d2870652d3d7a2dfb301b829e7d11b5d4e658b9c5",
+            "788ae6d5399fe6334f633aec3da56722b35c6b8c050aa88daf91b2a63ec78a34",
+            "a9e583550b30a7b8d289edeef5b86ddc842309f3885377b2095e2d3c0dac793e",
+            "0dc65a415252943ee1784a59c4342862812d2468c0dbe18ad8bbf1eae7b8d206"
+          ],
+          "block_shield": [
+            "c6a0f8196668bca9e8f784a8d863a46d2b1a69658b7e144d51d2bf93017a9c5d",
+            "84f7b7dd73110a7f8caf62f2a67c755df9e9d7d265b24c981fc6e8d0617fe7d4",
+            "06bc9fd2cdde4532f526115ffd8a20bba4e9028fa04270218cd8d5d2d7873a63",
+            "2002befcdc3482060738476ba173df426aa0cb40cfadb48c2c981d05192a9d29"
+          ],
+          "attack_sword": [
+            "50f1748551cb1b59ad138418a3d201d3662824eaeab96c50cdd253ec2934a717",
+            "4d930e88b05275fd5416b984cbf94c880f367a50662233ec8c510625139f87cd",
+            "850b67d65c8059cc8e75749deb60307bac7d9958221c1a7d8655a2d030187053",
+            "ce56122a47466a6efb3dd89aa8aab58d9f47665cfad45f8cb489d74b6c85ebfe"
+          ],
+          "attack_axe": [
+            "18782e46806093e48d3ed2cbcc266a84d7446dc6a4d74a86aa3100fd8b277d9d",
+            "f1058ff5342eddf44d2030a9cf5ee70821c9eba5a5c5f96cc8ffed7dde331e0c",
+            "0dbd9234c570316a3c3e10fb1dfb68c4240da6fb30a4baca921329d15d95adb2",
+            "d4f8cea882fd390a66c0a4b09b2d5966c0129a28906344fcbc59fd1a23800305"
+          ],
+          "attack_spear": [
+            "78ab1e7a2fb0522165294b875484404d9fda51923163edaca410e04c8cb00dba",
+            "2ced3568712066c65eea9ba7c1156b8b588f77172012cd34a314d48797e4529f",
+            "3e6cd5b67f00b4fc5156c04a25eba57e09a40fd4c2066b83e3e53dfaa9968410",
+            "a14c3de9bf8c9aa004208d4eab3c5dcead21fde517775ada4b9cd4178f9e0dd3"
+          ],
+          "attack_dagger": [
+            "f4fb036712d0032b397920488defe8adbae14755d7597f590b8d7df1e4de5a7b",
+            "f2ede3e38e674eea7dd9808595e01dc918c4a1889958b31c3a72d82fe6d9720d",
+            "0467bb6bc0e8950e2f44206af8cf23b42cc235d0c41c1f0fbb2b6f61fa8a0ca6",
+            "4a26eff97adbc6c60d81ed1e58746f2bb4c51b244bcedc09a72b0112cbf67fc9"
+          ],
+          "attack_bow": [
+            "0d6e03133c4c1925d7a56b53fa81d34074a73fded26b9068808438c47bf517f6",
+            "bac53f04ebed1092e6a96f0bc1a43ea6eefba629621e45dd78f4365a1afdcd23",
+            "7b3ff71622a9dcfdcaf52ecd185343c281a27b47a00e8cd25b809b44010f150b",
+            "f7000e8a1113365c46d4cb15e55263e0e03d95cbc17e78ea14266d7c304d889f"
+          ],
+          "attack_staff": [
+            "6434f8368524aab26114029ff11dd3b0968fa6f7e237f2520fe43b777e288204",
+            "2c5dbc9af266713fb3eef93ae579452b99a4f90fce1de43cd7ce0375e7103874",
+            "6d9903654bcbb38bf7fb2f5b27f2ccae16a3f0b567c895dcc9aad1b04f2ab853",
+            "a4b7c6f37bd9b63fa7690186c3e75b6c181e5944edc86099ff5fe57242fc6809"
+          ],
+          "attack_mace": [
+            "4ddf12a3a91ad12797bcc49755a764ed903aef7adb855ea19088c0d95d088f79",
+            "fce3dcf46eead14d4a9a4d89cc87bf7c39e50f5a0146f4830861dc6132eef492",
+            "cc4733c87b4ac102c378548f2b54652cb2152a2c136aa2bf36d311e1414f3ac2",
+            "795b7686bd17c1ab22536985d6a37500faa9cdbddc4eb567a7e541fc0190c3aa"
+          ],
+          "attack_book": [
+            "4a296de7af7b49fc0eb3bb3a9cc8c46b08e9c9234ff3f08920455e2170638627",
+            "5f486baa123d8f79d43eff4830a8cec605950ff8bf6b8be6c6e7a0081e47b2b8",
+            "c5b10a986b6f2b80f845920fbb2a4ca9a7017b9b39cc0436829086c51fe964e1",
+            "2ee3e1ab842fdd2a39b7ad0ca8c3cbe19d22aea6c34292345ed03169261a077e"
+          ],
+          "attack_gloves": [
+            "6a76ca846e2f9162fd9149761251592299bc357f0bc3299bc5ae6c39129602c4",
+            "70c816faa8c5dcebf628b83ff9a0d3aae4f4d54831d0dba6ac3972646a2b6277",
+            "9907810cb68413b449ff8797aa61ba0a024e3212ee78631ff434e2131d761460",
+            "3a9310008722f2149ca27444c9eb156cff12e430627f5ab29e521c27510d84e8"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -201410,7 +201710,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
