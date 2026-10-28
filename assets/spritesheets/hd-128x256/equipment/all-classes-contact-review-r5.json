@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 68,
-  "contactChecks": 46376,
+  "variants": 70,
+  "contactChecks": 47740,
   "warnings": 0,
   "reports": [
     {
@@ -408,6 +408,18 @@
     },
     {
       "classId": "maestro_espadas",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "oraculo",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "oraculo",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []

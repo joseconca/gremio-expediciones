@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T13:03:58.616082+00:00",
+  "classId": "oraculo",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\oraculo-f-sheet.png",
+  "sheetSha256": "a67d4a54c352af262f0ca0c4ee4f53c71722523c37f823bf70a574c53e48f199",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\idle\\oraculo-f-idle-01.png",
+          "sha256": "3bbf60381d8844383fc444ffae6d08f8b9419c321c481959e6e9579116097f10",
+          "alpha_bbox": [
+            25,
+            91,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\idle\\oraculo-f-idle-02.png",
+          "sha256": "60e2d60b1a83e245aac7df3b7957f588f6896a80dc25cbc1f37a36b91fc4b2e0",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\idle\\oraculo-f-idle-03.png",
+          "sha256": "4f7e8aa49cb6f76d42f9d8addeda5ba48454324a360d60d62108859e92a43c91",
+          "alpha_bbox": [
+            25,
+            91,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\idle\\oraculo-f-idle-04.png",
+          "sha256": "737ace376213088e20e5f26725e93dc88e9d96e416bde7ab639ff93f36d35b36",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\walk\\oraculo-f-walk-01.png",
+          "sha256": "9d51198437b5e4c265c040108806f42d280bf50cb71d22d4020c9c01ea9b2d8d",
+          "alpha_bbox": [
+            9,
+            90,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\walk\\oraculo-f-walk-02.png",
+          "sha256": "d3fd62dfa022cd6f0a17f2f5f2b90700f68efd28f31554b9e972c4a3a95b90e5",
+          "alpha_bbox": [
+            30,
+            90,
+            89,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\walk\\oraculo-f-walk-03.png",
+          "sha256": "9d9417729b64686fced4d51f9ca4a60fe78179f933c93d15d360889b6acf592e",
+          "alpha_bbox": [
+            7,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\walk\\oraculo-f-walk-04.png",
+          "sha256": "424071d4dd37b040c3b36dace86615ce8a2954de896b0dd46af409ed466c1fab",
+          "alpha_bbox": [
+            15,
+            90,
+            90,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\hurt\\oraculo-f-hurt-01.png",
+          "sha256": "5f087d4a530cba1e538230132e6e72dbd3426ab79debf3f87927f8c70b427962",
+          "alpha_bbox": [
+            21,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\hurt\\oraculo-f-hurt-02.png",
+          "sha256": "713a849873cb359f18ba638bb8f2fa38e8ae9e6c2527bf30af057737021ec9ca",
+          "alpha_bbox": [
+            20,
+            91,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\hurt\\oraculo-f-hurt-03.png",
+          "sha256": "f65e7101815557e3eb4b6792a10d6b60708bc085e371b1a8fc4d305782a23cf7",
+          "alpha_bbox": [
+            19,
+            117,
+            98,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\hurt\\oraculo-f-hurt-04.png",
+          "sha256": "c81945926b2d41394893b218559446771d98845885cfe046392a96463c22deb5",
+          "alpha_bbox": [
+            13,
+            91,
+            96,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\use_consumable\\oraculo-f-use_consumable-01.png",
+          "sha256": "22e3061d6d2742b4ad734d50105827e9b245142c93720d2ae3ee2acb895e9237",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\use_consumable\\oraculo-f-use_consumable-02.png",
+          "sha256": "65f354abc0fd6a38ce3a809458113a8a76684f8d5f9b6a7e82e51781914eb05c",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\use_consumable\\oraculo-f-use_consumable-03.png",
+          "sha256": "fa832bcbff3507723f057fae7255106be416caf925b153259d932efbe03bc842",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\use_consumable\\oraculo-f-use_consumable-04.png",
+          "sha256": "77bf7982896fb7701b09f51a185797e2acf1ec07c6519ace151342d5fcfd8a74",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\dodge\\oraculo-f-dodge-01.png",
+          "sha256": "49868d70a13416c02c4b2f87dff8fd89ba10dd11def64f92397e63cbc7799363",
+          "alpha_bbox": [
+            26,
+            92,
+            112,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\dodge\\oraculo-f-dodge-02.png",
+          "sha256": "fe36ded8a29b1e68b16a96425e12ffd4cdd544cbfe6aa0b097bf812631ba1473",
+          "alpha_bbox": [
+            26,
+            92,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\dodge\\oraculo-f-dodge-03.png",
+          "sha256": "4b15e4f660942db59f6db3acf65272b1cf445b29008ca3c7bb4ee75a0cef5719",
+          "alpha_bbox": [
+            15,
+            129,
+            97,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\dodge\\oraculo-f-dodge-04.png",
+          "sha256": "d7b84c866744947be65fc6fc6c5630a9c50ff7f1e4b0b5b35235188bc3d53322",
+          "alpha_bbox": [
+            13,
+            92,
+            99,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\block_shield\\oraculo-f-block_shield-01.png",
+          "sha256": "d2c81abe6aedbe571c098b0611338b39a783f72fa57f72dfec75dc5641defd03",
+          "alpha_bbox": [
+            23,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\block_shield\\oraculo-f-block_shield-02.png",
+          "sha256": "135b20f7dc968cd195a8ae7e31a534a8383b8ec4299425702069798f829b0e71",
+          "alpha_bbox": [
+            23,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\block_shield\\oraculo-f-block_shield-03.png",
+          "sha256": "35b2f4e3eeb121861082581534f4a5eacea481167a80db7e8e18836e413ecccf",
+          "alpha_bbox": [
+            15,
+            105,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\block_shield\\oraculo-f-block_shield-04.png",
+          "sha256": "5d923d18357a836b773640b49ffdc145e41dbcad92a88598614547ee88ed1553",
+          "alpha_bbox": [
+            17,
+            91,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_sword\\oraculo-f-attack_sword-01.png",
+          "sha256": "c5a98613dd5c10e09b95751a130151a7e09d53309b337e5be79243d2723bc2a7",
+          "alpha_bbox": [
+            21,
+            91,
+            108,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_sword\\oraculo-f-attack_sword-02.png",
+          "sha256": "188056e41b3d4201f422f9f93bb0d52a5a04ccd40f18e24e4f5f3a37030598e9",
+          "alpha_bbox": [
+            21,
+            91,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_sword\\oraculo-f-attack_sword-03.png",
+          "sha256": "4693a610f367326f5924e51a96244490e2ec9bc9309f72394ef994305fba3e2f",
+          "alpha_bbox": [
+            9,
+            101,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_sword\\oraculo-f-attack_sword-04.png",
+          "sha256": "3983cde2c225e4e9cdb4086eb009cea91c2a4628d0f63c9af4ffd5669ea617ad",
+          "alpha_bbox": [
+            21,
+            91,
+            109,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_axe\\oraculo-f-attack_axe-01.png",
+          "sha256": "9d39101f045ce23c6f7eb0888106f922329fbdd6b195a4f581ac2f6987a2521f",
+          "alpha_bbox": [
+            20,
+            95,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_axe\\oraculo-f-attack_axe-02.png",
+          "sha256": "3b7a08cafcd82e9f5db9cf76f3ed30b8fbcc42c5b84750c743d8002c5562c542",
+          "alpha_bbox": [
+            22,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_axe\\oraculo-f-attack_axe-03.png",
+          "sha256": "a6883f47c0aefcc885e458899c3f0dead5326ab4c16096d9abb54aded9d80c00",
+          "alpha_bbox": [
+            17,
+            104,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_axe\\oraculo-f-attack_axe-04.png",
+          "sha256": "e28901b845c13562857575700019102d9faea5a89d195141255602f2d82cbe28",
+          "alpha_bbox": [
+            9,
+            95,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_spear\\oraculo-f-attack_spear-01.png",
+          "sha256": "22a68c0736eece03ef7843de545c65c2536f1b08353c0fdc988f48a7899a3397",
+          "alpha_bbox": [
+            13,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_spear\\oraculo-f-attack_spear-02.png",
+          "sha256": "6e4169f04b49fad6a6f5d943a15aca3819ce14f1ce9e0e1d297af11de3567b89",
+          "alpha_bbox": [
+            14,
+            92,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_spear\\oraculo-f-attack_spear-03.png",
+          "sha256": "e52238b883da6080a0ae7cab527e96efa9c2db693a6c063d53dd9a8ed9c7a734",
+          "alpha_bbox": [
+            13,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_spear\\oraculo-f-attack_spear-04.png",
+          "sha256": "d452c2a569654dd64e51d5cf5afc078e636ae449407c66066149e70a06488fa7",
+          "alpha_bbox": [
+            14,
+            92,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_dagger\\oraculo-f-attack_dagger-01.png",
+          "sha256": "376b88b1dd06f6ce8a4d14051a0dcc8822de43969d094717155b78b5ecae8ac9",
+          "alpha_bbox": [
+            18,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_dagger\\oraculo-f-attack_dagger-02.png",
+          "sha256": "9c811ace8203e9de057ddd01b385b3842a92d027dd1eec1447f0f10b04a21bfc",
+          "alpha_bbox": [
+            19,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_dagger\\oraculo-f-attack_dagger-03.png",
+          "sha256": "37dee4afc69ff60bd73d458dca17e566ffce3fc5227ddc02bc4080ecb8d47cfb",
+          "alpha_bbox": [
+            18,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_dagger\\oraculo-f-attack_dagger-04.png",
+          "sha256": "2a4ec308b5595f33c2b9d080bed5885db087ffa124c14c7beea72ad4fb091cd7",
+          "alpha_bbox": [
+            26,
+            91,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_bow\\oraculo-f-attack_bow-01.png",
+          "sha256": "96cf1d799c4dc9eefdd58d081e9ef143a7a307bd6c210123efc8e4f0efc557e5",
+          "alpha_bbox": [
+            22,
+            91,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_bow\\oraculo-f-attack_bow-02.png",
+          "sha256": "4a71a85241b4c417ea1b2d698cace2b12b09a58e2052509220d114a662045b90",
+          "alpha_bbox": [
+            16,
+            90,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_bow\\oraculo-f-attack_bow-03.png",
+          "sha256": "78a683d1c7b1b79b0a50d8395a310d00c7074cc0e595e80cf8069f725e700995",
+          "alpha_bbox": [
+            13,
+            90,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_bow\\oraculo-f-attack_bow-04.png",
+          "sha256": "d8668498176606153dd4209c9d7d4342eddae54e3c7e570d59949735d84fc4c5",
+          "alpha_bbox": [
+            14,
+            90,
+            114,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_staff\\oraculo-f-attack_staff-01.png",
+          "sha256": "b1ae07d3935ed5be5a0f3dbab4b1c7e529f619e00f4f07edb4d3d76e2d1fd112",
+          "alpha_bbox": [
+            21,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_staff\\oraculo-f-attack_staff-02.png",
+          "sha256": "4d25a4895036d7ae55668b8374a9e0fbe8345b7f23cd4b1a90dd6973ff55d6a0",
+          "alpha_bbox": [
+            21,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_staff\\oraculo-f-attack_staff-03.png",
+          "sha256": "a79a0c6e17ca23ff92994d04833baf8d965a58d82f5f13f1d1a6d1291b4caf14",
+          "alpha_bbox": [
+            20,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_staff\\oraculo-f-attack_staff-04.png",
+          "sha256": "ef01175eb9bd1d2d355485fa7c74c8d574fdd0e86e40da56b4c17bb1dc696dbf",
+          "alpha_bbox": [
+            21,
+            90,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_mace\\oraculo-f-attack_mace-01.png",
+          "sha256": "b70126ad6f83aaba1023fa9c94af54285917d2551c7e8fade3987ce897a8f04e",
+          "alpha_bbox": [
+            25,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_mace\\oraculo-f-attack_mace-02.png",
+          "sha256": "4fc6437a9a09c0485a2ca4ef1d073e625d353b2820f14b34b624afb747426ce9",
+          "alpha_bbox": [
+            24,
+            90,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_mace\\oraculo-f-attack_mace-03.png",
+          "sha256": "428c2031f4d18eed09781bef1e49c3cc99a9c95a385fe5d94f41a1eb13423665",
+          "alpha_bbox": [
+            15,
+            97,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_mace\\oraculo-f-attack_mace-04.png",
+          "sha256": "b6e0193809ff641fd5b163cd7976926c705ede918490aa805c627395451ebc23",
+          "alpha_bbox": [
+            18,
+            90,
+            107,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_book\\oraculo-f-attack_book-01.png",
+          "sha256": "e379c1c4546a89b510423fb2d2f919916dffb2dcf8c4c06a24fb1ffa47eedc3c",
+          "alpha_bbox": [
+            25,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_book\\oraculo-f-attack_book-02.png",
+          "sha256": "b2a0ddd07023b7a4ca6fad9e7fe1258af4145dcf6d56b86327366302ff8a8a53",
+          "alpha_bbox": [
+            27,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_book\\oraculo-f-attack_book-03.png",
+          "sha256": "c2b2c2ca54c04b9d65a8fc034595e6c45744c271d9caa79889f44d910370a399",
+          "alpha_bbox": [
+            18,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_book\\oraculo-f-attack_book-04.png",
+          "sha256": "f741f65deb525bca2e97fdc39a236230f77cccc2c4f43553abb7977d3f75d951",
+          "alpha_bbox": [
+            19,
+            90,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_gloves\\oraculo-f-attack_gloves-01.png",
+          "sha256": "0ef34a2ad4e1de18a0bd469e653bf273486e48639f30090e4a90cf5811e0fb83",
+          "alpha_bbox": [
+            25,
+            95,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_gloves\\oraculo-f-attack_gloves-02.png",
+          "sha256": "185ec4528fe0085101a98fd05de0917237d1961e166cd490dab748794d3f8356",
+          "alpha_bbox": [
+            17,
+            90,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_gloves\\oraculo-f-attack_gloves-03.png",
+          "sha256": "b915bb468c0309e845198a466d8ed0e604781c8ae206d6c08803a1f450649683",
+          "alpha_bbox": [
+            10,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\oraculo\\f\\frames\\attack_gloves\\oraculo-f-attack_gloves-04.png",
+          "sha256": "2935669aa0abd6df14f0d05c8f755dbb06a61f6fecb9584c0a8d42abaea2b190",
+          "alpha_bbox": [
+            17,
+            90,
+            103,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
