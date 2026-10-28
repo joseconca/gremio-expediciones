@@ -148881,7 +148881,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 40,
+        "validFrames": 44,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -148893,7 +148893,8 @@
           "attack_sword",
           "attack_axe",
           "attack_spear",
-          "attack_dagger"
+          "attack_dagger",
+          "attack_bow"
         ],
         "actions": {
           "idle": {
@@ -149597,7 +149598,74 @@
             "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "3c5fddd6133ffd531eb57f0785fb9e82428df4e035c1e9c7c5a6bb346479ebcc",
+                "bytes": 22357,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  95,
+                  120,
+                  249
+                ],
+                "pixelSha256": "373beb61f379335c8d63a72f01cbbc37f42246215f7e2ba607d6a7beaaf912d8"
+              },
+              "02": {
+                "sha256": "6071f89249278d5e5050ff40c814d26f1dc7b8854c6a62d3d082a37d81fbd24e",
+                "bytes": 22095,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  95,
+                  120,
+                  249
+                ],
+                "pixelSha256": "b68f13cfba453fa02f7ee6cdf9ef1e5f703203f29041321a23cf943eeab2a961"
+              },
+              "03": {
+                "sha256": "db0db65bf63cf6f5c3720b18312d7619408357f302052531d044195d8fc877fb",
+                "bytes": 22134,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  95,
+                  120,
+                  249
+                ],
+                "pixelSha256": "9c78195558dcd32987c8ee8894ffc794f512fdd0c2b663e7da5daaf8d3767eca"
+              },
+              "04": {
+                "sha256": "fce40255d680fc1d8fc07307fae3d8ca52a67015ff03627b656dcb37e6983014",
+                "bytes": 22361,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  95,
+                  121,
+                  249
+                ],
+                "pixelSha256": "6dbb680a1e49538973d3c0caf732de82f0cec4a7a8c8edbf479c4f2deab27647"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
             "status": "missing"
@@ -150005,6 +150073,44 @@
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "94871b7f3ae823ca0c2d410f992d5ba58464d1c99e334fc38a19da1fc99030a5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.23,
+          "origin": [
+            8,
+            96
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/asesino/m/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Asesino MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Fitted FULL BLACK LEATHER sleeves from shoulders to wrists under dark-silver segmented forearm guards, NO bare forearms. Preserve approved THREE stepped dark-silver rear shoulder plates, high angular black collar with NO scarf, burgundy diagonal sash with thin crossing brown harness strap, VIOLET TRIANGLE chest clasp, silver DIAMOND belt clasp, TWO burgundy pointed waist tails with silver edging, silver knee plates, burgundy instep boot wraps, black fingerless gloves with tiny silver knuckle studs. Male asymmetrical raven-black fringe; female compact high TIED ponytail, no braid. Same details in all four figures with natural occlusion. Adult experienced masculine Asesino with raven-black with burgundy sheen short asymmetrical swept fringe, attentive determined eyes, clean-shaven, canonical head scale. Fitted MATTE BLACK layered leather with DEEP BURGUNDY diagonal chest sash, compact dark silver segmented shoulder and forearm plates, violet triangular clasp, short fitted split waist panels, slim black trousers, silent dark boots with burgundy instep wraps and black fingerless gloves. Lower face visible, no mask or hood. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+            "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+            "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+            "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -150166,6 +150272,22 @@
         },
         "attack_dagger/04": {
           "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
           "frame": 4
         }
       },
