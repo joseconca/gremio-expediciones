@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T20:31:53.358778+00:00",
+  "classId": "nigromante",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\nigromante-f-sheet.png",
+  "sheetSha256": "0479ac255b847eb7ca9b73efd440a12950b9a3fcd44c7a80e5c46e2323dd40dc",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\idle\\nigromante-f-idle-01.png",
+          "sha256": "06616ea8b11c245efeabfa81b97ae9a28ef34d8f5c688c4a78347628386e2405",
+          "alpha_bbox": [
+            25,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\idle\\nigromante-f-idle-02.png",
+          "sha256": "000fc8aa46984da08e568cb863eb0536bb6c42d840d7ab5f7a6172a1971b078c",
+          "alpha_bbox": [
+            25,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\idle\\nigromante-f-idle-03.png",
+          "sha256": "ce2a13b3f179fa4017a123b27483db440e422e0b0b0acd3c0283fe521dcf5c95",
+          "alpha_bbox": [
+            25,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\idle\\nigromante-f-idle-04.png",
+          "sha256": "29e92b4efd7b7fdf05dbab24c189c01d92ab8f81b46f892d0c8943ea055f1fac",
+          "alpha_bbox": [
+            25,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\walk\\nigromante-f-walk-01.png",
+          "sha256": "d1e839b620e6f9dff5c877f5d00950b27c389245f143c55a747b8213f3c7f3c5",
+          "alpha_bbox": [
+            15,
+            89,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\walk\\nigromante-f-walk-02.png",
+          "sha256": "3273fb82cce05adde48bdfe07de7df037dfa4dcb488f73fefd1e25f2b7b14f50",
+          "alpha_bbox": [
+            25,
+            89,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\walk\\nigromante-f-walk-03.png",
+          "sha256": "f962f389229f3d23fb802f75be5f669d0babc313bb6c92273a8f5aafe037d564",
+          "alpha_bbox": [
+            10,
+            89,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\walk\\nigromante-f-walk-04.png",
+          "sha256": "4f0bb366182dc50eff0fef11475fc167e05ff5f8be1cb8cfbd9efa9c9744cdd5",
+          "alpha_bbox": [
+            25,
+            89,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\hurt\\nigromante-f-hurt-01.png",
+          "sha256": "dd320b8a76298fc408922fe3b9222ffd01c1b9e24a104761f8857667aedb605a",
+          "alpha_bbox": [
+            22,
+            94,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\hurt\\nigromante-f-hurt-02.png",
+          "sha256": "2ffe0518f6badf0f6dbd12ddf3d2cbc56991dbac1aa1a20a0522c4af931107c3",
+          "alpha_bbox": [
+            24,
+            94,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\hurt\\nigromante-f-hurt-03.png",
+          "sha256": "7245e0e7f60d3bf29f4615d8049910047899107fd8aff99fca11eef2814877eb",
+          "alpha_bbox": [
+            17,
+            114,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\hurt\\nigromante-f-hurt-04.png",
+          "sha256": "cdaea1a5f98ab46a585068d2800c66b5ca65f3b7d8ec86db84897066dfb50a4d",
+          "alpha_bbox": [
+            18,
+            93,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\use_consumable\\nigromante-f-use_consumable-01.png",
+          "sha256": "532b393461f1c80fcdb57d6feb8c0de3c54e84ae7f20ff503e64e59de85d1e6e",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\use_consumable\\nigromante-f-use_consumable-02.png",
+          "sha256": "a3f60d4d3cc9082ef9e74a43a04b6fdc14fbefe1c6bc428dd9f6f4a0384e7d91",
+          "alpha_bbox": [
+            19,
+            89,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\use_consumable\\nigromante-f-use_consumable-03.png",
+          "sha256": "b6b868f39c79ad0ea7456757c910a9a4eb7d1f0ed642d8cd0892fafd123fbf80",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\use_consumable\\nigromante-f-use_consumable-04.png",
+          "sha256": "989f08181a1a5957447f6aac6964101df24b69a803fe52438117d6d0789e6490",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\dodge\\nigromante-f-dodge-01.png",
+          "sha256": "446c9d034a0a9ff11d646baa71926fe2258ea1e7651326e3a6e54452d805654c",
+          "alpha_bbox": [
+            22,
+            93,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\dodge\\nigromante-f-dodge-02.png",
+          "sha256": "afeff59e89533856c3fbde5cdae91ac4f78b4d7c3f755d5fa81dbdb498e52281",
+          "alpha_bbox": [
+            27,
+            99,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\dodge\\nigromante-f-dodge-03.png",
+          "sha256": "b692d4317357f9dfd60191c3360baf6ce9f4ac9d1b1bc8f5428ec86ea118e9f2",
+          "alpha_bbox": [
+            21,
+            126,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\dodge\\nigromante-f-dodge-04.png",
+          "sha256": "0e82071bbfe76a4330dfb903e09583b9d2aa4403ff3a88fa9032f2bb6eca3726",
+          "alpha_bbox": [
+            11,
+            96,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\block_shield\\nigromante-f-block_shield-01.png",
+          "sha256": "432d7306bb5aa66e12abb70d6203fd17f03ac84ec7646ce583fae7be6d766fbd",
+          "alpha_bbox": [
+            27,
+            93,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\block_shield\\nigromante-f-block_shield-02.png",
+          "sha256": "62c018e0bd36217c7d317fbf04b356be8226047b7847a54156dc3fcdd7daacb5",
+          "alpha_bbox": [
+            26,
+            93,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\block_shield\\nigromante-f-block_shield-03.png",
+          "sha256": "a258095970408fdeae45b103b11650997c5af842df2fa4aa8eeefb009cda5e91",
+          "alpha_bbox": [
+            24,
+            104,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\block_shield\\nigromante-f-block_shield-04.png",
+          "sha256": "1976613e06382d362de9b4d1a21329dee9fbaafb1843242266c8d80347ea0c9e",
+          "alpha_bbox": [
+            17,
+            93,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_sword\\nigromante-f-attack_sword-01.png",
+          "sha256": "2fcc3d1d20cd336fb4f5f352e4adf48c293c379d4a82be3bf59c95247b079d49",
+          "alpha_bbox": [
+            24,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_sword\\nigromante-f-attack_sword-02.png",
+          "sha256": "7409c4b7142cb00baf8d713c1128d676fa4e9e073b94f74c2857710ae1bc19b2",
+          "alpha_bbox": [
+            24,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_sword\\nigromante-f-attack_sword-03.png",
+          "sha256": "e0425f1359c836b7f757b71626931409a036c1784a47fa646d8990b37b64bb3d",
+          "alpha_bbox": [
+            18,
+            97,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_sword\\nigromante-f-attack_sword-04.png",
+          "sha256": "2f804c974b0f3dab7db2115e6ab8d064748e6ec1e2f5e7a3e03d1f9177064667",
+          "alpha_bbox": [
+            17,
+            90,
+            103,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_axe\\nigromante-f-attack_axe-01.png",
+          "sha256": "19ca2729fd55024e6ee8516db221f85d054e125583fc2c2fd1a485f755bb84bc",
+          "alpha_bbox": [
+            21,
+            92,
+            117,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_axe\\nigromante-f-attack_axe-02.png",
+          "sha256": "cab5f8a4975c1d5096f4d32f4a337c796df302aa37113bdf73b3add6b11e69ea",
+          "alpha_bbox": [
+            20,
+            90,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_axe\\nigromante-f-attack_axe-03.png",
+          "sha256": "42fc0875de36e15ff895f15bdfc5ad02f73d24a3bee2543226dfed9bd1056395",
+          "alpha_bbox": [
+            14,
+            103,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_axe\\nigromante-f-attack_axe-04.png",
+          "sha256": "fbf5ce3061db2027989356c9a17ffaed08cd74dd41a41de8742fbaa2d8ec6619",
+          "alpha_bbox": [
+            9,
+            92,
+            102,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_spear\\nigromante-f-attack_spear-01.png",
+          "sha256": "1fa3d9b9ff9b7afa755512462495c6129b7d2cca32828dcce83242dbd4c0e82d",
+          "alpha_bbox": [
+            10,
+            92,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_spear\\nigromante-f-attack_spear-02.png",
+          "sha256": "8955cee81fcbd8dd81ad038594b57ae4547521291aea5dc9261b46a79ea2b1ed",
+          "alpha_bbox": [
+            11,
+            92,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_spear\\nigromante-f-attack_spear-03.png",
+          "sha256": "9d825b5cf6b55d8e16cf1e376ab764f1f46cee902fcee0dca9fb7e0b0f0e9c01",
+          "alpha_bbox": [
+            8,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_spear\\nigromante-f-attack_spear-04.png",
+          "sha256": "e3548279d1b04c1fc16b8db641bb416dc9b948033d180e967b9816994cce78b5",
+          "alpha_bbox": [
+            10,
+            92,
+            112,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_dagger\\nigromante-f-attack_dagger-01.png",
+          "sha256": "13672a8c495084aa8d6d3ed9b6dbc2fe3b0832fbd9b1091894a188ea6d0ce8c8",
+          "alpha_bbox": [
+            13,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_dagger\\nigromante-f-attack_dagger-02.png",
+          "sha256": "f57e0f6bffca61aeec703eb0c7f2a8ff11ef06cf08c539f3c6c31b11abdd8d96",
+          "alpha_bbox": [
+            13,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_dagger\\nigromante-f-attack_dagger-03.png",
+          "sha256": "49f52a08318f9ed0d40342918795f21968f6612395303e15a6d52c94b5b59f16",
+          "alpha_bbox": [
+            12,
+            91,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_dagger\\nigromante-f-attack_dagger-04.png",
+          "sha256": "9837f8570b3bd76aa3c81f12580682cfde6eea06654cb02ef519a3d163a8e799",
+          "alpha_bbox": [
+            15,
+            90,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_bow\\nigromante-f-attack_bow-01.png",
+          "sha256": "9d86edb3978675f282c6871ea3fea727db4804d08d2baead0de61abaa9e129b6",
+          "alpha_bbox": [
+            25,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_bow\\nigromante-f-attack_bow-02.png",
+          "sha256": "b89027f87cdc2235572f8b7457dd27a98d607f8339ab08f6258229e2e2259ce2",
+          "alpha_bbox": [
+            17,
+            90,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_bow\\nigromante-f-attack_bow-03.png",
+          "sha256": "642a33df232e78f741e7e4eb19b4a716dce16556d961a13b849392f5ec552d32",
+          "alpha_bbox": [
+            16,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_bow\\nigromante-f-attack_bow-04.png",
+          "sha256": "33ccd8bdab45a3f7b5049955380fd65c83ffb4a1965930c070da7836682d281e",
+          "alpha_bbox": [
+            19,
+            90,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_staff\\nigromante-f-attack_staff-01.png",
+          "sha256": "152e5d06486244881ec2c94533d7685059cb32f5fcccd89d7109dd66f282ccaf",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_staff\\nigromante-f-attack_staff-02.png",
+          "sha256": "c84120b0615ae57160fe55e40a27ac4cc57d46b72b5124252d0bee31f245fc9a",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_staff\\nigromante-f-attack_staff-03.png",
+          "sha256": "19f952da59a35e5eacc690ae3ef149fb1fc58a9fa0955dc8a465e29367b37ee3",
+          "alpha_bbox": [
+            24,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_staff\\nigromante-f-attack_staff-04.png",
+          "sha256": "7eafa65c57cbe394b57658c5c16d8a1748fedcbb3bfb0f11fdfe5373d876fe5b",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_mace\\nigromante-f-attack_mace-01.png",
+          "sha256": "09a6c744289bc97c7354129bca9b7805e043cc2fd45d54e7fc587f9d29efb930",
+          "alpha_bbox": [
+            28,
+            89,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_mace\\nigromante-f-attack_mace-02.png",
+          "sha256": "37dde3b048ca2dc22fb040be1e1a37071f0e54b926e5c2e3268570651f8671e1",
+          "alpha_bbox": [
+            19,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_mace\\nigromante-f-attack_mace-03.png",
+          "sha256": "0914917fe1d5fd7f06102251030c4898baf42dc5ee18b8c24b73b256d945ae23",
+          "alpha_bbox": [
+            16,
+            95,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_mace\\nigromante-f-attack_mace-04.png",
+          "sha256": "f7444983b03484aa2c766feee57d9b124762c894f3d95c562eada713a09911c3",
+          "alpha_bbox": [
+            8,
+            89,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_book\\nigromante-f-attack_book-01.png",
+          "sha256": "9951e8e849561da4d4253da11cb77a83afacb48b51752f8d241856bed4bd260f",
+          "alpha_bbox": [
+            29,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_book\\nigromante-f-attack_book-02.png",
+          "sha256": "5f2ca613367694199ee0e6af5ea9118f1a6ff67921d786fde087fb631444f15c",
+          "alpha_bbox": [
+            21,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_book\\nigromante-f-attack_book-03.png",
+          "sha256": "f29bb4a00a66f03d81ebae213ec9b450a352631502747c7253b1216c2a398d73",
+          "alpha_bbox": [
+            20,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_book\\nigromante-f-attack_book-04.png",
+          "sha256": "96553424515deeafbc0f68ff5f7ed193e568d087fb76a820fc89dd70c318d605",
+          "alpha_bbox": [
+            18,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_gloves\\nigromante-f-attack_gloves-01.png",
+          "sha256": "3a7f6ecee6bf16ecb7972260fa2619391c36e98a65535aa88f4f9ccb3d0e61ce",
+          "alpha_bbox": [
+            18,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_gloves\\nigromante-f-attack_gloves-02.png",
+          "sha256": "0cfd0a02f39574004f4dc9f5ac777b065d487be4539508cf20df828bcb26c0c4",
+          "alpha_bbox": [
+            15,
+            89,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_gloves\\nigromante-f-attack_gloves-03.png",
+          "sha256": "6ad33f85d38a9e1f441bf3b4fbbab2032f8e9fd0db7998dda5e0aad712258782",
+          "alpha_bbox": [
+            8,
+            90,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\nigromante\\f\\frames\\attack_gloves\\nigromante-f-attack_gloves-04.png",
+          "sha256": "ddd4e45b8e668eac6d316d3e4bedc59c07698d48ccf272a38e5936b417f6deaa",
+          "alpha_bbox": [
+            12,
+            89,
+            98,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

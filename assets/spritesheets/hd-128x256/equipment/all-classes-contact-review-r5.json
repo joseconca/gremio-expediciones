@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 88,
-  "contactChecks": 60016,
+  "variants": 90,
+  "contactChecks": 61380,
   "warnings": 0,
   "reports": [
     {
@@ -432,6 +432,18 @@
     },
     {
       "classId": "monje",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "nigromante",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "nigromante",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

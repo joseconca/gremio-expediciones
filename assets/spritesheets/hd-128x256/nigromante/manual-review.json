@@ -1,0 +1,147 @@
+{
+  "classId": "nigromante",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/walk-reference.png",
+      "overrides": {}
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame04-reference-v2.png"
+      }
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Abrigo ritual negro y marfil ceniza, placas de peltre con geometria de costillas, tres esmaltes violetas, forro ciruela y hebilla de mascara funeraria distinguen esta especializacion avanzada de Brujo. Pelo blanco masculino en capas y coleta alta trenzada femenina.",
+    "All thirty original action strips, selected revisions, representative equipment for every type and both axe structures were visually reviewed. Actual source palms and final weapon composites checked; both sexes have fifteen actions and 682 contacts without warnings.",
+    "Male sword revision2 supplies only complete pose4 from a whole generated portrait, re-costumed from the approved Invocador pose4 geometry with the bent forearm corrected. Male hurt revision2 supplies only complete pose2 from a whole generated portrait, with compact chest armor behind the near fist. Other male poses and all fifteen female actions retain original generated sources.",
+    "Portrait derivations repeat the entire unchanged raw portrait canvas before fixed canonical normalization and whole-pose selection. No body painting, limb transplants, per-class weapon offsets or per-pose export adjustments. Source point positions at thumb/fingertip edges and the legacy spear/cloth, wrist and consumable waist-return contacts were checked against actual final hilts and shafts. Female hurt recovery remains held at the thumb edge. No automatic runtime promotion."
+  ]
+}

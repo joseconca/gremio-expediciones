@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "nigromante-m",
+  "nextVariant": "demonologo-m",
   "classes": [
     {
       "id": "novato",
@@ -373,7 +373,7 @@
       "name": "Nigromante",
       "tier": 3,
       "order": 45,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "demonologo",
@@ -208026,7 +208026,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/nigromante/m/nigromante-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/nigromante/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -208221,20 +208221,20 @@
                 "pixelSha256": "9d3ebcc8940f01bb0150c1e4d2b4efb8f9371c32c2856a2d6c4a60841de07697"
               },
               "02": {
-                "sha256": "aa7a0f39c0500b144ccd8c6eafac079ffae85862574f375e8cb9068a2c5cdc09",
-                "bytes": 25332,
+                "sha256": "b9fb5cbc9f078ea625918f9d9c9f135904e095dbdee6b88dbfcbac112a5282b5",
+                "bytes": 24838,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  101,
-                  116,
-                  249
+                  29,
+                  100,
+                  117,
+                  251
                 ],
-                "pixelSha256": "61a9bbeb219e751fe80fd9f94ec62bc44805ee771357a6bd195a9ddee1d25c23"
+                "pixelSha256": "f8cea110070e88fac97a99f9231dde152d5e9a71946d681bc7472ba26d622ecf"
               },
               "03": {
                 "sha256": "0ee81a0aa87dbc5dffff1fd75f53ad21cec107d9710e0885f44d638eccf75823",
@@ -208533,20 +208533,20 @@
                 "pixelSha256": "a8716e72533ea2d842dade760f048034e7525480a7e9a42b8a0b2f4f99b44dd7"
               },
               "04": {
-                "sha256": "8ce5f3ac5a139d681115ccb31c364d404d2622223784d2b22b33912601694171",
-                "bytes": 25893,
+                "sha256": "5514bc44db74c77f508b3285f95c7848a8ca41110ce61f269c9c084904db7a18",
+                "bytes": 24878,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
-                  99,
-                  114,
-                  248
+                  20,
+                  102,
+                  117,
+                  254
                 ],
-                "pixelSha256": "c73c16cb1c033778c299119170a4d6e5a2dd56a70c7b613353a579dac3495f26"
+                "pixelSha256": "3fa7111364ca659c13cca888780800cc186d9e8e292870bacfd1d425669eabcd"
               }
             },
             "distinctFrames": 4
@@ -209150,7 +209150,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "a93a60f5cde4d29aaf0e20570ba1795dae318ca544acca11403cb33566666d2e",
@@ -209188,13 +209189,14 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "6b18c979214fef5439e978d16d8db15ed1aa7ffac19a784ec5b13269aef642f7",
+          "sourceSha256": "386e400ae6c2531b901ea09f356951658ca813ec170bcc1c68e9b2036004de96",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -209216,9 +209218,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Use the exact black/ash-ivory dark pewter coat, THREE violet collar studs, pewter rib chest plates, one MASK buckle, black gloves, dark pewter rim boots and white tousled swept hair in Image2. Preserve exact anatomical Image1 grips with compact bracers ending at exact old wrist; do not change hand positions. Production RPG body sprite strip for Nigromante MALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Create ONE male Nigromante sprite by re-costuming Image1 exact approved hurt pose. Image2 only provides costume/hair details. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Preserve Image1 exact hand palms, fingers, wrist coordinates, elbows, head center and foot positions. The near closed fist in front of the chest must stay exactly at Image1 black glove position; keep bracers short so it is not shifted sideways by larger chest armor. Cover torso with compact pewter rib plates behind the hand. Replace every turquoise/aqua/silver disc garment and blueblack hair with black/ash/pewter/violet/white hair and MASK belt emblem. Same body scale and camera, one whole figure, full boots inside canvas with margins, transparent background, no equipment.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -209226,7 +209228,140 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "6b18c979214fef5439e978d16d8db15ed1aa7ffac19a784ec5b13269aef642f7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "6b18c979214fef5439e978d16d8db15ed1aa7ffac19a784ec5b13269aef642f7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "6b18c979214fef5439e978d16d8db15ed1aa7ffac19a784ec5b13269aef642f7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "6b18c979214fef5439e978d16d8db15ed1aa7ffac19a784ec5b13269aef642f7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use the exact black/ash-ivory dark pewter coat, THREE violet collar studs, pewter rib chest plates, one MASK buckle, black gloves, dark pewter rim boots and white tousled swept hair in Image2. Preserve exact anatomical Image1 grips with compact bracers ending at exact old wrist; do not change hand positions. Production RPG body sprite strip for Nigromante MALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "483bb5a5fd2c11a1983669ff0a82ef37170e50d6fa6c1c637a596879c0bfeb06",
@@ -209264,7 +209399,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "2b93682b10f85a8f318f368c31c3514e1ef8c60ee6530644cdb4b4f242c86846",
@@ -209308,7 +209444,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "51b106a31c1b642a4e7cf40525999f83137db4a97368a47113d5ed8c66fa3a69",
@@ -209352,13 +209489,14 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
-          "sourceSha256": "d6cf16bcd9e783925fd2f05131dd25e31323219d69742ae0b23da1ebb4057649",
+          "sourceSha256": "0fcf10ef71d5baa63b6726b8472871c553efa31b2e800eea801e35a919e81302",
           "sourceDimensions": [
-            2172,
-            724
+            4352,
+            1446
           ],
           "registeredSourceDimensions": [
             2172,
@@ -209380,9 +209518,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Use the exact black/ash-ivory dark pewter coat, THREE violet collar studs, pewter rib chest plates, one MASK buckle, black gloves, dark pewter rim boots and white tousled swept hair in Image2. Preserve exact anatomical Image1 grips with compact bracers ending at exact old wrist; do not change hand positions. Production RPG body sprite strip for Nigromante MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Re-costume the ONE complete male body of Image1 with exact Nigromante costume and hair from Image2. Image1 is ONLY approved geometry: preserve both hand positions and sizes, arm angles, feet, head center, full body scale, camera and canvas. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Replace every turquoise/silver disc/aquagem detail of Image1 with ash-ivory/black/pewter/violet/one MASK belt emblem. Especially preserve the BENT SCREEN LEFT fist position near the shoulder/elbow; never push it toward the center of the chest or to the right. The black palm must occupy exactly the old black palm pixels. Very short bracers end at same old wrist. Keep boots soles compact at same height, inside canvas with transparent margins. One figure only, transparent background, no equipment.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
@@ -209390,7 +209528,140 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d6cf16bcd9e783925fd2f05131dd25e31323219d69742ae0b23da1ebb4057649",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "d6cf16bcd9e783925fd2f05131dd25e31323219d69742ae0b23da1ebb4057649",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "d6cf16bcd9e783925fd2f05131dd25e31323219d69742ae0b23da1ebb4057649",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "d6cf16bcd9e783925fd2f05131dd25e31323219d69742ae0b23da1ebb4057649",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/nigromante/m/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use the exact black/ash-ivory dark pewter coat, THREE violet collar studs, pewter rib chest plates, one MASK buckle, black gloves, dark pewter rim boots and white tousled swept hair in Image2. Preserve exact anatomical Image1 grips with compact bracers ending at exact old wrist; do not change hand positions. Production RPG body sprite strip for Nigromante MALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+                "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+                "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+                "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "b6d0bff9075f03b826907e4c90debde1260b815eeeeeca66703d2f7d201cd535",
@@ -209428,7 +209699,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "d58073f8310760e3a8c85b9685e16ee46d8101af605d0838e7f5b17b72d2ca6c",
@@ -209466,7 +209738,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "379149b4779ee61b8b934e00e595ab65827bffcdfd50569cf1ccd09ba63ce23e",
@@ -209504,7 +209777,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "9abee7e7ece6b38bc557b67657f41c30ea578f53ffba9078961c59a42edbc16d",
@@ -209542,7 +209816,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "2c78ab8f2c9457255c0f8b8449e08e228fbc2df439029216e32c9b18ddca053b",
@@ -209580,7 +209855,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "fd496c400ef1d9b6fef5dcf2c904f14ace716e90b8737d7d411e75c94cb4f6db",
@@ -209618,7 +209894,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "31027e66f11125033aa92f196e8548184db5cbe5cf59530387ccc073dfa014eb",
@@ -209656,7 +209933,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "9deb9dccc5b864cfbe42445135f17530895cac361a15705110af2d94f3be293a",
@@ -209694,7 +209972,2081 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt.frameSourceOverrides.04",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
+          "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword.frameSourceOverrides.02",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "b252c6fa45e1dad572ff4da5411d6f80166d3032640e7a2d34377c87f3195f08"
+            },
+            {
+              "bodySha256": "c80cb1056eaaf3a5fd840a02b920ad89c7a76a2945eeb89ca81e9b993571e92e"
+            },
+            {
+              "bodySha256": "5691f8ea8435195ee81c11247e9a4bd2673e0061893674f2d0ee7ae5c0fb8740"
+            },
+            {
+              "bodySha256": "5514bc44db74c77f508b3285f95c7848a8ca41110ce61f269c9c084904db7a18"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "nigromante",
+        "name": "Nigromante",
+        "tier": 3,
+        "costume": "Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Ash/black funerary tailoring, pewter rib geometry and violet enamel",
+        "advancement": "Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/nigromante/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "21dfc847e742e80ca6707e49eda18c7fe27cbea72675354cc838036e749c7ce1",
+            "3bbcbd38ca92148c88d4aaf384f0d8d878d805d7a361cf596e7513ba67052bf4",
+            "9e18b3ebabd6ebe7e4884b7cace9085c86954516742236446be0a94da71c2596",
+            "aab031d509b6c39f15c9b84bcdbb9eea223d0d95c2285db2e873084fa86eb9e0"
+          ],
+          "walk": [
+            "05964870c5b5d77242446b9e15114ef611fe9c5fa0fc268372f744116ed1e336",
+            "2cd6026b22ca687ffb855c7b42880fbc78d3e463b831a74ca51e785334cb75b6",
+            "d5f6f87e34a67481562ba68588562fb09a06ea78b5968cded6633b1bb6159123",
+            "68c058d921d7cfacdcfafba88307046923f55d2e36319be681cf51fd04963c04"
+          ],
+          "hurt": [
+            "2443e95aaa8210ce88386cf42b94babdc2bad44e09c53a53c786ca8b6a352fd2",
+            "b9fb5cbc9f078ea625918f9d9c9f135904e095dbdee6b88dbfcbac112a5282b5",
+            "0ee81a0aa87dbc5dffff1fd75f53ad21cec107d9710e0885f44d638eccf75823",
+            "fd5df68e43cd36462b8a3f15c683a61fa2a7f7490324b218b387e9f512b4e07c"
+          ],
+          "use_consumable": [
+            "4e09dff4fa79cc0682eaf05bd3aef80a60b9d861d67e684b0ad899a0abb4202b",
+            "bff71adede59557b4cca0482b1c02556416631d6f77cef6bd62fc60468422906",
+            "cc5cbfcd8737c66818e7973828620c9bd597e3b32d027152404f9c6c45c9dccc",
+            "3523bee75d163c85510a56b5420001759b8fff41c67561aa6e570f2f6c2145cb"
+          ],
+          "dodge": [
+            "78e22fbdee70865aafac281e9bc6a87d1c16f54896a0e2fc87ab956ea854ed87",
+            "8293f2656657d2ba0ab9a0d2b0944a6e41c3f8a37d136a96b818eca2af7a2fae",
+            "36360773f623b9c45708ba8862982654e4db48a8431d31bc04e813e17ddbba1f",
+            "dcc0bdc01f0ff1b08bf1b933ccd0029eb325504f04aff8c97032281b6874c6c5"
+          ],
+          "block_shield": [
+            "8570eb37a2d996fd86f6b254b89616b0ac3ca81316971112f6d994d330da88d2",
+            "d0e1510df309583d27595c17e6e9ba8f46eb4920eadeec8eac9d4501b889c4ea",
+            "8fa320ce6d29d28b4c7bf4e44615d21f3523c96abaecdc723b6ce5403b06a26a",
+            "097520b0f2e927399a9f1a9caf5679c334ccf876f5d71bf4f5c68516ad8142a5"
+          ],
+          "attack_sword": [
+            "b252c6fa45e1dad572ff4da5411d6f80166d3032640e7a2d34377c87f3195f08",
+            "c80cb1056eaaf3a5fd840a02b920ad89c7a76a2945eeb89ca81e9b993571e92e",
+            "5691f8ea8435195ee81c11247e9a4bd2673e0061893674f2d0ee7ae5c0fb8740",
+            "5514bc44db74c77f508b3285f95c7848a8ca41110ce61f269c9c084904db7a18"
+          ],
+          "attack_axe": [
+            "87afeafcf9cb6e01df09f8688e2d9100d9378d43adc4ca593d5348211403f6c1",
+            "7c75533b22286e0ef5da46c11e93834f842fe6014f044ddb5b5f96dd6dd3611e",
+            "a449087d2c3ad219e9868f8433c8b3d37afed68145dc08bd6d08dac7fed68bae",
+            "6ea070ba3515950f779785f3bfc43f243801f4cf79a46c2249eed911f14403de"
+          ],
+          "attack_spear": [
+            "05b87cbd40c41f2bae08d50c5cfcf8c2e93f7ca064de6002ce9187a1d80045e8",
+            "36018c3567ab5f51f77a20da3336717b2d26774054bb80cfccd862ef73d50ccc",
+            "8ffab29cb4a70114d8876435882906ff809e17a2f294ab89c3b5c3cabd2e16d7",
+            "9d932bc1e0157a182b45580ad56c690a11fe93192d88e54880f72a19414bb66f"
+          ],
+          "attack_dagger": [
+            "04da09ef05e29953561f310d8c5d4a934a900c3a3d82c75fa6889f6318e3b5d6",
+            "dc8094b6174f6267a3006043658eaddc00a85bff982ca234543b94a512113da2",
+            "8d7291dc5fbb49e2f23f65527a5488deb8f8138fdb9861be52680b18f6935416",
+            "fb8d27e1bdce21b01cb04391904c7a36c4328b73fbe07789a03fa5cd1add2d7d"
+          ],
+          "attack_bow": [
+            "f5266c448ef8681b06d5f6e582d64693696c683d260a2774c36de5b3d3c590d3",
+            "3a00ef4cb712e7f3a97b7121370541e41cb9dd50807ef4dff15903251f3137a6",
+            "f226832947fff07c618d869ef090c2b13fa717cb76edab6ae834549664d0b8a9",
+            "63677d8f08bbeedc04296ae4acf198cc54c67af628d4fc8768e1dd089383cb10"
+          ],
+          "attack_staff": [
+            "cca9647934bd56d068a4551600fe1dd055f674b71aa7904800745aef6cc5a9c0",
+            "40afa383b3b3302fb3ec7ac03ebac71e56e14f7c9ea78dafd56dbace6759f708",
+            "eaac54fc7f376e60d8bcd057f88f7371d607e65da4f3eb5db2a4a40d9e4af523",
+            "a13f2a3af20826c7a1e42b424b6e578f605cd046c864147d0c27fb29bd9962a7"
+          ],
+          "attack_mace": [
+            "f1f8318b5518938c62d334a8a408adb6fa876c9fd8269d407a6dd788e8d6b21f",
+            "af74183929b0531d69619a613714b748b78c140540e5b63e2b21ea461bec8faf",
+            "c6c9193c80b39431eba8e17eea8ae0914631c4b0a9461cb2db1aa12bcd1e544e",
+            "fe7fe594c6eb5b7d64cf6b76e3988d822d6c6d9be273fb5bd10c273de7d4259d"
+          ],
+          "attack_book": [
+            "71fe90b4d31d4fd384d5d9747602049973ea27881147ac791e0f52100bf9a528",
+            "99acb2a6fd7bde0d63aa6c0524409e2a7daf305abf25b976432a78dcae9d8721",
+            "644ecc03e025cc72f74fa023caf948b5700772828b2e5de39d4acea5727cf3de",
+            "b643a3452c7c7e80c986105ff876d350c98d41edd2756e38ac1a1a9916e3b9fa"
+          ],
+          "attack_gloves": [
+            "d3ee67db123ad567a698360baa813a42310c92bf73bda41eb3b5fa0cd2609f84",
+            "5d93c0bb98229c99b4cc70e01d2f98a0ac42b63ad605dc878966e55d6b6abb77",
+            "3e5afa1b80815a5361b91bae4579a8a2d69d283a569d536d0755026b6529021c",
+            "4f3358e76d7a725a3778e2b1ddcd05cef4da2ec76e7daa289c04b1a31b166ed1"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
+      }
+    },
+    {
+      "classId": "nigromante",
+      "className": "Nigromante",
+      "tier": 3,
+      "sex": "f",
+      "order": 90,
+      "status": "in-progress",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/nigromante/f/nigromante-f-sheet.png",
+      "frameRoot": "assets/spritesheets/hd-128x256/nigromante/f/frames",
+      "sourceStatus": "hires-library-candidate",
+      "qaStatus": "visual-review-pending",
+      "equipmentRigId": "humanoid-f-v1",
+      "bodyScale": {
+        "generatedSourceScale": 0.23,
+        "feetBaseline": 248,
+        "nominalStandingHeight": 156,
+        "note": "Same scale as male reference. Ponytail/arm height does not change body scale.",
+        "referenceCanvas": [
+          2172,
+          724
+        ]
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
+      "audit": {
+        "validFrames": 60,
+        "invalidFrames": 0,
+        "technicalActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
+        "actions": {
+          "idle": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "06616ea8b11c245efeabfa81b97ae9a28ef34d8f5c688c4a78347628386e2405",
+                "bytes": 25609,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "93edfcf2fd5f84515424c0dbb5767e71213f90708adb3db2eb1caee00832f2e8"
+              },
+              "02": {
+                "sha256": "000fc8aa46984da08e568cb863eb0536bb6c42d840d7ab5f7a6172a1971b078c",
+                "bytes": 25689,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "172e56671ca6f8ce2612c7be41374601d0de54762447c3edaccc0d3f9e960948"
+              },
+              "03": {
+                "sha256": "ce2a13b3f179fa4017a123b27483db440e422e0b0b0acd3c0283fe521dcf5c95",
+                "bytes": 25654,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  107,
+                  248
+                ],
+                "pixelSha256": "b46f7254757d89a2c2e4d486ff820702c979bb99d17ef026d6433c10eed8b1ac"
+              },
+              "04": {
+                "sha256": "29e92b4efd7b7fdf05dbab24c189c01d92ab8f81b46f892d0c8943ea055f1fac",
+                "bytes": 25657,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "0085d2167b9a8acdbdb2802d1fb60841db86e7a06f289435a5540e32c7f3621a"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "walk": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d1e839b620e6f9dff5c877f5d00950b27c389245f143c55a747b8213f3c7f3c5",
+                "bytes": 26881,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  89,
+                  108,
+                  247
+                ],
+                "pixelSha256": "4c0ca2a69240aa4f56ab7fc7119823f9468540155f8dc337614e1603bf82bc3f"
+              },
+              "02": {
+                "sha256": "3273fb82cce05adde48bdfe07de7df037dfa4dcb488f73fefd1e25f2b7b14f50",
+                "bytes": 23557,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  95,
+                  248
+                ],
+                "pixelSha256": "3bdd4d16708aab72bb9b478e1ac6e03e421f894d3e360c2732a749cef0afc91e"
+              },
+              "03": {
+                "sha256": "f962f389229f3d23fb802f75be5f669d0babc313bb6c92273a8f5aafe037d564",
+                "bytes": 25575,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  89,
+                  118,
+                  247
+                ],
+                "pixelSha256": "593a9997b5dd1a9c059c0b0309a82d148ea8ea03159296940f88d52b2e1031a1"
+              },
+              "04": {
+                "sha256": "4f0bb366182dc50eff0fef11475fc167e05ff5f8be1cb8cfbd9efa9c9744cdd5",
+                "bytes": 22903,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  99,
+                  248
+                ],
+                "pixelSha256": "adccace703a930b54555185a0ba45902cbde47cf869d727b3e5fe7c728b9b576"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "hurt": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "dd320b8a76298fc408922fe3b9222ffd01c1b9e24a104761f8857667aedb605a",
+                "bytes": 26035,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  94,
+                  113,
+                  247
+                ],
+                "pixelSha256": "0de98d4211e800602bd5085659d2daddfc44193e8d58661f8a07768ab7223ab2"
+              },
+              "02": {
+                "sha256": "2ffe0518f6badf0f6dbd12ddf3d2cbc56991dbac1aa1a20a0522c4af931107c3",
+                "bytes": 23902,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  94,
+                  106,
+                  247
+                ],
+                "pixelSha256": "28903191216bb710297e2d564d4543fab8d20a8e406260432fcbcf786546d5d3"
+              },
+              "03": {
+                "sha256": "7245e0e7f60d3bf29f4615d8049910047899107fd8aff99fca11eef2814877eb",
+                "bytes": 21338,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  114,
+                  97,
+                  248
+                ],
+                "pixelSha256": "dec5dbdec7a56b04b24901e9ee5e1d18c08b8a44ca66f65741392e5a9998eae0"
+              },
+              "04": {
+                "sha256": "cdaea1a5f98ab46a585068d2800c66b5ca65f3b7d8ec86db84897066dfb50a4d",
+                "bytes": 25702,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  93,
+                  100,
+                  248
+                ],
+                "pixelSha256": "941f7d676fb5659a20b6c3e48182b548d5d16928e7e6f6fbd7cb597eaaba550a"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "use_consumable": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "532b393461f1c80fcdb57d6feb8c0de3c54e84ae7f20ff503e64e59de85d1e6e",
+                "bytes": 26176,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  89,
+                  105,
+                  249
+                ],
+                "pixelSha256": "2ffa548e6e74c7ed4efef3bcef185b53f8a00f9d345ae6c0d08af723865c3670"
+              },
+              "02": {
+                "sha256": "a3f60d4d3cc9082ef9e74a43a04b6fdc14fbefe1c6bc428dd9f6f4a0384e7d91",
+                "bytes": 25983,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  105,
+                  249
+                ],
+                "pixelSha256": "675f0fe50bc22b6b95777eadb6a5b912ed019ddca57bdb916cd3b947a6b2aeb5"
+              },
+              "03": {
+                "sha256": "b6b868f39c79ad0ea7456757c910a9a4eb7d1f0ed642d8cd0892fafd123fbf80",
+                "bytes": 25665,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  89,
+                  105,
+                  249
+                ],
+                "pixelSha256": "c13a5a8c2c797582e51ead4d2c2661011b3222c4ef3a2ae2ce224020c2cd07eb"
+              },
+              "04": {
+                "sha256": "989f08181a1a5957447f6aac6964101df24b69a803fe52438117d6d0789e6490",
+                "bytes": 26147,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  89,
+                  105,
+                  249
+                ],
+                "pixelSha256": "94fd23fcc17e896c4c1eaf80b0da5922510d8f015c7be053d71b8a5610976f0d"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "dodge": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "446c9d034a0a9ff11d646baa71926fe2258ea1e7651326e3a6e54452d805654c",
+                "bytes": 26340,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  112,
+                  249
+                ],
+                "pixelSha256": "ff730d27858668d548f3c2a28848b0dc1a07cf1f18029d94ea09203997265c01"
+              },
+              "02": {
+                "sha256": "afeff59e89533856c3fbde5cdae91ac4f78b4d7c3f755d5fa81dbdb498e52281",
+                "bytes": 24868,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  99,
+                  116,
+                  249
+                ],
+                "pixelSha256": "0ae1c1d2122dcddfb8b34a8607a7b1025f59a73c3709c7693612c1aeebaa7328"
+              },
+              "03": {
+                "sha256": "b692d4317357f9dfd60191c3360baf6ce9f4ac9d1b1bc8f5428ec86ea118e9f2",
+                "bytes": 21678,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  126,
+                  111,
+                  249
+                ],
+                "pixelSha256": "e0a5c488ed9a9095cc31cfbaa73139c9407789e2b416cf4536724547a2573337"
+              },
+              "04": {
+                "sha256": "0e82071bbfe76a4330dfb903e09583b9d2aa4403ff3a88fa9032f2bb6eca3726",
+                "bytes": 25248,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  96,
+                  100,
+                  249
+                ],
+                "pixelSha256": "07eb8c563c8243731a13fb45192b24a256158741b256bb0d74e16f927dff5aaf"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "block_shield": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "432d7306bb5aa66e12abb70d6203fd17f03ac84ec7646ce583fae7be6d766fbd",
+                "bytes": 26443,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  113,
+                  248
+                ],
+                "pixelSha256": "b5a23df80025f8d7e19444532f700372ede78116bc4468f2fddcb41c79446ff1"
+              },
+              "02": {
+                "sha256": "62c018e0bd36217c7d317fbf04b356be8226047b7847a54156dc3fcdd7daacb5",
+                "bytes": 26792,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  112,
+                  248
+                ],
+                "pixelSha256": "7da0eecb485ba5428071ce5efdbc6c643e84fc4fa62b76952cadf3e00f3635fb"
+              },
+              "03": {
+                "sha256": "a258095970408fdeae45b103b11650997c5af842df2fa4aa8eeefb009cda5e91",
+                "bytes": 24735,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  104,
+                  109,
+                  248
+                ],
+                "pixelSha256": "07947eac0cccc83689cc4d99ed7bfc303bd422167b0a21fe1efd4f0bc899c57d"
+              },
+              "04": {
+                "sha256": "1976613e06382d362de9b4d1a21329dee9fbaafb1843242266c8d80347ea0c9e",
+                "bytes": 26436,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  102,
+                  248
+                ],
+                "pixelSha256": "f3af6c94bb17b3d0da815d849f50b67c332db9b2ab522d441b814dcee81595d6"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_sword": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2fcc3d1d20cd336fb4f5f352e4adf48c293c379d4a82be3bf59c95247b079d49",
+                "bytes": 25667,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  110,
+                  247
+                ],
+                "pixelSha256": "2a462e840ed6b07841c09180f772958a59378ccefbbecd314a70bfd7b2a2deab"
+              },
+              "02": {
+                "sha256": "7409c4b7142cb00baf8d713c1128d676fa4e9e073b94f74c2857710ae1bc19b2",
+                "bytes": 24722,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  110,
+                  247
+                ],
+                "pixelSha256": "fe980563210bb334e33c797230b4455915bae770d3980a961469b9713c8f2641"
+              },
+              "03": {
+                "sha256": "e0425f1359c836b7f757b71626931409a036c1784a47fa646d8990b37b64bb3d",
+                "bytes": 24485,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  97,
+                  106,
+                  247
+                ],
+                "pixelSha256": "f80f7e3ee84bea995f7750577427f24daadb90d05481539b9437a1501e9cd25b"
+              },
+              "04": {
+                "sha256": "2f804c974b0f3dab7db2115e6ab8d064748e6ec1e2f5e7a3e03d1f9177064667",
+                "bytes": 25381,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  90,
+                  103,
+                  247
+                ],
+                "pixelSha256": "0ceff2cda46d2f720f2a2b322f72e3987da6bdb2405f680389e9031e4f981cda"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_axe": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "19ca2729fd55024e6ee8516db221f85d054e125583fc2c2fd1a485f755bb84bc",
+                "bytes": 26266,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  117,
+                  250
+                ],
+                "pixelSha256": "a0ecc87f7033404515550d167c9141796834e19bd51e0b4d7760d0f89bf546ee"
+              },
+              "02": {
+                "sha256": "cab5f8a4975c1d5096f4d32f4a337c796df302aa37113bdf73b3add6b11e69ea",
+                "bytes": 25675,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  113,
+                  250
+                ],
+                "pixelSha256": "d055fd7bd854f459c416a2ef56b5de4a0354e0f2852dadd8911c49f664b05a63"
+              },
+              "03": {
+                "sha256": "42fc0875de36e15ff895f15bdfc5ad02f73d24a3bee2543226dfed9bd1056395",
+                "bytes": 24284,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  103,
+                  109,
+                  250
+                ],
+                "pixelSha256": "6af6c03e2077f29d69bf46fe56c8bcbc4d5e29dcbb8ace84fb6791f1ac383a8a"
+              },
+              "04": {
+                "sha256": "fbf5ce3061db2027989356c9a17ffaed08cd74dd41a41de8742fbaa2d8ec6619",
+                "bytes": 26170,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  92,
+                  102,
+                  250
+                ],
+                "pixelSha256": "5b23445fcd3214b3ef789474842af506338059142706dbbb5178c8c6a9916660"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_spear": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1fa3d9b9ff9b7afa755512462495c6129b7d2cca32828dcce83242dbd4c0e82d",
+                "bytes": 26356,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  92,
+                  112,
+                  249
+                ],
+                "pixelSha256": "de61d9e8f4513280bf03366697893b4c34fb52d21986a1e89000a6393b404ac2"
+              },
+              "02": {
+                "sha256": "8955cee81fcbd8dd81ad038594b57ae4547521291aea5dc9261b46a79ea2b1ed",
+                "bytes": 25637,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  101,
+                  249
+                ],
+                "pixelSha256": "3eded5009172cddfb00388ebb57e5100bf8dacf0b7328021ccd6c9be9ff689d6"
+              },
+              "03": {
+                "sha256": "9d825b5cf6b55d8e16cf1e376ab764f1f46cee902fcee0dca9fb7e0b0f0e9c01",
+                "bytes": 25714,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  92,
+                  111,
+                  249
+                ],
+                "pixelSha256": "2384891873a608988a842d22d31a6bfd686133b47e5c75dccfc9fb86a3053b98"
+              },
+              "04": {
+                "sha256": "e3548279d1b04c1fc16b8db641bb416dc9b948033d180e967b9816994cce78b5",
+                "bytes": 26545,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  92,
+                  112,
+                  249
+                ],
+                "pixelSha256": "944ab16400800ae7129f46b551e72f7311266b40ec8385850ed3315489efaceb"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_dagger": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "13672a8c495084aa8d6d3ed9b6dbc2fe3b0832fbd9b1091894a188ea6d0ce8c8",
+                "bytes": 27255,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  90,
+                  105,
+                  249
+                ],
+                "pixelSha256": "82bb54ec0584f755f4374ab63225e317b48cba7039afe1589c4c030bb6815716"
+              },
+              "02": {
+                "sha256": "f57e0f6bffca61aeec703eb0c7f2a8ff11ef06cf08c539f3c6c31b11abdd8d96",
+                "bytes": 27125,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  90,
+                  109,
+                  249
+                ],
+                "pixelSha256": "0edbb5762edb051f95be761870a6c72fda56a789c61eb279d51b2544e8318de4"
+              },
+              "03": {
+                "sha256": "49f52a08318f9ed0d40342918795f21968f6612395303e15a6d52c94b5b59f16",
+                "bytes": 26429,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  91,
+                  109,
+                  249
+                ],
+                "pixelSha256": "c2d8b39fccd956d5cf7dcda2c6adc326901206a4c2eb0de281239e5d1c4b19e7"
+              },
+              "04": {
+                "sha256": "9837f8570b3bd76aa3c81f12580682cfde6eea06654cb02ef519a3d163a8e799",
+                "bytes": 26990,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  110,
+                  249
+                ],
+                "pixelSha256": "09fb4d1fd290a2be1086b5fd846ca0dfd4581d45eb4ab829a7eea91c837a684d"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_bow": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9d86edb3978675f282c6871ea3fea727db4804d08d2baead0de61abaa9e129b6",
+                "bytes": 25436,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "2efea1719d30e1f883bfd0416cdd88d1a46b1edfef3dc08e422e91951cdf6b64"
+              },
+              "02": {
+                "sha256": "b89027f87cdc2235572f8b7457dd27a98d607f8339ab08f6258229e2e2259ce2",
+                "bytes": 25871,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  90,
+                  114,
+                  248
+                ],
+                "pixelSha256": "767d65aaa23a5828f98b26fbfada3e900a7107edeec8241638a721e2b3b040f4"
+              },
+              "03": {
+                "sha256": "642a33df232e78f741e7e4eb19b4a716dce16556d961a13b849392f5ec552d32",
+                "bytes": 26038,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  90,
+                  115,
+                  248
+                ],
+                "pixelSha256": "05ccd037d600e4b59d1aaccddba993cc622b9b7a53f1f30d238fe1599f08f9cf"
+              },
+              "04": {
+                "sha256": "33ccd8bdab45a3f7b5049955380fd65c83ffb4a1965930c070da7836682d281e",
+                "bytes": 25811,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  90,
+                  114,
+                  248
+                ],
+                "pixelSha256": "de5c4d8d359c6b2d093a68c5db0f4a5507a71e8ad7baed513acf528bc9bc94a8"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_staff": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "152e5d06486244881ec2c94533d7685059cb32f5fcccd89d7109dd66f282ccaf",
+                "bytes": 25358,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "fb7ef9da208e87c08e27dd649a7d42f4207ca58eb6220abddea74424ad2ccf3b"
+              },
+              "02": {
+                "sha256": "c84120b0615ae57160fe55e40a27ac4cc57d46b72b5124252d0bee31f245fc9a",
+                "bytes": 26394,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "83356220c66a980db1ad4b86591c80c7fc75330ead5e26a9059f2c085042a400"
+              },
+              "03": {
+                "sha256": "19f952da59a35e5eacc690ae3ef149fb1fc58a9fa0955dc8a465e29367b37ee3",
+                "bytes": 24742,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "fa8e5e13edac3be4cb442d41d46afacb6b1fdc7d73061ed4b15f89c6667d6aa8"
+              },
+              "04": {
+                "sha256": "7eafa65c57cbe394b57658c5c16d8a1748fedcbb3bfb0f11fdfe5373d876fe5b",
+                "bytes": 25298,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  106,
+                  248
+                ],
+                "pixelSha256": "daf299816742c73a44ac449f8a4acc5ce8fc7c074a8538181fa79eef778b24fa"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_mace": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "09a6c744289bc97c7354129bca9b7805e043cc2fd45d54e7fc587f9d29efb930",
+                "bytes": 26197,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  89,
+                  116,
+                  248
+                ],
+                "pixelSha256": "9eb440281f2469612b0a886161b08a578dce5620272ef9391a7b6f7866f8fe6b"
+              },
+              "02": {
+                "sha256": "37dde3b048ca2dc22fb040be1e1a37071f0e54b926e5c2e3268570651f8671e1",
+                "bytes": 26185,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  112,
+                  248
+                ],
+                "pixelSha256": "2f331862df830351d764d79d9833a58b67bae0f4108b82a291d159a45f548faa"
+              },
+              "03": {
+                "sha256": "0914917fe1d5fd7f06102251030c4898baf42dc5ee18b8c24b73b256d945ae23",
+                "bytes": 24840,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  95,
+                  106,
+                  248
+                ],
+                "pixelSha256": "43c9bbdd06f3c5364902ef2b3d715fcb51dfe61b6d3ec6af58b5bf00eaaf9cfb"
+              },
+              "04": {
+                "sha256": "f7444983b03484aa2c766feee57d9b124762c894f3d95c562eada713a09911c3",
+                "bytes": 26101,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  89,
+                  96,
+                  248
+                ],
+                "pixelSha256": "d47ff4bca3b1b03041a6fe6417f10debc7dc518920567b5ed2e9e82c1409cf07"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_book": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9951e8e849561da4d4253da11cb77a83afacb48b51752f8d241856bed4bd260f",
+                "bytes": 25272,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  91,
+                  113,
+                  248
+                ],
+                "pixelSha256": "ef80bb1b241ccd23e488f4af6bbab361740e6cfc2b6e8407c17529fca506978c"
+              },
+              "02": {
+                "sha256": "5f2ca613367694199ee0e6af5ea9118f1a6ff67921d786fde087fb631444f15c",
+                "bytes": 24751,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "a6ff3254d7e17c3aa39e22a87a540be1a973457ba99d0b420db5643cb0b15f91"
+              },
+              "03": {
+                "sha256": "f29bb4a00a66f03d81ebae213ec9b450a352631502747c7253b1216c2a398d73",
+                "bytes": 25790,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  109,
+                  248
+                ],
+                "pixelSha256": "be284144ee0c66cee1e268ff549d44ec28644932eb9cdced4c1fca043d5cc254"
+              },
+              "04": {
+                "sha256": "96553424515deeafbc0f68ff5f7ed193e568d087fb76a820fc89dd70c318d605",
+                "bytes": 24699,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  91,
+                  101,
+                  248
+                ],
+                "pixelSha256": "ac2fa6b47edc2cdd8eff097ef576a1bb9d869b5baf4cefacdecb189b04e9900d"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_gloves": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "3a7f6ecee6bf16ecb7972260fa2619391c36e98a65535aa88f4f9ccb3d0e61ce",
+                "bytes": 25683,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  89,
+                  105,
+                  248
+                ],
+                "pixelSha256": "7afc95af2f3a288539ca8c3678158bd2616eca4290a5d95e869c4d5d853ffeff"
+              },
+              "02": {
+                "sha256": "0cfd0a02f39574004f4dc9f5ac777b065d487be4539508cf20df828bcb26c0c4",
+                "bytes": 26331,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  89,
+                  104,
+                  248
+                ],
+                "pixelSha256": "b8c7a8710632e5b50ab692beaaf6b724097f4050b0c93addc463228784e58644"
+              },
+              "03": {
+                "sha256": "6ad33f85d38a9e1f441bf3b4fbbab2032f8e9fd0db7998dda5e0aad712258782",
+                "bytes": 26675,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  90,
+                  118,
+                  248
+                ],
+                "pixelSha256": "a2a467ab239a0c8dbf29f5e64f7aad2a1710387dbec51742c15a9e7b7ea1394d"
+              },
+              "04": {
+                "sha256": "ddd4e45b8e668eac6d316d3e4bedc59c07698d48ccf272a38e5936b417f6deaa",
+                "bytes": 25383,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  89,
+                  98,
+                  248
+                ],
+                "pixelSha256": "12ed1b4414cfd979267e6267a1523dd4c0551dc65c5ced4f47d27b6584c3fab2"
+              }
+            },
+            "distinctFrames": 4
+          }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "ae002879d9e5c958edc810516805d0846e9d014c601dfbfa6ae2ebfec5879f52",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact center-parted braided knot, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, short split waist robe panels over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "walk": {
+          "sourceSha256": "941b1335155f185b66498cbf6f61220df62d51597724367243d5571fd8646374",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "hurt": {
+          "sourceSha256": "5a55653652dbbf4eb26507fc3e09c9c76bcefb44371a93bdb2cab190751fbac9",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "use_consumable": {
+          "sourceSha256": "790eb58e2edfa2a1fd33941f9be9d194b44f8f0590a0fc886eefdf48bf9f0e80",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "dodge": {
+          "sourceSha256": "b3f9ecfefcabda1b8c6730ee4a0bb871d32fcb12122394b8f4a5f9cc01384f65",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "block_shield": {
+          "sourceSha256": "b192aba09d66a39292801e05d2b86f1c38cfad3f5aee0aada4f719fb2980725c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "canonicalPoseHashes": [
+            "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+            "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+            "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+            "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_sword": {
+          "sourceSha256": "72baccc032a3c1273e80fe02e499a4941f4a5acd3330194ddcd087665ee5c879",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_axe": {
+          "sourceSha256": "0acd483071ec9848494b53d21e9a6826cfc598e2741d598346346b2ea478e441",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+            "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+            "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+            "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_spear": {
+          "sourceSha256": "13f572aef06044172caa923eaa76d3b2cf631965d0eb0b5a12e031aa16fe5798",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+            "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+            "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+            "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_dagger": {
+          "sourceSha256": "76ee9e7782954e49e73d04d251a3cab5a835b096e009640d15e620559f1097d3",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            635,
+            14,
+            1036,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            18,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+            "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+            "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+            "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_bow": {
+          "sourceSha256": "fe2767e0d766c32a4aeed9c9953e289539ede65870aaaada0952b5d071a1aa77",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            602,
+            18,
+            1035,
+            701
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+            "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+            "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+            "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_staff": {
+          "sourceSha256": "e4e3ceab53fb9500009e7c08e20f7b1d43e83f0479cd86273b4e7a42d29df22d",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            648,
+            14,
+            1028,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            20,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+            "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+            "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+            "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_mace": {
+          "sourceSha256": "ce4b0e7045b55df89105f4214cfeb70a5ec77265848de48faa89adf8a935122a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            14,
+            1034,
+            699
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+            "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+            "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+            "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_book": {
+          "sourceSha256": "a8e79b5ebd9e5d8bd197e1f61695a58c6664274a6e3fd13c61a1a496e1ad9d12",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            628,
+            15,
+            1036,
+            703
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
+            "cb11e7be47ed2129254255f575e0d9e4bf0c0ca90b6b924f8de224873061dfce",
+            "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
+            "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
+        },
+        "attack_gloves": {
+          "sourceSha256": "2b5de3bcfb2b0d8eee1e81cc5ec5c1134b7db8a17b8f4c6f52ef47173eff9f61",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use exact black/ash-ivory dark pewter ritual coat, three violet collar studs, rib-shaped pewter chest plates, one MASK buckle, black gloves, dark pewter boots and white HIGH BRAIDED PONYTAIL in Image2. Preserve exact anatomical Image1 grips; short compact bracers end at old wrist so hands never shift. Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -209951,16 +212303,16 @@
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "bodySha256": "b252c6fa45e1dad572ff4da5411d6f80166d3032640e7a2d34377c87f3195f08"
+              "bodySha256": "2fcc3d1d20cd336fb4f5f352e4adf48c293c379d4a82be3bf59c95247b079d49"
             },
             {
-              "bodySha256": "c80cb1056eaaf3a5fd840a02b920ad89c7a76a2945eeb89ca81e9b993571e92e"
+              "bodySha256": "7409c4b7142cb00baf8d713c1128d676fa4e9e073b94f74c2857710ae1bc19b2"
             },
             {
-              "bodySha256": "5691f8ea8435195ee81c11247e9a4bd2673e0061893674f2d0ee7ae5c0fb8740"
+              "bodySha256": "e0425f1359c836b7f757b71626931409a036c1784a47fa646d8990b37b64bb3d"
             },
             {
-              "bodySha256": "8ce5f3ac5a139d681115ccb31c364d404d2622223784d2b22b33912601694171"
+              "bodySha256": "2f804c974b0f3dab7db2115e6ab8d064748e6ec1e2f5e7a3e03d1f9177064667"
             }
           ],
           "limitations": [
@@ -209969,210 +212321,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
-      }
-    },
-    {
-      "classId": "nigromante",
-      "className": "Nigromante",
-      "tier": 3,
-      "sex": "f",
-      "order": 90,
-      "status": "in-progress",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/nigromante/f/nigromante-f-sheet.png",
-      "frameRoot": "assets/spritesheets/hd-128x256/nigromante/f/frames",
-      "sourceStatus": "hires-library-in-progress",
-      "qaStatus": "visual-review-pending",
-      "equipmentRigId": "humanoid-f-v1",
-      "bodyScale": {
-        "generatedSourceScale": 0.23,
-        "feetBaseline": 248,
-        "nominalStandingHeight": 156,
-        "note": "Same scale as male reference. Ponytail/arm height does not change body scale.",
-        "referenceCanvas": [
-          2172,
-          724
-        ]
       },
-      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
-      "audit": {
-        "validFrames": 4,
-        "invalidFrames": 0,
-        "technicalActions": [
-          "idle"
-        ],
-        "actions": {
-          "idle": {
-            "status": "technical-passed",
-            "frames": {
-              "01": {
-                "sha256": "06616ea8b11c245efeabfa81b97ae9a28ef34d8f5c688c4a78347628386e2405",
-                "bytes": 25609,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  25,
-                  90,
-                  108,
-                  248
-                ],
-                "pixelSha256": "93edfcf2fd5f84515424c0dbb5767e71213f90708adb3db2eb1caee00832f2e8"
-              },
-              "02": {
-                "sha256": "000fc8aa46984da08e568cb863eb0536bb6c42d840d7ab5f7a6172a1971b078c",
-                "bytes": 25689,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  25,
-                  91,
-                  108,
-                  248
-                ],
-                "pixelSha256": "172e56671ca6f8ce2612c7be41374601d0de54762447c3edaccc0d3f9e960948"
-              },
-              "03": {
-                "sha256": "ce2a13b3f179fa4017a123b27483db440e422e0b0b0acd3c0283fe521dcf5c95",
-                "bytes": 25654,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  25,
-                  90,
-                  107,
-                  248
-                ],
-                "pixelSha256": "b46f7254757d89a2c2e4d486ff820702c979bb99d17ef026d6433c10eed8b1ac"
-              },
-              "04": {
-                "sha256": "29e92b4efd7b7fdf05dbab24c189c01d92ab8f81b46f892d0c8943ea055f1fac",
-                "bytes": 25657,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  25,
-                  91,
-                  108,
-                  248
-                ],
-                "pixelSha256": "0085d2167b9a8acdbdb2802d1fb60841db86e7a06f289435a5540e32c7f3621a"
-              }
-            },
-            "distinctFrames": 4
-          },
-          "walk": {
-            "status": "missing"
-          },
-          "hurt": {
-            "status": "missing"
-          },
-          "use_consumable": {
-            "status": "missing"
-          },
-          "dodge": {
-            "status": "missing"
-          },
-          "block_shield": {
-            "status": "missing"
-          },
-          "attack_sword": {
-            "status": "missing"
-          },
-          "attack_axe": {
-            "status": "missing"
-          },
-          "attack_spear": {
-            "status": "missing"
-          },
-          "attack_dagger": {
-            "status": "missing"
-          },
-          "attack_bow": {
-            "status": "missing"
-          },
-          "attack_staff": {
-            "status": "missing"
-          },
-          "attack_mace": {
-            "status": "missing"
-          },
-          "attack_book": {
-            "status": "missing"
-          },
-          "attack_gloves": {
-            "status": "missing"
-          }
-        }
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "nigromante",
+        "name": "Nigromante",
+        "tier": 3,
+        "costume": "Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, narrow knee-length split robe panels with deep plum reverse over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Nigromante with chalk-white short layered swept-back tousled hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Nigromante with chalk-white hair in compact high braided ponytail with layered tips, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Ash/black funerary tailoring, pewter rib geometry and violet enamel",
+        "advancement": "Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
       },
-      "sources": {
-        "idle": {
-          "sourceSha256": "ae002879d9e5c958edc810516805d0846e9d014c601dfbfa6ae2ebfec5879f52",
-          "sourceDimensions": [
-            2172,
-            724
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/nigromante/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "06616ea8b11c245efeabfa81b97ae9a28ef34d8f5c688c4a78347628386e2405",
+            "000fc8aa46984da08e568cb863eb0536bb6c42d840d7ab5f7a6172a1971b078c",
+            "ce2a13b3f179fa4017a123b27483db440e422e0b0b0acd3c0283fe521dcf5c95",
+            "29e92b4efd7b7fdf05dbab24c189c01d92ab8f81b46f892d0c8943ea055f1fac"
           ],
-          "registeredSourceDimensions": [
-            2172,
-            724
+          "walk": [
+            "d1e839b620e6f9dff5c877f5d00950b27c389245f143c55a747b8213f3c7f3c5",
+            "3273fb82cce05adde48bdfe07de7df037dfa4dcb488f73fefd1e25f2b7b14f50",
+            "f962f389229f3d23fb802f75be5f669d0babc313bb6c92273a8f5aafe037d564",
+            "4f0bb366182dc50eff0fef11475fc167e05ff5f8be1cb8cfbd9efa9c9744cdd5"
           ],
-          "sourceCellStep": 543,
-          "commonCrop": [
-            636,
-            14,
-            1027,
-            700
+          "hurt": [
+            "dd320b8a76298fc408922fe3b9222ffd01c1b9e24a104761f8857667aedb605a",
+            "2ffe0518f6badf0f6dbd12ddf3d2cbc56991dbac1aa1a20a0522c4af931107c3",
+            "7245e0e7f60d3bf29f4615d8049910047899107fd8aff99fca11eef2814877eb",
+            "cdaea1a5f98ab46a585068d2800c66b5ca65f3b7d8ec86db84897066dfb50a4d"
           ],
-          "scale": 0.23,
-          "origin": [
-            19,
-            90
+          "use_consumable": [
+            "532b393461f1c80fcdb57d6feb8c0de3c54e84ae7f20ff503e64e59de85d1e6e",
+            "a3f60d4d3cc9082ef9e74a43a04b6fdc14fbefe1c6bc428dd9f6f4a0384e7d91",
+            "b6b868f39c79ad0ea7456757c910a9a4eb7d1f0ed642d8cd0892fafd123fbf80",
+            "989f08181a1a5957447f6aac6964101df24b69a803fe52438117d6d0789e6490"
           ],
-          "alphaThreshold": 128,
-          "bodyRootCalibration": null,
-          "scalePolicy": "canonical-pose-registration",
-          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/nigromante/f/source/idle-reference.png",
-          "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Nigromante FEMALE, Tier 3, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Nigromante with chalk-white hair in compact center-parted braided knot, attentive determined eyes, canonical female head scale. Necromancer: fitted ASH-IVORY and BLACK ritual coat with DEEP PLUM lining, compact dark pewter rib-shaped chest plates over covered torso, flat ivory funerary mask-shaped belt emblem (not skull anatomy), three small violet enamel studs at collar, short split waist robe panels over black trousers, dark pewter-rim boots and black fingerless gloves. Face exposed, no hood, cape, bones held or effects. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Brujo. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
-          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
-          "canonicalPoseHashes": [
-            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
-            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
-            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
-            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          "dodge": [
+            "446c9d034a0a9ff11d646baa71926fe2258ea1e7651326e3a6e54452d805654c",
+            "afeff59e89533856c3fbde5cdae91ac4f78b4d7c3f755d5fa81dbdb498e52281",
+            "b692d4317357f9dfd60191c3360baf6ce9f4ac9d1b1bc8f5428ec86ea118e9f2",
+            "0e82071bbfe76a4330dfb903e09583b9d2aa4403ff3a88fa9032f2bb6eca3726"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
-        }
-      },
-      "frameProvenance": {
-        "idle/01": {
-          "source": "sources.idle",
-          "frame": 1
+          "block_shield": [
+            "432d7306bb5aa66e12abb70d6203fd17f03ac84ec7646ce583fae7be6d766fbd",
+            "62c018e0bd36217c7d317fbf04b356be8226047b7847a54156dc3fcdd7daacb5",
+            "a258095970408fdeae45b103b11650997c5af842df2fa4aa8eeefb009cda5e91",
+            "1976613e06382d362de9b4d1a21329dee9fbaafb1843242266c8d80347ea0c9e"
+          ],
+          "attack_sword": [
+            "2fcc3d1d20cd336fb4f5f352e4adf48c293c379d4a82be3bf59c95247b079d49",
+            "7409c4b7142cb00baf8d713c1128d676fa4e9e073b94f74c2857710ae1bc19b2",
+            "e0425f1359c836b7f757b71626931409a036c1784a47fa646d8990b37b64bb3d",
+            "2f804c974b0f3dab7db2115e6ab8d064748e6ec1e2f5e7a3e03d1f9177064667"
+          ],
+          "attack_axe": [
+            "19ca2729fd55024e6ee8516db221f85d054e125583fc2c2fd1a485f755bb84bc",
+            "cab5f8a4975c1d5096f4d32f4a337c796df302aa37113bdf73b3add6b11e69ea",
+            "42fc0875de36e15ff895f15bdfc5ad02f73d24a3bee2543226dfed9bd1056395",
+            "fbf5ce3061db2027989356c9a17ffaed08cd74dd41a41de8742fbaa2d8ec6619"
+          ],
+          "attack_spear": [
+            "1fa3d9b9ff9b7afa755512462495c6129b7d2cca32828dcce83242dbd4c0e82d",
+            "8955cee81fcbd8dd81ad038594b57ae4547521291aea5dc9261b46a79ea2b1ed",
+            "9d825b5cf6b55d8e16cf1e376ab764f1f46cee902fcee0dca9fb7e0b0f0e9c01",
+            "e3548279d1b04c1fc16b8db641bb416dc9b948033d180e967b9816994cce78b5"
+          ],
+          "attack_dagger": [
+            "13672a8c495084aa8d6d3ed9b6dbc2fe3b0832fbd9b1091894a188ea6d0ce8c8",
+            "f57e0f6bffca61aeec703eb0c7f2a8ff11ef06cf08c539f3c6c31b11abdd8d96",
+            "49f52a08318f9ed0d40342918795f21968f6612395303e15a6d52c94b5b59f16",
+            "9837f8570b3bd76aa3c81f12580682cfde6eea06654cb02ef519a3d163a8e799"
+          ],
+          "attack_bow": [
+            "9d86edb3978675f282c6871ea3fea727db4804d08d2baead0de61abaa9e129b6",
+            "b89027f87cdc2235572f8b7457dd27a98d607f8339ab08f6258229e2e2259ce2",
+            "642a33df232e78f741e7e4eb19b4a716dce16556d961a13b849392f5ec552d32",
+            "33ccd8bdab45a3f7b5049955380fd65c83ffb4a1965930c070da7836682d281e"
+          ],
+          "attack_staff": [
+            "152e5d06486244881ec2c94533d7685059cb32f5fcccd89d7109dd66f282ccaf",
+            "c84120b0615ae57160fe55e40a27ac4cc57d46b72b5124252d0bee31f245fc9a",
+            "19f952da59a35e5eacc690ae3ef149fb1fc58a9fa0955dc8a465e29367b37ee3",
+            "7eafa65c57cbe394b57658c5c16d8a1748fedcbb3bfb0f11fdfe5373d876fe5b"
+          ],
+          "attack_mace": [
+            "09a6c744289bc97c7354129bca9b7805e043cc2fd45d54e7fc587f9d29efb930",
+            "37dde3b048ca2dc22fb040be1e1a37071f0e54b926e5c2e3268570651f8671e1",
+            "0914917fe1d5fd7f06102251030c4898baf42dc5ee18b8c24b73b256d945ae23",
+            "f7444983b03484aa2c766feee57d9b124762c894f3d95c562eada713a09911c3"
+          ],
+          "attack_book": [
+            "9951e8e849561da4d4253da11cb77a83afacb48b51752f8d241856bed4bd260f",
+            "5f2ca613367694199ee0e6af5ea9118f1a6ff67921d786fde087fb631444f15c",
+            "f29bb4a00a66f03d81ebae213ec9b450a352631502747c7253b1216c2a398d73",
+            "96553424515deeafbc0f68ff5f7ed193e568d087fb76a820fc89dd70c318d605"
+          ],
+          "attack_gloves": [
+            "3a7f6ecee6bf16ecb7972260fa2619391c36e98a65535aa88f4f9ccb3d0e61ce",
+            "0cfd0a02f39574004f4dc9f5ac777b065d487be4539508cf20df828bcb26c0c4",
+            "6ad33f85d38a9e1f441bf3b4fbbab2032f8e9fd0db7998dda5e0aad712258782",
+            "ddd4e45b8e668eac6d316d3e4bedc59c07698d48ccf272a38e5936b417f6deaa"
+          ]
         },
-        "idle/02": {
-          "source": "sources.idle",
-          "frame": 2
-        },
-        "idle/03": {
-          "source": "sources.idle",
-          "frame": 3
-        },
-        "idle/04": {
-          "source": "sources.idle",
-          "frame": 4
-        }
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
