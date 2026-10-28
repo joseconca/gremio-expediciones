@@ -132663,36 +132663,36 @@
                 "pixelSha256": "47b20c6e5f9cdcb4497344df6e27300f3d689f2f94bbebe6f314529ba623cbd3"
               },
               "02": {
-                "sha256": "4848dacc985d4db092eb38dae86494be4281f977669561e6891c3d478c026123",
-                "bytes": 23823,
+                "sha256": "8205b13d473da678d55ec29e5918932a3fbaa2e499e4b6fae2e07e7afe3e495e",
+                "bytes": 24315,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  27,
+                  26,
                   97,
                   116,
-                  248
+                  249
                 ],
-                "pixelSha256": "31c3b92131b4ef2bbda487545371adf032db28a594ba653d65d408e714bbd939"
+                "pixelSha256": "fc2af216f449b6f10cc946927b65a36b70fbb9b19d773e79ca13fe3003655209"
               },
               "03": {
-                "sha256": "8caa4fb94cfcd71fa26bf7a76090b78ab21c6938003cd1ed9b89a392cb2beb5a",
-                "bytes": 21130,
+                "sha256": "c33c0d4086a3967f38a010041f39dd1e2abaf7a4d4b84a9f4b11df66d85b5ab6",
+                "bytes": 21491,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  16,
                   119,
                   107,
-                  248
+                  249
                 ],
-                "pixelSha256": "73ebc2f9dbf75c6dfd4c9b08717c1d6f24366d758675e1aec1734b6d131b92df"
+                "pixelSha256": "031408daf1bc9ea453cae780cc0c8b4a337b878b90b03c0cde9badc76e1b4a12"
               },
               "04": {
                 "sha256": "7cd5ea81e0b169447bff36a21ef3cabedb7237936278d3ef082b8153085cf643",
@@ -133633,10 +133633,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "23b2a15deb1eaf2d2e7974df6aa9463814f7e4627ed965e69b40e14f450fc722",
+          "sourceSha256": "cddce9b32c881bab750240580afe011e34e96ba07bd7be3029d7a8379d1006c6",
           "sourceDimensions": [
-            2172,
-            724
+            2185,
+            720
           ],
           "registeredSourceDimensions": [
             2172,
@@ -133658,9 +133658,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Add a CLEAR SHORT CHESTNUT MOUSTACHE above upper lip of SECOND and THIRD figures of Image1, including their open mouths. Image2 is close-up of approved same character's moustache: copy that moustache shape. Preserve all poses, expressions, hands and fingertip coordinates, head/hair, goggles on forehead, full costume, metal wrist cuffs, three chest rivets, anvil clasp, pouches, canvas size and absolute placement EXACTLY. Keep first and fourth figures unchanged. Four complete bodies in original horizontal strip, transparent alpha. No other changes, no equipment or text.\n",
+          "prompt": "Precise wrist-armor correction ONLY on Image1 SECOND AND THIRD FIGURES. Replace both brown wrapped novice wrist guards with the compact SILVER-GRAY IRON CUFF from Image2 close-up, worn over dark fingerless glove. Both wrists need clearly silver metal shine, not brown leather bands. Do not cover fingertips or move hands, palms, fingers, elbows or any part of the pose. Preserve every other detail EXACTLY: short chestnut moustache even with open mouth, forehead goggles, ochre rolled sleeves/short bare forearms, square brown belt pouches, anvil clasp, three chest rivets, apron and iron-toe boots. Other figures unchanged. Same 4 complete full bodies, exact original canvas/absolute placements/size, transparent alpha, empty hands, no equipment/text/shadow.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -133696,7 +133696,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame01-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame01-reference-v3.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -133726,7 +133726,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame04-reference-v3.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -133769,6 +133769,106 @@
                 "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "23b2a15deb1eaf2d2e7974df6aa9463814f7e4627ed965e69b40e14f450fc722",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Add a CLEAR SHORT CHESTNUT MOUSTACHE above upper lip of SECOND and THIRD figures of Image1, including their open mouths. Image2 is close-up of approved same character's moustache: copy that moustache shape. Preserve all poses, expressions, hands and fingertip coordinates, head/hair, goggles on forehead, full costume, metal wrist cuffs, three chest rivets, anvil clasp, pouches, canvas size and absolute placement EXACTLY. Keep first and fourth figures unchanged. Four complete bodies in original horizontal strip, transparent alpha. No other changes, no equipment or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "64f64f49ba179e6df6cc9762b24154d8521f8bc41eb79d2062c384bc5593790f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    617,
+                    19,
+                    1047,
+                    697
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    14,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "64f64f49ba179e6df6cc9762b24154d8521f8bc41eb79d2062c384bc5593790f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    617,
+                    19,
+                    1047,
+                    697
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    14,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/hurt-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
           ]
         },
