@@ -3,7 +3,8 @@
   "classId": "guardian_real",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "e4a7c6791793f3c331e7fd75eef2f95d970bae38513cd0308427a5c114adeb18",
       "8662fff09d2c29ceec442a2dd5265de263eb38867c08dbf1594600aecbb7d96b",
       "7d8b119cb197307dee45dbf2579050ce115c2075ac814122898a7308bda142f8"
+    ],
+    "walk": [
+      "5f39b7c2e38fcaf5f1ebd6f614a8412bdf780d8772fbacefcbc84be2197ecf36",
+      "87df115c5fedba6caa6b833996bfe2b0c5376899a88b2f08b3c2dbb651602486",
+      "b471787fd5578816d9b25f257806b6c320a5ea3eb9aac1f4c97f6b9ea2613e60",
+      "21c93a5f6dce08ff9d9b1b5b108db698c0adacb2efbfaad4812af4360967db9b"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,
