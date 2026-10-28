@@ -1,0 +1,151 @@
+{
+  "classId": "saqueador",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame02-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame04-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame03-reference-v3.png"
+      }
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame03-reference-v2.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/saqueador/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Coraza de cuero acolchado oscuro, collar corto de piel marfil, tres garras en las hombreras y hebilla de cabeza de lobo distinguen esta evolucion avanzada de Berserker. Paneles granate, pelo plateado y botas blindadas con colmillos mantienen su identidad en ambos sexos.",
+    "All thirty original strips, corrected complete poses, eighteen source palm proofs and representative equipment of every type were visually reviewed for both sexes, including both axe structures. Fifteen actions and 682 contacts per sex pass without warnings.",
+    "Male walk revision4 selects complete portrait4 for pose3 and complete portrait2 for pose4, keeping original poses1 and2. Male bow revision3 replaces only pose4. Female hurt revision2 replaces only pose4. All other actions retain original complete sources; rejected candidates remain archived and unselected.",
+    "Fixed canonical normalization and unchanged whole-pose source selection only. No body painting, limb transplants, class-specific weapon offsets or per-pose scales. Legacy fingertip, wrist, cloth and waist-return contacts were checked against actual rendered hilts and shafts. No automatic runtime promotion."
+  ]
+}

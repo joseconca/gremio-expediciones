@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T22:36:15.203220+00:00",
+  "classId": "saqueador",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\saqueador-m-sheet.png",
+  "sheetSha256": "c318dd9c9478e2a4c32fbcc6f3ef0f7c58c09f139d6951d0ba61db1711360480",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\idle\\saqueador-m-idle-01.png",
+          "sha256": "b0e9a8b13e648dc86b6a9b6edd3585c5d4742b64edbc763f1cd854cf0b3ccb87",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\idle\\saqueador-m-idle-02.png",
+          "sha256": "46a16ea36cea7c39ee2fbc5f88a90439fe7230c7d001c2a7deeb5de3eb97a494",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\idle\\saqueador-m-idle-03.png",
+          "sha256": "19b364be7eb1e7023735a1a2a34d1f5d7cf3f4ed8e3907a2a23c5053a1249adf",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\idle\\saqueador-m-idle-04.png",
+          "sha256": "fc4fb60ecf24961c40182c81e80babb09949863fbc8cfffd5af5c6fb06e7114a",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\walk\\saqueador-m-walk-01.png",
+          "sha256": "efec8f263357659176eb25426d7aff14de7292c854395f7a0e167a11587996ef",
+          "alpha_bbox": [
+            9,
+            95,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\walk\\saqueador-m-walk-02.png",
+          "sha256": "5bafa36d1bde35030f84e8facff42774e2fec313b08349a1e9e1c356661d4bd3",
+          "alpha_bbox": [
+            9,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\walk\\saqueador-m-walk-03.png",
+          "sha256": "7d2de8eb54e6534192131799a851a97dbe01b41a591eebc5b9ba132843140096",
+          "alpha_bbox": [
+            5,
+            94,
+            111,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\walk\\saqueador-m-walk-04.png",
+          "sha256": "00937e8448c4a168efd567210d75101561668dfa0717a396db0fd5acf9846eaa",
+          "alpha_bbox": [
+            11,
+            96,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\hurt\\saqueador-m-hurt-01.png",
+          "sha256": "a289b451a4a521a6c779631d5f83a077358cee0b5caaf790906a11498052325e",
+          "alpha_bbox": [
+            24,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\hurt\\saqueador-m-hurt-02.png",
+          "sha256": "629e1cc41e073837cb0a2d691cae339a991abaf2af8e124bfb53750c330b3700",
+          "alpha_bbox": [
+            24,
+            100,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\hurt\\saqueador-m-hurt-03.png",
+          "sha256": "f2da81a29204fe12746a08af7b557fe0b8dc63d9c5aeb72c5cb351995a7b6b07",
+          "alpha_bbox": [
+            17,
+            122,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\hurt\\saqueador-m-hurt-04.png",
+          "sha256": "796342c94e8cbc1599f5a1de84cedddb8920262c8235a961f49c8e5949e4431e",
+          "alpha_bbox": [
+            23,
+            94,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\use_consumable\\saqueador-m-use_consumable-01.png",
+          "sha256": "cd47fe1c620437d48b04fce38ec2cde847e80fbcb77f901c9a4e75235cddd8d6",
+          "alpha_bbox": [
+            26,
+            94,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\use_consumable\\saqueador-m-use_consumable-02.png",
+          "sha256": "cd602117d0eefb6b0d7f20eaa7c9713c9e507b7647b9c4cc3915c709f6ed39be",
+          "alpha_bbox": [
+            29,
+            94,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\use_consumable\\saqueador-m-use_consumable-03.png",
+          "sha256": "25ab18449d3c209ced714d918c7598b121e8214c0589457857d19ce6b69004c2",
+          "alpha_bbox": [
+            30,
+            93,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\use_consumable\\saqueador-m-use_consumable-04.png",
+          "sha256": "f6242fca44821f3cfcfd6dfcae82d1a3d919301f7ff4b5c524d2ea55e4fb40c0",
+          "alpha_bbox": [
+            27,
+            94,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\dodge\\saqueador-m-dodge-01.png",
+          "sha256": "9c6c0a9191c62a479be88bcec3e3ba510e6b8ca90482b26dc0e5000c9199d5ac",
+          "alpha_bbox": [
+            19,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\dodge\\saqueador-m-dodge-02.png",
+          "sha256": "4a37f453efeb2dafe6a28a18954c667453d67a3260ce0e81639e0055317ebde4",
+          "alpha_bbox": [
+            20,
+            99,
+            119,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\dodge\\saqueador-m-dodge-03.png",
+          "sha256": "983804509796c08eb312fb86c70cdcfc685c011e0ff7ed729c7ef258efdebf05",
+          "alpha_bbox": [
+            25,
+            102,
+            114,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\dodge\\saqueador-m-dodge-04.png",
+          "sha256": "e8f37bf43e301b188d66f2cc4fbd8fc4d0fdcefdfcefd100cbe66639f0a00038",
+          "alpha_bbox": [
+            22,
+            98,
+            109,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\block_shield\\saqueador-m-block_shield-01.png",
+          "sha256": "7340552fab5e8a69ed3cf6c41e143c8d43e48550eb8286a3419ff71830d85cf5",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\block_shield\\saqueador-m-block_shield-02.png",
+          "sha256": "24e1b3af7259fe8511ccf71f5f6bd798874c8ba6bd11217a359bcfdac907f0f8",
+          "alpha_bbox": [
+            21,
+            97,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\block_shield\\saqueador-m-block_shield-03.png",
+          "sha256": "223d8bef9e53711b2025bf88b9ee61dabf99ae2c134bdf66553303c11fad2c56",
+          "alpha_bbox": [
+            21,
+            115,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\block_shield\\saqueador-m-block_shield-04.png",
+          "sha256": "ce5903b4f7265c92540905e582b18e15d647f54de5328db8febd5a51036ffb56",
+          "alpha_bbox": [
+            22,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_sword\\saqueador-m-attack_sword-01.png",
+          "sha256": "65f6ace46ac089603eb7e11b28168848176b91aec8af76a3b14a689ec4a66e73",
+          "alpha_bbox": [
+            12,
+            103,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_sword\\saqueador-m-attack_sword-02.png",
+          "sha256": "321491b7f4f7ebb89c443cbe40e57d7634f97e1738232470cfdc83b6657d6774",
+          "alpha_bbox": [
+            7,
+            103,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_sword\\saqueador-m-attack_sword-03.png",
+          "sha256": "3cf9685c00ee3d1cacc8d7fe0cdaadcfaf0fc9a9ac86122f6aff6ae75129da05",
+          "alpha_bbox": [
+            11,
+            105,
+            125,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_sword\\saqueador-m-attack_sword-04.png",
+          "sha256": "dac1d418bcee7cef45a584f05b5d8682773fd296dda4bd6fc74e223345394248",
+          "alpha_bbox": [
+            16,
+            103,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_axe\\saqueador-m-attack_axe-01.png",
+          "sha256": "a5dfd0f93cecc7e055b78cda5afa3e176965cb9b764efa99290a9ac4027350e2",
+          "alpha_bbox": [
+            10,
+            100,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_axe\\saqueador-m-attack_axe-02.png",
+          "sha256": "b81d116301ba81b39c0df30ba6a9dee9dd11bfc3d88786adc93899ce14b61899",
+          "alpha_bbox": [
+            17,
+            114,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_axe\\saqueador-m-attack_axe-03.png",
+          "sha256": "0018d80714c4f7db0de763dc052830c55f10a6fd9b5c6d86ed87ef826c9fe054",
+          "alpha_bbox": [
+            10,
+            123,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_axe\\saqueador-m-attack_axe-04.png",
+          "sha256": "24ea45e2843699e93ca628e4d7d60189a0f2e30d62a779be614fd678d1ffb210",
+          "alpha_bbox": [
+            25,
+            106,
+            121,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_spear\\saqueador-m-attack_spear-01.png",
+          "sha256": "90482ef9457cbdcaf974a6c26770fa8c0a706cda4d95831d2c987d559e8eeb67",
+          "alpha_bbox": [
+            10,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_spear\\saqueador-m-attack_spear-02.png",
+          "sha256": "7d0f9a1be6ea65d59e885f8bc3e1efc8f4482727d289d06f31109ce3763e9d81",
+          "alpha_bbox": [
+            15,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_spear\\saqueador-m-attack_spear-03.png",
+          "sha256": "f574b52e178b7292fe260f384b41dae274967314809f8d7ba78e6fa08e98be90",
+          "alpha_bbox": [
+            10,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_spear\\saqueador-m-attack_spear-04.png",
+          "sha256": "775edc1bfa38e5aed64e0ecb50ecce31f01e547a707f0c4276e49361011bf4dd",
+          "alpha_bbox": [
+            18,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_dagger\\saqueador-m-attack_dagger-01.png",
+          "sha256": "85da839d1428613bd383f11d6bed40c76a7e9d85b7763d9b99563035b446f21f",
+          "alpha_bbox": [
+            26,
+            94,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_dagger\\saqueador-m-attack_dagger-02.png",
+          "sha256": "74e09e7e563a696487b943547684a2969786bb990189500b3167a43e160112eb",
+          "alpha_bbox": [
+            24,
+            94,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_dagger\\saqueador-m-attack_dagger-03.png",
+          "sha256": "9a215642660b1ea66c00afebc5801bc6ec8ef0fff34bd15986a2b71e64396e31",
+          "alpha_bbox": [
+            21,
+            97,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_dagger\\saqueador-m-attack_dagger-04.png",
+          "sha256": "613aa3c257b40106b07acea758ee749aec7ae5c4f08057293dffd5e365473cb0",
+          "alpha_bbox": [
+            24,
+            94,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_bow\\saqueador-m-attack_bow-01.png",
+          "sha256": "a5618850244c6b0e03efdb1b26307a8bb164b05b7ef72e3e7b23b088bc3b5dfc",
+          "alpha_bbox": [
+            20,
+            96,
+            123,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_bow\\saqueador-m-attack_bow-02.png",
+          "sha256": "9d949103265bf9e6d0bbefc990ca5aa0e994711c412fa907057cf52a74487c87",
+          "alpha_bbox": [
+            18,
+            96,
+            123,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_bow\\saqueador-m-attack_bow-03.png",
+          "sha256": "dee977c23b9d6083f3efc33a82a89edfaa3f4b05d7968c12a576abbf607a2199",
+          "alpha_bbox": [
+            19,
+            96,
+            124,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_bow\\saqueador-m-attack_bow-04.png",
+          "sha256": "918cb26d81fddebfb079391bd70a299f7aa63a9c21b6cf019977fbc13ef8398c",
+          "alpha_bbox": [
+            18,
+            96,
+            115,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_staff\\saqueador-m-attack_staff-01.png",
+          "sha256": "a72fcb21895511add00567cb4bd0506400eb9059eb5ffd581e03ae8dd66df9d2",
+          "alpha_bbox": [
+            31,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_staff\\saqueador-m-attack_staff-02.png",
+          "sha256": "824f3440cdceb85c9f539eb6c755e916e312ab6063d6964d65c308ce300a4b51",
+          "alpha_bbox": [
+            25,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_staff\\saqueador-m-attack_staff-03.png",
+          "sha256": "4e6d85cf24a655b30ea7e0d23d20bb173f24afcb99ad468fc627bd18a12ebb00",
+          "alpha_bbox": [
+            30,
+            93,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_staff\\saqueador-m-attack_staff-04.png",
+          "sha256": "0653f174a6b5a466ba2ea55b42fea810c8004b0bf09aa35774197bf616f0ae59",
+          "alpha_bbox": [
+            23,
+            93,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_mace\\saqueador-m-attack_mace-01.png",
+          "sha256": "c2d9ae15a618d5a492a87578c26a3afdf43f79953aa93bb0408a1ea351af410f",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_mace\\saqueador-m-attack_mace-02.png",
+          "sha256": "2b5b0d1ec826d3f44e29bfc2b6b77ecb8cc8c2996c28aef361d11fd4ebb8ba0c",
+          "alpha_bbox": [
+            30,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_mace\\saqueador-m-attack_mace-03.png",
+          "sha256": "87c2f96139731add7d8028840bbbe80066c43352282c93b034dcf6d3ece7383d",
+          "alpha_bbox": [
+            24,
+            104,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_mace\\saqueador-m-attack_mace-04.png",
+          "sha256": "c1ea36086e690c857a63d7a726ec83a2372b60e6334da7de965ed7aaffc26c18",
+          "alpha_bbox": [
+            30,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_book\\saqueador-m-attack_book-01.png",
+          "sha256": "705e218617cca0ad69f1b438018e27232d86be8c0990cc006ca0405741dedded",
+          "alpha_bbox": [
+            24,
+            93,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_book\\saqueador-m-attack_book-02.png",
+          "sha256": "17a4dc87def7ead7df0cd5dd8027e14c929ffbf375301846e4a68439f7d0b7c1",
+          "alpha_bbox": [
+            24,
+            93,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_book\\saqueador-m-attack_book-03.png",
+          "sha256": "cfd501958bba3a2d150613ea76dfce5115a91b5bcd17cb117c968d36541beedc",
+          "alpha_bbox": [
+            24,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_book\\saqueador-m-attack_book-04.png",
+          "sha256": "d813bfd1d479ce2b552d6b345b895ba34c5e053193dc461d4268c32ee2837233",
+          "alpha_bbox": [
+            24,
+            93,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_gloves\\saqueador-m-attack_gloves-01.png",
+          "sha256": "a133600077cbe70fe98dd092a769fccc9fd017da950ad3ef31a834e0b63003a6",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_gloves\\saqueador-m-attack_gloves-02.png",
+          "sha256": "abb6308fe405aa24163f6800c5acc50b35d864e02971d90c31bd33932ee04a74",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_gloves\\saqueador-m-attack_gloves-03.png",
+          "sha256": "d9e08eb6447267a16c674a6f37538fceef9641f949e5b082ede9b4a6d1658dda",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\saqueador\\m\\frames\\attack_gloves\\saqueador-m-attack_gloves-04.png",
+          "sha256": "b534423e2575102c8d617a7412b804b0f94aa229bb8676e0de9fc3bc7b4b7139",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

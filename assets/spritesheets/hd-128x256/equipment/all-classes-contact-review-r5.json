@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 94,
-  "contactChecks": 64108,
+  "variants": 96,
+  "contactChecks": 65472,
   "warnings": 0,
   "reports": [
     {
@@ -540,6 +540,18 @@
     },
     {
       "classId": "sacerdote",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "saqueador",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "saqueador",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

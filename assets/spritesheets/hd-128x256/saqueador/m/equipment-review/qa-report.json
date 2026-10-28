@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "saqueador",
   "sex": "m",
   "actions": [
@@ -29,8 +29,8 @@
     "walk": [
       "efec8f263357659176eb25426d7aff14de7292c854395f7a0e167a11587996ef",
       "5bafa36d1bde35030f84e8facff42774e2fec313b08349a1e9e1c356661d4bd3",
-      "60e3915f249a3bcc16930212dca38635b9e13c7102b7e9452c8ce6f0c0766f1a",
-      "88cdae7112e5025bcf82aafdd017884728ad18bb33f3045544fc0887c0721d26"
+      "7d2de8eb54e6534192131799a851a97dbe01b41a591eebc5b9ba132843140096",
+      "00937e8448c4a168efd567210d75101561668dfa0717a396db0fd5acf9846eaa"
     ],
     "hurt": [
       "a289b451a4a521a6c779631d5f83a077358cee0b5caaf790906a11498052325e",
@@ -84,7 +84,7 @@
       "a5618850244c6b0e03efdb1b26307a8bb164b05b7ef72e3e7b23b088bc3b5dfc",
       "9d949103265bf9e6d0bbefc990ca5aa0e994711c412fa907057cf52a74487c87",
       "dee977c23b9d6083f3efc33a82a89edfaa3f4b05d7968c12a576abbf607a2199",
-      "756bbc54378f3b19d92850d90116d36cc88a42095c4bdbfd7e63eea858efa33f"
+      "918cb26d81fddebfb079391bd70a299f7aa63a9c21b6cf019977fbc13ef8398c"
     ],
     "attack_staff": [
       "a72fcb21895511add00567cb4bd0506400eb9059eb5ffd581e03ae8dd66df9d2",
@@ -112,80 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

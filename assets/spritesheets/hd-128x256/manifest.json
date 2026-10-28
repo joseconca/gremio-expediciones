@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "saqueador-m",
+  "nextVariant": "campeon_arena-m",
   "classes": [
     {
       "id": "novato",
@@ -394,7 +394,7 @@
       "name": "Saqueador",
       "tier": 3,
       "order": 48,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "campeon_arena",
@@ -221844,7 +221844,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/saqueador/m/saqueador-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/saqueador/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -221985,8 +221985,8 @@
                 "pixelSha256": "c2d610b87c7c1b527e8079bbbb139e001ce0a246774cb5321e7ad62a682eceff"
               },
               "03": {
-                "sha256": "60e3915f249a3bcc16930212dca38635b9e13c7102b7e9452c8ce6f0c0766f1a",
-                "bytes": 22702,
+                "sha256": "7d2de8eb54e6534192131799a851a97dbe01b41a591eebc5b9ba132843140096",
+                "bytes": 24102,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -221995,26 +221995,26 @@
                 "bbox": [
                   5,
                   94,
-                  110,
-                  248
+                  111,
+                  251
                 ],
-                "pixelSha256": "b1ca6d744831e8ce0e158b254188f05ced441beb261a9db422d21b689805a8e8"
+                "pixelSha256": "fd2c5d78ccda83c196b872752efb51178e06dbb794fb955cf32c03cc225e6c1f"
               },
               "04": {
-                "sha256": "88cdae7112e5025bcf82aafdd017884728ad18bb33f3045544fc0887c0721d26",
-                "bytes": 23698,
+                "sha256": "00937e8448c4a168efd567210d75101561668dfa0717a396db0fd5acf9846eaa",
+                "bytes": 23187,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
+                  11,
                   96,
                   106,
                   248
                 ],
-                "pixelSha256": "d503012c025207dcd76464e0551dbeb629960e1cb367fe6bb3317c602ec19cf4"
+                "pixelSha256": "2da5b54ca8d07c56e614b8a043b7fc3011507964ed3f0735394f9876abe54160"
               }
             },
             "distinctFrames": 4
@@ -222631,8 +222631,8 @@
                 "pixelSha256": "5b007a8ac087255a30d39ac04b5a72c3b3c7d994ed3082970c55124b1409df4a"
               },
               "04": {
-                "sha256": "756bbc54378f3b19d92850d90116d36cc88a42095c4bdbfd7e63eea858efa33f",
-                "bytes": 24426,
+                "sha256": "918cb26d81fddebfb079391bd70a299f7aa63a9c21b6cf019977fbc13ef8398c",
+                "bytes": 24723,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -222641,10 +222641,10 @@
                 "bbox": [
                   18,
                   96,
-                  123,
-                  249
+                  115,
+                  251
                 ],
-                "pixelSha256": "af898d011561b381cdcfca4841069bb7e7bfc8d974c772a9731eeafa8dfe58b2"
+                "pixelSha256": "53ce06686940d619d947c3f74593b269675a406d9ca8c1f0266ff542c55c6f3c"
               }
             },
             "distinctFrames": 4
@@ -222968,13 +222968,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "6288a240ac9df1f6786bbc56a9fd0aaa213c8e8bc57ee14142829b39440c8ad4",
+          "sourceSha256": "2e0e9a4eafc671ed3cf1be40211bfdc0b92c03e656bbfcf0189a6ffa94d89465",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -222996,9 +222997,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Saqueador MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise local edit: lower ONLY the RIGHT-ON-IMAGE raised fist DOWN AND LEFT so the CENTER OF ITS BLACK GLOVE PALM sits exactly on the small MAGENTA RING at waist height. Reconnect its forearm naturally to same elbow. Keep other fist, head, torso, legs, full boots and placement identical. Retain Saqueador outfit, including visible sculpted iron WOLF-HEAD belt buckle with ears and muzzle, oxblood sash and three ivory shoulder claws; no flat generic diamond belt clasp. Remove ring. One complete fullbody sprite, transparent alpha, original canvas aspect and margins. No body resizing/recentering, torso turn, hidden hands, equipment, effects or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -223006,7 +223007,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "6288a240ac9df1f6786bbc56a9fd0aaa213c8e8bc57ee14142829b39440c8ad4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "6288a240ac9df1f6786bbc56a9fd0aaa213c8e8bc57ee14142829b39440c8ad4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "a49029d37ca7ac2dc445ace62167689ac7e75ddfebd44732c21c865cd2b1fcbd",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "6288a240ac9df1f6786bbc56a9fd0aaa213c8e8bc57ee14142829b39440c8ad4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Saqueador MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "d53da5f437eeb5e666a5f88e7150a7fa09fe6b7aa83df6f4c6c8ab2ae81d2384",
@@ -223044,7 +223178,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "5d9a037649023017fc54fb222b937f2e03399d3c991a6334eed3c493611ddea0",
@@ -223082,7 +223217,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "ff383e985ea5494e042f88d235e58e3d4e1e19f102f35c9d14b7ca4ec4085d15",
@@ -223126,7 +223262,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "a965442d3d4d1cb9c559dac883b41d91551cf618b56ce8d2b7d3698f1bc68ba3",
@@ -223170,7 +223307,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "021c8c2a1bc5e2e82cf5ace35fd39f83ef6a8c169e2a846504ff5a9fd674405b",
@@ -223208,7 +223346,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "e1d0821d4f2b0f700b8f1d5d67aab49e51eda2d945018a5053375e3ba4e22305",
@@ -223246,7 +223385,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "8bb2a6f7e4255c7e213dbf1bb1b6fc705f4761c190e89741c1ee31ed7b2d0c35",
@@ -223284,7 +223424,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "835ef8db9c1d8bc593fe12516dd3efa9e9448c48beb4690d82fd4c3c2c65b571",
@@ -223322,13 +223463,14 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
-          "sourceSha256": "69d029aed7126e25ff61e04c62d1a992b97141cead4ab05b696ed2b7dee572b4",
+          "sourceSha256": "11d1eee67a28dcf18686ec974d108c0ced71acb4c86a579cdd1c6d1542b3f06e",
           "sourceDimensions": [
-            2166,
-            726
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -223350,9 +223492,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Saqueador MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precisely edit only the RIGHT-ON-IMAGE closed fist and its forearm: move that entire fist RIGHT AND SLIGHTLY UP so the center of its black glove covers the small MAGENTA RING. Preserve elbow position. Keep every other part identical in size and place: left open fingers, face, hair, head, torso, legs, complete boots and costume. Remove magenta ring. Single complete male Saqueador on true transparent alpha, original canvas aspect and margins, no body scaling, recentering, equipment, effects or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
@@ -223360,7 +223502,140 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "69d029aed7126e25ff61e04c62d1a992b97141cead4ab05b696ed2b7dee572b4",
+              "sourceDimensions": [
+                2166,
+                726
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "69d029aed7126e25ff61e04c62d1a992b97141cead4ab05b696ed2b7dee572b4",
+              "sourceDimensions": [
+                2166,
+                726
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "69d029aed7126e25ff61e04c62d1a992b97141cead4ab05b696ed2b7dee572b4",
+              "sourceDimensions": [
+                2166,
+                726
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "69d029aed7126e25ff61e04c62d1a992b97141cead4ab05b696ed2b7dee572b4",
+              "sourceDimensions": [
+                2166,
+                726
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/m/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Saqueador MALE, Tier 3, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "3fee17f1107b6082f127b85656ef8281ab99ce6a2270e76f7ffd27109cc34636",
@@ -223398,7 +223673,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "b9b612dca5bb1cdd917a475d448c97809c3598201740846d22b21a5aa1ea2134",
@@ -223436,7 +223712,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "8cbaf2f4e176e3fb766e6e68959259960f2a9d5125816108507d4d68359e15b7",
@@ -223474,7 +223751,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "fd503af15a449d7aa5370840071925079655d8841a381d43203b902e38516273",
@@ -223512,7 +223790,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -223533,11 +223812,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -223545,7 +223824,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -223677,15 +223956,15 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
@@ -223787,6 +224066,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "saqueador",
+        "name": "Saqueador",
+        "tier": 3,
+        "costume": "Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects.",
+        "maleIdentity": "Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine raider with SILVER-GRAY hair in a high thick layered ponytail, sharply attentive brows, canonical female head scale.",
+        "armPolicy": "Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses.",
+        "unique": "Ivory claw shoulder spikes, wolf-head belt and oxblood raider sash",
+        "advancement": "Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/saqueador/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "b0e9a8b13e648dc86b6a9b6edd3585c5d4742b64edbc763f1cd854cf0b3ccb87",
+            "46a16ea36cea7c39ee2fbc5f88a90439fe7230c7d001c2a7deeb5de3eb97a494",
+            "19b364be7eb1e7023735a1a2a34d1f5d7cf3f4ed8e3907a2a23c5053a1249adf",
+            "fc4fb60ecf24961c40182c81e80babb09949863fbc8cfffd5af5c6fb06e7114a"
+          ],
+          "walk": [
+            "efec8f263357659176eb25426d7aff14de7292c854395f7a0e167a11587996ef",
+            "5bafa36d1bde35030f84e8facff42774e2fec313b08349a1e9e1c356661d4bd3",
+            "7d2de8eb54e6534192131799a851a97dbe01b41a591eebc5b9ba132843140096",
+            "00937e8448c4a168efd567210d75101561668dfa0717a396db0fd5acf9846eaa"
+          ],
+          "hurt": [
+            "a289b451a4a521a6c779631d5f83a077358cee0b5caaf790906a11498052325e",
+            "629e1cc41e073837cb0a2d691cae339a991abaf2af8e124bfb53750c330b3700",
+            "f2da81a29204fe12746a08af7b557fe0b8dc63d9c5aeb72c5cb351995a7b6b07",
+            "796342c94e8cbc1599f5a1de84cedddb8920262c8235a961f49c8e5949e4431e"
+          ],
+          "use_consumable": [
+            "cd47fe1c620437d48b04fce38ec2cde847e80fbcb77f901c9a4e75235cddd8d6",
+            "cd602117d0eefb6b0d7f20eaa7c9713c9e507b7647b9c4cc3915c709f6ed39be",
+            "25ab18449d3c209ced714d918c7598b121e8214c0589457857d19ce6b69004c2",
+            "f6242fca44821f3cfcfd6dfcae82d1a3d919301f7ff4b5c524d2ea55e4fb40c0"
+          ],
+          "dodge": [
+            "9c6c0a9191c62a479be88bcec3e3ba510e6b8ca90482b26dc0e5000c9199d5ac",
+            "4a37f453efeb2dafe6a28a18954c667453d67a3260ce0e81639e0055317ebde4",
+            "983804509796c08eb312fb86c70cdcfc685c011e0ff7ed729c7ef258efdebf05",
+            "e8f37bf43e301b188d66f2cc4fbd8fc4d0fdcefdfcefd100cbe66639f0a00038"
+          ],
+          "block_shield": [
+            "7340552fab5e8a69ed3cf6c41e143c8d43e48550eb8286a3419ff71830d85cf5",
+            "24e1b3af7259fe8511ccf71f5f6bd798874c8ba6bd11217a359bcfdac907f0f8",
+            "223d8bef9e53711b2025bf88b9ee61dabf99ae2c134bdf66553303c11fad2c56",
+            "ce5903b4f7265c92540905e582b18e15d647f54de5328db8febd5a51036ffb56"
+          ],
+          "attack_sword": [
+            "65f6ace46ac089603eb7e11b28168848176b91aec8af76a3b14a689ec4a66e73",
+            "321491b7f4f7ebb89c443cbe40e57d7634f97e1738232470cfdc83b6657d6774",
+            "3cf9685c00ee3d1cacc8d7fe0cdaadcfaf0fc9a9ac86122f6aff6ae75129da05",
+            "dac1d418bcee7cef45a584f05b5d8682773fd296dda4bd6fc74e223345394248"
+          ],
+          "attack_axe": [
+            "a5dfd0f93cecc7e055b78cda5afa3e176965cb9b764efa99290a9ac4027350e2",
+            "b81d116301ba81b39c0df30ba6a9dee9dd11bfc3d88786adc93899ce14b61899",
+            "0018d80714c4f7db0de763dc052830c55f10a6fd9b5c6d86ed87ef826c9fe054",
+            "24ea45e2843699e93ca628e4d7d60189a0f2e30d62a779be614fd678d1ffb210"
+          ],
+          "attack_spear": [
+            "90482ef9457cbdcaf974a6c26770fa8c0a706cda4d95831d2c987d559e8eeb67",
+            "7d0f9a1be6ea65d59e885f8bc3e1efc8f4482727d289d06f31109ce3763e9d81",
+            "f574b52e178b7292fe260f384b41dae274967314809f8d7ba78e6fa08e98be90",
+            "775edc1bfa38e5aed64e0ecb50ecce31f01e547a707f0c4276e49361011bf4dd"
+          ],
+          "attack_dagger": [
+            "85da839d1428613bd383f11d6bed40c76a7e9d85b7763d9b99563035b446f21f",
+            "74e09e7e563a696487b943547684a2969786bb990189500b3167a43e160112eb",
+            "9a215642660b1ea66c00afebc5801bc6ec8ef0fff34bd15986a2b71e64396e31",
+            "613aa3c257b40106b07acea758ee749aec7ae5c4f08057293dffd5e365473cb0"
+          ],
+          "attack_bow": [
+            "a5618850244c6b0e03efdb1b26307a8bb164b05b7ef72e3e7b23b088bc3b5dfc",
+            "9d949103265bf9e6d0bbefc990ca5aa0e994711c412fa907057cf52a74487c87",
+            "dee977c23b9d6083f3efc33a82a89edfaa3f4b05d7968c12a576abbf607a2199",
+            "918cb26d81fddebfb079391bd70a299f7aa63a9c21b6cf019977fbc13ef8398c"
+          ],
+          "attack_staff": [
+            "a72fcb21895511add00567cb4bd0506400eb9059eb5ffd581e03ae8dd66df9d2",
+            "824f3440cdceb85c9f539eb6c755e916e312ab6063d6964d65c308ce300a4b51",
+            "4e6d85cf24a655b30ea7e0d23d20bb173f24afcb99ad468fc627bd18a12ebb00",
+            "0653f174a6b5a466ba2ea55b42fea810c8004b0bf09aa35774197bf616f0ae59"
+          ],
+          "attack_mace": [
+            "c2d9ae15a618d5a492a87578c26a3afdf43f79953aa93bb0408a1ea351af410f",
+            "2b5b0d1ec826d3f44e29bfc2b6b77ecb8cc8c2996c28aef361d11fd4ebb8ba0c",
+            "87c2f96139731add7d8028840bbbe80066c43352282c93b034dcf6d3ece7383d",
+            "c1ea36086e690c857a63d7a726ec83a2372b60e6334da7de965ed7aaffc26c18"
+          ],
+          "attack_book": [
+            "705e218617cca0ad69f1b438018e27232d86be8c0990cc006ca0405741dedded",
+            "17a4dc87def7ead7df0cd5dd8027e14c929ffbf375301846e4a68439f7d0b7c1",
+            "cfd501958bba3a2d150613ea76dfce5115a91b5bcd17cb117c968d36541beedc",
+            "d813bfd1d479ce2b552d6b345b895ba34c5e053193dc461d4268c32ee2837233"
+          ],
+          "attack_gloves": [
+            "a133600077cbe70fe98dd092a769fccc9fd017da950ad3ef31a834e0b63003a6",
+            "abb6308fe405aa24163f6800c5acc50b35d864e02971d90c31bd33932ee04a74",
+            "d9e08eb6447267a16c674a6f37538fceef9641f949e5b082ede9b4a6d1658dda",
+            "b534423e2575102c8d617a7412b804b0f94aa229bb8676e0de9fc3bc7b4b7139"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -223799,7 +224193,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/saqueador/f/saqueador-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/saqueador/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -224026,8 +224420,8 @@
                 "pixelSha256": "c6dd53d54f075dc55fff414df21b2114ec556b27c1e07472521d8f80f96cdfa3"
               },
               "04": {
-                "sha256": "00debf2abc34611b9261369926de3773e4cdd4da0f3e014b7a07cd7f797e4b90",
-                "bytes": 26192,
+                "sha256": "442ea69cc399ded3aef63fbc2a154015bf4675c4f7694b5253d6513f04091cd6",
+                "bytes": 26539,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -224036,10 +224430,10 @@
                 "bbox": [
                   15,
                   91,
-                  100,
-                  248
+                  102,
+                  252
                 ],
-                "pixelSha256": "f4410fcd1e72ea8d8b5be30c5ff4c41e0eee201e991085fd920f65622fce6648"
+                "pixelSha256": "7072cc8573cd26e44a8a16ca325546ed508f05a27e32a27e6abf919b8a5bfb68"
               }
             },
             "distinctFrames": 4
@@ -224923,7 +225317,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "5c35c509635c6497d04a1457c07736f5c197cb3146c54abb737dc350884ca3b7",
@@ -224961,13 +225356,14 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "09f62695c9ebaa02887c444451cae5a26997d90ca378c85dd1c5564c03200d09",
+          "sourceSha256": "cf1f1235f744250346937bf3160cf6f47b60489db5d24e40c3cbfbc906360d1e",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -224989,9 +225385,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Saqueador FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced feminine raider with SILVER-GRAY hair in a high thick layered ponytail, sharply attentive brows, canonical female head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise local edit of this single fullbody female Saqueador sprite. Move only the LEFT-ON-IMAGE hanging black-gloved fist RIGHT AND SLIGHTLY UP to cover the small MAGENTA RING with the center of the actual glove palm. Reconnect forearm naturally while preserving elbow and shoulder. Keep all other parts in exactly the same size and position: other hand, face, silver hair, head, torso, belt, legs, complete boots, costume and margins. Remove ring entirely. True transparent alpha and original canvas aspect, no figure resizing, recentering, stance changes, equipment, effects or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -224999,7 +225395,140 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "09f62695c9ebaa02887c444451cae5a26997d90ca378c85dd1c5564c03200d09",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "09f62695c9ebaa02887c444451cae5a26997d90ca378c85dd1c5564c03200d09",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "09f62695c9ebaa02887c444451cae5a26997d90ca378c85dd1c5564c03200d09",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "09f62695c9ebaa02887c444451cae5a26997d90ca378c85dd1c5564c03200d09",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/saqueador/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Saqueador FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses. Adult experienced feminine raider with SILVER-GRAY hair in a high thick layered ponytail, sharply attentive brows, canonical female head scale. Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects. Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "2a7e768c7b0a9d5404f72ba918337422c8c2f99bd4debe9e6f5b3d7c09a1702b",
@@ -225037,7 +225566,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "31f3d1a143265af3e854e899352115de19eba86f8611d003d6701ffd40a56163",
@@ -225075,7 +225605,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "9009e6d6d07e993ac0796b5e508176f06f50559aa0cca365ce2d8f6192b83f5a",
@@ -225113,7 +225644,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "05c5e9f779e91168b5358a696c082200e2e485a6430681e811b395faadacf302",
@@ -225151,7 +225683,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "b3eec60723d3699e75d30b0a4c84d44f879150f63ba2ad0127e7966cf3e48dd3",
@@ -225189,7 +225722,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "2171a6fc1c95ced0ed29f92854320d1cd9b64562e6c81dd3f3ead3d0f5dc6fef",
@@ -225227,7 +225761,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a32943fb426de030d9897264448c79484273f3291e490f57c83bc7231f2b8fbf",
@@ -225265,7 +225800,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "4ecb1d930a56c03fd91c10818ba064d21e29a8eb7ac7dae3911a51da50c73247",
@@ -225303,7 +225839,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "f7960bd276e134ce3f4667ddf1756b436495d901c947606d65b6ee470ed68018",
@@ -225341,7 +225878,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "940ebba56f52222228c544c1b90c72834586d5fd3e21dd85087982aab42615bd",
@@ -225379,7 +225917,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "f9aab82a434f7a2ba6becfde49dc13ad9473b3b5fab7d217f1f5788bf8c865ed",
@@ -225417,7 +225956,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "761af15a2ccabc80c0c56a9788c1cafe8fbe7c177ccfd5565d78cba27dbfaac0",
@@ -225455,7 +225995,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -225492,15 +226033,15 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -225730,6 +226271,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "saqueador",
+        "name": "Saqueador",
+        "tier": 3,
+        "costume": "Veteran mobile raider outfit: fitted CHARCOAL sleeveless quilted leather cuirass with OXBLOOD overlapping diagonal waist panels, compact dark iron shoulder caps each bearing THREE compact curved IVORY CLAW spikes, short close pale IVORY fur collar. Broad OXBLOOD waist sash with short split ends, dark studded belt with sculpted IRON WOLF-HEAD buckle, two narrow flat dark leather utility pouches. DARK charcoal trousers with oxblood side seams. Bare upper arms and compact dark iron elbow guards, dark segmented wrist bracers and BLACK fingerless gloves. Light articulated dark IRON knee guards and BLACK strapped raider boots with iron toe caps and ivory fang-shaped shin inlays. No novice harness, brown boots, cape, hood, mask, attached weapons, skulls, blood or effects.",
+        "maleIdentity": "Adult experienced masculine raider with SILVER-GRAY short swept-back undercut hair, sharply attentive brows, small eyebrow scar, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine raider with SILVER-GRAY hair in a high thick layered ponytail, sharply attentive brows, canonical female head scale.",
+        "armPolicy": "Preserve exact canonical head scale, palms, fingertips, limb coordinates and soles. Bare upper arms in every pose; no novice shirt or rolled cloth cuffs. Compact fitted armor and ornaments remain inside cell. Same wolf-head belt and THREE compact ivory claw shoulder spikes in all poses.",
+        "unique": "Ivory claw shoulder spikes, wolf-head belt and oxblood raider sash",
+        "advancement": "Tier3 mobile specialization of Berserker: finer articulated iron and layered studded leather, predatory fang insignia and mobile silhouette. Distinct from Verdugo heavy full cuirass; keep canonical body size and equipment grips.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/saqueador/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "d6a3734f28d59824e5aaf8c6d03c05bf98e97141c9de47c81e14a0191fb61b3f",
+            "edfa7e2ecd2f8a3b3839a24a5c6a54ca15480e9bf5c85d597d70cccff9bbd635",
+            "759a7125135328607e4641dd2d6cc000fb0b9a459241991dbed9b94dcab4f958",
+            "4a5c0c20e1278f530a412c9841eba35ef18830903809fa6559e313f14d97f1cc"
+          ],
+          "walk": [
+            "fdf9ae354a10caf979ca96fc2b7c9ce3339880635fa2f5c398eea27eaf84ed0f",
+            "8aa0fd9bb6f083fdce3ee6ac553d914cce5ceb1bc9157658891a7ba1022499ab",
+            "140959907440612b47eaf050b63fb301226a5e6c088ee08ddac8c96cd0f61327",
+            "8890784f05074ddc0ed3779cb2f7d11cc499422225d036742c18a77294c28235"
+          ],
+          "hurt": [
+            "e7b255a62ac554c79d7f81a16519ddc5e393197e9c0f34652c466dede19ce407",
+            "7865efaea17817e6f8974ebf5e66fe893922fd309b78003025216853135a5951",
+            "2aa87cb67ee1827e45d5d57a26da0f6812f26aad569eea9c089c41d6760a0ca7",
+            "442ea69cc399ded3aef63fbc2a154015bf4675c4f7694b5253d6513f04091cd6"
+          ],
+          "use_consumable": [
+            "21b51794263a2a24bdcdbc733364f9e1acc2c014435145eee948c27077ff363f",
+            "31d399c394cfc359b3c1158c922724d4c648a39b4a48b332dae6b8e923afa82d",
+            "cdbf97fc6959f105a8007be5262e7783f2044d2fa0edd0da946c006e766719aa",
+            "4675d8b6743d44810768a73465ad9224b263f0870671b817781d24ef0c86f1ae"
+          ],
+          "dodge": [
+            "9ddd5b96694360a72e3bc2f7edb4c57d4c29f968ce91bdd4776bfad50fc1d81b",
+            "2a57e62c20b05e3f92e7fabbb9303e3d03be0f9edcec07fddac800772f3af81c",
+            "1e823ce9994b1189eb28327707da1d802b95780e295856996197c8b94de835dc",
+            "1a42348c289131c975a63c453b0c1a82a73aaee5fe9c22d7a25192afb24b78ec"
+          ],
+          "block_shield": [
+            "9fa13947acedfe0f2de07947fade2e9f3ad7173a62e0c8d1a59724ec7cecc2b7",
+            "4f2810d537369dfc61018eb9d0aa38f7fedc5bbd3230d7722f5b1fe228e61900",
+            "e20ac39037e2d18633c0378db83592e079fbfa2e788fbcb22f66294de5d044ec",
+            "e8248046f156239ef9eb941665d65dc9dd4160af5bc0009b8f84b49031adb6da"
+          ],
+          "attack_sword": [
+            "ed7f9626820a97d3151cb33389c1b15a097b339d20e7e145d6d3b9ce93e3fb0f",
+            "3cd2b7072d094db2237b0a678191d183b7b37ea06043af49bc50f69962e1d4e6",
+            "e643e40d98b8ec7f214ea768d3152759b0a9bc089c593890835c15d15383e439",
+            "d656909a061fd9bd17eef5e2f5775b6dbd601ac851ac084ccf6f3dd7b1758f23"
+          ],
+          "attack_axe": [
+            "12bf88292fe001e9609177279d5e556c4b12f4320cbd02021798117ebca45613",
+            "04d8987b5667e07277ef22eb6a89420bbd89f40b5638f06df20c4c028369884b",
+            "9bac3a86c15af758a39e43e11bb1174ad9ff8978ce2902c8efc1a73f4c29159c",
+            "4dff18565e16a03f99693e45aaa769f8bdb3f66b6d62530ae93c256d47d60c5c"
+          ],
+          "attack_spear": [
+            "9713dd770055c37755a1c3d8aaa0fe65d9a29926dcaae10e82362e0be06cc70c",
+            "7f2afecc9a6079400f8b841424bf50febfaf5a1320c3bf1e0db36a9cb56eab92",
+            "7fe0135363ce9f7456221669b72399b9ef180b7652677b1f7196cb2191b37c0c",
+            "bf139536e793a87e7d8dc06b154293332f2b26ce88c33fb4117573d7b1c41b6e"
+          ],
+          "attack_dagger": [
+            "31221f7b710f70a52ea0f897e7e12b3d8ea5b28b3350607b95a2aad3334dc788",
+            "bf6153d334c68e322437ffd2edb912c9c4f8d82c212458cef5d7b0008737f4df",
+            "6775a2712689221b3f82f7b4ca4ac231e2d9288a3b16ff4405117f377fe68560",
+            "2cbb83f2c83b7f1f6e02c5023291d6a179f23de99b7e9706d431b64c586d2a95"
+          ],
+          "attack_bow": [
+            "81d51788f0f5cfc9df37e2d07368b02ee9b2ae6ba4404df4ae732f4eb0f823e9",
+            "4dee247d5a6ac6eb9fbfb7cd4c3326d2b211af139bc426c98e54fc9c365f3a26",
+            "9eb307bf660367fa35ffec701a9c8f6ee81d951086b900b5ad02f6c7ee008e45",
+            "9bff2c27b488bbfd76ba07fe4ae71c035b8a98415897c351fe1ab2e6ef7463f5"
+          ],
+          "attack_staff": [
+            "71a7fe5449a132d176b85d669ba7239e19a68ff6d496589cdb9d52be37a61b71",
+            "90e0e38814a35a0a2954759d9f9fea88808afc5ef594e8aa17b0d526f9ab5f07",
+            "a9fcebf9c42635a24e41401b0bae201ec3c68a58032c6e06fc479fbba6f9f737",
+            "2ab39908dfe395a80ff3414b6f2dcb425cf9a45182793d9c54f3df85b8abc92e"
+          ],
+          "attack_mace": [
+            "00e2ba55e38133e56a38a192dae8616d18466d466b7d7ec8ff84603c24812768",
+            "54bbd51412062964129b0cefee76712aa51cca409fce4619b220590f3dc29f51",
+            "eb8e4cda90d6454e5b7ca41e9e08004dd29d5032b2ccf7f4d4f6aeb55a4f7348",
+            "c824b13438806850e83d67b6f026c55b541a8d6d1b34e39ef4eef2256fd8502f"
+          ],
+          "attack_book": [
+            "fdd09331df609d76b19659b58750e8fd0f84d082b6f15f26eaa14db899e16a02",
+            "291fcc805c1442ff420077d363d375e9f3a355fe222cbf0180e5bf4230d64a01",
+            "f0f9789e7acae73be84c010f68757629ad665b67500f80a499be917f404309fb",
+            "63fb30aa77bfe22456c98d6db51f2d9a9a3aa49e7330bff61b097d5427b9fdf6"
+          ],
+          "attack_gloves": [
+            "bc1d1a98f76bc178620e6021c82a0dcf13f0d48888d5c9725ace5c6b1d61c331",
+            "242fe67d9ae2aae4c5fa9e50eb94c6da1c29add9ef9556ac60ef9d9fe069a2c4",
+            "4dd4b9395829d22fd21324f72048d7c2f1505aecb795c567a66a4067c6e87759",
+            "48f392cf63fdb5cd1e09e13c8f24a472d101fcaf7f910e2c860dcca1242c2a88"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
