@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import json
 import tempfile
+import time
 from pathlib import Path
 from PIL import Image
 
@@ -25,7 +26,14 @@ def write_progress(path: Path, text: str) -> None:
         with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent, suffix='.tmp', delete=False) as saved:
             temporary = Path(saved.name)
             saved.write(text)
-        temporary.replace(path)
+        for attempt in range(6):
+            try:
+                temporary.replace(path)
+                break
+            except PermissionError:
+                if attempt == 5:
+                    raise
+                time.sleep(0.1 * (attempt + 1))
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)

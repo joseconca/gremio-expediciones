@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "maestro_espadas-f",
+  "nextVariant": "oraculo-m",
   "classes": [
     {
       "id": "novato",
@@ -296,7 +296,7 @@
       "name": "Maestro de espadas",
       "tier": 3,
       "order": 34,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "oraculo",
@@ -153350,7 +153350,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/maestro_espadas/m/maestro_espadas-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/maestro_espadas/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -154474,7 +154474,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "123c131876a25f513d6ba4acd2829b6520ddff56412f673b4594422572f5e293",
@@ -154512,7 +154513,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "ee542a01523f41b78b389abb216b923c9ef2b60b1230bded1512ff6a02b543af",
@@ -154614,7 +154615,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "e08c4cffda7b66efcb7b0faf58d53f423e9650c6fcb7beddc96610601ec41c32",
@@ -154652,7 +154654,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "62738016e8c9edcc266fc8365414f61e6ddd930d4bc3a2311320392b479c78cc",
@@ -154690,7 +154693,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "94967f4a179cba305eff15a620ced2b88d4496b8a4c3b90f89f3f7208a5fb7f5",
@@ -154734,7 +154738,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "1b3c50dba62361d7f0c9614d4796d620a760cfd939a36a733bc7668aaf1a1ca7",
@@ -154778,7 +154783,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "f67efa4b34635ecb5eae89bfbbd20d791eb9c09ea6e7f973416c7cede0be46ba",
@@ -154816,7 +154822,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "0f67789398039e17b7cb5d854defc541dd0ae95474074fbb75b67ccd05c19e25",
@@ -154854,7 +154861,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "9d42b2548c8b4991e4e01920187d5e278fb42fbef98aebe85fbbca725c33addf",
@@ -154892,7 +154900,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4b524745e1d895806b070954f8861c86e81c914638b1efe0d0fc97bd9b26efee",
@@ -155024,7 +155032,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "ea48ef5d66d59e4d3d3003328e6096b6c01dd63acde0e5b15233e2cc2feb8872",
@@ -155062,7 +155071,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "d801120bade227b4fcc1f7a074f085d565d8a856a4e10b3f300d85c73266bee8",
@@ -155100,7 +155110,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c5040fd45818fefb53a9256a0f79a6fd800bc68d3a9f1658d54a2b858fe2b848",
@@ -155232,7 +155242,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "2fafa715ba51b620845b2b85351044a60376cb1e7b91352786e44ae47397d2a0",
@@ -155270,7 +155281,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "fd0b5d5b88801502d7a6337fc7fb7e4e0d3a809d0e17b04dd1d647e0377e37c8",
@@ -155308,7 +155320,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "ea6db3e10aa2d6e343be3d57c0e87624e1ee106f9211020675ae723787a88639",
@@ -155346,7 +155359,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "3869bf59012c38a247fcfa8ba2392d187dd3257155cb444f46b73b1cda026477",
@@ -155384,7 +155398,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -155659,6 +155674,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "maestro_espadas",
+        "name": "Maestro de espadas",
+        "tier": 3,
+        "costume": "Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures.",
+        "unique": "Ivory/navy fencing tailoring with paired-blade clasp and cobalt diamonds",
+        "advancement": "Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/maestro_espadas/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "eec1e586dfc290d091bf0c240d8f218fc67a185725484eae452dea0cc21bb074",
+            "57bae33c0961225933fcd519b62498e6f274edc176bf6c08b03536515d47af93",
+            "bf6f29dd5d64459964de8ed117eae87b08e94c79d53200c3f4a8923ee2b48250",
+            "99f3c124831796ba7f826ee7001e971d1b80959e49081beae74789804b05f62e"
+          ],
+          "walk": [
+            "ae55ac1e5ad02ed80e2f176627c477536f78b2f3ecdb8a414183f815928a208e",
+            "8b9f11d03951c0a08953dc425c27f6433c82ed2fae5e456837b51b9fcacd624c",
+            "b643f08ff907444ef974bcfe83ed7585cb51098cd442b3bd0eeab3c0d5c20670",
+            "0ac96566299b220bd11fcd593d88afbb3a1a59bde6b0634fca23e377478bc341"
+          ],
+          "hurt": [
+            "dbc829c27c5c9018903122eda51f1fa0d3b121a30c32883cbe2ff95c69837911",
+            "5c3e3e81d0e71d5aa1c8f9932d7e9390b7e6ab76678ad44050120fd91daef569",
+            "241c60eb6dabc1692869c4fc1c9cd0b0e6ceed412f34f95098d9ee137750b3da",
+            "1d133d2fcab1c4062aaf463dc4c93f50c2ca6f05d6c49148e19d8d6f6a2d81c9"
+          ],
+          "use_consumable": [
+            "190dc54d5faa78263964272cdaada71ebe938f16646e5c709184c4ff26e09e47",
+            "d8712d3dd743164477f4968d8e110595703177ae4406d62689cb223bcd2e8ab7",
+            "250934bb9bc1675e28e6375b675f3f5caa28d9c0f07200f63ed594200a6ef422",
+            "847079284acec479470ab767eeb438afadc2a23762438cca9e64a0cc68cd93cf"
+          ],
+          "dodge": [
+            "86290786402eada4545dcfa8c7715eaf0a2df0190eefe622d6d7a8c19b87a5ba",
+            "cb4e34f7c190c3233887e658548e2701da8b82758482017a2239483fca3c8231",
+            "152e41e48f1b7815708b589740d60c4a4de8e8eb969a13a69081b67b0318f3e2",
+            "3ddc42c66014e4405f734aad6fbf48a24ce49a0abb4658f93c53b139c96473e5"
+          ],
+          "block_shield": [
+            "a0cbeb73027e4a096db98df4309f92019e4941694f8007caadcc9531c4e2312c",
+            "6e57711d6377795abe74f5269260438af4311fde31a84d11d2078459a4d048c6",
+            "025022b5edd3512a21e038fc3d014eec930201fcfa4c931a63c33019862e9da1",
+            "b25f5fc77e89cc33797e5fa236c8ef970fecadb0b2381a1467a1a83b76ec0e66"
+          ],
+          "attack_sword": [
+            "e86d9d18bb3cd6db2631e8f1c7da8e83862a6f34dac9629395aedc3ff4f15627",
+            "c84ca930c80f496fa1581ce95902444ca77d5663425b7b60788f5a3143bbeb5a",
+            "a78a2b559521fbb9bce46162522a681daffcc5a812e25cd3eca4edd1c7e6330b",
+            "f05e098f4b35ee67baff702216011fa2a70b0930e5fdb0b88a11aab7701a6448"
+          ],
+          "attack_axe": [
+            "982324619bdefbe923a8e56bec779f5d6fde8965d10e3189b76c753989b310d9",
+            "2e2ae37cd3eaf6ae0be555ca21e52f2e3d42c25c963af028114fe42bfccafb06",
+            "30c80cb135a9a3929d4c2ac5b6fceef73c244712ad5c566213c778f9448cf43c",
+            "896c143b6ad32f4b7e9050a0a194d2b215a4da107d8b375a92c4b964c4d2b692"
+          ],
+          "attack_spear": [
+            "8ca1faa779ecec40f900c0cf61c8cec49890b3e05550859c17ef239c940a1c18",
+            "57114ca70c6b9897a4e0a2cf1bf8e710cce3386752cd670b1d3eb401433bd28e",
+            "14433c96c69a397ec6c6863832013d33451634172f9623c52561f9f566a73c76",
+            "90ca8b251e780ede3cfcc39fce3915ebc9d66814e60827c64a7b10072d91269d"
+          ],
+          "attack_dagger": [
+            "9a89727e935268f8ea03f98d12fcccb0b60d271305939008541ea2a84afdde55",
+            "971451134c3ba3d2ca5f9a93b0a8b7fca8784741f5fd5e5a136db03665e374e5",
+            "b8c50f0b8d58016dd9324ea68d0e20ecf5c7372ae6176a26f0c0120bcfeb0c21",
+            "7f5240a3a37577b5610333e7013d83f22abc1b280d614c591fb50c6f0bc85ec6"
+          ],
+          "attack_bow": [
+            "5a5920d8bc9f8e748b0a80208ce9d2b79eb8e9ba0732d87ffaeefe2c2f6eeb3e",
+            "1b20c601cafdae4b2c7dec032ddf11ba1cdb4ffb41ab4689feb4f929431b70cb",
+            "74a44cb761df36964296c43e995f8ea249885a5a3699ee7e97dbb3336da57127",
+            "b2dc3ab00d180856ad135612f8bac5a55bc9a76325c7c4d912d121b2bdc347cc"
+          ],
+          "attack_staff": [
+            "b6f7b40a7bfebe7f595e661bd074f3b00763f4004533a6e401e33023667757c3",
+            "9556ccc3b2333186c9e199340c820ce09fbd2195a292cea3e075adba5a6240e0",
+            "d2df322988075d77aae93d478bf2bbd345a16ab6c60ab39091c4caf3def71bef",
+            "4d34de6a3d1841f48163d1500f7c93c3a35c833bdf70aa49e36ce75d6f2be7ea"
+          ],
+          "attack_mace": [
+            "9488b291ce6ee788a9a5bd9eeab324aeaf6cfc25b9b9e6f8eab435ee4e719e92",
+            "fd88172b88fae5ab27c012b8293e03ae1b69ecf103db9df4091df8f4e72aef36",
+            "b761669755f034b1a40b1a619d306c60107c8d8778344cbeab64284d13be0293",
+            "b31416c6831f1bddc2268c51c4447a71b88eee7efd930de17a4e86f20653181b"
+          ],
+          "attack_book": [
+            "9c712fb7ba71d96e705c1cdd71ed8c74b2e68dd7e0d6e38781cb54658a64da9d",
+            "c1db637922e58b3dc475d91c2b5414a0d62f7e7cefde65561c96b4e424c79c15",
+            "452c3b5a5a85f31e19b0a70fe769fa874251926238db68ef23cf01b3d10a672a",
+            "e3a79bc8de248db0071515287c4797cc0118aabbf0196ce3d36a2bbf7a7c195e"
+          ],
+          "attack_gloves": [
+            "7dd27b3cd1d9e6da531eaece55ddc78bb9873a723da0a16d39f27d212619942e",
+            "fa709453a31dd827f9f00e25944becbc3a189a5633ede73d38c81bfa07480c19",
+            "37e2cb6c041656a13bf7eed290c5b0056e58fcf881515953e321311705591fc5",
+            "59c1da3adecd471365ba5059bebdbb5223aa2bb2558dd874a1629808b56c6511"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -155671,7 +155801,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/maestro_espadas/f/maestro_espadas-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/maestro_espadas/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -156286,36 +156416,36 @@
                 "pixelSha256": "64d95876c7003bc3448e7258bf247907a950341d2f3b5c803680a819d63a1760"
               },
               "02": {
-                "sha256": "abe24b962b44d7290bc46e6071d31c12c13e3e58f536c7d28e7a35dce79a11bc",
-                "bytes": 23142,
+                "sha256": "5b60d3b692b8b06a9a43f76aca9f5f31bed16a7dbac324538e017a3545ace72a",
+                "bytes": 22222,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  10,
-                  92,
-                  99,
-                  250
+                  18,
+                  100,
+                  104,
+                  255
                 ],
-                "pixelSha256": "7554efcb6e98bdec046b626fc7c052015bed78bef5b0a355e62b38481e3e3f9a"
+                "pixelSha256": "70f626610ac130b24206a589e9ec425645a05a924b005614a206e18239a70ec8"
               },
               "03": {
-                "sha256": "a2c0ebd8623c88eadc8846dd1833e0b1c5ce860fdf53760f332489feef70686b",
-                "bytes": 23014,
+                "sha256": "f80dee520c75545dac691d4f2c597da581f0a2592a451c714e7a5b96824bc85f",
+                "bytes": 20874,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  92,
-                  108,
-                  250
+                  16,
+                  99,
+                  113,
+                  248
                 ],
-                "pixelSha256": "6debfa0ad2d65a74da169265faccef174e6f66850d66c0ccb73f7ed8c06da0db"
+                "pixelSha256": "ccb86f39719c53c64e0689c9cc57fb99a5f35251dd851f928817956eb9d15d1e"
               },
               "04": {
                 "sha256": "2a6078e01a80b99d8188ecfb7f4b2e3b80090c10007975ce933a3be37772c570",
@@ -156795,7 +156925,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "ce64cb2bff97878e0b0e170183c8c8b2b691bc5839e38ec96e3955000441bc41",
@@ -156833,7 +156964,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "03": {
               "sourceSha256": "4fc2557f7c3efdad58f2179ee15a5a3481c13783e192403c5832fe4071697d5d",
@@ -156905,7 +157036,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "56e037d26acb42a5343c50556a9e19da14255a6624368ef27e834394feaf99e0",
@@ -156943,7 +157075,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "20fd917533997e025e268c551089bd8dc0e9b4fb68e266892ea20448f4483e20",
@@ -156981,7 +157114,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "b40c72cc72ffd149a1c9623d847c24fadfcef6eb15d4655147ffe9ab590c6022",
@@ -157019,7 +157153,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "c4dffdeb0537f670f10a3604e3e29a773fbef04ef99a3ca0310635b4f1fe601e",
@@ -157057,7 +157192,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "e8f10ad424aa08041b3bf3ce7fe97f3549ebc180755e7b266be5016c3e0a0f7a",
@@ -157095,7 +157231,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "6e5cf9d559362f88a1e8d8da86f79c04b5416e3367c2a373cdf416dcfeee3f66",
@@ -157133,13 +157270,14 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+          "sourceSha256": "bc55ed583193a80786707609f90d746684b3713ee3fd8eee18946bf832f64520",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -157161,9 +157299,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-reference-v11.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Maestro de espadas FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise minimal local edit. Lift ONLY the LOWER LEFT-SIDE black fist upward about50pixels on this1063x1448canvas, keeping same horizontal position, until center of black glove palm covers the small MAGENTA CIRCLE. The circle is currently just above the glove; move the actual fist UP to it, not down. Naturally lift its silver bracer/ivory sleeve a little. Keep raised right-side fist EXACTLY unchanged, same elbow, torso, head, hair, belt, legs, boots, body size and all canvas margins. No new pose, no recentering or resizing. Retain all ivory navy gold costume details and4cobalt2x2buttons. Remove magenta circle. ONE complete fullbody woman, exact same canvas and composition, true transparentalpha, no weapons/effects/text/shadow.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -157171,7 +157309,270 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame01-reference-v11.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "4a7d2051bde3c9b39ce60e2ad5efff6a469c9696c3885464b557d0677e329854",
+              "sourceDimensions": [
+                4344,
+                1449
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame03-reference-v11.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame04-reference-v11.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Maestro de espadas FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "4a7d2051bde3c9b39ce60e2ad5efff6a469c9696c3885464b557d0677e329854",
+              "sourceDimensions": [
+                4344,
+                1449
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-reference-v10.png",
+              "generator": "built-in imagegen",
+              "prompt": "Image1 is ONE single fullbody female POSE TEMPLATE on543x724portraitcanvas. Re-costume her as Maestro de espadas without moving any anatomy. Exact same head center,size,shoulders,elbows,wrist/finger coordinates,boots/baseline and margins. No recentering or enlarging the body. Preserve exact TWO fist orientations and places from Image1. Both fists are forward; leftnearerfistcenter about(405,281), farrightfistcenter about(501,250). Keep every finger exactly in place. Image2 is COSTUME DETAILS ONLY. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Remove ALL old novice clothing/hair, replace exposed forearms with full ivory sleeves and silver/gold plate bracers WITHOUT moving wrists or fingers. ONE entirefullbody, exact543x724composition, transparentalpha, no weapon/effects/shadow/text. Preserve thirdposeeyesOPEN as Image1.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame01-reference-v10.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame02-reference-v10.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "b556ee92f0b22172911158041224474dc6818085de727b73b5fed5e23877d579",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/attack_spear-frame04-reference-v10.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "2ec9306cd1688d86e0863552c62fb246326f0ca72b98ef01ffd88c01ee2d4a12",
@@ -157209,7 +157610,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "6a4c82c258721203ac1b78df9fc8012b3241b0e909bec278dd78dbf90dd31f79",
@@ -157247,7 +157649,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "d531f3e58f3e9e8d6244ae06dcda82f1971b938736a09219ca0e4574218a7a8b",
@@ -157285,7 +157688,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "9ac7827576be5eec721a21c04a8b86922ee897470fa86633670a9826e742b924",
@@ -157323,7 +157727,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "77f0cf9958eeb4f3bddc1265b19b44bc2fdceb5682bb1513de61585bdb7bfd8a",
@@ -157361,7 +157766,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "7b1e7ea71185bbd4d0fd1a4a300c9efd9d51c90134d45ee378d3ac7920509853",
@@ -157399,7 +157805,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -157532,7 +157939,7 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
@@ -157540,11 +157947,11 @@
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -157674,6 +158081,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "maestro_espadas",
+        "name": "Maestro de espadas",
+        "tier": 3,
+        "costume": "Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
+        "maleIdentity": "Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures.",
+        "unique": "Ivory/navy fencing tailoring with paired-blade clasp and cobalt diamonds",
+        "advancement": "Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/maestro_espadas/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "73921336c78f8cf13db60083aa007597283faff384b0b43ee7e93771dcb78d24",
+            "06fb20786570d8a5e01c16291afada713a79c1f778d01f9b82f62832b74856e3",
+            "44f8315e2c212302768ab514b12484c210a7d5722bfa7ef325305484a979a411",
+            "27a0a8efaec75fb4f8e85ce8dc5f9139302b41fa703a94f848edea4ba22a3bf3"
+          ],
+          "walk": [
+            "19185b867f90ac172686e82ab5786ea4d45c80dde7f12269028434f272de6b8c",
+            "49079119602f8a9bd0e6be870f38e3fb643da7ec609e5f4372e6adce8345830a",
+            "2ed3a4ba2fe444eea54392309ad52361257227879ead36b89b0fadce8ddb8a69",
+            "1262539a8f8b9c3023f1f1129b51275490ea2e35010d38905b2406ed5fc6998b"
+          ],
+          "hurt": [
+            "ccb6f2c06790e4756e7df65425221c9215ef4c0af4f14f6409b524b6ebf27357",
+            "d074831f2bd39a8167f983f5a589717988de2c5b99274196e43ff838fc52f506",
+            "0cc47071f65311a308e39a3b8d1fc4cf939a896725f38b295afd0a7a42051d98",
+            "51153a440bc8baaeb06512bdddce8e308e52b5e9113516ad3c1916b90bc65483"
+          ],
+          "use_consumable": [
+            "83cdec175e2a4b9e8e3e62fbe4e96293358ce5f3086c3ed8d891f6d5abc04050",
+            "bea8ff413afc397d9804e612e1dccb5f01e78bf8f4cc0f606a42f4dc43c1bcfc",
+            "784bad92b02dbd007ceb7c097e2288b750cff26af15df84ff7690176300f2239",
+            "db4573030d44c333a87ce228ceab0b98aeb29457b4111eb9b26062e18befb07e"
+          ],
+          "dodge": [
+            "8698358597f798a448b89eccd28925bc1ffd9a5532f4838e1485c736cb780ec4",
+            "6838ced7a3106f1180f5fc1b3d99845f3d851efe6c0572c624d108bdc2401f85",
+            "220eb14cda6dfe18da32021d2ba70adb0c47f2dd45365fd1801ddc92b8653b61",
+            "a1530132d0e195f557c2aa40a0ae164fb3bf164f3e3378af4d4e2effcbef0f86"
+          ],
+          "block_shield": [
+            "6b9b7c72ebc5060a866d458e7a2bec734dce969db7af87bcb4e59fb8b5643d4f",
+            "dab3afd39738d3820cede4909dbb5afbbe9292c094d211921cb54ff906bef107",
+            "9a4becd383da20a5459a38ff80fc1b7440504ca6d6e4cc22afba6e74da2c04bc",
+            "62e437ca9f502c6f26d289ec5de5c04718a7b1e382523e8b69585fd28abc71fc"
+          ],
+          "attack_sword": [
+            "5a221bf2324a00f24c02c0a48c3031958256345d087156130c009577a297cd04",
+            "fbd57b64136bb3f73729e2a50317edbbc2d942bcb43a275e2ddb1580607dc9c2",
+            "0fa2a5204ec12300e71ed8cd7fa5e96ab6f04c09d8b1d1aaf263943f8f9c770e",
+            "be26c02bcaafaa47df81b765c528680cfcc4b210310cafe0455d83a1b567d2f5"
+          ],
+          "attack_axe": [
+            "726e01b876043cb268e126b5bfad7961bf39a281c70e674226f7c3a286ea0a62",
+            "7148dfe5eabcc6b3f1baad92e82f92249e2be4323444792eebd3a5c852c254f8",
+            "0216e6f23234bffb20f745f3fb346bca8a29083f0421a50b16a6127ef7196560",
+            "6a544e180bb354690927d4bc3074a668f1a81e0b95697680db4c78164667e99d"
+          ],
+          "attack_spear": [
+            "9627b823b88a34267bb3ff10e3d1ebba669215c9d64658370d4ebc84a695993b",
+            "5b60d3b692b8b06a9a43f76aca9f5f31bed16a7dbac324538e017a3545ace72a",
+            "f80dee520c75545dac691d4f2c597da581f0a2592a451c714e7a5b96824bc85f",
+            "2a6078e01a80b99d8188ecfb7f4b2e3b80090c10007975ce933a3be37772c570"
+          ],
+          "attack_dagger": [
+            "aaccbf238300c5aa7445ce5944c6a5b2794a03b5a19c5e4c766ce776744ab652",
+            "d118ae773d09fe2bf451d0343dc56d09facb981a96e51ae53109fd89a8489812",
+            "74050128108f78cf5ed0a38687ed9cd4ccf8d7177774998a713fdf2ab423c90a",
+            "735417723fbc89d8c78e66f7c49580875d7315a3c08d2a1bc448a0aec8074fad"
+          ],
+          "attack_bow": [
+            "2a53e486ddb3d57d74a4784e238df3bd2fdf8063a3f99d8b953a057d1ba53f7d",
+            "b361e6efa481c801bc3859d67053fa1d52e059012df36da4a9a8ec97dac37023",
+            "afae23d4ab9f8fb1cd446b38105f6b259c77a77fb159f13f5dac124d803bd246",
+            "9a0b75487e57a611c8e17c34d2fc7445e16b1609d02b614d637335c2e5709599"
+          ],
+          "attack_staff": [
+            "3cdda3d5ae0a6ee38bd1395c361fb9011392f85c576704ed62b5d993feeab1d2",
+            "2bae8dbf6832eb36bcdf7cb70af3c567a4670e500dec2076879c636c7943cfa2",
+            "2422eda5b9040b0d9cada5bd10ad6e27653bbfcae2968e3454186c1a40ed442f",
+            "dce1e91d96339c9732f6d8f6f398143b76b44b3a580410c63f4be2af06e73760"
+          ],
+          "attack_mace": [
+            "5f299e999b648af8e0da38ab96cf434ad1e2b3c5c0ef9716660c2648882c92d6",
+            "5c2e2f5b6ed60b3a6b4008b5d0b3185002e11324b60f6a035c45955b04bb3cd8",
+            "4a34b8047fdeb11ce5a8d35baa78e961e033687c48f578bec00c7f23408669fb",
+            "a07fb940c6d37b7eb2b5f3d5862815dbe333b6340c7b0680497db4da1a1cebb8"
+          ],
+          "attack_book": [
+            "b10db327d866470676a00138a38bd6ec3520353fa889ce1ddcfa29d37b1c4b95",
+            "49db139acbcf42a005989ca344f61dc80d2995dec6ff05e13800826e669b44bf",
+            "19b618136fa9f379fe739a8f7335b57783e3615851d897db3a31ffe2225f778f",
+            "554b1e82084a50e188eca614a0ed632a1cca84b22f0b4011729e46364e45509b"
+          ],
+          "attack_gloves": [
+            "c10989a973db0c2030b90a5fe4d4b38dc1bfe7e8f140b8888a937ac70aaec15f",
+            "63879d6bc45d20822739e5d7789e4ac3f646dc137ffbc0a6e2820e321734b85b",
+            "c6bdb1dac224c4e703123b6d38854aa74210b0439c85e109026ae69c79273a6c",
+            "ae99d3d0a44588654f978985bb8c33cd6c64ad259ee99924780c7c8ced96917b"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -161996,7 +162518,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -162761,8 +163283,8 @@
       "name": "Oráculo",
       "tier": 3,
       "costume": "Fitted PALE LILAC ritual coat with deep indigo panels, short close ivory shoulder stole, SILVER crescent brooch, three sewn opal discs at collar and belt, narrow short split robe tails over indigo trousers, silver-rim dark boots, ivory fingerless gloves with lilac cuffs. Small silver crescent forehead circlet, eyes uncovered. No cape or veil. No held or sheathed equipment, no shadows, no trailing shoulder cloth.",
-      "maleIdentity": "Adult experienced masculine OrÃ¡culo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale.",
-      "femaleIdentity": "Adult experienced feminine OrÃ¡culo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale.",
+      "maleIdentity": "Adult experienced masculine Oráculo with pale lavender-silver soft short side-parted hair, attentive determined eyes, clean-shaven, canonical head scale.",
+      "femaleIdentity": "Adult experienced feminine Oráculo with pale lavender-silver hair in compact braided low bun, attentive determined eyes, canonical female head scale.",
       "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Both arms covered by fitted PALE LILAC sleeves to lilac wrist cuffs over ivory fingerless gloves; no bare forearms, leather wraps or novice pouches. Indigo fitted trousers, silver-rim dark boots. Physical crescent and opal insignia, no magic effects. Match approved ivory short double-layer shoulder STOLE with engraved silver patterns, large SILVER CRESCENT clasp on rear shoulder; THREE round OPAL chest buttons in VERTICAL line, ONE LARGE ROUND OPAL belt clasp and small silver diamond belt ornaments. Full lilac sleeves, dark indigo wrist bands with silver/lilac diamond guards, IVORY FINGERLESS gloves. Lilac split coat tails, dark indigo trousers, silver-rim black boots with diagonal straps and small silver diamond buckles. Small silver/opalescent forehead circlet remains partially visible through fringe. No pouches or novice wraps.",
       "unique": "Lilac/indigo ritual tailoring, crescent circlet and sewn opals",
       "advancement": "Tier3 advanced specialization of Sacerdote. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size."

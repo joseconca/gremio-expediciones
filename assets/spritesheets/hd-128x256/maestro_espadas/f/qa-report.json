@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T11:36:14.161052+00:00",
+  "classId": "maestro_espadas",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\maestro_espadas-f-sheet.png",
+  "sheetSha256": "756e3bbc2c39ad917c3bf31b655429c9c52d833a6e2688d981beca9294c3aa27",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\idle\\maestro_espadas-f-idle-01.png",
+          "sha256": "73921336c78f8cf13db60083aa007597283faff384b0b43ee7e93771dcb78d24",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\idle\\maestro_espadas-f-idle-02.png",
+          "sha256": "06fb20786570d8a5e01c16291afada713a79c1f778d01f9b82f62832b74856e3",
+          "alpha_bbox": [
+            24,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\idle\\maestro_espadas-f-idle-03.png",
+          "sha256": "44f8315e2c212302768ab514b12484c210a7d5722bfa7ef325305484a979a411",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\idle\\maestro_espadas-f-idle-04.png",
+          "sha256": "27a0a8efaec75fb4f8e85ce8dc5f9139302b41fa703a94f848edea4ba22a3bf3",
+          "alpha_bbox": [
+            24,
+            90,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\walk\\maestro_espadas-f-walk-01.png",
+          "sha256": "19185b867f90ac172686e82ab5786ea4d45c80dde7f12269028434f272de6b8c",
+          "alpha_bbox": [
+            13,
+            95,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\walk\\maestro_espadas-f-walk-02.png",
+          "sha256": "49079119602f8a9bd0e6be870f38e3fb643da7ec609e5f4372e6adce8345830a",
+          "alpha_bbox": [
+            29,
+            95,
+            91,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\walk\\maestro_espadas-f-walk-03.png",
+          "sha256": "2ed3a4ba2fe444eea54392309ad52361257227879ead36b89b0fadce8ddb8a69",
+          "alpha_bbox": [
+            11,
+            90,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\walk\\maestro_espadas-f-walk-04.png",
+          "sha256": "1262539a8f8b9c3023f1f1129b51275490ea2e35010d38905b2406ed5fc6998b",
+          "alpha_bbox": [
+            23,
+            95,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\hurt\\maestro_espadas-f-hurt-01.png",
+          "sha256": "ccb6f2c06790e4756e7df65425221c9215ef4c0af4f14f6409b524b6ebf27357",
+          "alpha_bbox": [
+            24,
+            95,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\hurt\\maestro_espadas-f-hurt-02.png",
+          "sha256": "d074831f2bd39a8167f983f5a589717988de2c5b99274196e43ff838fc52f506",
+          "alpha_bbox": [
+            20,
+            95,
+            102,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\hurt\\maestro_espadas-f-hurt-03.png",
+          "sha256": "0cc47071f65311a308e39a3b8d1fc4cf939a896725f38b295afd0a7a42051d98",
+          "alpha_bbox": [
+            14,
+            117,
+            91,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\hurt\\maestro_espadas-f-hurt-04.png",
+          "sha256": "51153a440bc8baaeb06512bdddce8e308e52b5e9113516ad3c1916b90bc65483",
+          "alpha_bbox": [
+            11,
+            95,
+            97,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\use_consumable\\maestro_espadas-f-use_consumable-01.png",
+          "sha256": "83cdec175e2a4b9e8e3e62fbe4e96293358ce5f3086c3ed8d891f6d5abc04050",
+          "alpha_bbox": [
+            22,
+            89,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\use_consumable\\maestro_espadas-f-use_consumable-02.png",
+          "sha256": "bea8ff413afc397d9804e612e1dccb5f01e78bf8f4cc0f606a42f4dc43c1bcfc",
+          "alpha_bbox": [
+            25,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\use_consumable\\maestro_espadas-f-use_consumable-03.png",
+          "sha256": "784bad92b02dbd007ceb7c097e2288b750cff26af15df84ff7690176300f2239",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\use_consumable\\maestro_espadas-f-use_consumable-04.png",
+          "sha256": "db4573030d44c333a87ce228ceab0b98aeb29457b4111eb9b26062e18befb07e",
+          "alpha_bbox": [
+            31,
+            90,
+            112,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\dodge\\maestro_espadas-f-dodge-01.png",
+          "sha256": "8698358597f798a448b89eccd28925bc1ffd9a5532f4838e1485c736cb780ec4",
+          "alpha_bbox": [
+            28,
+            92,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\dodge\\maestro_espadas-f-dodge-02.png",
+          "sha256": "6838ced7a3106f1180f5fc1b3d99845f3d851efe6c0572c624d108bdc2401f85",
+          "alpha_bbox": [
+            30,
+            95,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\dodge\\maestro_espadas-f-dodge-03.png",
+          "sha256": "220eb14cda6dfe18da32021d2ba70adb0c47f2dd45365fd1801ddc92b8653b61",
+          "alpha_bbox": [
+            23,
+            124,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\dodge\\maestro_espadas-f-dodge-04.png",
+          "sha256": "a1530132d0e195f557c2aa40a0ae164fb3bf164f3e3378af4d4e2effcbef0f86",
+          "alpha_bbox": [
+            22,
+            92,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\block_shield\\maestro_espadas-f-block_shield-01.png",
+          "sha256": "6b9b7c72ebc5060a866d458e7a2bec734dce969db7af87bcb4e59fb8b5643d4f",
+          "alpha_bbox": [
+            20,
+            91,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\block_shield\\maestro_espadas-f-block_shield-02.png",
+          "sha256": "dab3afd39738d3820cede4909dbb5afbbe9292c094d211921cb54ff906bef107",
+          "alpha_bbox": [
+            21,
+            91,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\block_shield\\maestro_espadas-f-block_shield-03.png",
+          "sha256": "9a4becd383da20a5459a38ff80fc1b7440504ca6d6e4cc22afba6e74da2c04bc",
+          "alpha_bbox": [
+            20,
+            92,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\block_shield\\maestro_espadas-f-block_shield-04.png",
+          "sha256": "62e437ca9f502c6f26d289ec5de5c04718a7b1e382523e8b69585fd28abc71fc",
+          "alpha_bbox": [
+            21,
+            91,
+            112,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_sword\\maestro_espadas-f-attack_sword-01.png",
+          "sha256": "5a221bf2324a00f24c02c0a48c3031958256345d087156130c009577a297cd04",
+          "alpha_bbox": [
+            19,
+            91,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_sword\\maestro_espadas-f-attack_sword-02.png",
+          "sha256": "fbd57b64136bb3f73729e2a50317edbbc2d942bcb43a275e2ddb1580607dc9c2",
+          "alpha_bbox": [
+            16,
+            91,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_sword\\maestro_espadas-f-attack_sword-03.png",
+          "sha256": "0fa2a5204ec12300e71ed8cd7fa5e96ab6f04c09d8b1d1aaf263943f8f9c770e",
+          "alpha_bbox": [
+            15,
+            96,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_sword\\maestro_espadas-f-attack_sword-04.png",
+          "sha256": "be26c02bcaafaa47df81b765c528680cfcc4b210310cafe0455d83a1b567d2f5",
+          "alpha_bbox": [
+            19,
+            91,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_axe\\maestro_espadas-f-attack_axe-01.png",
+          "sha256": "726e01b876043cb268e126b5bfad7961bf39a281c70e674226f7c3a286ea0a62",
+          "alpha_bbox": [
+            21,
+            98,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_axe\\maestro_espadas-f-attack_axe-02.png",
+          "sha256": "7148dfe5eabcc6b3f1baad92e82f92249e2be4323444792eebd3a5c852c254f8",
+          "alpha_bbox": [
+            21,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_axe\\maestro_espadas-f-attack_axe-03.png",
+          "sha256": "0216e6f23234bffb20f745f3fb346bca8a29083f0421a50b16a6127ef7196560",
+          "alpha_bbox": [
+            13,
+            106,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_axe\\maestro_espadas-f-attack_axe-04.png",
+          "sha256": "6a544e180bb354690927d4bc3074a668f1a81e0b95697680db4c78164667e99d",
+          "alpha_bbox": [
+            9,
+            97,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_spear\\maestro_espadas-f-attack_spear-01.png",
+          "sha256": "9627b823b88a34267bb3ff10e3d1ebba669215c9d64658370d4ebc84a695993b",
+          "alpha_bbox": [
+            12,
+            92,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_spear\\maestro_espadas-f-attack_spear-02.png",
+          "sha256": "5b60d3b692b8b06a9a43f76aca9f5f31bed16a7dbac324538e017a3545ace72a",
+          "alpha_bbox": [
+            18,
+            100,
+            104,
+            255
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_spear\\maestro_espadas-f-attack_spear-03.png",
+          "sha256": "f80dee520c75545dac691d4f2c597da581f0a2592a451c714e7a5b96824bc85f",
+          "alpha_bbox": [
+            16,
+            99,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_spear\\maestro_espadas-f-attack_spear-04.png",
+          "sha256": "2a6078e01a80b99d8188ecfb7f4b2e3b80090c10007975ce933a3be37772c570",
+          "alpha_bbox": [
+            17,
+            92,
+            114,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_dagger\\maestro_espadas-f-attack_dagger-01.png",
+          "sha256": "aaccbf238300c5aa7445ce5944c6a5b2794a03b5a19c5e4c766ce776744ab652",
+          "alpha_bbox": [
+            15,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_dagger\\maestro_espadas-f-attack_dagger-02.png",
+          "sha256": "d118ae773d09fe2bf451d0343dc56d09facb981a96e51ae53109fd89a8489812",
+          "alpha_bbox": [
+            18,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_dagger\\maestro_espadas-f-attack_dagger-03.png",
+          "sha256": "74050128108f78cf5ed0a38687ed9cd4ccf8d7177774998a713fdf2ab423c90a",
+          "alpha_bbox": [
+            20,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_dagger\\maestro_espadas-f-attack_dagger-04.png",
+          "sha256": "735417723fbc89d8c78e66f7c49580875d7315a3c08d2a1bc448a0aec8074fad",
+          "alpha_bbox": [
+            19,
+            90,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_bow\\maestro_espadas-f-attack_bow-01.png",
+          "sha256": "2a53e486ddb3d57d74a4784e238df3bd2fdf8063a3f99d8b953a057d1ba53f7d",
+          "alpha_bbox": [
+            22,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_bow\\maestro_espadas-f-attack_bow-02.png",
+          "sha256": "b361e6efa481c801bc3859d67053fa1d52e059012df36da4a9a8ec97dac37023",
+          "alpha_bbox": [
+            16,
+            90,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_bow\\maestro_espadas-f-attack_bow-03.png",
+          "sha256": "afae23d4ab9f8fb1cd446b38105f6b259c77a77fb159f13f5dac124d803bd246",
+          "alpha_bbox": [
+            18,
+            90,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_bow\\maestro_espadas-f-attack_bow-04.png",
+          "sha256": "9a0b75487e57a611c8e17c34d2fc7445e16b1609d02b614d637335c2e5709599",
+          "alpha_bbox": [
+            22,
+            90,
+            120,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_staff\\maestro_espadas-f-attack_staff-01.png",
+          "sha256": "3cdda3d5ae0a6ee38bd1395c361fb9011392f85c576704ed62b5d993feeab1d2",
+          "alpha_bbox": [
+            21,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_staff\\maestro_espadas-f-attack_staff-02.png",
+          "sha256": "2bae8dbf6832eb36bcdf7cb70af3c567a4670e500dec2076879c636c7943cfa2",
+          "alpha_bbox": [
+            21,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_staff\\maestro_espadas-f-attack_staff-03.png",
+          "sha256": "2422eda5b9040b0d9cada5bd10ad6e27653bbfcae2968e3454186c1a40ed442f",
+          "alpha_bbox": [
+            21,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_staff\\maestro_espadas-f-attack_staff-04.png",
+          "sha256": "dce1e91d96339c9732f6d8f6f398143b76b44b3a580410c63f4be2af06e73760",
+          "alpha_bbox": [
+            20,
+            90,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_mace\\maestro_espadas-f-attack_mace-01.png",
+          "sha256": "5f299e999b648af8e0da38ab96cf434ad1e2b3c5c0ef9716660c2648882c92d6",
+          "alpha_bbox": [
+            25,
+            90,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_mace\\maestro_espadas-f-attack_mace-02.png",
+          "sha256": "5c2e2f5b6ed60b3a6b4008b5d0b3185002e11324b60f6a035c45955b04bb3cd8",
+          "alpha_bbox": [
+            24,
+            90,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_mace\\maestro_espadas-f-attack_mace-03.png",
+          "sha256": "4a34b8047fdeb11ce5a8d35baa78e961e033687c48f578bec00c7f23408669fb",
+          "alpha_bbox": [
+            22,
+            97,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_mace\\maestro_espadas-f-attack_mace-04.png",
+          "sha256": "a07fb940c6d37b7eb2b5f3d5862815dbe333b6340c7b0680497db4da1a1cebb8",
+          "alpha_bbox": [
+            20,
+            90,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_book\\maestro_espadas-f-attack_book-01.png",
+          "sha256": "b10db327d866470676a00138a38bd6ec3520353fa889ce1ddcfa29d37b1c4b95",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_book\\maestro_espadas-f-attack_book-02.png",
+          "sha256": "49db139acbcf42a005989ca344f61dc80d2995dec6ff05e13800826e669b44bf",
+          "alpha_bbox": [
+            26,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_book\\maestro_espadas-f-attack_book-03.png",
+          "sha256": "19b618136fa9f379fe739a8f7335b57783e3615851d897db3a31ffe2225f778f",
+          "alpha_bbox": [
+            23,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_book\\maestro_espadas-f-attack_book-04.png",
+          "sha256": "554b1e82084a50e188eca614a0ed632a1cca84b22f0b4011729e46364e45509b",
+          "alpha_bbox": [
+            22,
+            90,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_gloves\\maestro_espadas-f-attack_gloves-01.png",
+          "sha256": "c10989a973db0c2030b90a5fe4d4b38dc1bfe7e8f140b8888a937ac70aaec15f",
+          "alpha_bbox": [
+            15,
+            89,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_gloves\\maestro_espadas-f-attack_gloves-02.png",
+          "sha256": "63879d6bc45d20822739e5d7789e4ac3f646dc137ffbc0a6e2820e321734b85b",
+          "alpha_bbox": [
+            18,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_gloves\\maestro_espadas-f-attack_gloves-03.png",
+          "sha256": "c6bdb1dac224c4e703123b6d38854aa74210b0439c85e109026ae69c79273a6c",
+          "alpha_bbox": [
+            11,
+            89,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\maestro_espadas\\f\\frames\\attack_gloves\\maestro_espadas-f-attack_gloves-04.png",
+          "sha256": "ae99d3d0a44588654f978985bb8c33cd6c64ad259ee99924780c7c8ced96917b",
+          "alpha_bbox": [
+            15,
+            89,
+            102,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

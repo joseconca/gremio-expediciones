@@ -1,14 +1,26 @@
 {
   "action": "attack_spear",
-  "status": "physical-palm-correction-pending",
-  "acceptedOriginalPoses": [1, 4],
+  "status": "selected-whole-poses-reviewed",
+  "acceptedOriginalPoses": [
+    1,
+    4
+  ],
   "rejectedCandidates": {
     "v2": "Guard and thrust hand positions differ from canonical palms.",
     "v3": "Raised guard fist moved in the wrong direction.",
     "v4": "Forearm coverage and primary thrust grip still incorrect.",
     "v5": "Single-pose generation changed guard orientation and lowered the fist; not selected.",
     "v6": "Primary thrust fist moved left of its shared grip; not selected.",
-    "v7": "Fresh canonical generation shifted several fists left; not selected."
+    "v7": "Fresh canonical generation shifted several fists left; not selected.",
+    "v8": "Guard arm extended too far right; not selected.",
+    "v9": "Lower fist too low; v11 raises the entire generated fist/forearm."
   },
-  "policy": "Keep all generated candidates and prompts. Automatic alpha contact is insufficient: inspect actual palms and full sleeve/bracer coverage. Never compensate with per-class equipment offsets or limb pixel transplants."
+  "policy": "Keep all generated candidates and prompts. Automatic alpha contact is insufficient: inspect actual palms and full sleeve/bracer coverage. Never compensate with per-class equipment offsets or limb pixel transplants.",
+  "selectedSources": {
+    "1": "original",
+    "2": "v11",
+    "3": "v10",
+    "4": "original"
+  },
+  "physicalReview": "All eight real hand contacts inspected against canonical palms; full ivory sleeves and silver/gold bracers. Shared equipment revision5 unchanged. All682 female contacts pass."
 }
