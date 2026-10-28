@@ -14,7 +14,8 @@
     "attack_spear",
     "attack_dagger",
     "attack_bow",
-    "attack_staff"
+    "attack_staff",
+    "attack_mace"
   ],
   "bodyHashes": {
     "idle": [
@@ -88,9 +89,15 @@
       "4d25a4895036d7ae55668b8374a9e0fbe8345b7f23cd4b1a90dd6973ff55d6a0",
       "a79a0c6e17ca23ff92994d04833baf8d965a58d82f5f13f1d1a6d1291b4caf14",
       "ef01175eb9bd1d2d355485fa7c74c8d574fdd0e86e40da56b4c17bb1dc696dbf"
+    ],
+    "attack_mace": [
+      "b70126ad6f83aaba1023fa9c94af54285917d2551c7e8fade3987ce897a8f04e",
+      "4fc6437a9a09c0485a2ca4ef1d073e625d353b2820f14b34b624afb747426ce9",
+      "428c2031f4d18eed09781bef1e49c3cc99a9c95a385fe5d94f41a1eb13423665",
+      "b6e0193809ff641fd5b163cd7976926c705ede918490aa805c627395451ebc23"
     ]
   },
-  "contactChecks": 636,
+  "contactChecks": 652,
   "warnings": [
     {
       "action": "hurt",
