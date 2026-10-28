@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "guardian_real-f",
+  "nextVariant": "guardian_real-m",
   "classes": [
     {
       "id": "novato",
@@ -144225,20 +144225,20 @@
                 "pixelSha256": "db4d53f6f373791e328ac5ff9c496a76e38d685a45ae50f278e8d54ab27099fb"
               },
               "03": {
-                "sha256": "8fdd827a0507e87a3299b091356473a71be612dda9131b35212a50e76a86428f",
-                "bytes": 23363,
+                "sha256": "93a94861af387ca37f2a2d260fcf3b6490606daa344949fa0eab4c3e032e86ab",
+                "bytes": 24189,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  95,
-                  110,
+                  21,
+                  93,
+                  109,
                   249
                 ],
-                "pixelSha256": "88411838a47b81c2f4dea555ea9a26d100e968711c920f8f4d12d99821d78106"
+                "pixelSha256": "0670d028076a1f52c0e58d5d2e0848693217f7bb45644d55b188c3eb84e3e20e"
               },
               "04": {
                 "sha256": "e9cd3ccf90116b523b01f27097b4dc35a52fe0440cfcf86bc67ea4cb2f26ee05",
@@ -144967,7 +144967,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_dagger": {
-          "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
+          "sourceSha256": "b1264a2af946857d99e59615981aae804cfaf0618b9a5594d5889fba62312368",
           "sourceDimensions": [
             2172,
             724
@@ -144992,9 +144992,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real MALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced masculine Guardián real with steel-gray layered swept short crop, attentive determined eyes, clean-shaven, canonical head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. Asset: Guardián real MALE attack_dagger wrist-armor correction revision2. Image1 is EDIT TARGET and exact four canonical action poses. Image2 is ONLY approved class idle costume/material reference, never posture. ONLY FIGURE3 attacking dagger-hand wrist, keep1/2/4 untouched. ONLY replace thick stacked BROWN LEATHER BANDAGE WRAPS between silver forearm guards and dark gloves with fitted SILVER METAL VAMBRACES extending down to wrists. Preserve at most ONE very thin plain dark cuff/seam at glove edge; no broad brown section, no stacked wrap bands, no bare forearm. Keep full ROYAL BLUE sleeves and every fingertip, glove, hand outline, wrist angle, elbow and anatomical coordinate EXACTLY in place. Do NOT change grip, movement, torso, head, camera, scale, per-quarter centers or2172x724 canvas. ALL OTHER ART unchanged: approved face/hair/blue sapphire circlet, segmented silvergunmetal breastplate, blue pauldrons with vertical silverbar/diamond fittings, angular silver diamondbeltclasp, THREE blue tabardpanels with SILVER TOWER centerpanel, silver kneeguards/greaves/sabatons. Existing correctly fitted armor and other figures unchanged. Same crisp painted anime pixel-inspired RPG rendering, complete four full bodies and true transparency. No gear, weapon, sheath, shield, bow, book, potion, text, grid, shadow or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -145002,7 +145002,139 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "37fba9d3832cf693617520e8b3c78caf10af3af8b149a889191a1a0df77424b0",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Animate EXACT approved Guardian real costume/identity. Preserve segmented SILVER/GUNMETAL breastplate, FULL ROYAL BLUE CLOTH SLEEVES shoulder-to-wrist under silver forearm guards, dark fingerless gloves, compact blue pauldrons each with a VERTICAL SILVER BAR and silver diamond fitting, THREE short BLUE tabardpanels with SILVER TOWER on CENTER panel, angular SILVER DIAMOND belt clasp, steel kneeguards/greaves/sabatons and BLUE SAPPHIRE forehead jewel. No bare forearms, cream novice sleeves, leather wraps, novice pouches, red scarf, white/gold sunburst or laurel. All4motifscontinuous with natural occlusion.  Production RPG body sprite strip for Guardián real MALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Match approved identity's SILVER TOWER on center of THREE-PANEL royal-blue short tabard, white/silver vertical shoulder bars on BLUE compact squared pauldrons, silver angular belt clasp and blue sapphire brow gem. Full royal-blue cloth sleeves under silver bracers to dark fingerless gloves, no bare forearms. Retain tower and all insignia even in closed-eye, turned and hurt poses. Adult experienced masculine Guardián real with steel-gray layered swept short crop, attentive determined eyes, clean-shaven, canonical head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with blue sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_bow": {
           "sourceSha256": "35641fdc58a868bfc09cc08990f309b1837c86dd9a12f5234f13dce594c8a14b",
@@ -145341,11 +145473,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -145353,7 +145485,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
