@@ -3,7 +3,8 @@
   "classId": "paladin",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "a4479788f814a1309d5b5a1e47e731cdcc630baa7f8ff492af0c38dd75d2ae29",
       "699877539bc0a9601a37071ea1594e6b14a9c268a1ea51412e0cc245c7dd20b5",
       "5dfb7b806524cb561225116aa1e6292a7b558e5cb6132d66ebbaedf8ef14dc4f"
+    ],
+    "walk": [
+      "39965a389f27c59841d8fd9853b881044406acbc69812168e66eba17e2dd7dc3",
+      "c7e1a07749833278f83c18ad56acf1c7330b12824a81910e0629c8bff6ff9abe",
+      "693d17121f85923bdfbd02199bafa07e11567f63e63a55ff8914656b8a4f7f9c",
+      "d60428ae944616fe3a476f056b4dea7bac0e2e7f6ea77856009853eff06a52dd"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,
