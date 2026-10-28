@@ -153365,7 +153365,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -153378,7 +153378,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -154152,7 +154153,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b6f7b40a7bfebe7f595e661bd074f3b00763f4004533a6e401e33023667757c3",
+                "bytes": 23320,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  92,
+                  111,
+                  250
+                ],
+                "pixelSha256": "4b872abbc712fa42bf84d33ebd781cae2c65092e1b6f1d3894b2a02c5264f7a4"
+              },
+              "02": {
+                "sha256": "9556ccc3b2333186c9e199340c820ce09fbd2195a292cea3e075adba5a6240e0",
+                "bytes": 23679,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  114,
+                  250
+                ],
+                "pixelSha256": "64f19b8d6f761467b35434393b9c286fab10b7d69ec96215ba4ed865bdcb5318"
+              },
+              "03": {
+                "sha256": "d2df322988075d77aae93d478bf2bbd345a16ab6c60ab39091c4caf3def71bef",
+                "bytes": 23132,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  113,
+                  250
+                ],
+                "pixelSha256": "ae116a80d76964cba6983df20419e9c0c1c59ce644f32b96f599bca7bf90a696"
+              },
+              "04": {
+                "sha256": "4d34de6a3d1841f48163d1500f7c93c3a35c833bdf70aa49e36ce75d6f2be7ea",
+                "bytes": 23102,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  109,
+                  250
+                ],
+                "pixelSha256": "386b2f7d17c9fe0011e23efc620a36b610712cc272e41241b519518ec7cc749f"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -154697,6 +154765,44 @@
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "2fafa715ba51b620845b2b85351044a60376cb1e7b91352786e44ae47397d2a0",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            615,
+            21,
+            1023,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Maestro de espadas MALE, Tier 3, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "36d33689354a90e90cdf39468f9009bd50b1bae5e02d73894856d967695d0b12",
+            "cb8607b7c51b52e935eca74ac76d098668646d4689a8faf2e9fec4a59b75b6d9",
+            "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
+            "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -154874,6 +154980,22 @@
         },
         "attack_bow/04": {
           "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
           "frame": 4
         }
       },
