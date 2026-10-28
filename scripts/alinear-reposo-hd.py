@@ -31,9 +31,11 @@ def measure():
                 masks.append(mask)
             hashes.append(hashlib.sha256(p.read_bytes()).hexdigest())
         # Leave already stationary variants (including male swordsman) untouched.
-        offsets = [math.floor(centers[0] - x + .5) for x in centers] if max(centers) - min(centers) > 1.5 else [0] * 4
+        # Match the runtime support contract: at most one pixel of residual
+        # drift, including half-pixel midpoints from odd-width boot masks.
+        offsets = [math.floor(centers[0] - x + .5) for x in centers] if max(centers) - min(centers) > 1 else [0] * 4
         corrected = [x + dx for x, dx in zip(centers, offsets)]
-        assert max(corrected) - min(corrected) <= 1.5
+        assert max(corrected) - min(corrected) <= 1
         for mask, dx in zip(masks, offsets):
             for item in equipment['items'].values():
                 records = item['sheets'][s]['actions'].get('idle')

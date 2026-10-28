@@ -1,0 +1,69 @@
+{
+  "classId": "asceta",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses only. Fixed canonical export; no class equipment offsets, body painting or limb transplants. Portrait strips repeat four untouched complete canvases and preserve original raw images.",
+  "selectedRevisions": {
+    "m/idle": "original",
+    "m/walk": {
+      "1": "portrait v4",
+      "2/4": "full-strip v2",
+      "3": "portrait v6"
+    },
+    "m/attack_spear": {
+      "3/4": "full-strip v2, bare upper arms",
+      "1/2": "original"
+    },
+    "m/attack_dagger": {
+      "3": "full-strip v2, bare upper arm",
+      "1/2/4": "original"
+    },
+    "m/use_consumable": {
+      "4": "portrait v4",
+      "1/2/3": "original"
+    },
+    "m/attack_bow": {
+      "4": "portrait v3",
+      "1/2/3": "original"
+    },
+    "f/idle": {
+      "1/2/3": "full-strip v3",
+      "4": "portrait v4"
+    },
+    "f/walk": {
+      "1/2": "portraits v4",
+      "3": "portrait v5",
+      "4": "portrait v6"
+    },
+    "f/hurt": {
+      "4": "portrait v2",
+      "1/2/3": "original"
+    },
+    "f/use_consumable": {
+      "1": "portrait v2",
+      "2/3/4": "original"
+    },
+    "f/attack_axe": {
+      "4": "portrait v5",
+      "1/2/3": "original"
+    },
+    "f/attack_gloves": {
+      "1/2/3": "portraits v4",
+      "4": "portrait v2"
+    }
+  },
+  "allOtherActions": "original sources",
+  "notes": [
+    "All thirty source strips and final representative equipment compositions inspected, one example by weapon structure. Both one-hand and two-hand axe structures were reviewed.",
+    "Saffron asymmetric wrap, ivory inset panels, copper piping, wooden collar beads, amber lotus clasp, cream crossbound forearm/calf wraps and dark split-toe shoes distinguish this advanced Monje specialization. Male short dark brown textured crop, female compact braided nape knot.",
+    "Corrected residual novice upper-arm sleeve fragments in male spear3/4 and dagger3; all upper arms remain bare.",
+    "Real wrapped palms, thumb/finger openings and visible equipment grips were compared with canonical anatomy. Some shared canonical points are occluded or lie outside visible hands; rendered weapon contact also informed selection.",
+    "Discarded candidates remain preserved. Female full walk v3 exceeds canonical bounds; male walk portrait v5 and bow portrait v4 have displaced grips and are unselected.",
+    "No shared equipment geometry changed. Candidate library generation does not activate new classes automatically."
+  ]
+}

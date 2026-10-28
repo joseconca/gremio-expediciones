@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "asceta",
   "sex": "f",
   "actions": [
@@ -27,10 +27,10 @@
       "c57af34c4c67e5709e3b8ee25091b26d7bba52c4923b8c155bd05152eeaf3097"
     ],
     "walk": [
-      "67c74e0d7c8474647d4f60764bf8f9540c2613aa7ec3343e2863c60b1d81ba8c",
-      "840711dea26cd22f076ac68eef217465bec1ebe7c0ffa0fd069b49943d535351",
-      "1824be889a64caa339eeb45d9598f516e0feebf68d7dc3f0d69d4656bee196fd",
-      "035bcb2cf98e4481311e1bdc27e494edc0c4b13f1948d2bdc150dfb474c96b64"
+      "fb9a7d4d13a67b10685a939d759b19e1caa40d9783bcbe79b5004221a0054889",
+      "5e7993abf8170b116c0d0f8831bb24ccefd41485c9c393616ecb2ed3110df826",
+      "7db77f9911931db4ad49303dbb31a0bb760f529c747a9874c840ed84ac8959cf",
+      "dc0a143e8186a5f33c2cf723cd758a8ede5408178390f2caaf1460c23b3de0c7"
     ],
     "hurt": [
       "2afc675d554eb9e5918835c9e521d41edab685f1b9c46a55af630d061be23db2",
@@ -66,7 +66,7 @@
       "5585d7a566b66ed2a1b6c5451e75488ccff3b93ae3202f07a8a10bcc47bee7ac",
       "dbccb5a87de72974eda982a9b2e1b0592970a1dfd0c237c748f542427ff415bb",
       "37b79c1427091ccb0177976c081f5aac02b8fd933be290f2c4160a09c0719196",
-      "62191874e3cfb29db194324b3862193a51b22edb97b02f337d32acd9d7669246"
+      "b4640b4b9df654f49b9b7b530d66f926025582980969c15e6fa67b3a6f3b9f18"
     ],
     "attack_spear": [
       "14244eb2c94f5d4243fadc1631b37b11db1a4cdbf4d043d64f3bce355c5f7b69",
@@ -105,69 +105,14 @@
       "0a57ab09a7c5f2b08849f3412184d4d881456d58b1a1f7b222ec82f9530c8b97"
     ],
     "attack_gloves": [
-      "1015a642f7627267bf4cf2a618657741f40e12b0b14276c2563c58b32600ef79",
-      "9eba29fe7fdc6cca7c3e164865614d91c3329b4c9bd0ffb6223d93dd45374623",
-      "5121fd5d48be71b7d772183430d5c06654fa1893aa8517309c5cdaa115d97664",
-      "a6199053e904d9e392f8b3d574d8722bfa2f54e832a4722f9d4d5917c154c0aa"
+      "ea84cecdab728eb036318631dce45263f87e855ca5361f29006f3240a5a0776f",
+      "3177f7536ccab20a96ada0418e89c19b2be9f93a5af681d7473fa442510ae0dd",
+      "47ddb7af36754c0ab692bd349f88ba9e3a6f666b718416b0e1d31466b9f553b8",
+      "23dd04315b93c559b7cfe51a3825c2764033ff5cd78df89ec0916504c847afe3"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_axe",
-      "frame": 4,
-      "item": "hacha_berserker",
-      "point": [
-        82,
-        157
-      ]
-    },
-    {
-      "action": "attack_axe",
-      "frame": 4,
-      "item": "hacha_orca",
-      "point": [
-        82,
-        157
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 2,
-      "item": "guantes_lucha",
-      "point": [
-        86,
-        144
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "guantes_lucha",
-      "point": [
-        78,
-        145
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 2,
-      "item": "punos_lobo",
-      "point": [
-        86,
-        144
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "punos_lobo",
-      "point": [
-        78,
-        145
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

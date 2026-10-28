@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T15:48:19.803533+00:00",
+  "classId": "asceta",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\asceta\\m\\asceta-m-sheet.png",
+  "sheetSha256": "1c8f2e5a3e90368075d5c6e27cfde444f858efa42887887b459e106839a9620d",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\idle\\asceta-m-idle-01.png",
+          "sha256": "6640fc7b00c4596ec86fd632e06594ebe78b2b8de558f5593ce3a41100b5e78f",
+          "alpha_bbox": [
+            22,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\idle\\asceta-m-idle-02.png",
+          "sha256": "51878d0e9101c027c1e2764912a3132d2a27ef659efa000804d82ac40fe6da8f",
+          "alpha_bbox": [
+            22,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\idle\\asceta-m-idle-03.png",
+          "sha256": "181ba4ad5c463416133ce54c7a2798467bfabe41cf00f3b4102683fc83d7e727",
+          "alpha_bbox": [
+            22,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\idle\\asceta-m-idle-04.png",
+          "sha256": "13bcb520bfef1c65fbd59fe13329ab38daa55f07c79f8b69dbe9af7374b8fd69",
+          "alpha_bbox": [
+            22,
+            94,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\walk\\asceta-m-walk-01.png",
+          "sha256": "a5ceb082d94f08c2c6843f9077a8b01ed0e21eeb1710fa46ccb1a0a4d3f4063e",
+          "alpha_bbox": [
+            13,
+            94,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\walk\\asceta-m-walk-02.png",
+          "sha256": "14b05269727298f03b8b24b9b3120c3fda0b306d60f0af9c05823db98e760e9c",
+          "alpha_bbox": [
+            18,
+            93,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\walk\\asceta-m-walk-03.png",
+          "sha256": "5e37f73231c244742a7dfc6a7005f582bc4c05b6f20ec4bd16226fa85a0afdc4",
+          "alpha_bbox": [
+            14,
+            91,
+            119,
+            244
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\walk\\asceta-m-walk-04.png",
+          "sha256": "7819c36fc07784d015a3cce6b1a32fa9e4d2c40ccd1188d452d94930d34c341c",
+          "alpha_bbox": [
+            18,
+            93,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\hurt\\asceta-m-hurt-01.png",
+          "sha256": "e59c5ebf8ded0f8ac836931c09a74d4a883529f9aadbdb25a9a6d2c37b7eeacf",
+          "alpha_bbox": [
+            21,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\hurt\\asceta-m-hurt-02.png",
+          "sha256": "1f027415bfca2ff51385c2b17d074c61a339e8d29fa871ff15b38342cbf6b8a6",
+          "alpha_bbox": [
+            23,
+            101,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\hurt\\asceta-m-hurt-03.png",
+          "sha256": "888f724f1f04d5094dc1d70de7914e0efa7fd5665a4dcd4dbbec4226a258f87f",
+          "alpha_bbox": [
+            12,
+            120,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\hurt\\asceta-m-hurt-04.png",
+          "sha256": "75e12dd3c5333af3b7d564ea4e195799cee8a7c38068ebe65a532846cc43f0c9",
+          "alpha_bbox": [
+            18,
+            93,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\use_consumable\\asceta-m-use_consumable-01.png",
+          "sha256": "7704e6e59787716f0c3ad515098e47be3c1f9b7113a24172473ab38b7a4f1cb1",
+          "alpha_bbox": [
+            26,
+            94,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\use_consumable\\asceta-m-use_consumable-02.png",
+          "sha256": "e4cc99aef8b2af5db89aa8b02553d346692b7d9b63eac629ebc90cb0a905ed0f",
+          "alpha_bbox": [
+            28,
+            94,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\use_consumable\\asceta-m-use_consumable-03.png",
+          "sha256": "993f27c2be55e452ed0c50b13044a32ca8bfcec17c61c154085d68d21444bba3",
+          "alpha_bbox": [
+            24,
+            94,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\use_consumable\\asceta-m-use_consumable-04.png",
+          "sha256": "bd8ab4d6d5f6976291ce6ade630f10b1943839d5662cc51b7ba5643a8e580b50",
+          "alpha_bbox": [
+            28,
+            96,
+            111,
+            252
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\dodge\\asceta-m-dodge-01.png",
+          "sha256": "6e41676d5e572c352a7b3e7b28369bf38ceb99370a2b4d354197ec87a2d4c7ed",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\dodge\\asceta-m-dodge-02.png",
+          "sha256": "fd5d9415ea6ae9551ff31ecf0365ba59aa640cad99013f36af2011a074c4b646",
+          "alpha_bbox": [
+            18,
+            98,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\dodge\\asceta-m-dodge-03.png",
+          "sha256": "d41728e947a8946275aa5751325b5b5e6432b5b898bafd840eab24e9a96309ec",
+          "alpha_bbox": [
+            22,
+            108,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\dodge\\asceta-m-dodge-04.png",
+          "sha256": "9e90b576b98edf99f36fd979e7a859ee6a7a8c55690f287099506e1f725adb3d",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\block_shield\\asceta-m-block_shield-01.png",
+          "sha256": "5982d7fed5e2baccf2e87f112b3350cd34a18397ce2446480d997ee72a992063",
+          "alpha_bbox": [
+            18,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\block_shield\\asceta-m-block_shield-02.png",
+          "sha256": "7cc63132697ec97c83815ac840ddaed5df2d86439ef5d322ebd73acea642493e",
+          "alpha_bbox": [
+            18,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\block_shield\\asceta-m-block_shield-03.png",
+          "sha256": "d70db2c473b63f2118d68b7a70ff6cbf179373e6e7f16f3c3db88b5de65c1b14",
+          "alpha_bbox": [
+            17,
+            114,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\block_shield\\asceta-m-block_shield-04.png",
+          "sha256": "2f252de36b4a1edcfd83af6121105605651c627f48c0afbb0d75469d48aeb47d",
+          "alpha_bbox": [
+            18,
+            98,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_sword\\asceta-m-attack_sword-01.png",
+          "sha256": "e5c45ceba8c147072d2ca3649c72de58bd26de6c10e39fc75073709afc05c54e",
+          "alpha_bbox": [
+            12,
+            98,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_sword\\asceta-m-attack_sword-02.png",
+          "sha256": "2e7f83ba406ce61ac4a6fd9e15818f40dcca0853278b4a0505d80d696ce820fb",
+          "alpha_bbox": [
+            9,
+            99,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_sword\\asceta-m-attack_sword-03.png",
+          "sha256": "981c1fab92886d9c504dcf06825fac98c36a4ee834a39ab1802bdf984f8c43bb",
+          "alpha_bbox": [
+            12,
+            101,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_sword\\asceta-m-attack_sword-04.png",
+          "sha256": "b758b6e64fbaa8be71962e76ba39601856afa313d4c083ae64c1cf07872b94a2",
+          "alpha_bbox": [
+            20,
+            98,
+            115,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_axe\\asceta-m-attack_axe-01.png",
+          "sha256": "95a181d4061c91f43fc5d7252e4cf922c772adbc99f03718d69755b0d5332624",
+          "alpha_bbox": [
+            9,
+            100,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_axe\\asceta-m-attack_axe-02.png",
+          "sha256": "026b629a7814949bb75a6c9ed67c4fff850893ae17f42ed170a8baeb01422630",
+          "alpha_bbox": [
+            15,
+            113,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_axe\\asceta-m-attack_axe-03.png",
+          "sha256": "d33281985d25c9bc2cd1b744546acd51528a878f4d7818cfdc8618b24cc43ce0",
+          "alpha_bbox": [
+            10,
+            120,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_axe\\asceta-m-attack_axe-04.png",
+          "sha256": "91c5733139de12272adfab57c19c5616f4b5505c436483e2586d4e76fc7dbbee",
+          "alpha_bbox": [
+            23,
+            105,
+            120,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_spear\\asceta-m-attack_spear-01.png",
+          "sha256": "201ba1f34c474654a1d3d1897bccf6c2bdc0c08b6674d19c8dcf208e8dcd55ac",
+          "alpha_bbox": [
+            10,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_spear\\asceta-m-attack_spear-02.png",
+          "sha256": "5673ab47b6c74d22fd4196dd753d92615c9b55763d903f40a0988cf84b45ff52",
+          "alpha_bbox": [
+            15,
+            93,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_spear\\asceta-m-attack_spear-03.png",
+          "sha256": "9f316dd269f5ca12a3bf792689d42141682ff9ccc043cf6c9d013c8216142cce",
+          "alpha_bbox": [
+            14,
+            93,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_spear\\asceta-m-attack_spear-04.png",
+          "sha256": "841ae34891d48d0e4c766f52bb4f6bb7ce007d804a76d075a37799ef1d1beb47",
+          "alpha_bbox": [
+            21,
+            93,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_dagger\\asceta-m-attack_dagger-01.png",
+          "sha256": "a10fef1d9c9a24d858dbdcb7ad462c85691af75d4cbefb317cc2b20e244eedfc",
+          "alpha_bbox": [
+            19,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_dagger\\asceta-m-attack_dagger-02.png",
+          "sha256": "770bec30e2bfd15a5852980338086149a8c31178002a7a3db13040834f48ea60",
+          "alpha_bbox": [
+            24,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_dagger\\asceta-m-attack_dagger-03.png",
+          "sha256": "76f6ca355fd8b144fbbcfd9d014f3587a8bfdf755cdc04cf687842b6c57d2b4a",
+          "alpha_bbox": [
+            20,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_dagger\\asceta-m-attack_dagger-04.png",
+          "sha256": "bff03f4155e2d267da9b2a22e955dc114065f36ed590530147b7a71b5f9979c4",
+          "alpha_bbox": [
+            23,
+            93,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_bow\\asceta-m-attack_bow-01.png",
+          "sha256": "6043bbf4fc9b38cf9cbc03606571f8c6b6dfdd8acbaab766f452195a6fb6128b",
+          "alpha_bbox": [
+            20,
+            97,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_bow\\asceta-m-attack_bow-02.png",
+          "sha256": "90aa2d71b6d475ce66e4d37a2c0790cb3d8fbaccd93674872bbaf098002305b8",
+          "alpha_bbox": [
+            21,
+            97,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_bow\\asceta-m-attack_bow-03.png",
+          "sha256": "a4763c7bca102c90dfbf6c071ac5d6ecd2ca69cafdef9962f730ca0e1dfba762",
+          "alpha_bbox": [
+            21,
+            97,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_bow\\asceta-m-attack_bow-04.png",
+          "sha256": "5e256300d71e5f75050df8ed9b08782d56e6a10ab875e4493e0eefa6737eecc7",
+          "alpha_bbox": [
+            10,
+            96,
+            115,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_staff\\asceta-m-attack_staff-01.png",
+          "sha256": "7821cabfa989b575bb784538cedab6bf5353a96314e97e001ca289d986b3ed4c",
+          "alpha_bbox": [
+            26,
+            93,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_staff\\asceta-m-attack_staff-02.png",
+          "sha256": "65984b62f1e786e58dfbeb37a406aa9e870e7006e8cad18efc336de08e7d4937",
+          "alpha_bbox": [
+            26,
+            93,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_staff\\asceta-m-attack_staff-03.png",
+          "sha256": "ffa7df6ede16bf257e46d1fd01c8a93bc37552de0cec57acb431b55ff1b59494",
+          "alpha_bbox": [
+            24,
+            93,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_staff\\asceta-m-attack_staff-04.png",
+          "sha256": "7cf5ae49622945c223667f3f85effe6c0bd353aae5e73a1cbcb428e6cc175a42",
+          "alpha_bbox": [
+            16,
+            93,
+            97,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_mace\\asceta-m-attack_mace-01.png",
+          "sha256": "fd245e85a2d3ce53b1835cc62e88997e7c5d696e3056b2b75490e95649452227",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_mace\\asceta-m-attack_mace-02.png",
+          "sha256": "9748bda7066671d954c585a74dbf7a4a9787a884c0442a4fe70922c8ad536a63",
+          "alpha_bbox": [
+            32,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_mace\\asceta-m-attack_mace-03.png",
+          "sha256": "10dc23a6d04a5eefe1c50c4fa74cd7ee2fc19a8ad5899ce5b051b81713eb4ff1",
+          "alpha_bbox": [
+            25,
+            104,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_mace\\asceta-m-attack_mace-04.png",
+          "sha256": "6649b007a331187580f0b9ebaa8f1049423dead0ece48b8764554ef98459fdc6",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_book\\asceta-m-attack_book-01.png",
+          "sha256": "389e2cca772dcd137ae56e49c87219f5458db44c63a8ce95c938659ed2e5bc2c",
+          "alpha_bbox": [
+            21,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_book\\asceta-m-attack_book-02.png",
+          "sha256": "e4c6c00be532cb6a6e103f19b1aa6870a5855039c3f38ed98877bbcbd35ac1d8",
+          "alpha_bbox": [
+            23,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_book\\asceta-m-attack_book-03.png",
+          "sha256": "b8ca743da644e3218dd4ded67821790b9267afa5e5ae2eb27300c95f18ffbe03",
+          "alpha_bbox": [
+            21,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_book\\asceta-m-attack_book-04.png",
+          "sha256": "5182f7def19aa42d3daedf9f02c83591bdc098b984f84d6830aed8e6c7f13b5d",
+          "alpha_bbox": [
+            23,
+            92,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_gloves\\asceta-m-attack_gloves-01.png",
+          "sha256": "5edde135ce00468a19f2597eb8658be599983d1b014d5f27eac4bd8222e12aa0",
+          "alpha_bbox": [
+            21,
+            93,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_gloves\\asceta-m-attack_gloves-02.png",
+          "sha256": "47d4a2f740f7cb92d649dc9743d5398d493be3d42ad2d276eeef874af3dae461",
+          "alpha_bbox": [
+            23,
+            93,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_gloves\\asceta-m-attack_gloves-03.png",
+          "sha256": "b07a5d8b756719dd20b1656ec1553496fd181638a4514a7aa014e9503e7dc920",
+          "alpha_bbox": [
+            23,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asceta\\m\\frames\\attack_gloves\\asceta-m-attack_gloves-04.png",
+          "sha256": "30d779c5810041a9768aa11679ab7378a78847c56fa70e5612e446857c6bad41",
+          "alpha_bbox": [
+            26,
+            93,
+            112,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

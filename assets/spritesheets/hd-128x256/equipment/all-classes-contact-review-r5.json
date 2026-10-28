@@ -1,41 +1,11 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 72,
-  "contactChecks": 49104,
+  "variants": 74,
+  "contactChecks": 50468,
   "warnings": 0,
   "reports": [
     {
-      "classId": "novato",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "novato",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "mago",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "mago",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "espadachin",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "espadachin",
+      "classId": "acolito",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
@@ -47,295 +17,7 @@
       "warnings": []
     },
     {
-      "classId": "acolito",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "arquero",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "arquero",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "caballero",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "caballero",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "duelista",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "duelista",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "sacerdote",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "sacerdote",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "monje",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "monje",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "cazador",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "cazador",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "explorador",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "explorador",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "elementalista",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "elementalista",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "brujo",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "brujo",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "superNovato",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "superNovato",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "berserker",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "berserker",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "luchador",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "luchador",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "centinela",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "centinela",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "escriba_arcano",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "escriba_arcano",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "bardo",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "bardo",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "comerciante",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "comerciante",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "cruzado",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "cruzado",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "pirata",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "pirata",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "druida",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "druida",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "espadachin_runico",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "espadachin_runico",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "chaman",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "chaman",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "inquisidor",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "inquisidor",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "heraldo_guerra",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "heraldo_guerra",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "ninja",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "ninja",
+      "classId": "alquimista",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
@@ -347,49 +29,25 @@
       "warnings": []
     },
     {
-      "classId": "alquimista",
+      "classId": "arquero",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "herrero",
+      "classId": "arquero",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "herrero",
+      "classId": "asceta",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "paladin",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "paladin",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "guardian_real",
-      "sex": "m",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "guardian_real",
-      "sex": "f",
-      "contactChecks": 682,
-      "warnings": []
-    },
-    {
-      "classId": "asesino",
+      "classId": "asceta",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
@@ -401,25 +59,241 @@
       "warnings": []
     },
     {
-      "classId": "maestro_espadas",
+      "classId": "asesino",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "maestro_espadas",
+      "classId": "bardo",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "oraculo",
+      "classId": "bardo",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
     },
     {
-      "classId": "oraculo",
+      "classId": "berserker",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "berserker",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "brujo",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "brujo",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "caballero",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "caballero",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "cazador",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "cazador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "centinela",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "centinela",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "chaman",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "chaman",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "comerciante",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "comerciante",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "cruzado",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "cruzado",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "druida",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "druida",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "duelista",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "duelista",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "elementalista",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "elementalista",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "escriba_arcano",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "escriba_arcano",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "espadachin",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "espadachin",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "espadachin_runico",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "espadachin_runico",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "explorador",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "explorador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "guardian_real",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "guardian_real",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "heraldo_guerra",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "heraldo_guerra",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "herrero",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "herrero",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "hierofante",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []
@@ -431,8 +305,146 @@
       "warnings": []
     },
     {
-      "classId": "hierofante",
+      "classId": "inquisidor",
       "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "inquisidor",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "luchador",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "luchador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "maestro_espadas",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "maestro_espadas",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "mago",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "mago",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "monje",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "monje",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "ninja",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "ninja",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "novato",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "novato",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "oraculo",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "oraculo",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "paladin",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "paladin",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "pirata",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "pirata",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "sacerdote",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "sacerdote",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "superNovato",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "superNovato",
+      "sex": "m",
       "contactChecks": 682,
       "warnings": []
     }
