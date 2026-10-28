@@ -9,7 +9,8 @@
     "use_consumable",
     "dodge",
     "block_shield",
-    "attack_sword"
+    "attack_sword",
+    "attack_axe"
   ],
   "bodyHashes": {
     "idle": [
@@ -53,9 +54,15 @@
       "5f7ef1281c9b97a2a496f314fe52ca52b17209a6edec0faff2456f4f86a4160a",
       "e867147335977571e08ccbb79430d13056a872fec768d9db6a1ddf3c88064600",
       "24411529c1bdd971a31aea7a227901a7d6395a220dbde9b937878cd2369cb4fc"
+    ],
+    "attack_axe": [
+      "63c7b6290ec6d7c00be47a8360734ffb0ecf7a89d5c88590b65e3c4be7892647",
+      "ac28770404ff2c788359e9490ab7547f26f2817e7bcbc8a3591b900df681e6bb",
+      "db4487928ae52b34a17de688362d45bb4cb8f81b3e599eac6e7c5f4403c3f406",
+      "c752431487192f1ff98c765f395f23fe30e1c0263c98f5a03b56b412b303b8fb"
     ]
   },
-  "contactChecks": 560,
+  "contactChecks": 580,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,
