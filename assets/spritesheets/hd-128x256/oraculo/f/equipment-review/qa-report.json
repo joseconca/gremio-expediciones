@@ -10,7 +10,8 @@
     "dodge",
     "block_shield",
     "attack_sword",
-    "attack_axe"
+    "attack_axe",
+    "attack_spear"
   ],
   "bodyHashes": {
     "idle": [
@@ -60,9 +61,15 @@
       "3b7a08cafcd82e9f5db9cf76f3ed30b8fbcc42c5b84750c743d8002c5562c542",
       "a6883f47c0aefcc885e458899c3f0dead5326ab4c16096d9abb54aded9d80c00",
       "e28901b845c13562857575700019102d9faea5a89d195141255602f2d82cbe28"
+    ],
+    "attack_spear": [
+      "22a68c0736eece03ef7843de545c65c2536f1b08353c0fdc988f48a7899a3397",
+      "38fcf65fcdb26e44d5d7c782719d1c912c59d93ab3bf901e878fba6a084dcc38",
+      "e52238b883da6080a0ae7cab527e96efa9c2db693a6c063d53dd9a8ed9c7a734",
+      "d452c2a569654dd64e51d5cf5afc078e636ae449407c66066149e70a06488fa7"
     ]
   },
-  "contactChecks": 580,
+  "contactChecks": 596,
   "warnings": [
     {
       "action": "hurt",
