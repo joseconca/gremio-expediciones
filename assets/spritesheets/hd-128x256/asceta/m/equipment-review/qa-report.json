@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "asceta",
   "sex": "m",
   "actions": [
@@ -27,7 +27,7 @@
       "13bcb520bfef1c65fbd59fe13329ab38daa55f07c79f8b69dbe9af7374b8fd69"
     ],
     "walk": [
-      "500e40230f3b29af0c39e29811cd8a02cd850f765932664460f8153095242a5c",
+      "a5ceb082d94f08c2c6843f9077a8b01ed0e21eeb1710fa46ccb1a0a4d3f4063e",
       "14b05269727298f03b8b24b9b3120c3fda0b306d60f0af9c05823db98e760e9c",
       "d3f6a5b6b45f989c4cb969ef99e32a90663464888939da246defc6f55571e1fc",
       "7819c36fc07784d015a3cce6b1a32fa9e4d2c40ccd1188d452d94930d34c341c"
@@ -42,7 +42,7 @@
       "7704e6e59787716f0c3ad515098e47be3c1f9b7113a24172473ab38b7a4f1cb1",
       "e4cc99aef8b2af5db89aa8b02553d346692b7d9b63eac629ebc90cb0a905ed0f",
       "993f27c2be55e452ed0c50b13044a32ca8bfcec17c61c154085d68d21444bba3",
-      "43235d734eadd32a32c2a25b25237fd43e717f32b9e0660ca1299638bdf0f414"
+      "bd8ab4d6d5f6976291ce6ade630f10b1943839d5662cc51b7ba5643a8e580b50"
     ],
     "dodge": [
       "6e41676d5e572c352a7b3e7b28369bf38ceb99370a2b4d354197ec87a2d4c7ed",
@@ -84,7 +84,7 @@
       "6043bbf4fc9b38cf9cbc03606571f8c6b6dfdd8acbaab766f452195a6fb6128b",
       "90aa2d71b6d475ce66e4d37a2c0790cb3d8fbaccd93674872bbaf098002305b8",
       "a4763c7bca102c90dfbf6c071ac5d6ecd2ca69cafdef9962f730ca0e1dfba762",
-      "2809d60b1df6b44f78a557b0e1db6ad8a43d1ed92eb9e029f8b65d11c114af46"
+      "5e256300d71e5f75050df8ed9b08782d56e6a10ab875e4493e0eefa6737eecc7"
     ],
     "attack_staff": [
       "7821cabfa989b575bb784538cedab6bf5353a96314e97e001ca289d986b3ed4c",
@@ -112,26 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_bow",
-      "frame": 4,
-      "item": "arco_cazador",
-      "point": [
-        104,
-        144
-      ]
-    },
-    {
-      "action": "attack_bow",
-      "frame": 4,
-      "item": "arco_madera",
-      "point": [
-        104,
-        144
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
