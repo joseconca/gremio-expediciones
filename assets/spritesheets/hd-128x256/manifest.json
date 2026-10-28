@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "maestro_espadas-m",
+  "nextVariant": "maestro_espadas-f",
   "classes": [
     {
       "id": "novato",
@@ -153346,12 +153346,12 @@
       "tier": 3,
       "sex": "m",
       "order": 67,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/maestro_espadas/m/maestro_espadas-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/maestro_espadas/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -153365,12 +153365,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "eec1e586dfc290d091bf0c240d8f218fc67a185725484eae452dea0cc21bb074",
+                "bytes": 22917,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  106,
+                  250
+                ],
+                "pixelSha256": "0d63ce81c675923c6eac8175054af9c14c9703ba5c79c47b188cdf66d2c04266"
+              },
+              "02": {
+                "sha256": "57bae33c0961225933fcd519b62498e6f274edc176bf6c08b03536515d47af93",
+                "bytes": 22931,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "d27fc5c860e41af57b29895f684ebcc7652016c2ff15255f0be4b07dbdc673af"
+              },
+              "03": {
+                "sha256": "bf6f29dd5d64459964de8ed117eae87b08e94c79d53200c3f4a8923ee2b48250",
+                "bytes": 23086,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  106,
+                  250
+                ],
+                "pixelSha256": "cc39eaa7add7a8f3c7e9f036c9e5a985c74cdbdd3be73fab3ecf9591242f64b0"
+              },
+              "04": {
+                "sha256": "99f3c124831796ba7f826ee7001e971d1b80959e49081beae74789804b05f62e",
+                "bytes": 22991,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  106,
+                  250
+                ],
+                "pixelSha256": "d9f23906ff42e6c9e1ddebd9b5674e848d56e9360a2e21138aa2d42df226fc0e"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -153415,6 +153484,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "f059f6ff71c8b487617cf73e8264247079a4cd630f8c94b4aa3f2d23d9b6733c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: identity-preserve. Asset: Maestro de espadas Tier3 MALE idle sprite reference. Image1 is ONLY canonical geometry: exactly its FOUR idle/breathing full-body poses with third eyes closed, same hands/fingers/feet and head coordinates, exact 2172x724 horizontal canvas. Replace novice identity and EVERY garment. Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Full fitted ivory coat sleeves to wrists, no bare forearms, fitted navy trousers. Precisely consistent silver paired-blade CHEST EMBLEM, cobalt diamond buttons in one short vertical line, cobalt waist sash, two short narrow coat tails, navy shoulder caps and snug silver bracers on all4 figures. Elegant fencing officer identity, no scarf, no pouches, no oversized armor or head. Right-facing three-quarter view, compact silhouette, canonical body/head scale, clean crisp painted anime pixel-inspired RPG rendering as Image1. True transparent alpha, FOUR separate complete figures in ONE row; do not center or resize individuals. No held/sheathed weapons, shields or equipment, text, labels, grid, shadows or trails. Clean contours without red/yellow fringes.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -153423,12 +153550,12 @@
       "tier": 3,
       "sex": "f",
       "order": 68,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/maestro_espadas/f/maestro_espadas-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/maestro_espadas/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -153442,12 +153569,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "73921336c78f8cf13db60083aa007597283faff384b0b43ee7e93771dcb78d24",
+                "bytes": 23721,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  106,
+                  249
+                ],
+                "pixelSha256": "6f552de4439b6abd378c031d744dd294bac52e3a245adb6ccbf09c0c513da48d"
+              },
+              "02": {
+                "sha256": "06fb20786570d8a5e01c16291afada713a79c1f778d01f9b82f62832b74856e3",
+                "bytes": 23802,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  107,
+                  249
+                ],
+                "pixelSha256": "1d0e1e58a4c74e1c090464dca221d1a69528c9774c0645c3908ffafdc88400b4"
+              },
+              "03": {
+                "sha256": "44f8315e2c212302768ab514b12484c210a7d5722bfa7ef325305484a979a411",
+                "bytes": 23708,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  106,
+                  249
+                ],
+                "pixelSha256": "18c3cc5f42ec034ebcd78b30c81560605c0fa1502ceec3c7737d17f69988d4dd"
+              },
+              "04": {
+                "sha256": "27a0a8efaec75fb4f8e85ce8dc5f9139302b41fa703a94f848edea4ba22a3bf3",
+                "bytes": 23690,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  107,
+                  249
+                ],
+                "pixelSha256": "66badad53eee5e5681e3a5c10dcf0b026ecb580633bd82b12aad64a7d03f0cde"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -153491,6 +153687,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "395d8e98035022f5a6611679e872585e9328d464f9a81813a94f3ae045e80e19",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: identity-preserve. Asset: Maestro de espadas Tier3 FEMALE idle sprite strip. Image1 is ONLY female canonical GEOMETRY and exact four idle/breathing poses with third eyesclosed, same hands/fingers/feet/head coordinates. Image2 is ONLY matching CLASS COSTUME, colors and materials; never masculine face/anatomy. Adult experienced feminine Maestro de espadas with chestnut hair in compact braided chignon, attentive determined eyes, canonical female head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Compact chestnut braided CHIGNON BUN, no loose novice ponytail. Feminine adult face/proportions at canonical scale. Exactly4 complete fullbodyfigures, one2172x724transparentrow, right-facingthreequarter, sameperquarterplacement. Samecrisp paintedanimepixel-inspiredRPG renderingandlighting. No scarf, bags, weapons, sheath, equipment, shadows, effects, text or grid. Everycostumedetailconsistentallfour, cleanalphaedges.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -157814,7 +158068,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
