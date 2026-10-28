@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 70,
-  "contactChecks": 47740,
+  "variants": 72,
+  "contactChecks": 49104,
   "warnings": 0,
   "reports": [
     {
@@ -420,6 +420,18 @@
     },
     {
       "classId": "oraculo",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "hierofante",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "hierofante",
       "sex": "f",
       "contactChecks": 682,
       "warnings": []

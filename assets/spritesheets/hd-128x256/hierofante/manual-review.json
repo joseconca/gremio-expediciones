@@ -1,0 +1,63 @@
+{
+  "classId": "hierofante",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses only. Fixed canonical export; no class-dependent equipment offsets, body painting or limb transplants. Portrait derivations repeat four untouched complete canvases and retain raw originals.",
+  "selectedRevisions": {
+    "m/idle": "v4 all poses",
+    "m/walk": "registered v3, unchanged complete v2 source all poses",
+    "m/attack_bow": {
+      "4": "v2",
+      "1/2/3": "original"
+    },
+    "m/attack_spear": {
+      "2": "portrait v3",
+      "3": "portrait v5",
+      "1/4": "original"
+    },
+    "m/attack_gloves": {
+      "3": "v2 full ivory sleeve and gold bracer",
+      "1/2/4": "original"
+    },
+    "f/idle": {
+      "3": "portrait v6",
+      "1/2/4": "v3"
+    },
+    "f/walk": {
+      "1": "portrait v5",
+      "2": "v3",
+      "3": "portrait v6 repaired complete toe",
+      "4": "portrait v5"
+    },
+    "f/attack_spear": {
+      "2/3": "portraits v2",
+      "1/4": "original"
+    },
+    "f/attack_sword": {
+      "3": "portrait v3",
+      "1/2/4": "original"
+    },
+    "f/attack_bow": {
+      "1": "portrait v2",
+      "2/3/4": "original"
+    },
+    "f/attack_gloves": {
+      "1/4": "portraits v2",
+      "2/3": "original"
+    }
+  },
+  "allOtherActions": "original sources",
+  "notes": [
+    "All thirty source actions and final equipment compositions inspected. Representative equipment selected by type; shared weapon geometry is unchanged.",
+    "Ivory/wine ritual coat, twin wine/gold embroidered fringed stoles, gold sanctuary-gateway chest seal, diamond belt, flat three-pronged diadem and ivory/gold diamond boots distinguish Hierofante from Oraculo and lower Sacerdote. Male short silverwhite hair; female crown braid and nape bun. Full ivory sleeves/wine cuffs/gold plate bracers, dark fingerless gloves.",
+    "Critical real palms inspected in source comparisons, beyond automatic alpha contact checks. Shared canonical contacts sometimes lie on cloth/occluded arms, so natural anatomy and rendered weapon grip were also compared.",
+    "Male spear third portrait uses a previously reviewed Oraculo anatomical reference as imagegen pose guidance, re-costumed as Hierofante. Source is preserved; no pixel transplant.",
+    "Female walking third portrait v5 is unselected because its toe touches source edge. Revision6 restores complete toe with margin and passes canonical export bounds.",
+    "All raw portrait canvases, repeated-strip derivations, prompts and discarded candidates are preserved."
+  ]
+}

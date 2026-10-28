@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T14:05:12.945672+00:00",
+  "classId": "hierofante",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\hierofante-f-sheet.png",
+  "sheetSha256": "34a221a2ab779ab99427cca5c828af533ca196ed279cb4ba7b714354b3e794da",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\idle\\hierofante-f-idle-01.png",
+          "sha256": "26e7f9864f84e77f133ee83935fb3ad724ad180ee456ea1f6a319d3b09d22e65",
+          "alpha_bbox": [
+            21,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\idle\\hierofante-f-idle-02.png",
+          "sha256": "7a30db95188cf3d236ed136b32d1bf92d215744370984ce442de203b0cf3c167",
+          "alpha_bbox": [
+            21,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\idle\\hierofante-f-idle-03.png",
+          "sha256": "d72d49f52e87e0c0eac7bc38f4be941f90c53a2456b417e469034028edccd25f",
+          "alpha_bbox": [
+            27,
+            95,
+            109,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\idle\\hierofante-f-idle-04.png",
+          "sha256": "e9e7f8e515e7254129bbbf859714efa8e305b992561068d02d8c59d6692b93a2",
+          "alpha_bbox": [
+            15,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\walk\\hierofante-f-walk-01.png",
+          "sha256": "b6a824b2bd753220c74b408e3de6161e2ee37935d5f202fd8c3944579becf2f2",
+          "alpha_bbox": [
+            18,
+            95,
+            109,
+            245
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\walk\\hierofante-f-walk-02.png",
+          "sha256": "c575e39dd727d0687385db60f9cfc49707cbfa8175dadf65019b119819b9a2c0",
+          "alpha_bbox": [
+            33,
+            95,
+            97,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\walk\\hierofante-f-walk-03.png",
+          "sha256": "8ddc37d6c98bac2fb63ba64a2ab3b3ed4f932e55cbbb67f1364b361b08dd730a",
+          "alpha_bbox": [
+            10,
+            91,
+            114,
+            244
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\walk\\hierofante-f-walk-04.png",
+          "sha256": "59bcfae9a7c40202ff998b118f7b9e0d65dfde367712d39c854c02f604c6c999",
+          "alpha_bbox": [
+            27,
+            99,
+            96,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\hurt\\hierofante-f-hurt-01.png",
+          "sha256": "8cc7af0321ea008bb34e1ccd9bee1d532dbbf35a4f032f98d6f1a57453f48c70",
+          "alpha_bbox": [
+            25,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\hurt\\hierofante-f-hurt-02.png",
+          "sha256": "77a60e474943efe618ba858f36902b1f8dc678ed1a79669b83de19cb5bb0d947",
+          "alpha_bbox": [
+            24,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\hurt\\hierofante-f-hurt-03.png",
+          "sha256": "c05badda4d993351b6e857871c2a6b64987a41bc514a37ae1528a6e6eaba2fce",
+          "alpha_bbox": [
+            17,
+            114,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\hurt\\hierofante-f-hurt-04.png",
+          "sha256": "9cee9e1e00058a19186ecc052859c5e989ed6d374738c6b4197dcd91ca364290",
+          "alpha_bbox": [
+            15,
+            92,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\use_consumable\\hierofante-f-use_consumable-01.png",
+          "sha256": "a91f57d7928f59698a1e779ba5cf78de1e21f6201b60383588e88f1e4cb449fd",
+          "alpha_bbox": [
+            20,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\use_consumable\\hierofante-f-use_consumable-02.png",
+          "sha256": "14380705c5c93409bc5cdcf006ceb36c39b8c503e258bfbe90d68b167b27c952",
+          "alpha_bbox": [
+            27,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\use_consumable\\hierofante-f-use_consumable-03.png",
+          "sha256": "47243e6aee83fd574733b2426f7a9324334426924e949ddf91d4ed22756d3184",
+          "alpha_bbox": [
+            18,
+            92,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\use_consumable\\hierofante-f-use_consumable-04.png",
+          "sha256": "085901873f628b8c2223e4720845516604206f3d62669b6778913c16059e70df",
+          "alpha_bbox": [
+            21,
+            92,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\dodge\\hierofante-f-dodge-01.png",
+          "sha256": "cd5d3ad335ae6ac73f23bb10af879573510ece0e845116276e783cb99011195c",
+          "alpha_bbox": [
+            24,
+            93,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\dodge\\hierofante-f-dodge-02.png",
+          "sha256": "edf5f3b890949d3f7cee7006d2366052d2a1163cf81df81df0468e5dc3272b27",
+          "alpha_bbox": [
+            28,
+            94,
+            117,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\dodge\\hierofante-f-dodge-03.png",
+          "sha256": "a5a6051e5f0433e751eebf2491ddfcae5ad761b855e5c548237391af16956e3e",
+          "alpha_bbox": [
+            19,
+            127,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\dodge\\hierofante-f-dodge-04.png",
+          "sha256": "3ccbbc229be210093a04346435d6ba2eb695de505b922e38463a92ec6195c41d",
+          "alpha_bbox": [
+            17,
+            93,
+            104,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\block_shield\\hierofante-f-block_shield-01.png",
+          "sha256": "4bf669e2ac0cec6568e7c01bb329d22000fcb8e7791050791520174d9e3cc403",
+          "alpha_bbox": [
+            24,
+            93,
+            109,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\block_shield\\hierofante-f-block_shield-02.png",
+          "sha256": "f4d6cc3c5af873026d89946f6091c7e4c3b6c3c3bcba81ccc4f64bef6216be6e",
+          "alpha_bbox": [
+            24,
+            93,
+            110,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\block_shield\\hierofante-f-block_shield-03.png",
+          "sha256": "e39bc32f13371aa9ccc8967f1c0230d767d8fccbb546ac3ec7b92b2aa9f6b339",
+          "alpha_bbox": [
+            21,
+            105,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\block_shield\\hierofante-f-block_shield-04.png",
+          "sha256": "f02e97cc82e9a1a0702437bd47b41a31eb9fafa56b1e289693293ea2c7f49d2e",
+          "alpha_bbox": [
+            14,
+            93,
+            99,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_sword\\hierofante-f-attack_sword-01.png",
+          "sha256": "940550b8a8a0da5f91791d8bce2e22ea3635788766ebb58c647b66acc1e00f46",
+          "alpha_bbox": [
+            22,
+            94,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_sword\\hierofante-f-attack_sword-02.png",
+          "sha256": "6ce24435b178e3c29ba26256e1753b748c99c601c3644095a426d354ef9b5d9b",
+          "alpha_bbox": [
+            22,
+            93,
+            110,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_sword\\hierofante-f-attack_sword-03.png",
+          "sha256": "2855e9a9721fe70e76ace0273e54c3ee4b73c2e383dcdb7c53c69e8294d04b32",
+          "alpha_bbox": [
+            22,
+            99,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_sword\\hierofante-f-attack_sword-04.png",
+          "sha256": "a6cd9462e8039a26f7ab8df9975e25f77e49141388484b4f25a3b59d8e061fa6",
+          "alpha_bbox": [
+            20,
+            93,
+            106,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_axe\\hierofante-f-attack_axe-01.png",
+          "sha256": "537052c1674f84da28b77afdcacc40a0154486efc33d44dbc6855c1a1f3f3d11",
+          "alpha_bbox": [
+            26,
+            94,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_axe\\hierofante-f-attack_axe-02.png",
+          "sha256": "125f7cb31c8b4ad82c3015ea9207e8c9f4e79abee68057d4c9c664c3a96569c5",
+          "alpha_bbox": [
+            23,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_axe\\hierofante-f-attack_axe-03.png",
+          "sha256": "3d7cc9611352aecd8e7a4dd07b00d2a24dee391d1063d211f54b18f98df3540a",
+          "alpha_bbox": [
+            15,
+            105,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_axe\\hierofante-f-attack_axe-04.png",
+          "sha256": "953f7636d4f08f7a5c5bfaddcb3a19e92ae54bcf364911438b978dc1c59e1693",
+          "alpha_bbox": [
+            15,
+            96,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_spear\\hierofante-f-attack_spear-01.png",
+          "sha256": "14db41d4934a39bcd9956ad9edde2b49fa70ca42e47e6bb06f1d84dc750ecb29",
+          "alpha_bbox": [
+            16,
+            94,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_spear\\hierofante-f-attack_spear-02.png",
+          "sha256": "e39cb9386c41b8d8b9e1c50de224fd3886c26ffaded9f01075f3065241211c29",
+          "alpha_bbox": [
+            17,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_spear\\hierofante-f-attack_spear-03.png",
+          "sha256": "6cd01ac27db7ad66b16e96735c297d103659894d85fb0e44dcf6638159d707eb",
+          "alpha_bbox": [
+            18,
+            100,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_spear\\hierofante-f-attack_spear-04.png",
+          "sha256": "496c48301e958d247461789fc23c0f02bc459c543e5c5bc70eda5cca605829e3",
+          "alpha_bbox": [
+            17,
+            94,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_dagger\\hierofante-f-attack_dagger-01.png",
+          "sha256": "666e5a3a4a740d64aa66bb92a504a4e7e40986cd03f47529b37a07e535389456",
+          "alpha_bbox": [
+            15,
+            93,
+            101,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_dagger\\hierofante-f-attack_dagger-02.png",
+          "sha256": "9fd87e3069af51f2ba4fdb8b221d7353cab8e03fbc24f73fc34070e1d78bec8d",
+          "alpha_bbox": [
+            17,
+            92,
+            108,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_dagger\\hierofante-f-attack_dagger-03.png",
+          "sha256": "55707fe6d0f0555b03cc88c0cddb946ce2bbb6bdd6999907efd1aad1e7d55133",
+          "alpha_bbox": [
+            17,
+            93,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_dagger\\hierofante-f-attack_dagger-04.png",
+          "sha256": "96f36ed99bcba988c54e678beb17c826ff15a3a9c64ea682e1c1c0013a744469",
+          "alpha_bbox": [
+            18,
+            93,
+            104,
+            245
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_bow\\hierofante-f-attack_bow-01.png",
+          "sha256": "4653e33a1fd5cbd67b7a4296b91acc316d7937126173406eabc9cc5292b465dd",
+          "alpha_bbox": [
+            29,
+            99,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_bow\\hierofante-f-attack_bow-02.png",
+          "sha256": "004aed6f007aec6c479e53b3b36aad16b9d05da4140e2896af5bfd54c3b5e0b9",
+          "alpha_bbox": [
+            15,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_bow\\hierofante-f-attack_bow-03.png",
+          "sha256": "6d2fee9ab38938ef89b65550159cb18c4234969998d761f3cb59dfaecf3b00cf",
+          "alpha_bbox": [
+            14,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_bow\\hierofante-f-attack_bow-04.png",
+          "sha256": "203c275eac6bd782fb1ba2029addd983452b485a003ce9ca2f57cd6ed6b079e4",
+          "alpha_bbox": [
+            14,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_staff\\hierofante-f-attack_staff-01.png",
+          "sha256": "8be4f637531d8d92f208e7426b66e1a3d18210f91c4cae5ebb4265232c05e9b6",
+          "alpha_bbox": [
+            20,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_staff\\hierofante-f-attack_staff-02.png",
+          "sha256": "c3b622d4f9b3a0da1fa81a11a20bdbdb1f27427f243c6a8f28f35c4470b3ad61",
+          "alpha_bbox": [
+            19,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_staff\\hierofante-f-attack_staff-03.png",
+          "sha256": "316df6ab84c5bb84cfc0d68cfd42649fa469fd0e4cefa4ed4d4fda085b2ca365",
+          "alpha_bbox": [
+            19,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_staff\\hierofante-f-attack_staff-04.png",
+          "sha256": "0d568bcd59afa53f03db18bdebf2ee2f123fbbcc9be6e5ee93c02d19acc6115b",
+          "alpha_bbox": [
+            21,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_mace\\hierofante-f-attack_mace-01.png",
+          "sha256": "2467305d7a7735f61a3235e718b2a743c787d1e42febe68f5344dfc5aa356f90",
+          "alpha_bbox": [
+            25,
+            92,
+            109,
+            244
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_mace\\hierofante-f-attack_mace-02.png",
+          "sha256": "d5eed392c307c692fb6fcd2288786c85bd162257a851737d4ebf69ca7d238ef2",
+          "alpha_bbox": [
+            21,
+            92,
+            109,
+            244
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_mace\\hierofante-f-attack_mace-03.png",
+          "sha256": "165e3430b0f7581bd227ae60a51ab1e8c8f0f63a927533a499c3909a6d5bb073",
+          "alpha_bbox": [
+            15,
+            96,
+            102,
+            244
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_mace\\hierofante-f-attack_mace-04.png",
+          "sha256": "695a120d84b737d8ef8637cb7e61bc37e0859b1efcfc0034545be6096bd2ed5b",
+          "alpha_bbox": [
+            18,
+            92,
+            103,
+            244
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_book\\hierofante-f-attack_book-01.png",
+          "sha256": "d1ee57f0b3c067765f3769d1139de2caf5fbfbb75191509c91a9f1134243d7aa",
+          "alpha_bbox": [
+            26,
+            93,
+            105,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_book\\hierofante-f-attack_book-02.png",
+          "sha256": "c748fa2b912b48e8ef019b0186261dc8b06aa0ca178a39ac877338db41a46113",
+          "alpha_bbox": [
+            26,
+            93,
+            104,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_book\\hierofante-f-attack_book-03.png",
+          "sha256": "32d6691d96067b3c2e0845481b7a119414d7c9de416f1c0aa79eb1c2c5a10227",
+          "alpha_bbox": [
+            23,
+            93,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_book\\hierofante-f-attack_book-04.png",
+          "sha256": "83c78646933d31174443fffbea6c7f6378b0ac637df17b3bde44470550526da5",
+          "alpha_bbox": [
+            25,
+            93,
+            105,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_gloves\\hierofante-f-attack_gloves-01.png",
+          "sha256": "3b858a1ee59d9b0728157dec64d3486ffe25634716d3dd6d36ca79f34dd23928",
+          "alpha_bbox": [
+            24,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_gloves\\hierofante-f-attack_gloves-02.png",
+          "sha256": "f65f639b15936b3745ec29810895f434542b36ef6dd40a59b0a897c44d3ea3a4",
+          "alpha_bbox": [
+            18,
+            91,
+            101,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_gloves\\hierofante-f-attack_gloves-03.png",
+          "sha256": "2a8445e078f7c98d38f2ce126e5195eb95ac32e9b946de26eebb4903c39dd6c9",
+          "alpha_bbox": [
+            10,
+            91,
+            109,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hierofante\\f\\frames\\attack_gloves\\hierofante-f-attack_gloves-04.png",
+          "sha256": "0714b8a8db8d477825225cd8cc4064b5b69cbc73eaac4c9ae315f8b6646e58f1",
+          "alpha_bbox": [
+            19,
+            97,
+            96,
+            246
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
