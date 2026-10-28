@@ -127508,7 +127508,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -127518,7 +127518,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -128082,7 +128083,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b8382a7fa77d15b35006ac803add5823d60f266682338714cb252e3c02c8c45a",
+                "bytes": 24668,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  108,
+                  249
+                ],
+                "pixelSha256": "b629b0a0214e69ab7e6391bf3222a7a181b4bcbeb84b9aff6604810ed3e19a6d"
+              },
+              "02": {
+                "sha256": "5a83ca281ad09d2872b7946ec2ab247d883971181d1635c12823f4fd9f8aefd6",
+                "bytes": 23819,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  92,
+                  100,
+                  249
+                ],
+                "pixelSha256": "33c228d331cb5714a11d93fd55d835171794cdf59fe46754e466374db56b6cb9"
+              },
+              "03": {
+                "sha256": "3186d4b86d137429dd6dd6e5b01e5064022e753aece56b93b5d9d2faa5fa838f",
+                "bytes": 24087,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  92,
+                  109,
+                  249
+                ],
+                "pixelSha256": "c0211e09a122e5ae24d2af3ea28029ccaae494c229d2da156f50ebd644537608"
+              },
+              "04": {
+                "sha256": "006565b3719eeaa26772473257eccd56d8682b99e2c2c21d960c18d5ccac285e",
+                "bytes": 24571,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  92,
+                  108,
+                  249
+                ],
+                "pixelSha256": "8ae8125edf1875148294484191ab016337ee14b36cb0a9c35cbad9369bcc5236"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -128408,6 +128476,44 @@
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "faa90a535344535b2114ac0dd8757541ccfcf7979273ff4a50e185312fa88cef",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/alquimista/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the identity reference's precise laboratory outfit and accessories: fitted FULL-LENGTH IVORY sleeves ending at IVORY cuffs touching black fingerless gloves, exposed fingertips but NO bare forearms; TWO clipped green glass ampoules and TWO square brown belt pouches; one green sewn circle breast badge; fine BRASS OVAL SPECTACLES in EVERY pose even closed eyes. MALE retains short tidy chestnut moustache, FEMALE has no facial hair. All fixed costume details identical across all four figures.  Production RPG body sprite strip for Alquimista FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. All four figures retain brass oval glasses, including closed eyes. MALE retains short tidy moustache even with mouth open; FEMALE has no facial hair. Match approved identity's fitted FULL-LENGTH IVORY sleeves and distinct IVORY cuffs touching black fingerless gloves: NO bare skin between elbows and gloves. Keep exactly TWO clipped green glass ampoules and TWO square brown belt pouches, one green sewn transmutation-circle breast badge, brass oval spectacles in ALL poses. MALE short chestnut moustache must remain, FEMALE no facial hair. Adult inquisitive feminine alchemist with dark chestnut braided crown and compact low bun, brass oval glasses. Guild alchemist uniform: fitted IVORY short laboratory coat with BOTTLE-GREEN inner waistcoat and narrow OCHRE piping, compact split coat tails, stitched green transmutation-circle badge on chest, small sealed empty transparent green glass ampoules firmly clipped at belt, two square brown tool pouches, brass oval spectacles, fitted charcoal trousers and dark polished boots, dark fingerless gloves with snug ivory cuffs. No cravat tails, scarf, cape, held flask, spilled liquid, fumes or magical effects. Tier2.5 Comerciante/Mago hybrid: inherits merchant square pouches and spectacles, adds precision laboratory tailoring and secured glass elements. No royal or full wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+            "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+            "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+            "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -128537,6 +128643,22 @@
         },
         "attack_axe/04": {
           "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
           "frame": 4
         }
       },
