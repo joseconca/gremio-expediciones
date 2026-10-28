@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 74,
-  "contactChecks": 50468,
+  "variants": 76,
+  "contactChecks": 51832,
   "warnings": 0,
   "reports": [
     {
@@ -252,6 +252,18 @@
     },
     {
       "classId": "explorador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "gran_maestro",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "gran_maestro",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T16:33:33.311599+00:00",
+  "classId": "gran_maestro",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\gran_maestro-m-sheet.png",
+  "sheetSha256": "b65757cfd0f299458cd06168252032d73715670921bd0fc0e4afcbe1defcf8d3",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\idle\\gran_maestro-m-idle-01.png",
+          "sha256": "0172888a41543bd29d43c4a26864f4590bc3b44c6bd0596c6bac58e2fea2686f",
+          "alpha_bbox": [
+            26,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\idle\\gran_maestro-m-idle-02.png",
+          "sha256": "fa5a0ba61c885db86d1b28ea9e23975b691930e332bbbe698971d72c8ffb5c82",
+          "alpha_bbox": [
+            26,
+            89,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\idle\\gran_maestro-m-idle-03.png",
+          "sha256": "18729451901faec915d48c1c096e720ee28df258826a72f293fda4279c971218",
+          "alpha_bbox": [
+            26,
+            89,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\idle\\gran_maestro-m-idle-04.png",
+          "sha256": "9d7a8dfb2140d46db002f1f80bc59b14ba756ce0ed9eaf9afff2323178dc3bed",
+          "alpha_bbox": [
+            26,
+            89,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\walk\\gran_maestro-m-walk-01.png",
+          "sha256": "a016f3f19fe3fd8a3fc2fcf0c140d70aef63fc6d221844f2bc76aaa1e2b547a2",
+          "alpha_bbox": [
+            6,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\walk\\gran_maestro-m-walk-02.png",
+          "sha256": "3f7b8f1c14e1169ea07d4362f5da6f2ea1ba9d3dbf3fa5c811125b711c5ecb2c",
+          "alpha_bbox": [
+            6,
+            89,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\walk\\gran_maestro-m-walk-03.png",
+          "sha256": "e53d10f1925fbf13384c71573b482f26a61e0341bfb43970a6c9cc254390f655",
+          "alpha_bbox": [
+            15,
+            89,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\walk\\gran_maestro-m-walk-04.png",
+          "sha256": "4d369f46e0e544c71c2b4a924ca194c4607f00717ba80ea1388ebc048beb1ddb",
+          "alpha_bbox": [
+            20,
+            94,
+            119,
+            254
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\hurt\\gran_maestro-m-hurt-01.png",
+          "sha256": "afd74eb191dec8705fc0b062680d378ba4c1288b32c627be47846d361eed97d2",
+          "alpha_bbox": [
+            23,
+            89,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\hurt\\gran_maestro-m-hurt-02.png",
+          "sha256": "ee5541a594ddbb4b17e95dd1e2ae4e4d70a97a691598ab928c68c7fec23b3ce5",
+          "alpha_bbox": [
+            26,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\hurt\\gran_maestro-m-hurt-03.png",
+          "sha256": "6054cb1856251b12b2eca13d95008eb0e2f2eb3255c591865c4e9db538b0f030",
+          "alpha_bbox": [
+            14,
+            115,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\hurt\\gran_maestro-m-hurt-04.png",
+          "sha256": "786f8efee85aa1fc40ad667de8cfdce2c477528164ca14fe8fd021e110ec81bd",
+          "alpha_bbox": [
+            23,
+            89,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\use_consumable\\gran_maestro-m-use_consumable-01.png",
+          "sha256": "71bb31916fcd2f5ff6bd5e3e94645c8d24d31541428e57f33015e818815f2ee6",
+          "alpha_bbox": [
+            24,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\use_consumable\\gran_maestro-m-use_consumable-02.png",
+          "sha256": "096bcce64c3916c944063d3ccdce9da9a844fd4c831ff3351b61d79bf7c4d6f6",
+          "alpha_bbox": [
+            24,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\use_consumable\\gran_maestro-m-use_consumable-03.png",
+          "sha256": "a5ef438e216eb3138774be575089905a00cca37328204ea5dadeadcc8674a84c",
+          "alpha_bbox": [
+            24,
+            92,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\use_consumable\\gran_maestro-m-use_consumable-04.png",
+          "sha256": "5f0a7349e1f9fd58f181a9b88d1f01e1b685987951fa7807863a5b84610d11e3",
+          "alpha_bbox": [
+            24,
+            93,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\dodge\\gran_maestro-m-dodge-01.png",
+          "sha256": "896e0fb1903a6fd18977c834ef26e2da8abeea91f8d8eeffb69b55f20e6cc4e4",
+          "alpha_bbox": [
+            18,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\dodge\\gran_maestro-m-dodge-02.png",
+          "sha256": "bd87258966a096ea216e2c149dd5058733c25b99e48c1cdf79008cfab363afae",
+          "alpha_bbox": [
+            21,
+            98,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\dodge\\gran_maestro-m-dodge-03.png",
+          "sha256": "83eb0965ab15a0764bea9b88266e32936b134546dfc2ad4f1f06affd42bd1181",
+          "alpha_bbox": [
+            29,
+            101,
+            107,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\dodge\\gran_maestro-m-dodge-04.png",
+          "sha256": "43be70b33725b3d7630ca84d92b94b034b19f64b1cfbe2959d37af8c5ce39c72",
+          "alpha_bbox": [
+            21,
+            98,
+            111,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\block_shield\\gran_maestro-m-block_shield-01.png",
+          "sha256": "54cae1cd2b842fa487cc62117866ca66fbdfca44221a7f803ef53938ac134dbf",
+          "alpha_bbox": [
+            19,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\block_shield\\gran_maestro-m-block_shield-02.png",
+          "sha256": "0374c67cf300807ba8087d15565ca58d75526de44f0f4e9282e8963b553c8b94",
+          "alpha_bbox": [
+            19,
+            98,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\block_shield\\gran_maestro-m-block_shield-03.png",
+          "sha256": "e71d8201c60e842bcebce28ee4e4010759c48f971fe1182c8ba4868d03ab42cc",
+          "alpha_bbox": [
+            18,
+            114,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\block_shield\\gran_maestro-m-block_shield-04.png",
+          "sha256": "df998f94b4a66e8de8b60abcbdf21d068f39f79145094a939549fef6f6c5d283",
+          "alpha_bbox": [
+            19,
+            98,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_sword\\gran_maestro-m-attack_sword-01.png",
+          "sha256": "fe5ca567d62a2eb9dd9b3533d2e59cf8e6aa289df1bde85325b6d18ebe7d3505",
+          "alpha_bbox": [
+            7,
+            96,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_sword\\gran_maestro-m-attack_sword-02.png",
+          "sha256": "1543728c0d9fa653a33ce70cec781706dce8cc458669881f41df7551b279b144",
+          "alpha_bbox": [
+            11,
+            96,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_sword\\gran_maestro-m-attack_sword-03.png",
+          "sha256": "a974fb53a613c941aa4d1aa1b87dd10afc3fe74489d33eed2325d14ac6942029",
+          "alpha_bbox": [
+            13,
+            97,
+            123,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_sword\\gran_maestro-m-attack_sword-04.png",
+          "sha256": "969571dd871ce18c418996b6d7b8f53c145204c371fd900f3fd2f0c5e1356d04",
+          "alpha_bbox": [
+            18,
+            96,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_axe\\gran_maestro-m-attack_axe-01.png",
+          "sha256": "9446697a83c2c95e328c5c83c5f530e34f3d8ff7b5110ada911b5d23bb2b0541",
+          "alpha_bbox": [
+            11,
+            101,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_axe\\gran_maestro-m-attack_axe-02.png",
+          "sha256": "c4b1ca3450cf0899551b86ba3f22cdf11a73fb36c74803c3c93b93d24aa35d79",
+          "alpha_bbox": [
+            18,
+            110,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_axe\\gran_maestro-m-attack_axe-03.png",
+          "sha256": "e845c52c6930bb15816ead4fcccb1d3499053732402b7f735b731b1ed03783f0",
+          "alpha_bbox": [
+            11,
+            119,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_axe\\gran_maestro-m-attack_axe-04.png",
+          "sha256": "5e80d9a300632f34b92ce447ab2ccee572dcc9da9af8eca8b46c38d51a285792",
+          "alpha_bbox": [
+            19,
+            105,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_spear\\gran_maestro-m-attack_spear-01.png",
+          "sha256": "3c664dc76daefbfbd77624315da67a1bd823923f742c077ce72d42845344b321",
+          "alpha_bbox": [
+            10,
+            92,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_spear\\gran_maestro-m-attack_spear-02.png",
+          "sha256": "79055f52197585d4928e3627d73c80874f4d951ea66bcd4c4841bbcf811b7537",
+          "alpha_bbox": [
+            16,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_spear\\gran_maestro-m-attack_spear-03.png",
+          "sha256": "0ad027f81706bd1aff9c744539d1fb4d29b92f69da1a68e522f85a87b792bf8d",
+          "alpha_bbox": [
+            16,
+            92,
+            120,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_spear\\gran_maestro-m-attack_spear-04.png",
+          "sha256": "34a77ae1f1056fd346c2ef8537932caa0a076d348da6531ede3a88e4dcaaf10d",
+          "alpha_bbox": [
+            21,
+            92,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_dagger\\gran_maestro-m-attack_dagger-01.png",
+          "sha256": "0aae7f72850f7961a6adf20ef04178f4d7e7abd7faa942d308f9e1bf3090a3ab",
+          "alpha_bbox": [
+            26,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_dagger\\gran_maestro-m-attack_dagger-02.png",
+          "sha256": "ebd08d83e6b9e0f0d3b39c76997280dde9b6735e9f9b6cd350f0942580ee3915",
+          "alpha_bbox": [
+            23,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_dagger\\gran_maestro-m-attack_dagger-03.png",
+          "sha256": "8a324861a5792442a8304031604182b995ac6a82a880cab2cf3fd3b9e7201f05",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_dagger\\gran_maestro-m-attack_dagger-04.png",
+          "sha256": "02b2d406c837f6c727562be61e29beb387a090c463f753a6dd807b596c788134",
+          "alpha_bbox": [
+            26,
+            92,
+            104,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_bow\\gran_maestro-m-attack_bow-01.png",
+          "sha256": "882b3279e616acd4b7ade6324bee8d18dfdf2cddce4d6c86017f816a2e9ca350",
+          "alpha_bbox": [
+            24,
+            96,
+            125,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_bow\\gran_maestro-m-attack_bow-02.png",
+          "sha256": "b7d5ae69f0417e4717148803aef4e6ec5951f61a3fba29d0ea786231f82a4bc4",
+          "alpha_bbox": [
+            24,
+            96,
+            125,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_bow\\gran_maestro-m-attack_bow-03.png",
+          "sha256": "4b9d3adc21ad2cd040dc4dc751976f058618f6c0f495bbd8db5df2e6fe1dd51a",
+          "alpha_bbox": [
+            24,
+            96,
+            126,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_bow\\gran_maestro-m-attack_bow-04.png",
+          "sha256": "26baf2cee0d5dfc444db8e5eb79ec1d5b901077e46f68e5417cb796c19b59523",
+          "alpha_bbox": [
+            10,
+            99,
+            111,
+            252
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_staff\\gran_maestro-m-attack_staff-01.png",
+          "sha256": "38f6ce7f7ee7ab4d7e441d0532efbfe4cf457cb6b67251332d73abc8386c4be6",
+          "alpha_bbox": [
+            30,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_staff\\gran_maestro-m-attack_staff-02.png",
+          "sha256": "6cc67dac77bda453e4deb8b1890eed1909634e46980a04c282147f36079819aa",
+          "alpha_bbox": [
+            24,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_staff\\gran_maestro-m-attack_staff-03.png",
+          "sha256": "04ef35f714354f99455dcc3ec325b91179ab15c81edf9465305fae5881afd8df",
+          "alpha_bbox": [
+            30,
+            92,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_staff\\gran_maestro-m-attack_staff-04.png",
+          "sha256": "ced87e5a39263a5c3a27916ff7efc397096ab4015daaec9b2446116926edefe7",
+          "alpha_bbox": [
+            24,
+            92,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_mace\\gran_maestro-m-attack_mace-01.png",
+          "sha256": "bebddb7c878efd5eb6f21c06d387ec8a16ffe8b45461055742115d4d8a0fe23c",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_mace\\gran_maestro-m-attack_mace-02.png",
+          "sha256": "c4fb59ecab945ad5e4f43b98a29569a388ed41eebef0e73801740dc7a6dec673",
+          "alpha_bbox": [
+            30,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_mace\\gran_maestro-m-attack_mace-03.png",
+          "sha256": "7c264703662546099853bcb5572f95c8e3491a22ef1bf5c814b1adc9d483b3a9",
+          "alpha_bbox": [
+            23,
+            102,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_mace\\gran_maestro-m-attack_mace-04.png",
+          "sha256": "c804e724f4254438e87cb39b572116d4ad4aba1615dd6af1f7939231156088fc",
+          "alpha_bbox": [
+            30,
+            90,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_book\\gran_maestro-m-attack_book-01.png",
+          "sha256": "6a135900590e4a0c9886ff07f9e90fdb03382a6bed684cfc8b2ce428271a200c",
+          "alpha_bbox": [
+            26,
+            90,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_book\\gran_maestro-m-attack_book-02.png",
+          "sha256": "c739e7e06a665b3014e8acc26151a4d40b78e0d2f9c6f1e4280b0b0f30356dd4",
+          "alpha_bbox": [
+            27,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_book\\gran_maestro-m-attack_book-03.png",
+          "sha256": "1abd18718c5781f5e34c7ced70c43cc8c8de8ec90e9d8209bc8ce054355c8353",
+          "alpha_bbox": [
+            25,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_book\\gran_maestro-m-attack_book-04.png",
+          "sha256": "64afe4190d8b6835104c5a1a5ff2012661818e1ef9d75d2125703f5d584aa51b",
+          "alpha_bbox": [
+            27,
+            90,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_gloves\\gran_maestro-m-attack_gloves-01.png",
+          "sha256": "920aba0c46aa6aaf61b1ac531e917562d3137756966162f80c3dd06e002bbe23",
+          "alpha_bbox": [
+            22,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_gloves\\gran_maestro-m-attack_gloves-02.png",
+          "sha256": "4948036c4f543484722e739648013e3ef327056ec78e60578577a3dfa70c26ab",
+          "alpha_bbox": [
+            24,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_gloves\\gran_maestro-m-attack_gloves-03.png",
+          "sha256": "cf1d0df18eb073760142aa2e6bb099f2c56905689f9d6854cca67c1f5da49477",
+          "alpha_bbox": [
+            22,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\gran_maestro\\m\\frames\\attack_gloves\\gran_maestro-m-attack_gloves-04.png",
+          "sha256": "b867de818eb5c2aae82fdda016e62951761b3057e28495fc843bc2d29fdd549a",
+          "alpha_bbox": [
+            24,
+            89,
+            112,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

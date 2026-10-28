@@ -1,0 +1,164 @@
+{
+  "classId": "gran_maestro",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses only. Fixed canonical export; no class equipment offsets, body painting or limb transplants. Portrait strips repeat four untouched complete canvases and preserve original raw images.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame03-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame03-reference-v4.png"
+      }
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_sword-reference-v2.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-reference-v3.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame03-reference-v2.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "All thirty source strips and final representative equipment compositions inspected, one example by weapon structure. Both axe structures reviewed.",
+    "Crimson sleeveless crossover vest, black brocade gold cloud-knot panels, broad ivory sash with gold interwoven knot clasp, compact black gold elbowguards, cream black-bound wraps, charcoal trousers and black red/gold cloud-knot boots distinguish the advanced martial master. Silver temple streaks, male high topknot and female compact double braided nape knots.",
+    "Corrected male sword costume, old novice boot caps in bow, walk hand positions, spear palms, female hurt recovery. Full generated sources and rejected revisions preserved.",
+    "Canonical legacy points can lie outside visible hands or on occluded anatomy; actual rendered grips were also inspected. No shared equipment geometry changed. Library candidates are not automatically activated.",
+    "Male consumable recovery retains the original return toward the waist like canonical Novato. Its nominal contact is on the pouch, not the hanging palm. Alternate portraits drift or clip and remain unselected."
+  ]
+}

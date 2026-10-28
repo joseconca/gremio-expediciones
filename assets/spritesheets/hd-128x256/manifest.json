@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "gran_maestro-m",
+  "nextVariant": "francotirador-m",
   "classes": [
     {
       "id": "novato",
@@ -324,7 +324,7 @@
       "name": "Gran maestro",
       "tier": 3,
       "order": 38,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "francotirador",
@@ -175472,7 +175472,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/gran_maestro/m/gran_maestro-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/gran_maestro/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -175629,20 +175629,20 @@
                 "pixelSha256": "4ae7dda33715dba27e3c08efedf12794950b3828206e8155ac00772fd4de3810"
               },
               "04": {
-                "sha256": "d975a394e4bc37e5ea6f22de398afe40f02bdb306ce6bb57155c18318387b627",
-                "bytes": 23066,
+                "sha256": "4d369f46e0e544c71c2b4a924ca194c4607f00717ba80ea1388ebc048beb1ddb",
+                "bytes": 22828,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  90,
-                  112,
-                  249
+                  20,
+                  94,
+                  119,
+                  254
                 ],
-                "pixelSha256": "853b1861b57a198e0e7db2acf0c5b082c4f39ce9b7fc5e314bfe91cfcd318357"
+                "pixelSha256": "a0b395bab37045fb666e8443fb9c7029e720c7ca6c3112443e69b2af97161654"
               }
             },
             "distinctFrames": 4
@@ -176103,20 +176103,20 @@
                 "pixelSha256": "b888ba625b212355d9e61f9c1034455dffe71c83c695b6595280def77db3ed4e"
               },
               "03": {
-                "sha256": "f28c765e8299f3a56a360a471939ff60006e5274fe0efbfbf750808a75a4b3ee",
-                "bytes": 21994,
+                "sha256": "0ad027f81706bd1aff9c744539d1fb4d29b92f69da1a68e522f85a87b792bf8d",
+                "bytes": 21155,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
+                  16,
                   92,
-                  115,
-                  248
+                  120,
+                  246
                 ],
-                "pixelSha256": "439e0a29a277f8a942dddc4aec47ee061b8b6aa1ac6359e087314c17b71a0940"
+                "pixelSha256": "e4343d0b4b3df1541e05563407352a124bf36626059baf123e4bb0a1a0311b9d"
               },
               "04": {
                 "sha256": "34a77ae1f1056fd346c2ef8537932caa0a076d348da6531ede3a88e4dcaaf10d",
@@ -176259,20 +176259,20 @@
                 "pixelSha256": "03edea3ce43ed19d38de698b43f6ff9e925f7e239f9993fa595bcf935c566af3"
               },
               "04": {
-                "sha256": "05cace0ecc3f450d98146a65ba9d7dfcf32454a012ba4f66dea506500039b574",
-                "bytes": 21756,
+                "sha256": "26baf2cee0d5dfc444db8e5eb79ec1d5b901077e46f68e5417cb796c19b59523",
+                "bytes": 20894,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  19,
-                  96,
-                  123,
-                  249
+                  10,
+                  99,
+                  111,
+                  252
                 ],
-                "pixelSha256": "1c1ae7542e2e1e3fb1ce5c329d5f8e5debabb7ab6d74feb18d367e76d294a5ee"
+                "pixelSha256": "662140f68debd02fa236e7ddafb53ca48799b455c73615de4170bcb48dbc9a83"
               }
             },
             "distinctFrames": 4
@@ -176596,10 +176596,11 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "da2ab34d682d67ae07827c71708489e0fa840e64300f2ee557eadd380ffa6c5f",
+          "sourceSha256": "1c5ff6c286cedf46b957c19bd3921f789676786d6b3e263f7198a15e6f4d20c4",
           "sourceDimensions": [
             4344,
             1448
@@ -176624,9 +176625,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Re-costume Image1 as GRAN MAESTRO MALE, Tier3, walk pose3. Image1 is ONLY previously validated body anatomy and exact grip geometry from Asceta. Image2 defines Gran maestro COSTUME/IDENTITY details only. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale. Preserve EXACT hand/finger coordinates, all arm/elbow placement, feet, head scale and ENTIRE canvas layout of Image1. Do not recenter, change poses or move grips. Replace ALL saffron/ivory tunic, brown sash, amber LOTUS clasp, wooden beads, brown shoes, crossbindings and brown hair of Image1 completely with Gran maestro crimson/black GOLD CLOUD-KNOT brocade, IVORY sash with gold KNOT clasp, BLACK/GOLD compact elbow guards, CREAM wrist wraps with BLACK bindings and black fingerless hands, black split-toe boots RED/GOLD calf bands and gold cloud-knot shin motif, black/silver hair. No old Asceta costume remains. Keep fingers exposed, bare upper arms. Exactly ONE COMPLETE full body, same portrait canvas aspect ratio. Full hair and toes within clear transparent margins. True transparent alpha background, clean contour. No equipment, weapons, magic, shadow or text.\n",
+          "prompt": "Small local grip correction in this existing GRAN MAESTRO MALE portrait. Move ONLY the far RIGHT-side hanging hand a SMALL distance LEFT40pixels and UP20pixels, toward the magenta target. Keep its natural open-thumb grip, shorten/bend forearm naturally. Near LEFT hand fixed. Pixel distances refer to this current1086x1448canvas. Keep exact whole body position and scale, head/hair/face, both shoulders/elbows, legs, feet, costume details, brocade, sash, all boots and boot motifs unchanged. Do not center, enlarge or reinterpret pose. Remove magenta target. ONE complete body, same transparent canvas, full silhouette margins, no weapon/equipment/effects/shadows/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -176634,7 +176635,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "77ec9c74adaf6d84b75495241527e4d7940d217903abf11e23462ea47f361eb2",
@@ -176662,7 +176663,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame01-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame01-reference-v4.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -176692,15 +176693,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame02-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame02-reference-v4.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
-            "04": {
-              "sourceSha256": "77ec9c74adaf6d84b75495241527e4d7940d217903abf11e23462ea47f361eb2",
+            "03": {
+              "sourceSha256": "da2ab34d682d67ae07827c71708489e0fa840e64300f2ee557eadd380ffa6c5f",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -176722,8 +176723,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame04-reference-v2.png",
-              "selectedFrame": 4,
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame03-reference-v4.png",
+              "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -176765,8 +176766,139 @@
                 "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "da2ab34d682d67ae07827c71708489e0fa840e64300f2ee557eadd380ffa6c5f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Re-costume Image1 as GRAN MAESTRO MALE, Tier3, walk pose3. Image1 is ONLY previously validated body anatomy and exact grip geometry from Asceta. Image2 defines Gran maestro COSTUME/IDENTITY details only. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale. Preserve EXACT hand/finger coordinates, all arm/elbow placement, feet, head scale and ENTIRE canvas layout of Image1. Do not recenter, change poses or move grips. Replace ALL saffron/ivory tunic, brown sash, amber LOTUS clasp, wooden beads, brown shoes, crossbindings and brown hair of Image1 completely with Gran maestro crimson/black GOLD CLOUD-KNOT brocade, IVORY sash with gold KNOT clasp, BLACK/GOLD compact elbow guards, CREAM wrist wraps with BLACK bindings and black fingerless hands, black split-toe boots RED/GOLD calf bands and gold cloud-knot shin motif, black/silver hair. No old Asceta costume remains. Keep fingers exposed, bare upper arms. Exactly ONE COMPLETE full body, same portrait canvas aspect ratio. Full hair and toes within clear transparent margins. True transparent alpha background, clean contour. No equipment, weapons, magic, shadow or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "77ec9c74adaf6d84b75495241527e4d7940d217903abf11e23462ea47f361eb2",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "77ec9c74adaf6d84b75495241527e4d7940d217903abf11e23462ea47f361eb2",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "77ec9c74adaf6d84b75495241527e4d7940d217903abf11e23462ea47f361eb2",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    618,
+                    18,
+                    1069,
+                    696
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    12,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/walk-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "747d6d893f4ad4d811a9d80a3dd85b3640bce510928490486c8242e8d82de297",
@@ -176804,7 +176936,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "42479eaa117792845e0494a73e2c1c036bfb29c6ed642fe917121142a94171b1",
@@ -176842,7 +176975,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "50a6dd0f226f624f9d72b202b3a6faca7ead8dcc93009e040afd65be5fa13ae8",
@@ -176886,7 +177020,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "f7871535b74ab090f8e347723e2b58e68b80e1ddd7d4fd804198ad1e8c25c311",
@@ -176930,7 +177065,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "1a2b801300f7a619b2e679f945bd62e6c0b544922b90a9659d25e74960678330",
@@ -176968,13 +177104,14 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "7012b90fe54756c6ba79c037a36ddf802a45f95d997b5267a4f77bdcfc41fe36",
+          "sourceSha256": "bbb3619c2fb89e9111eb4f656f125e48242fc34b48a9e0ce25c4cac7759c90cf",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -176996,9 +177133,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Image2 consists ONLY of small identity/costume detail samples, NEVER a complete pose. Preserve Image1 anatomical pose and actual palm locations exactly; do not move fists toward the idle hands or center bodies inside the quarters. For walking, preserve the arm swing in poses3/4; those fists cross forward.  Production RPG body sprite strip for Gran maestro MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Re-costume Image1 as GRAN MAESTRO MALE, Tier3, attack_spear pose3. Image1 provides ONLY validated body anatomy and exact grip geometry. Image2 provides Gran maestro costume and identity details only, never pose. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale. Preserve EXACT Image1 full canvas, palm/thumb/finger centers, arm/elbow/shoulder positions, head size, full body scale, feet location and baseline. Do not recenter, enlarge or reinterpret the pose. Replace ALL Asceta saffron/ivory/brown clothing, copper edges, wooden collar beads, lotus clasp, brown hair and crossbound calf wraps completely with Gran maestro CRIMSON/BLACK brocade and GOLD CLOUD-KNOT embroidery, IVORY sash and flat GOLD KNOT buckle, BLACK/GOLD elbow guards, cream wrist fighting wraps with BLACK edge bindings, black fingerless hands, BLACK split-toe boots RED/GOLD calf bands and gold cloud-knot shin motifs/side buckle. Bare upper arms. No residual old costume or beads. ONE complete body, true alpha background, full hair/fingers/shoe toes inside clear margins. Same portrait canvas aspect ratio. No equipment, weapons, magic, shadow or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -177006,7 +177143,140 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "7012b90fe54756c6ba79c037a36ddf802a45f95d997b5267a4f77bdcfc41fe36",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "7012b90fe54756c6ba79c037a36ddf802a45f95d997b5267a4f77bdcfc41fe36",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "7012b90fe54756c6ba79c037a36ddf802a45f95d997b5267a4f77bdcfc41fe36",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "7012b90fe54756c6ba79c037a36ddf802a45f95d997b5267a4f77bdcfc41fe36",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Image2 consists ONLY of small identity/costume detail samples, NEVER a complete pose. Preserve Image1 anatomical pose and actual palm locations exactly; do not move fists toward the idle hands or center bodies inside the quarters. For walking, preserve the arm swing in poses3/4; those fists cross forward.  Production RPG body sprite strip for Gran maestro MALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f0e345f8ca6f80e1b34af15d0cd2eb01259fa16238aa46760ec8e7edee12270d",
@@ -177044,13 +177314,14 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
-          "sourceSha256": "f5246d8f16be2857c299673385700dc090f9824565312d66a71a256e58ab5e92",
+          "sourceSha256": "0b2eb9a38d33b67e1a3502d1ba421b15fb81c957beec78f4d3acbe48ca5f983e",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -177072,9 +177343,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Edit ONLY upper boot bands in ALL FOUR GRAN MAESTRO MALE bow action poses in Image1. Replace residual old novice BROWN leather calf-top straps/guards with the approved CRIMSON RED band with GOLD rim and engraved gold ornament from Image2 costume details. Keep black shin shaft with gold cloud-knot motif, lower red/gold band, square side buckle and gold toe piping. All four boot designs identical. Preserve EXACTLY every other pixel-level body location, all four arm/finger/hand coordinates, face, hair, costume, ivory sash, gold buckle and full-body scale/foot baseline/canvas. Do not recenter, enlarge or change poses. FOUR complete bodies in existing row, true transparent background, clean contour; no held weapons/equipment, shadow or text.\n",
+          "prompt": "Small local grip correction in this existing GRAN MAESTRO MALE portrait. Move ONLY the extended RIGHT-side closed fist a SMALL distance LEFT20pixels and UP10pixels toward magenta target. Put actual black wrapped PALM at target, not wrist. Other open hand fixed. Pixel distances refer to this current1086x1448canvas. Keep exact whole body position and scale, head/hair/face, both shoulders/elbows, legs, feet, costume details, brocade, sash, all boots and boot motifs unchanged. Do not center, enlarge or reinterpret pose. Remove magenta target. ONE complete body, same transparent canvas, full silhouette margins, no weapon/equipment/effects/shadows/text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
@@ -177082,7 +177353,99 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "f5246d8f16be2857c299673385700dc090f9824565312d66a71a256e58ab5e92",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "f5246d8f16be2857c299673385700dc090f9824565312d66a71a256e58ab5e92",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "f5246d8f16be2857c299673385700dc090f9824565312d66a71a256e58ab5e92",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
           "previousRevisions": [
             {
               "sourceSha256": "cc2d10d619867629c71c8d24508f6f06da4e3d051977d4c3b05ae79694368c6d",
@@ -177121,8 +177484,47 @@
                 "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "f5246d8f16be2857c299673385700dc090f9824565312d66a71a256e58ab5e92",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/m/source/attack_bow-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Edit ONLY upper boot bands in ALL FOUR GRAN MAESTRO MALE bow action poses in Image1. Replace residual old novice BROWN leather calf-top straps/guards with the approved CRIMSON RED band with GOLD rim and engraved gold ornament from Image2 costume details. Keep black shin shaft with gold cloud-knot motif, lower red/gold band, square side buckle and gold toe piping. All four boot designs identical. Preserve EXACTLY every other pixel-level body location, all four arm/finger/hand coordinates, face, hair, costume, ivory sash, gold buckle and full-body scale/foot baseline/canvas. Do not recenter, enlarge or change poses. FOUR complete bodies in existing row, true transparent background, clean contour; no held weapons/equipment, shadow or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "d7b27d1992daffac7db785e239a8909bbfec17352e9f612f9743c5b781da3957",
@@ -177160,7 +177562,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "374dd9272f87f6891e0a87268d34e4479b80ddb4168ec688808ba6c830f66c37",
@@ -177198,7 +177601,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "2a1aac85cfe36bcc253248955a5ebbe4291bd3f9ddb195f92178db6c23fcf30d",
@@ -177236,7 +177640,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "26a965c7cece5c26629963c6a11d22159ca716a3740b30dfcde1416ccb7317ae",
@@ -177274,7 +177679,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "96f244917e72ba48645ed22555dd91fa6e71b164bf9bf9ed0a87321cb58c8cf6",
@@ -177312,7 +177718,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -177341,11 +177748,11 @@
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk.frameSourceOverrides.04",
+          "source": "sources.walk",
           "frame": 4
         },
         "hurt/01": {
@@ -177429,11 +177836,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -177441,7 +177848,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -177461,15 +177868,15 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
@@ -177587,6 +177994,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "gran_maestro",
+        "name": "Gran maestro",
+        "tier": 3,
+        "costume": "Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action.",
+        "maleIdentity": "Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Crimson black brocade and gold cloud-knot insignia",
+        "advancement": "Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/gran_maestro/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "0172888a41543bd29d43c4a26864f4590bc3b44c6bd0596c6bac58e2fea2686f",
+            "fa5a0ba61c885db86d1b28ea9e23975b691930e332bbbe698971d72c8ffb5c82",
+            "18729451901faec915d48c1c096e720ee28df258826a72f293fda4279c971218",
+            "9d7a8dfb2140d46db002f1f80bc59b14ba756ce0ed9eaf9afff2323178dc3bed"
+          ],
+          "walk": [
+            "a016f3f19fe3fd8a3fc2fcf0c140d70aef63fc6d221844f2bc76aaa1e2b547a2",
+            "3f7b8f1c14e1169ea07d4362f5da6f2ea1ba9d3dbf3fa5c811125b711c5ecb2c",
+            "e53d10f1925fbf13384c71573b482f26a61e0341bfb43970a6c9cc254390f655",
+            "4d369f46e0e544c71c2b4a924ca194c4607f00717ba80ea1388ebc048beb1ddb"
+          ],
+          "hurt": [
+            "afd74eb191dec8705fc0b062680d378ba4c1288b32c627be47846d361eed97d2",
+            "ee5541a594ddbb4b17e95dd1e2ae4e4d70a97a691598ab928c68c7fec23b3ce5",
+            "6054cb1856251b12b2eca13d95008eb0e2f2eb3255c591865c4e9db538b0f030",
+            "786f8efee85aa1fc40ad667de8cfdce2c477528164ca14fe8fd021e110ec81bd"
+          ],
+          "use_consumable": [
+            "71bb31916fcd2f5ff6bd5e3e94645c8d24d31541428e57f33015e818815f2ee6",
+            "096bcce64c3916c944063d3ccdce9da9a844fd4c831ff3351b61d79bf7c4d6f6",
+            "a5ef438e216eb3138774be575089905a00cca37328204ea5dadeadcc8674a84c",
+            "5f0a7349e1f9fd58f181a9b88d1f01e1b685987951fa7807863a5b84610d11e3"
+          ],
+          "dodge": [
+            "896e0fb1903a6fd18977c834ef26e2da8abeea91f8d8eeffb69b55f20e6cc4e4",
+            "bd87258966a096ea216e2c149dd5058733c25b99e48c1cdf79008cfab363afae",
+            "83eb0965ab15a0764bea9b88266e32936b134546dfc2ad4f1f06affd42bd1181",
+            "43be70b33725b3d7630ca84d92b94b034b19f64b1cfbe2959d37af8c5ce39c72"
+          ],
+          "block_shield": [
+            "54cae1cd2b842fa487cc62117866ca66fbdfca44221a7f803ef53938ac134dbf",
+            "0374c67cf300807ba8087d15565ca58d75526de44f0f4e9282e8963b553c8b94",
+            "e71d8201c60e842bcebce28ee4e4010759c48f971fe1182c8ba4868d03ab42cc",
+            "df998f94b4a66e8de8b60abcbdf21d068f39f79145094a939549fef6f6c5d283"
+          ],
+          "attack_sword": [
+            "fe5ca567d62a2eb9dd9b3533d2e59cf8e6aa289df1bde85325b6d18ebe7d3505",
+            "1543728c0d9fa653a33ce70cec781706dce8cc458669881f41df7551b279b144",
+            "a974fb53a613c941aa4d1aa1b87dd10afc3fe74489d33eed2325d14ac6942029",
+            "969571dd871ce18c418996b6d7b8f53c145204c371fd900f3fd2f0c5e1356d04"
+          ],
+          "attack_axe": [
+            "9446697a83c2c95e328c5c83c5f530e34f3d8ff7b5110ada911b5d23bb2b0541",
+            "c4b1ca3450cf0899551b86ba3f22cdf11a73fb36c74803c3c93b93d24aa35d79",
+            "e845c52c6930bb15816ead4fcccb1d3499053732402b7f735b731b1ed03783f0",
+            "5e80d9a300632f34b92ce447ab2ccee572dcc9da9af8eca8b46c38d51a285792"
+          ],
+          "attack_spear": [
+            "3c664dc76daefbfbd77624315da67a1bd823923f742c077ce72d42845344b321",
+            "79055f52197585d4928e3627d73c80874f4d951ea66bcd4c4841bbcf811b7537",
+            "0ad027f81706bd1aff9c744539d1fb4d29b92f69da1a68e522f85a87b792bf8d",
+            "34a77ae1f1056fd346c2ef8537932caa0a076d348da6531ede3a88e4dcaaf10d"
+          ],
+          "attack_dagger": [
+            "0aae7f72850f7961a6adf20ef04178f4d7e7abd7faa942d308f9e1bf3090a3ab",
+            "ebd08d83e6b9e0f0d3b39c76997280dde9b6735e9f9b6cd350f0942580ee3915",
+            "8a324861a5792442a8304031604182b995ac6a82a880cab2cf3fd3b9e7201f05",
+            "02b2d406c837f6c727562be61e29beb387a090c463f753a6dd807b596c788134"
+          ],
+          "attack_bow": [
+            "882b3279e616acd4b7ade6324bee8d18dfdf2cddce4d6c86017f816a2e9ca350",
+            "b7d5ae69f0417e4717148803aef4e6ec5951f61a3fba29d0ea786231f82a4bc4",
+            "4b9d3adc21ad2cd040dc4dc751976f058618f6c0f495bbd8db5df2e6fe1dd51a",
+            "26baf2cee0d5dfc444db8e5eb79ec1d5b901077e46f68e5417cb796c19b59523"
+          ],
+          "attack_staff": [
+            "38f6ce7f7ee7ab4d7e441d0532efbfe4cf457cb6b67251332d73abc8386c4be6",
+            "6cc67dac77bda453e4deb8b1890eed1909634e46980a04c282147f36079819aa",
+            "04ef35f714354f99455dcc3ec325b91179ab15c81edf9465305fae5881afd8df",
+            "ced87e5a39263a5c3a27916ff7efc397096ab4015daaec9b2446116926edefe7"
+          ],
+          "attack_mace": [
+            "bebddb7c878efd5eb6f21c06d387ec8a16ffe8b45461055742115d4d8a0fe23c",
+            "c4fb59ecab945ad5e4f43b98a29569a388ed41eebef0e73801740dc7a6dec673",
+            "7c264703662546099853bcb5572f95c8e3491a22ef1bf5c814b1adc9d483b3a9",
+            "c804e724f4254438e87cb39b572116d4ad4aba1615dd6af1f7939231156088fc"
+          ],
+          "attack_book": [
+            "6a135900590e4a0c9886ff07f9e90fdb03382a6bed684cfc8b2ce428271a200c",
+            "c739e7e06a665b3014e8acc26151a4d40b78e0d2f9c6f1e4280b0b0f30356dd4",
+            "1abd18718c5781f5e34c7ced70c43cc8c8de8ec90e9d8209bc8ce054355c8353",
+            "64afe4190d8b6835104c5a1a5ff2012661818e1ef9d75d2125703f5d584aa51b"
+          ],
+          "attack_gloves": [
+            "920aba0c46aa6aaf61b1ac531e917562d3137756966162f80c3dd06e002bbe23",
+            "4948036c4f543484722e739648013e3ef327056ec78e60578577a3dfa70c26ab",
+            "cf1d0df18eb073760142aa2e6bb099f2c56905689f9d6854cca67c1f5da49477",
+            "b867de818eb5c2aae82fdda016e62951761b3057e28495fc843bc2d29fdd549a"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -177599,7 +178121,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/gran_maestro/f/gran_maestro-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/gran_maestro/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -177708,20 +178230,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e3312639947fd0c6757f9343bd2861ecca23d05042d9397410b7254db39a2554",
-                "bytes": 23373,
+                "sha256": "dfd3f1628ff9cab31cadb33aeecaab677eeeba0d8c70a1b5b1589b0b9638d0ad",
+                "bytes": 20137,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  8,
-                  91,
-                  103,
-                  247
+                  17,
+                  94,
+                  107,
+                  245
                 ],
-                "pixelSha256": "9fc72fde3ed1aaa58449e7eea5bc8812c31527994f52e91b6b2840e5c98ec494"
+                "pixelSha256": "cf34e77c191cb99352e5dc2fb157b8ab27715dd73fc9c626725c2bd1072afa90"
               },
               "02": {
                 "sha256": "890b0ed2366ac0ae189c9fcde39de54e0c6f73afa47d66a07480266ae1b833b1",
@@ -177826,20 +178348,20 @@
                 "pixelSha256": "63b3c6ffb2f5ddcaff2ceec19dfbad5d05d9398b2c2d14d98d669c96ac0e7267"
               },
               "04": {
-                "sha256": "367847d1e0cae77ddd631cd033bb116b36a5fbfa32dc768667d563d46cec7b23",
-                "bytes": 22000,
+                "sha256": "808eee9d1097cc92e4726f13a10945da93d08e4a1de63200d96d6032366dbeb5",
+                "bytes": 19942,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  96,
-                  96,
+                  20,
+                  95,
+                  100,
                   247
                 ],
-                "pixelSha256": "ad7248b71778d841da39b1bf00dbe83119e8b29ac83739fa092a0f46246c1982"
+                "pixelSha256": "1ae4859ca7824819e95d7b4ca59fe5064e4e509adfd8d3aff8e90ef5c6ab1ee3"
               }
             },
             "distinctFrames": 4
@@ -178214,20 +178736,20 @@
                 "pixelSha256": "d9b1fe767f5d131c0559c1a63c08d77bea9e4ce7c3187738d81b784adaf6836e"
               },
               "02": {
-                "sha256": "030005a24ebc09621c2cd238a95729632d15a11f345b0a2b31d70c647ce1ad30",
-                "bytes": 21009,
+                "sha256": "5d98c6b6152cdfdebc61617c36c0be1566f75839f32de452f000b6a5d34984a4",
+                "bytes": 20206,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  96,
-                  101,
-                  247
+                  12,
+                  94,
+                  103,
+                  248
                 ],
-                "pixelSha256": "cd49abd15c6f35e3b3a754c274840d1d20ecf0e0bee6608798430302844e155b"
+                "pixelSha256": "384ef6ec6654c604a29a1663b8a0f7f038861f1ac4c4118b2257498f6d0c8b4c"
               },
               "03": {
                 "sha256": "136b7d451f31d98ec96ca7e0f1d69368acd1af0f1ea116a768bc0dfe182061d3",
@@ -178723,10 +179245,11 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "b797b1b0670bbe219a8352b50a589c0fb52c723eae1aed7de9d566436d2830ef",
+          "sourceSha256": "fa9e76cc08e865c777822f45ebf5df156c4f72a5e4f8e09b1e9d28c0c124eda9",
           "sourceDimensions": [
             4340,
             1450
@@ -178751,9 +179274,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Re-costume Image1 as GRAN MAESTRO FEMALE, Tier3, walk pose2. Image1 is ONLY previously validated body anatomy and exact grip geometry from Asceta. Image2 defines Gran maestro COSTUME/IDENTITY details only. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Preserve EXACT hand/finger coordinates, all arm/elbow placement, feet, head scale and ENTIRE canvas layout of Image1. Do not recenter, change poses or move grips. Replace ALL saffron/ivory tunic, brown sash, amber LOTUS clasp, wooden beads, brown shoes, crossbindings and brown hair of Image1 completely with Gran maestro crimson/black GOLD CLOUD-KNOT brocade, IVORY sash with gold KNOT clasp, BLACK/GOLD compact elbow guards, CREAM wrist wraps with BLACK bindings and black fingerless hands, black split-toe boots RED/GOLD calf bands and gold cloud-knot shin motif, black/silver hair. No old Asceta costume remains. Keep fingers exposed, bare upper arms. Exactly ONE COMPLETE full body, same portrait canvas aspect ratio. Full hair and toes within clear transparent margins. True transparent alpha background, clean contour. No equipment, weapons, magic, shadow or text.\n",
+          "prompt": "Re-costume Image1 as GRAN MAESTRO FEMALE, Tier3, walk pose1. Image1 is ONLY validated body anatomy and exact empty-hand grip geometry from Asceta. Image2 defines Gran maestro COSTUME and IDENTITY details only. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Preserve EXACT Image1 entire canvas, pose, actual palm/thumb/finger coordinates, elbows/shoulders, head size and placement, feet baseline and full body scale. Do not recenter, enlarge or reinterpret hands. Completely replace Asceta saffron/ivory/brown outfit, copper piping, lotus clasp, brown collar beads, brown hair, cream crossbound calf wraps and dark brown shoes with the CRIMSON/BLACK gold CLOUD-KNOT Gran maestro outfit, broad IVORY sash with GOLD KNOT clasp and short ivory ties, BLACK/GOLD elbow guards, cream fighting wrist wraps with BLACK edge bindings and black fingerless hands, BLACK split-toe boots with RED/GOLD top and lower calf bands, square side buckle, gold knot shin insignia and gold toe piping. Bare upper arms. No residual Asceta costume or neck beads. ONE complete body, same portrait canvas aspect ratio. Clear transparent margins around full hair and both complete shoe toes. Remove any tiny stray fragment from a neighboring pose at far canvas edge. Transparent alpha background, crisp painted anime RPG sprite rendering. No equipment, weapon, aura, shadow or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -178761,13 +179284,13 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
-            "01": {
-              "sourceSha256": "2ee1a0c2efc181c799531f2de318b3cca64e106d65026f63d2afd2e19102b06c",
+            "02": {
+              "sourceSha256": "b797b1b0670bbe219a8352b50a589c0fb52c723eae1aed7de9d566436d2830ef",
               "sourceDimensions": [
-                2171,
-                724
+                4340,
+                1450
               ],
               "registeredSourceDimensions": [
                 2170,
@@ -178789,8 +179312,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame01-reference-v2.png",
-              "selectedFrame": 1,
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame02-reference-v3.png",
+              "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "03": {
@@ -178819,7 +179342,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame03-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame03-reference-v3.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -178849,7 +179372,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame04-reference-v3.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -178892,14 +179415,145 @@
                 "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "b797b1b0670bbe219a8352b50a589c0fb52c723eae1aed7de9d566436d2830ef",
+              "sourceDimensions": [
+                4340,
+                1450
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Re-costume Image1 as GRAN MAESTRO FEMALE, Tier3, walk pose2. Image1 is ONLY previously validated body anatomy and exact grip geometry from Asceta. Image2 defines Gran maestro COSTUME/IDENTITY details only. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Preserve EXACT hand/finger coordinates, all arm/elbow placement, feet, head scale and ENTIRE canvas layout of Image1. Do not recenter, change poses or move grips. Replace ALL saffron/ivory tunic, brown sash, amber LOTUS clasp, wooden beads, brown shoes, crossbindings and brown hair of Image1 completely with Gran maestro crimson/black GOLD CLOUD-KNOT brocade, IVORY sash with gold KNOT clasp, BLACK/GOLD compact elbow guards, CREAM wrist wraps with BLACK bindings and black fingerless hands, black split-toe boots RED/GOLD calf bands and gold cloud-knot shin motif, black/silver hair. No old Asceta costume remains. Keep fingers exposed, bare upper arms. Exactly ONE COMPLETE full body, same portrait canvas aspect ratio. Full hair and toes within clear transparent margins. True transparent alpha background, clean contour. No equipment, weapons, magic, shadow or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "2ee1a0c2efc181c799531f2de318b3cca64e106d65026f63d2afd2e19102b06c",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "2ee1a0c2efc181c799531f2de318b3cca64e106d65026f63d2afd2e19102b06c",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame03-reference-v2.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "2ee1a0c2efc181c799531f2de318b3cca64e106d65026f63d2afd2e19102b06c",
+                  "sourceDimensions": [
+                    2171,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2170,
+                    725
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    631,
+                    16,
+                    1090,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/walk-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "4bcd78dba709f26df02d0d5413cd374fbfe6b681d8bae5dec0a888a2844dd138",
+          "sourceSha256": "67980701589b0e47a83b1e82873fb030778f0fdaccac016991108567fba596e8",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -178921,9 +179575,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Image2 contains small costume/identity details only, never pose. Preserve Image1 actual palms and all finger coordinates; don't pull fists toward idle hands or recenter figures. Preserve walking3/4 arm swing and anatomical side.  Production RPG body sprite strip for Gran maestro FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Re-costume Image1 as GRAN MAESTRO FEMALE, Tier3, hurt pose4. Image1 provides ONLY validated body anatomy and exact grip geometry. Image2 provides Gran maestro costume and identity details only, never pose. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Preserve EXACT Image1 full canvas, palm/thumb/finger centers, arm/elbow/shoulder positions, head size, full body scale, feet location and baseline. Do not recenter, enlarge or reinterpret the pose. Replace ALL Asceta saffron/ivory/brown clothing, copper edges, wooden collar beads, lotus clasp, brown hair and crossbound calf wraps completely with Gran maestro CRIMSON/BLACK brocade and GOLD CLOUD-KNOT embroidery, IVORY sash and flat GOLD KNOT buckle, BLACK/GOLD elbow guards, cream wrist fighting wraps with BLACK edge bindings, black fingerless hands, BLACK split-toe boots RED/GOLD calf bands and gold cloud-knot shin motifs/side buckle. Bare upper arms. No residual old costume or beads. ONE complete body, true alpha background, full hair/fingers/shoe toes inside clear margins. Same portrait canvas aspect ratio. No equipment, weapons, magic, shadow or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -178931,7 +179585,140 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "4bcd78dba709f26df02d0d5413cd374fbfe6b681d8bae5dec0a888a2844dd138",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "4bcd78dba709f26df02d0d5413cd374fbfe6b681d8bae5dec0a888a2844dd138",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "4bcd78dba709f26df02d0d5413cd374fbfe6b681d8bae5dec0a888a2844dd138",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "4bcd78dba709f26df02d0d5413cd374fbfe6b681d8bae5dec0a888a2844dd138",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Image2 contains small costume/identity details only, never pose. Preserve Image1 actual palms and all finger coordinates; don't pull fists toward idle hands or recenter figures. Preserve walking3/4 arm swing and anatomical side.  Production RPG body sprite strip for Gran maestro FEMALE, Tier 3, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "9f10a63c1138125dd9a33bfc0c5101800b7b2fbc0d4b37b77bdcede3568af247",
@@ -178969,7 +179756,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "0b1f241dda81bcecae3fe5265ff3b3c93d3684c41e755666eda062b20d95525a",
@@ -179007,7 +179795,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "bfb3a5795338d846b1e22697c6bc58713705d33ec472d8a3e89973fcd5c03713",
@@ -179045,7 +179834,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "2ff20c3e6b596bed69c59637444f0f3b9146064223d83a4a271527809f275dbe",
@@ -179083,7 +179873,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "9da3a6e335517bca3b9117fd75738cbf61f13477fa1f7633770ed5ee115aa313",
@@ -179121,13 +179912,14 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "be741aed6a386397da5ccd66d7ffcc6dad233bb3548b76cd8465b7138bebbbaf",
+          "sourceSha256": "725fccdaf6f0a47268b2b5a1cdb0cd60db9d6458f5eac25a2b0290bd25c0cce1",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -179149,9 +179941,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Image2 contains small costume/identity details only, never pose. Preserve Image1 actual palms and all finger coordinates; don't pull fists toward idle hands or recenter figures. Preserve walking3/4 arm swing and anatomical side.  Production RPG body sprite strip for Gran maestro FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Re-costume Image1 as GRAN MAESTRO FEMALE, Tier3, attack_spear pose2. Image1 provides ONLY validated body anatomy and exact grip geometry. Image2 provides Gran maestro costume and identity details only, never pose. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Preserve EXACT Image1 full canvas, palm/thumb/finger centers, arm/elbow/shoulder positions, head size, full body scale, feet location and baseline. Do not recenter, enlarge or reinterpret the pose. Replace ALL Asceta saffron/ivory/brown clothing, copper edges, wooden collar beads, lotus clasp, brown hair and crossbound calf wraps completely with Gran maestro CRIMSON/BLACK brocade and GOLD CLOUD-KNOT embroidery, IVORY sash and flat GOLD KNOT buckle, BLACK/GOLD elbow guards, cream wrist fighting wraps with BLACK edge bindings, black fingerless hands, BLACK split-toe boots RED/GOLD calf bands and gold cloud-knot shin motifs/side buckle. Bare upper arms. No residual old costume or beads. ONE complete body, true alpha background, full hair/fingers/shoe toes inside clear margins. Same portrait canvas aspect ratio. No equipment, weapons, magic, shadow or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -179159,7 +179951,140 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "be741aed6a386397da5ccd66d7ffcc6dad233bb3548b76cd8465b7138bebbbaf",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "be741aed6a386397da5ccd66d7ffcc6dad233bb3548b76cd8465b7138bebbbaf",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "be741aed6a386397da5ccd66d7ffcc6dad233bb3548b76cd8465b7138bebbbaf",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "be741aed6a386397da5ccd66d7ffcc6dad233bb3548b76cd8465b7138bebbbaf",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/gran_maestro/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Image2 contains small costume/identity details only, never pose. Preserve Image1 actual palms and all finger coordinates; don't pull fists toward idle hands or recenter figures. Preserve walking3/4 arm swing and anatomical side.  Production RPG body sprite strip for Gran maestro FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale. Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action. Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "4c6078a26eaaa98600782b08cf87c02972e17f5a331d2d3dc0c7712f6632d24f",
@@ -179197,7 +180122,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "5fcbce039b64e1d72c02bf3b96811a4c11d1fcc4503a9337a36429152044336e",
@@ -179235,7 +180161,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "7e035ab25399477e101bf39327bb3343f2703d1f672bb5d06d8aac17836731eb",
@@ -179273,7 +180200,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "336cf567303ca9a580b411a96b89b64d05cfcf725625981448df0e62b216d375",
@@ -179311,7 +180239,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "02076022d9a5758e778a2247b462a25fb8f13b39a4772563668d92daad10493c",
@@ -179349,7 +180278,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "2d2186642620da41a2a38293468509a9eed30f2e3597806880af7e3976d5c331",
@@ -179387,7 +180317,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -179408,11 +180339,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk.frameSourceOverrides.01",
+          "source": "sources.walk",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -179424,15 +180355,15 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -179520,7 +180451,7 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
@@ -179528,11 +180459,11 @@
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -179662,6 +180593,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "gran_maestro",
+        "name": "Gran maestro",
+        "tier": 3,
+        "costume": "Master martial uniform: fitted CRIMSON sleeveless cross-over vest with BLACK brocade panels and GOLD cloud-knot embroidery, broad ivory sash with flat gold knot buckle, compact black elbow guards, white fighting wraps on wrists/backs of hands with fingertips exposed, charcoal fitted martial trousers, black split-toe boots with red/gold calf bands. Bare upper arms. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Approved source detail: red asymmetric cross-over sleeveless vest with gold-edged BLACK BROCADE chest inset and gold CLOUD-KNOT embroidery; broad IVORY wrapped sash, flat GOLD interwoven knot clasp and two SHORT ivory ties at near-right hip. BLACK compact elbow guards with narrow GOLD engraved inset and gold edge; bare skin gap between elbow and cream wrist wraps with BLACK edge bindings and black fingerless palm covering. Black/dark charcoal tapered trousers. BLACK split-toe boots: RED/GOLD bands at top and lower calf, GOLD cloud-knot shin motif, square gold side buckle, gold toe piping. Male topknot tied with small GOLD bead ring, prominent SILVER temple streak. Keep all these details identical in every action.",
+        "maleIdentity": "Adult experienced masculine Gran maestro with black with silver temple streaks neat short high topknot, attentive determined eyes, clean-shaven, canonical head scale.",
+        "femaleIdentity": "Adult experienced feminine Gran maestro with black with silver temple streaks hair in compact double braided knot, attentive determined eyes, canonical female head scale.",
+        "armPolicy": "Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem.",
+        "unique": "Crimson black brocade and gold cloud-knot insignia",
+        "advancement": "Tier3 advanced specialization of Monje. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/gran_maestro/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "ad97bfe3de66fe5cfa6567bda675635078a80159666cb52f1e3bda8b984e0319",
+            "d4eb783d5e2c7c860e6926ddf8a4d3d0b2f03bc3917cdf5cd81276801a74e6fa",
+            "d0a3cda916121b347907b0b1758d1dde26f907f42690634672a05ea546734cea",
+            "1b54832565087e1d5dbb22295c1e2c579a321fee1714c22edc157257462c120b"
+          ],
+          "walk": [
+            "dfd3f1628ff9cab31cadb33aeecaab677eeeba0d8c70a1b5b1589b0b9638d0ad",
+            "890b0ed2366ac0ae189c9fcde39de54e0c6f73afa47d66a07480266ae1b833b1",
+            "cd892a875fc2293d953e6e785c48673d65e8ba985357ccfd89f18c0904072a99",
+            "5a21f018b0b2351beb3d3cfc18198256bde216ce51b27e1e7736e6c5cb7f8baf"
+          ],
+          "hurt": [
+            "9a744889e7d5321adb3d59f78ee11f51ed95a691df8dd5d2a9965ddbefcc2c33",
+            "712f3aa50b3eabb1caafd66f758739ff41df47d0de03aad8bed479710aa122c9",
+            "f521fcd18eca3c3c7a4afacb612ec4edc5206b4f0515e0ccce0b9bc6d6a939af",
+            "808eee9d1097cc92e4726f13a10945da93d08e4a1de63200d96d6032366dbeb5"
+          ],
+          "use_consumable": [
+            "da90c2f9ab9b6d4a677d2ac597efd4510c52258bf26b117054f3441c39f3b252",
+            "d81bdefb796bbbd0845ea3be4feac94e5370bb3d0b323834fa72b2fbae6b2c42",
+            "f7baff7a6a5ced939ece89f31d2bd3dad477abbb27959e129a1b7bfb9b116044",
+            "1d78ff6cab1100131e9de8b435e26cd6358f208f0c40be45b0043412105612d0"
+          ],
+          "dodge": [
+            "f06947c3e6cef789c17cedf794660fc802d39484fa8c85ed3786f742149189c4",
+            "4ec3956ee202f423d1c8bb4e91b38bbb8be1e718d2bfd8e7003a8b3d4020b453",
+            "5981c430c1bd70d7b80671e0370d40dcba59a07d675790f5571dbcdb085275a1",
+            "e3799ae5182cc87e09ab73334c8f354dfc2f9161c7c15b2fa28420fc8d46f6c4"
+          ],
+          "block_shield": [
+            "588e2a5524675cdad5672450b7934069c66ad21a4175a25ab7d21187398cf84a",
+            "e957d262d1824e0db672db7f96af38fbc5d957e3aec803f4819f4ee125493fff",
+            "fa95cd5215f8d910c79ede084341fba538d64cf3b89ce2481bf10884bb445f8f",
+            "dea5f3ddd88e6fdc4d53914600869414988aa096be54c71556c8d63db8453641"
+          ],
+          "attack_sword": [
+            "7892057d8757c333e079ecb1ffa908618a3b4535dea0b3ebbe50739abe969833",
+            "b5f8d8a26c211ebb1e598990626d272359b10f2b6c7c789c98137abd09f7efa6",
+            "d766092c8d682952e44c6325fc728bb5ce93d80006046dc8dd45f15bcae9d678",
+            "f973d5d1db2e9ed9ce1f0f35ed819ac67a5cfa25d23caf369000cf9970c4c532"
+          ],
+          "attack_axe": [
+            "c2668ea770e423fae1cf40fd49a6ca30e890a24d6f8aa71666e3b704880de114",
+            "4190655ac9cd62e8609c25ea2057602347237adf81a4cef1e34a2ddff903f7bd",
+            "3a06fd3532ba82912cf20bbb859d39b5010c82f41162e348917c9d45d7522179",
+            "7b0074f0ccf4c7a10edef282a3d86b677b9369d5cdb591ec7eb7b81be5e251e5"
+          ],
+          "attack_spear": [
+            "b574c53ce94e66d066cc99c50b4b7e97e20e2d5dd5b36b5ebae3d1284dfcba13",
+            "5d98c6b6152cdfdebc61617c36c0be1566f75839f32de452f000b6a5d34984a4",
+            "136b7d451f31d98ec96ca7e0f1d69368acd1af0f1ea116a768bc0dfe182061d3",
+            "66b43b5b8d62222a12460064b6617a7d107b3a3337405b568e2197e5bc14b80a"
+          ],
+          "attack_dagger": [
+            "564d321b92bbe45cbbb9ae3d1f1a0e0179b42c537dbc7d15095cfa622c0ec9f7",
+            "a3549bafbf694ea9a38b198c802b458fc5cc1314f82650341a4f01938c2787bf",
+            "5ece5a17a0d64acb54cc0f595411756da9808b83b92f7662a362b50a70b54b08",
+            "72d440efa7d91d18a2e18930ec9ecea28664f5432fb40d047c32c25d46482886"
+          ],
+          "attack_bow": [
+            "48afc969e3a10bed9e8d41ac951efa46de7c1824e7b8fc28762584f1d746fb7c",
+            "3fdadd1be2bb81e30e04189e128985b57043a103afb2228bd0b5639cce4da685",
+            "410303e6c35bb5fcae400ed6ab1dbaec798594d37f5f69c91b75bbc004416e7f",
+            "36d61413ff41d0d2efd916edcfab34cc4a85a18e85cbd1a0e7e078ff99685b36"
+          ],
+          "attack_staff": [
+            "28f810c88ae6553cc0512d88e81dea3b8670358f10c6bbeeb3ebbb4f4dd47865",
+            "e2232bec447cd88c917c921a8485d9c9d519091837462cd1b06b63d9fa425802",
+            "c1106a103af24a8ffcf96fd1131a331f2bf394c98c8f480512276822fb874d63",
+            "98ba2d47d9e2a1df1ed844366410c2229ae8487c11cb50c4cf0b146b78914ae1"
+          ],
+          "attack_mace": [
+            "ef8a93ecb5603482404e7702e8f336ce7c8faba75a0e0a4fd6fba97ff64a7dec",
+            "7f113a2694ae3fad6abeb12d231944ab79e62b6ef276cdb820f9473610f6ce65",
+            "5aa501646f9fb7bec9fd69e123c7ce3d6b70b50aeeb8fff39de6b6b0a5968f27",
+            "ad74991a73647912cb0357f57c2c49c8cabbce828fffeb8270a90f364e72a4f4"
+          ],
+          "attack_book": [
+            "eea60bc6fbd70151d0934c57dfe366c00615329cba2beeb46a9f26d2955a5f7f",
+            "1ef6b9eb2030a8e98d1a72bcfbbbf04e139b3e4a585d055b63bd9ed24161d691",
+            "d610cf815173cc3fa5106751b564879bc153d401c786b67e1c9e36b58f8a120d",
+            "4f135d23832d9a74ba241ca97c1a6025922ad8c1cd35baa4702a1036e9953113"
+          ],
+          "attack_gloves": [
+            "6cd19d46960ca37c58676f3937cdf779e682c8d04052a5c0552e19783469d6d5",
+            "f97839c1e1f5d4d863f45547873dc1e547a01ea39678a11c0bcd9f5b77ad6763",
+            "a3cc9f25b86830ddea3a7379352016793d214acab23cc9bee0b30bca5f123809",
+            "f0b830667a36e369138855a4ad8cf6ac0227fc3bf297a7e5c61d9686a76ada3e"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -183368,7 +184414,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
