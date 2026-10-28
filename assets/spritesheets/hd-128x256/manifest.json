@@ -143520,12 +143520,12 @@
       "tier": 3,
       "sex": "m",
       "order": 63,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/guardian_real/m/guardian_real-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/guardian_real/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -143539,12 +143539,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "16569e6bf8f9359f140773bcef70e7575aa96d73feafed91a5aedfcc40115174",
+                "bytes": 24881,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  94,
+                  105,
+                  249
+                ],
+                "pixelSha256": "45d3f3310e511df9d23fc071cce0af266f9827f0236c20c8f52391d22e13b3aa"
+              },
+              "02": {
+                "sha256": "e4a7c6791793f3c331e7fd75eef2f95d970bae38513cd0308427a5c114adeb18",
+                "bytes": 25038,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  105,
+                  249
+                ],
+                "pixelSha256": "defc7ac06a868b8b11cbf0f9a3e60d623cf7898dfad894cb15ea5ee3f6a8b37a"
+              },
+              "03": {
+                "sha256": "8662fff09d2c29ceec442a2dd5265de263eb38867c08dbf1594600aecbb7d96b",
+                "bytes": 25100,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  105,
+                  249
+                ],
+                "pixelSha256": "04a664fd2be2a2d00f02d3ddd8640faf138cb8f2eecbc1420754fe048cfa1846"
+              },
+              "04": {
+                "sha256": "7d8b119cb197307dee45dbf2579050ce115c2075ac814122898a7308bda142f8",
+                "bytes": 24930,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  105,
+                  249
+                ],
+                "pixelSha256": "3f7311a0b026da7f109230a6f2302414208b06aaf2666ccc7c4db8cf9e44aee7"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -143588,6 +143657,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "974c94871788683b2001822afaebbdc9ed4c3bb414248c33eee10c90b34ed936",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/guardian_real/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Guardián real MALE, Tier3, action idle. Image1 ONLY defines canonical four body poses and EXACT head, hand/finger, elbow, foot positions, canvas dimensions and proportions. Completely replace novice clothes/hair/scarf with NEW identity: Adult experienced masculine Guardián real with steel-gray neat side-parted crop, attentive determined eyes, clean-shaven, canonical head scale. Royal guard fitted gunmetal-and-SILVER full plate, DEEP ROYAL-BLUE padded sleeves and short split officer tabard with silver TOWER emblem, compact squared twin pauldrons with narrow white enamel bars, broad silver belt, closed plated greaves, dark fingerless gloves. Small silver brow band with square sapphire. No cape. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Tier3 advanced specialization of Caballero. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Silver TOWER motif on short blue front tabard, square blue gem brow band and squared white enamel shoulder bars remain identical across all four poses including closed-eye third. Covered arms: dark royal-blue full sleeves beneath close silver wrist plates, dark fingerless gloves, no bare forearms. Exactly four full bodies in one horizontal row facing right three-quarter view, same crisp painted anime RPG rendering/lighting, transparent background. Empty hands, no held equipment, no weapons/sheaths, no effects, no text or shadows. Preserve original absolute placements and body size; do not center or rescale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -148296,7 +148423,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
