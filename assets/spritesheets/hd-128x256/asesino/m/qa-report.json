@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T09:59:09.451851+00:00",
+  "classId": "asesino",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\asesino\\m\\asesino-m-sheet.png",
+  "sheetSha256": "1e3ba1305df99bbe159ae2d4ae81770d35285400fe16b9caed3c4bfc13e62fa8",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\idle\\asesino-m-idle-01.png",
+          "sha256": "8a227c7e230c6d8eafe0df46aba76a5bf43d05d4f09036c8ca6ec127e7ab7a25",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\idle\\asesino-m-idle-02.png",
+          "sha256": "dff9b52b34a4a8be9eb06239eab3f991fed7a78863a2a0580c0b5db471016f74",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\idle\\asesino-m-idle-03.png",
+          "sha256": "cfb23c9ec82173c4b669820dc15dcf361ac2a1ace5e78af04bf6c04d2ac47d0b",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\idle\\asesino-m-idle-04.png",
+          "sha256": "7f46b7ee549d3cc23a34c593461ebe2f6c9571c36f78a884bc45ba7d83dc225a",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\walk\\asesino-m-walk-01.png",
+          "sha256": "d7c0ed641d7bed2856624d21a40fd1155c5c5a805eb4aaedaf5de511fb903be8",
+          "alpha_bbox": [
+            10,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\walk\\asesino-m-walk-02.png",
+          "sha256": "d2e2102bfb71ce973a52ce9c2169a206de26c5ac0055a68cc3f3d4c7d33ce4ea",
+          "alpha_bbox": [
+            10,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\walk\\asesino-m-walk-03.png",
+          "sha256": "4d97242570481b993d6dca66ac6f1c6b0ad06be384e9a2c48ef15cb4ab6416ec",
+          "alpha_bbox": [
+            11,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\walk\\asesino-m-walk-04.png",
+          "sha256": "5e69e9bed05829df67614d4a305dfff163cf0b8d0bd89716e1d8ed50e4804b88",
+          "alpha_bbox": [
+            12,
+            92,
+            109,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\hurt\\asesino-m-hurt-01.png",
+          "sha256": "916e9aa31bcb2dfe074bd80beff0959e06a126f51157dcf07dcc2529f323bf17",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\hurt\\asesino-m-hurt-02.png",
+          "sha256": "15e9423c2f5251ad66e100e589742b828d9a6ebe2cd8316c7815bc57becd9aa1",
+          "alpha_bbox": [
+            24,
+            100,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\hurt\\asesino-m-hurt-03.png",
+          "sha256": "06cb6afd8f16ef55a5c4cd646c740cde975faf0e59c1156af2db624d286957b0",
+          "alpha_bbox": [
+            16,
+            119,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\hurt\\asesino-m-hurt-04.png",
+          "sha256": "c87a5c30edac25f144fec90f5b7d6eea66304dd840954c1348a636ba9e96ab5b",
+          "alpha_bbox": [
+            23,
+            91,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\use_consumable\\asesino-m-use_consumable-01.png",
+          "sha256": "014f981ea1be6f72a58bd0f3219a71fb462fdf274931ebacd10f7c106c2353aa",
+          "alpha_bbox": [
+            28,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\use_consumable\\asesino-m-use_consumable-02.png",
+          "sha256": "51b8d98071fe339f616411e483eea3851d1660248e9c92f88e1b8678b3e48799",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\use_consumable\\asesino-m-use_consumable-03.png",
+          "sha256": "45967c2cc2eec5939ee69c2f6e403d044525d3b9c723ca1a3b205accb05ed0b1",
+          "alpha_bbox": [
+            25,
+            93,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\use_consumable\\asesino-m-use_consumable-04.png",
+          "sha256": "f497dda89dfabc85eee0a04618f1fa34c2497adeb55dc26e5f39db6996ecc235",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\dodge\\asesino-m-dodge-01.png",
+          "sha256": "480e70a8a40af543d219824e66849c620d5ce3dca6e19b1bdda8f9993b662efd",
+          "alpha_bbox": [
+            20,
+            98,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\dodge\\asesino-m-dodge-02.png",
+          "sha256": "4221059f303ddf3f169ed543999f42ca3edef56332d95b853ce9d41eb289ba89",
+          "alpha_bbox": [
+            21,
+            98,
+            116,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\dodge\\asesino-m-dodge-03.png",
+          "sha256": "7f6552c10ac5957ced550e92228aa78230d2c3bff92cc51b66bac8b716a98df5",
+          "alpha_bbox": [
+            25,
+            103,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\dodge\\asesino-m-dodge-04.png",
+          "sha256": "a55bcd6b8a0cb19cf014d28088e3aed1076c9bb6ce07749e5180ec7b63402eec",
+          "alpha_bbox": [
+            23,
+            98,
+            114,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\block_shield\\asesino-m-block_shield-01.png",
+          "sha256": "5a33ce0ff7587093e508d7e0972d8b15d459f35e3d277bffdd538ca3f5b67197",
+          "alpha_bbox": [
+            19,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\block_shield\\asesino-m-block_shield-02.png",
+          "sha256": "b06bcfbcbe49e5c13f512a58fffab64507831aa717cb7b335a47a9edf5a8e32e",
+          "alpha_bbox": [
+            19,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\block_shield\\asesino-m-block_shield-03.png",
+          "sha256": "f8a4ea7d9b97e9fe7196f0bbf3c59df56f4ab2fddf9761172ce8a5afcb461f19",
+          "alpha_bbox": [
+            21,
+            117,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\block_shield\\asesino-m-block_shield-04.png",
+          "sha256": "e6c551ad389d7a8677010039e8e9f4a6aaf921753a36a82ad84f536d1b78ef76",
+          "alpha_bbox": [
+            21,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_sword\\asesino-m-attack_sword-01.png",
+          "sha256": "5edc4bc9cfe67bca8404a945d82cc778a07d8f3f01525bc394be4322289d5e95",
+          "alpha_bbox": [
+            11,
+            97,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_sword\\asesino-m-attack_sword-02.png",
+          "sha256": "f8a85518ea9b55b5f5e5d3e698bc303185741c94964640996494efe62dc19bce",
+          "alpha_bbox": [
+            3,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_sword\\asesino-m-attack_sword-03.png",
+          "sha256": "9e826d881051a3ed1867451309f5ef341190e96b0664269a9ec007cddde2a834",
+          "alpha_bbox": [
+            4,
+            101,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_sword\\asesino-m-attack_sword-04.png",
+          "sha256": "588b30f422d6d96fc68266a36148a6215f9cb278d58f3b4d652423170fc17668",
+          "alpha_bbox": [
+            9,
+            98,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_axe\\asesino-m-attack_axe-01.png",
+          "sha256": "10366d7d25fe182250be082a45d9958fcbf15c92e73994c554e8536f6f94c749",
+          "alpha_bbox": [
+            10,
+            100,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_axe\\asesino-m-attack_axe-02.png",
+          "sha256": "5dec7e5f102cd282dfa444cf08cec30c008f05d8ac9119af7808fb54294da2fe",
+          "alpha_bbox": [
+            15,
+            112,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_axe\\asesino-m-attack_axe-03.png",
+          "sha256": "de03206e74f687b7d34092b66ebdd3f5fae87cfb411f86730c1ea630cd763b33",
+          "alpha_bbox": [
+            6,
+            121,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_axe\\asesino-m-attack_axe-04.png",
+          "sha256": "98853083c4f529a30ef83d34db9aa3aade31da81fcef0717974764540fcfb1e7",
+          "alpha_bbox": [
+            16,
+            103,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_spear\\asesino-m-attack_spear-01.png",
+          "sha256": "56b61260731a6a4b506eb3d1117bc0999f652f8270ff06093fca22407caddaf1",
+          "alpha_bbox": [
+            10,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_spear\\asesino-m-attack_spear-02.png",
+          "sha256": "2000bed9ee9c65e812300fa111fa9b097348c194b2217ee47e0c7170a5a6b30a",
+          "alpha_bbox": [
+            12,
+            91,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_spear\\asesino-m-attack_spear-03.png",
+          "sha256": "8a30cdca22da19c8d3dd8f1ef5eeeeca098dd4c07aa526bf17f5cf981d09a7b8",
+          "alpha_bbox": [
+            10,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_spear\\asesino-m-attack_spear-04.png",
+          "sha256": "18de15fda3e925366c5444e86c93b23c9f4863b49534fbe9ee7478fedf5ff1fd",
+          "alpha_bbox": [
+            11,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_dagger\\asesino-m-attack_dagger-01.png",
+          "sha256": "34b47d5599cfc40b67d1bb197014c1d9f7bd28c424bcaee705923e20e5dd0287",
+          "alpha_bbox": [
+            27,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_dagger\\asesino-m-attack_dagger-02.png",
+          "sha256": "993852840464e2b0e3375f229a7b16384f4418385dda360c5f6507bf36ad7da0",
+          "alpha_bbox": [
+            27,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_dagger\\asesino-m-attack_dagger-03.png",
+          "sha256": "9b66c43b6d05d52f34c815cbc3ece4d45e81a6187dad649ba7fcfa1d30c33229",
+          "alpha_bbox": [
+            23,
+            96,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_dagger\\asesino-m-attack_dagger-04.png",
+          "sha256": "45aaaecb67bcd8c0afece6ece53dfdb159a0008d8074bcf1b2efd340723b1b20",
+          "alpha_bbox": [
+            21,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_bow\\asesino-m-attack_bow-01.png",
+          "sha256": "3c5fddd6133ffd531eb57f0785fb9e82428df4e035c1e9c7c5a6bb346479ebcc",
+          "alpha_bbox": [
+            24,
+            95,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_bow\\asesino-m-attack_bow-02.png",
+          "sha256": "6071f89249278d5e5050ff40c814d26f1dc7b8854c6a62d3d082a37d81fbd24e",
+          "alpha_bbox": [
+            24,
+            95,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_bow\\asesino-m-attack_bow-03.png",
+          "sha256": "db0db65bf63cf6f5c3720b18312d7619408357f302052531d044195d8fc877fb",
+          "alpha_bbox": [
+            24,
+            95,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_bow\\asesino-m-attack_bow-04.png",
+          "sha256": "550ec28df8386c43b7c5f8d896380374431bd0093ad68521262e0237edd7e37a",
+          "alpha_bbox": [
+            12,
+            96,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_staff\\asesino-m-attack_staff-01.png",
+          "sha256": "aaeff0a47b8e4977223159d3a5bfb7b8c120d84fb940aad2f8b3395327db2fdc",
+          "alpha_bbox": [
+            31,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_staff\\asesino-m-attack_staff-02.png",
+          "sha256": "37faa1dfe722be85c625c40a4296577d752be890146a2a653d0376e643c23a84",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_staff\\asesino-m-attack_staff-03.png",
+          "sha256": "b07457fbe6e189154e9166c2d68b17d95eee9e6bffcedc6cc676c01c48885318",
+          "alpha_bbox": [
+            28,
+            92,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_staff\\asesino-m-attack_staff-04.png",
+          "sha256": "c5d69f4c36e8cb8e0fd7a01b5bc880006e099325f4fb63a447642f19f4093403",
+          "alpha_bbox": [
+            20,
+            92,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_mace\\asesino-m-attack_mace-01.png",
+          "sha256": "8e826d21b4b26942dca4706df11e18567a8936ee108fb04b360b4e864b3fbdb0",
+          "alpha_bbox": [
+            24,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_mace\\asesino-m-attack_mace-02.png",
+          "sha256": "0f8d1c9ff6d150b3f00a99be29927edd20ae964a8b33c9db98216dcf43760bec",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_mace\\asesino-m-attack_mace-03.png",
+          "sha256": "655cde7f79d5c401e653cdfd97c7f602b8ab0dd656194afa301ebbcf96a2c51c",
+          "alpha_bbox": [
+            27,
+            104,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_mace\\asesino-m-attack_mace-04.png",
+          "sha256": "6eb6b1b7a17aa215e061d580eb5d14e396a754c64b0ab92ac0f5898b59e9bc47",
+          "alpha_bbox": [
+            32,
+            92,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_book\\asesino-m-attack_book-01.png",
+          "sha256": "1ff01f7e9524b34fec8f5a6b40f387c8d7f7a16b320463fb606c20a671766512",
+          "alpha_bbox": [
+            25,
+            92,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_book\\asesino-m-attack_book-02.png",
+          "sha256": "f57809be373845b5fa26ac0518022ee0c47ca22a8297920a192af526ca56117d",
+          "alpha_bbox": [
+            25,
+            92,
+            99,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_book\\asesino-m-attack_book-03.png",
+          "sha256": "f4d00e5c5e9ef0f79e691bd8a993248606cf33094ee843f96c42b9e80037385e",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_book\\asesino-m-attack_book-04.png",
+          "sha256": "a5b7d392e78b96230f4e4fecbd3a02f983f39792236d6545dbd81cff742bd9f2",
+          "alpha_bbox": [
+            25,
+            92,
+            99,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_gloves\\asesino-m-attack_gloves-01.png",
+          "sha256": "415551d1d308cd10f049074c857dcdf2cc95d2c0f24a8aa8339b207b067d9497",
+          "alpha_bbox": [
+            24,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_gloves\\asesino-m-attack_gloves-02.png",
+          "sha256": "47b2c5e47e52268beb870d7b52f74aa9ebf17e48eaa2ff3fcc1e4a4ce3bf0c77",
+          "alpha_bbox": [
+            27,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_gloves\\asesino-m-attack_gloves-03.png",
+          "sha256": "6d3a30b2ea4423d59b00ee5b7a79f9118ca266d07732093d00a6eed9f8bce77a",
+          "alpha_bbox": [
+            27,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\asesino\\m\\frames\\attack_gloves\\asesino-m-attack_gloves-04.png",
+          "sha256": "7eaed6a6ca5842491de0f5ba4581db0b449b5719de513fe4342ea0b4a24c7df2",
+          "alpha_bbox": [
+            27,
+            91,
+            112,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
