@@ -132787,24 +132787,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "c91d11d172563b11d3fceb9905ca5fd9b1cb7e9a382cff210d949731a383e13d",
-                "bytes": 27051,
+                "sha256": "27f934463fd27c292a70997310162f82a680489565ed8f8fb0ada164b9542959",
+                "bytes": 27835,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  18,
                   98,
                   109,
                   250
                 ],
-                "pixelSha256": "c5bb56b6940affd0eb01dfc4c53652ebf957e53580f9601856a9b7ca0dda02c2"
+                "pixelSha256": "757e8576927357f48236cbdaae6254bdc9f48a8dab7318755722e7bebfd126b1"
               },
               "02": {
-                "sha256": "bc22e6c807a0cbdf735b7fbfd79d8f002a4739a5b3ddf84e9a4e142da2103992",
-                "bytes": 27750,
+                "sha256": "7a91cb8ab55abb2b9a96a752bda6fa809990fb3d58f2f2503af8acb68e91466a",
+                "bytes": 28316,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -132816,11 +132816,11 @@
                   117,
                   250
                 ],
-                "pixelSha256": "365d53c4a946b5a71afac3d92544b64ef9fa14e7e0d7263daf0e00393510113a"
+                "pixelSha256": "941d062ca55552489810d5bbf962f5c3bf075c32ba45f5de60eed33b327123a9"
               },
               "03": {
-                "sha256": "62991405245370326c21d7972e71b930aabd5584e9d270020e05372001bc6a90",
-                "bytes": 27079,
+                "sha256": "5bbf37391e64e44dd87eaed52c95a8c9645f6c89f44f871390ddc058faba37cc",
+                "bytes": 27660,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -132832,23 +132832,23 @@
                   116,
                   249
                 ],
-                "pixelSha256": "0e8a5069727daa9cd3d9b02bade20afc34d539be1f8b27cb831d44f4af97e6a8"
+                "pixelSha256": "3111151b54f1171079f1141ea861aaa2f882eca51a49723abde416ee1161941a"
               },
               "04": {
-                "sha256": "deec64bba7cba452a11815b3ccca5e71e06a5c69465990e7058e40ae16dfd27f",
-                "bytes": 26472,
+                "sha256": "2cf01cb1af70ec6916af42de21e534c3bee506ceed278f1b5bff7fe0a5c1893c",
+                "bytes": 27029,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
-                  99,
-                  118,
+                  20,
+                  100,
+                  116,
                   250
                 ],
-                "pixelSha256": "1fba24a0d5132fcd2d35e1abd94cefd477c7cb00a186804a1a22a59b2836ae88"
+                "pixelSha256": "e93fea908ecb6e696c899e53bf1c6de59d467be1d952566900ea21d1b9750b87"
               }
             },
             "distinctFrames": 4
@@ -134113,7 +134113,7 @@
           ]
         },
         "dodge": {
-          "sourceSha256": "bd6e181583002580fac487d08b96c0eed10527c47c1f43f76006ee358d403a84",
+          "sourceSha256": "d7e71be765e7e14b7ff3d861610b02c30d4503ea1a2d300f44720d98430a2a9c",
           "sourceDimensions": [
             2172,
             724
@@ -134136,7 +134136,7 @@
           ],
           "alphaThreshold": 128,
           "bodyRootCalibration": {
-            "uniformScale": 1.027027027027027,
+            "uniformScale": 1.0201342281879195,
             "pivotX": 64,
             "sourceBaseline": 242,
             "referenceBaseline": 250,
@@ -134144,9 +134144,9 @@
           },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/dodge-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/dodge-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise accessory edit of Image1. Replace the OLD ROUNDED SILVER-BUCKLED belt pouch on ALL FOUR figures with the EXACT COMPACT SQUARE BROWN POUCH from Image2 close-up: flat squared flap with TWO SMALL BRASS STUDS, NO central silver buckle, straight short squared bottom. Same approved two square belt pouches across all poses, adapt only natural perspective/occlusion. Everything else remains EXACTLY Image1: poses, absolute hand/finger/head/foot coordinates, body size, goggles on forehead, moustache, iron cuffs, rolled ochre sleeves, three chest rivets, brass anvil buckle, split charcoal apron and boots. No moving hands or changing arm angles. Same four complete bodies on same original canvas/quarters, transparent alpha, empty hands, no equipment or shadows or text.\n",
+          "prompt": "Precise costume edit only on ALL FOUR figures of Image1: change ALL brown/bronze novice wrist wraps to the bright SILVER-GRAY IRON wrist cuff from Image2 CLOSE-UP on BOTH wrists, over dark fingerless gloves. Retain short bare forearms and ochre rolled sleeves. Keep existing corrected square belt pouches unchanged. Preserve EXACT all poses, absolute finger/hand/head/foot coordinates, body size, short CHESTNUT MOUSTACHE every pose, goggles on FOREHEAD, rear iron shoulder plate, 3 chest rivets, brass anvil buckle, apron and iron-toe boots. No arm movement, scaling or recentering. Same4 complete full bodies, original canvas, transparent alpha, empty hands, no equipment/text/shadow.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
           "canonicalPoseHashes": [
             "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
@@ -134191,6 +134191,50 @@
               "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/dodge-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Herrero MALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy masculine smith with dark chestnut swept short hair and short tidy moustache, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+              "canonicalPoseHashes": [
+                "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+                "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+                "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+                "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "bd6e181583002580fac487d08b96c0eed10527c47c1f43f76006ee358d403a84",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 1.027027027027027,
+                "pivotX": 64,
+                "sourceBaseline": 242,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/m/source/dodge-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise accessory edit of Image1. Replace the OLD ROUNDED SILVER-BUCKLED belt pouch on ALL FOUR figures with the EXACT COMPACT SQUARE BROWN POUCH from Image2 close-up: flat squared flap with TWO SMALL BRASS STUDS, NO central silver buckle, straight short squared bottom. Same approved two square belt pouches across all poses, adapt only natural perspective/occlusion. Everything else remains EXACTLY Image1: poses, absolute hand/finger/head/foot coordinates, body size, goggles on forehead, moustache, iron cuffs, rolled ochre sleeves, three chest rivets, brass anvil buckle, split charcoal apron and boots. No moving hands or changing arm angles. Same four complete bodies on same original canvas/quarters, transparent alpha, empty hands, no equipment or shadows or text.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
               "canonicalPoseHashes": [
                 "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
