@@ -135734,8 +135734,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "8a31ebefb4303f2e82b1291755c91570d83e13dfa1d0cfa5b70e957889d3eb79",
-                "bytes": 22993,
+                "sha256": "d0678a47055c1735898890985c0dbc4075050e2d3ac6e108ba67d84c7385bd75",
+                "bytes": 23370,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -135744,58 +135744,58 @@
                 "bbox": [
                   29,
                   91,
-                  116,
+                  117,
                   245
                 ],
-                "pixelSha256": "8aae60491bac48824767b4f5bd3eacc81a11d0f598dd8a52d5cf25922576f2a6"
+                "pixelSha256": "1eb005a4533711d17470017360835696c7cf719403f03ca23c4102ddf7be313f"
               },
               "02": {
-                "sha256": "11faf460883cee8d8c2deafd8039620cea077a473315381981db57388e379fd8",
-                "bytes": 22705,
+                "sha256": "5e9b9c296cae593fe8af526a0b50889d77bff0e106305d84f238cd688499209b",
+                "bytes": 23136,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  30,
+                  29,
                   91,
                   118,
                   245
                 ],
-                "pixelSha256": "a07ecda9373f2f6dcdef4f8eded7915c4512287794a6eb7412d53bab2aa33e21"
+                "pixelSha256": "65a407614547ddcbe381d5fdaae772eb1f4788b9f65ffb3ba921f24cbee3252b"
               },
               "03": {
-                "sha256": "8dfbbc216a375d9115a91380cc8578f4b12c5867790e666f0314f96f37d9088f",
-                "bytes": 19490,
+                "sha256": "87f89285ab78c9e172565a76e80ec0bb78ffb553498bb09b2174c88f23d0cd54",
+                "bytes": 19930,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
+                  21,
                   122,
-                  109,
+                  110,
                   246
                 ],
-                "pixelSha256": "6326263fe6a6938dd7266b9eab8bbbe3c5885bd537204f1ff2613120fee2402f"
+                "pixelSha256": "34a84383f9e9cfaca0df7391d96fe3bc1998ed17ab3a24e0fb1f5f6216ddc2ab"
               },
               "04": {
-                "sha256": "72e0fb58dbfcdaf35e9b77a110509664a61b74f27212ffbe7ed08b37b51e44ab",
-                "bytes": 23132,
+                "sha256": "b8b5bd78a349c51e4c665bc76519e8e9b80bade5badc57985d3e22ecdca750d8",
+                "bytes": 23547,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
+                  13,
                   91,
-                  102,
+                  103,
                   245
                 ],
-                "pixelSha256": "9eb50818444a599c34ebd5a9c645da11ecbe09bbd83827fc8317c3d35a95d279"
+                "pixelSha256": "53bc890bf30fada3b8af506d9323e7c0e518da3d53a084f7042a206858ce5fea"
               }
             },
             "distinctFrames": 4
@@ -136970,7 +136970,7 @@
           ]
         },
         "dodge": {
-          "sourceSha256": "a923b10535d43c5f0e7308b148117af8a583333edcc44104a38c097cee4784b6",
+          "sourceSha256": "f6bba63766c5e63f3d8b6eca544ec1aee7b93b485d5ad2fba04874bdc2acd764",
           "sourceDimensions": [
             2172,
             724
@@ -136995,9 +136995,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/dodge-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/dodge-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise outfit-continuity edit of Image1 ALL FOUR figures. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden: no duplicate old pouch hanging UNDER the new pouch (especially consumption poses2/3). Replace brown novice wrist wraps with compact SILVER-GRAY IRON wrist cuffs from Image3 CLOSE-UP over dark fingerless gloves, at BOTH wrists. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT anatomy, absolute finger/palm/elbow/head/foot coordinates, pose size, goggles on FOREHEAD, feminine face/braided crown bun, single compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron, boots and iron toe caps. No recentering, scaling or arm changes. Same original canvas/quarters, exactly four complete full bodies, transparent alpha, empty hands. No equipment, text or shadow.\n",
+          "prompt": "Precise boot hardware correction ONLY to Image1. ALL FOUR figures lost their SILVER RECTANGULAR shin-strap buckle when pouches were edited. Restore one clearly silver rectangular buckle on the brown lower-shin boot strap of EACH BOOT, matching approved boots in Image2. Retain all iron toe caps, brown boots/straps, exact foot positions and size. Preserve EVERYTHING ELSE of Image1 exactly: all4 crouched dodge poses, all hand/finger/elbow/head positions, body size, female face/hair, goggles forehead, corrected square brown pouches, silver iron wrist cuffs, apron rivets/anvil clasp. Do not change poses, palms, ankles or boot silhouette; only add silver rectangular strap fasteners. Four complete full bodies in SAME originalcanvas/quarters, transparent alpha. No equipment, shadows or text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -137036,6 +137036,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/dodge-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Herrero FEMALE, Tier 2.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. MALE retains short tidy moustache in every pose and open mouth; FEMALE has no facial hair. Keep approved identity's THREE metal rivets vertically down charcoal apron chest, flat BRASS ANVIL belt clasp, two square pouches, one compact iron rear-shoulder plate, iron wrist cuffs above fingerless gloves, rolled ochre sleeves with short bare forearms, and iron toe caps identical across every pose. Compact TWO-LENS leather work goggles stay on FOREHEAD above eyes in ALL FOUR poses. MALE's short tidy chestnut moustache must remain clearly visible above upper lip even with mouth open; FEMALE no facial hair. Adult sturdy feminine smith with dark chestnut braided crown and compact low bun, focused warm eyes. Master smith battlefield workwear: fitted OCHRE rolled-sleeve shirt under a DARK CHARCOAL riveted leather short split apron, dark bottle-green back waistcoat panels, burnished IRON compact shoulder plate on rear shoulder, iron wrist guards over dark fingerless gloves, broad brown belt with brass anvil-shaped clasp, two compact square leather pouches, charcoal reinforced trousers and heavy brown boots with iron toe caps. Small dark leather goggles pushed onto forehead, clear visible face, no spectacles over eyes. Subtle soot smudges on apron only. No held hammer, tongs, weapon, sparks or cape/scarf. Tier2.5 Comerciante/Espadachin hybrid: merchant practicality becomes sturdy iron-reinforced smith workwear, preserving pouch and ochre lineage without generic full armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "a923b10535d43c5f0e7308b148117af8a583333edcc44104a38c097cee4784b6",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/herrero/f/source/dodge-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise outfit-continuity edit of Image1 ALL FOUR figures. Replace old novice rounded SILVER-BUCKLED pouches with approved COMPACT SQUARE BROWN belt pouches from Image2 CLOSE-UP: short square bottom and flat squared flap with brass fasteners, NO central silver buckle. Exactly TWO pouches total, one at each belt side naturally partly hidden: no duplicate old pouch hanging UNDER the new pouch (especially consumption poses2/3). Replace brown novice wrist wraps with compact SILVER-GRAY IRON wrist cuffs from Image3 CLOSE-UP over dark fingerless gloves, at BOTH wrists. Keep ochre rolled sleeves and short bare forearms. Preserve EXACT anatomy, absolute finger/palm/elbow/head/foot coordinates, pose size, goggles on FOREHEAD, feminine face/braided crown bun, single compact rear iron shoulder plate, THREE chest rivets, brass anvil buckle, charcoal split apron, boots and iron toe caps. No recentering, scaling or arm changes. Same original canvas/quarters, exactly four complete full bodies, transparent alpha, empty hands. No equipment, text or shadow.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
               "canonicalPoseHashes": [
                 "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
