@@ -11,7 +11,8 @@
     "block_shield",
     "attack_sword",
     "attack_axe",
-    "attack_spear"
+    "attack_spear",
+    "attack_dagger"
   ],
   "bodyHashes": {
     "idle": [
@@ -22,8 +23,8 @@
     ],
     "walk": [
       "ae55ac1e5ad02ed80e2f176627c477536f78b2f3ecdb8a414183f815928a208e",
-      "e844adfa58e36a8bb7d2a712f0aa9c3781d57a8f4ebf87c0c222c24d237b73b5",
-      "cc73a99311a953ea8850ba8d96676f4c5e2c8df14273619b97442eec893b2096",
+      "8b9f11d03951c0a08953dc425c27f6433c82ed2fae5e456837b51b9fcacd624c",
+      "b643f08ff907444ef974bcfe83ed7585cb51098cd442b3bd0eeab3c0d5c20670",
       "0ac96566299b220bd11fcd593d88afbb3a1a59bde6b0634fca23e377478bc341"
     ],
     "hurt": [
@@ -67,9 +68,15 @@
       "1b39d03dd601d6bea79767866a85b751aec1ed672dc8310b1892832683e6f769",
       "f917d16b885e5c8ca800a41f86c691240d0e1f2f352516cbdd16889d46d8d6d7",
       "90ca8b251e780ede3cfcc39fce3915ebc9d66814e60827c64a7b10072d91269d"
+    ],
+    "attack_dagger": [
+      "9a89727e935268f8ea03f98d12fcccb0b60d271305939008541ea2a84afdde55",
+      "971451134c3ba3d2ca5f9a93b0a8b7fca8784741f5fd5e5a136db03665e374e5",
+      "b8c50f0b8d58016dd9324ea68d0e20ecf5c7372ae6176a26f0c0120bcfeb0c21",
+      "7f5240a3a37577b5610333e7013d83f22abc1b280d614c591fb50c6f0bc85ec6"
     ]
   },
-  "contactChecks": 596,
+  "contactChecks": 612,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 4,

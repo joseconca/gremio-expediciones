@@ -1,5 +1,5 @@
 """Preserve one generated action and export it against the canonical Novato pose."""
-import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys,tempfile
+import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys,tempfile,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];HD=ROOT/'assets/spritesheets/hd-128x256'
 
@@ -9,7 +9,15 @@ def write_progress(path,text):
         with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',dir=path.parent,suffix='.tmp',delete=False) as saved:
             temporary=Path(saved.name)
             saved.write(text)
-        temporary.replace(path)
+        # Windows readers or antivirus can briefly hold the destination open.
+        # Keep the atomic replacement and retry only access-denied failures.
+        for attempt in range(6):
+            try:
+                temporary.replace(path)
+                break
+            except PermissionError:
+                if attempt==5:raise
+                time.sleep(0.1*(attempt+1))
     finally:
         if temporary is not None:temporary.unlink(missing_ok=True)
 def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=None):

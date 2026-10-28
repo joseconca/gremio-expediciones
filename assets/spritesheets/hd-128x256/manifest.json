@@ -153365,7 +153365,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 36,
+        "validFrames": 40,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -153376,7 +153376,8 @@
           "block_shield",
           "attack_sword",
           "attack_axe",
-          "attack_spear"
+          "attack_spear",
+          "attack_dagger"
         ],
         "actions": {
           "idle": {
@@ -153469,36 +153470,36 @@
                 "pixelSha256": "253ec50f85eb998fd65ef74b53b5813429b3cce8eaa2208f6d9b0046778dd5a1"
               },
               "02": {
-                "sha256": "e844adfa58e36a8bb7d2a712f0aa9c3781d57a8f4ebf87c0c222c24d237b73b5",
-                "bytes": 23599,
+                "sha256": "8b9f11d03951c0a08953dc425c27f6433c82ed2fae5e456837b51b9fcacd624c",
+                "bytes": 22386,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  92,
-                  110,
+                  14,
+                  94,
+                  113,
                   248
                 ],
-                "pixelSha256": "ecf0e6b0a0c2891a1044ae944c26ffea873e64f1957d0db28b2475cc2bae0fa1"
+                "pixelSha256": "10df4b8610d2115f13aa43ece18407bcad86b32ca1dc3df77d5bf99904b3fad9"
               },
               "03": {
-                "sha256": "cc73a99311a953ea8850ba8d96676f4c5e2c8df14273619b97442eec893b2096",
-                "bytes": 24894,
+                "sha256": "b643f08ff907444ef974bcfe83ed7585cb51098cd442b3bd0eeab3c0d5c20670",
+                "bytes": 22713,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  92,
-                  118,
+                  14,
+                  94,
+                  121,
                   248
                 ],
-                "pixelSha256": "06ffe92ae97864303b2c446d75ec96ff1d33490b6431b13b40131a9dbff97e0a"
+                "pixelSha256": "290f85395e8b7b1527bd13b70352ed2ce2ab429610458b5889b8d02841fa48e8"
               },
               "04": {
                 "sha256": "0ac96566299b220bd11fcd593d88afbb3a1a59bde6b0634fca23e377478bc341",
@@ -154010,7 +154011,74 @@
             "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9a89727e935268f8ea03f98d12fcccb0b60d271305939008541ea2a84afdde55",
+                "bytes": 22167,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "185c2dbb3dfa773ed73664e08a99f8bfa0b6ee85156b777346e459a79cd5f16a"
+              },
+              "02": {
+                "sha256": "971451134c3ba3d2ca5f9a93b0a8b7fca8784741f5fd5e5a136db03665e374e5",
+                "bytes": 21905,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "df60d69f52878ac5e8878ae3c8ab92515aed736d06730011ede27084a04dadc7"
+              },
+              "03": {
+                "sha256": "b8c50f0b8d58016dd9324ea68d0e20ecf5c7372ae6176a26f0c0120bcfeb0c21",
+                "bytes": 20868,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  97,
+                  106,
+                  249
+                ],
+                "pixelSha256": "fc201ffc3eeaf90aa23da4f5e6e17b36f7f8a131f160752fdc582184c4fdaf4a"
+              },
+              "04": {
+                "sha256": "7f5240a3a37577b5610333e7013d83f22abc1b280d614c591fb50c6f0bc85ec6",
+                "bytes": 22177,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "d697269fa03f6c1d1eece28ef60fd5512c03359489baa589dcc133330fe71bac"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
             "status": "missing"
@@ -154069,7 +154137,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "ee542a01523f41b78b389abb216b923c9ef2b60b1230bded1512ff6a02b543af",
+          "sourceSha256": "123c131876a25f513d6ba4acd2829b6520ddff56412f673b4594422572f5e293",
           "sourceDimensions": [
             2172,
             724
@@ -154094,9 +154162,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Maestro de espadas MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Identity-preserve RPG body strip edit. Image1 is EDIT TARGET and ABSOLUTE anatomical reference: four male walking poses on2172x724canvas. Image2 is ONLY costume/face details board. Preserve EXACT Image1 allfourbody positions/scale/head/feet/anatomical hand/finger contours. CRITICAL FIGURES2 AND3 have ONE foreground arm crossing DIAGONALLY across the waist with its closed fist forward RIGHT, and ONE rear arm swinging backward LEFT with fist low behind hip. Exactly TWO hands on each figure. Do NOT make both arms hang at sides in2/3, do NOT add a spare third hand or bare wrist. Figure1/4 originaluncrossedarms. Transformidentity/costume only: Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. FULLivorysleevesnavycuffsundersilvergoldbracers, blackfingerlessgloves on bothhands, noextrauncoveredskin. Same refined paintedanimeRPGstyle, transparentalpha. Noequipment/text/shadows/effects. Geometry only fromImage1, details only fromImage2.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -154104,7 +154172,109 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "ee542a01523f41b78b389abb216b923c9ef2b60b1230bded1512ff6a02b543af",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/walk-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "ee542a01523f41b78b389abb216b923c9ef2b60b1230bded1512ff6a02b543af",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/walk-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "ee542a01523f41b78b389abb216b923c9ef2b60b1230bded1512ff6a02b543af",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Maestro de espadas MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "e08c4cffda7b66efcb7b0faf58d53f423e9650c6fcb7beddc96610601ec41c32",
@@ -154383,6 +154553,44 @@
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "ea48ef5d66d59e4d3d3003328e6096b6c01dd63acde0e5b15233e2cc2feb8872",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            658,
+            22,
+            1007,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            24,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/maestro_espadas/m/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Maestro de espadas MALE, Tier 3, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Keep exact canonical hand/finger coordinates and head size. Compact close-fitting sleeves/bracers and shoulders inside cell. All costume clasps, armor material and badges identical across ALL four poses. No residual Novato cream sleeves, scarf, shoulder tails or blue trousers except specifically defined class cloth. Never copy Novato hairstyle or belt emblem. Full IVORY cloth sleeves to navy wrist cuffs under silver/gold bracers; NO bare forearms or novice wraps. Preserve approved FOUR COBALT DIAMOND chest buttons in TWO COLUMNS of TWO below silver crossed paired-blade clasp; compact gold-edged navy shoulder caps, broad cobalt waist sash, short ivory/navy gold-trim coat tails, dark navy trousers, black boots with silver/gold shin plates and cobalt diamond shin gems. Same details in all four figures. Adult experienced masculine Maestro de espadas with chestnut elegant short swept-back hair, attentive determined eyes, clean-shaven, canonical head scale. Tailored IVORY fencing coat with DARK NAVY fitted sides, narrow GOLD braid and cobalt diamond buttons, compact navy steel shoulder caps, short narrow split coat tails and cobalt waist sash, polished dark boots with silver calf guards, dark fingerless gloves and snug silver bracers. Silver paired-blade-shaped chest clasp is an emblem only. No held or sheathed equipment, no shadows, no trailing shoulder cloth. Tier3 advanced specialization of Duelista. More crafted layered materials, finer insignia and veteran identity than parent; keep the same body scale and equipment grips. Express this exact class specialty through the stated distinctive costume rather than increasing figure size. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+            "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+            "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+            "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -154403,7 +154611,7 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
@@ -154415,7 +154623,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -154528,6 +154736,22 @@
         },
         "attack_spear/04": {
           "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
           "frame": 4
         }
       },
