@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "classId": "senor_guerra",
+  "sex": "f",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "5354102da7c23bd12e4d7a2e945908434f7746f239832146e540fed0185a2b22",
+      "d8a0f0595e7e8433e06d7ec79e57e9fe4acd5990dcb9020d602e989348ccaa1e",
+      "0a21f5e5977d2622eaebca96398354f115fc6d21d3c0f43b8f0c05a6866968f5",
+      "6f02b4a337b246aa398d28e96cbed91973b20dc0a8c7013e794e6b673bfaeba0"
+    ],
+    "walk": [
+      "054eec9acf168dd23902541a9f1c109b80cf98e0b2d0ae75d5a494b8ea514f0c",
+      "00ad5c4a0ffa74ce0913ef459a22078b03fd1cd2655738e8847a923cca123ac3",
+      "0daf3a53ac64ced0efa954e8680c8fba7cb57dc1a0d3fbf48129820f6688569f",
+      "329e99b6bfce2004707ec63584a462813f5232c71efb81d33ddf1b09fc778287"
+    ],
+    "hurt": [
+      "4fd3a023d52dc77a7ef9ee547a4f52ff03e819a171c05bef2bdb8f6755083375",
+      "f9e8cf6ee8550fa3ec352da1b6ef08becb6ec5d1830bef000eaf55238636062c",
+      "ec15fe11f8d70c1499f53e306674af47b220abebe2d5f19c755b4cbde408c8c7",
+      "0d24c9428ac8011150fa9f83e8bd49d3326ea63e46eeefb5fe2cab833630417f"
+    ],
+    "use_consumable": [
+      "b8d852268fb555c4b8f2859fd5d3f9d2c53431f77aa637479ee3bb3a5bb04354",
+      "a915283b61ca934bf71a06b446aa779c9126c23828e610bc88ef2c9731ccb488",
+      "7955c30f00ead27ab31ac536ce5421d3568cd7744b864d9d9f2f987144aa0b22",
+      "c41d62d02aa9c38fd97120700f923a842fb72b9aaafe956abc49fd3d8c145588"
+    ],
+    "dodge": [
+      "9104e088b6324af0db1dc80f15c7df19b98724608380b55ef4f6d7e41a1d4592",
+      "ad7594019725bf69998d9d688ab216cd15178867d1cba48b838aefa84e173d39",
+      "b2cea13e09ab48bc4567539d53cfa5cb7c786a5ae99c240d6d5ecaa854768e91",
+      "9202eca0b7de4f678131d21788659290c320074bb86d11899ec0c73d81ddae76"
+    ]
+  },
+  "contactChecks": 516,
+  "warnings": [],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}

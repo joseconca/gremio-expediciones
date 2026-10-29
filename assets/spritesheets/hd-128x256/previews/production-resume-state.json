@@ -1,0 +1,168 @@
+{
+  "status": "paused-at-user-request",
+  "date": "2026-10-29",
+  "branch": "nuevas-clases",
+  "completedClasses": 53,
+  "remainingClasses": 8,
+  "closedFrames": 6360,
+  "closedContactChecks": 72292,
+  "lastCompletedClass": "abjurador",
+  "completedCommits": {
+    "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
+    "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2"
+  },
+  "remainingIds": [
+    "senor_guerra",
+    "avatar_tormenta",
+    "cazador_espectral",
+    "arconte",
+    "justiciero",
+    "hoja_velo",
+    "danzaespadas",
+    "corsario"
+  ],
+  "nextClass": "senor_guerra",
+  "generationBlock": {
+    "reason": "image generation daily usage_limit_reached, HTTP 429",
+    "reportedResetUtc": "2026-10-29T13:19:53Z",
+    "policy": "No further generation retries until the limit resets. Use built-in image generation; no API/CLI fallback authorized."
+  },
+  "inProgress": {
+    "senor_guerra": {
+      "m": {
+        "generatedActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
+        "missingSourceActions": [
+          "dodge",
+          "block_shield"
+        ]
+      },
+      "f": {
+        "generatedActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge"
+        ],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge"
+        ],
+        "missingSourceActions": [
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ]
+      }
+    },
+    "avatar_tormenta": {
+      "m": {
+        "generatedActions": [
+          "idle"
+        ],
+        "registeredActions": [],
+        "missingSourceActions": [
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ]
+      },
+      "f": {
+        "generatedActions": [],
+        "registeredActions": [],
+        "missingSourceActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ]
+      }
+    }
+  },
+  "reviewNotes": {
+    "senor_guerra": [
+      "Both idle identities viewed, canonical bounds passed, identity detail references reviewed. Both identities are registered.",
+      "Male original costume source boards 0,2,6,8,10,12,14 reviewed; dodge/block_shield sources missing. Female costume boards 0,2 reviewed; female dodge source exists but not visually reviewed yet.",
+      "Partial automated equipment QA: male 13 actions / 546 contacts, female 5 actions / 516 contacts, no alpha warnings. These are partial results, not class approval.",
+      "Male source palm boards idle, walk, hurt, use_consumable, attack_sword and attack_spear reviewed. Remaining male palms, all female palms and all equipment compositions still need manual review.",
+      "Manual candidate corrections: male walk3 secondary fist is below target; walk4 primary fist left of target; male sword4 primary target lies on bracer instead of palm. Check actual equipment before deciding exact repairs. No repairs generated or selected yet.",
+      "Do not count this class complete or add partial QA to the closed-class aggregate."
+    ],
+    "avatar_tormenta": [
+      "Only male idle generated; viewed full strip, canonical bounds passed and identity detail reference reviewed. No root registration. Female idle and male action generation failed with daily quota; no pending workers.",
+      "Approved design brief is preserved in avatar_tormenta/art-direction.json. Generate female idle from canonical female geometry plus male costume, review it, then continue remaining actions."
+    ],
+    "completed": [
+      "Runista and Abjurador each have both sexes, thirty actions, 120 frames, all representative weapon structures reviewed, 1364 contacts without warnings and 29 animation tests passed. Both class commits verified on GitHub."
+    ]
+  },
+  "methodology": [
+    "Separate each class, sex and action; retain original sources and prompts and select only complete generated poses.",
+    "Fixed canonical transform; no body painting, limb transplants, per-class equipment offsets or per-pose scaling.",
+    "Inspect raw art and hand contacts plus one representative weapon per type, including both axe structures.",
+    "One root manifest writer at a time; wait for completion before dependent writes or commits.",
+    "Run work/qa-variant-equipment.py for both sexes after final selections; then work/finish-class-validated-assets.py and work/close-class-reviewed-documentation.py.",
+    "Commit and push nuevas-clases after every completed class, verify remote HEAD. Do not promote runtime automatically."
+  ]
+}
