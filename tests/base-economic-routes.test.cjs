@@ -12,8 +12,10 @@ function makeCombatConsumableRoute({
   initialQuantity = 2,
   itemId = "pocion",
   initialType = "pve",
+  definicionObjeto = null,
 } = {}) {
   let state = {
+    resourceWrites: [],
     user: {
       id: "u1",
       oro: 0,
@@ -126,7 +128,7 @@ function makeCombatConsumableRoute({
         fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1,
         energiaActual: 10, manaActual: 5, equipoEquipado: null,
       }),
-      updateMany: async () => ({ count: 1 }),
+      updateMany: async (args) => { state.resourceWrites.push(args); return { count: 1 }; },
     },
     inventarioObjeto: {
       updateMany: async ({ where, data }) => {
@@ -190,14 +192,14 @@ function makeCombatConsumableRoute({
     }) },
     "@/lib/progresion/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
     "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
-    "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}) },
+    "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
     "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: () => ({ id: "slime_verde", nombre: "Slime", botin: 0, difMin: 0 }),
     },
     "@/lib/objetos": {
-      obtenerObjetoPorId: (id) => ({
+      obtenerObjetoPorId: (id) => definicionObjeto ?? ({
         id, nombre: id === "pocion" ? "Poción" : "Espada",
         tipo: id === "pocion" ? "consumible" : "arma", curacion: id === "pocion" ? 30 : undefined,
       }),
@@ -1644,4 +1646,23 @@ test("taberna: revierte la reserva si falta oro y bloquea compras durante una ex
   assert.equal(compraViajando.status, 409);
   assert.equal(viajando.getState().user.oro, 1000);
   assert.equal(viajando.getState().user.personaje.comidaPreparada, null);
+});
+
+
+test("combate individual aplica el porcentaje de la poción sobre los PV máximos", async () => {
+  const route = makeCombatConsumableRoute({ initialHp: 10, maxHp: 200,
+    definicionObjeto: { id: "pocion", nombre: "Poción menor", tipo: "consumible", curacion: 15, curacionPorcentaje: 0.15 } });
+  const response = await route.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }));
+  assert.equal(response.status, 200, JSON.stringify(response.body));
+  assert.equal(response.body.accion.curacion, 45);
+  assert.equal(route.getState().item.cantidad, 1);
+});
+
+test("combate individual admite una poción de maná con los PV completos", async () => {
+  const route = makeCombatConsumableRoute({ initialHp: 100, maxHp: 100,
+    definicionObjeto: { id: "pocion", nombre: "Poción de maná", tipo: "consumible", restauracionMana: 5, restauracionManaPorcentaje: 0.4 } });
+  const response = await route.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }));
+  assert.equal(response.status, 200, JSON.stringify(response.body));
+  assert.ok(route.getState().resourceWrites.some((w) => w.data.manaActual?.increment === 45));
+  assert.equal(route.getState().item.cantidad, 1);
 });

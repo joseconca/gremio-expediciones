@@ -18,7 +18,7 @@ import {
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { esModoDificultad } from "../../../lib/expediciones/dificultad";
-import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 
@@ -301,6 +301,13 @@ export async function llegarExpedicion() {
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
     const jugadorHp = jugadorHpMaximo;
 
+    const bonificacionesComida = calcularBonificacionesComida({
+      ataque: estadisticasJugador.total.ataque,
+      ataqueMagico: estadisticasJugador.total.ataqueMagico ?? estadisticasJugador.total.ataque,
+      defensa: estadisticasJugador.total.defensa,
+      velocidad: estadisticasJugador.total.velocidad,
+      probCritico: estadisticasJugador.total.probCritico,
+    }, expedicion.efectoComida, personaje.posicionCombate);
     const atributosConComida = aplicarEfectoComida(
       {
         ataque: estadisticasJugador.total.ataque,
@@ -345,8 +352,7 @@ export async function llegarExpedicion() {
         equipo: "enemigo" as const,
         velocidad: enemigo.velocidad,
       })),
-    ], `pve:${expedicion.id}:ronda:1`,
-    comidaOtorgaIniciativa(expedicion.efectoComida) ? "jugador" : null);
+    ], `pve:${expedicion.id}:ronda:1`);
     const primerTurno = turnosPendientes[0]?.equipo ?? "jugador";
 
     const comidaActiva = obtenerComidaTaberna(expedicion.efectoComida);
@@ -421,6 +427,7 @@ export async function llegarExpedicion() {
           experienciaGanada: 0,
 
           cooldowns: {},
+          bonificacionesComida,
           efectos: [],
 
           log: logInicial,

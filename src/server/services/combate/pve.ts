@@ -313,7 +313,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             return NextResponse.json({ error: "Objeto de combate no válido." }, { status: 400 });
           }
           const curacion = Math.min(consumible.curacion, combate.jugadorHpMaximo - jugadorHp);
-          if (curacion <= 0) {
+          if (curacion + consumible.energia + consumible.mana <= 0) {
             return NextResponse.json({ error: "Ya tienes la salud al máximo." }, { status: 400 });
           }
           jugadorHp += curacion;
@@ -324,7 +324,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             dano: 0,
             curacion,
             critico: false,
-            texto: `Usas ${consumible.nombre} y recuperas ${curacion} puntos de vida.`,
+            texto: `Usas ${consumible.nombre}: +${curacion} PV, +${consumible.energia} de energía y +${consumible.mana} de maná.`,
             accionSprite: "use_consumable",
           };
         } else {
@@ -634,6 +634,11 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         const resultado = await prisma.$transaction(async (tx) => {
           await gastarRecursosHabilidad(tx, personaje.id, habilidad);
           if (consumible) {
+            const restaurado = await tx.personaje.updateMany({
+              where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
+              data: { energiaActual: { increment: consumible.energia }, manaActual: { increment: consumible.mana } },
+            });
+            if (restaurado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
             const consumido = await tx.inventarioObjeto.updateMany({
               where: {
                 id: consumible.inventarioObjetoId,
@@ -818,6 +823,11 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         const resultado = await prisma.$transaction(async (tx) => {
           await gastarRecursosHabilidad(tx, personaje.id, habilidad);
           if (consumible) {
+            const restaurado = await tx.personaje.updateMany({
+              where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
+              data: { energiaActual: { increment: consumible.energia }, manaActual: { increment: consumible.mana } },
+            });
+            if (restaurado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
             const consumido = await tx.inventarioObjeto.updateMany({
               where: {
                 id: consumible.inventarioObjetoId,
@@ -1004,6 +1014,11 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       const combateActualizado = await prisma.$transaction(async (tx) => {
         await gastarRecursosHabilidad(tx, personaje.id, habilidad);
         if (consumible) {
+            const restaurado = await tx.personaje.updateMany({
+              where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
+              data: { energiaActual: { increment: consumible.energia }, manaActual: { increment: consumible.mana } },
+            });
+            if (restaurado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
           const consumido = await tx.inventarioObjeto.updateMany({
             where: {
               id: consumible.inventarioObjetoId,
@@ -1021,7 +1036,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             },
           });
         }
-        if (actor === "enemigo" && siguienteTurno === "jugador") {
+        if (siguienteTurno === "jugador") {
           await regenerarRecursosPorTurno(tx, usuario.id);
         }
 

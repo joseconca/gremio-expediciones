@@ -11,7 +11,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {
@@ -234,7 +234,14 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const jugadorHp = jugadorHpMaximo;
 
-  const atributosConComida = aplicarEfectoComida(
+  const bonificacionesComida = calcularBonificacionesComida({
+      ataque: estadisticasAtacante.total.ataque,
+      ataqueMagico: estadisticasAtacante.total.ataqueMagico ?? estadisticasAtacante.total.ataque,
+      defensa: estadisticasAtacante.total.defensa,
+      velocidad: estadisticasAtacante.total.velocidad,
+      probCritico: estadisticasAtacante.total.probCritico,
+    }, expedicion.efectoComida, personajeAtacante.posicionCombate);
+    const atributosConComida = aplicarEfectoComida(
     {
       ataque: estadisticasAtacante.total.ataque,
       ataqueMagico: estadisticasAtacante.total.ataqueMagico ?? estadisticasAtacante.total.ataque,
@@ -303,9 +310,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   // INICIATIVA
   // ============================================================
 
-  const primerTurno = comidaOtorgaIniciativa(expedicion.efectoComida)
-    ? "atacante"
-    : determinarPrimerTurnoAsedio({
+  const primerTurno = determinarPrimerTurnoAsedio({
         velocidadAtacante: jugadorVelocidad,
         velocidadDefensor: enemigoVelocidad,
       });
@@ -461,7 +466,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         experienciaGanada: 0,
 
         cooldowns: {},
-        efectos: [],
+        bonificacionesComida,
+          efectos: [],
 
         cooldownsDefensor: {},
         efectosDefensor: [],
@@ -479,6 +485,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         hpActual: enemigoHpMaximo,
         energiaActual: Math.max(0, Math.floor(estadisticasDefensor.total.energiaMaxima ?? 20)),
         manaActual: Math.max(0, Math.floor(estadisticasDefensor.total.manaMaximo ?? 10)),
+        manaRegeneracionPendiente: 0,
       },
     });
 

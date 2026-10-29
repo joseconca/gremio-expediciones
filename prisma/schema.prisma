@@ -71,7 +71,8 @@ model Personaje {
   destreza            Int                  @default(1)
   suerte              Int                  @default(1)
   puntosAtributoDisponibles Int             @default(0)
-  energiaActual       Int                  @default(20)
+  energiaActual       Int                  @default(100)
+  manaRegeneracionPendiente Float @default(0)
   manaActual          Int                  @default(10)
 
   hpActual           Int
@@ -305,6 +306,7 @@ model CombateActivo {
 
   cooldowns Json @default("{}")
   efectos   Json @default("[]")
+  bonificacionesComida Json @default("{}")
   log       Json @default("[]")
 
   ultimaAccion Json?
@@ -525,6 +527,7 @@ model CombatePartyParticipante {
   jugadorNivel          Int
   cooldowns             Json     @default("{}")
   efectos               Json     @default("[]")
+  bonificacionesComida Json @default("{}")
   creado                DateTime @default(now())
   actualizado           DateTime @updatedAt
 

@@ -118,6 +118,7 @@ function loadService(prisma) {
     "@/lib/expediciones/elite": { seleccionarJefeElite: () => enemy },
     "@/lib/comidasTaberna": {
       aplicarEfectoComida: (stats) => stats,
+      calcularBonificacionesComida: () => ({}),
       comidaOtorgaIniciativa: (comida) => comida === "iniciativa",
       obtenerComidaTaberna: (comida) => comida ? { nombre: "Ración de prueba", descripcion: "Asegura iniciativa" } : null,
     },
@@ -240,7 +241,7 @@ test("iniciar combate crea un único enemigo común y snapshots independientes p
   assert.ok(characterUpdates.every((x) => x.where.estado === "de_viaje" && x.data.estado === "combatiendo"));
 });
 
-test("la iniciativa por comida de cualquier compañero da el primer turno al grupo", async () => {
+test("las comidas no adelantan al grupo ante un enemigo más rápido", async () => {
   const parts = [participante("leader", 2), participante("guest", 3, 1, "iniciativa")];
   const exp = makeExpedition(parts);
   const tx = {
@@ -255,8 +256,8 @@ test("la iniciativa por comida de cualquier compañero da el primer turno al gru
   };
   const service = loadService(makePrisma(tx, exp));
   const result = await service.iniciarCombateParty("guest", "exp1");
-  assert.equal(result.faseTurno, "jugador");
-  assert.equal(result.turnoActualUsuarioId, "guest");
+  assert.equal(result.faseTurno, "enemigo");
+  assert.equal(result.turnoActualUsuarioId, null);
 });
 
 test("no se puede iniciar el combate antes de que el viaje finalice", async () => {

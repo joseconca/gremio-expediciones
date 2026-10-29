@@ -105,9 +105,9 @@ function loadService(prisma, testOptions = {}) {
       } : undefined),
     },
     "@/lib/objetos": {
-      obtenerObjetoPorId: (id) => id === "pocion" ? {
+      obtenerObjetoPorId: (id) => testOptions.objetosPorId?.[id] ?? (id === "pocion" ? {
         id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 30,
-      } : undefined,
+      } : undefined),
     },
     "@/lib/progresion/niveles-habilidad": {
       ajustarHabilidadPorNivel: (habilidad, nivel) => ({ ...habilidad, nivel }),
@@ -118,6 +118,7 @@ function loadService(prisma, testOptions = {}) {
     "@/server/services/combate/accion-combate": {
       reducirCooldowns: (cooldowns) => cooldowns,
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
+      gastarRecursosHabilidad: require("../src/server/services/combate/accion-combate.ts").gastarRecursosHabilidad,
       otorgarExperienciaJob: testOptions.otorgarExperienciaJob ?? (async () => null),
     },
     "@/lib/enemigos": {
@@ -526,7 +527,7 @@ test("al comenzar el siguiente turno de un miembro en party, solo él regenera s
   const { prisma, calls } = mockPrisma(combat, { energiaActual: 5, manaActual: 1 });
   const service = loadService(prisma);
   await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
-  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 25), true);
   assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 3), true);
 });
 
@@ -544,7 +545,7 @@ test("la regeneración por turno en party solo incrementa al actor del siguiente
   const { prisma, calls } = mockPrisma(combat, { energiaActual: 5, manaActual: 1 });
   const service = loadService(prisma);
   await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
-  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 25), true);
   assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 3), true);
 });
 
@@ -567,7 +568,7 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   assert.equal(combat.turnoActualUsuarioId, "u1");
   assert.equal(combat.ronda, 1, "el ciclo no avanza de ronda hasta consumir toda la cola");
   assert.equal(calls.characterWrites.filter((write) => write.data.hpActual === 10).length, 1);
-  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 22 && write.data.manaActual === 12), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 40 && write.data.manaActual === 12), true);
 });
 
 test("si falla el control de versión, no se puede completar dos veces el turno", async () => {
@@ -595,7 +596,7 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
-  assert.equal(calls.resourceWrites.some((c) => c.data.manaActual?.decrement === 0), true);
+  assert.equal(calls.resourceWrites.some((c) => c.data.manaActual === undefined), true);
 });
 
 test("un ataque básico golpea al enemigo seleccionado y no modifica el HP de los demás", async () => {
@@ -1105,4 +1106,68 @@ test("perder o huir del boss diario permite reintentarlo sin iniciar la espera",
     assert.equal(resultado.fase, huir ? "huida" : "derrota");
     assert.equal(calls.userWrites.some(w => w.data.ultimaMisionElite), false);
   }
+});
+
+test("party aplica la pasiva del sanador y los PV máximos del aliado como el resolutor individual", async () => {
+  const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
+  const habilidad = obtenerHabilidadPorId("primeros_auxilios");
+  const pasiva = obtenerHabilidadPorId("manos_piadosas");
+  const combat = mkCombat({ participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1, 10, 200)] });
+  const options = {
+    energiaActual: 100,
+    resolverHabilidadesReales: true,
+    habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }, { habilidadId: pasiva.id, nivel: 1, slot: "pasiva_1" }],
+    habilidadesPorId: { [habilidad.id]: habilidad, [pasiva.id]: pasiva },
+  };
+  const { prisma } = mockPrisma(combat, options);
+  const resultado = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id, objetivoId: "u2" });
+  const individual = require("../src/lib/expediciones/combate.ts").resolverHabilidadJugador(habilidad, {
+    jugadorHp: 10, jugadorHpMaximo: 200, jugadorDefensa: 5, enemigoDefensa: 2,
+    jugadorAtaque: 20, jugadorProbCritico: 0, bonusCuracion: pasiva.bonusCuracion,
+  });
+  assert.equal(resultado.accion.curacion, individual.accion.curacion);
+  assert.equal(combat.participantes[1].jugadorHp, individual.jugadorHp);
+  assert.equal(combat.participantes[1].efectos[0].valor, individual.efectos[0].valor);
+  assert.equal(combat.participantes[0].jugadorHp, 100);
+});
+
+test("purificar en party elimina realmente el perjuicio y restaura la defensa del aliado", async () => {
+  const habilidad = require("../src/lib/habilidades.ts").obtenerHabilidadPorId("purificacion");
+  const combat = mkCombat({ participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1, 40)] });
+  combat.participantes[1].efectos = [{ habilidadId: "maldicion", tipo: "debuff_defensa", valor: 2, turnosRestantes: 3, duracionTurnos: 3, objetivo: "jugador" }];
+  const options = { manaActual: 100, resolverHabilidadesReales: true,
+    habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }], habilidadesPorId: { [habilidad.id]: habilidad } };
+  const { prisma } = mockPrisma(combat, options);
+  await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id, objetivoId: "u2" });
+  assert.equal(combat.participantes[1].efectos.some((e) => e.tipo === "debuff_defensa"), false);
+  assert.equal(combat.participantes[1].jugadorDefensa, 7);
+});
+
+test("las técnicas de recuperación de energía de party usan el mismo gasto y límite que individual", async () => {
+  const habilidad = require("../src/lib/habilidades.ts").obtenerHabilidadPorId("respiracion_interior");
+  const combat = mkCombat();
+  const options = { energiaActual: 45, resolverHabilidadesReales: true,
+    habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }], habilidadesPorId: { [habilidad.id]: habilidad } };
+  const { prisma, calls } = mockPrisma(combat, options);
+  await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id });
+  assert.ok(calls.characterWrites.some((w) => w.where.id === "personaje-u1" && w.data.energiaActual === 85));
+});
+
+test("una poción de vida aplica también su porcentaje en party", async () => {
+  const combat = mkCombat({ participantes: [mkParticipant("u1", 0, 10, 200), mkParticipant("u2", 1)] });
+  const options = { objetosPorId: { pocion: { id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 15, curacionPorcentaje: 0.15 } } };
+  const { prisma, calls } = mockPrisma(combat, options);
+  const resultado = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_objeto", { objetoInventarioId: "inv-pocion-1" });
+  assert.equal(resultado.accion.curacion, 45);
+  assert.equal(combat.participantes[0].jugadorHp, 55);
+  assert.equal(calls.inventoryWrites.length, 1);
+});
+
+test("una poción de maná se puede usar con la vida completa y restaura sus recursos en party", async () => {
+  const combat = mkCombat();
+  const options = { manaActual: 0, objetosPorId: { pocion: { id: "pocion", nombre: "Poción de maná", tipo: "consumible", restauracionMana: 5, restauracionManaPorcentaje: 0.4 } } };
+  const { prisma, calls } = mockPrisma(combat, options);
+  await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_objeto", { objetoInventarioId: "inv-pocion-1" });
+  assert.ok(calls.characterWrites.some((w) => w.where.id === "personaje-u1" && w.data.manaActual?.increment === 10));
+  assert.equal(calls.inventoryWrites.length, 1);
 });

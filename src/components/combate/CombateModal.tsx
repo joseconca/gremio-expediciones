@@ -1,5 +1,7 @@
 "use client";
 
+import { calcularRestauracionConsumible, esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate";
+
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
@@ -56,7 +58,8 @@ interface ParticipanteCombatePartyUI {
   jugadorManaMaximo: number;
   efectos?: unknown;
   comidaActiva?: string | null;
-  pasivas?: { habilidadId: string; slot: string | null }[];
+  bonificacionesComida?: unknown;
+  pasivas?: { habilidadId: string; slot: string | null; nivel?: number }[];
 }
 
 type AccionAnimadaPartyUI = AccionAnimadaCombate;
@@ -122,6 +125,7 @@ interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
   comidaActiva?: string | null;
+  bonificacionesComida?: unknown;
   recompensa?: RecompensaMision | null;
   recompensaInforme?: RecompensaInformeCombate | null;
   procesando?: boolean;
@@ -523,9 +527,19 @@ export default function CombateModal({
   };
 
   const objetosConsumibles = personaje.inventario.filter(
-    (item) => item.cantidad > 0 && item.objeto.tipo === "consumible" && (item.objeto.curacion ?? 0) > 0
+    (item) => item.cantidad > 0 && esConsumibleRestaurador(item.objeto)
   );
   const objetoSeleccionado = objetosConsumibles.find((item) => item.id === objetoSeleccionadoId) ?? null;
+  const restauracionObjeto = (item: ObjetoInventario) => calcularRestauracionConsumible(item.objeto, {
+    hp: combate.jugadorHp, hpMaximo: combate.jugadorHpMaximo,
+    energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
+    mana: personaje.manaActual, manaMaximo: personaje.manaMaximo,
+  });
+  const puedeRestaurarObjeto = (item: ObjetoInventario) => {
+    const r = restauracionObjeto(item);
+    return r.curacion + r.energia + r.mana > 0;
+  };
+
 
   useEffect(() => {
     if (
@@ -826,7 +840,7 @@ export default function CombateModal({
                       <EstadoSobreActor ficha={{ id: participante.usuarioId, nombre: participante.nombre, claseId: participante.profesionActivaId,
                         hp: hpParticipanteVisual, hpMaximo: participante.jugadorHpMaximo, energia: energiaActual, energiaMaxima,
                         mana: manaActual, manaMaximo, estado: participante.estado, activo: partyMode.turnoActualUsuarioId === participante.usuarioId }}
-                        efectos={participante.efectos ?? []} posicion={normalizarPosicionCombate(participante.jugadorPosicion)}
+                        efectos={participante.efectos ?? []} bonificacionesComida={participante.bonificacionesComida} posicion={normalizarPosicionCombate(participante.jugadorPosicion)}
                         comida={participante.comidaActiva !== undefined ? participante.comidaActiva : participante.usuarioId === partyMode.usuarioId ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
                         habilidades={participante.pasivas ?? (participante.usuarioId === partyMode.usuarioId ? personaje.habilidades : [])}
                         onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }} />
@@ -999,7 +1013,7 @@ export default function CombateModal({
                 <EstadoSobreActor ficha={{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
                   hp: hpJugadorVisual, hpMaximo: combate.jugadorHpMaximo, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
                   mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: combate.turno === "jugador" }}
-                  efectos={combate.efectos} comida={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada} habilidades={personaje.habilidades}
+                  efectos={combate.efectos} bonificacionesComida={combate.bonificacionesComida} comida={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada} habilidades={personaje.habilidades}
                   onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }} />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
@@ -1418,7 +1432,8 @@ export default function CombateModal({
                   <div className="grid flex-1 min-h-0 grid-cols-1 gap-2 overflow-y-auto custom-scrollbar sm:grid-cols-2">
                     <div className="flex flex-col gap-2">
                       {objetosConsumibles.map((item) => {
-                        const curacion = Math.min(item.objeto.curacion ?? 0, Math.max(0, combate.jugadorHpMaximo - combate.jugadorHp));
+                        const restauracion = restauracionObjeto(item);
+                        const detalle = [restauracion.curacion ? `+${restauracion.curacion} PV` : "", restauracion.energia ? `+${restauracion.energia} EN` : "", restauracion.mana ? `+${restauracion.mana} PM` : ""].filter(Boolean).join(" · ");
                         const seleccionada = item.id === objetoSeleccionado?.id;
                         return (
                           <button
@@ -1429,9 +1444,9 @@ export default function CombateModal({
                           >
                             <span className="min-w-0">
                               <span className="block truncate text-xs font-bold text-stone-200">{item.objeto.nombre}</span>
-                              <span className="mt-1 block text-[10px] text-emerald-300">Cura hasta {item.objeto.curacion} PV · x{item.cantidad}</span>
+                              <span className="mt-1 block text-[10px] text-emerald-300">{item.objeto.descripcion} · x{item.cantidad}</span>
                             </span>
-                            <span className="ml-2 text-xs font-mono text-stone-400">{curacion > 0 ? `+${curacion} PV` : "PV al máximo"}</span>
+                            <span className="ml-2 text-xs font-mono text-stone-400">{detalle || "Recursos al máximo"}</span>
                           </button>
                         );
                       })}
@@ -1446,7 +1461,7 @@ export default function CombateModal({
                           </div>
                           <button
                             onClick={() => void ejecutarObjeto(objetoSeleccionado)}
-                            disabled={procesando || procesandoLocal || combate.turno !== "jugador" || combate.jugadorHp >= combate.jugadorHpMaximo}
+                            disabled={procesando || procesandoLocal || combate.turno !== "jugador" || !puedeRestaurarObjeto(objetoSeleccionado)}
                             className="mt-3 rounded border border-emerald-700 bg-emerald-950 px-3 py-2 text-xs font-black tracking-widest text-emerald-300 transition hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
                           >
                             USAR OBJETO
@@ -1457,7 +1472,7 @@ export default function CombateModal({
                     {objetoSeleccionado ? (
                       <button
                         onClick={() => void ejecutarObjeto(objetoSeleccionado)}
-                        disabled={procesando || procesandoLocal || combate.turno !== "jugador" || combate.jugadorHp >= combate.jugadorHpMaximo}
+                        disabled={procesando || procesandoLocal || combate.turno !== "jugador" || !puedeRestaurarObjeto(objetoSeleccionado)}
                         className="rounded border border-emerald-700 bg-emerald-950 px-3 py-2 text-xs font-black tracking-widest text-emerald-300 sm:hidden disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         USAR {objetoSeleccionado.objeto.nombre.toLocaleUpperCase("es-ES")}

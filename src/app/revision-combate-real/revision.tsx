@@ -12,10 +12,10 @@ const personaje: Personaje = {
   id: "revision", nombre: "Aldric", clase: "cruzado", profesionActivaId: "cruzado", sexo: "chico", posicionCombate: "mele",
   fuerza: 20, agilidad: 20, vitalidad: 20, inteligencia: 20, destreza: 20, suerte: 20,
   energiaActual: 64, manaActual: 48, puntosAtributoDisponibles: 0, nivelJob: 20, experienciaJob: 0, puntosHabilidadDisponibles: 0,
-  hpActual: 840, estado: "combatiendo", comidaPreparada: null, nivel: 20, experiencia: 0, velocidadMejoras: 0, capacidadCarruajeMejoras: 0,
+  hpActual: 840, estado: "combatiendo", comidaPreparada: "carne-cazadora", nivel: 20, experiencia: 0, velocidadMejoras: 0, capacidadCarruajeMejoras: 0,
   habilidades: [], inventario: [{ id: "pocion-revision", objetoId: "pocion", cantidad: 3, nivelMejora: 0, sufijoId: null, bonificaciones: {}, objeto: obtenerObjetoPorId("pocion")! }], equipo: { arma: null, manoSecundaria: null, casco: null, armadura: null, pantalones: null, botas: null, guantes: null, accesorio: null, anillo1: null, anillo2: null },
   hpMaximo: 1080, ataque: 80, defensa: 40, velocidad: 40, capacidadCarruaje: 10, probCritico: 0.1, danoCritico: 150, ataqueMagico: 60, defensaMagica: 35, precision: 95, evasion: 0.1,
-  energiaMaxima: 100, manaMaximo: 80, regeneracionEnergiaPorTurno: 5, regeneracionManaPorTurno: 5,
+  energiaMaxima: 100, manaMaximo: 80, regeneracionEnergiaPorTurno: 20, regeneracionManaPorTurno: 5,
 };
 const habilidades: NonNullable<ComponentProps<typeof CombateModal>["habilidadesIniciales"]> = [
   { id: "r1", habilidadId: "corte_runa", slot: "activa1", habilidad: { id: "corte_runa", nombre: "Corte poderoso", descripcion: "Un golpe físico con energía y maná.", tipo: "activa", rareza: "comun", precio: 0, costeEnergia: 18, costeMana: 12, cooldownTurnos: 3 } },
@@ -25,14 +25,18 @@ const base: CombatePve = {
   id: "revision-local", version: 1, expedicionId: "revision-local", fase: "activo", ronda: 3, turno: "jugador", tipo: "normal",
   jugadorHp: 840, jugadorHpMaximo: 1080, jugadorAtaque: 80, jugadorDefensa: 40, jugadorVelocidad: 40, jugadorProbCritico: 0.1, jugadorDanoCritico: 150, jugadorNivel: 20,
   enemigoHp: 400, enemigoHpMaximo: 500, enemigoAtaque: 60, enemigoDefensa: 30, enemigoVelocidad: 30, enemigoProbCritico: 0.1, enemigoDanoCritico: 150, enemigoNivel: 20,
-  oroGanado: 0, experienciaGanada: 0, cooldowns: { guardia_caballero: 2 }, efectos: [], log: ["El grupo entra en el claro.", "El enemigo prepara su ataque.", "Aldric está listo para actuar."], creado: "2026-10-26T00:00:00Z", actualizado: "2026-10-26T00:00:00Z",
+  oroGanado: 0, experienciaGanada: 0, cooldowns: { guardia_caballero: 2 }, bonificacionesComida: { ataque: 7 }, efectos: [
+    { habilidadId: "tajo_sangrante", tipo: "dano_progresivo", valor: 16, duracionTurnos: 3, turnosRestantes: 3, objetivo: "jugador" },
+    { habilidadId: "primeros_auxilios", tipo: "curacion_progresiva", valor: 18, duracionTurnos: 2, turnosRestantes: 1, objetivo: "jugador" },
+  ], log: ["El grupo entra en el claro.", "El enemigo prepara su ataque.", "Aldric está listo para actuar."], creado: "2026-10-26T00:00:00Z", actualizado: "2026-10-26T00:00:00Z",
 };
 const participantes: NonNullable<ComponentProps<typeof CombateModal>["partyMode"]>["participantes"] = ["espadachin", "mago", "arquero"].map((clase, i) => ({
   id: `p${i}`, usuarioId: `u${i}`, nombre: ["Aldric", "Lyra", "Rowan", "Elara"][i], clase, profesionActivaId: clase, sexo: i % 2 ? "chica" : "chico", esLider: i === 0, ordenTurno: i, estado: "activo", jugadorPosicion: i === 0 ? "mele" : i === 1 ? "retaguardia" : "centro",
   jugadorHp: 500, jugadorHpMaximo: 700, jugadorAtaque: 80, jugadorAtaqueMagico: 60, jugadorDefensa: 40, jugadorDefensaMagica: 35, jugadorVelocidad: 40, jugadorProbCritico: 0.1, jugadorDanoCritico: 150, jugadorPrecision: 95, jugadorEvasion: 0.1, jugadorNivel: 20,
   jugadorEnergiaActual: 64, jugadorEnergiaMaxima: 100, jugadorManaActual: 48, jugadorManaMaximo: 80,
   comidaActiva: i === 0 ? "carne-cazadora" : null,
-  efectos: i === 0 ? [{ habilidadId: "guardia_caballero", tipo: "bonus_defensa", valor: 10, duracionTurnos: 3, turnosRestantes: 2, objetivo: "jugador" }] : [],
+  bonificacionesComida: i === 0 ? { ataque: 7 } : {},
+  efectos: i === 0 ? [...base.efectos, { habilidadId: "guardia_caballero", tipo: "bonus_defensa", valor: 10, duracionTurnos: 3, turnosRestantes: 2, objetivo: "jugador" }] : [],
 }));
 
 export default function Revision() {

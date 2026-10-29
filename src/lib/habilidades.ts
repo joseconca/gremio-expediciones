@@ -10,7 +10,7 @@ function habilidad(datos: EntradaHabilidad): DefinicionHabilidad {
 }
 
 /** Habilidades profesionales de Job. Las clases avanzadas heredan las de sus antecesoras. */
-export const HABILIDADES: DefinicionHabilidad[] = [
+const CATALOGO_HABILIDADES: DefinicionHabilidad[] = [
   ...HABILIDADES_NUEVAS,
   // NOVATO
   habilidad({
@@ -473,6 +473,13 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   habilidad({"claseId":"demonologo","id":"pacto_menor","nivelJobRequerido":30,"nombre":"Pacto menor","descripcion":"Aumenta el ataque mágico en 4 puntos, a costa de 1 de defensa.","tipo":"pasiva","bonusAtaqueMagico":4,"bonusDefensa":-1}),
   habilidad({"claseId":"demonologo","id":"corazon_infernal","nivelJobRequerido":55,"nombre":"Corazón infernal","descripcion":"Aumenta el Maná máximo en 15 puntos.","tipo":"pasiva","bonusManaMaximo":15}),
 ];
+
+/** Escala táctica de energía: base 100, recuperación 20 % por turno propio. */
+export const HABILIDADES: DefinicionHabilidad[] = CATALOGO_HABILIDADES.map((h) => ({
+  ...h,
+  ...(h.costeEnergia !== undefined ? { costeEnergia: Math.min(60, Math.max(0, h.costeEnergia * 5)) } : {}),
+  ...(h.recuperarEnergia !== undefined ? { recuperarEnergia: h.recuperarEnergia * 5 } : {}),
+}));
 
 export function obtenerHabilidadPorId(id: string): DefinicionHabilidad | undefined {
   return HABILIDADES.find((habilidad) => habilidad.id === id);

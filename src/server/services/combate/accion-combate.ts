@@ -1,3 +1,6 @@
+import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
+export { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
+import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
@@ -147,7 +150,7 @@ async function recuperarEnergiaLimitada(
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
   const energiaNueva = Math.min(
-    estadisticas.energiaMaxima ?? 20,
+    estadisticas.energiaMaxima ?? 100,
     personaje.energiaActual + Math.floor(cantidad),
   );
   const actualizado = await tx.personaje.updateMany({
@@ -190,22 +193,6 @@ export async function gastarRecursosHabilidad(
   await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
 }
 
-export function calcularRegeneracionRecursosTurno(
-  energiaActual: number,
-  manaActual: number,
-  energiaMaxima: number,
-  manaMaximo: number,
-) {
-  const energiaMax = Math.max(0, Math.floor(Number.isFinite(energiaMaxima) ? energiaMaxima : 0));
-  const manaMax = Math.max(0, Math.floor(Number.isFinite(manaMaximo) ? manaMaximo : 0));
-  const energia = Math.max(0, Math.floor(Number.isFinite(energiaActual) ? energiaActual : 0));
-  const mana = Math.max(0, Math.floor(Number.isFinite(manaActual) ? manaActual : 0));
-  return {
-    energiaActual: Math.min(energiaMax, energia + 2),
-    manaActual: Math.min(manaMax, mana + Math.max(1, Math.ceil(manaMax * 0.1))),
-  };
-}
-
 export async function regenerarRecursosPorTurno(
   tx: Prisma.TransactionClient,
   usuarioId: string
@@ -228,6 +215,7 @@ export async function regenerarRecursosPorTurno(
       capacidadCarruajeMejoras: true,
       energiaActual: true,
       manaActual: true,
+      manaRegeneracionPendiente: true,
       habilidades: {
         where: { slot: { not: null } },
         select: { habilidadId: true, nivel: true },
@@ -276,18 +264,21 @@ export async function regenerarRecursosPorTurno(
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
 
-  const energiaMaxima = estadisticas.energiaMaxima ?? 20;
+  const energiaMaxima = estadisticas.energiaMaxima ?? 100;
   const manaMaximo = estadisticas.manaMaximo ?? 10;
   const recursosNuevos = calcularRegeneracionRecursosTurno(
     personaje.energiaActual,
     personaje.manaActual,
     energiaMaxima,
     manaMaximo,
+    estadisticas.regeneracionManaPorTurno ?? 2,
+    estadisticas.regeneracionEnergiaPorTurno ?? energiaMaxima * 0.2,
+    personaje.manaRegeneracionPendiente ?? 0,
   );
   const energiaNueva = recursosNuevos.energiaActual;
   const manaNuevo = recursosNuevos.manaActual;
 
-  if (energiaNueva === personaje.energiaActual && manaNuevo === personaje.manaActual) return;
+  if (energiaNueva === personaje.energiaActual && manaNuevo === personaje.manaActual && recursosNuevos.manaRegeneracionPendiente === (personaje.manaRegeneracionPendiente ?? 0)) return;
 
   const actualizado = await tx.personaje.updateMany({
     where: {
@@ -298,6 +289,7 @@ export async function regenerarRecursosPorTurno(
     data: {
       energiaActual: energiaNueva,
       manaActual: manaNuevo,
+      manaRegeneracionPendiente: recursosNuevos.manaRegeneracionPendiente,
     },
   });
   if (actualizado.count !== 1) {
@@ -441,9 +433,10 @@ type UsuarioAccionPayload = Prisma.UsuarioGetPayload<{
   include: {
     personaje: {
       include: {
+        progresosClase: true;
         inventario: { include: { objetos: true } };
         habilidades: { where: { slot: { not: null } } };
-        equipoEquipado: { include: { arma: true } };
+        equipoEquipado: { include: { arma: true, armadura: true, accesorio: true, manoSecundaria: true, casco: true, pantalones: true, botas: true, guantes: true, anillo1: true, anillo2: true } };
       };
     };
     expedicionActiva: {
@@ -458,6 +451,8 @@ export type ConsumibleCombate = {
   id: string;
   nombre: string;
   curacion: number;
+  energia: number;
+  mana: number;
   inventarioObjetoId: string;
 };
 
@@ -585,7 +580,8 @@ export async function prepararAccionCombate(
                 },
               },
             },
-            equipoEquipado: { include: { arma: true } },
+            progresosClase: true,
+            equipoEquipado: { include: { arma: true, armadura: true, accesorio: true, manoSecundaria: true, casco: true, pantalones: true, botas: true, guantes: true, anillo1: true, anillo2: true } },
           },
         },
         expedicionActiva: {
@@ -928,7 +924,7 @@ export async function prepararAccionCombate(
       ? [...(combate.log as string[])]
       : [];
 
-    let consumible: { id: string; nombre: string; curacion: number; inventarioObjetoId: string } | null = null;
+    let consumible: ConsumibleCombate | null = null;
 
     // Si se vuelve a usar la misma habilidad, retira sus efectos anteriores antes
     // de resolverla. Así se renueva la duración sin acumular bonificaciones ni
@@ -965,19 +961,27 @@ export async function prepararAccionCombate(
         return NextResponse.json({ error: "No tienes ese objeto en el inventario." }, { status: 404 });
       }
       const definicion = obtenerObjetoPorId(registroInventario.objetoId);
-      if (!definicion || definicion.tipo !== "consumible" || !Number.isFinite(definicion.curacion) || (definicion.curacion ?? 0) <= 0) {
+      if (!definicion || !esConsumibleRestaurador(definicion)) {
         return NextResponse.json({ error: "Este objeto no se puede usar durante el combate." }, { status: 400 });
       }
       if (actor !== "jugador") {
         return NextResponse.json({ error: "Solo puedes usar objetos durante tu turno." }, { status: 409 });
       }
-      if (combate.jugadorHp >= combate.jugadorHpMaximo) {
-        return NextResponse.json({ error: "Ya tienes la salud al máximo." }, { status: 400 });
+      const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
+      const stats = calcularEstadisticasPersonaje({ ...personaje, nivelJob: personaje.progresosClase?.find((p) => p.claseId === personaje.profesionActivaId)?.nivelJob ?? 1 },
+        personaje.habilidades.map((h) => ({ habilidadId: h.habilidadId, nivel: h.nivel })), calcularModificadoresEquipo(equipo, personaje.profesionActivaId)).total;
+      const restauracion = calcularRestauracionConsumible(definicion, {
+        hp: combate.jugadorHp, hpMaximo: combate.jugadorHpMaximo,
+        energia: personaje.energiaActual, energiaMaxima: stats.energiaMaxima ?? 100,
+        mana: personaje.manaActual, manaMaximo: stats.manaMaximo ?? 10,
+      });
+      if (restauracion.curacion + restauracion.energia + restauracion.mana <= 0) {
+        return NextResponse.json({ error: "Los recursos que restaura este objeto ya están al máximo." }, { status: 400 });
       }
       consumible = {
         id: definicion.id,
         nombre: definicion.nombre,
-        curacion: Math.floor(definicion.curacion ?? 0),
+        ...restauracion,
         inventarioObjetoId: registroInventario.id,
       };
     }

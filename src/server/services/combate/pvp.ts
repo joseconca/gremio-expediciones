@@ -160,6 +160,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          bonusCuracion,
           efectosEnemigo: efectosDefensor,
           jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
           jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
@@ -235,6 +236,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          bonusCuracion,
           efectosEnemigo: efectos,
           jugadorAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
           jugadorAtaqueMagico: calcularAtaqueModificado(combate.enemigoAtaqueMagico ?? combate.enemigoAtaque, efectosDefensor, true),
@@ -250,7 +252,6 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           enemigoDefensa: jugadorDefensa,
           enemigoDefensaMagica: combate.jugadorDefensaMagica,
           enemigoNombre: "Atacante",
-          bonusCuracion,
           efectosJugador: efectosDefensor,
         });
 

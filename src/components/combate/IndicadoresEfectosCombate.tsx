@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/descripciones-efectos";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
@@ -48,8 +51,8 @@ function IconoIndicador({
   return (
     <button
       type="button"
-      title={indicador.descripcion}
-      aria-label={indicador.descripcion}
+      title={`${indicador.nombre}: ${indicador.descripcion}`}
+      aria-label={`${indicador.nombre}: ${indicador.descripcion}`}
       aria-expanded={seleccionado}
       onClick={onToggle}
       onContextMenu={(evento) => evento.preventDefault()}
@@ -80,10 +83,12 @@ export default function IndicadoresEfectosCombate({
   efectos,
   comidaPreparada,
   habilidades = [],
+  bonificacionesComida,
 }: {
   efectos: unknown;
   comidaPreparada?: string | null;
-  habilidades?: { habilidadId: string; slot?: string | null }[];
+  bonificacionesComida?: unknown;
+  habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[];
 }) {
   const indicadores: Indicador[] = leerEfectosCombate(efectos).map((efecto: EstadoEfectoHabilidad) => {
     const configuracion = CONFIGURACION_ESTADO[efecto.tipo];
@@ -91,8 +96,8 @@ export default function IndicadoresEfectosCombate({
     const turnos = Math.max(1, Math.floor(efecto.turnosRestantes));
     return {
       id: `estado:${efecto.habilidadId}:${efecto.tipo}:${efecto.objetivo ?? "enemigo"}`,
-      nombre: habilidad?.nombre ?? efecto.habilidadId,
-      descripcion: `${habilidad?.nombre ?? efecto.habilidadId}: ${configuracion.nombre}. ${turnos} ${turnos === 1 ? "turno restante" : "turnos restantes"}.`,
+      nombre: habilidad?.nombre ?? configuracion.nombre,
+      descripcion: describirEstadoCombate(efecto),
       src: `/sprites/effects/state/${configuracion.sprite}`,
       emoji: configuracion.emoji,
       turnosRestantes: turnos,
@@ -103,8 +108,8 @@ export default function IndicadoresEfectosCombate({
   if (comida) {
     indicadores.push({
       id: `comida:${comida.id}`,
-      nombre: comida.nombre,
-      descripcion: `${comida.nombre}: ${comida.descripcion} Permanece activa durante la expedición.`,
+      nombre: `${comida.nombre} (comida)`,
+      descripcion: describirBonificacionesComida(bonificacionesComida) ?? comida.descripcion,
       src: `/sprites/effects/foods/${comida.id}.svg`,
       emoji: comida.icono,
       turnosRestantes: null,
@@ -120,7 +125,7 @@ export default function IndicadoresEfectosCombate({
     indicadores.push({
       id: `pasiva:${habilidad.id}`,
       nombre: habilidad.nombre,
-      descripcion: `${habilidad.nombre}: pasiva equipada, activa durante el combate.`,
+      descripcion: detalleNumericoHabilidad(ajustarHabilidadPorNivel(habilidad, habilidadPersonaje.nivel ?? 1)).join(" "),
       src: `/sprites/habilidades/${habilidad.id}.svg`,
       emoji: "⭐",
       turnosRestantes: null,

@@ -5,7 +5,6 @@ const assert = require("node:assert/strict");
 const {
   COMIDAS_TABERNA,
   aplicarEfectoComida,
-  comidaOtorgaIniciativa,
   obtenerComidaTaberna,
 } = require("../src/lib/comidasTaberna.ts");
 
@@ -33,46 +32,43 @@ test("la taberna ofrece recetas en tres niveles con costes positivos", () => {
 
 test("las recetas básicas modifican solo la estadística indicada", () => {
   const carne = aplicarEfectoComida(atributosBase, "carne-cazadora");
-  assert.equal(carne.ataque, 110);
+  assert.equal(carne.ataque, 113);
   assert.equal(carne.ataqueMagico, 80);
   assert.equal(carne.defensa, 50);
 
-  assert.equal(aplicarEfectoComida(atributosBase, "caldo-guardian").defensa, 55);
-  assert.equal(aplicarEfectoComida(atributosBase, "setas-arcanas").ataqueMagico, 88);
+  assert.equal(aplicarEfectoComida(atributosBase, "caldo-guardian").defensa, 58);
+  assert.equal(aplicarEfectoComida(atributosBase, "setas-arcanas").ataqueMagico, 91);
 });
 
 test("las recetas de nivel 2 combinan efectos", () => {
   const guiso = aplicarEfectoComida(atributosBase, "raices-vigorizantes");
   assert.equal(guiso.velocidad, 33);
-  assert.equal(guiso.defensa, 55);
+  assert.equal(guiso.defensa, 58);
 
   const brocheta = aplicarEfectoComida(atributosBase, "brocheta-especiada");
-  assert.equal(brocheta.ataque, 110);
+  assert.equal(brocheta.ataque, 113);
   assert.ok(Math.abs(brocheta.probCritico - 0.3) < 1e-10);
 
   const desayuno = aplicarEfectoComida(atributosBase, "desayuno-explorador");
   assert.equal(desayuno.velocidad, 33);
-  assert.equal(comidaOtorgaIniciativa("desayuno-explorador"), true);
 });
 
 test("las recetas de nivel 3 tienen bonificaciones combinadas y potentes", () => {
   const campeon = aplicarEfectoComida(atributosBase, "banquete-campeon");
-  assert.equal(campeon.ataque, 115);
-  assert.equal(campeon.defensa, 57);
+  assert.equal(campeon.ataque, 118);
+  assert.equal(campeon.defensa, 61);
   assert.ok(Math.abs(campeon.probCritico - 0.3) < 1e-10);
 
   const arcano = aplicarEfectoComida(atributosBase, "festin-arcano");
-  assert.equal(arcano.ataqueMagico, 96);
+  assert.equal(arcano.ataqueMagico, 99);
   assert.equal(arcano.velocidad, 33);
-  assert.equal(arcano.defensa, 55);
+  assert.equal(arcano.defensa, 58);
 
   const asedio = aplicarEfectoComida(atributosBase, "racion-de-asedio");
-  assert.equal(asedio.ataque, 120);
-  assert.equal(asedio.defensa, 57);
-  assert.equal(comidaOtorgaIniciativa("racion-de-asedio"), true);
+  assert.equal(asedio.ataque, 123);
+  assert.equal(asedio.defensa, 61);
 });
 
 test("una receta desconocida deja los atributos intactos", () => {
   assert.deepEqual(aplicarEfectoComida(atributosBase, "desconocida"), atributosBase);
-  assert.equal(comidaOtorgaIniciativa("desconocida"), false);
 });
