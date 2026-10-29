@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "senor_guerra-f",
+  "nextVariant": "abjurador-m",
   "classes": [
     {
       "id": "novato",
@@ -422,7 +422,7 @@
       "name": "Runista",
       "tier": 3,
       "order": 52,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "abjurador",
@@ -241666,7 +241666,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/runista/m/runista-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/runista/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -242790,7 +242790,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "e2dd7c59c51e6db56dc0da69ace4ba06127b56e05b473b190d1a7c856f787ed8",
@@ -242828,7 +242829,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "b8b426fe33d4c6e6d0ad97cbfec9094f614d9fdea0aef3d13d6444754779fc71",
@@ -243090,7 +243091,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "33a953014c78cdf0cb883cb986198731ec9620ef8f55ec65fe973d990ca295a4",
@@ -243128,7 +243130,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "d30e2e24d407e60cabc8df1ebf589bf5c9d47d7b491274f72b391f532664d53d",
@@ -243166,7 +243169,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "a59d49107621f26b89265e7f4f28386e0f92a96eb1d9fe6202ef5f88ab6ffda9",
@@ -243210,7 +243214,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "8ad0eda117627c2a13502090f7cf08f875a1edb8060cf537dfbf2577076a06d3",
@@ -243254,7 +243259,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "e2108d7785c224a7b4b30b2fe07fc2c1f2f6e660f7d27e1fab06a1c96090155d",
@@ -243292,7 +243298,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "0d53f11ba1ca9dfc4cdc0e5342d74763a9e8cbe4ae866380f4eace5fc046d046",
@@ -243330,7 +243337,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "b140cfd8bc62d62b2741dfbed461af8a55735849e1a42e13ef2718631dd979ac",
@@ -243368,7 +243376,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4651df678b4cf0352758f1a2f9ae24522596745570da0c9d9d3875ed04db4d78",
@@ -243630,7 +243638,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "d2f079273275c5c92b389127bee98c15085d59ab1635b7917dad6e72ddf8901e",
@@ -243668,7 +243677,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "be67a917e3b1a062902a868ec2ea1b24df9fa176610c8d3177d6a8f6d0761780",
@@ -243706,7 +243716,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "901041f960d5ca61c6f96cf5c307da8ac50d015685386e33e7445987ab9f2194",
@@ -243744,7 +243755,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "0c07f689ebf2349e8fd35fcd304b3451e48edeba9d94b437cc0af9bc9337a5ca",
@@ -243782,7 +243794,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "cd2e419bfc9fc87b05370810068a7b421a506bf1df04754dbb6393fb1d4f3375",
@@ -243820,7 +243833,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "6ccf2d868c1d936e53fd3fbc8f1a1a2e0bb7cb08367bd3ae0469d94a2336912d",
@@ -243858,7 +243872,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -244133,6 +244148,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "runista",
+        "name": "Runista",
+        "tier": 3,
+        "costume": "Elite offensive rune scholar: fitted INK-NAVY high-collar light battle coat with PARCHMENT-IVORY front panels and split knee-length tails, AMETHYST piping. Compact flat BRASS hexagonal light armor plates on shoulders and upper chest, engraved with crisp VIOLET angular rune strokes; no bulky knight armor. TWO violet hexagonal seal tiles arranged vertically down ivory breast panel. Large square BRASS belt clasp with VIOLET crossed angular rune. Fitted navy trousers, charcoal boots with brass diamond shin plaques. Full navy sleeves ending above slim brass wrist bracers and BLACK fingerless gloves. Small closed ivory scroll cylinder secured to belt. Thin ROUND BRASS SPECTACLES on all four faces, including closed-eye blink. No headgear, cloak, scarf, held or sheathed equipment, floating runes or effects.",
+        "maleIdentity": "Adult masculine rune master, INK-BLACK hair with deep violet sheen, short tousled layered hairstyle, amber eyes, clean-shaven. Round brass spectacles on every pose.",
+        "femaleIdentity": "Adult feminine rune master, INK-BLACK hair with deep violet sheen, thick high layered ponytail with side bangs, amber eyes. Round brass spectacles on every pose.",
+        "armPolicy": "Preserve exact canonical empty hand and finger coordinates; slim black fingerless gloves and compact brass bracers, full navy sleeves. All brass plates, violet rune strokes, two seal tiles, square rune buckle and spectacles remain identical in every pose.",
+        "unique": "Engraved hexagonal brass rune plates, two violet seal tiles, square crossed-rune buckle and round brass spectacles.",
+        "advancement": "Tier 3 offensive evolution of Escriba Arcano: a structured navy and ivory battle coat with dense engraved rune armor, beyond the earlier simple scholar coat. A precise arcane specialist with metallic rune geometry, visibly advanced yet light and agile.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/runista/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "e7d4ce95445c974a442b62296032c1c57fd2a53d43cf1bc3172c1ffae1429689",
+            "76db482d7763d3b8a2c6a44e30ede0ddaff339e1e8d3a452f12fee123b2261a0",
+            "2b2237bab272672960758b0c6a85a054bbbc5bcf509aaf7a1a4615140c3317c6",
+            "cd7651e4d4d757399c5af8d401d4895192dac50fbef03f3e7238c6e7895b0225"
+          ],
+          "walk": [
+            "48d4d47166bd9810359a9a31f34e6738e66ad813abadaa25aea3fefcbfdf38cf",
+            "c6f8aa982fa5e7e9289c8efe50c06015808df95c2e6752ba2b0af1f54586c7c0",
+            "fab8a2d1ed0decd43bcaad3718207addaf349293aa10e11db2eac47bbf69165a",
+            "c5c2725616b06fd305d836b5fa3cc89e310cea5e98dec2dae833aa89b1175a06"
+          ],
+          "hurt": [
+            "09c4a3e3ce79714cf6147b8623126e4b39b625f91e02023a5873f7bec6deed67",
+            "4bfc25b18ed6eb74ecb48cdfca93bdb14b37856bfe97475d4a82032458699ea5",
+            "141107a608611a7d3cf3b35bd52435db81f54b03493985424bf5ee4a94d777ad",
+            "ee6fa84916fa710ade38c7710bbbabd2831f4baea245c4926975b68b07f53779"
+          ],
+          "use_consumable": [
+            "c703b56871c9e4ddadf59a534ecf504f1d417f400d22e46f3834ee171460384f",
+            "86185f7f7853a0ab724a497c587497b68207af716df3de69df3fc203759e5561",
+            "bd6364dd74a27d53b025cdc38755b62fa7293efeaee2e6ca6b36ac9491399c1f",
+            "14211aea434433a2f27ad2c473f1e09cd6767579fbc68d98e2714993e3974b09"
+          ],
+          "dodge": [
+            "31abf3e40e0bbaa261290b8b6d99744177af2db81a99af7448dd72dd5a6797bb",
+            "cdd97b0142e68b1d3392836b842d2d726c2bd68c6e96c85243636203063318c0",
+            "a38cc71de446f855845d193fa59fb9910ffeff703f4f0e383ecb192fce91de27",
+            "6ff965f1e4de20b90e39a19335a72206c3e5afd2511bd85a6381fff75ce5989c"
+          ],
+          "block_shield": [
+            "a150bd86fea324a170441f6d7724e2ff1f47baed390c54f6e0b38f87dd879c84",
+            "d052e3576a1b1b5e140f0656550f373d8f2d74ac25418eaec9386e84729eb639",
+            "03c864ad6ff51719ab4169185450d56f64a9345494016a4b57f42cd23e80fa93",
+            "c7d504aa9f235ba55e3c7d527aa887310019020cebc0840a1a97c2106b11ae71"
+          ],
+          "attack_sword": [
+            "3c56ccb6400392d2f3008cacd847211ef8a93f97cccbaf16ac8e103280f18f15",
+            "7c8b77f011e728a9bfd22d804352bbbd89824da6093faa4d65ed6a1d7d37b206",
+            "e871913cad770a882d728478e9a8e12c0e5dc1c52d1d28093bc98ef7841263da",
+            "c77e84a2d48cb445c2109b1e01bef586bca02e2212d4e40b95a10c8e7a7c06ac"
+          ],
+          "attack_axe": [
+            "9c198e34e1b31f252b0db33f879dbe869edaf612b734a8ad686e742dd2bd5424",
+            "637798a2e0d1b9ef8fe9c314c326b91d5a1e38b02797b40dfc40944722fa4a5f",
+            "9f1ff9fc2e4169d93e0f5be2debf4585ebe783d9c6f4c44b714f5edf4bf34d09",
+            "65647125020e9e3cc08de9504606ecfc3723f8838a039b98fff545911814cfd5"
+          ],
+          "attack_spear": [
+            "5187ff32b201d834eb8c1e492dbbd5549ede902b0fd4847044d6936360b37338",
+            "92fc6016796dc7e3a6e3e117923d179204ebf9c32a55655832a05a7197f42353",
+            "e133e61fac42e7a17a5821e37ed64fad081ad2ec9759515d2197024a79f3c618",
+            "99455cf31523aa11f7b1f1aa333c0bd57f4713bc857bdbf6062fed3ee4c33742"
+          ],
+          "attack_dagger": [
+            "79d1340091a7e248d2981f3888e00d7df558dc66b208056210055b6759724f81",
+            "c9747e53fcc16b46b00be32c2e38ed7e6a3fed7951b1afe3c25713637f2e9106",
+            "c8c6fe5f269debd09b7e6ac64c4acedc6d3fe58caa76b0afb02eee1dfd689730",
+            "4f157c546bf97c65be7e7791877624e2335afd4ea495f516635f20a4547f5157"
+          ],
+          "attack_bow": [
+            "392ea6c37ee4df78f49130fc54bef74276a2448fe3866c5483d843c63a305247",
+            "81e4b6dac18df2e6713189346a304cdb987405bccea85e1830db6d93eb56c019",
+            "c9b19b0cd13b8a8d4b23e9533be7e15c1ce77dcc1789c850ffc7c7f8beb7a888",
+            "a8dac9950ca35af78ae8aaf6508ab54d21af108649709307e59b7f642ce5062c"
+          ],
+          "attack_staff": [
+            "61d8417b497ee0eab56beea6e949f7ac09fcb1eaad1eaaa652987654c7e918e6",
+            "b3aae56465466d629b567c6c60de7dd0f96d030e1efdb8c86f390ab1a32524cf",
+            "741753c3ce0430959413b5111af58292107458bdf45fdbd152f926beb5129b0b",
+            "29eca62fbef6937551998d55e9f44bbe37e6a87117eb7942c31fb06684ac07e1"
+          ],
+          "attack_mace": [
+            "7ba8ad9aedfba660abd1770d8fc169327c33a1a0a3c45727ba2927a30192f7da",
+            "147defac67368febf7662eaea70c63399bad0387f18c8f52e7a7da94aabdee9f",
+            "adc76eef1e4ccfbf952b68f9b44271ef1a7deeea573ae4e9754b6cfff5de2666",
+            "e2676e1e0fc7b9c12b81b74e7d41e351a06b8dab0f3ce9ba177916bd591a06c8"
+          ],
+          "attack_book": [
+            "2104be9a1e8c65d5cf235b623dd9ff0731f80859136878ef6485a5d5d3eac4e8",
+            "65efcc2560512dda84923f9e4e5daf1f8a312241988b9999f670b1a6f095d891",
+            "51bc0230d570c8ce9bffca74586788d508cf8514a003be6af04b28ee7f950936",
+            "112853624f45b10d7de84e79433ab97e40db796388aabd6e6b3f147d94d9bf2c"
+          ],
+          "attack_gloves": [
+            "0755d039e33d5f026c4d8736fb52fad6d86c3c8ae13df9731d6126ce667cfaf7",
+            "d58813dbbead57eac906dd47408626ba5b89279c1b45850fb274f9eaf6f44554",
+            "8604132c4ec8f34c393d937cc8bd759ad6a6f0a9e386877696a09c84ac4bd572",
+            "50aeecbc1b1e67500b5aa0176a90a80e73e91fa08dface8e6a3cdb1cd640886a"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -244145,7 +244275,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/runista/f/runista-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/runista/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -245072,8 +245202,8 @@
                 "pixelSha256": "05bd44323a3e84a4c7ca77ad493ec83a0905cc0679c84b0eafd9ec6d2f9ad4ef"
               },
               "04": {
-                "sha256": "21990aaaffd9faf256f28d3cb942e7a394136c7341948645ee27e758c1ccbcfd",
-                "bytes": 24913,
+                "sha256": "4b94d7ff610924f9956ec11ca88151b44a6a1f50f7f0b2c13e5b07109588d86d",
+                "bytes": 26593,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -245082,10 +245212,10 @@
                 "bbox": [
                   8,
                   89,
-                  95,
-                  248
+                  100,
+                  251
                 ],
-                "pixelSha256": "a5b8c0216dd225e8d8b2135fe70d1beff9e14017faec0cff3511ab44154b2274"
+                "pixelSha256": "81367c0a0ed56213b5fbbf4c67a332075fea0a6a5fe8e18053ce9519edf13cbe"
               }
             },
             "distinctFrames": 4
@@ -245269,7 +245399,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "30b76da57bb27cc1b4c50f410de932e4d12307020b4619f1a776c8b670f880d3",
@@ -245307,7 +245438,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "f82d280d786b3241e9468d1fac1e8c77d7bcb40f048cf593280934887c425315",
@@ -245345,7 +245477,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "d967de2399b198fe2eea5804992765975053fb8e75c20143ff4625a7a38c0eef",
@@ -245477,7 +245609,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "2923f6cfee27e200a288c60360ec2b14bfdf47191b4e08a5f5da9ce559f22e52",
@@ -245515,7 +245648,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "0c84d09441481949e1cd79448629625bd92640c2d171187ae3fde84614f17dd7",
@@ -245553,7 +245687,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "2b5558408120d2687073bbd8cafc2212ff8fc4bd22785298253980d489846045",
@@ -245591,7 +245726,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "21ae68c6de8321e2b019fbe664a50b6a73735519b4f3fac9fcefa3b12820c65f",
@@ -245629,7 +245765,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "8ae3dc40295b963ed7ce534e7e54f835fb08811005f639bc603c9a6813f8c8c6",
@@ -245667,7 +245804,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "6e9ccc273d14c4d97596937a66a77861a2a1e0bf50db411eeb3e29d9f640a61f",
@@ -245705,7 +245843,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "40fc735eddf71d1c930f16ce3ca76a500e5e9416da6920883a72e1f45ffb4a17",
@@ -245743,7 +245882,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "c97397e8e7f1295490c491a697800aae53963e007ce70be0db644c112362520b",
@@ -245781,7 +245921,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "cb16b398a084aafa8f6c92054717c8be06f8fcecf98299f706084336e8353f51",
@@ -245819,13 +245960,14 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
-          "sourceSha256": "bcdc14024856263f01bb98e0b6a88b5e9bcfb3d9ea631ef4e511af43270b447f",
+          "sourceSha256": "6c8fe82d0f0428f324de1981ee798f87091a59f040e8e6c7395bc77bf0eb8760",
           "sourceDimensions": [
-            2171,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -245847,9 +245989,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Runista FEMALE, Tier 3, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical empty hand and finger coordinates; slim black fingerless gloves and compact brass bracers, full navy sleeves. All brass plates, violet rune strokes, two seal tiles, square rune buckle and spectacles remain identical in every pose. Adult feminine rune master, INK-BLACK hair with deep violet sheen, thick high layered ponytail with side bangs, amber eyes. Round brass spectacles on every pose. Elite offensive rune scholar: fitted INK-NAVY high-collar light battle coat with PARCHMENT-IVORY front panels and split knee-length tails, AMETHYST piping. Compact flat BRASS hexagonal light armor plates on shoulders and upper chest, engraved with crisp VIOLET angular rune strokes; no bulky knight armor. TWO violet hexagonal seal tiles arranged vertically down ivory breast panel. Large square BRASS belt clasp with VIOLET crossed angular rune. Fitted navy trousers, charcoal boots with brass diamond shin plaques. Full navy sleeves ending above slim brass wrist bracers and BLACK fingerless gloves. Small closed ivory scroll cylinder secured to belt. Thin ROUND BRASS SPECTACLES on all four faces, including closed-eye blink. No headgear, cloak, scarf, held or sheathed equipment, floating runes or effects. Tier 3 offensive evolution of Escriba Arcano: a structured navy and ivory battle coat with dense engraved rune armor, beyond the earlier simple scholar coat. A precise arcane specialist with metallic rune geometry, visibly advanced yet light and agile. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise edit of ONE complete female Runista sprite portrait. Keep head, face, glasses, hair, shoulders, torso, belt and overall scale/canvas unchanged. Move ONLY near fist by face UP a small distance so center of its black palm covers the nearby magenta ring (currently above glove). Keep far right fist position unchanged. Also compact ONLY lower boot soles/toes slightly upward to leave clearly transparent bottom margin beneath BOTH boots; current soles are clipped by bottom edge. Do not shift or scale body, head, hands or legs to solve the boot margin. Preserve costume, fingers and anatomy. Remove both magenta rings. Full body, true transparent alpha, no equipment no text.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
           "canonicalPoseHashes": [
             "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
@@ -245857,7 +245999,140 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "bcdc14024856263f01bb98e0b6a88b5e9bcfb3d9ea631ef4e511af43270b447f",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame01-reference-v5.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "bcdc14024856263f01bb98e0b6a88b5e9bcfb3d9ea631ef4e511af43270b447f",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "bcdc14024856263f01bb98e0b6a88b5e9bcfb3d9ea631ef4e511af43270b447f",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame03-reference-v5.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "bcdc14024856263f01bb98e0b6a88b5e9bcfb3d9ea631ef4e511af43270b447f",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                14,
+                1034,
+                699
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Runista FEMALE, Tier 3, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical empty hand and finger coordinates; slim black fingerless gloves and compact brass bracers, full navy sleeves. All brass plates, violet rune strokes, two seal tiles, square rune buckle and spectacles remain identical in every pose. Adult feminine rune master, INK-BLACK hair with deep violet sheen, thick high layered ponytail with side bangs, amber eyes. Round brass spectacles on every pose. Elite offensive rune scholar: fitted INK-NAVY high-collar light battle coat with PARCHMENT-IVORY front panels and split knee-length tails, AMETHYST piping. Compact flat BRASS hexagonal light armor plates on shoulders and upper chest, engraved with crisp VIOLET angular rune strokes; no bulky knight armor. TWO violet hexagonal seal tiles arranged vertically down ivory breast panel. Large square BRASS belt clasp with VIOLET crossed angular rune. Fitted navy trousers, charcoal boots with brass diamond shin plaques. Full navy sleeves ending above slim brass wrist bracers and BLACK fingerless gloves. Small closed ivory scroll cylinder secured to belt. Thin ROUND BRASS SPECTACLES on all four faces, including closed-eye blink. No headgear, cloak, scarf, held or sheathed equipment, floating runes or effects. Tier 3 offensive evolution of Escriba Arcano: a structured navy and ivory battle coat with dense engraved rune armor, beyond the earlier simple scholar coat. A precise arcane specialist with metallic rune geometry, visibly advanced yet light and agile. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+                "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+                "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+                "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "6410fb15e4f710139ae7a7092426563201f329057e943a6ad562f67362912e00",
@@ -245895,7 +246170,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "fe103750e08300d3d8ded926f671ee172a161303414adaeb3832b178ba799772",
@@ -245933,7 +246209,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "46be8e8eb71be7a7370fbb64697d85cbc5807ead16799d629a3732d5fca3cacb",
@@ -246065,7 +246341,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -246262,15 +246539,15 @@
           "frame": 4
         },
         "attack_mace/01": {
-          "source": "sources.attack_mace",
+          "source": "sources.attack_mace.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_mace/02": {
-          "source": "sources.attack_mace",
+          "source": "sources.attack_mace.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_mace/03": {
-          "source": "sources.attack_mace",
+          "source": "sources.attack_mace.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_mace/04": {
@@ -246340,6 +246617,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "runista",
+        "name": "Runista",
+        "tier": 3,
+        "costume": "Elite offensive rune scholar: fitted INK-NAVY high-collar light battle coat with PARCHMENT-IVORY front panels and split knee-length tails, AMETHYST piping. Compact flat BRASS hexagonal light armor plates on shoulders and upper chest, engraved with crisp VIOLET angular rune strokes; no bulky knight armor. TWO violet hexagonal seal tiles arranged vertically down ivory breast panel. Large square BRASS belt clasp with VIOLET crossed angular rune. Fitted navy trousers, charcoal boots with brass diamond shin plaques. Full navy sleeves ending above slim brass wrist bracers and BLACK fingerless gloves. Small closed ivory scroll cylinder secured to belt. Thin ROUND BRASS SPECTACLES on all four faces, including closed-eye blink. No headgear, cloak, scarf, held or sheathed equipment, floating runes or effects.",
+        "maleIdentity": "Adult masculine rune master, INK-BLACK hair with deep violet sheen, short tousled layered hairstyle, amber eyes, clean-shaven. Round brass spectacles on every pose.",
+        "femaleIdentity": "Adult feminine rune master, INK-BLACK hair with deep violet sheen, thick high layered ponytail with side bangs, amber eyes. Round brass spectacles on every pose.",
+        "armPolicy": "Preserve exact canonical empty hand and finger coordinates; slim black fingerless gloves and compact brass bracers, full navy sleeves. All brass plates, violet rune strokes, two seal tiles, square rune buckle and spectacles remain identical in every pose.",
+        "unique": "Engraved hexagonal brass rune plates, two violet seal tiles, square crossed-rune buckle and round brass spectacles.",
+        "advancement": "Tier 3 offensive evolution of Escriba Arcano: a structured navy and ivory battle coat with dense engraved rune armor, beyond the earlier simple scholar coat. A precise arcane specialist with metallic rune geometry, visibly advanced yet light and agile.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/runista/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "da941ec4f8b9c05a62391fe23e424151f05508bdd2f795cf24fbed87ec472ee1",
+            "8176510a42b0c348bc365ffbb5096b02a4c8f8d95cac5a3bbc029067323305ef",
+            "7b05010f09b044dbf7aa0f800913ec76699b9cc8f42e79ea0d0b89a03b85d228",
+            "233a1fd976e40f8e2ab1b33152d2543e7cd5102713b05f78c1d13e309bbb2273"
+          ],
+          "walk": [
+            "46669d8d1b68c9a653ad059c4f2d0632081665239c285a0a0724a1d97de8b19d",
+            "1325bea74bc9604b58ba279e34350a6ad51e898eb9d5f9fdbf1167890c23f5f7",
+            "a50c61b1fd6f8b6294f757b10c68e0f42cffedfde882ac1dd3e3b8ee80ac055a",
+            "751b02684b1b0e564773d710ab874ffcadb42cd3bd2e62f124946fc90abbd7f3"
+          ],
+          "hurt": [
+            "30c5494b203c2ec2bde67bdd5d5e1569b3839aa8748734803285b5c5263649e2",
+            "4090e46ebf772d1a0ab34fdb2f19858f405a72a9c6683736b65b7721eb4a892e",
+            "ff9acb84b3af97da61fe1f95bdc0b38fac0182ebaff72275ca5e5c7e661859ae",
+            "fe43a8a9408f7a96b21bfeeb87d11480581758c099e6e457a0fc02bb75b1836f"
+          ],
+          "use_consumable": [
+            "8bc5bb44bb965f9c1d77aa8ae06cc17850be4bba5ee1bbbf24684a6bf8a771d0",
+            "68b93c4fa3972f148c53555c12b3569a7927c4bc352ff539d3d9c36060ca9302",
+            "1f157875162b7d631dbd3ecd5b89234c58e09567d5a120aa3f4fd1aea8395b48",
+            "ffa05144425bf3e0e6799ba249fb6757fab87933233d62a94524c27be2e438b2"
+          ],
+          "dodge": [
+            "f2a9b974b8f0fb7ef4ab084177459df46093214cb2c126583be916d0fefe69da",
+            "af6e67fb452966e024345548ce700a3b670196778745c3cc3b760232e3deb800",
+            "e37fff16adb3b1cdeb3e09b8ca3ce91439c554a76e91845847e2377802b33871",
+            "d3da4bceb2bcdec8d5700c74891e32ae537ae722db0e009070d22aae20506485"
+          ],
+          "block_shield": [
+            "d0a69d44d91b52c3fa96412bf4c40835470894bab8034bd5c09dc74ed5f73096",
+            "96dd3d78715e4ce352120a790f6d09432db1444e37d0b671dc056182ae0952bf",
+            "03572f49e5e8d907be192a0d89e1e2789fe25e7714f39f4af277e9bc1d90032d",
+            "65fa1df8267712a4024778a885965859e6744641def82fa7ba394449c92071b1"
+          ],
+          "attack_sword": [
+            "f2354cd50080c7b45f8f04e319977e699eed64f17efd2be0bcdf8d83d8b439b5",
+            "4bfb45f2f41d6d8753492928e5672d890931e6b29e770d2dae075069583ef125",
+            "0b19523585267596a540e033c929ed8be07ad54ec559716c07eee844a6aa2d6f",
+            "0179efb99fe72a3b576df449d33fe2a94fdc3dcff7b776c6f3f438d143a2734e"
+          ],
+          "attack_axe": [
+            "c26dd52edc78211a7ecc57a1dd2c5b1621dfa064642b40a5d4c0412ff9b31a61",
+            "0f7e854e7e087c1616659002c8d03d0c7f8e4fb97edaaaab67240320e760d109",
+            "25a9679f83d77af45522c8b065132baa3de219aaaa1330a77ad7f3ae6716eb9a",
+            "8dc8626384ee993415855c19bedbd450aa3e0c3b776867c0c6a3b38e3f2146d0"
+          ],
+          "attack_spear": [
+            "d970276185b605086c1ced302b48efba0dba2c7957c2eda049a49fad1b1df39f",
+            "f802fc44cf15e0df9a494b9fd821e8deec6f0f06c97e2d2ca33369184f1e50a2",
+            "b43773ac65d0e0998561981759987dd8b43431610d9ea34efcf6af8d7c77239b",
+            "31c0c8e30f97b565262f6187987570534d1d035dc293f07ad6a1b9cdddc235cb"
+          ],
+          "attack_dagger": [
+            "5906229e15c5d9af12c246f57cf7ad71957076bb520ff345e0a82e9bd9fbe043",
+            "97290f370975aa438fdc22bd290d98ce17a8764fda254d5664f847124c909016",
+            "4e3f2dafb5e284b5084233c4d7fd729dcdff89255445888acfcb08ef1d503a2d",
+            "eb8d95f62b2f099f91722e4637ba54358149ab903d2ad12016135685dfa3f63c"
+          ],
+          "attack_bow": [
+            "4fd566c993e8d33546894350ce5e507e5214f3753b68ba7f8740052e4ef236dd",
+            "80cd064b21e43e612fd585b7b25d2a5074f0a79fa0a8fe12564f2abe21a1d723",
+            "19f60313c35c7230e377dd824befb13eeb708e449bbca3a89db57c1c0c34b428",
+            "a3be3b601a96311d0413c4c632010b71552917061a71d67ec61b5571e67cc2de"
+          ],
+          "attack_staff": [
+            "656bfb10b27f4596c271cdc9c2fcb56393061cf0d809b4507d6391d2a3a59023",
+            "c4ec2c7a59504028accf72134163a90112387514896fd97f9e7e9de8177f9d7c",
+            "be42ec5fc079cc5fc2c70fb33c54eb19416f53952c0b05f00935563a379d6702",
+            "beaca17b7a8923592157e37a68afd74209237ca0c5a11d2d86d71a24a6c42078"
+          ],
+          "attack_mace": [
+            "d673c358508cbae9e66e6c4ec1c3c05e98c0dd90a480cd49630f130c1e957b1e",
+            "90a4a5f2cbcb1b4ef06b20392b9d9a547f1670446be3f30a6686e2e961c8c902",
+            "2058e0fe6cc125bef1f7170b7c8076e108790eb4c57ac33282b0bfa68f52677d",
+            "4b94d7ff610924f9956ec11ca88151b44a6a1f50f7f0b2c13e5b07109588d86d"
+          ],
+          "attack_book": [
+            "6f641b11768d9f3e8201b3e4da1800a4975c3a62a115f3ea891c7c9c98ef6341",
+            "3fb0e79ef51fb999f6b034fc8067c8e0394d61105ec4669c379e7b3b648f7c43",
+            "4fc1545508b7c38ea13eb1c1ac94184e1a19df76528071611ede119ed0f9f024",
+            "8d007388a5f9abe6c1629b6bc4b57b9057a097908f9e9bea7389ae898bf747cc"
+          ],
+          "attack_gloves": [
+            "5913551820e232d79383e44dbceb44fd8db83d30afd36dd0011f6fa6f371514f",
+            "275448dd8eb16cf075c20b26ac2d94b0aac314474c385d2742210de6cd257a47",
+            "82c058bca70cee20d9c01d171ed85b272bf0038cd6b210338159881081972128",
+            "3ea0acff70e740922c6ec7bed91b6d7085872b6a83b5c426e4939a99e1099a16"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -248680,20 +249072,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "ef4c34c762e14d5a62f0443cbd07bdcf2cb5072ca7795ac862e79399b3d50080",
-                "bytes": 25795,
+                "sha256": "9572e63534f3a88102d1da224c4582c90a8fbf41907fb5639da850919676584a",
+                "bytes": 24160,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  7,
-                  92,
+                  8,
+                  91,
                   102,
-                  248
+                  242
                 ],
-                "pixelSha256": "98c401f712c2693b1eeeef88eceb3d2c401a0097c717741d7ca5bb312bce6780"
+                "pixelSha256": "59867abb4d0ae42f2565cb8248b2213c4ec4489b0e5c481a84b386349020ff9e"
               },
               "02": {
                 "sha256": "ad969c724fe9a5f02e1692b604d933fddb813898d577d92d67b5a64cc09b1e34",
@@ -249698,10 +250090,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
+          "sourceSha256": "e83ddc564077439ccf7f36c99666bec8004703592807ad728c903421a8bd8081",
           "sourceDimensions": [
-            2170,
-            725
+            4340,
+            1450
           ],
           "registeredSourceDimensions": [
             2170,
@@ -249723,9 +250115,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Abjurador FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent. Adult feminine ward scholar, SILVER-WHITE hair in a compact LOW BRAIDED KNOT with side bangs and faint ice-blue shading, calm blue eyes. Round silver spectacles in every pose. Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body. Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit this ONE complete Abjurador body portrait. Correct ONLY the near LEFT side fist: slide the whole black fingerless glove DOWN and slightly LEFT until the center of its black palm covers the MAGENTA ring. The ring is BELOW the current hand; palm must end at the ring. Extend/bend ivory sleeve and silver bracer naturally to connect, without moving shoulder or opposite hand. Keep opposite hand EXACTLY unchanged. Preserve head, glasses, hair, torso, coat, belt, legs, boots, canvas and scale exactly. Remove magenta guide and red fringe. Empty hands, no equipment, true transparency, full body boot margins.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -249733,7 +250125,139 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Abjurador FEMALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent. Adult feminine ward scholar, SILVER-WHITE hair in a compact LOW BRAIDED KNOT with side bangs and faint ice-blue shading, calm blue eyes. Round silver spectacles in every pose. Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body. Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "46fadaa67d109dc2a5aac478dd16bf5fe6af037fcb409f6dda41b9f152d2d183",
@@ -250252,15 +250776,15 @@
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -252152,7 +252676,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

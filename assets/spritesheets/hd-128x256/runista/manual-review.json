@@ -1,0 +1,159 @@
+{
+  "classId": "runista",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/runista/m/source/walk-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/runista/m/source/walk-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/runista/m/source/walk-frame03-reference-v3.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/runista/m/source/attack_spear-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/runista/m/source/attack_spear-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/runista/m/source/attack_spear-frame03-reference-v3.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/runista/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/runista/f/source/hurt-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/runista/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/runista/f/source/hurt-frame03-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-reference-v5.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame01-reference-v5.png",
+        "02": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame02-reference-v5.png",
+        "03": "assets/spritesheets/hd-128x256/runista/f/source/attack_mace-frame03-reference-v5.png"
+      }
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/runista/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/runista/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/runista/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/runista/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Runista desarrolla la ofensiva del Escriba arcano con abrigo azul tinta y marfil, placas de laton con runas violetas, dos sellos hexagonales del pecho y hebilla cuadrada con aspa violeta. Las gafas de laton, el cabello oscuro y la coleta alta femenina conservan una identidad propia.",
+    "All thirty actions, eighteen source palm boards, representative equipment for each type and both axe structures were visually reviewed. Complete generated pose repairs retain the canonical body transform, with no equipment offsets, body painting or limb transplants.",
+    "Male walk and spear revision3 each use portrait3v2 and portrait4v3, retaining original1/2. Female hurt revision3 uses only portrait4v3; female gloves revision2 only portrait4v2; female mace revision5 only portrait4v5. All other poses retain originals. Rejected candidates remain archived and unselected.",
+    "Unused secondary sword contacts and legacy wrist, fingertip and consumable waist-return contacts were reviewed against actual equipment. Both sexes retain fifteen actions and 682 contact checks each with no warnings. No runtime promotion."
+  ]
+}

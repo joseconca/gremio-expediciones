@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "runista",
   "sex": "m",
   "actions": [
@@ -29,8 +29,8 @@
     "walk": [
       "48d4d47166bd9810359a9a31f34e6738e66ad813abadaa25aea3fefcbfdf38cf",
       "c6f8aa982fa5e7e9289c8efe50c06015808df95c2e6752ba2b0af1f54586c7c0",
-      "7e71b2cb74d917f148739bf4b343216c1ed4404e41be34942345907751140627",
-      "cd40eb3cc30b813c39cc325961a4d26e1cdf822c409cc9f20f18cfb0af9a167c"
+      "fab8a2d1ed0decd43bcaad3718207addaf349293aa10e11db2eac47bbf69165a",
+      "c5c2725616b06fd305d836b5fa3cc89e310cea5e98dec2dae833aa89b1175a06"
     ],
     "hurt": [
       "09c4a3e3ce79714cf6147b8623126e4b39b625f91e02023a5873f7bec6deed67",
@@ -71,8 +71,8 @@
     "attack_spear": [
       "5187ff32b201d834eb8c1e492dbbd5549ede902b0fd4847044d6936360b37338",
       "92fc6016796dc7e3a6e3e117923d179204ebf9c32a55655832a05a7197f42353",
-      "35f75ba31b6ed44488346b65026f260a2f10a1dc6ecf78f34738d313ebd71a49",
-      "286ad69d2edab8ae5ed2c39af91de7088443d37ee2e3cd39fd1155a469600361"
+      "e133e61fac42e7a17a5821e37ed64fad081ad2ec9759515d2197024a79f3c618",
+      "99455cf31523aa11f7b1f1aa333c0bd57f4713bc857bdbf6062fed3ee4c33742"
     ],
     "attack_dagger": [
       "79d1340091a7e248d2981f3888e00d7df558dc66b208056210055b6759724f81",
@@ -112,116 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_escama",
-      "point": [
-        112,
-        142
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_escama",
-      "point": [
-        105,
-        148
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_madera",
-      "point": [
-        112,
-        142
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_madera",
-      "point": [
-        105,
-        148
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

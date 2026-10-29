@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-29T08:43:00.368971+00:00",
+  "classId": "runista",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\runista\\f\\runista-f-sheet.png",
+  "sheetSha256": "dcb80909ee394173d8dabdd2bdd8b4d6678c210b951a85c487571b7650705cfd",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\idle\\runista-f-idle-01.png",
+          "sha256": "da941ec4f8b9c05a62391fe23e424151f05508bdd2f795cf24fbed87ec472ee1",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\idle\\runista-f-idle-02.png",
+          "sha256": "8176510a42b0c348bc365ffbb5096b02a4c8f8d95cac5a3bbc029067323305ef",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\idle\\runista-f-idle-03.png",
+          "sha256": "7b05010f09b044dbf7aa0f800913ec76699b9cc8f42e79ea0d0b89a03b85d228",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\idle\\runista-f-idle-04.png",
+          "sha256": "233a1fd976e40f8e2ab1b33152d2543e7cd5102713b05f78c1d13e309bbb2273",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\walk\\runista-f-walk-01.png",
+          "sha256": "46669d8d1b68c9a653ad059c4f2d0632081665239c285a0a0724a1d97de8b19d",
+          "alpha_bbox": [
+            16,
+            89,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\walk\\runista-f-walk-02.png",
+          "sha256": "1325bea74bc9604b58ba279e34350a6ad51e898eb9d5f9fdbf1167890c23f5f7",
+          "alpha_bbox": [
+            28,
+            89,
+            93,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\walk\\runista-f-walk-03.png",
+          "sha256": "a50c61b1fd6f8b6294f757b10c68e0f42cffedfde882ac1dd3e3b8ee80ac055a",
+          "alpha_bbox": [
+            11,
+            89,
+            112,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\walk\\runista-f-walk-04.png",
+          "sha256": "751b02684b1b0e564773d710ab874ffcadb42cd3bd2e62f124946fc90abbd7f3",
+          "alpha_bbox": [
+            24,
+            89,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\hurt\\runista-f-hurt-01.png",
+          "sha256": "30c5494b203c2ec2bde67bdd5d5e1569b3839aa8748734803285b5c5263649e2",
+          "alpha_bbox": [
+            20,
+            94,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\hurt\\runista-f-hurt-02.png",
+          "sha256": "4090e46ebf772d1a0ab34fdb2f19858f405a72a9c6683736b65b7721eb4a892e",
+          "alpha_bbox": [
+            20,
+            94,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\hurt\\runista-f-hurt-03.png",
+          "sha256": "ff9acb84b3af97da61fe1f95bdc0b38fac0182ebaff72275ca5e5c7e661859ae",
+          "alpha_bbox": [
+            17,
+            114,
+            97,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\hurt\\runista-f-hurt-04.png",
+          "sha256": "fe43a8a9408f7a96b21bfeeb87d11480581758c099e6e457a0fc02bb75b1836f",
+          "alpha_bbox": [
+            17,
+            91,
+            105,
+            253
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\use_consumable\\runista-f-use_consumable-01.png",
+          "sha256": "8bc5bb44bb965f9c1d77aa8ae06cc17850be4bba5ee1bbbf24684a6bf8a771d0",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\use_consumable\\runista-f-use_consumable-02.png",
+          "sha256": "68b93c4fa3972f148c53555c12b3569a7927c4bc352ff539d3d9c36060ca9302",
+          "alpha_bbox": [
+            26,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\use_consumable\\runista-f-use_consumable-03.png",
+          "sha256": "1f157875162b7d631dbd3ecd5b89234c58e09567d5a120aa3f4fd1aea8395b48",
+          "alpha_bbox": [
+            26,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\use_consumable\\runista-f-use_consumable-04.png",
+          "sha256": "ffa05144425bf3e0e6799ba249fb6757fab87933233d62a94524c27be2e438b2",
+          "alpha_bbox": [
+            27,
+            89,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\dodge\\runista-f-dodge-01.png",
+          "sha256": "f2a9b974b8f0fb7ef4ab084177459df46093214cb2c126583be916d0fefe69da",
+          "alpha_bbox": [
+            28,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\dodge\\runista-f-dodge-02.png",
+          "sha256": "af6e67fb452966e024345548ce700a3b670196778745c3cc3b760232e3deb800",
+          "alpha_bbox": [
+            33,
+            99,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\dodge\\runista-f-dodge-03.png",
+          "sha256": "e37fff16adb3b1cdeb3e09b8ca3ce91439c554a76e91845847e2377802b33871",
+          "alpha_bbox": [
+            23,
+            126,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\dodge\\runista-f-dodge-04.png",
+          "sha256": "d3da4bceb2bcdec8d5700c74891e32ae537ae722db0e009070d22aae20506485",
+          "alpha_bbox": [
+            20,
+            97,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\block_shield\\runista-f-block_shield-01.png",
+          "sha256": "d0a69d44d91b52c3fa96412bf4c40835470894bab8034bd5c09dc74ed5f73096",
+          "alpha_bbox": [
+            24,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\block_shield\\runista-f-block_shield-02.png",
+          "sha256": "96dd3d78715e4ce352120a790f6d09432db1444e37d0b671dc056182ae0952bf",
+          "alpha_bbox": [
+            24,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\block_shield\\runista-f-block_shield-03.png",
+          "sha256": "03572f49e5e8d907be192a0d89e1e2789fe25e7714f39f4af277e9bc1d90032d",
+          "alpha_bbox": [
+            21,
+            104,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\block_shield\\runista-f-block_shield-04.png",
+          "sha256": "65fa1df8267712a4024778a885965859e6744641def82fa7ba394449c92071b1",
+          "alpha_bbox": [
+            14,
+            91,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_sword\\runista-f-attack_sword-01.png",
+          "sha256": "f2354cd50080c7b45f8f04e319977e699eed64f17efd2be0bcdf8d83d8b439b5",
+          "alpha_bbox": [
+            21,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_sword\\runista-f-attack_sword-02.png",
+          "sha256": "4bfb45f2f41d6d8753492928e5672d890931e6b29e770d2dae075069583ef125",
+          "alpha_bbox": [
+            24,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_sword\\runista-f-attack_sword-03.png",
+          "sha256": "0b19523585267596a540e033c929ed8be07ad54ec559716c07eee844a6aa2d6f",
+          "alpha_bbox": [
+            21,
+            96,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_sword\\runista-f-attack_sword-04.png",
+          "sha256": "0179efb99fe72a3b576df449d33fe2a94fdc3dcff7b776c6f3f438d143a2734e",
+          "alpha_bbox": [
+            19,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_axe\\runista-f-attack_axe-01.png",
+          "sha256": "c26dd52edc78211a7ecc57a1dd2c5b1621dfa064642b40a5d4c0412ff9b31a61",
+          "alpha_bbox": [
+            27,
+            93,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_axe\\runista-f-attack_axe-02.png",
+          "sha256": "0f7e854e7e087c1616659002c8d03d0c7f8e4fb97edaaaab67240320e760d109",
+          "alpha_bbox": [
+            21,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_axe\\runista-f-attack_axe-03.png",
+          "sha256": "25a9679f83d77af45522c8b065132baa3de219aaaa1330a77ad7f3ae6716eb9a",
+          "alpha_bbox": [
+            10,
+            103,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_axe\\runista-f-attack_axe-04.png",
+          "sha256": "8dc8626384ee993415855c19bedbd450aa3e0c3b776867c0c6a3b38e3f2146d0",
+          "alpha_bbox": [
+            10,
+            94,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_spear\\runista-f-attack_spear-01.png",
+          "sha256": "d970276185b605086c1ced302b48efba0dba2c7957c2eda049a49fad1b1df39f",
+          "alpha_bbox": [
+            13,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_spear\\runista-f-attack_spear-02.png",
+          "sha256": "f802fc44cf15e0df9a494b9fd821e8deec6f0f06c97e2d2ca33369184f1e50a2",
+          "alpha_bbox": [
+            17,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_spear\\runista-f-attack_spear-03.png",
+          "sha256": "b43773ac65d0e0998561981759987dd8b43431610d9ea34efcf6af8d7c77239b",
+          "alpha_bbox": [
+            13,
+            92,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_spear\\runista-f-attack_spear-04.png",
+          "sha256": "31c0c8e30f97b565262f6187987570534d1d035dc293f07ad6a1b9cdddc235cb",
+          "alpha_bbox": [
+            17,
+            92,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_dagger\\runista-f-attack_dagger-01.png",
+          "sha256": "5906229e15c5d9af12c246f57cf7ad71957076bb520ff345e0a82e9bd9fbe043",
+          "alpha_bbox": [
+            19,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_dagger\\runista-f-attack_dagger-02.png",
+          "sha256": "97290f370975aa438fdc22bd290d98ce17a8764fda254d5664f847124c909016",
+          "alpha_bbox": [
+            22,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_dagger\\runista-f-attack_dagger-03.png",
+          "sha256": "4e3f2dafb5e284b5084233c4d7fd729dcdff89255445888acfcb08ef1d503a2d",
+          "alpha_bbox": [
+            21,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_dagger\\runista-f-attack_dagger-04.png",
+          "sha256": "eb8d95f62b2f099f91722e4637ba54358149ab903d2ad12016135685dfa3f63c",
+          "alpha_bbox": [
+            25,
+            89,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_bow\\runista-f-attack_bow-01.png",
+          "sha256": "4fd566c993e8d33546894350ce5e507e5214f3753b68ba7f8740052e4ef236dd",
+          "alpha_bbox": [
+            24,
+            90,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_bow\\runista-f-attack_bow-02.png",
+          "sha256": "80cd064b21e43e612fd585b7b25d2a5074f0a79fa0a8fe12564f2abe21a1d723",
+          "alpha_bbox": [
+            16,
+            90,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_bow\\runista-f-attack_bow-03.png",
+          "sha256": "19f60313c35c7230e377dd824befb13eeb708e449bbca3a89db57c1c0c34b428",
+          "alpha_bbox": [
+            16,
+            90,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_bow\\runista-f-attack_bow-04.png",
+          "sha256": "a3be3b601a96311d0413c4c632010b71552917061a71d67ec61b5571e67cc2de",
+          "alpha_bbox": [
+            19,
+            89,
+            116,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_staff\\runista-f-attack_staff-01.png",
+          "sha256": "656bfb10b27f4596c271cdc9c2fcb56393061cf0d809b4507d6391d2a3a59023",
+          "alpha_bbox": [
+            18,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_staff\\runista-f-attack_staff-02.png",
+          "sha256": "c4ec2c7a59504028accf72134163a90112387514896fd97f9e7e9de8177f9d7c",
+          "alpha_bbox": [
+            18,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_staff\\runista-f-attack_staff-03.png",
+          "sha256": "be42ec5fc079cc5fc2c70fb33c54eb19416f53952c0b05f00935563a379d6702",
+          "alpha_bbox": [
+            18,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_staff\\runista-f-attack_staff-04.png",
+          "sha256": "beaca17b7a8923592157e37a68afd74209237ca0c5a11d2d86d71a24a6c42078",
+          "alpha_bbox": [
+            19,
+            89,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_mace\\runista-f-attack_mace-01.png",
+          "sha256": "d673c358508cbae9e66e6c4ec1c3c05e98c0dd90a480cd49630f130c1e957b1e",
+          "alpha_bbox": [
+            32,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_mace\\runista-f-attack_mace-02.png",
+          "sha256": "90a4a5f2cbcb1b4ef06b20392b9d9a547f1670446be3f30a6686e2e961c8c902",
+          "alpha_bbox": [
+            26,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_mace\\runista-f-attack_mace-03.png",
+          "sha256": "2058e0fe6cc125bef1f7170b7c8076e108790eb4c57ac33282b0bfa68f52677d",
+          "alpha_bbox": [
+            15,
+            95,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_mace\\runista-f-attack_mace-04.png",
+          "sha256": "4b94d7ff610924f9956ec11ca88151b44a6a1f50f7f0b2c13e5b07109588d86d",
+          "alpha_bbox": [
+            8,
+            89,
+            100,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_book\\runista-f-attack_book-01.png",
+          "sha256": "6f641b11768d9f3e8201b3e4da1800a4975c3a62a115f3ea891c7c9c98ef6341",
+          "alpha_bbox": [
+            32,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_book\\runista-f-attack_book-02.png",
+          "sha256": "3fb0e79ef51fb999f6b034fc8067c8e0394d61105ec4669c379e7b3b648f7c43",
+          "alpha_bbox": [
+            28,
+            89,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_book\\runista-f-attack_book-03.png",
+          "sha256": "4fc1545508b7c38ea13eb1c1ac94184e1a19df76528071611ede119ed0f9f024",
+          "alpha_bbox": [
+            24,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_book\\runista-f-attack_book-04.png",
+          "sha256": "8d007388a5f9abe6c1629b6bc4b57b9057a097908f9e9bea7389ae898bf747cc",
+          "alpha_bbox": [
+            25,
+            89,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_gloves\\runista-f-attack_gloves-01.png",
+          "sha256": "5913551820e232d79383e44dbceb44fd8db83d30afd36dd0011f6fa6f371514f",
+          "alpha_bbox": [
+            21,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_gloves\\runista-f-attack_gloves-02.png",
+          "sha256": "275448dd8eb16cf075c20b26ac2d94b0aac314474c385d2742210de6cd257a47",
+          "alpha_bbox": [
+            20,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_gloves\\runista-f-attack_gloves-03.png",
+          "sha256": "82c058bca70cee20d9c01d171ed85b272bf0038cd6b210338159881081972128",
+          "alpha_bbox": [
+            10,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\runista\\f\\frames\\attack_gloves\\runista-f-attack_gloves-04.png",
+          "sha256": "3ea0acff70e740922c6ec7bed91b6d7085872b6a83b5c426e4939a99e1099a16",
+          "alpha_bbox": [
+            11,
+            90,
+            98,
+            252
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

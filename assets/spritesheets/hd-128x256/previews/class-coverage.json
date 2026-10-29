@@ -2,10 +2,10 @@
   "catalogClasses": 61,
   "expectedVariants": 122,
   "expectedFrames": 7320,
-  "technicallyCompleteVariants": 104,
-  "validFrames": 6240,
+  "technicallyCompleteVariants": 106,
+  "validFrames": 6368,
   "invalidFrames": 0,
-  "missingActions": 270,
+  "missingActions": 238,
   "note": "Technical completion is not artistic approval or runtime promotion. Run auditar-sprites-hd.py before refreshing this derived report.",
   "classes": [
     {
@@ -1315,19 +1315,19 @@
       "variants": [
         {
           "sex": "m",
-          "validFrames": 0,
+          "validFrames": 60,
           "invalidFrames": 0,
-          "technicalActions": 0,
-          "missingActions": 15,
+          "technicalActions": 15,
+          "missingActions": 0,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         },
         {
           "sex": "f",
-          "validFrames": 0,
+          "validFrames": 60,
           "invalidFrames": 0,
-          "technicalActions": 0,
-          "missingActions": 15,
+          "technicalActions": 15,
+          "missingActions": 0,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         }
@@ -1340,19 +1340,19 @@
       "variants": [
         {
           "sex": "m",
-          "validFrames": 0,
+          "validFrames": 4,
           "invalidFrames": 0,
-          "technicalActions": 0,
-          "missingActions": 15,
+          "technicalActions": 1,
+          "missingActions": 14,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         },
         {
           "sex": "f",
-          "validFrames": 0,
+          "validFrames": 4,
           "invalidFrames": 0,
-          "technicalActions": 0,
-          "missingActions": 15,
+          "technicalActions": 1,
+          "missingActions": 14,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         }

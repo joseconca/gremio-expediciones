@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 102,
-  "contactChecks": 69564,
+  "variants": 104,
+  "contactChecks": 70928,
   "warnings": 0,
   "reports": [
     {
@@ -552,6 +552,18 @@
     },
     {
       "classId": "rastreador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "runista",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "runista",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "runista",
   "sex": "f",
   "actions": [
@@ -36,7 +36,7 @@
       "30c5494b203c2ec2bde67bdd5d5e1569b3839aa8748734803285b5c5263649e2",
       "4090e46ebf772d1a0ab34fdb2f19858f405a72a9c6683736b65b7721eb4a892e",
       "ff9acb84b3af97da61fe1f95bdc0b38fac0182ebaff72275ca5e5c7e661859ae",
-      "1d80e6756af54b74d758f50a9ffb14921cd7b23927feefeb0103c3a77c2108f0"
+      "fe43a8a9408f7a96b21bfeeb87d11480581758c099e6e457a0fc02bb75b1836f"
     ],
     "use_consumable": [
       "8bc5bb44bb965f9c1d77aa8ae06cc17850be4bba5ee1bbbf24684a6bf8a771d0",
@@ -96,7 +96,7 @@
       "d673c358508cbae9e66e6c4ec1c3c05e98c0dd90a480cd49630f130c1e957b1e",
       "90a4a5f2cbcb1b4ef06b20392b9d9a547f1670446be3f30a6686e2e961c8c902",
       "2058e0fe6cc125bef1f7170b7c8076e108790eb4c57ac33282b0bfa68f52677d",
-      "21990aaaffd9faf256f28d3cb942e7a394136c7341948645ee27e758c1ccbcfd"
+      "4b94d7ff610924f9956ec11ca88151b44a6a1f50f7f0b2c13e5b07109588d86d"
     ],
     "attack_book": [
       "6f641b11768d9f3e8201b3e4da1800a4975c3a62a115f3ea891c7c9c98ef6341",
@@ -108,30 +108,11 @@
       "5913551820e232d79383e44dbceb44fd8db83d30afd36dd0011f6fa6f371514f",
       "275448dd8eb16cf075c20b26ac2d94b0aac314474c385d2742210de6cd257a47",
       "82c058bca70cee20d9c01d171ed85b272bf0038cd6b210338159881081972128",
-      "f8e2b171e8f204de0ec24ced4976e5a21d80ac78ee7de5518a2cf756ac51880c"
+      "3ea0acff70e740922c6ec7bed91b6d7085872b6a83b5c426e4939a99e1099a16"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "escudo_guardian",
-      "point": [
-        81,
-        153
-      ]
-    },
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "escudo_madera",
-      "point": [
-        81,
-        153
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
