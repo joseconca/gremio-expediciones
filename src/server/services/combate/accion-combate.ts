@@ -818,7 +818,7 @@ export async function prepararAccionCombate(
     let efectosDefensor = obtenerEfectos(combateParaResolver.efectosDefensor);
 
     if (accion === "usar_habilidad") {
-      const slotsActivos = ["activa_1", "activa_2", "activa_3"];
+      const slotsActivos = ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"];
       const habilidadAprendida = personaje.habilidades.find(
         (habilidadAprendida) =>
           habilidadAprendida.habilidadId === habilidadId &&

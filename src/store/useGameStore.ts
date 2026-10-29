@@ -498,7 +498,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
   const habilidadesPasivasEquipadas = habilidades
     .filter(
       (habilidad) =>
-        habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2"
+        habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2" || habilidad.slot === "pasiva_3"
     )
     .map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel }));
 

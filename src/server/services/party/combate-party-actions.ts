@@ -1196,7 +1196,7 @@ export async function ejecutarAccionCombateParty(
       const habilidadAprendida = personaje.habilidades.find(
         (aprendida) =>
           aprendida.habilidadId === payload.habilidadId &&
-          ["activa_1", "activa_2", "activa_3"].includes(aprendida.slot ?? ""),
+          ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"].includes(aprendida.slot ?? ""),
       );
       if (!habilidadAprendida) {
         throw new PartyServiceError("No tienes esa habilidad equipada en una ranura activa.", 403, "HABILIDAD_NO_EQUIPADA");

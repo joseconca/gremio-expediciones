@@ -143,18 +143,24 @@ export type SlotHabilidad =
   | "activa_1"
   | "activa_2"
   | "activa_3"
+  | "activa_4"
+  | "activa_5"
   | "pasiva_1"
-  | "pasiva_2";
+  | "pasiva_2"
+  | "pasiva_3";
 
 export const SLOTS_HABILIDADES_ACTIVAS: SlotHabilidad[] = [
   "activa_1",
   "activa_2",
   "activa_3",
+  "activa_4",
+  "activa_5",
 ];
 
 export const SLOTS_HABILIDADES_PASIVAS: SlotHabilidad[] = [
   "pasiva_1",
   "pasiva_2",
+  "pasiva_3",
 ];
 
 /** COMBATE */

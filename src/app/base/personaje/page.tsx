@@ -81,8 +81,8 @@ const RANURAS_EQUIPO: Array<{ clave: TipoEquipamiento; nombre: string; icono: st
   { clave: "anillo2", nombre: "Anillo II", icono: "💍" },
 ];
 
-const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
-const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2"];
+const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"];
+const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2", "pasiva_3"];
 const SLOTS_HABILIDADES = [...SLOTS_ACTIVAS, ...SLOTS_PASIVAS];
 
 const ESTADISTICAS: Array<{ clave: keyof ModificadoresEstadisticas; nombre: string }> = [

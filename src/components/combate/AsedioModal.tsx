@@ -879,7 +879,7 @@ export default function AsedioModal({
                     </span>
 
                     <span className="font-mono text-[10px] text-stone-500">
-                      {Math.min(habilidades.length, 3)}/3
+                      {Math.min(habilidades.length, 5)}/5
                     </span>
                   </div>
 
@@ -893,7 +893,7 @@ export default function AsedioModal({
 
                 <div className="grid min-h-0 flex-1 grid-cols-1 items-center gap-4 sm:grid-cols-2">
                   <div className="custom-scrollbar flex max-h-full flex-col justify-center gap-2 overflow-y-auto pr-1">
-                    {habilidades.slice(0, 3).map((h) => {
+                    {habilidades.slice(0, 5).map((h) => {
                       const cooldown = obtenerCooldown(h.habilidadId);
 
                       const costeEnergia = h.habilidad.costeEnergia ?? 0;
