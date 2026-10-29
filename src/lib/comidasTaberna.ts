@@ -1,9 +1,9 @@
+import { aplicarModificadoresPosicion } from "./expediciones/posicion-combate";
 export type AtributoComida = "ataque" | "ataqueMagico" | "defensa" | "velocidad";
 
 export type EfectoComida =
-  | { tipo: "porcentaje"; atributo: AtributoComida; porcentaje: number }
-  | { tipo: "critico"; incremento: number }
-  | { tipo: "iniciativa" };
+  | { tipo: "porcentaje"; atributo: AtributoComida; porcentaje: number; fijo?: number }
+  | { tipo: "critico"; incremento: number };
 
 export interface ComidaTaberna {
   id: string;
@@ -20,7 +20,7 @@ export interface ComidaTaberna {
  * Los platos avanzados combinan efectos, en lugar de limitarse a inflar una
  * única bonificación. El servidor valida siempre el nivel requerido.
  */
-export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
+const RECETAS: readonly ComidaTaberna[] = [
   {
     id: "carne-cazadora",
     nombre: "Carne del cazador",
@@ -28,7 +28,7 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     descripcion: "Aumenta un 10 % el ataque físico durante la expedición.",
     coste: 20,
     nivelRequerido: 1,
-    efectos: [{ tipo: "porcentaje", atributo: "ataque", porcentaje: 0.10 }],
+    efectos: [{ tipo: "porcentaje", atributo: "ataque", fijo: 3, porcentaje: 0.10 }],
   },
   {
     id: "caldo-guardian",
@@ -37,7 +37,7 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     descripcion: "Aumenta un 10 % la defensa física durante la expedición.",
     coste: 24,
     nivelRequerido: 1,
-    efectos: [{ tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 }],
+    efectos: [{ tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.10 }],
   },
   {
     id: "setas-arcanas",
@@ -46,7 +46,7 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     descripcion: "Aumenta un 10 % el ataque mágico durante la expedición.",
     coste: 24,
     nivelRequerido: 1,
-    efectos: [{ tipo: "porcentaje", atributo: "ataqueMagico", porcentaje: 0.10 }],
+    efectos: [{ tipo: "porcentaje", atributo: "ataqueMagico", fijo: 3, porcentaje: 0.10 }],
   },
   {
     id: "raices-vigorizantes",
@@ -57,7 +57,7 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     nivelRequerido: 2,
     efectos: [
       { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
-      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.10 },
     ],
   },
   {
@@ -69,19 +69,19 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     nivelRequerido: 2,
     efectos: [
       { tipo: "critico", incremento: 0.10 },
-      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "ataque", fijo: 3, porcentaje: 0.10 },
     ],
   },
   {
     id: "desayuno-explorador",
     nombre: "Desayuno del explorador",
     icono: "🍳",
-    descripcion: "Garantiza la iniciativa en el primer combate y aumenta un 10 % la velocidad.",
+    descripcion: "Aumenta la velocidad un 10 % y la defensa física en 3 más un 10 %.",
     coste: 50,
     nivelRequerido: 2,
     efectos: [
-      { tipo: "iniciativa" },
       { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.10 },
     ],
   },
   {
@@ -92,8 +92,8 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     coste: 90,
     nivelRequerido: 3,
     efectos: [
-      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.15 },
-      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.15 },
+      { tipo: "porcentaje", atributo: "ataque", fijo: 3, porcentaje: 0.15 },
+      { tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.15 },
       { tipo: "critico", incremento: 0.10 },
     ],
   },
@@ -105,25 +105,30 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     coste: 100,
     nivelRequerido: 3,
     efectos: [
-      { tipo: "porcentaje", atributo: "ataqueMagico", porcentaje: 0.20 },
+      { tipo: "porcentaje", atributo: "ataqueMagico", fijo: 3, porcentaje: 0.20 },
       { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
-      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.10 },
     ],
   },
   {
     id: "racion-de-asedio",
     nombre: "Ración de asedio",
     icono: "🍲",
-    descripcion: "Garantiza la iniciativa y aumenta un 20 % el ataque físico y un 15 % la defensa.",
+    descripcion: "Aumenta el ataque físico en 5 más un 20 % y la defensa física en 5 más un 15 %.",
     coste: 110,
     nivelRequerido: 3,
     efectos: [
-      { tipo: "iniciativa" },
-      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.20 },
-      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.15 },
+      { tipo: "porcentaje", atributo: "ataque", fijo: 3, porcentaje: 0.20 },
+      { tipo: "porcentaje", atributo: "defensa", fijo: 3, porcentaje: 0.15 },
     ],
   },
-] as const satisfies readonly ComidaTaberna[];
+];
+
+export const COMIDAS_TABERNA: readonly ComidaTaberna[] = RECETAS.map((comida) => ({ ...comida, descripcion: comida.efectos.map((efecto) => {
+  if (efecto.tipo === "critico") return `+${Math.round(efecto.incremento * 100)} puntos porcentuales de crítico`;
+  const nombres: Record<string, string> = { ataque: "ataque físico", ataqueMagico: "ataque mágico", defensa: "defensa física", velocidad: "velocidad" };
+  return `${efecto.fijo ? `+${efecto.fijo} y ` : ""}+${Math.round(efecto.porcentaje * 100)} % de ${nombres[efecto.atributo]}`;
+}).join("; ") + ". Durante la expedición." }));
 
 export function obtenerComidaTaberna(id: unknown): ComidaTaberna | null {
   if (typeof id !== "string") return null;
@@ -152,7 +157,7 @@ export function aplicarEfectoComida(
       const atributo = efecto.atributo;
       resultado[atributo] = Math.max(
         atributo === "defensa" ? 0 : 1,
-        Math.floor(resultado[atributo] * (1 + efecto.porcentaje) + 1e-9)
+        resultado[atributo] + Math.round(atributos[atributo] * efecto.porcentaje + (efecto.fijo ?? 0))
       );
     } else if (efecto.tipo === "critico") {
       resultado.probCritico = Math.min(
@@ -165,8 +170,11 @@ export function aplicarEfectoComida(
   return resultado;
 }
 
-export function comidaOtorgaIniciativa(comidaId: unknown): boolean {
-  return obtenerComidaTaberna(comidaId)?.efectos.some(
-    (efecto) => efecto.tipo === "iniciativa"
-  ) ?? false;
+/** Contribución real, calculada al crear el combate y conservada para el detalle. */
+export function calcularBonificacionesComida(atributos: AtributosCombateComida, comidaId: unknown, posicion: unknown = "centro"): Partial<AtributosCombateComida> {
+  const conComida = aplicarModificadoresPosicion(aplicarEfectoComida(atributos, comidaId), posicion);
+  const sinComida = aplicarModificadoresPosicion(atributos, posicion);
+  return Object.fromEntries((Object.keys(atributos) as (keyof AtributosCombateComida)[])
+    .map((atributo) => [atributo, Math.round((conComida[atributo] - sinComida[atributo]) * 10000) / 10000])
+    .filter(([, valor]) => valor !== 0));
 }

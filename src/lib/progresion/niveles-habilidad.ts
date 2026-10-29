@@ -62,9 +62,6 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   const incrementoDuracion = tier <= 1 ? Math.floor(rangos / 2) : Math.floor(rangos / 3);
   if (incrementoDuracion > 0) {
     if (habilidad.duracionTurnos !== undefined) mejorada.duracionTurnos = habilidad.duracionTurnos + incrementoDuracion;
-    if (habilidad.estadosSecundarios) {
-      mejorada.estadosSecundarios = habilidad.estadosSecundarios.map((estado) => ({ ...estado, duracionTurnos: estado.duracionTurnos + incrementoDuracion }));
-    }
   }
   const reduccionCooldown = tier <= 0 ? Math.floor(rangos / 2) : tier === 1 ? Math.floor(rangos / 3) : Math.floor(rangos / 4);
   if (habilidad.cooldownTurnos !== undefined && habilidad.cooldownTurnos > 0 && reduccionCooldown > 0) {
@@ -72,12 +69,14 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   }
   if (habilidad.estadosSecundarios) {
     mejorada.estadosSecundarios = habilidad.estadosSecundarios.map((estado) => {
-      if (estado.valor <= 0) return { ...estado };
+      if (estado.valor <= 0) return { ...estado, duracionTurnos: estado.duracionTurnos + incrementoDuracion };
       if (estado.tipo === "barrera") return { ...estado };
+      const penalizacionPropia = estado.objetivo === "jugador" && estado.tipo.startsWith("debuff_");
+      if (penalizacionPropia) return { ...estado };
       const valor = estado.tipo === "debuff_precision" || estado.tipo === "bonus_precision"
         ? Math.round(estado.valor * factor)
         : Math.round(estado.valor * factor * 10000) / 10000;
-      return { ...estado, valor };
+      return { ...estado, valor, duracionTurnos: estado.duracionTurnos + incrementoDuracion };
     });
   }
   return mejorada;

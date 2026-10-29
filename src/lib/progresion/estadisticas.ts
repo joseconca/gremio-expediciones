@@ -3,7 +3,7 @@ import type { AtributosPrincipales } from "../tiposJuego";
 /** Coeficientes iniciales de balance: se ajustan aquí, no en las rutas de API. */
 export const COEFICIENTES_ATRIBUTOS_RPG = {
   vidaBase: 55, vidaPorNivelBase: 5, vidaPorVitalidad: 10,
-  energiaBase: 20, energiaPorFuerza: 2, energiaPorVitalidad: 1,
+  energiaBase: 100, energiaPorFuerza: 0, energiaPorVitalidad: 0,
   manaBase: 10, manaPorInteligencia: 3,
   ataqueFisicoBase: 3, ataqueFisicoPorFuerza: 2, ataqueFisicoPorDestreza: 0.5,
   ataqueMagicoBase: 3, ataqueMagicoPorInteligencia: 2, ataqueMagicoPorDestreza: 0.5,
@@ -15,8 +15,8 @@ export const COEFICIENTES_ATRIBUTOS_RPG = {
   evasionPorAgilidad: 0.01, evasionPorSuerte: 0.002, evasionMaxima: 0.6,
   velocidadBase: 4, velocidadPorAgilidad: 1, velocidadPorDestreza: 0.25,
   regeneracionVidaPorVitalidad: 0.1,
-  regeneracionEnergiaPorFuerzaVitalidad: 0.05,
-  regeneracionManaPorInteligencia: 0.1,
+  regeneracionEnergiaPorFuerzaVitalidad: 0,
+  regeneracionManaBase: 2, regeneracionManaPorInteligencia: 0.1,
 } as const;
 
 export interface EstadisticasDerivadasRpg {
@@ -78,7 +78,7 @@ export function calcularEstadisticasDerivadasRpg(
     evasion: limitar(suma("evasion", agilidad * c.evasionPorAgilidad + suerte * c.evasionPorSuerte), 0, c.evasionMaxima),
     velocidad: ajustarEntero(suma("velocidad", c.velocidadBase + agilidad * c.velocidadPorAgilidad + destreza * c.velocidadPorDestreza), 1),
     regeneracionVidaPorTurno: Math.max(0, suma("regeneracionVidaPorTurno", vitalidad * c.regeneracionVidaPorVitalidad)),
-    regeneracionEnergiaPorTurno: Math.max(0, suma("regeneracionEnergiaPorTurno", (fuerza + vitalidad) * c.regeneracionEnergiaPorFuerzaVitalidad)),
-    regeneracionManaPorTurno: Math.max(0, suma("regeneracionManaPorTurno", inteligencia * c.regeneracionManaPorInteligencia)),
+    regeneracionEnergiaPorTurno: Math.max(0, suma("regeneracionEnergiaPorTurno", (c.energiaBase + (bonificaciones.energiaMaxima ?? 0)) * 0.2)),
+    regeneracionManaPorTurno: Math.max(0, suma("regeneracionManaPorTurno", c.regeneracionManaBase + inteligencia * c.regeneracionManaPorInteligencia)),
   };
 }

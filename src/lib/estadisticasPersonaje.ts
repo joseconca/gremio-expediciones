@@ -205,7 +205,10 @@ export function calcularModificadoresEquipo(
   return sumarModificadores(
     ...piezas
       .filter((pieza): pieza is ObjetoInventario => pieza !== null)
-      .map((pieza) => calcularEstadisticasPiezaEquipamiento(pieza, claseId))
+      .map((pieza) => {
+        const stats = calcularEstadisticasPiezaEquipamiento(pieza, claseId);
+        return { ...stats, regeneracionEnergiaPorTurno: (stats.regeneracionEnergiaPorTurno ?? 0) + (stats.energiaMaxima ?? 0) * 0.2 };
+      })
   );
 }
 
@@ -245,7 +248,7 @@ function obtenerModificadoresPasivas(
     energiaMaxima: sumar((habilidad) => habilidad.bonusEnergiaMaxima),
     manaMaximo: sumar((habilidad) => habilidad.bonusManaMaximo),
     regeneracionVidaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionVida),
-    regeneracionEnergiaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionEnergia),
+    regeneracionEnergiaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionEnergia) + sumar((habilidad) => habilidad.bonusEnergiaMaxima) * 0.2,
     regeneracionManaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionMana),
   };
 }
@@ -254,7 +257,7 @@ function obtenerAtributosPrincipales(personaje: DatosPersonajeEstadisticas): Atr
   const claseId = personaje.profesionActivaId ?? "novato";
   const progreso = personaje.progresosClase?.find((item) => item.claseId === claseId && item.desbloqueada !== false);
   const nivelJob = typeof personaje.nivelJob === "number" && Number.isFinite(personaje.nivelJob) ? personaje.nivelJob : progreso?.nivelJob ?? 1;
-  return calcularAtributosClase(claseId, personaje.nivel, nivelJob);
+  return calcularAtributosClase(claseId, personaje.nivel, nivelJob, personaje.progresosClase);
 }
 
 function obtenerEstadisticasBase(
@@ -417,8 +420,8 @@ function calcularBaseSinAtributos(
       energiaMaxima: c.energiaBase,
       manaMaximo: c.manaBase,
       regeneracionVidaPorTurno: 0,
-      regeneracionEnergiaPorTurno: 0,
-      regeneracionManaPorTurno: 0,
+      regeneracionEnergiaPorTurno: c.energiaBase * 0.2,
+      regeneracionManaPorTurno: c.regeneracionManaBase,
     };
   }
 
@@ -438,8 +441,8 @@ function calcularBaseSinAtributos(
     energiaMaxima: c.energiaBase,
     manaMaximo: c.manaBase,
     regeneracionVidaPorTurno: 0,
-    regeneracionEnergiaPorTurno: 0,
-    regeneracionManaPorTurno: 0,
+    regeneracionEnergiaPorTurno: c.energiaBase * 0.2,
+    regeneracionManaPorTurno: c.regeneracionManaBase,
   };
 }
 

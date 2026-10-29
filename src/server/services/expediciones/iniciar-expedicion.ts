@@ -446,6 +446,7 @@ export async function iniciarExpedicion(request: Request) {
           hpActual: Math.max(1, Math.floor(estadisticas.total.hpMaximo)),
           energiaActual: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
           manaActual: Math.max(0, Math.floor(estadisticas.total.manaMaximo ?? 10)),
+          manaRegeneracionPendiente: 0,
           ...(tipoExpedicion === "comercio" ? {} : { comidaPreparada: null }),
         },
       });

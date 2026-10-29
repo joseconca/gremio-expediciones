@@ -1,3 +1,5 @@
+import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
+import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import {
@@ -47,7 +49,7 @@ import {
   esModoDificultad,
   registrarVictoriaRangoNormal,
 } from "@/lib/expediciones/dificultad";
-import { otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
+import { gastarRecursosHabilidad, otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
 import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
 import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
@@ -321,27 +323,19 @@ async function iniciarRegresoParty(
   };
 }
 
-type PersonajeAccionParty = {
-  id: string;
-  profesionActivaId: string;
-  energiaActual: number;
-  manaActual: number;
-  habilidades: { habilidadId: string; nivel: number; slot: string | null }[];
-  inventario: { id: string; objetos: { id: string; objetoId: string; cantidad: number }[] } | null;
-  equipoEquipado: { arma: { objetoId: string } | null } | null;
-};
-
-async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string): Promise<PersonajeAccionParty> {
+async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string) {
   const personaje = await tx.personaje.findUnique({
     where: { usuarioId },
     select: {
-      id: true,
+      id: true, clase: true, nivel: true, velocidadMejoras: true, capacidadCarruajeMejoras: true,
+      progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
       profesionActivaId: true,
       energiaActual: true,
       manaActual: true,
+      manaRegeneracionPendiente: true,
       habilidades: { select: { habilidadId: true, nivel: true, slot: true } },
       inventario: { select: { id: true, objetos: { select: { id: true, objetoId: true, cantidad: true } } } },
-      equipoEquipado: { select: { arma: { select: { objetoId: true } } } },
+      equipoEquipado: { include: { arma: true, armadura: true, accesorio: true, manoSecundaria: true, casco: true, pantalones: true, botas: true, guantes: true, anillo1: true, anillo2: true } },
     },
   });
   if (!personaje) {
@@ -373,6 +367,7 @@ async function regenerarRecursosTurnoParty(
       capacidadCarruajeMejoras: true,
       energiaActual: true,
       manaActual: true,
+      manaRegeneracionPendiente: true,
       habilidades: { where: { slot: { not: null } }, select: { habilidadId: true, nivel: true } },
       equipoEquipado: {
         select: {
@@ -405,14 +400,15 @@ async function regenerarRecursosTurnoParty(
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades, modificadores).total;
-  const energiaMaxima = stats.energiaMaxima ?? 20;
+  const energiaMaxima = stats.energiaMaxima ?? 100;
   const manaMaximo = stats.manaMaximo ?? 10;
-  const energiaActual = Math.min(energiaMaxima, personaje.energiaActual + 2);
-  const manaActual = Math.min(manaMaximo, personaje.manaActual + Math.max(1, Math.ceil(manaMaximo * 0.1)));
-  if (energiaActual === personaje.energiaActual && manaActual === personaje.manaActual) return;
+  const recursos = calcularRegeneracionRecursosTurno(personaje.energiaActual, personaje.manaActual, energiaMaxima, manaMaximo,
+    stats.regeneracionManaPorTurno ?? 2, stats.regeneracionEnergiaPorTurno ?? energiaMaxima * 0.2, personaje.manaRegeneracionPendiente ?? 0);
+  const { energiaActual, manaActual, manaRegeneracionPendiente } = recursos;
+  if (energiaActual === personaje.energiaActual && manaActual === personaje.manaActual && manaRegeneracionPendiente === (personaje.manaRegeneracionPendiente ?? 0)) return;
   const actualizado = await tx.personaje.updateMany({
     where: { id: personaje.id, usuarioId, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
-    data: { energiaActual, manaActual },
+    data: { energiaActual, manaActual, manaRegeneracionPendiente },
   });
   if (actualizado.count !== 1) {
     throw new PartyServiceError("Los recursos cambiaron antes de regenerarse.", 409, "RECURSOS_COMBATE_MODIFICADOS");
@@ -423,7 +419,7 @@ function convertirEfectos(valor: unknown): EstadoEfectoHabilidad[] {
   return obtenerEfectos(valor) as EstadoEfectoHabilidad[];
 }
 
-function validarCostesHabilidad(personaje: PersonajeAccionParty, habilidad: DefinicionHabilidad) {
+function validarCostesHabilidad(personaje: { energiaActual: number; manaActual: number }, habilidad: DefinicionHabilidad) {
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
   if (personaje.energiaActual < costeEnergia) {
@@ -431,30 +427,6 @@ function validarCostesHabilidad(personaje: PersonajeAccionParty, habilidad: Defi
   }
   if (personaje.manaActual < costeMana) {
     throw new PartyServiceError(`No tienes Maná suficiente. Necesitas ${costeMana}.`, 409, "MANA_INSUFICIENTE");
-  }
-}
-
-async function gastarCostesHabilidad(
-  tx: Prisma.TransactionClient,
-  personaje: PersonajeAccionParty,
-  habilidad: DefinicionHabilidad,
-) {
-  const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
-  const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
-  if (costeEnergia === 0 && costeMana === 0) return;
-  const resultado = await tx.personaje.updateMany({
-    where: {
-      id: personaje.id,
-      energiaActual: { gte: costeEnergia },
-      manaActual: { gte: costeMana },
-    },
-    data: {
-      energiaActual: { decrement: costeEnergia },
-      manaActual: { decrement: costeMana },
-    },
-  });
-  if (resultado.count !== 1) {
-    throw new PartyServiceError("Los recursos cambiaron antes de ejecutar la habilidad.", 409, "RECURSOS_COMBATE_MODIFICADOS");
   }
 }
 
@@ -1124,6 +1096,11 @@ export async function ejecutarAccionCombateParty(
     }
 
     const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
+    const bonusCuracion = personaje.habilidades.reduce((total, h) => {
+      const definicion = obtenerHabilidadPorId(h.habilidadId);
+      return h.slot?.startsWith("pasiva_") && definicion?.tipo === "pasiva" && puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)
+        ? total + (ajustarHabilidadPorNivel(definicion, h.nivel).bonusCuracion ?? 0) : total;
+    }, 0);
     let efectosJugador = convertirEfectos(participante.efectos);
     let cooldowns = obtenerCooldowns(participante.cooldowns);
     const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
@@ -1177,7 +1154,7 @@ export async function ejecutarAccionCombateParty(
       efectosJugador = estadoInicioTurno.efectos;
     }
     let habilidad: DefinicionHabilidad | null = null;
-    let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; nombre: string } | null = null;
+    let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; energia: number; mana: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
     const danoEnemigoPorId = new Map<string, number>();
     const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof obtenerEfectos> }>();
@@ -1292,6 +1269,7 @@ export async function ejecutarAccionCombateParty(
           const previos = retirarEfectosHabilidad(obtenerEfectos(aliado.efectos), habilidad.id, aliado.jugadorDefensa);
           const efectosDelObjetivo = previos.efectos;
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
+            bonusCuracion,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
             jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
             jugadorProbCritico: participante.jugadorProbCritico,
@@ -1309,9 +1287,7 @@ export async function ejecutarAccionCombateParty(
             efectosJugador: efectosDelObjetivo,
           });
           const efectosNuevosAliado = [
-            ...efectosDelObjetivo.filter((efecto) => !resultadoObjetivo.efectosJugadorActualizados?.some((actualizado) =>
-              actualizado.habilidadId === efecto.habilidadId && actualizado.objetivo === efecto.objetivo)),
-            ...(resultadoObjetivo.efectosJugadorActualizados ?? []),
+            ...(resultadoObjetivo.efectosJugadorActualizados ?? efectosDelObjetivo),
             ...resultadoObjetivo.efectos.filter((efecto) => efecto.objetivo === "jugador"),
           ];
           objetivosAliadosModificados.set(aliado.usuarioId, {
@@ -1382,6 +1358,8 @@ export async function ejecutarAccionCombateParty(
           }
           const efectosDelEnemigo = obtenerEfectos(enemigo.efectos);
           const resultado = resolverHabilidadJugador(habilidad!, {
+            bonusCuracion,
+            efectosEnemigo: efectosDelEnemigo,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
             jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
             jugadorProbCritico: participante.jugadorProbCritico,
@@ -1439,7 +1417,7 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa = enemigoActual?.defensa ?? enemigoDefensa;
       }
       if ((habilidad.cooldownTurnos ?? 0) > 0) cooldowns[habilidad.id] = habilidad.cooldownTurnos!;
-      await gastarCostesHabilidad(tx, personaje, habilidad);
+      await gastarRecursosHabilidad(tx, personaje.id, habilidad);
     } else {
       if (typeof payload?.objetoInventarioId !== "string" || !payload.objetoInventarioId.trim()) {
         throw new PartyServiceError("Debes seleccionar una poción del inventario.", 400, "OBJETO_ID_REQUERIDO");
@@ -1449,14 +1427,22 @@ export async function ejecutarAccionCombateParty(
         throw new PartyServiceError("No tienes ese objeto en el inventario.", 404, "OBJETO_NO_DISPONIBLE");
       }
       const definicion = obtenerObjetoPorId(item.objetoId);
-      if (!definicion || definicion.tipo !== "consumible" || !Number.isFinite(definicion.curacion) || (definicion.curacion ?? 0) <= 0) {
-        throw new PartyServiceError("Solo se pueden usar consumibles de curación durante el combate.", 400, "OBJETO_NO_USABLE");
+      if (!definicion || !esConsumibleRestaurador(definicion)) {
+        throw new PartyServiceError("Solo se pueden usar consumibles de vida, energía o maná durante el combate.", 400, "OBJETO_NO_USABLE");
       }
-      const curacion = Math.min(Math.floor(definicion.curacion ?? 0), participante.jugadorHpMaximo - jugadorHp);
-      if (curacion <= 0) {
-        throw new PartyServiceError("Tu aventurero ya tiene la salud al máximo.", 409, "VIDA_AL_MAXIMO");
+      const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
+      const stats = calcularEstadisticasPersonaje({ ...personaje, nivelJob: personaje.progresosClase?.find((p) => p.claseId === personaje.profesionActivaId)?.nivelJob ?? 1 },
+        personaje.habilidades.filter((h) => h.slot?.startsWith("pasiva_")), calcularModificadoresEquipo(equipo, personaje.profesionActivaId)).total;
+      const restauracion = calcularRestauracionConsumible(definicion, {
+        hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo,
+        energia: personaje.energiaActual, energiaMaxima: stats.energiaMaxima ?? 100,
+        mana: personaje.manaActual, manaMaximo: stats.manaMaximo ?? 10,
+      });
+      const { curacion } = restauracion;
+      if (curacion + restauracion.energia + restauracion.mana <= 0) {
+        throw new PartyServiceError("Los recursos que restaura este objeto ya están al máximo.", 409, "RECURSOS_AL_MAXIMO");
       }
-      objetoConsumible = { inventarioObjetoId: item.id, objetoId: item.objetoId, curacion, nombre: definicion.nombre };
+      objetoConsumible = { inventarioObjetoId: item.id, objetoId: item.objetoId, ...restauracion, nombre: definicion.nombre };
       jugadorHp += curacion;
       accion = {
         actor: "jugador",
@@ -1465,7 +1451,7 @@ export async function ejecutarAccionCombateParty(
         dano: 0,
         curacion,
         critico: false,
-        texto: `Usas ${definicion.nombre} y recuperas ${curacion} puntos de vida.`,
+        texto: `Usas ${definicion.nombre}: +${curacion} PV, +${restauracion.energia} de energía y +${restauracion.mana} de maná.`,
         accionSprite: "use_consumable",
       };
     }
@@ -1572,18 +1558,6 @@ export async function ejecutarAccionCombateParty(
       throw new PartyServiceError("El combate ha cambiado mientras se resolvía tu acción. Actualiza e inténtalo de nuevo.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
-    if (
-      fase === "activo" &&
-      faseTurno === "jugador" &&
-      turnoActualUsuarioId !== null &&
-      turnoActualUsuarioId !== usuarioId
-    ) {
-      const siguienteMiembro = combate.participantes.find((miembro) => miembro.usuarioId === turnoActualUsuarioId);
-      if (siguienteMiembro && siguienteMiembro.estado === "activo" && siguienteMiembro.jugadorHp > 0) {
-        await regenerarRecursosTurnoParty(tx, siguienteMiembro.personajeId, siguienteMiembro.usuarioId);
-      }
-    }
-
     const participanteActualizado = await tx.combatePartyParticipante.updateMany({
       where: { id: participante.id, jugadorHp: participante.jugadorHp },
       data: {
@@ -1651,6 +1625,11 @@ export async function ejecutarAccionCombateParty(
     }
 
     if (objetoConsumible) {
+      const restaurado = await tx.personaje.updateMany({
+        where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
+        data: { energiaActual: { increment: objetoConsumible.energia }, manaActual: { increment: objetoConsumible.mana } },
+      });
+      if (restaurado.count !== 1) throw new PartyServiceError("Los recursos cambiaron durante la acción.", 409, "RECURSOS_COMBATE_MODIFICADOS");
       const consumido = await tx.inventarioObjeto.updateMany({
         where: { id: objetoConsumible.inventarioObjetoId, cantidad: { gte: 1 } },
         data: { cantidad: { decrement: 1 } },
@@ -1659,6 +1638,17 @@ export async function ejecutarAccionCombateParty(
         throw new PartyServiceError("El consumible ya no está disponible.", 409, "OBJETO_PARTY_MODIFICADO");
       }
       await tx.inventarioObjeto.deleteMany({ where: { id: objetoConsumible.inventarioObjetoId, cantidad: { lte: 0 } } });
+    }
+
+    if (
+      fase === "activo" &&
+      faseTurno === "jugador" &&
+      turnoActualUsuarioId !== null
+    ) {
+      const siguienteMiembro = combate.participantes.find((miembro) => miembro.usuarioId === turnoActualUsuarioId);
+      if (siguienteMiembro && siguienteMiembro.estado === "activo" && siguienteMiembro.jugadorHp > 0) {
+        await regenerarRecursosTurnoParty(tx, siguienteMiembro.personajeId, siguienteMiembro.usuarioId);
+      }
     }
 
     const recompensas = fase === "victoria" || fase === "derrota"

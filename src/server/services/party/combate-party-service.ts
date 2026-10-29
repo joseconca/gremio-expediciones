@@ -6,7 +6,7 @@ import { seleccionarEnemigosNormales } from "@/lib/expediciones/normal";
 import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
-import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { esModoDificultad } from "@/lib/expediciones/dificultad";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
@@ -58,7 +58,14 @@ function obtenerEstadisticasParticipante(participante: {
     modificadoresEquipo,
   );
 
-  const atributosConComida = aplicarEfectoComida(
+  const bonificacionesComida = calcularBonificacionesComida({
+      ataque: estadisticas.total.ataque,
+      ataqueMagico: estadisticas.total.ataqueMagico ?? estadisticas.total.ataque,
+      defensa: estadisticas.total.defensa,
+      velocidad: estadisticas.total.velocidad,
+      probCritico: estadisticas.total.probCritico,
+    }, participante.efectoComida, personaje.posicionCombate);
+    const atributosConComida = aplicarEfectoComida(
     {
       ataque: estadisticas.total.ataque,
       ataqueMagico: estadisticas.total.ataqueMagico ?? estadisticas.total.ataque,
@@ -93,6 +100,7 @@ function obtenerEstadisticasParticipante(participante: {
     evasion: estadisticas.total.evasion ?? 0,
     nivel: personaje.nivel,
     comida: participante.efectoComida,
+    bonificacionesComida,
     nombreComida: obtenerComidaTaberna(participante.efectoComida),
   };
 }
@@ -191,9 +199,6 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       expedicion.participantes.findIndex((p) => p.usuarioId === a.usuarioId) -
       expedicion.participantes.findIndex((p) => p.usuarioId === b.usuarioId));
 
-    const actorPreferido = participantesCalculados.some((participante) =>
-      comidaOtorgaIniciativa(participante.comida)
-    ) ? participantesCalculados[0]?.usuarioId ?? null : null;
     const turnosPendientes = crearSecuenciaTurnosVelocidad([
       ...participantesCalculados.map((participante) => ({
         actorId: participante.usuarioId,
@@ -205,7 +210,7 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         equipo: "enemigo" as const,
         velocidad: enemigo.velocidad,
       })),
-    ], `party:${expedicionPartyId}:ronda:1`, actorPreferido);
+    ], `party:${expedicionPartyId}:ronda:1`);
     const turnoInicial = turnosPendientes[0] ?? null;
     const primerTurnoJugador = turnoInicial?.equipo !== "enemigo";
 
@@ -279,6 +284,7 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         jugadorEvasion: participante.evasion,
         jugadorNivel: participante.nivel,
         cooldowns: {},
+        bonificacionesComida: participante.bonificacionesComida,
         efectos: [],
       })),
     });

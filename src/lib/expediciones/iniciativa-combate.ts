@@ -70,7 +70,7 @@ export function normalizarSecuenciaTurnosVelocidad(valor: unknown): PasoTurnoVel
 export function crearSecuenciaTurnosVelocidad(
   actoresEntrada: ActorTurnoVelocidad[],
   semilla: string,
-  actorPreferidoId?: string | null,
+  actorActualLegacy?: string | null,
 ): PasoTurnoVelocidad[] {
   const actores = normalizarActores(actoresEntrada);
   if (actores.length === 0) return [];
@@ -104,13 +104,10 @@ export function crearSecuenciaTurnosVelocidad(
   );
   const secuencia: PasoTurnoVelocidad[] = eventos.map((evento) => evento.paso);
 
-  // La comida de iniciativa conserva su comportamiento de abrir el combate
-  // con un aventurero, pero no altera la cantidad total de acciones del ciclo.
-  if (actorPreferidoId) {
-    const indicePreferido = secuencia.findIndex((paso) => paso.actorId === actorPreferidoId);
-    if (indicePreferido > 0) {
-      secuencia.unshift(secuencia.splice(indicePreferido, 1)[0]);
-    }
+  // Solo para recuperar el actor de combates antiguos sin cola persistida.
+  if (actorActualLegacy) {
+    const indice = secuencia.findIndex((p) => p.actorId === actorActualLegacy);
+    if (indice > 0) return [...secuencia.slice(indice), ...secuencia.slice(0, indice)];
   }
   return secuencia;
 }

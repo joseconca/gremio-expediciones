@@ -120,7 +120,7 @@ function obtenerDatosViaje(personaje: NonNullable<Prisma.PersonajeGetPayload<{ i
   return {
     velocidadKmh: Math.max(1, velocidadBaseKmh * (1 + bonusVelocidad)),
     hpMaximo: Math.max(1, Math.floor(estadisticas.total.hpMaximo)),
-    energiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
+    energiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 100)),
     manaMaximo: Math.max(0, Math.floor(estadisticas.total.manaMaximo ?? 10)),
     efectoComida: personaje.comidaPreparada,
   };
@@ -357,6 +357,7 @@ export async function iniciarExpedicionParty(
           hpActual: participante.hpInicio,
           energiaActual: participante.energiaInicio,
           manaActual: participante.manaInicio,
+          manaRegeneracionPendiente: 0,
           comidaPreparada: null,
         },
       });

@@ -273,6 +273,7 @@ export interface CombateActivo {
 
   cooldowns: Record<string, number>;
   efectos: unknown[];
+  bonificacionesComida?: unknown;
 
   cooldownsDefensor: Record<string, number>;
   efectosDefensor: unknown[];
@@ -333,6 +334,7 @@ export interface CombatePve {
 
   cooldowns: Record<string, number>;
   efectos: unknown[];
+  bonificacionesComida?: unknown;
   efectosDefensor?: unknown[];
 
   log: string[];
@@ -559,7 +561,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     : [];
   const progresoActivo = progresosClase.find((progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada === true);
   const nivelJob = typeof progresoActivo?.nivelJob === "number" ? progresoActivo.nivelJob : 1;
-  const atributos = calcularAtributosClase(profesionActivaId, datos.nivel, nivelJob);
+  const atributos = calcularAtributosClase(profesionActivaId, datos.nivel, nivelJob, progresosClase.flatMap((p) => typeof p.claseId === "string" && typeof p.nivelJob === "number" ? [{ claseId: p.claseId, nivelJob: p.nivelJob, desbloqueada: p.desbloqueada !== false }] : []));
 
   const datosEstadisticas = {
     clase: datos.clase,
@@ -645,8 +647,8 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       : "centro",
     ...atributos,
     energiaActual: Math.min(
-      typeof datos.energiaActual === "number" ? datos.energiaActual : (estadisticas.total.energiaMaxima ?? 20),
-      estadisticas.total.energiaMaxima ?? 20
+      typeof datos.energiaActual === "number" ? datos.energiaActual : (estadisticas.total.energiaMaxima ?? 100),
+      estadisticas.total.energiaMaxima ?? 100
     ),
     manaActual: Math.min(
       typeof datos.manaActual === "number" ? datos.manaActual : (estadisticas.total.manaMaximo ?? 10),
@@ -690,7 +692,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     defensaMagica: estadisticas.total.defensaMagica ?? 0,
     precision: estadisticas.total.precision ?? 75,
     evasion: estadisticas.total.evasion ?? 0,
-    energiaMaxima: estadisticas.total.energiaMaxima ?? 20,
+    energiaMaxima: estadisticas.total.energiaMaxima ?? 100,
     manaMaximo: estadisticas.total.manaMaximo ?? 10,
     regeneracionEnergiaPorTurno: estadisticas.total.regeneracionEnergiaPorTurno ?? 0,
     regeneracionManaPorTurno: estadisticas.total.regeneracionManaPorTurno ?? 0,

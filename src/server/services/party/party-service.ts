@@ -1,3 +1,4 @@
+import { esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
@@ -50,7 +51,7 @@ function obtenerRecursosCombatePersona(personaje: PersonajeRecursosParty | null 
       armaSpriteId: null,
       escudoSpriteId: null,
       jugadorEnergiaActual: 0,
-      jugadorEnergiaMaxima: 20,
+      jugadorEnergiaMaxima: 100,
       jugadorManaActual: 0,
       jugadorManaMaximo: 10,
     };
@@ -71,7 +72,7 @@ function obtenerRecursosCombatePersona(personaje: PersonajeRecursosParty | null 
     armaSpriteId: equipo.arma?.objetoId ?? null,
     escudoSpriteId: equipo.manoSecundaria?.objetoId ?? null,
     jugadorEnergiaActual: personaje.energiaActual,
-    jugadorEnergiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
+    jugadorEnergiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 100)),
     jugadorManaActual: personaje.manaActual,
     jugadorManaMaximo: Math.max(0, Math.floor(estadisticas.total.manaMaximo ?? 10)),
   };
@@ -939,8 +940,9 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 ...obtenerRecursosCombatePersona(p.personaje),
                 cooldowns: p.cooldowns,
                 efectos: p.efectos,
+                bonificacionesComida: p.bonificacionesComida,
                 comidaActiva: expedicionActivaRaw.participantes.find((miembro) => miembro.usuarioId === p.usuarioId)?.efectoComida ?? null,
-                pasivas: p.personaje?.habilidades?.filter((h) => h.slot?.startsWith("pasiva_")).map((h) => ({ habilidadId: h.habilidadId, slot: h.slot })) ?? [],
+                pasivas: p.personaje?.habilidades?.filter((h) => h.slot?.startsWith("pasiva_")).map((h) => ({ habilidadId: h.habilidadId, slot: h.slot, nivel: h.nivel })) ?? [],
                 usuario: p.usuario,
               })),
             }
@@ -1048,7 +1050,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
     }),
     objetos: (personajeAcciones?.inventario?.objetos ?? []).flatMap((objeto) => {
       const definicion = obtenerObjetoPorId(objeto.objetoId);
-      return definicion?.tipo === "consumible" && (definicion.curacion ?? 0) > 0
+      return definicion && esConsumibleRestaurador(definicion)
         ? [{ inventarioObjetoId: objeto.id, objetoId: objeto.objetoId, nombre: definicion.nombre, curacion: definicion.curacion ?? 0, cantidad: objeto.cantidad }]
         : [];
     }),

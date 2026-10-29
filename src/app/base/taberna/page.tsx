@@ -10,7 +10,6 @@ import DescripcionTactil from "@/components/ui/DescripcionTactil";
 
 function descripcionSimpleComida(comida: (typeof COMIDAS_TABERNA)[number]) {
   const resúmenes = comida.efectos.map((efecto) => {
-    if (efecto.tipo === "iniciativa") return "Otorga la iniciativa en el primer combate.";
     if (efecto.tipo === "critico") return "Mejora los golpes críticos.";
     switch (efecto.atributo) {
       case "ataque": return "Potencia el ataque físico.";
@@ -26,7 +25,6 @@ function detallesComida(comida: (typeof COMIDAS_TABERNA)[number]) {
   return [
     comida.descripcion,
     ...comida.efectos.map((efecto) => {
-      if (efecto.tipo === "iniciativa") return "Otorga la iniciativa en el primer combate de la expedición.";
       if (efecto.tipo === "critico") return `Probabilidad crítica: +${Math.round(efecto.incremento * 100)} puntos porcentuales.`;
       const atributo = ({
         ataque: "Ataque físico",
@@ -34,7 +32,7 @@ function detallesComida(comida: (typeof COMIDAS_TABERNA)[number]) {
         defensa: "Defensa física",
         velocidad: "Velocidad",
       } as const)[efecto.atributo];
-      return `${atributo}: +${Math.round(efecto.porcentaje * 100)} % durante la expedición.`;
+      return `${atributo}: ${efecto.fijo ? `+${efecto.fijo} y ` : ""}+${Math.round(efecto.porcentaje * 100)} % durante la expedición.`;
     }),
     "Se reserva para la próxima expedición de combate; no afecta a los viajes comerciales.",
   ];

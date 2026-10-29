@@ -304,13 +304,13 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   const guardia = HABILIDADES.find((habilidad) => habilidad.id === "guardia_improvisada");
   assert.equal(guardia.nivelJobRequerido, 5);
   assert.equal(guardia.costePuntosHabilidad, 1);
-  assert.equal(guardia.costeEnergia, 5);
+  assert.equal(guardia.costeEnergia, 25);
   assert.equal(guardia.duracionTurnos, 4);
   assert.equal(guardia.cooldownTurnos, 4);
 
   const primerosAuxilios = HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios");
   assert.equal(primerosAuxilios.nivelJobRequerido, 3);
-  assert.equal(primerosAuxilios.costeEnergia, 4);
+  assert.equal(primerosAuxilios.costeEnergia, 20);
   assert.equal(primerosAuxilios.cooldownTurnos, 5);
   assert.equal(primerosAuxilios.curacionPorcentaje, 0.15);
   assert.equal(primerosAuxilios.duracionTurnos, 2);
@@ -469,11 +469,11 @@ test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
   );
 });
 
-test("la regeneración de turno recupera 2 de Energía y el 10 % de Maná máximo, limitada al máximo", () => {
+test("la regeneración de turno recupera el 20 % de energía y maná por su atributo, limitada al máximo", () => {
   const { calcularRegeneracionRecursosTurno } = require("../src/server/services/combate/accion-combate.ts");
-  assert.deepEqual(calcularRegeneracionRecursosTurno(3, 2, 20, 100), { energiaActual: 5, manaActual: 12 });
-  assert.deepEqual(calcularRegeneracionRecursosTurno(19, 98, 20, 100), { energiaActual: 20, manaActual: 100 });
-  assert.deepEqual(calcularRegeneracionRecursosTurno(0, 0, 20, 10), { energiaActual: 2, manaActual: 1 });
+  assert.deepEqual(calcularRegeneracionRecursosTurno(3, 2, 20, 100), { energiaActual: 7, manaActual: 4, manaRegeneracionPendiente: 0 });
+  assert.deepEqual(calcularRegeneracionRecursosTurno(19, 98, 20, 100), { energiaActual: 20, manaActual: 100, manaRegeneracionPendiente: 0 });
+  assert.deepEqual(calcularRegeneracionRecursosTurno(0, 0, 20, 10), { energiaActual: 4, manaActual: 2, manaRegeneracionPendiente: 0 });
 });
 
 test("atributos principales generan estadísticas derivadas y valores acotados", () => {
@@ -484,7 +484,8 @@ test("atributos principales generan estadísticas derivadas y valores acotados",
   assert.ok(alto.ataqueMagico > bajo.ataqueMagico);
   assert.ok(alto.evasion > bajo.evasion);
   assert.ok(alto.manaMaximo > bajo.manaMaximo);
-  assert.ok(alto.energiaMaxima > bajo.energiaMaxima);
+  assert.equal(alto.energiaMaxima, 100);
+  assert.equal(bajo.energiaMaxima, 100);
   assert.ok(Number.isFinite(alto.regeneracionManaPorTurno));
   const invalido = calcularEstadisticasDerivadasRpg({ fuerza: NaN, agilidad: -5, vitalidad: 0, inteligencia: Infinity, destreza: 1, suerte: 1 }, -1);
   assert.ok(Number.isFinite(invalido.hpMaximo) && invalido.hpMaximo >= 1);
@@ -511,7 +512,7 @@ test("las bonificaciones de equipo se aplican a máximos y regeneración de recu
 
   assert.equal(equipado.energiaMaxima, base.energiaMaxima + 7);
   assert.equal(equipado.manaMaximo, base.manaMaximo + 8);
-  assert.equal(equipado.regeneracionEnergiaPorTurno, base.regeneracionEnergiaPorTurno + 2);
+  assert.ok(Math.abs(equipado.regeneracionEnergiaPorTurno - (base.regeneracionEnergiaPorTurno + 2 + 7 * 0.2)) < 1e-9);
   assert.equal(equipado.regeneracionManaPorTurno, base.regeneracionManaPorTurno + 1);
 });
 

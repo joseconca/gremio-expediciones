@@ -619,6 +619,7 @@ export default function AsedioModal({
                 <EstadoSobreActor ficha={{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
                   hp: hpPropio, hpMaximo: hpMaximoPropio, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
                   mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: miTurno }}
+                  bonificacionesComida={esAtacante ? combate.bonificacionesComida : undefined}
                   efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
                   comida={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null} habilidades={personaje.habilidades}
                   onInfo={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }} />

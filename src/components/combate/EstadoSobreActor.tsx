@@ -6,9 +6,10 @@ import MarcadorObjetivo from "./MarcadorObjetivo";
 import styles from "./estado-sobre-actor.module.css";
 
 /** The effect row always reserves its height, including when no effect is active. */
-export default function EstadoSobreActor({ ficha, enemigo = false, efectos = [], comida, habilidades, onInfo, posicion }: {
+export default function EstadoSobreActor({ ficha, enemigo = false, efectos = [], comida, habilidades, onInfo, posicion, bonificacionesComida }: {
+  bonificacionesComida?: unknown;
   ficha: FichaCombatiente; enemigo?: boolean; efectos?: unknown; comida?: string | null;
-  habilidades?: { habilidadId: string; slot?: string | null }[]; onInfo?: () => void; posicion?: string;
+  habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[]; onInfo?: () => void; posicion?: string;
 }) {
   const recursos = recursosVisibles(ficha);
   return <div className={`${styles.root} ${enemigo ? styles.enemyRoot : ""}`} data-estado-actor={ficha.id} data-posicion={posicion}>
@@ -22,7 +23,7 @@ export default function EstadoSobreActor({ ficha, enemigo = false, efectos = [],
       {(ficha.estado === "huyo" || ficha.hp <= 0) && <small>{ficha.estado === "huyo" ? "Retirado" : "Caído"}</small>}
     </button>
     <div className={styles.effects} data-fila-efectos>
-      <IndicadoresEfectosCombate efectos={efectos} comidaPreparada={comida} habilidades={habilidades} />
+      <IndicadoresEfectosCombate efectos={efectos} comidaPreparada={comida} habilidades={habilidades} bonificacionesComida={bonificacionesComida} />
     </div>
   </div>;
 }
