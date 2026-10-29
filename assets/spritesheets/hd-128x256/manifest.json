@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "mariscal-m",
+  "nextVariant": "vigia-m",
   "classes": [
     {
       "id": "novato",
@@ -408,7 +408,7 @@
       "name": "Mariscal",
       "tier": 3,
       "order": 50,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "vigia",
@@ -231480,7 +231480,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mariscal/m/mariscal-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/mariscal/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -231605,8 +231605,8 @@
                 "pixelSha256": "317c26a727cc0f9c43b9ec567cdae66ee8fe85f70e133322355dc2863360778b"
               },
               "02": {
-                "sha256": "fd8e19da50b4433113998a383c0344e3958dea1079ac588bd1fc8344847928e6",
-                "bytes": 23783,
+                "sha256": "f2faa4fe1472fa68a99e547c2074bf696de059a896dffd8fbcc43e03a708c31f",
+                "bytes": 24786,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -231614,31 +231614,15 @@
                 ],
                 "bbox": [
                   11,
-                  94,
-                  108,
-                  247
+                  93,
+                  112,
+                  251
                 ],
-                "pixelSha256": "6f3fef60e21d4f4bdd0821b74f75558982e0e7262555e93694a65322513b1c4f"
+                "pixelSha256": "2ee4efb906c300b3a86a6685f90a105a896b075a530521c263abe5281e276bb5"
               },
               "03": {
-                "sha256": "d34755985173272f272da2ff08cd34aa4dfff3b14ba764585b3db6cd23411246",
-                "bytes": 24672,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  11,
-                  95,
-                  116,
-                  247
-                ],
-                "pixelSha256": "be04fcb5670f801371ec0a5a9aef9396db8bc28afd3436d6e6946245137043ee"
-              },
-              "04": {
-                "sha256": "6df5b59d80e685951ebdeb6e08f53ee539b044ac2b6b0d170254665a979fc4fc",
-                "bytes": 24274,
+                "sha256": "0dcbf42d7c27d55109e9636f86748c67805bf339f3826d526012e63ff8588b90",
+                "bytes": 25617,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -231646,11 +231630,27 @@
                 ],
                 "bbox": [
                   16,
-                  95,
+                  94,
                   112,
-                  247
+                  248
                 ],
-                "pixelSha256": "aa8e8da33a610f883e0ed0591285e781c4a63842f205c4c51727704466a1f504"
+                "pixelSha256": "748006c352e3620d4ad91f92ed82da0913d3178017ffc57ec738fad9901bba81"
+              },
+              "04": {
+                "sha256": "840ec254f56f4cb2105bfffa7017288b83c19511a1ec799a01ed56acc8224d9b",
+                "bytes": 25573,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  94,
+                  118,
+                  251
+                ],
+                "pixelSha256": "50f87075a492e26575561709125caad9a067bd77bcf7899392f36e0849a3329b"
               }
             },
             "distinctFrames": 4
@@ -232604,13 +232604,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "10189750781ae8e58501a4b2637a634fc4ffb79e8c0f879d23e4c341f91b2658",
+          "sourceSha256": "a8c5ceb49bf4aa9a5c713fd2224e0ec2d944a0646ed7432ea01af811a7a01bbb",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -232632,9 +232633,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit, source-canvas boot repair. Keep head, torso, BOTH GLOVED HANDS, wrists, elbows, belt and upper legs EXACTLY unchanged at their current coordinates. BOTH black glove palm centers are approved and must not move. Only make BOTH bronze-armored BOOTS more compact with shorter toes and slightly higher soles so every complete boot has clear transparent margin below and right inside the SAME canvas. Right boot currently touches the right edge; shorten its toe, no moving whole figure. Preserve masculine Mariscal bronze gate armor, forest-teal sleeves, ivory officer tabard, sandy-blond silver-temple hair, exact body scale and camera. ONE complete whole walking sprite, transparent background, no text, weapons, effects, crop, recenter or global rescale.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -232642,7 +232643,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "10189750781ae8e58501a4b2637a634fc4ffb79e8c0f879d23e4c341f91b2658",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "cd2a5c0299084b86110f12f0c8cfcabf9d3de888f75526ce412f3a56b2160750",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "3d31c13fb5926022d180f150bb1a0ff13a7b5182dc8c06fc4eca61f475342213",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "10189750781ae8e58501a4b2637a634fc4ffb79e8c0f879d23e4c341f91b2658",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Mariscal MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure. Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size. Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield. Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "6227cb2a15f074efe4cee339e8eb45e1097f3fbdc5ec4eb076f25c3a022ebb84",
@@ -232680,7 +232814,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "8cb0fd304dfc4d5bab6870cf4912a352eb228e07efc05d60ffb1ccba40251f28",
@@ -232718,7 +232853,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "05d19625203e922f8114d133a4f46a7db3d9f25ca5f0a24c9e1ab66f20ea4cce",
@@ -232762,7 +232898,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "b16cea343afc6f8bce68d38c9d70234cdf4e75dbd282571acb3e2f26cd791477",
@@ -232806,7 +232943,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "b29da72fb000578b9940cee45f7e35bb45b604b647a29d0c5c288684d928c666",
@@ -232844,7 +232982,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "2476601f10dbff41fbfd75efc8cb70c692284147d96295538aa9ef3e136f79b8",
@@ -232882,7 +233021,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "aef3dcdd80f45bc53aef82ce588dcff8b56bfd5610f71756d4dc7260a0d5fb0f",
@@ -232920,7 +233060,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "6d44a75015d7c66b107c38ce3f546450a7c5054c060671181b86767fe59ad6c8",
@@ -233052,7 +233192,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "c506c6f854d1509607a35e6aed845867f97a7c2bdffcbd6538d4293edc1137a7",
@@ -233090,7 +233231,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "7197d8e4c67e1d55a210a462613416f47df8e8ba0b521e227e85e40276198024",
@@ -233128,7 +233270,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "b3d803b120bd5055766718984dbc80c69d67c890cbe42ed57b89dda8e09f07b3",
@@ -233166,7 +233309,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "54189e6827c8a20b1217878b6a4930df58f7d731858beb785e539513f543dba1",
@@ -233204,7 +233348,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "d87112d96e3a216274bd08452e6ec69ac74e68cc9046a6172c5719c816dca98a",
@@ -233242,7 +233387,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "8ef187352879ef9e5facb5309844da27f4e580791009d4c9fff9d1f7717fd93a",
@@ -233280,7 +233426,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "eba9e5822ae85c0e939718c5c4881676e295be169103b39c2e00e1f17a69ae54",
@@ -233412,7 +233558,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -233433,11 +233580,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -233445,7 +233592,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -233687,6 +233834,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "mariscal",
+        "name": "Mariscal",
+        "tier": 3,
+        "costume": "Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield.",
+        "maleIdentity": "Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size.",
+        "femaleIdentity": "Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size.",
+        "armPolicy": "Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure.",
+        "unique": "Heavy bronze command armor, ivory officer tabard with teal borders and double gate chevrons, rectangular fortified-gate buckle and low command crest.",
+        "advancement": "Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/mariscal/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "4870edec96ca9f26a450416685d57ae3a8644b97f0556f7325270bdb56c88612",
+            "b59476451bf81f32b7f646752194646c2d491ebc7cef892742f8bc1cbcdaa771",
+            "6d696bb698e6e6741b80d8e40249103b0eb5994a28f9dbabb546e06cb5430222",
+            "d8bba318cee578c19268d3d12d9643065dd8ae69846a850da2ffc312e9710959"
+          ],
+          "walk": [
+            "71041f82413bb43b13b82ea31610dccfec4eda46747ec002390c9022b45d69fa",
+            "f2faa4fe1472fa68a99e547c2074bf696de059a896dffd8fbcc43e03a708c31f",
+            "0dcbf42d7c27d55109e9636f86748c67805bf339f3826d526012e63ff8588b90",
+            "840ec254f56f4cb2105bfffa7017288b83c19511a1ec799a01ed56acc8224d9b"
+          ],
+          "hurt": [
+            "8bd74e02f0a57707c164263571201abaad68eae5a593bb47878e2fcee8f72002",
+            "cb06e1d87c27bd47d43aa01316649828a1b6b1c8b8dee0974c0266ef00c7d6d9",
+            "37f3a82d7f9804550cb6e2b0eceb0085ba813e64466c90d954882a4674e3ba64",
+            "8374b788839aad0a3e9dd44968a1e8023dec0779cedbeba35a945850774ed2b8"
+          ],
+          "use_consumable": [
+            "5f74bc206e39c4d9d6566fcb6284abd9fe89c3abe7c1c52e00553ca34f116725",
+            "aaddfa30b147d2b34be5f9a271c400cbfbc79cac0b35bf1f053590822c4bc16d",
+            "eeaa64ffcc5f65021ed9b1f65325e680989a88110ce0fca47da92a2e19d88fe7",
+            "8395d99622d9cf1ee8ed2e0f08bfd6c6a269976dc7b096db0f74a481df426fd5"
+          ],
+          "dodge": [
+            "9d9e51b4271b51fef31d3d290eba455449414d5bf23f06b2d709f4f64ed6cf33",
+            "c08fcb510b8d7bc01c20fdabdd8191f718395b22f5af95f403ce9125e36366d3",
+            "b02dc14d7b7c203b4039c3a654af0b6461d356dc72c41f5a7ef544e15c890f6b",
+            "9b837b07b5a5681efaf499c66d3414a99cab592d15b4e3956283f20e7f40879f"
+          ],
+          "block_shield": [
+            "46b026cd41b48358bcac70fe4d749d4f12ad90088df3f8a12dbf69e76d5160d3",
+            "2b61371438a46b80fc6a43f9b875e8fbab4e60babd8ddb4843122c5b139181fd",
+            "b17b323f66ae52909905afc7582978b287d65d3dbd3a8fa1f8b0f497886ba70b",
+            "6a2a0f4687775053d0094e93ab5df32e7d12c54fbdf7a7e7801f16a327f0b69f"
+          ],
+          "attack_sword": [
+            "6fbd9864a97e786c68127bb33d50d6c6c311f4e452fab45be1632917eb22e3aa",
+            "052c5698c39dbf5fb2025d53443bd828abbd550aed0c4642baf67da728b05cb5",
+            "7477094c2a92eff6a6eebc46bec7ea4a74ae41dd6088c8299ff0eb8e3a13ba5e",
+            "8912b8a93daae22e4df82b03fe4b52c829700fc61150b738cce14fd93c3c1464"
+          ],
+          "attack_axe": [
+            "634e23306ff1798f9d7e81f1b5339a3eebbac23171fea563d974235b9a86dd75",
+            "6f7a2b894b3e9ec9aaafe262c5335ec01dfd979c84f4e6d72546aece588014e5",
+            "a16640d62c676fe1e6ebee0e36536e676b8032d2a0f94941a7503bc2cbec575a",
+            "94ae1c3cb92644c997078e2d652798f6460e39acb59468a65d9c53af18d88c29"
+          ],
+          "attack_spear": [
+            "bc5199cda8046fa51012b268997b004e8c7a06cb3d341db93b8af3793f526980",
+            "547e89a9afd7232d56ac631e73a47544a20d1e827bc8e078f02cb9e0522389fe",
+            "6dbfe5ea2ab74d41aa059fef05be9cfd4e2613ab4076f5f8975629a86c98751a",
+            "5824317b363b2f0289e2ae998b3265305e434cd3135d2b543bb8b182ce283c22"
+          ],
+          "attack_dagger": [
+            "7db854efd244b26d75804b083e0e5e2a9b05a1e6208b4731ff9b2620cd12d3e7",
+            "0d75e0d67b2b00d004ec000482a21e877e15fa225aedcb51f5aff5cd614352fd",
+            "fd2643a1af970b10ab9f392e0275b976112826e7fdf363e7e46c8eff36145e38",
+            "144f502964426274e1c0d654cf0502e778ed1c31c905c691ab1a115eab5c83d1"
+          ],
+          "attack_bow": [
+            "f88f984b24dcda9f484e22a5eef4caac5932138228e482ed99b9433ca54b7a07",
+            "ceaa62f62f05ecb3e25d68f69b4bf4acf0a9072e681f60c0728398abc0c45568",
+            "999bee4250254f9b4133a9a4dee2d4156e278a7fccf1ba0a9ccb900e456aab9e",
+            "4c28cf1a5d62f1b33601a6b431246050893c72f2bc47747dc6ea91049b38e4eb"
+          ],
+          "attack_staff": [
+            "0eb5f66eb2fa310beef7d6fb7da7bcd6a4592aaea24ec8fd84695f95614aaadc",
+            "738bade742fea864453be22649bc769df88cd18fa76a2b9bcca9672cdaeb4968",
+            "cc180c15f257010c73fc2198a035abed539200c7e0c1a04dc456b0efce79690e",
+            "0f0a8b2165121d22340065a0ad15f628d3eace84fa019489df0942a82201815f"
+          ],
+          "attack_mace": [
+            "ea21d08421fa712f5c82dd1c8d28a96e98f144869fed5dd70cb37f7060f6fd52",
+            "72548d6c11def5e0c1c24ba110d6a5527e6bb9f52ecd14b7244805dbd9e4c639",
+            "7522cae4518fa23710904cecc7d403094a25832da7c0587c7c5d613ba69e30be",
+            "dafa443da49c34dab2a2bb4c1388a43a9849c07d5d4a2f81383ddb4d7f26a185"
+          ],
+          "attack_book": [
+            "94b119ed8605f1a7c5e67ad06297ae2d78b9acdf8be576d5aa2218a447dc080b",
+            "4d8ea5b422b9cea1e0fcc8bf72a65a108ada00b3cf18a50c39eb951c8846eccf",
+            "329f844988b5a921cb5ac83dc201f625ae82cfd8595a5deeab6fa0a439c393b7",
+            "0ff01d6125a815fbdca7684dd8500d7536620330467cfda99a6a1bb220b6bb31"
+          ],
+          "attack_gloves": [
+            "fac84ab007927078d0bbcd62a5c5d2221312d6adca37032df85cd57d385cf4fb",
+            "2e74c97814ffec6ec788f325b3e0739c242c8627ad21df13deb42362c09b1fd9",
+            "f686bcde90bb1ba2b7d800a877e1d6c5dc801f78ca3f8998bae37d795eb2b465",
+            "886d575eb69049b8ca3da4aeed92876fb2e5d929796f01086620b611702ab7d0"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -233699,7 +233961,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mariscal/f/mariscal-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/mariscal/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -234823,7 +235085,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "c590462f567f279ca97cef4afa72c80a8da0c6baf25e31869a3af61df12b2076",
@@ -234861,7 +235124,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "a2e9e8761657f73da63ef4fcdafe7976208078ec1fdc6412518214db3a863b78",
@@ -234899,7 +235163,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "1164e037499f81a7cd1c357aa64a687626fea1887356cab7f180ed684b185cb3",
@@ -235031,7 +235295,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "faba0f6db9777dc600084597bdde2c2442b9f50dc5f369637f210d8ff8aa1cb9",
@@ -235069,7 +235334,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "d6d89e2200f6b9dd61b51e0d3a883d37cd9366b1896a555bd09f08f76b5f5e16",
@@ -235107,7 +235373,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "9c0b6e62ec9e52bcfa0f9bfd17b2d9428aefc5b688fcfe6706f8141c4bab171d",
@@ -235145,7 +235412,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "e67586e4f84655c641b667041412bfeffa7c44e36db5641f3fdf432e67baca99",
@@ -235183,7 +235451,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "d365f924d889cbd3f78d425f94568cadba2d2cac4a2bcebe03ee9a43c9d3e3a9",
@@ -235221,7 +235490,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "beb7fc400c16cd1cfd1b6f27c836164c65e51f3e233ba6b806a3ab286dfaf9c7",
@@ -235259,7 +235529,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f6e5d7fc1d0e9b2a331001140c7c4a71d52ec1e10cf1e12f859eb91712b06a7f",
@@ -235297,7 +235568,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "8d74fe04e091de9f5eb2c90467554977343cde876f9a699a4a5ccb61f884e933",
@@ -235335,7 +235607,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "f3c5b4d24567abf0310544ca44f095d46419e4bbf9f4fedd010581eff4433609",
@@ -235373,7 +235646,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f72b74059edcf27c2ecfa38caca225e96aafb2bfdc7a21398831338266a889ea",
@@ -235411,7 +235685,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "475b27819e6c9d1db0d621f3fc9e7ffa7789a3c167009bb948cc4f583f6558fc",
@@ -235449,7 +235724,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "d3772659e9c4f692f5d7fed62138c987ea16c82783cd12cec60b1cc6a65014af",
@@ -235487,7 +235763,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "10b5effb723633af62d985cbd6c5fa11b93e5069323cd5683152a4f337a29a41",
@@ -235619,7 +235895,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -235894,6 +236171,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "mariscal",
+        "name": "Mariscal",
+        "tier": 3,
+        "costume": "Veteran field-marshal heavy armor: layered polished BRONZE plate cuirass over deep FOREST-TEAL fitted sleeves and slate trousers, compact rectangular bronze pauldrons with IVORY double gate-chevron insignia, high bronze gorget. A fitted long IVORY officer tabard split down front and sides to above knees, TEAL border with paired BRONZE vertical command stripes. Wide dark belt with a large rectangular fortified-gate bronze buckle. Four horizontal overlapping BRONZE hip armor plates on each outer hip, never a pouch. Articulated bronze elbow and knee guards, close segmented bronze forearm bracers above BLACK fingerless gloves, BLACK tall boots armored with bronze shins and toe caps. Narrow TEAL browband with a compact three-prong BRONZE command crest resting flat along forehead, face entirely visible. No cape, fur, weapons or shield.",
+        "maleIdentity": "Adult masculine veteran commander, sandy-blond short neatly swept-back hair with discreet silver temples, focused gray-green eyes, clean-shaven, firm jaw. Canonical head size.",
+        "femaleIdentity": "Adult feminine veteran commander, sandy-blond HIGH THICK BRAIDED PONYTAIL with discreet silver temple strands, focused gray-green eyes. Canonical female head size.",
+        "armPolicy": "Fitted forest-teal sleeves remain visible at elbows and stop above compact bronze wrist armor. Exact empty black-gloved palms, wrists and fingertips remain at canonical coordinates. Compact armor, no expanded shoulders. Preserve bronze rectangular armor and gate emblems on every figure.",
+        "unique": "Heavy bronze command armor, ivory officer tabard with teal borders and double gate chevrons, rectangular fortified-gate buckle and low command crest.",
+        "advancement": "Tier 3 evolution of Centinela: visibly heavier layered armor, ivory officer tabard and command insignia distinguish it from the short tan border-guard tabard and simpler bronze lamellar plates of Tier 2. Disciplined military gate motifs; no laurel champion belt, knight silver plate or religious crosses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/mariscal/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "bdc6888cc829a66c51812e329cdec12496fcb5525266d22e42dcca36b82d5dc6",
+            "5fb5a81cabebf9b0b9d6fb4e97ab666f134d8dea6f6b25589ef38a142441a5f9",
+            "cb46cb4acc4218a83722619c5d625622a1862010a79b19d968238ddc309f09f5",
+            "13db63caca93d2e90a11b3a99c7b90cb4281fd56b235a5f8da2b99d164991386"
+          ],
+          "walk": [
+            "b3fada80c2e29c66af4d445c35791fb3cb58dde7e8618ef55521ce830999ca26",
+            "331e285126762d84fc72ce40ef02d5c4b34d261ae1e02b32820a5b2eb345e227",
+            "ad360f8097ae4626a803d387686aa5cfe7e98e12955329317febf27005618b5c",
+            "a82a8fd594217b72cf8245882d042a90a7ca2cc0eae7a1e43506c1cea5620c80"
+          ],
+          "hurt": [
+            "6433bb42d1e8c6af462ae5cce146c613477615b14a14e42dea2c437be5cbee26",
+            "af3eb31a3dbd582e2aad411b32f8b2de7c4df7f6046abf79469404ccd72b8311",
+            "6148fd362fbb4a90f167dda045d8add951ca8724a90dda48a8ec13d734a85946",
+            "d25182a4e0ef5c197d4e0d301a86798189c92b414673f22a1b8e3316b0dc2e4a"
+          ],
+          "use_consumable": [
+            "7edc9e4abac423ce31b8923448559af59adbacdf727ad1f81600ccd6e4a4a3b1",
+            "31e08257f35c2e4baeafe1c2ca3a9b80f5742c1a37d27db03db033dcb971dd75",
+            "7476290d587fa7c831866edc8b65500acb51305a391e463037578f4e0e43833c",
+            "bf9b8b22cfcad1bf69b5711b410ad142fd86470bb78aa9ac2478aa3029929998"
+          ],
+          "dodge": [
+            "518921df3eef7b72ef01b6819d726ce74e24c89412a52c56e787be2e7cc2353d",
+            "c3340b1fc34660989a1a3df656d5a64c251f4d2e0ff4494dbaa5893e6e088ca8",
+            "9b97edfc287e8423c97db29ae7ed071a676774c1cc9c6436ee874aa61623eff5",
+            "f9d870257ef5b2fb6c508d217e3a16e22a1021fa6684efb1f417361a68908f32"
+          ],
+          "block_shield": [
+            "0983fb7f79b146c65da63996854ef44b618a5a441d4f6d0d8de6daa4255f8655",
+            "924f5db7790273724a169d80214203ef4077478d985278f62febbfcec909e6ae",
+            "ef8d6ee381376f44b3419880ff9aff4f90d2c6dd30e8099aad5b04054ea67670",
+            "a509905586a9a30d12eca226c3d71ffcdba30e8996aa0d130f2cf70b257d7e2a"
+          ],
+          "attack_sword": [
+            "29c70b3ce99dcc5534ff16f0ec81249ef2ed15a0f2b2a06f0ec91dc3fbbc0a1a",
+            "aca550abdaac0c350f4ee51eee1459ee814a892d627c0a28674f1f1eb9a9334a",
+            "025bfc72948b247bfaf9652c022afbdac9f2f5290b3fd6cc2030177aa891f740",
+            "9c20566b1ec75e2615195e3319085ebf0112e6975ec77c7da42c08414ec53685"
+          ],
+          "attack_axe": [
+            "41539c87021d2d6e04e83c8c45fe6872f2c346a38b10282cdf0a0c0e2803ba17",
+            "9465ea16a5b956fd1fee6d20985f4a851465b1c009b69a81e20456d6829372da",
+            "56e6b0e322988954b40165089ccc3df3647375b50ab9fb0a47641c0e67e9b86d",
+            "5bac7a7278536b30a09e3fd1c8e067f6ec09d530584c088ef4a39caab0dab2e9"
+          ],
+          "attack_spear": [
+            "52ee79e296edb593a2bf7ded93fc7dcdf576a2bf094976f2a2694ef110921d14",
+            "89a1ee676a1c0d36c005306b4e7ee7c238698cb6240f78bc003dfd01eb7d2ed5",
+            "1f4d5392c7cac18ca6fba8c6d7a9c039c4cf28fbd8db4fc48fdbcfa8e166f391",
+            "9c459b6607aac93569f6be9ace5c63a331f4a9f621aae4384485a8c2a6ac979d"
+          ],
+          "attack_dagger": [
+            "b068b151c046ddd5ac9f19ac744d9fdfbe654617d0e8b117bf98bc7d3631e4e7",
+            "0716785b3e551b78ee2fb2e678d8c4ddc5f915b99b5e23d10b49ba511cd5b1a5",
+            "d5d2c53bde24f0c02785a85b85822f50a760cc9abc3c087f6b852052a40b17d5",
+            "a388940db3d2e584931d1c169b07f3b47e72ae26b82324e9b4c973204dc82d80"
+          ],
+          "attack_bow": [
+            "a6af029b795855ccb63a93b4cab298ebb9687f6818d98b70c10228f53a03e689",
+            "525f8790ac1ee4e24c903d140fc3b2ea1df7d8d4a8a2f66be46c12def9ef77ea",
+            "b49c0692caba0923e00552f400755ff173869e09f58415f99b7f7c93e6a76c0e",
+            "37c4f2c0f48a9ff26fc99c6070682942330786254e7a2f90e8380a4b55904a75"
+          ],
+          "attack_staff": [
+            "114aa2cc2559ccd70dddaae6ca953e1c9ee162d2335677824d97055ca9c813e0",
+            "f5c779e9c52ef23b66c49ea41255bf72fcd4c16f6847b2f0601d0e21c5c12510",
+            "e3067010dc25f779151b76275a36fcef5e30497e57c991e014d1d798faf7eb46",
+            "77cc3396e7c425896e9d8a2af32d215823080b8b86d0cf343922273acdffe849"
+          ],
+          "attack_mace": [
+            "9db0add0d6073478758b876f038cf5cb176a3cd51616a5b894e6187ed6f6d20f",
+            "7f951cf3d3cf37079e6bd6e657d916a9fa64ddf7a6016a10e310d380dd4cf475",
+            "8e5829d08a321ba4d1834d4a470887a4c540cc1031ded57288be85611d457ff2",
+            "7eb1beb966c08879571fc48f758eeb509826af53ca0330f75a850de3339fbe4b"
+          ],
+          "attack_book": [
+            "a2952145ba8ab15f252695f3dfeaf10d096c7e1a67f57f78153b89a979841c25",
+            "40e936513c2566387f07e2eeee49e1290a550340d6dcc7845c973e89e57e5d80",
+            "6704d9e474bb8fa4c11b8a713385223d655bb1bf596e037c0b9754291fd481fc",
+            "110f8fb519ac36d4171ea27ee0e46855fa19681bf71319a1c560a237daf240c8"
+          ],
+          "attack_gloves": [
+            "d58673b5b14792875ce780abe0df0a66b95015eba4357a1f56e0a51b48c2e846",
+            "29cba5fe7e0da80a1682ba72e373624e10c9e184ee9ab617fae00f1f5bedd0f0",
+            "e243e6f826d6045542aa3c7061262aa52caa31aad9a8b9a6b4af9d67559f6a85",
+            "e2883633cbf3bfc4a255f9ee05f30549c978fae0b1ffe5ddd96774af45abc6e4"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {

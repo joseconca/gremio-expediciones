@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-28T23:58:48.503085+00:00",
+  "classId": "mariscal",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\mariscal-m-sheet.png",
+  "sheetSha256": "5f4c7dbedd86ac6de407a4af10ac610ed602628c5a4aba1e6d6955f7a2cb7c0a",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\idle\\mariscal-m-idle-01.png",
+          "sha256": "4870edec96ca9f26a450416685d57ae3a8644b97f0556f7325270bdb56c88612",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\idle\\mariscal-m-idle-02.png",
+          "sha256": "b59476451bf81f32b7f646752194646c2d491ebc7cef892742f8bc1cbcdaa771",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\idle\\mariscal-m-idle-03.png",
+          "sha256": "6d696bb698e6e6741b80d8e40249103b0eb5994a28f9dbabb546e06cb5430222",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\idle\\mariscal-m-idle-04.png",
+          "sha256": "d8bba318cee578c19268d3d12d9643065dd8ae69846a850da2ffc312e9710959",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\walk\\mariscal-m-walk-01.png",
+          "sha256": "71041f82413bb43b13b82ea31610dccfec4eda46747ec002390c9022b45d69fa",
+          "alpha_bbox": [
+            10,
+            96,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\walk\\mariscal-m-walk-02.png",
+          "sha256": "f2faa4fe1472fa68a99e547c2074bf696de059a896dffd8fbcc43e03a708c31f",
+          "alpha_bbox": [
+            11,
+            93,
+            112,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\walk\\mariscal-m-walk-03.png",
+          "sha256": "0dcbf42d7c27d55109e9636f86748c67805bf339f3826d526012e63ff8588b90",
+          "alpha_bbox": [
+            16,
+            94,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\walk\\mariscal-m-walk-04.png",
+          "sha256": "840ec254f56f4cb2105bfffa7017288b83c19511a1ec799a01ed56acc8224d9b",
+          "alpha_bbox": [
+            18,
+            94,
+            118,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\hurt\\mariscal-m-hurt-01.png",
+          "sha256": "8bd74e02f0a57707c164263571201abaad68eae5a593bb47878e2fcee8f72002",
+          "alpha_bbox": [
+            23,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\hurt\\mariscal-m-hurt-02.png",
+          "sha256": "cb06e1d87c27bd47d43aa01316649828a1b6b1c8b8dee0974c0266ef00c7d6d9",
+          "alpha_bbox": [
+            30,
+            101,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\hurt\\mariscal-m-hurt-03.png",
+          "sha256": "37f3a82d7f9804550cb6e2b0eceb0085ba813e64466c90d954882a4674e3ba64",
+          "alpha_bbox": [
+            19,
+            120,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\hurt\\mariscal-m-hurt-04.png",
+          "sha256": "8374b788839aad0a3e9dd44968a1e8023dec0779cedbeba35a945850774ed2b8",
+          "alpha_bbox": [
+            23,
+            92,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\use_consumable\\mariscal-m-use_consumable-01.png",
+          "sha256": "5f74bc206e39c4d9d6566fcb6284abd9fe89c3abe7c1c52e00553ca34f116725",
+          "alpha_bbox": [
+            27,
+            95,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\use_consumable\\mariscal-m-use_consumable-02.png",
+          "sha256": "aaddfa30b147d2b34be5f9a271c400cbfbc79cac0b35bf1f053590822c4bc16d",
+          "alpha_bbox": [
+            27,
+            95,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\use_consumable\\mariscal-m-use_consumable-03.png",
+          "sha256": "eeaa64ffcc5f65021ed9b1f65325e680989a88110ce0fca47da92a2e19d88fe7",
+          "alpha_bbox": [
+            23,
+            95,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\use_consumable\\mariscal-m-use_consumable-04.png",
+          "sha256": "8395d99622d9cf1ee8ed2e0f08bfd6c6a269976dc7b096db0f74a481df426fd5",
+          "alpha_bbox": [
+            24,
+            95,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\dodge\\mariscal-m-dodge-01.png",
+          "sha256": "9d9e51b4271b51fef31d3d290eba455449414d5bf23f06b2d709f4f64ed6cf33",
+          "alpha_bbox": [
+            16,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\dodge\\mariscal-m-dodge-02.png",
+          "sha256": "c08fcb510b8d7bc01c20fdabdd8191f718395b22f5af95f403ce9125e36366d3",
+          "alpha_bbox": [
+            18,
+            99,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\dodge\\mariscal-m-dodge-03.png",
+          "sha256": "b02dc14d7b7c203b4039c3a654af0b6461d356dc72c41f5a7ef544e15c890f6b",
+          "alpha_bbox": [
+            20,
+            101,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\dodge\\mariscal-m-dodge-04.png",
+          "sha256": "9b837b07b5a5681efaf499c66d3414a99cab592d15b4e3956283f20e7f40879f",
+          "alpha_bbox": [
+            16,
+            99,
+            113,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\block_shield\\mariscal-m-block_shield-01.png",
+          "sha256": "46b026cd41b48358bcac70fe4d749d4f12ad90088df3f8a12dbf69e76d5160d3",
+          "alpha_bbox": [
+            20,
+            98,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\block_shield\\mariscal-m-block_shield-02.png",
+          "sha256": "2b61371438a46b80fc6a43f9b875e8fbab4e60babd8ddb4843122c5b139181fd",
+          "alpha_bbox": [
+            19,
+            97,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\block_shield\\mariscal-m-block_shield-03.png",
+          "sha256": "b17b323f66ae52909905afc7582978b287d65d3dbd3a8fa1f8b0f497886ba70b",
+          "alpha_bbox": [
+            17,
+            113,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\block_shield\\mariscal-m-block_shield-04.png",
+          "sha256": "6a2a0f4687775053d0094e93ab5df32e7d12c54fbdf7a7e7801f16a327f0b69f",
+          "alpha_bbox": [
+            19,
+            97,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_sword\\mariscal-m-attack_sword-01.png",
+          "sha256": "6fbd9864a97e786c68127bb33d50d6c6c311f4e452fab45be1632917eb22e3aa",
+          "alpha_bbox": [
+            9,
+            106,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_sword\\mariscal-m-attack_sword-02.png",
+          "sha256": "052c5698c39dbf5fb2025d53443bd828abbd550aed0c4642baf67da728b05cb5",
+          "alpha_bbox": [
+            9,
+            106,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_sword\\mariscal-m-attack_sword-03.png",
+          "sha256": "7477094c2a92eff6a6eebc46bec7ea4a74ae41dd6088c8299ff0eb8e3a13ba5e",
+          "alpha_bbox": [
+            13,
+            107,
+            124,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_sword\\mariscal-m-attack_sword-04.png",
+          "sha256": "8912b8a93daae22e4df82b03fe4b52c829700fc61150b738cce14fd93c3c1464",
+          "alpha_bbox": [
+            20,
+            106,
+            117,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_axe\\mariscal-m-attack_axe-01.png",
+          "sha256": "634e23306ff1798f9d7e81f1b5339a3eebbac23171fea563d974235b9a86dd75",
+          "alpha_bbox": [
+            10,
+            100,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_axe\\mariscal-m-attack_axe-02.png",
+          "sha256": "6f7a2b894b3e9ec9aaafe262c5335ec01dfd979c84f4e6d72546aece588014e5",
+          "alpha_bbox": [
+            16,
+            113,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_axe\\mariscal-m-attack_axe-03.png",
+          "sha256": "a16640d62c676fe1e6ebee0e36536e676b8032d2a0f94941a7503bc2cbec575a",
+          "alpha_bbox": [
+            11,
+            125,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_axe\\mariscal-m-attack_axe-04.png",
+          "sha256": "94ae1c3cb92644c997078e2d652798f6460e39acb59468a65d9c53af18d88c29",
+          "alpha_bbox": [
+            24,
+            106,
+            121,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_spear\\mariscal-m-attack_spear-01.png",
+          "sha256": "bc5199cda8046fa51012b268997b004e8c7a06cb3d341db93b8af3793f526980",
+          "alpha_bbox": [
+            10,
+            94,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_spear\\mariscal-m-attack_spear-02.png",
+          "sha256": "547e89a9afd7232d56ac631e73a47544a20d1e827bc8e078f02cb9e0522389fe",
+          "alpha_bbox": [
+            15,
+            94,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_spear\\mariscal-m-attack_spear-03.png",
+          "sha256": "6dbfe5ea2ab74d41aa059fef05be9cfd4e2613ab4076f5f8975629a86c98751a",
+          "alpha_bbox": [
+            10,
+            94,
+            119,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_spear\\mariscal-m-attack_spear-04.png",
+          "sha256": "5824317b363b2f0289e2ae998b3265305e434cd3135d2b543bb8b182ce283c22",
+          "alpha_bbox": [
+            14,
+            95,
+            109,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_dagger\\mariscal-m-attack_dagger-01.png",
+          "sha256": "7db854efd244b26d75804b083e0e5e2a9b05a1e6208b4731ff9b2620cd12d3e7",
+          "alpha_bbox": [
+            21,
+            95,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_dagger\\mariscal-m-attack_dagger-02.png",
+          "sha256": "0d75e0d67b2b00d004ec000482a21e877e15fa225aedcb51f5aff5cd614352fd",
+          "alpha_bbox": [
+            23,
+            95,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_dagger\\mariscal-m-attack_dagger-03.png",
+          "sha256": "fd2643a1af970b10ab9f392e0275b976112826e7fdf363e7e46c8eff36145e38",
+          "alpha_bbox": [
+            22,
+            97,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_dagger\\mariscal-m-attack_dagger-04.png",
+          "sha256": "144f502964426274e1c0d654cf0502e778ed1c31c905c691ab1a115eab5c83d1",
+          "alpha_bbox": [
+            25,
+            94,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_bow\\mariscal-m-attack_bow-01.png",
+          "sha256": "f88f984b24dcda9f484e22a5eef4caac5932138228e482ed99b9433ca54b7a07",
+          "alpha_bbox": [
+            23,
+            97,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_bow\\mariscal-m-attack_bow-02.png",
+          "sha256": "ceaa62f62f05ecb3e25d68f69b4bf4acf0a9072e681f60c0728398abc0c45568",
+          "alpha_bbox": [
+            21,
+            97,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_bow\\mariscal-m-attack_bow-03.png",
+          "sha256": "999bee4250254f9b4133a9a4dee2d4156e278a7fccf1ba0a9ccb900e456aab9e",
+          "alpha_bbox": [
+            20,
+            97,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_bow\\mariscal-m-attack_bow-04.png",
+          "sha256": "4c28cf1a5d62f1b33601a6b431246050893c72f2bc47747dc6ea91049b38e4eb",
+          "alpha_bbox": [
+            18,
+            98,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_staff\\mariscal-m-attack_staff-01.png",
+          "sha256": "0eb5f66eb2fa310beef7d6fb7da7bcd6a4592aaea24ec8fd84695f95614aaadc",
+          "alpha_bbox": [
+            28,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_staff\\mariscal-m-attack_staff-02.png",
+          "sha256": "738bade742fea864453be22649bc769df88cd18fa76a2b9bcca9672cdaeb4968",
+          "alpha_bbox": [
+            26,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_staff\\mariscal-m-attack_staff-03.png",
+          "sha256": "cc180c15f257010c73fc2198a035abed539200c7e0c1a04dc456b0efce79690e",
+          "alpha_bbox": [
+            27,
+            94,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_staff\\mariscal-m-attack_staff-04.png",
+          "sha256": "0f0a8b2165121d22340065a0ad15f628d3eace84fa019489df0942a82201815f",
+          "alpha_bbox": [
+            17,
+            93,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_mace\\mariscal-m-attack_mace-01.png",
+          "sha256": "ea21d08421fa712f5c82dd1c8d28a96e98f144869fed5dd70cb37f7060f6fd52",
+          "alpha_bbox": [
+            22,
+            93,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_mace\\mariscal-m-attack_mace-02.png",
+          "sha256": "72548d6c11def5e0c1c24ba110d6a5527e6bb9f52ecd14b7244805dbd9e4c639",
+          "alpha_bbox": [
+            31,
+            93,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_mace\\mariscal-m-attack_mace-03.png",
+          "sha256": "7522cae4518fa23710904cecc7d403094a25832da7c0587c7c5d613ba69e30be",
+          "alpha_bbox": [
+            25,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_mace\\mariscal-m-attack_mace-04.png",
+          "sha256": "dafa443da49c34dab2a2bb4c1388a43a9849c07d5d4a2f81383ddb4d7f26a185",
+          "alpha_bbox": [
+            33,
+            93,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_book\\mariscal-m-attack_book-01.png",
+          "sha256": "94b119ed8605f1a7c5e67ad06297ae2d78b9acdf8be576d5aa2218a447dc080b",
+          "alpha_bbox": [
+            26,
+            94,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_book\\mariscal-m-attack_book-02.png",
+          "sha256": "4d8ea5b422b9cea1e0fcc8bf72a65a108ada00b3cf18a50c39eb951c8846eccf",
+          "alpha_bbox": [
+            26,
+            94,
+            101,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_book\\mariscal-m-attack_book-03.png",
+          "sha256": "329f844988b5a921cb5ac83dc201f625ae82cfd8595a5deeab6fa0a439c393b7",
+          "alpha_bbox": [
+            26,
+            94,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_book\\mariscal-m-attack_book-04.png",
+          "sha256": "0ff01d6125a815fbdca7684dd8500d7536620330467cfda99a6a1bb220b6bb31",
+          "alpha_bbox": [
+            26,
+            94,
+            101,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_gloves\\mariscal-m-attack_gloves-01.png",
+          "sha256": "fac84ab007927078d0bbcd62a5c5d2221312d6adca37032df85cd57d385cf4fb",
+          "alpha_bbox": [
+            22,
+            94,
+            108,
+            243
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_gloves\\mariscal-m-attack_gloves-02.png",
+          "sha256": "2e74c97814ffec6ec788f325b3e0739c242c8627ad21df13deb42362c09b1fd9",
+          "alpha_bbox": [
+            20,
+            94,
+            108,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_gloves\\mariscal-m-attack_gloves-03.png",
+          "sha256": "f686bcde90bb1ba2b7d800a877e1d6c5dc801f78ca3f8998bae37d795eb2b465",
+          "alpha_bbox": [
+            18,
+            94,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mariscal\\m\\frames\\attack_gloves\\mariscal-m-attack_gloves-04.png",
+          "sha256": "886d575eb69049b8ca3da4aeed92876fb2e5d929796f01086620b611702ab7d0",
+          "alpha_bbox": [
+            23,
+            94,
+            108,
+            242
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "classId": "mariscal",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame02-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/mariscal/m/source/walk-frame04-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/mariscal/m/source/attack_gloves-frame03-reference-v2.png"
+      }
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/mariscal/f/source/hurt-frame03-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/mariscal/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Coraza pesada de placas de bronce, tabardo de oficial marfil con ribetes verde azulado y franjas de mando, hombreras con dobles chevrones de puerta y hebilla de fortaleza distinguen esta evolucion de Centinela. Pelo rubio con sienes plateadas y pequena cresta de mando, con coleta alta trenzada femenina.",
+    "All thirty original source strips, selected corrected whole poses, eighteen source hand proofs, ten representative equipment boards and both axe structures were visually reviewed for both sexes. Fifteen actions and 682 contacts per sex pass without warnings.",
+    "Male walk revision4 retains original pose1 and selects portrait3 for pose2, portrait4 for pose3 and portrait3 for pose4. Male gloves revision2 replaces only poses1 and4 with complete portrait2 sources. Male spear revision2 replaces only pose3. Female hurt revision3 replaces only pose4. Female gloves revision2 replaces only pose4. Other actions retain originals. Failed positions and clipped portrait3 of male walk pose3 remain archived but unselected.",
+    "Fixed canonical normalization and whole unchanged generated pose selection only. Compact boots were redrawn by image generation to keep complete source margins while retaining approved palm locations. No body painting, limb transplants, class equipment offsets or per-pose scaling. Legacy unused secondary points, wrist, cloth, fingertip and consumable waist-return contacts were checked with actual rendered equipment. No automatic runtime promotion."
+  ]
+}

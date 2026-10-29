@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 98,
-  "contactChecks": 66836,
+  "variants": 100,
+  "contactChecks": 68200,
   "warnings": 0,
   "reports": [
     {
@@ -444,6 +444,18 @@
     },
     {
       "classId": "mago",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "mariscal",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "mariscal",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
