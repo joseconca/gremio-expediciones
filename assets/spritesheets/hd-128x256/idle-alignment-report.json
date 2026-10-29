@@ -5,7 +5,7 @@
   "verticalOffset": 0,
   "equipmentFrame": 0,
   "fingerMaskFrame": 0,
-  "equipmentContactChecks": 12800,
+  "equipmentContactChecks": 13312,
   "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
@@ -2606,6 +2606,110 @@
         70.0,
         70.0,
         70.0
+      ]
+    },
+    "vigia-m": {
+      "frameHashes": [
+        "9a2110b631a17b7dae11697dcdde371489aafe852213c67b620595b0764cb3bf",
+        "232fd67798e3880fa2d27ed7ce8df59f08ecbb85c66a71f3e956735fd5e80227",
+        "ebae654fc7dccc781dcfe43f7f9f61260eae2dd480a143949c09b942cbcb8c17",
+        "e7865e5d90dfacc24645f08bd488ac0f428f52da2ebaadecbaddd09096640e89"
+      ],
+      "supportCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ]
+    },
+    "vigia-f": {
+      "frameHashes": [
+        "52bdc97896769351aa968e6f01d050bb5a573809e8c5a2c5ca152e02eb2f4380",
+        "85dbc89cbf52c89533d3fb466039af124d93c9f32298f8f20ea8b62381fce1e9",
+        "388d10e6ce25c430f925c6c897995b2b0cd653530e4272cf04756c4ce3de391a",
+        "0dfc4f32977cf5798df61faa04739dc37eb9f355325ba50ff00c9e11aab9427b"
+      ],
+      "supportCentersX": [
+        70.0,
+        69.5,
+        65.5,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        1,
+        5,
+        6
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.5,
+        70.5
+      ]
+    },
+    "runista-m": {
+      "frameHashes": [
+        "e7d4ce95445c974a442b62296032c1c57fd2a53d43cf1bc3172c1ffae1429689",
+        "76db482d7763d3b8a2c6a44e30ede0ddaff339e1e8d3a452f12fee123b2261a0",
+        "2b2237bab272672960758b0c6a85a054bbbc5bcf509aaf7a1a4615140c3317c6",
+        "cd7651e4d4d757399c5af8d401d4895192dac50fbef03f3e7238c6e7895b0225"
+      ],
+      "supportCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ]
+    },
+    "runista-f": {
+      "frameHashes": [
+        "da941ec4f8b9c05a62391fe23e424151f05508bdd2f795cf24fbed87ec472ee1",
+        "8176510a42b0c348bc365ffbb5096b02a4c8f8d95cac5a3bbc029067323305ef",
+        "7b05010f09b044dbf7aa0f800913ec76699b9cc8f42e79ea0d0b89a03b85d228",
+        "233a1fd976e40f8e2ab1b33152d2543e7cd5102713b05f78c1d13e309bbb2273"
+      ],
+      "supportCentersX": [
+        68.5,
+        68.5,
+        68.5,
+        68.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        68.5,
+        68.5,
+        68.5,
+        68.5
       ]
     }
   }

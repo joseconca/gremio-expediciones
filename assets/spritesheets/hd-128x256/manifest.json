@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "runista-f",
+  "nextVariant": "runista-m",
   "classes": [
     {
       "id": "novato",
@@ -415,7 +415,7 @@
       "name": "Vigía",
       "tier": 3,
       "order": 51,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "runista",
@@ -236298,7 +236298,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/vigia/m/vigia-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/vigia/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -236455,8 +236455,8 @@
                 "pixelSha256": "f7b3fb5bb9ea4dff223de18c88fb8f2c46e1a37877d2817154fa6e7c50c0f769"
               },
               "04": {
-                "sha256": "4df93f7b9898a885be2173776c43e571e819ee5d7b3e8327a4b3780ecd77aa74",
-                "bytes": 23757,
+                "sha256": "04876693725d452f255190a1a11b98a4767a3f4a3e7513d2ab9444b1935a0c5a",
+                "bytes": 24168,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -236465,10 +236465,10 @@
                 "bbox": [
                   9,
                   92,
-                  102,
-                  248
+                  105,
+                  251
                 ],
-                "pixelSha256": "4b5af9f75bd12abb37008e7ba6ff53c9043338599cefba78cc9014c102877e7d"
+                "pixelSha256": "ca6f4b07b5194e48b83d3ffa71c1d9c04a0428a9541de53fb5d6d3fbf76644c2"
               }
             },
             "distinctFrames": 4
@@ -237422,13 +237422,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "4c1e2d59dd39d0ef25824f32ceebf15856b18e38df043b0bf8bfc9ecabd46d7c",
+          "sourceSha256": "08c88927ee229ba55b2e339384ef9fee38476c027bf916010fa45298476a4134",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -237450,9 +237451,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Vigía MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful masculine elite ranger, COPPER-BROWN short tousled layered hair, sharp amber eyes, clean-shaven, canonical masculine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Make one small correction to Image1: lower the RIGHT-side far hand and shift it slightly LEFT until the center of its black fingerless glove covers the magenta ring below it. Ring marks desired palm position. Adjust only adjoining forearm. Left-side hand stays exactly unchanged. Keep entire body, face, outfit, full boots, canvas dimensions and placement unchanged. One complete sprite, transparent background. Remove magenta ring. No other changes.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -237460,7 +237461,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "4c1e2d59dd39d0ef25824f32ceebf15856b18e38df043b0bf8bfc9ecabd46d7c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "4c1e2d59dd39d0ef25824f32ceebf15856b18e38df043b0bf8bfc9ecabd46d7c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "4c1e2d59dd39d0ef25824f32ceebf15856b18e38df043b0bf8bfc9ecabd46d7c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "4c1e2d59dd39d0ef25824f32ceebf15856b18e38df043b0bf8bfc9ecabd46d7c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Vigía MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful masculine elite ranger, COPPER-BROWN short tousled layered hair, sharp amber eyes, clean-shaven, canonical masculine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "b5b0afa5d793c17243fccfd15ee949695f4631c3e161c044dd75138bd8cc85ff",
@@ -237498,7 +237632,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "1dda0c4a6540ecfe7477f6753191eb1bc9bfa4d09e8263db408668f866ef56e4",
@@ -237536,7 +237671,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "ce1dbc241b848ff2dde39c3014a45eca80a7f6a123a521f8bb29775d04a65f9f",
@@ -237580,7 +237716,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "148be561838ca881394c589312b6d67259859a1e159d817aff91c21fffab3c1e",
@@ -237736,7 +237872,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "57df978f5069bbbfd20b3668f6386e3200891e95a35ff8a17c886b30997fb68d",
@@ -237780,7 +237917,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "48e522788f1397c41e4d950ae22fdb7fe9064a7099d26e9146f35a2582991850",
@@ -237818,7 +237956,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "3b54b83e73736e85057fee20571946a6f3052e7d87cdee847d211a6d687373dc",
@@ -237856,7 +237995,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "16f54d820eb3bbdd2654564bb3e36e7daf1c15e0bb65c553f144f90f55e8e1a9",
@@ -237894,7 +238034,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4be86d445487edf0098336f2fda9049352106fcf9cae9866bee02fbeabe76798",
@@ -238026,7 +238166,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "7253817b5b1ee8ac56c958aa96cad3de10f8df7848f703a845dcc3531b5865ec",
@@ -238064,7 +238205,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "d2a5a16dc81289b7cb81ec03bb086511ba0cb169bbd78d82df84f1e0605484ef",
@@ -238102,7 +238244,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "b557d1ee1c4aef49344b7e2e1c9848e1297abf9c5482c692a7680fd1293fd2c0",
@@ -238140,7 +238283,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "6d442d26760a7d01e78c52eef9fae2a8a16c204523952a5665b126d33c46f320",
@@ -238178,7 +238322,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "814ac5684bb94ab026120a18fe6e99742645bf092b3b7ac8f6880792ebe0e921",
@@ -238216,7 +238361,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "699362a734ec1a538134e185e2fa58ad9583a9bd622f01ade9e267bbd0a167f6",
@@ -238254,7 +238400,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -238275,15 +238422,15 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
@@ -238529,6 +238676,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "vigia",
+        "name": "Vigía",
+        "tier": 3,
+        "costume": "Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held.",
+        "maleIdentity": "Adult watchful masculine elite ranger, COPPER-BROWN short tousled layered hair, sharp amber eyes, clean-shaven, canonical masculine head size.",
+        "femaleIdentity": "Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size.",
+        "armPolicy": "Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose.",
+        "unique": "Watchtower-eye octagonal buckle, paired ivory tower bars, dark bronze angled armor and ivory-edged teal ranger coat.",
+        "advancement": "Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/vigia/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "9a2110b631a17b7dae11697dcdde371489aafe852213c67b620595b0764cb3bf",
+            "232fd67798e3880fa2d27ed7ce8df59f08ecbb85c66a71f3e956735fd5e80227",
+            "ebae654fc7dccc781dcfe43f7f9f61260eae2dd480a143949c09b942cbcb8c17",
+            "e7865e5d90dfacc24645f08bd488ac0f428f52da2ebaadecbaddd09096640e89"
+          ],
+          "walk": [
+            "ee3e78947244209acd4677fa3c9b6d8e776788c252c779d0f331a5fea0ade7c5",
+            "725ec2b79670f5746203ce60582ce38d68acdaae489e583daeac2c0859167200",
+            "66b8040f309bf64a41cfeb0ea8dad9dcdcbbb534e039db91c61abe01cb43b227",
+            "04876693725d452f255190a1a11b98a4767a3f4a3e7513d2ab9444b1935a0c5a"
+          ],
+          "hurt": [
+            "5a32e7d356942c50d6b3bd80140c3e7ffda2abad4ac809833d0951a178b4a4e4",
+            "e8a25dd4da8c2b558e21adc5d4f7af8d8a4fbcf4cde6e47f23b0fe4fa2362d3d",
+            "10c468df4a38fdcbd95914fe7f76b3fb3d80022806a6141f1a1d4d998f657086",
+            "69d31236345187a93d263bf1a1bc3249bc1eb8f175b8aa116870b74cf04694e1"
+          ],
+          "use_consumable": [
+            "628a11cf978b902bf6ba40922628c7541c5d557d11e327a7900e23cbdcf8b64c",
+            "09211745a381e97f92171c92190e2017aeac81905c5c456282d62915648ce677",
+            "d2461811622d5264c2b5da8a855fbaf5a74fd4d1cfb8509ccb69d873009d1953",
+            "ab7a97649033713f611b714e221a2686e44d8444ddc517199e8f1f16be7e6d06"
+          ],
+          "dodge": [
+            "37dcee1bda693186e9c22f4010b6e010ff006070ec740f8fedc401ce6bce9af7",
+            "048a760d2b7970a34ab8a0443923caa9971963a279a8ff3fd02fb17de810c66e",
+            "d0650f49a74d81f3d581c67b8ff20aee635dc6a808e64fc675de845538e823b4",
+            "d3e9def8ec212f8333fb0827ec3542e82022728bebcc03b2bbcd95f4bc160c35"
+          ],
+          "block_shield": [
+            "6aee654b658d0224e6c814b8303bfddc91f19165f86628837944ee4efb8aaf64",
+            "69c161df54f4858929031103e8598c26972c81fd2c6c61a68150770d5cf0e770",
+            "81a599bff2bb4dc7d19ded2921a28250d554925f628907ffa96dac2b94a84a32",
+            "c8bb0ff408f95ba23b3914f3e37b816ae1fb3be988638d2378336f032aeeabf3"
+          ],
+          "attack_sword": [
+            "b8086c2631c8e0eb4986d620216ef3b7644eff29187f28935db6e2b92daca80f",
+            "86556f06902308278b1af74df834d9b416aa739608e08aba2c3208c5f69d1da4",
+            "e0789ff2f7180d5542f83e117fb72f85317ed0cd8ae767ebe60c548225c5a425",
+            "29f67be70eb9da12d0fecc62a73f6735c5f104502847b9100ffc51128156790a"
+          ],
+          "attack_axe": [
+            "c03a83ded0099e48d938d078f5b53b8f95a4eeabd66f0c4857ffa7a7e4b4af12",
+            "ceb490746c2697e171d33191f3b6db921c1f0fb64d70f23637a56181dbbc2e16",
+            "2827af3bf6458e5abc6591991ddeac2839139c7d572f22a78735dc026e96f2ce",
+            "041d00d16d4b36e410731b5692a54304ba1821695e30733bf5c4592b7ef07a9d"
+          ],
+          "attack_spear": [
+            "6d0d4f1e0e90396f6ed570ed769790d97b555931f59eb8f1a3b66d038039df36",
+            "546bbb0b89bcbc5a734601758f9591feea66c5aa8c5a018c4f9d624bc0cb8fd9",
+            "3e9e02ab0be4a83bc17b1087fd1b48374106d8fa830bb30306698f731ea343bc",
+            "b96695999fa7c72b8ffccf3e0f6b4b98c26f6008f913c739f1398bb14c6327c7"
+          ],
+          "attack_dagger": [
+            "3dd51190e26b5bd518cf5c9f3fb05ac18dfc06755d70aa57d1da32b312a82d05",
+            "6e8897e257aac6274122e306a08e81b4a906c33d256b17123d53c50d1b10c393",
+            "5241cbf0dbda430c07f31e42f57efe9d32f4221e80d1ff98b61e8de77f6ea9ec",
+            "5a57363bde55f09183be77a1da9b85e1284cecb082c9cd9ce572d80ee640fd2a"
+          ],
+          "attack_bow": [
+            "d66845f4ec494a080e8ada6cdb92f1f142e04cbe7373387cf2e93d94203136a0",
+            "c6da7d335a5c735e4f119a8274535d25cc2347a687353b4af38ad7b7fb5f46e3",
+            "fa542327652e19570a798d0a62e538770838c8753ed8912043bcb57651f12c47",
+            "bbdceea3664f8d817d14433b55f4a2e55f5ab4320b2a79d86f5d42ca2a3d234a"
+          ],
+          "attack_staff": [
+            "4d27f7a9e8dbd7ab878187f6f1cb65a4064a7317903cf2f24ab0e9caacc323f2",
+            "cd70bbc8b3b0a853680c8ef0e2abac4359028623bc5fac0284901492a69cea42",
+            "5802ad416431492d6f3c7b747471b4d2e361b6149df4215e1baa1eeae3a9075d",
+            "8088371f4aea19af9bbc8066d7937d895dbbb390092d6ae367b662532fb2577a"
+          ],
+          "attack_mace": [
+            "a5c01bdb5c8296e246749970f780842933575c7799433a0de0f11e062e5167e7",
+            "bd62637f5e67f924a156e005c31316dfc48ef79e70b1e33f8b9410c026c121fa",
+            "b734562c081b5b5f4fb8863d4217f5ac60a9d7c32dc233a392c9ee416d842a52",
+            "7caaf4acd3392684011b4e327e767076aed1e09a376f354ccfc149113c23da62"
+          ],
+          "attack_book": [
+            "b6986ddd1d3f02edb666af5a87fa09040e5549790a71f216d14659a697ffcaaf",
+            "179ad17975353e238c194ec725d7770dbe64a2591e90db6468073103dfd6cb0f",
+            "64d981686efb4384cf9306757843ef69fec89585c316f5ef1f776d45ea91d9d5",
+            "f15d2550b8ab4ed98fbc70ee4803e0ee111c35e62bbed9a03cb245b7659e39f8"
+          ],
+          "attack_gloves": [
+            "70e801e88fece5aa9026cdcd5493a1c402cd3d3a0ab80b1ba91d9fb757cd6268",
+            "5ed995231c727ae1286ee966ec4a62232f6630984e45f9a231ca790447eb316d",
+            "a5e62ebe89467a62ba5994884cc8e6531e9269012a6450f8b48c1d6b1f6b45a1",
+            "b73938da3dc982dc6b78f3394843a27e9847528051a411395564abe027505d92"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -238541,7 +238803,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/vigia/f/vigia-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/vigia/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -238752,36 +239014,36 @@
                 "pixelSha256": "73c2a68a7cae1670a59d35619e766d0db7f0b895ae6d184f1b380f7c2a8252eb"
               },
               "03": {
-                "sha256": "f706451639b3f1de54008b20d68c883833b3b6409bd70bc35bad64df98cfc4c0",
-                "bytes": 19506,
+                "sha256": "3369747befe70f78499672cfd51f58d70a095204c726d5940f240f358c9f73c5",
+                "bytes": 19398,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
-                  116,
-                  93,
-                  248
+                  20,
+                  113,
+                  96,
+                  242
                 ],
-                "pixelSha256": "abefbbde849283a09af37c9cdb0aa7cb4b7ded5080298332cfa56e909f240ed9"
+                "pixelSha256": "6a83bbd8ce8a11846eb19db3a82274012b385ac0aaebda903ad0cbccbaf86c82"
               },
               "04": {
-                "sha256": "d855c358e9fb2b9456a15ce86e692cd408b4dc62ff636cdd4f71fd0b3251e1f4",
-                "bytes": 23422,
+                "sha256": "343028eef1c7ab62d4323ca281c0a7d819b82be0f206029c9b8d382a255ec4a6",
+                "bytes": 23955,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
+                  15,
                   95,
-                  94,
-                  248
+                  99,
+                  252
                 ],
-                "pixelSha256": "c1ce9dec2bfe41c958c4bf7940ffa8ab514f0461c3a55650b30a797038ede66e"
+                "pixelSha256": "e410f3a75fab4ba954c502f9e3a76e61259d24b080b055deadc236a3fb9485ae"
               }
             },
             "distinctFrames": 4
@@ -239032,20 +239294,20 @@
                 "pixelSha256": "f5c6b277def7958098a4b0c285641cd45154e31106f5486d795d7bbac1c1ea6a"
               },
               "03": {
-                "sha256": "8ba539fba50e0ecfe54f93141c5d1292381f2a88bd8238ac4479a04906f7f70e",
-                "bytes": 23349,
+                "sha256": "55fa7342abfb9af10421397039e87bd28fc40848ca6122b8661cdedff0e1a20e",
+                "bytes": 25455,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
-                  97,
-                  108,
-                  248
+                  12,
+                  98,
+                  114,
+                  254
                 ],
-                "pixelSha256": "85e102131f4d3c139b716f97d2f51ea93116b6cf0b2fea3bb73a42653690c47f"
+                "pixelSha256": "fe699cd33486b9079286b3365ab65c82814c6e01d4a5a75a06e727ea4ec16e1a"
               },
               "04": {
                 "sha256": "714699af1805c942df187f7f99d93f039912e990847fdd5642258a93c5dcc260",
@@ -239172,8 +239434,8 @@
                 "pixelSha256": "435ca2e818e6b68df5e6dfdd745ec4b8573efbad08513d39c4f035067e97c4f8"
               },
               "03": {
-                "sha256": "1ca44340c851af869c9f0a223bc63818ac961c437ed956a33a3672574256e66a",
-                "bytes": 22375,
+                "sha256": "42b63746afdd85e533010343a5d3d4d2671cf8910b095c237b66d1d8d3c68aeb",
+                "bytes": 23480,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -239182,10 +239444,10 @@
                 "bbox": [
                   11,
                   98,
-                  105,
-                  248
+                  116,
+                  249
                 ],
-                "pixelSha256": "ac0906a626ab54ba00e584512aa805aee75e24e655a5ebb7b0bacc97b0557aa5"
+                "pixelSha256": "6f104d5578e52a99af65ed0c27215494606d9db04e31b1a4f45f9ef0b2c439cb"
               },
               "04": {
                 "sha256": "ebde7d16e1c8cb949f6027f1aea3421d20a4e48e0f1726a20349492a0dc100dd",
@@ -239560,8 +239822,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6cdf1a3c53627b37ad54b65ba980470bd8526294e105d3f47f5cff5281f5511d",
-                "bytes": 23098,
+                "sha256": "1fe38537eff6d5349fbd913d0a53f9812139c0f86eeb85695d19e0c2570cda10",
+                "bytes": 23652,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -239570,10 +239832,10 @@
                 "bbox": [
                   15,
                   93,
-                  99,
-                  247
+                  100,
+                  249
                 ],
-                "pixelSha256": "ef84a6394e284db9ebe301852e276bc57d41a860f0f2bd20f6f05bd8dcb3f7a7"
+                "pixelSha256": "39c8cb412aa6978aff9237281bf13a0a3b5e32d9512f5a6e2d156ffd3aa8aee8"
               },
               "02": {
                 "sha256": "7b04a286d7f007bffc2efcece77927c88c3270291292ae808a048e9c7836deaf",
@@ -239665,7 +239927,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "8ecb6c2f7a25523cbeaafd28162d9a2e534226c67447c722f85090f743e41455",
@@ -239703,7 +239966,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "dd526ac322201f348ff761f48bf822509bb2d33be00e3700f5269d13b2200b43",
@@ -239835,10 +240098,11 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "1d1164f9f1b4ae4deb18b0d2b0234e86e2f90cee00ebac84adc038c0f1b00f6e",
+          "sourceSha256": "67295dcbfbfd1b7c09b93e03dfa70bc1ac7dda075f6e88d6fb22c45be1642c98",
           "sourceDimensions": [
             4344,
             1448
@@ -239863,9 +240127,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Edit Image1 only. Output ONE complete full-body sprite in EXACT same canvas dimensions and placement. Shift near open hand slightly RIGHT so the black palm base rather than fingertips occupies the ring. Keep the open hurt gesture. Adjust adjoining elbow/forearm naturally, preserve head torso legs boots and all costume details exactly. Empty black fingerless gloved hands. Remove all magenta guide rings. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Same crisp painted RPG style, true transparent background. Keep full boots and hair with margins, do not enlarge or recenter body. No weapon or effects.\n",
+          "prompt": "Edit ONLY hand and adjoining forearm positions of Image1. Move BOTH hands DOWN and RIGHT to magenta rings: LEFT-side near black palm must be centered over LEFT ring on teal hip panel; RIGHT-side far black palm centered over RIGHT ring now in empty air. The rings are lower than existing hands. Bend elbows naturally. Keep exact head face hair expression torso costume eye buckle and leg/boot geometry, same body placement and canvas size. One COMPLETE full body transparent RPG sprite. Remove guides. Empty hands no weapons, no new bruises or effects. Do not raise hands or recenter body.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -239873,8 +240137,38 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "1d1164f9f1b4ae4deb18b0d2b0234e86e2f90cee00ebac84adc038c0f1b00f6e",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
             "02": {
               "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
               "sourceDimensions": [
@@ -239901,15 +240195,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame02-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame02-reference-v3.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "03": {
-              "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
+              "sourceSha256": "8e8ab11a9a2ad4010273396ce88c05ef6de1831dbd81a7b7abb1c7f8ab31ae06",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -239931,38 +240225,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame03-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame03-reference-v3.png",
               "selectedFrame": 3,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "04": {
-              "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
-              "sourceDimensions": [
-                2172,
-                724
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                642,
-                22,
-                1069,
-                700
-              ],
-              "scale": 0.23,
-              "origin": [
-                15,
-                92
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame04-reference-v2.png",
-              "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -240004,8 +240268,139 @@
                 "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "1d1164f9f1b4ae4deb18b0d2b0234e86e2f90cee00ebac84adc038c0f1b00f6e",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Edit Image1 only. Output ONE complete full-body sprite in EXACT same canvas dimensions and placement. Shift near open hand slightly RIGHT so the black palm base rather than fingertips occupies the ring. Keep the open hurt gesture. Adjust adjoining elbow/forearm naturally, preserve head torso legs boots and all costume details exactly. Empty black fingerless gloved hands. Remove all magenta guide rings. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Same crisp painted RPG style, true transparent background. Keep full boots and hair with margins, do not enlarge or recenter body. No weapon or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "02": {
+                  "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    642,
+                    22,
+                    1069,
+                    700
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    642,
+                    22,
+                    1069,
+                    700
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame03-reference-v2.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "fd644a2cbb7addbe4f5d353931fe83ecbe72cc222a456e1c79a90a2c63a22e1b",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    642,
+                    22,
+                    1069,
+                    700
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "ef0b314ce4e40b7ba72b5b18b222ba9b931a9689fb7a32e08b3f30fc18d1133e",
@@ -240043,7 +240438,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "a2b48f74eb35af0786f4a10d0cc9dc7b3ab1492ae4eeeca45c2e0f1ee364a895",
@@ -240081,7 +240477,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "6e9480839c519729307ddf3f6b27df79410fd1ce2e6ad9ba4a974e96113d5067",
@@ -240119,13 +240516,14 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
-          "sourceSha256": "e3b1ae1b46e3cb6e947026b4ffa6ae89bc76935aec49dfba6f83a2c1937ae0d9",
+          "sourceSha256": "b5b7452571f4b93b42c7096e8ab14b65ba5ca1b0348f1f506f20b69bfd0c8dcf",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -240147,9 +240545,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit only the forward NEAR hand and adjoining forearm of Image1. Move that extended black gloved fist DOWN and slightly LEFT to the magenta ring in empty space below it. The CENTER of the black palm must occupy ring, fist angled slightly downward for sword strike. Preserve entire head face hair torso clothes belt legs full boots and canvas placement unchanged. ONE complete full body on exact same canvas size, transparent background. Remove magenta guide. Empty hands no equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
@@ -240157,7 +240555,140 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "e3b1ae1b46e3cb6e947026b4ffa6ae89bc76935aec49dfba6f83a2c1937ae0d9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "e3b1ae1b46e3cb6e947026b4ffa6ae89bc76935aec49dfba6f83a2c1937ae0d9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "e3b1ae1b46e3cb6e947026b4ffa6ae89bc76935aec49dfba6f83a2c1937ae0d9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "e3b1ae1b46e3cb6e947026b4ffa6ae89bc76935aec49dfba6f83a2c1937ae0d9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+                "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+                "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+                "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "35cc93e231750b9c2f848946754ad70a1c4c5bb24b9f0fbebda3cc161c63147b",
@@ -240195,13 +240726,14 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "81d689b894363c2aaef3af59db155bbdfef52ded76aa840a6391a453997ce4a5",
+          "sourceSha256": "c1c7bf38bc204cd69348334f000fc0dac8a4307261c6375e57088e705282a751",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -240223,9 +240755,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit only the forward NEAR hand and adjoining forearm of Image1. Shift ONLY the near fist slightly RIGHT and DOWN so its BLACK PALM center covers the magenta ring at lower right of fingertips. Keep far extended fist EXACTLY unchanged. Preserve entire head face hair torso clothes belt legs full boots and canvas placement unchanged. ONE complete full body on exact same canvas size, transparent background. Remove magenta guide. Empty hands no equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -240233,7 +240765,140 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "81d689b894363c2aaef3af59db155bbdfef52ded76aa840a6391a453997ce4a5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "81d689b894363c2aaef3af59db155bbdfef52ded76aa840a6391a453997ce4a5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "81d689b894363c2aaef3af59db155bbdfef52ded76aa840a6391a453997ce4a5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "81d689b894363c2aaef3af59db155bbdfef52ded76aa840a6391a453997ce4a5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "bc4ded758c390e8e39f7b977a12a08c2ae7dd94d39e589e8d5503024ee4f5456",
@@ -240271,7 +240936,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "d4a1851ab160751b35f53ccb870265e38ca5dbecf17bec3d6683f23abf7db58a",
@@ -240309,7 +240975,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "fb4dc59640145935fa08500f586c79e45f99abda83a546073231942f82ed9fee",
@@ -240347,7 +241014,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "d6aba07c91e0685d293b2d42d8fd8547840a6e1ac2d53189ea339c3dd91ae9a8",
@@ -240385,7 +241053,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "0abe0d86b8f79044f60623bc5d516452ab7d2558858bf46403777cca46be5cd4",
@@ -240423,13 +241092,14 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
-          "sourceSha256": "a4dd98fea2303015376fde56ed3ffce59f939ab6f9c3d3f03ca14dec16f21bc2",
+          "sourceSha256": "41115bd86845ca564c34b181099e1e7ca9560e2a78c1ad0f1ed11615fced9b83",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -240451,9 +241121,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Edit Image1 only. Output ONE complete full-body sprite in EXACT same canvas dimensions and placement. Move BOTH raised fists RIGHT to their respective magenta rings. Near hand must move away from chest plate until black palm center occupies left ring, far hand slight RIGHT and DOWN. Preserve guard pose. Adjust adjoining elbow/forearm naturally, preserve head torso legs boots and all costume details exactly. Empty black fingerless gloved hands. Remove all magenta guide rings. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Same crisp painted RPG style, true transparent background. Keep full boots and hair with margins, do not enlarge or recenter body. No weapon or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -240461,7 +241131,140 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "a4dd98fea2303015376fde56ed3ffce59f939ab6f9c3d3f03ca14dec16f21bc2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "a4dd98fea2303015376fde56ed3ffce59f939ab6f9c3d3f03ca14dec16f21bc2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "a4dd98fea2303015376fde56ed3ffce59f939ab6f9c3d3f03ca14dec16f21bc2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "a4dd98fea2303015376fde56ed3ffce59f939ab6f9c3d3f03ca14dec16f21bc2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Vigía FEMALE, Tier 3, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose. Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size. Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held. Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -240498,7 +241301,7 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
@@ -240510,7 +241313,7 @@
           "frame": 3
         },
         "hurt/04": {
-          "source": "sources.hurt.frameSourceOverrides.04",
+          "source": "sources.hurt",
           "frame": 4
         },
         "use_consumable/01": {
@@ -240562,11 +241365,11 @@
           "frame": 4
         },
         "attack_sword/01": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_sword/02": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_sword/03": {
@@ -240574,7 +241377,7 @@
           "frame": 3
         },
         "attack_sword/04": {
-          "source": "sources.attack_sword",
+          "source": "sources.attack_sword.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_axe/01": {
@@ -240594,11 +241397,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -240606,7 +241409,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -240694,15 +241497,15 @@
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.04",
           "frame": 4
         }
       },
@@ -240724,7 +241527,7 @@
               "bodySha256": "b1094650919d2bdc726471dfb940f285e07576e682b54e4b6aa2b3b1e736b217"
             },
             {
-              "bodySha256": "8ba539fba50e0ecfe54f93141c5d1292381f2a88bd8238ac4479a04906f7f70e"
+              "bodySha256": "55fa7342abfb9af10421397039e87bd28fc40848ca6122b8661cdedff0e1a20e"
             },
             {
               "bodySha256": "714699af1805c942df187f7f99d93f039912e990847fdd5642258a93c5dcc260"
@@ -240736,6 +241539,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "vigia",
+        "name": "Vigía",
+        "tier": 3,
+        "costume": "Elite watchtower ranger uniform: fitted deep FOREST-TEAL high-collar quilted coat with angled overlapping DARK BRONZE chest plates, compact squared bronze shoulder guards embossed with IVORY twin vertical watchtower bars and a small horizon line. Split knee-length TEAL coat panels with thin IVORY edging and narrow dark-bronze rectangular reinforcements, dark leather diagonal utility straps WITHOUT novice cross-harness. Large octagonal DARK BRONZE belt buckle embossed with a stylized WATCHTOWER EYE (horizontal ivory eye inside tower outline). No headgear, helmet or plume; high forest-teal collar frames the fully visible face. Fitted slate-gray trousers, dark charcoal long boots with bronze shin plates and squared toe caps. Black fingerless gloves and compact bronze segmented wrist bracers. A small fixed bronze signal-whistle case on belt, no bag flap. No cloak, scarf, fur, weapon, quiver or equipment held.",
+        "maleIdentity": "Adult watchful masculine elite ranger, COPPER-BROWN short tousled layered hair, sharp amber eyes, clean-shaven, canonical masculine head size.",
+        "femaleIdentity": "Adult watchful feminine elite ranger, COPPER-BROWN hair in a thick LOW BRAIDED PONYTAIL with loose side bangs, sharp amber eyes, canonical feminine head size.",
+        "armPolicy": "Fitted forest-teal sleeves stay above compact dark bronze bracers and black fingerless gloves. Empty hands retain EXACT canonical palm and fingertip coordinates. Keep armor compact and hard-edged, no large shoulder wings or loose fabric at wrists. Fixed watchtower-eye octagonal buckle, ivory tower bars, bronze chest armor and coat colors on every pose.",
+        "unique": "Watchtower-eye octagonal buckle, paired ivory tower bars, dark bronze angled armor and ivory-edged teal ranger coat.",
+        "advancement": "Tier 3 mobile sentinel evolution of Centinela: longer reinforced ranger coat, dark bronze layered chest armor and watchtower symbols show a specialist lookout. Distinct from Mariscal polished bronze heavy plate and ivory officer tabard; no command crest, laurel champion insignia, green hunter leather or knight silver armor.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/vigia/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "52bdc97896769351aa968e6f01d050bb5a573809e8c5a2c5ca152e02eb2f4380",
+            "85dbc89cbf52c89533d3fb466039af124d93c9f32298f8f20ea8b62381fce1e9",
+            "388d10e6ce25c430f925c6c897995b2b0cd653530e4272cf04756c4ce3de391a",
+            "0dfc4f32977cf5798df61faa04739dc37eb9f355325ba50ff00c9e11aab9427b"
+          ],
+          "walk": [
+            "962d44a72e38f556b77e558b82bcd4299272f63417fa66597670068fd89d24ba",
+            "2cc9fb35f5a8b9b91fb0bfec562e91cbef1c9ade300d515dcaf74e6682fad763",
+            "d8dd0100f6f3c73e2d47f38baf0fa0916b0f7e0c4161ff955f6dd496319d7036",
+            "9951bb19162dfbd8d25e1392906f90af0853bc2cc8163ddaab434ede9a006036"
+          ],
+          "hurt": [
+            "3795b11e17ae83f9dbd9c040171debc3c7af4a24abb44bfff1e5f54ed667c594",
+            "398b631cc577cf7e9e1fba52a7d42fdfdaa0220f10b635235f9a2511060d48b9",
+            "3369747befe70f78499672cfd51f58d70a095204c726d5940f240f358c9f73c5",
+            "343028eef1c7ab62d4323ca281c0a7d819b82be0f206029c9b8d382a255ec4a6"
+          ],
+          "use_consumable": [
+            "dd658b6b7b6d874430062ac1a465657c62a51f8f12b6482adb312dac12b091f0",
+            "34488fbdba718712b3f686c24588d45034d7969e79a6473b87c07b2811cf27a5",
+            "6ecafcb329624c21dedb5f32763721eb69d219daff53f8fd0b6a01769973eac3",
+            "6d5962da391fdc6d0a81efe29db04c5818c51f8059bb56934b4407d407b8ef77"
+          ],
+          "dodge": [
+            "30edf5aa1aff1dd8d8d4589d88b2d20d7d2bb2d35ef499042c4798e12854084b",
+            "7ad7c73325b0cb824c3f4c97cb92c2f5fccd682caea2bde1ab63e472e035603a",
+            "4b13ab9692dd15cba16d221ee18f3cc11bd5a4056c059dd0c4b76483f6d22f8d",
+            "d3aa7c1795ecb03da7b503f240fc7cd1134316e26c28e00124ff818e7f747867"
+          ],
+          "block_shield": [
+            "234ba9178a77efa555d115ff9006f402c09f40225704bb871fd74d47535fdd27",
+            "cd0ae7cebbe2683ece187f0adce8baf9ad8ba4288f8c3d5737f6ed3da2d6db76",
+            "e66facdc2b9b58ba363ce8453d0855d073c9a94be631b70a56533569f5cf7963",
+            "d0e6679f11db84983da89229604773e995c4b44ad4835e8f1dd354d180dad375"
+          ],
+          "attack_sword": [
+            "9e38d79b12eefdf8ad85a4496138bb0b2e0d496867bd6ea3152b10091f7e5203",
+            "b1094650919d2bdc726471dfb940f285e07576e682b54e4b6aa2b3b1e736b217",
+            "55fa7342abfb9af10421397039e87bd28fc40848ca6122b8661cdedff0e1a20e",
+            "714699af1805c942df187f7f99d93f039912e990847fdd5642258a93c5dcc260"
+          ],
+          "attack_axe": [
+            "af516dc81ff3487128fcc3ea6d0a8162e868aff0e7058f711cdcde3348fce907",
+            "e46b280c3de62f60473bb0ce9520919157194924a4fab9629dcf7c65823c23a5",
+            "54a70f918ca3841d89a2dfd122a7554c1a89e67a63c309e3a293cca11a020364",
+            "958d0e34bd1352b32fda25ed3e01a8561603f996b1985aee5b433d16c3bdbc65"
+          ],
+          "attack_spear": [
+            "acc0173bf026b93aae3018b6403feaf6b96011e5c095661d91c593411c95c913",
+            "7fd806a850182d748498ab4c00b67e2f40af00592002f2022061bf9d5a3c5d2b",
+            "42b63746afdd85e533010343a5d3d4d2671cf8910b095c237b66d1d8d3c68aeb",
+            "ebde7d16e1c8cb949f6027f1aea3421d20a4e48e0f1726a20349492a0dc100dd"
+          ],
+          "attack_dagger": [
+            "34efe464e47d78d26164a1309f313b1f00761d84c1c4be383acb67925797d9f7",
+            "01d2e87f30c71042edc477ebc7289cc658decc7b7a59646e979a438e69c22421",
+            "f66eb1e5992cf7463675d38db0559a5d79749e97000ca53b9ef9fc26808c5b98",
+            "b8f494822bf72d07d195d0fa3378594ae7c86756bdd82b3d8e386959ff206093"
+          ],
+          "attack_bow": [
+            "85bb70ea062a1c69949597dfa47002af976535ed8ac4d8adce58d106bedc8964",
+            "817176ffa42338afcf7e8598e3d3a3b04931626cd1f841dbf582398725995323",
+            "4056fe5e8832e795ab0aefad1d44148aabdd16f7ec127670ff18aa34aaae35cf",
+            "b5070b0f486cdfd5f22750f22a8b69880df29886d707cb35fb712594391eb23c"
+          ],
+          "attack_staff": [
+            "d7c58dd563b2f875ba3420b34e9fd33af1dbd8567fba0fbd4371d552102d842b",
+            "d92960a9a2ed2b2bbc2589bd20321d94f2887c778343610fc3332b5be13d26b2",
+            "6fe580fe020234ea24f201303ce588c40fd5e8a7f73ef5de92c707ac7c1efaae",
+            "f9a17e406e58203acae7b40c331e73ea4831c1aa27c2f8923e9aa6bd6af4f5b2"
+          ],
+          "attack_mace": [
+            "395dfcbaa5b1192e523ffc00f8a1070d98da5ee82b6edba6058bc9a80cbc3fd0",
+            "d2d0fa13d32caa6bbfbe94b7838c43f59d7ea6009f0297e8fc54345056936067",
+            "17e6a8e6b250f8ced3c659b264f8dae329fd16fd0fe13fbf50f3a9390e9188b3",
+            "4c2917e35dd1c8460c9c6fce9b33aecbb50a3f87743bf46d0b259a3235b7d26c"
+          ],
+          "attack_book": [
+            "b7159767e71b88d4bba4774d92fabaa634669e4f67796812ac95701897a42763",
+            "7d7d5e7330fb62b72b802659f62489ef61fff876bee5a4d033155728e1a827f0",
+            "f2be318aff508144184320ac7228f60992bf4643f243e2ce39db05b442952e65",
+            "e57cc09cff88ac04f746a393befa2e64d42f2d6b4ee72da86ef73ce7c4e3ca33"
+          ],
+          "attack_gloves": [
+            "1fe38537eff6d5349fbd913d0a53f9812139c0f86eeb85695d19e0c2570cda10",
+            "7b04a286d7f007bffc2efcece77927c88c3270291292ae808a048e9c7836deaf",
+            "3420c989923e9cac81b9c28d74bf8e43e85418dfc25d1d8d5aa5a3a07cc5b63c",
+            "e8514b5afbd843a3dba897061e3ddf0cd184a77cfa34f71ebca0c8dd218afb71"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -246184,7 +247102,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3 in class order: Paladín, Guardián real, Asesino, Maestro de espadas, Oráculo, Hierofante, Asceta, Gran maestro, Francotirador, Domabestias, Guardián del bosque, Rastreador, Archimago, Invocador, Nigromante, Demonólogo, Verdugo, Saqueador, Campeón de arena, Mariscal, Vigía, Runista, Abjurador; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

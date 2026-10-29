@@ -1,0 +1,171 @@
+{
+  "classId": "vigia",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/vigia/m/source/walk-frame03-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/dodge-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/m/source/dodge-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/vigia/m/source/dodge-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/m/source/dodge-frame04-reference-v2.png"
+      }
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/m/source/attack_spear-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/vigia/m/source/attack_spear-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/m/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/vigia/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/walk-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/vigia/f/source/walk-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/vigia/f/source/walk-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/f/source/walk-frame04-reference-v2.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/vigia/f/source/hurt-frame03-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/f/source/attack_sword-frame04-reference-v3.png"
+      }
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/f/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/vigia/f/source/attack_gloves-frame04-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Vigia se distingue por el abrigo verde azulado con bordes marfil, placas angulares de bronce oscuro, hombreras con torres y hebilla octogonal del ojo de vigilancia. El uniforme reforzado prolonga la evolucion de Centinela; cabello cobrizo masculino y trenza baja femenina conservan su identidad.",
+    "All thirty source strips, whole generated pose repairs, eighteen source palm proofs and representative equipment of every weapon type were visually reviewed for both sexes, including both axe structures. Fifteen actions and 682 contacts per sex pass without warnings.",
+    "Male walk revision4 selects only complete portrait4v4; male spear revision2 only portrait3v2; male dodge revision2 only complete pose2 from the four-pose strip, preserving original1/3/4 with canonical calibration. Female walk revision2 only portrait1v2. Female hurt revision3 selects portrait1v2, original2, portrait3v3 and portrait4v3. Female sword and spear revision3 each select only portrait3v3. Female gloves revision2 selects only portrait1v2. All other actions retain originals.",
+    "Rejected hand positions remain archived and unselected. Fixed canonical export and unchanged whole generated pose selection only: no body painting, limb transplants, class equipment offsets or pose-specific scaling. Legacy unused secondary cloth, wrist, fingertip and consumable waist-return contacts were checked against rendered hilts, shafts and gloves. No runtime promotion."
+  ]
+}

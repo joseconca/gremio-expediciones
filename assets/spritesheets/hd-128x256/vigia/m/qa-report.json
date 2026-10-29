@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-29T07:47:42.119599+00:00",
+  "classId": "vigia",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\vigia\\m\\vigia-m-sheet.png",
+  "sheetSha256": "2178a656e6c686760ec274474b9731e777992578a94a4a693e46ed479ff0e483",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\idle\\vigia-m-idle-01.png",
+          "sha256": "9a2110b631a17b7dae11697dcdde371489aafe852213c67b620595b0764cb3bf",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\idle\\vigia-m-idle-02.png",
+          "sha256": "232fd67798e3880fa2d27ed7ce8df59f08ecbb85c66a71f3e956735fd5e80227",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\idle\\vigia-m-idle-03.png",
+          "sha256": "ebae654fc7dccc781dcfe43f7f9f61260eae2dd480a143949c09b942cbcb8c17",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\idle\\vigia-m-idle-04.png",
+          "sha256": "e7865e5d90dfacc24645f08bd488ac0f428f52da2ebaadecbaddd09096640e89",
+          "alpha_bbox": [
+            26,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\walk\\vigia-m-walk-01.png",
+          "sha256": "ee3e78947244209acd4677fa3c9b6d8e776788c252c779d0f331a5fea0ade7c5",
+          "alpha_bbox": [
+            11,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\walk\\vigia-m-walk-02.png",
+          "sha256": "725ec2b79670f5746203ce60582ce38d68acdaae489e583daeac2c0859167200",
+          "alpha_bbox": [
+            13,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\walk\\vigia-m-walk-03.png",
+          "sha256": "66b8040f309bf64a41cfeb0ea8dad9dcdcbbb534e039db91c61abe01cb43b227",
+          "alpha_bbox": [
+            11,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\walk\\vigia-m-walk-04.png",
+          "sha256": "04876693725d452f255190a1a11b98a4767a3f4a3e7513d2ab9444b1935a0c5a",
+          "alpha_bbox": [
+            9,
+            92,
+            105,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\hurt\\vigia-m-hurt-01.png",
+          "sha256": "5a32e7d356942c50d6b3bd80140c3e7ffda2abad4ac809833d0951a178b4a4e4",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\hurt\\vigia-m-hurt-02.png",
+          "sha256": "e8a25dd4da8c2b558e21adc5d4f7af8d8a4fbcf4cde6e47f23b0fe4fa2362d3d",
+          "alpha_bbox": [
+            29,
+            101,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\hurt\\vigia-m-hurt-03.png",
+          "sha256": "10c468df4a38fdcbd95914fe7f76b3fb3d80022806a6141f1a1d4d998f657086",
+          "alpha_bbox": [
+            18,
+            119,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\hurt\\vigia-m-hurt-04.png",
+          "sha256": "69d31236345187a93d263bf1a1bc3249bc1eb8f175b8aa116870b74cf04694e1",
+          "alpha_bbox": [
+            20,
+            92,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\use_consumable\\vigia-m-use_consumable-01.png",
+          "sha256": "628a11cf978b902bf6ba40922628c7541c5d557d11e327a7900e23cbdcf8b64c",
+          "alpha_bbox": [
+            28,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\use_consumable\\vigia-m-use_consumable-02.png",
+          "sha256": "09211745a381e97f92171c92190e2017aeac81905c5c456282d62915648ce677",
+          "alpha_bbox": [
+            27,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\use_consumable\\vigia-m-use_consumable-03.png",
+          "sha256": "d2461811622d5264c2b5da8a855fbaf5a74fd4d1cfb8509ccb69d873009d1953",
+          "alpha_bbox": [
+            24,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\use_consumable\\vigia-m-use_consumable-04.png",
+          "sha256": "ab7a97649033713f611b714e221a2686e44d8444ddc517199e8f1f16be7e6d06",
+          "alpha_bbox": [
+            21,
+            93,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\dodge\\vigia-m-dodge-01.png",
+          "sha256": "37dcee1bda693186e9c22f4010b6e010ff006070ec740f8fedc401ce6bce9af7",
+          "alpha_bbox": [
+            20,
+            98,
+            103,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\dodge\\vigia-m-dodge-02.png",
+          "sha256": "048a760d2b7970a34ab8a0443923caa9971963a279a8ff3fd02fb17de810c66e",
+          "alpha_bbox": [
+            21,
+            99,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\dodge\\vigia-m-dodge-03.png",
+          "sha256": "d0650f49a74d81f3d581c67b8ff20aee635dc6a808e64fc675de845538e823b4",
+          "alpha_bbox": [
+            20,
+            99,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\dodge\\vigia-m-dodge-04.png",
+          "sha256": "d3e9def8ec212f8333fb0827ec3542e82022728bebcc03b2bbcd95f4bc160c35",
+          "alpha_bbox": [
+            21,
+            98,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\block_shield\\vigia-m-block_shield-01.png",
+          "sha256": "6aee654b658d0224e6c814b8303bfddc91f19165f86628837944ee4efb8aaf64",
+          "alpha_bbox": [
+            20,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\block_shield\\vigia-m-block_shield-02.png",
+          "sha256": "69c161df54f4858929031103e8598c26972c81fd2c6c61a68150770d5cf0e770",
+          "alpha_bbox": [
+            20,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\block_shield\\vigia-m-block_shield-03.png",
+          "sha256": "81a599bff2bb4dc7d19ded2921a28250d554925f628907ffa96dac2b94a84a32",
+          "alpha_bbox": [
+            22,
+            113,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\block_shield\\vigia-m-block_shield-04.png",
+          "sha256": "c8bb0ff408f95ba23b3914f3e37b816ae1fb3be988638d2378336f032aeeabf3",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_sword\\vigia-m-attack_sword-01.png",
+          "sha256": "b8086c2631c8e0eb4986d620216ef3b7644eff29187f28935db6e2b92daca80f",
+          "alpha_bbox": [
+            12,
+            99,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_sword\\vigia-m-attack_sword-02.png",
+          "sha256": "86556f06902308278b1af74df834d9b416aa739608e08aba2c3208c5f69d1da4",
+          "alpha_bbox": [
+            8,
+            100,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_sword\\vigia-m-attack_sword-03.png",
+          "sha256": "e0789ff2f7180d5542f83e117fb72f85317ed0cd8ae767ebe60c548225c5a425",
+          "alpha_bbox": [
+            10,
+            102,
+            122,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_sword\\vigia-m-attack_sword-04.png",
+          "sha256": "29f67be70eb9da12d0fecc62a73f6735c5f104502847b9100ffc51128156790a",
+          "alpha_bbox": [
+            13,
+            98,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_axe\\vigia-m-attack_axe-01.png",
+          "sha256": "c03a83ded0099e48d938d078f5b53b8f95a4eeabd66f0c4857ffa7a7e4b4af12",
+          "alpha_bbox": [
+            9,
+            101,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_axe\\vigia-m-attack_axe-02.png",
+          "sha256": "ceb490746c2697e171d33191f3b6db921c1f0fb64d70f23637a56181dbbc2e16",
+          "alpha_bbox": [
+            17,
+            113,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_axe\\vigia-m-attack_axe-03.png",
+          "sha256": "2827af3bf6458e5abc6591991ddeac2839139c7d572f22a78735dc026e96f2ce",
+          "alpha_bbox": [
+            12,
+            122,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_axe\\vigia-m-attack_axe-04.png",
+          "sha256": "041d00d16d4b36e410731b5692a54304ba1821695e30733bf5c4592b7ef07a9d",
+          "alpha_bbox": [
+            22,
+            105,
+            118,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_spear\\vigia-m-attack_spear-01.png",
+          "sha256": "6d0d4f1e0e90396f6ed570ed769790d97b555931f59eb8f1a3b66d038039df36",
+          "alpha_bbox": [
+            10,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_spear\\vigia-m-attack_spear-02.png",
+          "sha256": "546bbb0b89bcbc5a734601758f9591feea66c5aa8c5a018c4f9d624bc0cb8fd9",
+          "alpha_bbox": [
+            13,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_spear\\vigia-m-attack_spear-03.png",
+          "sha256": "3e9e02ab0be4a83bc17b1087fd1b48374106d8fa830bb30306698f731ea343bc",
+          "alpha_bbox": [
+            11,
+            92,
+            121,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_spear\\vigia-m-attack_spear-04.png",
+          "sha256": "b96695999fa7c72b8ffccf3e0f6b4b98c26f6008f913c739f1398bb14c6327c7",
+          "alpha_bbox": [
+            14,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_dagger\\vigia-m-attack_dagger-01.png",
+          "sha256": "3dd51190e26b5bd518cf5c9f3fb05ac18dfc06755d70aa57d1da32b312a82d05",
+          "alpha_bbox": [
+            26,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_dagger\\vigia-m-attack_dagger-02.png",
+          "sha256": "6e8897e257aac6274122e306a08e81b4a906c33d256b17123d53c50d1b10c393",
+          "alpha_bbox": [
+            25,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_dagger\\vigia-m-attack_dagger-03.png",
+          "sha256": "5241cbf0dbda430c07f31e42f57efe9d32f4221e80d1ff98b61e8de77f6ea9ec",
+          "alpha_bbox": [
+            23,
+            95,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_dagger\\vigia-m-attack_dagger-04.png",
+          "sha256": "5a57363bde55f09183be77a1da9b85e1284cecb082c9cd9ce572d80ee640fd2a",
+          "alpha_bbox": [
+            21,
+            93,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_bow\\vigia-m-attack_bow-01.png",
+          "sha256": "d66845f4ec494a080e8ada6cdb92f1f142e04cbe7373387cf2e93d94203136a0",
+          "alpha_bbox": [
+            23,
+            96,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_bow\\vigia-m-attack_bow-02.png",
+          "sha256": "c6da7d335a5c735e4f119a8274535d25cc2347a687353b4af38ad7b7fb5f46e3",
+          "alpha_bbox": [
+            19,
+            96,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_bow\\vigia-m-attack_bow-03.png",
+          "sha256": "fa542327652e19570a798d0a62e538770838c8753ed8912043bcb57651f12c47",
+          "alpha_bbox": [
+            15,
+            96,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_bow\\vigia-m-attack_bow-04.png",
+          "sha256": "bbdceea3664f8d817d14433b55f4a2e55f5ab4320b2a79d86f5d42ca2a3d234a",
+          "alpha_bbox": [
+            9,
+            96,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_staff\\vigia-m-attack_staff-01.png",
+          "sha256": "4d27f7a9e8dbd7ab878187f6f1cb65a4064a7317903cf2f24ab0e9caacc323f2",
+          "alpha_bbox": [
+            30,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_staff\\vigia-m-attack_staff-02.png",
+          "sha256": "cd70bbc8b3b0a853680c8ef0e2abac4359028623bc5fac0284901492a69cea42",
+          "alpha_bbox": [
+            25,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_staff\\vigia-m-attack_staff-03.png",
+          "sha256": "5802ad416431492d6f3c7b747471b4d2e361b6149df4215e1baa1eeae3a9075d",
+          "alpha_bbox": [
+            28,
+            94,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_staff\\vigia-m-attack_staff-04.png",
+          "sha256": "8088371f4aea19af9bbc8066d7937d895dbbb390092d6ae367b662532fb2577a",
+          "alpha_bbox": [
+            16,
+            93,
+            94,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_mace\\vigia-m-attack_mace-01.png",
+          "sha256": "a5c01bdb5c8296e246749970f780842933575c7799433a0de0f11e062e5167e7",
+          "alpha_bbox": [
+            26,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_mace\\vigia-m-attack_mace-02.png",
+          "sha256": "bd62637f5e67f924a156e005c31316dfc48ef79e70b1e33f8b9410c026c121fa",
+          "alpha_bbox": [
+            28,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_mace\\vigia-m-attack_mace-03.png",
+          "sha256": "b734562c081b5b5f4fb8863d4217f5ac60a9d7c32dc233a392c9ee416d842a52",
+          "alpha_bbox": [
+            26,
+            104,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_mace\\vigia-m-attack_mace-04.png",
+          "sha256": "7caaf4acd3392684011b4e327e767076aed1e09a376f354ccfc149113c23da62",
+          "alpha_bbox": [
+            32,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_book\\vigia-m-attack_book-01.png",
+          "sha256": "b6986ddd1d3f02edb666af5a87fa09040e5549790a71f216d14659a697ffcaaf",
+          "alpha_bbox": [
+            27,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_book\\vigia-m-attack_book-02.png",
+          "sha256": "179ad17975353e238c194ec725d7770dbe64a2591e90db6468073103dfd6cb0f",
+          "alpha_bbox": [
+            27,
+            92,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_book\\vigia-m-attack_book-03.png",
+          "sha256": "64d981686efb4384cf9306757843ef69fec89585c316f5ef1f776d45ea91d9d5",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_book\\vigia-m-attack_book-04.png",
+          "sha256": "f15d2550b8ab4ed98fbc70ee4803e0ee111c35e62bbed9a03cb245b7659e39f8",
+          "alpha_bbox": [
+            26,
+            92,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_gloves\\vigia-m-attack_gloves-01.png",
+          "sha256": "70e801e88fece5aa9026cdcd5493a1c402cd3d3a0ab80b1ba91d9fb757cd6268",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_gloves\\vigia-m-attack_gloves-02.png",
+          "sha256": "5ed995231c727ae1286ee966ec4a62232f6630984e45f9a231ca790447eb316d",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_gloves\\vigia-m-attack_gloves-03.png",
+          "sha256": "a5e62ebe89467a62ba5994884cc8e6531e9269012a6450f8b48c1d6b1f6b45a1",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\vigia\\m\\frames\\attack_gloves\\vigia-m-attack_gloves-04.png",
+          "sha256": "b73938da3dc982dc6b78f3394843a27e9847528051a411395564abe027505d92",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

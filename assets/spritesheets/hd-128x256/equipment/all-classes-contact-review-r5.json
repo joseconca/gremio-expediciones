@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 100,
-  "contactChecks": 68200,
+  "variants": 102,
+  "contactChecks": 69564,
   "warnings": 0,
   "reports": [
     {
@@ -600,6 +600,18 @@
     },
     {
       "classId": "verdugo",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "vigia",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "vigia",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
