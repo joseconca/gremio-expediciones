@@ -1,5 +1,5 @@
 {
-  "status": "paused-at-user-request",
+  "status": "in-progress",
   "date": "2026-10-29",
   "branch": "nuevas-clases",
   "completedClasses": 53,
@@ -22,11 +22,7 @@
     "corsario"
   ],
   "nextClass": "senor_guerra",
-  "generationBlock": {
-    "reason": "image generation daily usage_limit_reached, HTTP 429",
-    "reportedResetUtc": "2026-10-29T13:19:53Z",
-    "policy": "No further generation retries until the limit resets. Use built-in image generation; no API/CLI fallback authorized."
-  },
+  "generationBlock": null,
   "inProgress": {
     "senor_guerra": {
       "m": {
@@ -147,11 +143,11 @@
       "Partial automated equipment QA: male 13 actions / 546 contacts, female 5 actions / 516 contacts, no alpha warnings. These are partial results, not class approval.",
       "Male source palm boards idle, walk, hurt, use_consumable, attack_sword and attack_spear reviewed. Remaining male palms, all female palms and all equipment compositions still need manual review.",
       "Manual candidate corrections: male walk3 secondary fist is below target; walk4 primary fist left of target; male sword4 primary target lies on bracer instead of palm. Check actual equipment before deciding exact repairs. No repairs generated or selected yet.",
-      "Do not count this class complete or add partial QA to the closed-class aggregate."
+      "Do not count this class complete or add partial QA to the closed-class aggregate.",
+      "Resumed 2026-10-29: all30 sources now generated and registered; M walk revision3 selects3v3 and4v2; M sword revision2 only4v2; F walk revision3 only2v3; F hurt revision3 selects1v3 and4v2. Pending F book4 and gloves1/4 repairs."
     ],
     "avatar_tormenta": [
-      "Only male idle generated; viewed full strip, canonical bounds passed and identity detail reference reviewed. No root registration. Female idle and male action generation failed with daily quota; no pending workers.",
-      "Approved design brief is preserved in avatar_tormenta/art-direction.json. Generate female idle from canonical female geometry plus male costume, review it, then continue remaining actions."
+      "Both identities generated, viewed, canonical bounds passed and registered. Male and female action generation in progress."
     ],
     "completed": [
       "Runista and Abjurador each have both sexes, thirty actions, 120 frames, all representative weapon structures reviewed, 1364 contacts without warnings and 29 animation tests passed. Both class commits verified on GitHub."
