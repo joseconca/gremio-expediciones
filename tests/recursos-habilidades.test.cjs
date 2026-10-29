@@ -51,15 +51,12 @@ test("las dos recuperaciones gratuitas heredables conservan un intervalo mínimo
   assert.ok(h.cooldownTurnos >= 2);
 });
 
-test("cada rango de una pasiva de regeneración de maná aporta una mejora efectiva", () => {
+test("las pasivas condicionales tienen rango único y solo Mago conserva una reserva plana", () => {
   const h = obtenerHabilidadPorId("eco_maldito");
-  let anterior = h.bonusRegeneracionMana;
-  for (let nivel = 2; nivel <= 10; nivel++) {
-    const actual = ajustarHabilidadPorNivel(h, nivel).bonusRegeneracionMana;
-    assert.ok(actual > anterior);
-    anterior = actual;
-  }
-  assert.equal(anterior, 1.32);
+  assert.equal(nivelMaximoHabilidad(h.claseId,h),1);
+  assert.equal(h.bonusRegeneracionMana,undefined);
+  assert.ok(h.reglaPasiva);
+  assert.deepEqual(HABILIDADES.filter(h=>h.bonusManaMaximo).map(h=>h.id),["reserva_arcana"]);
   assert.equal(maxima("reserva_arcana").bonusManaMaximo, 25);
 });
 
@@ -86,9 +83,10 @@ test("Ninja y Hoja del velo conservan técnicas propias utilizables con su reser
 test("las técnicas sencillas avanzadas no pagan más por una potencia heredada igual o mayor", () => {
   const esfera = maxima("esfera_invocada"), chispa = maxima("chispa_mago");
   assert.ok(esfera.multiplicadorDano < chispa.multiplicadorDano);
-  assert.ok(esfera.costeMana < chispa.costeMana);
+  assert.ok(esfera.costeMana > chispa.costeMana,"la invocación añade un acompañante a su impacto");
+  assert.ok(esfera.disenoActiva.operaciones.some(o=>o.tipo==="invocar"&&o.manual));
   const maestro = maxima("puño_del_maestro"), monje = maxima("puno_ascendente");
-  assert.equal(maestro.multiplicadorDano, monje.multiplicadorDano);
+  assert.ok(maestro.multiplicadorDano > monje.multiplicadorDano);
   assert.ok(maestro.costeEnergia < monje.costeEnergia);
   assert.equal(maestro.cooldownTurnos, monje.cooldownTurnos);
 });

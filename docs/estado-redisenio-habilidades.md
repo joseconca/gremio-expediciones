@@ -1,50 +1,36 @@
-# Estado de implementación del rediseño
+# Estado del rediseño de habilidades
 
-Rama: `codex/redisenio-habilidades-rasgos`. Inicio: `6480b79f862ed72ae689933ea7a59b697b310a8a`. Actualización: 29 de octubre de 2026.
+29 de octubre de 2026. Rama: `codex/redisenio-habilidades-rasgos`. Base: `6480b79f862ed72ae689933ea7a59b697b310a8a`.
 
-**La petición completa todavía no está terminada. No publicar ni presentar esta rama como el rediseño completo de las 61 clases.**
+La fase de habilidades está implementada y activa. Por indicación del usuario, los **rasgos intrínsecos quedan para después**. El plan y catálogo originales son referencias de diseño; el [catálogo jugable](habilidades-v2-catalogo.md) se genera a partir de la implementación real.
 
-## Decisiones aprobadas
+## Alcance terminado
 
-- Cinco activas y tres pasivas equipadas; sustituye el diseño original de tres y dos.
-- Rasgo intrínseco de la clase actual, sin herencia de rasgos.
-- Rediseñar las 301 habilidades actuales, añadir cinco propias a Super Novato y al menos una adicional por clase: objetivo inicial de 367 habilidades equipables y 61 rasgos.
-- Probar las configuraciones de ocho ranuras, no reutilizar conclusiones de equilibrio del equipo antiguo.
+- Cinco activas y tres pasivas en API, ficha, escuela, store y combates individual, party y PvP. Herencia por las ramas actuales, sin clases hermanas.
+- 367 habilidades: 245 activas y 122 pasivas entre 61 clases. Se mantienen los identificadores anteriores, se añaden cinco propias de Super Novato y una técnica adicional por clase.
+- Las 119 pasivas condicionales tienen pares condición/ventaja distintos. Novato conserva su vida plana; Mago conserva la única reserva plana de maná; Archimago sacrifica reserva para convertirla en inteligencia con techo y sin realimentar el maná.
+- Cada preparación consumida por un kit tiene un generador accesible entre las habilidades de su rama, sin necesitar rasgos.
+- Motor y contexto compartidos: guardias, heridas, regeneración, limpieza, disipación, movimientos, precisión, exposición, acompañantes, pactos, sellos y reacciones. Persistencia de cantidades consumidas y posiciones, incluido el defensor en PvP.
+- Presupuestos de área compartidos. Las curaciones de área reparten la reserva del lanzador según vida faltante; los aliados sanos no gastan cuota de curación inmediata.
+- Devoluciones limitadas al 25 % del pago y a 10 EN / 5 PM por ciclo entre las tres pasivas. Las respiraciones heredables comparten cooldown. Protecciones simultáneas consumen un presupuesto común; regeneraciones del mismo sanador aplican el pulso más fuerte.
+- Descripciones de habilidades y efectos basadas en cantidades reales, con nombre de la fuente y duración. Iconos SVG para las 367 habilidades, incluidos 201 que faltaban.
 
-## Terminado y activo
+## Decisiones de esta fase
 
-- La API de equipo acepta exactamente `activa_1` a `activa_5` y `pasiva_1` a `pasiva_3`.
-- Escuela/ficha, store, selección de batalla, PvE, PvP y party reconocen las nuevas ranuras. Contador y listado de batalla muestran hasta cinco activas.
-- Corregida autocuración en party: usa los PV y efectos posteriores al pulso del inicio del turno. No recupera accidentalmente efectos que ya habían expirado.
+Los acompañantes son preparaciones de tres órdenes y hasta seis ciclos, sin turno independiente ni mantenimiento periódico. Una orden consume la acción de su técnica y solo se resuelve una por ciclo. Reemplazar o retirar un acompañante no concede premios por muerte.
 
-## Preparado, sin activar en el catálogo jugable
+Las interrupciones debilitan preparaciones o precisión; no quitan turnos completos. Cataclismo consume la compresión del kit; no introduce una interfaz de canalización diferida. Custodia concede protección/preparación en sus habilidades; el futuro rasgo de intercepción no se ha activado.
 
-- Motor táctico puro: estado por participante, presupuestos de área, curación efectiva, guardia limitada, redirección sin cadenas, consumo de pulsos, devolución limitada por pago/ciclo, transferencias, acompañantes, mantenimiento, pactos, sellos y reacciones.
-- Definición explícita de una técnica adicional por cada una de las 61 clases, con coste, objetivo e instrucciones ejecutables. Se exportan como `HABILIDADES_ADICIONALES`, pero **aún no se incorporan a `HABILIDADES`**. Muchas necesitan las preparaciones del kit rediseñado.
-- Adaptador de técnicas y puntos de integración en el resolver compartido, PvE y party. Estado JSON tipado y validado, visualización de cantidades y duraciones, y procesamiento de regeneración transferida.
-- No se han sustituido las habilidades actuales por sus descripciones futuras. No hay rasgos exclusivos activos todavía.
+Super Novato tiene técnicas que combinan sus ataques físico y mágico, y alterna apoyo/ofensiva. Se comprueba como alternativa de final de árbol, aunque su posición de desbloqueo siga siendo especial. No se ha añadido un rasgo intrínseco provisional para elevarlo.
 
-## Pendiente imprescindible
+Las pasivas condicionales, Núcleo arcano y las técnicas adicionales de utilidad tienen rango único. Daño, curación y protección escalables conservan mejoras sin aumentar cargas o duraciones indefinidamente.
 
-1. Implementar los 61 rasgos con condiciones y efectos reales, incluirlos en creación/reanudación de combate y mostrarlos en la ficha y en batalla.
-2. Rediseñar el comportamiento de las 301 habilidades existentes conforme al catálogo; sustituir las pasivas repetidas, incluida la conversión del Archimago sin realimentación.
-3. Añadir las cinco habilidades propias de Super Novato y medirlo contra T3.5 contando su dominio de equipo.
-4. Completar los generadores de cada preparación y validar que las técnicas heredadas no dependan de un rasgo que ya no se tiene. Algunas técnicas adicionales aún necesitan diferenciar mejor su transformación respecto a otras ramas.
-5. Completar las interacciones del motor antes de activarlo: resistencias, intenciones, canales, campos, provocación, precisión/exposición en todos los ataques y transferencia de vínculos. Las primitivas no constituyen por sí solas esos comportamientos completos.
-6. Integrar los relojes de ciclo y acompañantes en las colas reales, incluida su persistencia, muerte, sustitución y retirada. Revisar las reacciones elementales y su presupuesto total por acción.
-7. Completar el contexto y los resultados tácticos del defensor PvP; las técnicas futuras no deben habilitarse sin ese adaptador.
-8. Completar el contrato de objetivos para habilidades hostiles de utilidad que no causen daño; el contrato antiguo infiere objetivo por `efecto === "dano"`. Actualizar API y store juntos.
-9. Completar persistencia de posición y efectos en todas las salidas terminales y normales, y pruebas transaccionales de técnicas entre varios aliados. Evitar doble consumo de guardias entre resolver táctico y adaptación antigua.
-10. Registrar el catálogo nuevo solo cuando funcione el árbol completo, con migración idempotente de puntos/rangos y selección de equipo anterior conservada.
-11. Ejecutar simulaciones de contribución por tier, áreas 1/3/9, velocidades relativas y búsqueda de combinaciones heredadas de cinco activas y tres pasivas. Todavía no existe una comprobación global del equilibrio nuevo.
-12. Pruebas visuales y pruebas con base de datos real de migración, reintentos y partidas guardadas. En este checkout no se ha ejecutado una migración contra una base real.
+## Migración y despliegue
 
-## Comprobaciones del punto de control
+`prisma/migrations/20261029203000_redisenio_habilidades/migration.sql` devuelve los puntos de las mejoras anteriores a su clase propietaria y deja los rangos en 1 para poder redistribuirlos. Mantiene compras y ranuras. La segunda ejecución no vuelve a devolver puntos. No hay cambios de esquema.
 
-- Suite completa: 465 pruebas; 463 pasan y dos fallan en `battle-school-layout.test.cjs`, fallos preexistentes documentados en el plan original.
-- Las 20 pruebas añadidas cubren ranuras, primitivas del motor, serialización, cobertura de las 61 técnicas, paridad del resolver para party de un miembro y la regresión de autocuración.
-- TypeScript y lint de los archivos nuevos/modificados del motor pasan.
-- Compilación de producción con Webpack correcta. La primera ejecución aislada falló con `EPERM` al crear salida de Next; la ejecución con permisos de escritura suficientes terminó correctamente.
-- La comparación del resolver táctico es una prueba unitaria de la misma entrada y semilla/estado. **No equivale todavía a comprobar todos los servicios reales ni el equilibrio de los kits futuros.**
+En el entorno con base de datos debe ejecutarse `npx prisma migrate deploy` junto al despliegue de esta versión. Este checkout no dispone de una conexión de base de datos para verificar la migración real. El merge de código no confirma ni la ejecución de esa migración ni un despliegue automático del alojamiento.
 
-Referencias: [plan original actualizado](plan-redisenio-habilidades.md), [catálogo original propuesto](plan-redisenio-habilidades-catalogo.md), [técnicas adicionales preparadas](tecnicas-adicionales-propuesta.md).
+## Validación
+
+Véase [comprobación de habilidades](comprobacion-habilidades-v2.md), con pruebas automatizadas, auditoría de configuraciones y límites de la comprobación. Quedan partidas manuales, revisión visual y prueba de migración con datos reales. Los rasgos son el siguiente trabajo funcional acordado.

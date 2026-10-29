@@ -27,7 +27,7 @@ export default function PanelMejoraHabilidad({
       <section className="rounded-lg border border-amber-700/60 bg-gradient-to-br from-amber-950/70 to-[#18130e] p-3">
         <p className="text-[9px] font-black uppercase tracking-[0.17em] text-amber-300">Aprender habilidad</p>
         <p className="mt-1 text-xs leading-relaxed text-amber-50/90">
-          Apréndela por <strong>1 punto Job</strong>. Empezarás en nivel 1 y podrás invertir un punto por cada mejora.
+          Apréndela por <strong>1 punto Job</strong>. {nivelMaximo===1?"Tiene rango único; no consume puntos en mejoras sin efecto.":"Empezarás en nivel 1 y podrás invertir un punto por cada mejora."}
         </p>
         <p className="mt-2 border-t border-amber-800/50 pt-2 text-[10px] text-amber-200/75">
           Requisito: {clasePropietaria} Job {requisitoJob} · Máximo: nivel {nivelMaximo}

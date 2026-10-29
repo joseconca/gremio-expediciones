@@ -177,7 +177,7 @@ export interface Personaje {
   // Desglose de procedencia calculado junto con las estadísticas.
   desgloseEstadisticas?: Pick<
     DesgloseEstadisticasPersonaje,
-    "base" | "baseSinAtributos" | "mejoras" | "pasivas" | "equipo" | "combate" | "atributos" | "total"
+    "base" | "baseSinAtributos" | "mejoras" | "pasivas" | "equipo" | "combate" | "atributos" | "total" | "atributosPorPasivas"
   > & {
     pasivasPorHabilidad: {
       habilidadId: string;
@@ -645,7 +645,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     posicionCombate: typeof datos.posicionCombate === "string"
       ? (datos.posicionCombate as PosicionCombate)
       : "centro",
-    ...atributos,
+    ...(estadisticas.atributosPrincipales??atributos),
     energiaActual: Math.min(
       typeof datos.energiaActual === "number" ? datos.energiaActual : (estadisticas.total.energiaMaxima ?? 100),
       estadisticas.total.energiaMaxima ?? 100
@@ -672,6 +672,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       equipo: estadisticas.equipo,
       combate: estadisticas.combate,
       atributos: estadisticas.atributos,
+      atributosPorPasivas:estadisticas.atributosPorPasivas,
       total: estadisticas.total,
       pasivasPorHabilidad,
       equipoPorObjeto,
@@ -866,7 +867,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         : null;
       const objetivo = accion === "usar_objeto" || accion === "escapar"
         ? "propio"
-        : accion === "usar_habilidad" && definicionHabilidad?.efecto !== "dano"
+        : accion === "usar_habilidad" && (definicionHabilidad?.objetivo ? definicionHabilidad.objetivo.equipo !== "enemigo" : definicionHabilidad?.efecto !== "dano")
           ? "propio"
           : "oponente";
       const respuesta = await fetch(`/api/combate/${modo}/accion`, {

@@ -1,6 +1,9 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
 import { puedeUsarHabilidadDeClase } from "./progresion/clases";
 import { HABILIDADES_NUEVAS } from "./habilidades-nuevas";
+import { crearCatalogoRedisenado } from "./progresion/catalogo-redisenado";
+import { HABILIDADES_ADICIONALES } from "./progresion/tecnicas-adicionales";
+import { HABILIDADES_SUPER_NOVATO } from "./progresion/habilidades-super-novato";
 
 type EntradaHabilidad = Omit<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad"> &
   Partial<Pick<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad">>;
@@ -10,7 +13,7 @@ function habilidad(datos: EntradaHabilidad): DefinicionHabilidad {
 }
 
 /** Habilidades profesionales de Job. Las clases avanzadas heredan las de sus antecesoras. */
-export const HABILIDADES: DefinicionHabilidad[] = [
+export const HABILIDADES_BASE: DefinicionHabilidad[] = [
   ...HABILIDADES_NUEVAS,
   // NOVATO
   habilidad({
@@ -472,6 +475,11 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   habilidad({"claseId":"demonologo","id":"abismo","nivelJobRequerido":45,"nombre":"Abismo","descripcion":"Abre una fisura de magia oscura que causa daño extremo.","tipoDano":"magico","tipo":"activa","efecto":"dano","animacion":"ofensiva_potenciada","multiplicadorDano":1.9,"costeMana":30,"cooldownTurnos":5}),
   habilidad({"claseId":"demonologo","id":"pacto_menor","nivelJobRequerido":30,"nombre":"Pacto menor","descripcion":"Aumenta el ataque mágico en 4 puntos, a costa de 1 de defensa.","tipo":"pasiva","bonusAtaqueMagico":4,"bonusDefensa":-1}),
   habilidad({"claseId":"demonologo","id":"corazon_infernal","nivelJobRequerido":55,"nombre":"Corazón infernal","descripcion":"Aumenta el Maná máximo en 15 puntos.","tipo":"pasiva","bonusManaMaximo":15}),
+];
+
+export const HABILIDADES: DefinicionHabilidad[] = [
+  ...crearCatalogoRedisenado([...HABILIDADES_BASE,...HABILIDADES_SUPER_NOVATO]),
+  ...HABILIDADES_ADICIONALES,
 ];
 
 export function obtenerHabilidadPorId(id: string): DefinicionHabilidad | undefined {

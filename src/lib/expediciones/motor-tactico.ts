@@ -19,6 +19,7 @@ export type EstadoTactico = {
   destinatarioId?: string;
   mantenimientoMana?: number;
   finalNatural?: boolean;
+  manual?: boolean;
 };
 
 export type UnidadTactica = {
@@ -75,7 +76,7 @@ export type ComandoTactico =
   | { tipo: "limpiar"; objetivo: "actor" | "objetivo"; familia?: FamiliaTactica; maximo: number }
   | { tipo: "robar"; familia: "guardia" | "precision" | "resistencia"; fraccion: number }
   | { tipo: "transferir"; familia: "regeneracion" | "guardia"; fraccion: number }
-  | { tipo: "invocar"; clave: string; potencia: number; duracion: number; mantenimiento: number }
+  | { tipo: "invocar"; clave: string; potencia: number; duracion: number; mantenimiento: number; manual?: boolean }
   | { tipo: "ordenar"; modo: "asalto" | "amparo" }
   | { tipo: "sacrificar"; familia: "acompanante" | "guardia" | "herida" | "pacto" | "campo" | "preparacion"; fraccion: number; resultado?: "cura_actor" }
   | { tipo: "interrumpir"; debilitamiento: number }
@@ -111,7 +112,12 @@ export function potenciaFamiliaTactica(u: UnidadTactica, familia: FamiliaTactica
 export function aplicarEstadoTactico(mundo: MundoTactico, objetivoId: string, estado: EstadoTactico): void {
   const u = unidad(mundo, objetivoId);
   if (u.hp <= 0) return;
-  const seguro: EstadoTactico = { ...estado, valor: finito(estado.valor), restantes: entero(estado.restantes, 1, 20), cargas: entero(estado.cargas, 1, 2) };
+  const seguro: EstadoTactico = { ...estado, valor: finito(estado.valor), restantes: entero(estado.restantes, 1, 20), cargas: entero(estado.cargas, 1, estado.familia==="acompanante"?3:2) };
+  const creador=mundo.unidades.find(o=>o.id===estado.creadorId);
+  if(creador&&creador.equipo!==u.equipo&&["herida","exposicion","precision","marca","sello"].includes(estado.familia)){
+    const resistencia=u.estados.filter(e=>e.familia==="resistencia").sort((a,b)=>b.valor-a.valor)[0];
+    if(resistencia){seguro.valor*=1-Math.min(.3,resistencia.valor);u.estados=u.estados.filter(e=>e!==resistencia);}
+  }
   u.estados = u.estados.filter(e => !(e.creadorId === seguro.creadorId && e.clave === seguro.clave && e.familia === seguro.familia));
   u.estados.push(seguro);
   registrar(mundo, "estado", estado.creadorId, objetivoId, estado.fuenteId, seguro.valor, estado.clave);
@@ -133,12 +139,13 @@ export function danarTactico(mundo: MundoTactico, actorId: string, objetivoId: s
   if (objetivo.hp <= 0) return 0;
   let dano = entero(cantidad);
   if (!periodico && dano > 0) {
-    const guardia = objetivo.estados.filter(e => e.familia === "guardia" && e.restantes > 0).sort((a,b) => b.valor - a.valor)[0];
+    const guardias=objetivo.estados.filter(e=>e.familia==="guardia"&&e.restantes>0);
+    const guardia = guardias.sort((a,b) => b.valor - a.valor)[0];
     if (guardia) {
       const absorbido = Math.min(dano, entero(guardia.valor));
-      guardia.valor -= absorbido;
+      for(const e of guardias)e.valor=Math.max(0,e.valor-absorbido);
       dano -= absorbido;
-      if (guardia.valor <= 0) objetivo.estados = objetivo.estados.filter(e => e !== guardia);
+      objetivo.estados = objetivo.estados.filter(e => e.familia!=="guardia"||e.valor>0);
       registrar(mundo, "proteccion", guardia.creadorId, objetivoId, guardia.fuenteId, absorbido);
     }
     const vinculo = objetivo.estados.find(e => e.familia === "vinculo" && e.clave === "custodia");
@@ -204,7 +211,7 @@ function quitarEstado(mundo: MundoTactico, propietario: UnidadTactica, efecto: E
 export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, objetivoId: string, fuenteId: string, comandos: readonly ComandoTactico[]): void {
   const actor = unidad(mundo, actorId);
   const objetivo = unidad(mundo, objetivoId);
-  if (actor.hp <= 0 || objetivo.hp <= 0) return;
+  if (actor.hp <= 0) return;
   for (const c of comandos) {
     switch (c.tipo) {
       case "estado": {
@@ -234,8 +241,16 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
         break;
       }
       case "transferir": {
-        if (actorId === objetivoId || actor.equipo !== objetivo.equipo) break;
+        if (actor.equipo !== objetivo.equipo) break;
         const e = actor.estados.find(e => e.familia === c.familia && e.creadorId === actorId);
+        if(actorId===objetivoId){
+          if(e){
+            const valor=entero(e.valor*.2);e.valor-=valor;
+            if(c.familia==="regeneracion")curarTactico(mundo,actorId,actorId,fuenteId,valor*e.restantes);
+            else if(valor>0)aplicarEstadoTactico(mundo,actorId,{...e,id:`${actorId}:relevo`,fuenteId,familia:"regeneracion",clave:"relevo_personal",valor:Math.floor(valor/2),restantes:2});
+          }
+          break;
+        }
         if (e) {
           const valor = entero(e.valor * finito(c.fraccion, 0, 1));
           e.valor -= valor;
@@ -246,7 +261,7 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
       case "invocar": {
         // Reemplazar no es morir ni acabar de forma natural.
         actor.estados = actor.estados.filter(e => e.familia !== "acompanante");
-        aplicarEstadoTactico(mundo, actorId, { id: `${actorId}:acompanante`, creadorId: actorId, fuenteId, familia: "acompanante", clave: c.clave, valor: c.potencia, restantes: c.duracion, reloj: "ciclo", cargas: 1, mantenimientoMana: entero(c.mantenimiento), destinatarioId: objetivoId });
+        aplicarEstadoTactico(mundo, actorId, { id: `${actorId}:acompanante`, creadorId: actorId, fuenteId, familia: "acompanante", clave: c.clave, valor: c.potencia, restantes: c.duracion, reloj: "ciclo", cargas: 3, mantenimientoMana: entero(c.mantenimiento), destinatarioId: objetivoId,manual:c.manual });
         break;
       }
       case "ordenar": {
@@ -259,6 +274,8 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
         if (c.modo === "asalto" && actor.equipo !== objetivo.equipo) danarTactico(mundo, actorId, objetivoId, fuenteId, e.valor);
         else if (c.modo === "amparo") aplicarEstadoTactico(mundo, actor.equipo === objetivo.equipo ? objetivoId : actorId, { ...e, id: `${actorId}:amparo`, familia: "guardia", clave: "amparo_familiar", restantes: 1, reloj: "turno", mantenimientoMana: 0, valor: e.valor });
         e.destinatarioId = objetivoId;
+        e.cargas--;
+        if(e.cargas<=0)quitarEstado(mundo,actor,e,fuenteId);
         break;
       }
       case "sacrificar": {
@@ -266,7 +283,8 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
         const e = dueno.estados.find(e => e.familia === c.familia && e.creadorId === actorId);
         if (e) {
           const pulsos = ["herida", "regeneracion", "acompanante", "campo"].includes(e.familia) ? Math.min(3, e.restantes) : 1;
-          const presupuesto = entero(e.valor * pulsos * finito(c.fraccion, 0, 1));
+          const calculado=entero(e.valor * pulsos * finito(c.fraccion, 0, 1));
+          const presupuesto=["pacto","campo","acompanante"].includes(c.familia)?Math.min(calculado,Math.floor(Math.max(actor.ataque,actor.ataqueMagico)*.65)):calculado;
           quitarEstado(mundo, dueno, e, fuenteId);
           if (c.resultado === "cura_actor") curarTactico(mundo,actorId,actorId,fuenteId,presupuesto);
           else if (actor.equipo !== objetivo.equipo) danarTactico(mundo, actorId, objetivoId, fuenteId, presupuesto);
@@ -281,23 +299,24 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
           objetivo.limites[clave] = mundo.ciclo;
           e.valor *= 1 - finito(c.debilitamiento, 0, 0.5);
           registrar(mundo, "interrupcion", actorId, objetivoId, fuenteId, e.valor, "preparacion_debilitada");
-        }
+        }else if(!e)aplicarEstadoTactico(mundo,objetivoId,{id:`${actorId}:distraccion`,creadorId:actorId,fuenteId,familia:"precision",clave:"distraccion",valor:5,restantes:1,reloj:"turno",cargas:1});
         break;
       }
       case "mover": actor.fila = entero(c.fila, 0, 2); break;
       case "reaccion": {
         const anterior = objetivo.estados.find(e => e.clave === "elemento" && e.creadorId === actorId);
         const reloj = `reaccion:${fuenteId}`;
-        if (anterior && actor.limites[reloj] !== mundo.ciclo) {
+        const compatible=anterior&&(anterior.elemento==="agua"&&(c.elemento==="hielo"||c.elemento==="rayo")||anterior.elemento==="fuego"&&c.elemento==="hielo");
+        if (anterior && compatible && actor.limites[reloj] !== mundo.ciclo) {
           actor.limites[reloj] = mundo.ciclo;
           if (anterior.elemento === "agua" && c.elemento === "hielo") ejecutarComandosTacticos(mundo, actorId, objetivoId, fuenteId, [{ tipo: "estado", objetivo: "objetivo", familia: "precision", clave: "escarcha", valor: 10, duracion: 1 }]);
           if (anterior.elemento === "fuego" && c.elemento === "hielo") adelantarPulsoTactico(mundo, actorId, objetivoId, fuenteId, "herida");
           if (anterior.elemento === "agua" && c.elemento === "rayo") {
             const adyacente = mundo.unidades.filter(u => u.equipo === objetivo.equipo && u.hp > 0 && u.id !== objetivoId && u.fila === objetivo.fila && Math.abs(u.columna - objetivo.columna) === 1).sort((a,b)=>a.id.localeCompare(b.id))[0];
-            if (adyacente) {
+            {
               // Se desplaza un pulso pendiente; no se crea otro presupuesto.
               const herida = objetivo.estados.find(e => e.familia === "herida" && e.creadorId === actorId);
-              if (herida) { danarTactico(mundo, actorId, adyacente.id, fuenteId, herida.valor, true); herida.restantes--; objetivo.estados = objetivo.estados.filter(e => e.restantes > 0); }
+              if (herida) { danarTactico(mundo, actorId, adyacente?.id??objetivoId, fuenteId, herida.valor, true); herida.restantes--; objetivo.estados = objetivo.estados.filter(e => e.restantes > 0); }
             }
           }
           quitarEstado(mundo, objetivo, anterior, fuenteId);
@@ -306,7 +325,7 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
       }
       case "vincular": {
         for (const u of mundo.unidades) u.estados = u.estados.filter(e => !(e.creadorId === actorId && e.clave === c.clave));
-        aplicarEstadoTactico(mundo, objetivoId, { id: `${actorId}:vinculo:${c.clave}`, creadorId: actorId, fuenteId, familia: "vinculo", clave: c.clave, valor: 0.3, restantes: c.duracion, reloj: "turno", cargas: 1, destinatarioId: objetivoId });
+        aplicarEstadoTactico(mundo, objetivoId, { id: `${actorId}:vinculo:${c.clave}`, creadorId: actorId, fuenteId, familia: c.clave==="presa"?"marca":"vinculo", clave: c.clave, valor: 0.3, restantes: c.duracion, reloj: "turno", cargas: 1, destinatarioId: objetivoId });
         break;
       }
       case "pacto": {
@@ -350,7 +369,7 @@ export function avanzarRelojTactico(mundo: MundoTactico, reloj: "turno" | "ciclo
         if (u.mana < coste) { quitarEstado(mundo,u,e,e.fuenteId); continue; }
         u.mana -= coste;
         const objetivo = mundo.unidades.find(o => o.id === e.destinatarioId && o.hp > 0 && o.equipo !== u.equipo);
-        if (objetivo && u.limites.pulsoAcompanante !== mundo.ciclo) {
+        if (!e.manual && objetivo && u.limites.pulsoAcompanante !== mundo.ciclo) {
           u.limites.pulsoAcompanante = mundo.ciclo;
           danarTactico(mundo,u.id,objetivo.id,e.fuenteId,e.valor);
         }

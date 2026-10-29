@@ -3,6 +3,10 @@ import { crearTecnicaAdicional } from "../progresion/tecnicas-adicionales";
 import { resolverTecnicaTactica, type EstadoTactico, type UnidadTactica } from "./motor-tactico";
 
 export type ContextoTecnicaTactica = {
+  numeroObjetivos?: number;
+  principal?: boolean;
+  pesoCuracion?: number;
+  pasivas?: DefinicionHabilidad[];
   actorId: string;
   objetivoId: string;
   claseId: string;
@@ -28,13 +32,13 @@ export type ContextoTecnicaTactica = {
   filaObjetivo: number;
 };
 
-const convertirEstados = (efectos: readonly EstadoEfectoHabilidad[], propietarioId: string, creadorPorDefecto: string): EstadoTactico[] => efectos.flatMap(e => {
+export const convertirEstadosTacticos = (efectos: readonly EstadoEfectoHabilidad[], propietarioId: string, creadorPorDefecto: string): EstadoTactico[] => efectos.flatMap(e => {
   if (e.tipo === "tactico") return e.datosTacticos?.estados.map(estado => ({ ...estado })) ?? [];
   if (e.tipo !== "dano_progresivo" && e.tipo !== "curacion_progresiva") return [];
-  return [{ id: `legacy:${propietarioId}:${e.habilidadId}:${e.tipo}`, fuenteId: e.habilidadId, creadorId: e.creadorId ?? creadorPorDefecto, familia: e.tipo === "dano_progresivo" ? "herida" as const : "regeneracion" as const, clave: e.tipo, valor: e.valor, restantes: e.turnosRestantes, reloj: "turno" as const, cargas: 1 }];
+  return [{ id: `legacy:${propietarioId}:${e.habilidadId}:${e.tipo}`, fuenteId: e.habilidadId, creadorId: e.creadorId ?? creadorPorDefecto, familia: e.tipo === "dano_progresivo" ? "herida" as const : "regeneracion" as const, clave: e.familia??e.tipo, valor: e.valor, restantes: e.turnosRestantes, reloj: "turno" as const, cargas: 1 }];
 });
 
-function exportarEstados(unidad: UnidadTactica, anteriores: readonly EstadoEfectoHabilidad[]): EstadoEfectoHabilidad[] {
+export function exportarEstadosTacticos(unidad: UnidadTactica, anteriores: readonly EstadoEfectoHabilidad[]): EstadoEfectoHabilidad[] {
   const periodicos = anteriores.flatMap(e => {
     if (e.tipo !== "dano_progresivo" && e.tipo !== "curacion_progresiva") return [];
     const estado = unidad.estados.find(t => t.id === `legacy:${unidad.id}:${e.habilidadId}:${e.tipo}`);
@@ -60,7 +64,7 @@ export function resolverTecnicaAdicional(habilidad: DefinicionHabilidad, c: Cont
       defensa: propio ? c.defensaActor : c.defensaObjetivo,
       defensaMagica: propio ? c.defensaMagicaActor : c.defensaMagicaObjetivo,
       fila: propio ? c.filaActor : c.filaObjetivo, columna: 0,
-      estados: convertirEstados(efectos, id, c.actorId),
+      estados: convertirEstadosTacticos(efectos, id, c.actorId),
       limites: { ...efectos.find(e => e.tipo === "tactico")?.datosTacticos?.limites },
     };
   };
@@ -79,8 +83,8 @@ export function resolverTecnicaAdicional(habilidad: DefinicionHabilidad, c: Cont
   return {
     accion: { actor: "jugador" as const, tipo: "habilidad" as const, animacion: "defensiva" as const, dano, critico: false, ...(cura > 0 ? { curacion: cura } : {}), texto: `Usas ${habilidad.nombre}.` },
     actorHp: actorFinal.hp, objetivoHp: objetivoFinal.hp,
-    efectosActor: exportarEstados(actorFinal,c.efectosActor),
-    efectosObjetivo: exportarEstados(objetivoFinal,c.actorId === c.objetivoId ? c.efectosActor : c.efectosObjetivo),
+    efectosActor: exportarEstadosTacticos(actorFinal,c.efectosActor),
+    efectosObjetivo: exportarEstadosTacticos(objetivoFinal,c.actorId === c.objetivoId ? c.efectosActor : c.efectosObjetivo),
     filaActor: actorFinal.fila,
   };
 }

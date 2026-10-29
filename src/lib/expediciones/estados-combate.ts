@@ -43,10 +43,14 @@ export function procesarTicksPeriodicos(
   const mensajes: string[] = [];
   let danoAplicado = 0;
   let curacionAplicada = 0;
+  const candidatos=efectos.flatMap<{ref:object;clave:string;valor:number}>(efecto=>efecto.tipo==="tactico"?(efecto.datosTacticos?.estados??[]).filter(s=>s.reloj==="turno"&&["herida","regeneracion"].includes(s.familia)).map(s=>({ref:s,clave:`${s.familia==="herida"?s.clave:"regeneracion"}:${s.creadorId}`,valor:s.valor})):efecto.tipo==="dano_progresivo"||efecto.tipo==="curacion_progresiva"?[{ref:efecto,clave:`${efecto.tipo==="curacion_progresiva"?"regeneracion":efecto.familia??efecto.habilidadId}:${efecto.creadorId??efecto.habilidadId}`,valor:efecto.valor}]:[]);
+  const mayores=new Map<string,typeof candidatos[number]>();
+  for(const candidato of candidatos)if(candidato.valor>(mayores.get(candidato.clave)?.valor??-1))mayores.set(candidato.clave,candidato);
+  const activos=new Set([...mayores.values()].map(e=>e.ref));
   for (const efecto of efectos) {
     if (efecto.tipo === "tactico" && efecto.datosTacticos) {
       for (const estado of efecto.datosTacticos.estados) {
-        if (estado.reloj !== "turno" || estado.restantes <= 0 || hp <= 0) continue;
+        if (estado.reloj !== "turno" || estado.restantes <= 0 || hp <= 0 || !activos.has(estado)) continue;
         if (estado.familia === "herida") {
           const dano = Math.min(hp,Math.max(0,Math.floor(estado.valor)));
           hp -= dano; danoAplicado += dano;
@@ -59,13 +63,13 @@ export function procesarTicksPeriodicos(
       }
       continue;
     }
-    if (efecto.tipo === "dano_progresivo" && hp > 0) {
+    if (efecto.tipo === "dano_progresivo" && hp > 0 && activos.has(efecto)) {
       const danoSolicitado = Math.max(0, Math.floor(efecto.valor));
       const dano = Math.min(hp, danoSolicitado);
       hp = Math.max(0, hp - dano);
       danoAplicado += dano;
       if (dano > 0) mensajes.push(`🩸 ${nombreObjetivo} recibe ${dano} de daño progresivo de ${efecto.habilidadId}.`);
-    } else if (efecto.tipo === "curacion_progresiva" && hp > 0) {
+    } else if (efecto.tipo === "curacion_progresiva" && hp > 0 && activos.has(efecto)) {
       const curacion = Math.min(Math.max(0, Math.floor(efecto.valor)), Math.max(0, Math.floor(hpMaximo) - hp));
       hp += curacion;
       curacionAplicada += curacion;
@@ -182,10 +186,12 @@ export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; t
     return;
   }
   const tacticos = efectos.flatMap(e=>e.datosTacticos?.estados ?? []);
-  const guardia = tacticos.filter(s=>s.familia === "guardia").sort((a,b)=>b.valor-a.valor)[0];
+  const guardias=tacticos.filter(s=>s.familia === "guardia");
+  const guardia = guardias.sort((a,b)=>b.valor-a.valor)[0];
   if (guardia) {
     const absorbido = Math.min(accion.dano,Math.floor(guardia.valor));
-    guardia.valor -= absorbido; accion.dano -= absorbido;
+    for(const e of guardias)e.valor=Math.max(0,e.valor-absorbido);
+    accion.dano -= absorbido;
     if (absorbido > 0) accion.texto += ` La guardia absorbe ${absorbido} de daño.`;
   }
   const exposicion = tacticos.filter(s=>s.familia === "exposicion").sort((a,b)=>b.valor-a.valor)[0];
@@ -196,4 +202,16 @@ export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; t
 
 export function calcularEvasionModificada(evasionBase: number, efectos: readonly EstadoEfectoHabilidad[]): number {
   return Math.min(0.6, Math.max(0, evasionBase + efectos.reduce((total, e) => total + (e.tipo === "bonus_evasion" ? e.valor : 0), 0)));
+}
+
+/** La precisión preparada se gasta en el siguiente intento de ataque. */
+export function consumirPrecisionTactica(efectos: EstadoEfectoHabilidad[]): void {
+  for(const e of efectos)if(e.datosTacticos)e.datosTacticos.estados=e.datosTacticos.estados.filter(s=>s.familia!=="precision");
+}
+
+export function aplicarResistenciaPerjuicio(valor:number,efectos:EstadoEfectoHabilidad[]):number{
+  const candidatos=efectos.flatMap(e=>e.datosTacticos?.estados??[]).filter(e=>e.familia==="resistencia").sort((a,b)=>b.valor-a.valor);
+  const resistencia=candidatos[0];if(!resistencia)return valor;
+  for(const e of efectos)if(e.datosTacticos)e.datosTacticos.estados=e.datosTacticos.estados.filter(s=>s!==resistencia);
+  return valor*(1-Math.min(.3,resistencia.valor));
 }

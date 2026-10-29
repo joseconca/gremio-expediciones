@@ -91,7 +91,7 @@ export default function IndicadoresEfectosCombate({
   bonificacionesComida?: unknown;
   habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[];
 }) {
-  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e=>e.tipo !== "tactico" || (e.datosTacticos?.estados.length ?? 0) > 0).map((efecto: EstadoEfectoHabilidad) => {
+  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e=>e.tipo !== "tactico" || e.datosTacticos?.estados.some(s=>!s.clave.startsWith("_"))).map((efecto: EstadoEfectoHabilidad) => {
     const configuracion = CONFIGURACION_ESTADO[efecto.tipo];
     const habilidad = obtenerHabilidadPorId(efecto.habilidadId);
     const turnos = Math.max(1, Math.floor(efecto.turnosRestantes));

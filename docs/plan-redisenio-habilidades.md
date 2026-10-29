@@ -2,7 +2,7 @@
 
 Propuesta para revisión · 29 de octubre de 2026 · Base: `main`, commit `6480b79f862ed72ae689933ea7a59b697b310a8a`.
 
-**Estado: implementación en curso en `codex/redisenio-habilidades-rasgos`.**
+**Estado: fase de habilidades implementada; rasgos aplazados por indicación del usuario. Consultar [estado actual](estado-redisenio-habilidades.md) y [catálogo jugable](habilidades-v2-catalogo.md).**
 
 Actualización aprobada: cinco activas y tres pasivas equipadas, más al menos una habilidad propia adicional en cada clase. Esta decisión sustituye las referencias a 5A/3P del diseño original y obliga a repetir el equilibrio de combinaciones con ocho ranuras. El catálogo adjunto sigue siendo la especificación original; no es una declaración de funcionalidad ya implementada.
 

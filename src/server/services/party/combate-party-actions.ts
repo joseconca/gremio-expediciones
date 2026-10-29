@@ -1,3 +1,6 @@
+import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
+import { calcularPesosCuracion } from "@/lib/expediciones/presupuesto-curacion";
+import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
@@ -1158,6 +1161,7 @@ export async function ejecutarAccionCombateParty(
     let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; energia: number; mana: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
     let filaActorTactica: number | undefined;
+    let recursosHabilidad = { energia:0,mana:0 };
     const instantaneaActorTactico = () => ({ id: usuarioId, hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo, ataque: participante.jugadorAtaque, ataqueMagico: participante.jugadorAtaqueMagico, defensa: jugadorDefensa, defensaMagica: participante.jugadorDefensaMagica, posicion: participante.jugadorPosicion, efectos: efectosJugador });
     const danoEnemigoPorId = new Map<string, number>();
     const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof obtenerEfectos> }>();
@@ -1176,6 +1180,7 @@ export async function ejecutarAccionCombateParty(
       const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
       const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
       accion = resolverAtaqueJugador({
+        efectosEnemigo,
         jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
         jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
         usarMejorAtaqueMagico: usarAtaqueMagico,
@@ -1188,6 +1193,9 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensaMagica: enemigoSeleccionado.defensaMagica,
         enemigoNombre: enemigoSeleccionado.nombre,
       });
+      aplicarBarreraAccion(accion,efectosEnemigo);
+      consumirPrecisionTactica(efectosJugador);
+      efectosEnemigoPorId.set(enemigoSeleccionado.id,{defensa:enemigoSeleccionado.defensa,efectos:efectosEnemigo});
       accion = { ...accion, enemigoObjetivoId: enemigoSeleccionado.id };
       danoEnemigoPorId.set(enemigoSeleccionado.id, accion.dano);
       const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
@@ -1264,7 +1272,8 @@ export async function ejecutarAccionCombateParty(
       if (reglaObjetivo.equipo === "aliado" || reglaObjetivo.equipo === "propio") {
         const resultados = [];
         const objetivosAliados = seleccionObjetivos.objetivos.filter((objetivo) => objetivo.equipo === "aliado");
-        for (const objetivo of objetivosAliados) {
+        const pesos=calcularPesosCuracion(objetivosAliados.map(o=>{const p=combate.participantes.find(p=>p.usuarioId===o.id)!;return {id:o.id,hp:o.id===usuarioId?jugadorHp:p.jugadorHp,hpMaximo:p.jugadorHpMaximo};}));
+        for (const [indiceObjetivo,objetivo] of objetivosAliados.entries()) {
           const aliado = combate.participantes.find((p) => p.usuarioId === objetivo.id);
           if (!aliado || aliado.estado !== "activo" || aliado.jugadorHp <= 0) {
             throw new PartyServiceError("El aliado seleccionado ya no puede recibir esa habilidad.", 409, "OBJETIVO_ALIADO_NO_ACTIVO");
@@ -1274,7 +1283,7 @@ export async function ejecutarAccionCombateParty(
           const previos = retirarEfectosHabilidad(esPropio ? efectosJugador : obtenerEfectos(aliado.efectos), habilidad.id, esPropio ? jugadorDefensa : aliado.jugadorDefensa);
           const efectosDelObjetivo = previos.efectos;
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
-            contextoTactico: habilidad.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: aliado.jugadorHpMaximo, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true) : undefined,
+            contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: aliado.jugadorHpMaximo, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true,{numeroObjetivos:objetivosAliados.length,principal:indiceObjetivo===0,...(habilidad.versionReglas===2&&habilidad.efecto==="curacion"&&habilidad.objetivo?.patron!=="individual"?{pesoCuracion:pesos[objetivo.id]}:{})}) : undefined,
             bonusCuracion,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
             jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
@@ -1292,6 +1301,10 @@ export async function ejecutarAccionCombateParty(
             enemigoNombre: combate.enemigoNombre,
             efectosJugador: efectosDelObjetivo,
           });
+          if(resultadoObjetivo.efectosActorActualizados) efectosJugador = resultadoObjetivo.efectosActorActualizados;
+          if(resultadoObjetivo.actorHpActualizado !== undefined) jugadorHp = resultadoObjetivo.actorHpActualizado;
+          if(resultadoObjetivo.actorDefensaActualizada !== undefined) jugadorDefensa = resultadoObjetivo.actorDefensaActualizada;
+          if(indiceObjetivo===0) recursosHabilidad = resultadoObjetivo.recursosRecuperados ?? recursosHabilidad;
           const efectosNuevosAliado = [
             ...(resultadoObjetivo.efectosJugadorActualizados ?? efectosDelObjetivo),
             ...resultadoObjetivo.efectos.filter((efecto) => efecto.objetivo === "jugador"),
@@ -1326,8 +1339,8 @@ export async function ejecutarAccionCombateParty(
           throw new PartyServiceError("No hay aliados vivos en el área de esa habilidad.", 409, "SIN_ALIADOS_OBJETIVO");
         }
         const primera = resultados[0];
-        if (primera.resultado.efectosActorActualizados) efectosJugador = primera.resultado.efectosActorActualizados;
-        if (primera.resultado.actorHpActualizado !== undefined) jugadorHp = primera.resultado.actorHpActualizado;
+
+
         filaActorTactica = primera.resultado.filaActorActualizada;
         const curacionTotal = resultados.reduce((total, resultado) => total + resultado.curacion, 0);
         const danoTotal = resultados.reduce((total, resultado) => total + resultado.resultado.accion.dano, 0);
@@ -1360,14 +1373,14 @@ export async function ejecutarAccionCombateParty(
         if (objetivosEnemigos.length === 0) {
           throw new PartyServiceError("La habilidad ofensiva no tiene enemigos válidos.", 409, "SIN_ENEMIGOS_OBJETIVO");
         }
-        const resultados = objetivosEnemigos.map((objetivo) => {
+        const resultados = objetivosEnemigos.map((objetivo,indiceObjetivo) => {
           const enemigo = enemigosEnCombate.find((entrada) => entrada.id === objetivo.id);
           if (!enemigo || enemigo.hp <= 0) {
             throw new PartyServiceError("Uno de los enemigos elegidos ya no está activo.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
           }
           const efectosDelEnemigo = obtenerEfectos(enemigo.efectos);
           const resultado = resolverHabilidadJugador(habilidad!, {
-            contextoTactico: habilidad?.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false) : undefined,
+            contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false,{numeroObjetivos:objetivosEnemigos.length,principal:indiceObjetivo===0}) : undefined,
             bonusCuracion,
             efectosEnemigo: efectosDelEnemigo,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
@@ -1417,6 +1430,7 @@ export async function ejecutarAccionCombateParty(
         };
         jugadorHp = primero.resultado.jugadorHp;
         filaActorTactica = primero.resultado.filaActorActualizada;
+        recursosHabilidad = primero.resultado.recursosRecuperados ?? recursosHabilidad;
         jugadorDefensa = primero.resultado.jugadorDefensa;
         efectosJugador = [
           ...efectosJugador.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
@@ -1427,8 +1441,8 @@ export async function ejecutarAccionCombateParty(
         const enemigoActual = enemigosEnCombate.find((enemigo) => enemigo.id === primero.enemigo.id);
         enemigoDefensa = enemigoActual?.defensa ?? enemigoDefensa;
       }
-      if ((habilidad.cooldownTurnos ?? 0) > 0) cooldowns[habilidad.id] = habilidad.cooldownTurnos!;
-      await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+      establecerCooldownHabilidad(cooldowns,habilidad);
+      await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
     } else {
       if (typeof payload?.objetoInventarioId !== "string" || !payload.objetoInventarioId.trim()) {
         throw new PartyServiceError("Debes seleccionar una poción del inventario.", 400, "OBJETO_ID_REQUERIDO");
@@ -1787,6 +1801,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       const participanteHpActual = Math.max(0, objetivo.jugadorHp - (danoPorUsuario.get(objetivo.usuarioId) ?? 0));
       const efectosObjetivo = barrerasConsumidas.get(objetivo.usuarioId) ?? obtenerEfectos(objetivo.efectos);
       const accionEnemiga = resolverAtaqueEnemigo({
+        efectosJugador: efectosObjetivo,
         enemigoAtaque: calcularAtaqueModificado(enemigo.ataque, enemigo.efectos),
         enemigoProbCritico: enemigo.probCritico,
         enemigoDanoCritico: enemigo.danoCritico,
@@ -1795,9 +1810,10 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         jugadorDefensa: objetivo.jugadorDefensa,
         enemigoNombre: enemigo.nombre,
       });
-      const cantidadEfectos = efectosObjetivo.length;
+
       aplicarBarreraAccion(accionEnemiga, efectosObjetivo);
-      if (efectosObjetivo.length !== cantidadEfectos) barrerasConsumidas.set(objetivo.usuarioId, efectosObjetivo);
+      barrerasConsumidas.set(objetivo.usuarioId, efectosObjetivo);
+      consumirPrecisionTactica(enemigo.efectos);
       const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
       danoPorUsuario.set(objetivo.usuarioId, (danoPorUsuario.get(objetivo.usuarioId) ?? 0) + accionEnemiga.dano);
       actoresEnemigoIds.push(enemigo.id);

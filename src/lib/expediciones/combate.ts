@@ -1,5 +1,6 @@
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
-import { aplicarBarreraAccion } from "./estados-combate";
+import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./estados-combate";
+import { actualizarRelojContexto, aplicarMecanicasHabilidad, prepararHabilidadRedisenada } from "./mecanicas-habilidades";
 import { resolverTecnicaAdicional, type ContextoTecnicaTactica } from "./adaptador-tactico";
 
 export type AccionAnimadaCombate = {
@@ -116,6 +117,7 @@ export function calcularBonusDefensaMuralla(
 }
 
 export function resolverAtaqueJugador(combate: {
+  efectosEnemigo?: import("../tiposJuego").EstadoEfectoHabilidad[];
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
@@ -159,7 +161,7 @@ export function resolverAtaqueJugador(combate: {
 
   const esCritico = Math.random() < combate.jugadorProbCritico || dado === 20;
 
-  const danoAntesCritico = calcularDanoMitigado(danoBase, defensaEfectiva);
+  const danoAntesCritico = calcularDanoMitigado(danoBase, calcularDefensaTactica(defensaEfectiva,combate.efectosEnemigo??[]));
 
   const dano = esCritico
     ? Math.max(1, Math.floor(danoAntesCritico * combate.jugadorDanoCritico))
@@ -178,6 +180,7 @@ export function resolverAtaqueJugador(combate: {
 }
 
 export function resolverAtaqueEnemigo(combate: {
+  efectosJugador?: import("../tiposJuego").EstadoEfectoHabilidad[];
   enemigoAtaque: number;
   enemigoAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
@@ -222,7 +225,7 @@ export function resolverAtaqueEnemigo(combate: {
 
   const esCritico = Math.random() < probCritico || dado === 20;
 
-  const danoAntesCritico = calcularDanoMitigado(danoBase, defensaEfectiva);
+  const danoAntesCritico = calcularDanoMitigado(danoBase, calcularDefensaTactica(defensaEfectiva,combate.efectosJugador??[]));
 
   const dano = esCritico
     ? Math.max(1, Math.floor(danoAntesCritico * danoCritico))
@@ -241,6 +244,7 @@ export function resolverAtaqueEnemigo(combate: {
 }
 
 interface CombateParaHabilidad {
+  baseCuracionHpMaximo?: number;
   contextoTactico?: ContextoTecnicaTactica;
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
@@ -262,6 +266,9 @@ interface CombateParaHabilidad {
 }
 
 export interface ResultadoHabilidad {
+  actorDefensaActualizada?: number;
+  impactoBloqueado?: boolean;
+  recursosRecuperados?: { energia: number; mana: number };
   efectosEnemigoActualizados?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
   efectosActorActualizados?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
   actorHpActualizado?: number;
@@ -311,7 +318,7 @@ function obtenerPresentacionProyectilHabilidad(
   return { modo: "proyectil", proyectil: "esfera_arcana", elemento: "arcano", impacto: "destello" };
 }
 
-export function resolverHabilidadJugador(
+function resolverHabilidadBase(
   habilidad: DefinicionHabilidad,
   combate: CombateParaHabilidad,
 ): ResultadoHabilidad {
@@ -338,7 +345,7 @@ export function resolverHabilidadJugador(
   const bonusCuracion = Math.max(0, combate.bonusCuracion ?? 0);
   const ataqueMagico = combate.jugadorAtaqueMagico ?? combate.jugadorAtaque;
   const escalado = habilidad.escaladoDano ?? habilidad.tipoDano;
-  const ataqueEfectivo = escalado === "magico"
+  const ataqueEfectivo = escalado === "polivalente" ? combate.jugadorAtaque + ataqueMagico : escalado === "magico"
     ? ataqueMagico
     : escalado === "hibrido"
       ? Math.floor((combate.jugadorAtaque + ataqueMagico) / 2)
@@ -365,7 +372,7 @@ export function resolverHabilidadJugador(
       // almacenado ya está mitigado para que cada pulso no vuelva a reducirlo.
       valor = calcularDanoMitigado(danoBruto, defensaObjetivo);
     } else if (estado.tipo === "curacion_progresiva") {
-      valor = Math.max(1, Math.floor(combate.jugadorHpMaximo * estado.valor * (1 + bonusCuracion)));
+      valor = Math.max(1, Math.floor((combate.baseCuracionHpMaximo ?? combate.jugadorHpMaximo) * estado.valor * (1 + bonusCuracion)));
     } else if (estado.tipo === "bonus_defensa") {
       const defensaBase = objetivo === "jugador" ? jugadorDefensa : enemigoDefensa;
       valor = Math.max(1, Math.floor(defensaBase * estado.valor));
@@ -374,6 +381,8 @@ export function resolverHabilidadJugador(
       valor = Math.max(1, Math.floor(defensaBase * estado.valor));
     }
 
+    if(estado.tipo.startsWith("debuff_")||estado.tipo==="dano_progresivo")valor=aplicarResistenciaPerjuicio(valor,objetivo==="jugador"?(combate.efectosJugador??[]):(combate.efectosEnemigo??[]));
+    if(estado.tipo==="dano_progresivo")valor=Math.max(1,Math.floor(valor));
     if (estado.tipo === "bonus_defensa" && objetivo === "jugador") jugadorDefensa += valor;
     if (estado.tipo === "bonus_defensa" && objetivo === "enemigo") enemigoDefensa += valor;
     if (estado.tipo === "debuff_defensa" && objetivo === "jugador") jugadorDefensa = Math.max(0, jugadorDefensa - valor);
@@ -381,6 +390,8 @@ export function resolverHabilidadJugador(
 
     efectos.push({
       habilidadId: habilidad.id,
+      creadorId: combate.contextoTactico?.actorId,
+      ...(estado.tipo==="dano_progresivo"?{familia:["espadachin","berserker","saqueador"].includes(habilidad.claseId??"")?"sangrado":habilidad.claseId==="asesino"?"veneno":habilidad.disenoActiva?.elemento??habilidad.claseId}:{}),
       tipo: estado.tipo,
       valor,
       duracionTurnos: Math.max(1, Math.floor(estado.duracionTurnos)),
@@ -433,11 +444,12 @@ export function resolverHabilidadJugador(
 
       const variacion = 0.8 + Math.random() * 0.4;
       const defensaMagica = combate.enemigoDefensaMagica ?? enemigoDefensa;
-      const defensa = habilidad.tipoDano === "magico"
+      const defensaSinRuptura = habilidad.tipoDano === "magico"
         ? defensaMagica
         : habilidad.tipoDano === "hibrido"
           ? Math.floor((enemigoDefensa + defensaMagica) / 2)
           : enemigoDefensa;
+      const defensa = calcularDefensaTactica(defensaSinRuptura,combate.efectosEnemigo??[]) * (1-(habilidad.rupturaDefensaTemporal??0));
       const danoBase = Math.floor(ataqueEfectivo * variacion * (habilidad.multiplicadorDano ?? 1));
       const danoNormal = calcularDanoMitigado(danoBase, defensa);
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
@@ -449,7 +461,8 @@ export function resolverHabilidadJugador(
       dano = impacto.dano;
 
       if ((habilidad.roboVida ?? 0) > 0) {
-        const robo = Math.max(0, Math.floor(dano * Math.min(1, habilidad.roboVida!) * (1 + bonusCuracion)));
+        const efectivo=habilidad.versionReglas===2?Math.min(dano,combate.contextoTactico?.objetivoHp??dano):dano;
+        const robo = Math.min(habilidad.versionReglas===2?Math.floor(combate.jugadorHpMaximo*.08):Infinity,Math.max(0, Math.floor(efectivo * Math.min(habilidad.versionReglas===2?.2:1, habilidad.roboVida!) * (1 + bonusCuracion))));
         jugadorHp += Math.min(robo, Math.max(0, combate.jugadorHpMaximo - jugadorHp));
       }
       if (!bloqueado) agregarEstadosExtra();
@@ -463,7 +476,7 @@ export function resolverHabilidadJugador(
             ? `💥 ¡${habilidad.nombre} crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
             : `⚔️ Usas ${habilidad.nombre} e infliges ${dano} de daño a ${combate.enemigoNombre}.`,
         })),
-        jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
+        jugadorHp, jugadorDefensa, enemigoDefensa, efectos, impactoBloqueado:bloqueado,
       };
     }
 
@@ -473,7 +486,7 @@ export function resolverHabilidadJugador(
       const esCritico = multiplicadorCritico > 1 &&
         (dado === 20 || Math.random() < probabilidadCritico);
       const cantidadBase = habilidad.curacionPorcentaje !== undefined
-        ? Math.floor(combate.jugadorHpMaximo * habilidad.curacionPorcentaje)
+        ? Math.floor((combate.baseCuracionHpMaximo ?? combate.jugadorHpMaximo) * habilidad.curacionPorcentaje)
         : (habilidad.curacion ?? 0);
       const cantidadCritica = esCritico
         ? Math.floor(cantidadBase * multiplicadorCritico)
@@ -557,4 +570,23 @@ export function resolverHabilidadJugador(
     default:
       throw new Error(`El efecto ${habilidad.efecto} de la habilidad ${habilidad.id} no tiene una resolución definida.`);
   }
+}
+
+/** Punto único para los servicios individual, party y PvP. */
+export function resolverHabilidadJugador(habilidad:DefinicionHabilidad, combate:CombateParaHabilidad):ResultadoHabilidad {
+  if(habilidad.versionReglas!==2)return resolverHabilidadBase(habilidad,combate);
+  const aliado=habilidad.objetivo?.equipo!=="enemigo"&&habilidad.efecto!=="dano";
+  const contexto=combate.contextoTactico??{
+    actorId:"actor",objetivoId:aliado?"actor":"objetivo",claseId:habilidad.claseId??"novato",ciclo:1,
+    actorHp:combate.jugadorHp,actorHpMaximo:combate.jugadorHpMaximo,energia:100,energiaMaxima:100,mana:100,manaMaximo:100,
+    ataque:combate.jugadorAtaque,ataqueMagico:combate.jugadorAtaqueMagico??combate.jugadorAtaque,
+    defensaActor:combate.jugadorDefensa,defensaMagicaActor:combate.jugadorDefensaMagica??combate.jugadorDefensa,
+    efectosActor:combate.efectosJugador??[],objetivoHp:aliado?combate.jugadorHp:1e9,objetivoHpMaximo:aliado?combate.jugadorHpMaximo:1e9,
+    defensaObjetivo:aliado?combate.jugadorDefensa:combate.enemigoDefensa,defensaMagicaObjetivo:aliado?(combate.jugadorDefensaMagica??combate.jugadorDefensa):(combate.enemigoDefensaMagica??combate.enemigoDefensa),
+    efectosObjetivo:aliado?(combate.efectosJugador??[]):(combate.efectosEnemigo??[]),objetivoAliado:aliado,filaActor:1,filaObjetivo:1,
+  };
+  const c=actualizarRelojContexto(contexto);
+  const preparada=prepararHabilidadRedisenada(habilidad,c);
+  const base=resolverHabilidadBase(preparada,{...combate,contextoTactico:c,efectosEnemigo:c.objetivoAliado?combate.efectosEnemigo:c.efectosObjetivo,baseCuracionHpMaximo:(c.numeroObjetivos??1)>1?c.actorHpMaximo:combate.baseCuracionHpMaximo});
+  return aplicarMecanicasHabilidad(habilidad,c,base);
 }

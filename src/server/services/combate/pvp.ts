@@ -1,3 +1,6 @@
+import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
+import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
+import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
@@ -77,6 +80,15 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
   const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
   const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
   let accionAnimada: AccionAnimadaCombate;
+  let recursosHabilidad = { energia:0,mana:0 };
+  let filaActorTactica: number | undefined;
+  const contextoTecnicaPvp = (defensor:boolean) => {
+    const aliado=habilidad?.objetivo?.equipo!=="enemigo" && habilidad?.efecto!=="dano";
+    const atacante={id:combate.atacanteUsuarioId??"atacante",hp:jugadorHp,hpMaximo:combate.jugadorHpMaximo,ataque:combate.jugadorAtaque,ataqueMagico:combate.jugadorAtaqueMagico??combate.jugadorAtaque,defensa:jugadorDefensa,defensaMagica:combate.jugadorDefensaMagica??jugadorDefensa,posicion:combate.jugadorPosicion,efectos};
+    const defensa={id:combate.defensorUsuarioId??"defensor",hp:enemigoHp,hpMaximo:combate.enemigoHpMaximo??enemigoHp,ataque:combate.enemigoAtaque,ataqueMagico:combate.enemigoAtaqueMagico??combate.enemigoAtaque,defensa:enemigoDefensa,defensaMagica:combate.enemigoDefensaMagica??enemigoDefensa,posicion:combate.enemigoPosicion,efectos:efectosDefensor};
+    const propio=defensor?defensa:atacante;
+    return crearContextoTecnicaTactica(personaje,combate.ronda,propio,aliado?propio:defensor?atacante:defensa,aliado);
+  };
   try {
     // PVP
     // ============================================================
@@ -130,6 +142,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
 
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueJugador({
+          efectosEnemigo: efectosDefensor,
           jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
           jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
           usarMejorAtaqueMagico: usarAtaqueMagico,
@@ -148,6 +161,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         });
 
         aplicarBarreraAccion(accionAnimada, efectosDefensor);
+        consumirPrecisionTactica(efectos);
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
       } else {
         if (!habilidad) {
@@ -160,6 +174,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          contextoTactico: habilidad.versionReglas===2 ? contextoTecnicaPvp(false) : undefined,
           bonusCuracion,
           efectosEnemigo: efectosDefensor,
           jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
@@ -186,19 +201,22 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         jugadorDefensa = resultadoHabilidad.jugadorDefensa;
         enemigoDefensa = resultadoHabilidad.enemigoDefensa;
 
-        aplicarBarreraAccion(accionAnimada, efectosDefensor);
+        if(habilidad.versionReglas!==2)aplicarBarreraAccion(accionAnimada, efectosDefensor);
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
 
         const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "atacante");
         efectos = [...efectos, ...efectosRepartidos.efectosAtacante];
         efectosDefensor = [...efectosDefensor, ...efectosRepartidos.efectosDefensor];
         if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
+        if(resultadoHabilidad.efectosEnemigoActualizados)efectosDefensor=resultadoHabilidad.efectosEnemigoActualizados;
+        recursosHabilidad=resultadoHabilidad.recursosRecuperados??recursosHabilidad;
+        filaActorTactica=resultadoHabilidad.filaActorActualizada;
 
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
         if (cooldownTurnos > 0) {
-          cooldowns[habilidad.id] = cooldownTurnos;
+          establecerCooldownHabilidad(cooldowns,habilidad);
         }
       }
     } else if (actor === "defensor") {
@@ -213,6 +231,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
 
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueEnemigo({
+          efectosJugador: efectos,
           enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
           enemigoAtaqueMagico: calcularAtaqueModificado(combate.enemigoAtaqueMagico ?? combate.enemigoAtaque, efectosDefensor, true),
           usarMejorAtaqueMagico: usarAtaqueMagico,
@@ -224,6 +243,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         });
 
         aplicarBarreraAccion(accionAnimada, efectos);
+        consumirPrecisionTactica(efectosDefensor);
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
       } else {
         if (!habilidad) {
@@ -236,6 +256,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          contextoTactico: habilidad.versionReglas===2 ? contextoTecnicaPvp(true) : undefined,
           bonusCuracion,
           efectosEnemigo: efectos,
           jugadorAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
@@ -263,19 +284,22 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         enemigoDefensa = resultadoHabilidad.jugadorDefensa;
         jugadorDefensa = resultadoHabilidad.enemigoDefensa;
 
-        aplicarBarreraAccion(accionAnimada, efectos);
+        if(habilidad.versionReglas!==2)aplicarBarreraAccion(accionAnimada, efectos);
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
 
         const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "defensor");
         efectos = [...efectos, ...efectosRepartidos.efectosAtacante];
         efectosDefensor = [...efectosDefensor, ...efectosRepartidos.efectosDefensor];
         if (resultadoHabilidad.efectosJugadorActualizados) efectosDefensor = resultadoHabilidad.efectosJugadorActualizados;
+        if(resultadoHabilidad.efectosEnemigoActualizados)efectos=resultadoHabilidad.efectosEnemigoActualizados;
+        recursosHabilidad=resultadoHabilidad.recursosRecuperados??recursosHabilidad;
+        filaActorTactica=resultadoHabilidad.filaActorActualizada;
 
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
         if (cooldownTurnos > 0) {
-          cooldownsDefensor[habilidad.id] = cooldownTurnos;
+          establecerCooldownHabilidad(cooldownsDefensor,habilidad);
         }
       }
     } else {
@@ -315,7 +339,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
       }
 
       const resultado = await prisma.$transaction(async (tx) => {
-        await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+        await gastarRecursosHabilidad(tx, personaje.id, habilidad,recursosHabilidad);
         return finalizarAsedio({
           tx,
 
@@ -412,7 +436,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     }
 
     const combateActualizado = await prisma.$transaction(async (tx) => {
-      await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+      await gastarRecursosHabilidad(tx, personaje.id, habilidad,recursosHabilidad);
       const siguienteUsuarioId =
         siguienteTurno === "atacante" ? atacanteUsuarioId : defensorUsuarioId;
       await regenerarRecursosPorTurno(tx, siguienteUsuarioId);
@@ -420,6 +444,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
       return actualizarCombateVersionado(tx, combate.id, combate.version, {
         jugadorHp,
         enemigoHp,
+        ...(filaActorTactica!==undefined?(actor==="atacante"?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{enemigoPosicion:["mele","centro","retaguardia"][filaActorTactica]}):{}),
         jugadorDefensa,
         enemigoDefensa,
         ronda: siguienteRonda,

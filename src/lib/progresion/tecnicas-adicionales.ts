@@ -2,6 +2,8 @@ import { CLASES } from "./clases";
 import { CATALOGO_TECNICAS_ADICIONALES } from "./catalogo-tecnicas-adicionales";
 import type { ComandoTactico, FamiliaTactica, TecnicaTactica, UnidadTactica } from "../expediciones/motor-tactico";
 import type { DefinicionHabilidad } from "../tiposJuego";
+import { describirDisenoActiva } from "./catalogo-redisenado";
+import type { DisenoActiva, OperacionHabilidad } from "./diseno-habilidades";
 
 const consumir = (clave: string): ComandoTactico => ({ tipo: "consumir", objetivo: "actor", clave, maximo: 2 });
 const marca = (clave: string, familia: FamiliaTactica = "preparacion", objetivo: "actor" | "objetivo" = "actor", valor = 1): ComandoTactico => ({ tipo: "estado", familia, clave, objetivo, valor, duracion: 2 });
@@ -105,11 +107,21 @@ export const HABILIDADES_ADICIONALES: DefinicionHabilidad[] = Object.keys(CATALO
   const datos = CATALOGO_TECNICAS_ADICIONALES[claseId as keyof typeof CATALOGO_TECNICAS_ADICIONALES];
   const plantilla: UnidadTactica = { id: "catalogo", equipo: "aliado", hp: 100, hpMaximo: 100, energia: 100, energiaMaxima: 100, mana: 100, manaMaximo: 100, ataque: 10, ataqueMagico: 10, defensa: 0, defensaMagica: 0, fila: 1, columna: 0, estados: [], limites: {} };
   const tecnica = crearTecnicaAdicional(claseId, plantilla);
+  const operaciones:OperacionHabilidad[]=tecnica.comandos.flatMap<OperacionHabilidad>(op=>{
+    if(op.tipo==="estado"&&op.familia==="guardia")return [{tipo:"guardia_porcentaje" as const,objetivo:op.objetivo,porcentaje:.04,duracion:op.duracion}];
+    if(op.tipo==="vincular"&&op.clave==="custodia")return [{tipo:"guardia_porcentaje" as const,objetivo:"objetivo" as const,porcentaje:.08,duracion:2},{tipo:"estado" as const,objetivo:"actor" as const,familia:"preparacion" as const,clave:"custodia",valor:1,duracion:3}];
+    return [op];
+  });
+  if(datos.programa==="brasa_ruptura")operaciones.push({tipo:"estado",objetivo:"objetivo",familia:"exposicion",clave:"brasa_expuesta",valor:.05,duracion:2});
+  if(datos.programa==="trasplantar")operaciones.push({tipo:"adelantar",familia:"regeneracion",objetivo:"objetivo"});
+  if(datos.programa==="descargar_barrera")operaciones.push({tipo:"disipar",objetivo:"actor",negativo:true});
+  if(datos.programa==="redistribuir")operaciones.push({tipo:"consumir_preparacion",clave:"luz",efecto:"cura",factor:.15});
+  const diseno:DisenoActiva={efecto:"estado",propio:tecnica.objetivo==="propio",operaciones};
   return {
-    id: tecnica.id, claseId, nombre: datos.nombre, descripcion: datos.descripcion,
+    id: tecnica.id, claseId, nombre: datos.nombre, descripcion: describirDisenoActiva(diseno),
     tipo: "activa", efecto: "estado", animacion: "defensiva", rareza: "basico", precio: 0, costePuntosHabilidad: 1,
     nivelJobRequerido: claseId === "novato" ? 10 : CLASES[claseId].tier === 1 ? 15 : 20,
     costeEnergia: tecnica.costeEnergia, costeMana: tecnica.costeMana, cooldownTurnos: tecnica.cooldown,
-    objetivo: { equipo: tecnica.objetivo, patron: "individual", incluirPropio: true }, programaTactico: "tecnica_adicional",
+    objetivo: { equipo: tecnica.objetivo, patron: "individual", ...(tecnica.objetivo!=="enemigo"?{incluirPropio:true}:{}) }, versionReglas:2,disenoActiva:diseno,
   };
 });

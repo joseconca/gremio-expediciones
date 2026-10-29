@@ -70,7 +70,7 @@ test("Comerciante mejora botín y comercio y sus descendientes heredan el benefi
   assert.equal(tirarBotinEnemigo({ ...enemigo, probabilidadBotin: 0 }, () => 0, "comerciante"), null);
 });
 
-test("Hoja del velo usa ataque físico contra defensa mágica, también en sus pulsos", () => {
+test("Hoja del velo usa ataque físico contra defensa mágica y sustituye el desgaste por preparación del velo", () => {
   const random = Math.random;
   Math.random = () => 0.5;
   try {
@@ -79,19 +79,18 @@ test("Hoja del velo usa ataque físico contra defensa mágica, también en sus p
     const masMana = resolverHabilidadJugador(tecnica, { ...combate, jugadorAtaqueMagico: 999 });
     const masFuerza = resolverHabilidadJugador(tecnica, { ...combate, jugadorAtaque: 200 });
     const protegido = resolverHabilidadJugador(tecnica, { ...combate, enemigoDefensaMagica: 100 });
-    assert.equal(normal.accion.dano, 140);
+    assert.equal(normal.accion.dano, 125);
     assert.equal(masMana.accion.dano, normal.accion.dano);
-    assert.equal(masFuerza.accion.dano, 280);
-    assert.equal(protegido.accion.dano, 70);
-    assert.equal(normal.efectos.find((e) => e.tipo === "dano_progresivo").valor, 12);
-    assert.equal(protegido.efectos.find((e) => e.tipo === "dano_progresivo").valor, 6);
+    assert.equal(masFuerza.accion.dano, 250);
+    assert.equal(protegido.accion.dano, 62);
+    assert.equal(normal.efectosEnemigoActualizados.some(e=>e.tipo==="dano_progresivo"),false);
   } finally { Math.random = random; }
 });
 
 test("barrera bloquea un impacto, no consume fallos y no escala sus cargas", () => {
   const habilidad = obtenerHabilidadPorId("abjurador_tactica");
   const resultado = resolverHabilidadJugador(habilidad, combate);
-  const efectos = leerEfectosCombate(resultado.efectos);
+  const efectos = leerEfectosCombate(resultado.efectosJugadorActualizados).filter(e=>e.tipo==="barrera");
   const fallo = { dano: 0, critico: false, texto: "Fallo" };
   aplicarBarreraAccion(fallo, efectos);
   assert.equal(efectos.length, 1);
@@ -105,7 +104,7 @@ test("barrera bloquea un impacto, no consume fallos y no escala sus cargas", () 
   assert.equal(siguiente.dano, 50);
   const mejorada = ajustarHabilidadPorNivel(habilidad, 10);
   assert.equal(mejorada.estadosSecundarios[0].valor, 1);
-  const expirada = procesarEfectosTurno([{ ...resultado.efectos[0], turnosRestantes: 1 }], 50, 100, 50, "Aliado");
+  const expirada = procesarEfectosTurno([{ ...resultado.efectosJugadorActualizados.find(e=>e.tipo==="barrera"), turnosRestantes: 1 }], 50, 100, 50, "Aliado");
   assert.equal(expirada.efectos.length, 0);
 });
 
@@ -118,25 +117,28 @@ test("bloquear una técnica también impide el drenaje y sus estados perjudicial
     assert.equal(resultado.accion.dano, 0);
     assert.equal(resultado.jugadorHp, combate.jugadorHp);
     assert.equal(resultado.efectos.length, 0);
-    assert.equal(escudo.length, 0);
+    assert.equal(resultado.efectosEnemigoActualizados.some(e=>e.tipo==="barrera"),false);
+    assert.equal(escudo.length,1,"el resolver no modifica el snapshot de entrada");
   } finally { Math.random = rng; }
 });
 
 test("Bardo y Heraldo aplican mejoras reales a los objetivos aliados", () => {
   const bardo = resolverHabilidadJugador(obtenerHabilidadPorId("bardo_tactica"), combate);
-  assert.equal(calcularPrecisionModificada(75, bardo.efectos), 81);
+  const golpeBardo={dano:100,critico:false,texto:""};
+  aplicarBarreraAccion(golpeBardo,bardo.efectosJugadorActualizados);
+  assert.equal(golpeBardo.dano,82);
   const heraldo = resolverHabilidadJugador(obtenerHabilidadPorId("heraldo_guerra_tactica"), combate);
-  assert.equal(calcularAtaqueModificado(100, heraldo.efectos), 115);
-  assert.equal(heraldo.jugadorDefensa, 57);
-  const retirados = retirarEfectosHabilidad(heraldo.efectos, "heraldo_guerra_tactica", heraldo.jugadorDefensa);
-  assert.equal(retirados.defensa, combate.jugadorDefensa);
+  const golpeHeraldo={dano:100,critico:false,texto:""};
+  aplicarBarreraAccion(golpeHeraldo,heraldo.efectosJugadorActualizados);
+  assert.equal(golpeHeraldo.dano,79);
+  assert.equal(heraldo.jugadorDefensa,combate.jugadorDefensa,"las guardias no alteran permanentemente la defensa");
 });
 
 test("las clases nuevas tienen habilidades aprendibles y visuales provisionales existentes", () => {
   assert.equal(new Set(HABILIDADES.map((h) => h.id)).size, HABILIDADES.length);
   for (const clase of Object.values(CLASES_NUEVAS)) {
     const propias = HABILIDADES.filter((h) => h.claseId === clase.id);
-    assert.equal(propias.filter((h) => h.tipo === "activa").length, 3, clase.id);
+    assert.equal(propias.filter((h) => h.tipo === "activa").length, 4, clase.id);
     assert.equal(propias.filter((h) => h.tipo === "pasiva").length, 2, clase.id);
     assert.ok(propias.every((h) => h.nivelJobRequerido <= clase.nivelJobMaximo));
     assert.equal(obtenerNombreClaseHeroe(null, clase.id), clase.nombre);

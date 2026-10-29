@@ -52,6 +52,7 @@ function loadService(prisma, testOptions = {}) {
       },
     },
     "@/lib/expediciones/estados-combate": {
+      ...require("../src/lib/expediciones/estados-combate.ts"),
       aplicarBarreraAccion: require("../src/lib/expediciones/estados-combate.ts").aplicarBarreraAccion,
       retirarEfectosHabilidad: require("../src/lib/expediciones/estados-combate.ts").retirarEfectosHabilidad,
       calcularAtaqueModificado: (value) => value,
@@ -233,6 +234,9 @@ function mkCombat(overrides = {}) {
 }
 
 function mockPrisma(combat, options = {}) {
+  const propiaV2=Object.values(options.habilidadesPorId??{}).find(h=>h.versionReglas===2);
+  const claseFixture=options.profesionActivaId??propiaV2?.claseId??"novato";
+  const jobFixture=options.nivelJob??(propiaV2?require("../src/lib/progresion/clases.ts").CLASES[claseFixture].nivelJobMaximo:1);
   const calls = {
     combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [],
     expeditionParticipantWrites: [], resourceWrites: [], inventoryWrites: [], userWrites: [],
@@ -245,8 +249,8 @@ function mockPrisma(combat, options = {}) {
     nivel: 3,
     experiencia: 0,
     rangosAmenazaCompletados: [],
-    profesionActivaId: "novato",
-    progresosClase: [{ claseId: "novato", desbloqueada: true, nivelJob: 1 }],
+    profesionActivaId: claseFixture,
+    progresosClase: [{ claseId: claseFixture, desbloqueada: true, nivelJob: jobFixture }],
     fuerza: 5,
     agilidad: 5,
     vitalidad: 5,
@@ -440,6 +444,7 @@ function mockPrisma(combat, options = {}) {
     },
     calls,
     options,
+    character,
   };
 }
 
@@ -452,6 +457,39 @@ test("solo el aventurero que tiene el turno puede atacar", async () => {
     (error) => error.status === 409 && error.code === "NO_ES_TU_TURNO",
   );
   assert.equal(calls.combatWrites.length, 0);
+});
+
+test("las 245 activas con cinco ranuras y tres pasivas persisten en party el mismo resultado que individual", async () => {
+  const {HABILIDADES,obtenerHabilidadesDisponiblesParaClase}=require("../src/lib/habilidades.ts");
+  const {calcularEstadisticasPersonaje}=require("../src/lib/estadisticasPersonaje.ts");
+  const {resolverHabilidadJugador}=require("../src/lib/expediciones/combate.ts");
+  const rng=Math.random;Math.random=()=>.5;
+  let comprobadas=0;
+  try{
+    for(const h of HABILIDADES.filter(h=>h.tipo==="activa")){
+      const legales=obtenerHabilidadesDisponiblesParaClase(h.claseId);
+      const otras=legales.filter(a=>a.tipo==="activa"&&a.id!==h.id).slice(0,4);
+      const pasivas=legales.filter(a=>a.tipo==="pasiva").slice(0,3);
+      const habilidades=[...otras.map((a,i)=>({habilidadId:a.id,nivel:1,slot:`activa_${i+1}`})),{habilidadId:h.id,nivel:1,slot:"activa_5"},...pasivas.map((p,i)=>({habilidadId:p.id,nivel:1,slot:`pasiva_${i+1}`}))];
+      const actor=mkParticipant("u1",0,50,100);
+      const combat=mkCombat({participantes:[actor],enemigoHp:100000,enemigoHpMaximo:100000});
+      const options={profesionActivaId:h.claseId,resolverHabilidadesReales:true,efectosReales:true,energiaActual:100,manaActual:1000,habilidades,habilidadesPorId:Object.fromEntries(legales.map(a=>[a.id,a]))};
+      const {prisma,character}=mockPrisma(combat,options);
+      const stats=calcularEstadisticasPersonaje(character,pasivas).total;
+      const aliado=h.objetivo?.equipo!=="enemigo"&&h.efecto!=="dano";
+      const c={actorId:"u1",objetivoId:aliado?"u1":"enemigo-1",claseId:h.claseId,ciclo:1,actorHp:50,actorHpMaximo:100,energia:100,energiaMaxima:stats.energiaMaxima,mana:stats.manaMaximo,manaMaximo:stats.manaMaximo,ataque:20,ataqueMagico:15,defensaActor:5,defensaMagicaActor:4,efectosActor:[],objetivoHp:aliado?50:100000,objetivoHpMaximo:aliado?100:100000,defensaObjetivo:aliado?5:4,defensaMagicaObjetivo:aliado?4:3,efectosObjetivo:[],objetivoAliado:aliado,filaActor:0,filaObjetivo:aliado?0:1,pasivas,numeroObjetivos:1,principal:true};
+      const esperado=resolverHabilidadJugador(h,{contextoTactico:c,jugadorHp:50,jugadorHpMaximo:100,jugadorDefensa:5,jugadorDefensaMagica:4,jugadorAtaque:20,jugadorAtaqueMagico:15,jugadorNivel:3,jugadorProbCritico:.1,jugadorDanoCritico:1.5,jugadorPrecision:75,enemigoEvasion:0,enemigoDefensa:4,enemigoDefensaMagica:3,enemigoNombre:"Slime",efectosJugador:[],efectosEnemigo:[]});
+      const real=await loadService(prisma,options).ejecutarAccionCombateParty("u1","expedition-1","usar_habilidad",{habilidadId:h.id,objetivoId:aliado?"u1":"enemigo-1"});
+      assert.equal(real.accion.dano,esperado.accion.dano,h.id+": daño");
+      assert.equal(combat.participantes[0].jugadorHp,esperado.actorHpActualizado,h.id+": PV del actor");
+      assert.equal(combat.participantes[0].jugadorDefensa,esperado.jugadorDefensa,h.id+": defensa");
+      const normalizar=e=>JSON.parse(JSON.stringify(e??[]));
+      assert.deepEqual(normalizar(combat.participantes[0].efectos),normalizar(esperado.efectosActorActualizados),h.id+": efectos del actor");
+      if(!aliado)assert.deepEqual(normalizar(combat.enemigos[0].efectos),normalizar(esperado.efectosEnemigoActualizados),h.id+": efectos del rival");
+      comprobadas++;
+    }
+  }finally{Math.random=rng;}
+  assert.equal(comprobadas,245);
 });
 
 test("la barrera de un aliado bloquea y se consume de forma persistente durante el turno enemigo", async () => {
@@ -469,6 +507,7 @@ test("la barrera de un aliado bloquea y se consume de forma persistente durante 
 
 test("Heraldo mejora al grupo y reaplicar sus mejoras no acumula defensa", async () => {
   const combat = mkCombat();
+  combat.participantes[1].jugadorPosicion="mele";
   const habilidad = require("../src/lib/habilidades.ts").obtenerHabilidadPorId("heraldo_guerra_tactica");
   const previo = { habilidadId: habilidad.id, tipo: "bonus_defensa", valor: 2, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" };
   combat.participantes[1].jugadorDefensa = 7;
@@ -482,10 +521,40 @@ test("Heraldo mejora al grupo y reaplicar sus mejoras no acumula defensa", async
   const result = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id });
   assert.deepEqual(result.accion.objetivosUsuarioIds, ["u1", "u2"]);
   for (const miembro of combat.participantes) {
-    assert.equal(miembro.jugadorDefensa, 6);
-    assert.equal(miembro.efectos.filter((e) => e.tipo === "bonus_defensa").length, 1);
-    assert.ok(miembro.efectos.some((e) => e.tipo === "bonus_ataque"));
+    assert.equal(miembro.jugadorDefensa, 5);
+    assert.equal(miembro.efectos.filter((e) => e.tipo === "bonus_defensa").length, 0);
+    const guardias=miembro.efectos.flatMap(e=>e.datosTacticos?.estados??[]).filter(e=>e.familia==="guardia");
+    assert.equal(guardias.length,1);
+    assert.equal(guardias[0].valor,10,"la reserva del 21 % se reparte entre los dos aliados");
   }
+});
+
+test("la protección parcial se descuenta en la base de datos aunque conserve el contenedor táctico", async () => {
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, participantes: [mkParticipant("u1", 0)], turnosPendientes: [{ actorId: "enemigo-1", equipo: "enemigo" }] });
+  combat.participantes[0].efectos = [{ habilidadId: "tactica:u1", tipo: "tactico", valor: 0, duracionTurnos: 1, turnosRestantes: 1, objetivo: "jugador", datosTacticos: { version: 2, propietarioId: "u1", limites: {}, estados: [{ id: "g", fuenteId: "guardia", creadorId: "u1", clave: "guardia", familia: "guardia", valor: 25, restantes: 3, reloj: "turno", cargas: 1 }] } }];
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(combat.participantes[0].jugadorHp, 100);
+  assert.equal(combat.participantes[0].efectos[0].datosTacticos.estados[0].valor, 15);
+  assert.ok(calls.participantWrites.some(w => w.data.efectos?.[0]?.datosTacticos?.estados[0]?.valor === 15));
+  combat.faseTurno = "enemigo";
+  combat.turnoActualUsuarioId = null;
+  combat.turnosPendientes = [{ actorId: "enemigo-1", equipo: "enemigo" }];
+  await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(combat.participantes[0].efectos[0].datosTacticos.estados[0].valor, 5);
+});
+
+test("la cura de área real del Arconte reserva el presupuesto para los aliados heridos", async () => {
+  const h = require("../src/lib/habilidades.ts").obtenerHabilidadPorId("arconte_tactica");
+  const combat = mkCombat({ participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1, 90), mkParticipant("u3", 2, 70)] });
+  for (const participante of combat.participantes) participante.jugadorPosicion = "mele";
+  const options = { profesionActivaId: "arconte", energiaActual: 100, manaActual: 1000, resolverHabilidadesReales: true, efectosReales: true, habilidades: [{ habilidadId: h.id, nivel: 1, slot: "activa_5" }], habilidadesPorId: { [h.id]: h } };
+  const { prisma } = mockPrisma(combat, options);
+  await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: h.id, objetivoId: "u1" });
+  assert.deepEqual(combat.participantes.map(p => p.jugadorHp), [100, 96, 89]);
+  const preparaciones = combat.participantes[0].efectos.flatMap(e => e.datosTacticos?.estados ?? []).filter(e => e.clave === "luz");
+  assert.equal(preparaciones.length, 1);
 });
 
 test("un ataque básico reduce al enemigo y avanza al siguiente miembro", async () => {
@@ -1143,7 +1212,7 @@ test("party aplica la pasiva del sanador y los PV máximos del aliado como el re
   });
   assert.equal(resultado.accion.curacion, individual.accion.curacion);
   assert.equal(combat.participantes[1].jugadorHp, individual.jugadorHp);
-  assert.equal(combat.participantes[1].efectos[0].valor, individual.efectos[0].valor);
+  assert.equal(combat.participantes[1].efectos.find(e=>e.tipo==="curacion_progresiva").valor, individual.efectosJugadorActualizados.find(e=>e.tipo==="curacion_progresiva").valor);
   assert.equal(combat.participantes[0].jugadorHp, 100);
 });
 

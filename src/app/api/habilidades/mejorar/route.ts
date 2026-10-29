@@ -44,7 +44,7 @@ export async function POST(request: Request) {
       if (!puedeUsarHabilidadDeClase(profesionActiva, clasePropietariaId)) throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
       const aprendida = usuario.personaje.habilidades[0];
       if (!aprendida) throw new Error("HABILIDAD_NO_APRENDIDA");
-      const maximo = nivelMaximoHabilidad(clasePropietariaId);
+      const maximo = nivelMaximoHabilidad(clasePropietariaId,definicion);
       if (aprendida.nivel >= maximo) throw new Error("NIVEL_MAXIMO");
       const progreso = await tx.progresoClase.findUnique({
         where: { personajeId_claseId: { personajeId: usuario.personaje.id, claseId: clasePropietariaId } },

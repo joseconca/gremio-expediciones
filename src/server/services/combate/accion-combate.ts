@@ -96,8 +96,10 @@ async function recuperarEnergiaLimitada(
   tx: Prisma.TransactionClient,
   personajeId: string,
   cantidad: number,
+  mana = 0,
+  pago?: DefinicionHabilidad,
 ) {
-  if (cantidad <= 0) return;
+  if (!pago && cantidad <= 0 && mana <= 0) return;
   const personaje = await tx.personaje.findUnique({
     where: { id: personajeId },
     select: {
@@ -114,6 +116,7 @@ async function recuperarEnergiaLimitada(
       velocidadMejoras: true,
       capacidadCarruajeMejoras: true,
       energiaActual: true,
+      manaActual: true,
       habilidades: {
         where: { slot: { not: null } },
         select: { habilidadId: true, nivel: true },
@@ -127,7 +130,7 @@ async function recuperarEnergiaLimitada(
       },
     },
   });
-  if (!personaje) return;
+  if (!personaje) {if(pago)throw new Error("PERSONAJE_NO_ENCONTRADO");return;}
 
   const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
   const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
@@ -149,13 +152,17 @@ async function recuperarEnergiaLimitada(
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
+  const energiaDisponible=Math.min(personaje.energiaActual,estadisticas.energiaMaxima??100);
+  const manaDisponible=Math.min(personaje.manaActual,estadisticas.manaMaximo??10);
+  const costeE=Math.max(0,Math.floor(pago?.costeEnergia??0)),costeM=Math.max(0,Math.floor(pago?.costeMana??0));
+  if(pago&&(energiaDisponible<costeE||manaDisponible<costeM))throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
   const energiaNueva = Math.min(
     estadisticas.energiaMaxima ?? 100,
-    personaje.energiaActual + Math.floor(cantidad),
+    energiaDisponible - costeE + Math.floor(cantidad),
   );
   const actualizado = await tx.personaje.updateMany({
-    where: { id: personaje.id, energiaActual: personaje.energiaActual },
-    data: { energiaActual: energiaNueva },
+    where: { id: personaje.id, energiaActual: personaje.energiaActual, ...(mana>0||pago?{manaActual:personaje.manaActual}:{}) },
+    data: { energiaActual: energiaNueva, ...(mana>0||pago?{manaActual:Math.min(estadisticas.manaMaximo??10,manaDisponible-costeM+Math.floor(mana))}:{}) },
   });
   if (actualizado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
 }
@@ -163,15 +170,20 @@ async function recuperarEnergiaLimitada(
 export async function gastarRecursosHabilidad(
   tx: Prisma.TransactionClient,
   personajeId: string,
-  habilidad: DefinicionHabilidad | null
+  habilidad: DefinicionHabilidad | null,
+  recuperacion: { energia: number; mana: number } = { energia:0,mana:0 },
 ) {
   if (!habilidad) return;
 
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
-  const recuperacionEnergia = Math.max(0, Math.floor(habilidad.recuperarEnergia ?? 0));
+  const recuperacionEnergia = Math.max(0, Math.floor((habilidad.recuperarEnergia ?? 0)+recuperacion.energia));
+  if(habilidad.versionReglas===2){
+    await recuperarEnergiaLimitada(tx,personajeId,recuperacionEnergia,recuperacion.mana,habilidad);
+    return;
+  }
   if (costeEnergia === 0 && costeMana === 0) {
-    await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
+    await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia,recuperacion.mana);
     return;
   }
 
@@ -190,7 +202,7 @@ export async function gastarRecursosHabilidad(
   if (resultado.count !== 1) {
     throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
   }
-  await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
+  await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia,recuperacion.mana);
 }
 
 export async function regenerarRecursosPorTurno(
@@ -902,6 +914,7 @@ export async function prepararAccionCombate(
       accion,
       objetivo: body.objetivo,
       efectoHabilidad: habilidad?.efecto,
+      equipoHabilidad: habilidad?.objetivo?.equipo,
       // La ruta antigua adapta peticiones sin objetivo al contrato explícito.
       permitirInferencia: tipoEsperado === undefined,
     });

@@ -204,12 +204,12 @@ test("Primeros Auxilios aplica la curación inmediata y los dos pulsos progresiv
 
   assert.equal(resultado.accion.curacion, 15);
   assert.equal(resultado.jugadorHp, 55);
-  assert.equal(resultado.efectos.length, 1);
-  assert.equal(resultado.efectos[0].tipo, "curacion_progresiva");
-  assert.equal(resultado.efectos[0].turnosRestantes, 2);
+  const activos=resultado.efectosJugadorActualizados;
+  const vendaje=activos.find(e=>e.tipo==="curacion_progresiva");
+  assert.equal(vendaje.turnosRestantes, 2);
 
   const primerTurno = procesarEfectosTurno(
-    resultado.efectos, resultado.jugadorHp, 100, resultado.jugadorDefensa, "Aventurero",
+    activos, resultado.jugadorHp, 100, resultado.jugadorDefensa, "Aventurero",
   );
   assert.equal(primerTurno.curacionAplicada, 7);
   assert.equal(primerTurno.hp, 62);
@@ -221,6 +221,6 @@ test("Primeros Auxilios aplica la curación inmediata y los dos pulsos progresiv
   );
   assert.equal(segundoTurno.curacionAplicada, 7);
   assert.equal(segundoTurno.hp, 69);
-  assert.equal(segundoTurno.efectos.length, 0);
+  assert.equal(segundoTurno.efectos.filter(e=>e.tipo!=="tactico").length, 0);
   assert.match(segundoTurno.mensajes.join(" "), /recupera 7 HP por curación progresiva/);
 });

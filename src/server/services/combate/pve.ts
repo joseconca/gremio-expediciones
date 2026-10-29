@@ -1,3 +1,5 @@
+import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
+import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
@@ -178,6 +180,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
   const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
   let filaActorTactica: number | undefined;
+  let recursosHabilidad = { energia:0,mana:0 };
   const instantaneaActorTactico = () => ({ id: usuario.id, hp: jugadorHp, hpMaximo: combate.jugadorHpMaximo, ataque: combate.jugadorAtaque, ataqueMagico: combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, defensa: jugadorDefensa, defensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa, posicion: combate.jugadorPosicion, efectos });
   const enemigosLegados = leerEnemigosEnCombate(enemigosContexto);
   let enemigosEnCombate: EnemigoEnCombate[] = enemigosLegados.length > 0
@@ -233,6 +236,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         log.push(accionHuida.texto);
         const resultado = await prisma.$transaction(async (tx) => {
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            ...(filaActorTactica!==undefined?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{}),
             jugadorHp: Math.max(1, jugadorHp),
             jugadorDefensa,
             enemigoHp,
@@ -295,6 +299,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
           const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
           accionAnimada = resolverAtaqueJugador({
+            efectosEnemigo: efectosObjetivo,
             jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
             jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
             usarMejorAtaqueMagico: usarAtaqueMagico,
@@ -307,6 +312,9 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             enemigoDefensaMagica: objetivo.defensaMagica,
             enemigoNombre: objetivo.nombre,
           });
+          aplicarBarreraAccion(accionAnimada,efectosObjetivo);
+          consumirPrecisionTactica(efectos);
+          efectosEnemigoPorId.set(objetivo.id,{defensa:objetivo.defensa,efectos:efectosObjetivo});
           accionAnimada = { ...accionAnimada, enemigoObjetivoId: objetivo.id };
           danoEnemigoPorId.set(objetivo.id, accionAnimada.dano);
           const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
@@ -358,14 +366,14 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             if (seleccion.error || seleccion.objetivos.length === 0) {
               return NextResponse.json({ error: "No hay enemigos válidos para esa habilidad." }, { status: 409 });
             }
-            const resultados = seleccion.objetivos.map((seleccionado) => {
+            const resultados = seleccion.objetivos.map((seleccionado,indiceObjetivo) => {
               const enemigo = enemigosEnCombate.find((entrada) => entrada.id === seleccionado.id);
               if (!enemigo || enemigo.hp <= 0) {
                 throw new Error("ENEMIGO_OBJETIVO_NO_ACTIVO");
               }
               const efectosObjetivo = leerEfectosCombate(enemigo.efectos);
               const resultado = resolverHabilidadJugador(habilidad!, {
-                contextoTactico: habilidad?.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosObjetivo }, false) : undefined,
+                contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosObjetivo }, false,{numeroObjetivos:seleccion.objetivos.length,principal:indiceObjetivo===0}) : undefined,
                 jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
                 jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
                 jugadorProbCritico: combate.jugadorProbCritico,
@@ -413,6 +421,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             };
             jugadorHp = primero.resultado.jugadorHp;
             filaActorTactica = primero.resultado.filaActorActualizada;
+            recursosHabilidad = primero.resultado.recursosRecuperados ?? recursosHabilidad;
             jugadorDefensa = primero.resultado.jugadorDefensa;
             efectos = [
               ...efectos.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
@@ -422,7 +431,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             ];
           } else {
             const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-              contextoTactico: habilidad.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), instantaneaActorTactico(), true) : undefined,
+              contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), instantaneaActorTactico(), true) : undefined,
               jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
               jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
               jugadorProbCritico: combate.jugadorProbCritico,
@@ -443,6 +452,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
             accionAnimada = resultadoHabilidad.accion;
             filaActorTactica = resultadoHabilidad.filaActorActualizada;
+            recursosHabilidad = resultadoHabilidad.recursosRecuperados ?? recursosHabilidad;
             jugadorHp = resultadoHabilidad.jugadorHp;
             jugadorDefensa = resultadoHabilidad.jugadorDefensa;
             enemigoDefensa = resultadoHabilidad.enemigoDefensa;
@@ -456,7 +466,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
           if (cooldownTurnos > 0) {
-            cooldowns[habilidad.id] = cooldownTurnos;
+            establecerCooldownHabilidad(cooldowns,habilidad);
           }
         }
       } else {
@@ -487,6 +497,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           };
           if (enemigoActualizado.hp > 0 && jugadorHp > 0) {
             const accionDelEnemigo = resolverAtaqueEnemigo({
+              efectosJugador: efectos,
               enemigoAtaque: calcularAtaqueModificado(enemigoActualizado.ataque, enemigoActualizado.efectos),
               enemigoProbCritico: enemigoActualizado.probCritico,
               enemigoDanoCritico: enemigoActualizado.danoCritico,
@@ -496,6 +507,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               enemigoNombre: enemigoActualizado.nombre,
             });
             aplicarBarreraAccion(accionDelEnemigo, efectos);
+            consumirPrecisionTactica(enemigoActualizado.efectos);
             const hpAntes = jugadorHp;
             jugadorHp = Math.max(0, jugadorHp - accionDelEnemigo.dano);
             impactos.push({
@@ -639,7 +651,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
-          await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
           if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -675,6 +687,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
 
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            ...(filaActorTactica!==undefined?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{}),
             enemigoHp: 0,
             enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
             jugadorDefensa,
@@ -828,7 +841,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
-          await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
           if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -924,6 +937,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
 
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            ...(filaActorTactica!==undefined?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{}),
             jugadorHp: 0,
             enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
             jugadorDefensa,
@@ -1019,7 +1033,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       }
 
       const combateActualizado = await prisma.$transaction(async (tx) => {
-        await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+        await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
         if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -1048,9 +1062,9 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         }
 
         return actualizarCombateVersionado(tx, combate.id, combate.version, {
+            ...(filaActorTactica!==undefined?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{}),
           jugadorHp,
           jugadorDefensa,
-          ...(filaActorTactica !== undefined ? { jugadorPosicion: ["mele", "centro", "retaguardia"][filaActorTactica] } : {}),
           enemigoHp,
           enemigoDefensa,
           enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
