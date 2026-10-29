@@ -1,3 +1,4 @@
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -1043,7 +1044,8 @@ export async function obtenerEstadoParty(usuarioId: string) {
     energiaActual: personajeAcciones?.energiaActual ?? 0,
     manaActual: personajeAcciones?.manaActual ?? 0,
     habilidades: (personajeAcciones?.habilidades ?? []).flatMap((h) => {
-      const definicion = obtenerHabilidadPorId(h.habilidadId);
+      const base = obtenerHabilidadPorId(h.habilidadId);
+      const definicion = base ? ajustarHabilidadPorNivel(base, h.nivel) : undefined;
       return definicion?.tipo === "activa"
         ? [{ habilidadId: h.habilidadId, nombre: definicion.nombre, descripcion: definicion.descripcion, costeEnergia: definicion.costeEnergia ?? 0, costeMana: definicion.costeMana ?? 0, cooldownTurnos: definicion.cooldownTurnos ?? 0, nivel: h.nivel, slot: h.slot }]
         : [];

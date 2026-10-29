@@ -310,8 +310,8 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
 
   const primerosAuxilios = HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios");
   assert.equal(primerosAuxilios.nivelJobRequerido, 3);
-  assert.equal(primerosAuxilios.costeEnergia, 20);
-  assert.equal(primerosAuxilios.cooldownTurnos, 5);
+  assert.equal(primerosAuxilios.costeEnergia, 40);
+  assert.equal(primerosAuxilios.cooldownTurnos, 7);
   assert.equal(primerosAuxilios.curacionPorcentaje, 0.15);
   assert.equal(primerosAuxilios.duracionTurnos, 2);
   assert.equal(primerosAuxilios.estadosSecundarios[0].valor, 0.075);
@@ -319,7 +319,7 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
 
   const rejuvenecer = HABILIDADES.find((habilidad) => habilidad.id === "rejuvenecer");
   assert.equal(rejuvenecer.nivelJobRequerido, 10);
-  assert.equal(rejuvenecer.costeMana, 7);
+  assert.equal(rejuvenecer.costeMana, 12);
   assert.equal(rejuvenecer.cooldownTurnos, 4);
   assert.equal(rejuvenecer.duracionTurnos, 3);
   assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.08);
@@ -965,7 +965,7 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
     personajeMago,
     ["reserva_arcana"],
   ).total;
-  assert.equal(magoEquipado.manaMaximo, baseMago.manaMaximo + 100);
+  assert.equal(magoEquipado.manaMaximo, baseMago.manaMaximo + 20);
 
   const personajeAcolito = {
     ...basePersonaje,

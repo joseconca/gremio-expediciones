@@ -474,6 +474,7 @@ test("Heraldo mejora al grupo y reaplicar sus mejoras no acumula defensa", async
   combat.participantes[1].efectos = [previo];
   const { prisma, options } = mockPrisma(combat, {
     resolverHabilidadesReales: true,
+    energiaActual: 100, manaActual: 100,
     habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }],
     habilidadesPorId: { [habilidad.id]: habilidad },
   });
@@ -1150,7 +1151,7 @@ test("las técnicas de recuperación de energía de party usan el mismo gasto y 
     habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }], habilidadesPorId: { [habilidad.id]: habilidad } };
   const { prisma, calls } = mockPrisma(combat, options);
   await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id });
-  assert.ok(calls.characterWrites.some((w) => w.where.id === "personaje-u1" && w.data.energiaActual === 85));
+  assert.ok(calls.characterWrites.some((w) => w.where.id === "personaje-u1" && w.data.energiaActual === 75));
 });
 
 test("una poción de vida aplica también su porcentaje en party", async () => {

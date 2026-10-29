@@ -39,7 +39,7 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   const cantidades: (keyof DefinicionHabilidad)[] = [
     "danoBase", "curacion", "bonusAtaque", "bonusAtaqueMagico", "bonusDefensa",
     "bonusDefensaMagica", "bonusPrecision", "bonusEnergiaMaxima", "bonusManaMaximo",
-    "bonusRegeneracionVida", "bonusRegeneracionEnergia", "bonusRegeneracionMana",
+    "bonusRegeneracionVida", "bonusRegeneracionEnergia",
     "bonusVelocidad", "bonusHpMaximo", "recuperarEnergia",
   ];
   for (const campo of porcentajes) {
@@ -55,6 +55,10 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
       (mejorada as unknown as Record<string, unknown>)[campo] = Math.max(1, Math.round(valor * factor));
     }
   }
+  // El maná conserva fracciones entre turnos: cada rango debe mejorar su regeneración.
+  if ((habilidad.bonusRegeneracionMana ?? 0) > 0) {
+    mejorada.bonusRegeneracionMana = Math.round(habilidad.bonusRegeneracionMana! * factor * 100) / 100;
+  }
   if (habilidad.multiplicadorCritico !== undefined && habilidad.multiplicadorCritico > 1) {
     mejorada.multiplicadorCritico = Math.round(habilidad.multiplicadorCritico * factor * 100) / 100;
   }
@@ -65,7 +69,10 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   }
   const reduccionCooldown = tier <= 0 ? Math.floor(rangos / 2) : tier === 1 ? Math.floor(rangos / 3) : Math.floor(rangos / 4);
   if (habilidad.cooldownTurnos !== undefined && habilidad.cooldownTurnos > 0 && reduccionCooldown > 0) {
-    mejorada.cooldownTurnos = Math.max(1, habilidad.cooldownTurnos - reduccionCooldown);
+    const recuperacionGratuita = (habilidad.recuperarEnergia ?? 0) > 0 && !(habilidad.costeEnergia || habilidad.costeMana);
+    const curacion = habilidad.efecto === "curacion" || habilidad.efecto === "curacion_progresiva";
+    const minimo = recuperacionGratuita ? 4 : curacion ? 2 : 1;
+    mejorada.cooldownTurnos = Math.max(minimo, habilidad.cooldownTurnos - reduccionCooldown);
   }
   if (habilidad.estadosSecundarios) {
     mejorada.estadosSecundarios = habilidad.estadosSecundarios.map((estado) => {
