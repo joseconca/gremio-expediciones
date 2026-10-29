@@ -26,6 +26,9 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   const maximo = nivelMaximoHabilidad(habilidad.claseId);
   const nivel = Number.isFinite(nivelSolicitado) ? Math.max(1, Math.min(maximo, Math.floor(nivelSolicitado))) : 1;
   if (nivel === 1) return habilidad;
+  // Las transformaciones conservan su presupuesto y sus relojes: subir rango
+  // no puede convertir una retirada/traslado en una cadena de acciones gratis.
+  if (habilidad.programaTactico) return { ...habilidad };
 
   const tier = CLASES[habilidad.claseId ?? "novato"]?.tier ?? 0;
   const rangos = nivel - 1;

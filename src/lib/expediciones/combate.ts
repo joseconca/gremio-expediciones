@@ -1,5 +1,6 @@
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
 import { aplicarBarreraAccion } from "./estados-combate";
+import { resolverTecnicaAdicional, type ContextoTecnicaTactica } from "./adaptador-tactico";
 
 export type AccionAnimadaCombate = {
   actor: "jugador" | "enemigo";
@@ -240,6 +241,7 @@ export function resolverAtaqueEnemigo(combate: {
 }
 
 interface CombateParaHabilidad {
+  contextoTactico?: ContextoTecnicaTactica;
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
   jugadorDefensa: number;
@@ -260,6 +262,10 @@ interface CombateParaHabilidad {
 }
 
 export interface ResultadoHabilidad {
+  efectosEnemigoActualizados?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
+  efectosActorActualizados?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
+  actorHpActualizado?: number;
+  filaActorActualizada?: number;
   accion: AccionAnimadaCombate;
   jugadorHp: number;
   jugadorDefensa: number;
@@ -309,6 +315,20 @@ export function resolverHabilidadJugador(
   habilidad: DefinicionHabilidad,
   combate: CombateParaHabilidad,
 ): ResultadoHabilidad {
+  if (habilidad.programaTactico) {
+    if (!combate.contextoTactico) throw new Error("FALTA_CONTEXTO_TACTICO");
+    const c = combate.contextoTactico;
+    const r = resolverTecnicaAdicional(habilidad,c);
+    const propios = r.efectosActor.map(e => ({ ...e, objetivo: "jugador" as const }));
+    const delObjetivo = r.efectosObjetivo.map(e => ({ ...e, objetivo: c.objetivoAliado ? "jugador" as const : "enemigo" as const }));
+    return {
+      accion: r.accion,
+      jugadorHp: c.objetivoAliado ? r.objetivoHp : r.actorHp,
+      jugadorDefensa: combate.jugadorDefensa, enemigoDefensa: combate.enemigoDefensa, efectos: [],
+      efectosActorActualizados: propios, actorHpActualizado: r.actorHp, filaActorActualizada: r.filaActor,
+      ...(c.objetivoAliado ? { efectosJugadorActualizados: delObjetivo } : { efectosJugadorActualizados: propios, efectosEnemigoActualizados: delObjetivo }),
+    };
+  }
   if (!habilidad.efecto) throw new Error(`La habilidad ${habilidad.id} no tiene un efecto de combate definido.`);
 
   let jugadorHp = combate.jugadorHp;

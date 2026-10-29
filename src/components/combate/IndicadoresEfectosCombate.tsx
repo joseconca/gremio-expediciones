@@ -20,6 +20,7 @@ type Indicador = {
 };
 
 const CONFIGURACION_ESTADO: Record<TipoEfectoTemporalHabilidad, { nombre: string; emoji: string; sprite: string }> = {
+  tactico: { nombre: "Preparaciones tácticas", emoji: "✦", sprite: "bonus_precision.svg" },
   curacion_progresiva: { nombre: "Curación progresiva", emoji: "💚", sprite: "curacion_progresiva.svg" },
   dano_progresivo: { nombre: "Daño progresivo", emoji: "🩸", sprite: "dano_progresivo.svg" },
   bonus_defensa: { nombre: "Defensa aumentada", emoji: "🛡️", sprite: "bonus_defensa.svg" },
@@ -90,7 +91,7 @@ export default function IndicadoresEfectosCombate({
   bonificacionesComida?: unknown;
   habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[];
 }) {
-  const indicadores: Indicador[] = leerEfectosCombate(efectos).map((efecto: EstadoEfectoHabilidad) => {
+  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e=>e.tipo !== "tactico" || (e.datosTacticos?.estados.length ?? 0) > 0).map((efecto: EstadoEfectoHabilidad) => {
     const configuracion = CONFIGURACION_ESTADO[efecto.tipo];
     const habilidad = obtenerHabilidadPorId(efecto.habilidadId);
     const turnos = Math.max(1, Math.floor(efecto.turnosRestantes));

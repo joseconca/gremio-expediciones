@@ -5,6 +5,16 @@ export function describirEstadoCombate(efecto: EstadoEfectoHabilidad): string {
   const valor = numero(efecto.valor);
   const porcentaje = numero(efecto.valor * 100);
   const textos: Record<EstadoEfectoHabilidad["tipo"], string> = {
+    tactico: efecto.datosTacticos?.estados.map(e => {
+      const nombre = e.clave.replaceAll("_"," ");
+      const descripcion = e.familia === "guardia" ? `absorbe hasta ${numero(e.valor)} de daño directo`
+        : e.familia === "regeneracion" ? `${numero(e.valor)} de cura por turno propio`
+          : e.familia === "herida" ? `${numero(e.valor)} de daño por turno propio`
+            : e.familia === "exposicion" ? `reduce la defensa un ${numero(e.valor * 100)} % para un impacto`
+              : e.familia === "precision" ? `${numero(e.valor)} puntos de precisión preparados`
+                : `${e.cargas} ${e.cargas === 1 ? "carga preparada" : "cargas preparadas"}`;
+      return `${nombre}: ${descripcion}. ${e.restantes} ${e.reloj === "ciclo" ? "ciclos" : "turnos propios"} restantes`;
+    }).join("; ") || "Sin preparaciones activas",
     dano_progresivo: `${valor} de daño por turno`,
     curacion_progresiva: `${valor} de cura por turno`,
     bonus_defensa: `+${valor} de defensa física`,
@@ -18,6 +28,7 @@ export function describirEstadoCombate(efecto: EstadoEfectoHabilidad): string {
     barrera: `Bloquea ${valor} ${efecto.valor === 1 ? "ataque directo" : "ataques directos"}`,
   };
   const turnos = Math.max(0, Math.floor(efecto.turnosRestantes));
+  if (efecto.tipo === "tactico") return textos.tactico + ".";
   return `${textos[efecto.tipo]}. ${turnos} ${turnos === 1 ? "turno restante" : "turnos restantes"}.`;
 }
 

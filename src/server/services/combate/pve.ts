@@ -1,3 +1,4 @@
+import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
@@ -176,6 +177,8 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
   } = contexto;
   const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
+  let filaActorTactica: number | undefined;
+  const instantaneaActorTactico = () => ({ id: usuario.id, hp: jugadorHp, hpMaximo: combate.jugadorHpMaximo, ataque: combate.jugadorAtaque, ataqueMagico: combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, defensa: jugadorDefensa, defensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa, posicion: combate.jugadorPosicion, efectos });
   const enemigosLegados = leerEnemigosEnCombate(enemigosContexto);
   let enemigosEnCombate: EnemigoEnCombate[] = enemigosLegados.length > 0
     ? enemigosLegados
@@ -362,6 +365,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               }
               const efectosObjetivo = leerEfectosCombate(enemigo.efectos);
               const resultado = resolverHabilidadJugador(habilidad!, {
+                contextoTactico: habilidad?.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosObjetivo }, false) : undefined,
                 jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
                 jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
                 jugadorProbCritico: combate.jugadorProbCritico,
@@ -379,7 +383,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
                 bonusCuracion,
                 efectosJugador: efectos,
               });
-              const efectosNuevos = [
+              const efectosNuevos = resultado.efectosEnemigoActualizados ?? [
                 ...efectosObjetivo.filter((efecto) => !resultado.efectos.some((nuevo) =>
                   nuevo.objetivo === "enemigo" && nuevo.habilidadId === efecto.habilidadId)),
                 ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
@@ -408,6 +412,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               } : {}),
             };
             jugadorHp = primero.resultado.jugadorHp;
+            filaActorTactica = primero.resultado.filaActorActualizada;
             jugadorDefensa = primero.resultado.jugadorDefensa;
             efectos = [
               ...efectos.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
@@ -417,6 +422,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             ];
           } else {
             const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+              contextoTactico: habilidad.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), instantaneaActorTactico(), true) : undefined,
               jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
               jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
               jugadorProbCritico: combate.jugadorProbCritico,
@@ -436,6 +442,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             });
 
             accionAnimada = resultadoHabilidad.accion;
+            filaActorTactica = resultadoHabilidad.filaActorActualizada;
             jugadorHp = resultadoHabilidad.jugadorHp;
             jugadorDefensa = resultadoHabilidad.jugadorDefensa;
             enemigoDefensa = resultadoHabilidad.enemigoDefensa;
@@ -1043,6 +1050,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         return actualizarCombateVersionado(tx, combate.id, combate.version, {
           jugadorHp,
           jugadorDefensa,
+          ...(filaActorTactica !== undefined ? { jugadorPosicion: ["mele", "centro", "retaguardia"][filaActorTactica] } : {}),
           enemigoHp,
           enemigoDefensa,
           enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,

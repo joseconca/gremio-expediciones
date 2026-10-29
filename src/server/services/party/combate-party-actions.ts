@@ -1,3 +1,4 @@
+import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
 import { Prisma } from "@prisma/client";
@@ -1156,6 +1157,8 @@ export async function ejecutarAccionCombateParty(
     let habilidad: DefinicionHabilidad | null = null;
     let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; energia: number; mana: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
+    let filaActorTactica: number | undefined;
+    const instantaneaActorTactico = () => ({ id: usuarioId, hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo, ataque: participante.jugadorAtaque, ataqueMagico: participante.jugadorAtaqueMagico, defensa: jugadorDefensa, defensaMagica: participante.jugadorDefensaMagica, posicion: participante.jugadorPosicion, efectos: efectosJugador });
     const danoEnemigoPorId = new Map<string, number>();
     const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof obtenerEfectos> }>();
     const objetivosAliadosModificados = new Map<string, {
@@ -1266,9 +1269,12 @@ export async function ejecutarAccionCombateParty(
           if (!aliado || aliado.estado !== "activo" || aliado.jugadorHp <= 0) {
             throw new PartyServiceError("El aliado seleccionado ya no puede recibir esa habilidad.", 409, "OBJETIVO_ALIADO_NO_ACTIVO");
           }
-          const previos = retirarEfectosHabilidad(obtenerEfectos(aliado.efectos), habilidad.id, aliado.jugadorDefensa);
+          const esPropio = aliado.usuarioId === usuarioId;
+          const hpAliado = esPropio ? jugadorHp : aliado.jugadorHp;
+          const previos = retirarEfectosHabilidad(esPropio ? efectosJugador : obtenerEfectos(aliado.efectos), habilidad.id, esPropio ? jugadorDefensa : aliado.jugadorDefensa);
           const efectosDelObjetivo = previos.efectos;
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
+            contextoTactico: habilidad.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: aliado.jugadorHpMaximo, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true) : undefined,
             bonusCuracion,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
             jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
@@ -1279,7 +1285,7 @@ export async function ejecutarAccionCombateParty(
             jugadorDefensa: previos.defensa,
             jugadorDefensaMagica: aliado.jugadorDefensaMagica,
             jugadorNivel: participante.jugadorNivel,
-            jugadorHp: aliado.jugadorHp,
+            jugadorHp: hpAliado,
             jugadorHpMaximo: aliado.jugadorHpMaximo,
             enemigoDefensa,
             enemigoDefensaMagica: combate.enemigoDefensaMagica,
@@ -1313,13 +1319,16 @@ export async function ejecutarAccionCombateParty(
           resultados.push({
             objetivoUsuarioId: aliado.usuarioId,
             resultado: resultadoObjetivo,
-            curacion: Math.max(0, resultadoObjetivo.jugadorHp - aliado.jugadorHp),
+            curacion: Math.max(0, resultadoObjetivo.jugadorHp - hpAliado),
           });
         }
         if (resultados.length === 0) {
           throw new PartyServiceError("No hay aliados vivos en el área de esa habilidad.", 409, "SIN_ALIADOS_OBJETIVO");
         }
         const primera = resultados[0];
+        if (primera.resultado.efectosActorActualizados) efectosJugador = primera.resultado.efectosActorActualizados;
+        if (primera.resultado.actorHpActualizado !== undefined) jugadorHp = primera.resultado.actorHpActualizado;
+        filaActorTactica = primera.resultado.filaActorActualizada;
         const curacionTotal = resultados.reduce((total, resultado) => total + resultado.curacion, 0);
         const danoTotal = resultados.reduce((total, resultado) => total + resultado.resultado.accion.dano, 0);
         const accionBase = { ...primera.resultado.accion };
@@ -1358,6 +1367,7 @@ export async function ejecutarAccionCombateParty(
           }
           const efectosDelEnemigo = obtenerEfectos(enemigo.efectos);
           const resultado = resolverHabilidadJugador(habilidad!, {
+            contextoTactico: habilidad?.programaTactico ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false) : undefined,
             bonusCuracion,
             efectosEnemigo: efectosDelEnemigo,
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
@@ -1376,7 +1386,7 @@ export async function ejecutarAccionCombateParty(
             enemigoNombre: enemigo.nombre,
             efectosJugador,
           });
-          const nuevosEfectosEnemigo = [
+          const nuevosEfectosEnemigo = resultado.efectosEnemigoActualizados ?? [
             ...efectosDelEnemigo.filter((efecto) => !resultado.efectos.some((nuevo) =>
               nuevo.objetivo === "enemigo" && nuevo.habilidadId === efecto.habilidadId)),
             ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
@@ -1406,6 +1416,7 @@ export async function ejecutarAccionCombateParty(
           } : {}),
         };
         jugadorHp = primero.resultado.jugadorHp;
+        filaActorTactica = primero.resultado.filaActorActualizada;
         jugadorDefensa = primero.resultado.jugadorDefensa;
         efectosJugador = [
           ...efectosJugador.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
@@ -1563,6 +1574,7 @@ export async function ejecutarAccionCombateParty(
       data: {
         jugadorHp,
         jugadorDefensa,
+        ...(filaActorTactica !== undefined ? { jugadorPosicion: ["mele", "centro", "retaguardia"][filaActorTactica] } : {}),
         estado: jugadorHp > 0 ? "activo" : "caido",
         efectos: efectosJugador as unknown as Prisma.InputJsonValue,
         cooldowns: cooldowns as unknown as Prisma.InputJsonValue,

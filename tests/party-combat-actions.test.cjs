@@ -75,6 +75,7 @@ function loadService(prisma, testOptions = {}) {
       },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
       procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre, personajeId) => {
+        if (testOptions.efectosReales) return require("../src/lib/expediciones/estados-combate.ts").procesarEfectosTurno(effects,hp,hpMax,defensa,nombre);
         const lista = Array.isArray(effects) ? effects : [];
         const propios = lista.filter((efecto) =>
           efecto.objetivo === (personajeId === undefined ? "enemigo" : "jugador"));
@@ -702,6 +703,20 @@ test("una curación individual de party se aplica y persiste en el aliado selecc
   ), true);
   assert.equal(result.accion.objetivoUsuarioId, "u2");
   assert.deepEqual(result.accion.objetivosUsuarioIds, ["u2"]);
+});
+
+test("autocurarse en party usa los PV posteriores al pulso y no restaura efectos ya expirados", async () => {
+  const herido = mkParticipant("u1",0,60,100);
+  herido.efectos = [{ habilidadId: "sangrado", tipo: "dano_progresivo", valor: 10, duracionTurnos: 1, turnosRestantes: 1, objetivo: "jugador" }];
+  const combat = mkCombat({ participantes: [herido,mkParticipant("u2",1)] });
+  const { prisma, options } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "cura", nivel: 1, slot: "activa_4" }],
+    habilidadesPorId: { cura: { id: "cura", claseId: "novato", nombre: "Cura", tipo: "activa", efecto: "curacion", costeEnergia: 1, cooldownTurnos: 2, objetivo: { equipo: "aliado", patron: "individual", incluirPropio: true } } },
+  });
+  const service=loadService(prisma,{...options,efectosReales:true});
+  await service.ejecutarAccionCombateParty("u1","expedition-1","usar_habilidad",{habilidadId:"cura",objetivoId:"u1"});
+  assert.equal(combat.participantes[0].jugadorHp,70);
+  assert.equal(combat.participantes[0].efectos.some(e=>e.habilidadId==="sangrado"),false);
 });
 
 test("una mejora defensiva puede aplicarse a otro aliado y persistir su defensa y estado", async () => {

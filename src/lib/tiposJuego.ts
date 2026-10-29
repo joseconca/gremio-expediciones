@@ -53,6 +53,7 @@ export type EfectoHabilidadActiva =
   | "bonus_ataque_magico";
 
 export type TipoEfectoTemporalHabilidad =
+  | "tactico"
   | "bonus_defensa"
   | "debuff_defensa"
   | "bonus_ataque"
@@ -76,6 +77,13 @@ export interface EstadoSecundarioHabilidad {
 export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
   habilidadId: string;
   turnosRestantes: number;
+  creadorId?: string;
+  datosTacticos?: {
+    version: 2;
+    propietarioId: string;
+    estados: import("./expediciones/motor-tactico").EstadoTactico[];
+    limites: Record<string, number>;
+  };
 }
 export type TipoDanoHabilidad = "fisico" | "magico" | "hibrido";
 
@@ -391,6 +399,7 @@ export interface ReglaObjetivoHabilidad {
 
 /** HABILIDADES */
 export interface DefinicionHabilidad {
+  programaTactico?: string;
   id: string;
   /** Clase propietaria; las profesiones descendientes heredan esta habilidad. */
   claseId?: string;
