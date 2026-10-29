@@ -9,6 +9,13 @@ const { aplicarEfectoComida, calcularBonificacionesComida, COMIDAS_TABERNA } = r
 const { describirEstadoCombate, describirBonificacionesComida } = require("../src/lib/expediciones/descripciones-efectos.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/niveles-habilidad.ts");
+const { detalleNumericoHabilidad } = require("../src/lib/descripcionesHabilidades.ts");
+
+test("el detalle de una pasiva mejorada muestra su valor efectivo sin repetir la descripción base", () => {
+  const aguante = ajustarHabilidadPorNivel(obtenerHabilidadPorId("aguante_aprendiz"), 3);
+  assert.equal(aguante.bonusHpMaximo, 10);
+  assert.deepEqual(detalleNumericoHabilidad(aguante), ["Vida máxima: +10."]);
+});
 
 test("evolucionar conserva el entrenamiento, incluso con el antecesor al máximo", () => {
   const progresos = [{ claseId: "novato", nivelJob: 20 }, { claseId: "espadachin", nivelJob: 40 }];

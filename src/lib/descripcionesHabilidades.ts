@@ -108,7 +108,6 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
   if (habilidad.cooldownTurnos) lineas.push(`Reutilización: cada ${habilidad.cooldownTurnos} turnos.`);
   if (habilidad.costeEnergia) lineas.push(`Coste de combate: ${habilidad.costeEnergia} de Energía.`);
   if (habilidad.costeMana) lineas.push(`Coste de combate: ${habilidad.costeMana} de Maná.`);
-  lineas.push(`Descripción: ${habilidad.descripcion}`);
 
   return [...new Set(lineas)];
 }

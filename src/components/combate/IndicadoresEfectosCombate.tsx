@@ -178,13 +178,6 @@ export default function IndicadoresEfectosCombate({
         >
           <p className="text-xs font-black text-amber-200">{indicadorSeleccionado.nombre}</p>
           <p className="mt-1 whitespace-normal text-[11px] leading-relaxed text-stone-200">{indicadorSeleccionado.descripcion}</p>
-          <button
-            type="button"
-            onClick={() => setIndicadorSeleccionadoId(null)}
-            className="mt-2 rounded border border-stone-700 px-2 py-1 text-[10px] font-bold text-stone-300 hover:bg-stone-800"
-          >
-            Cerrar
-          </button>
         </div>
       )}
     </div>
