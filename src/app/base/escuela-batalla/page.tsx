@@ -331,7 +331,7 @@ export default function EscuelaCombatePage() {
                   const itemAprendido = aprendidasPorId.get(habilidad.id);
                   const aprendida = idsAprendidas.has(habilidad.id);
                   const nivelActualHabilidad = itemAprendido?.nivel ?? 0;
-                  const nivelMaximo = nivelMaximoHabilidad(habilidad.claseId);
+                  const nivelMaximo = nivelMaximoHabilidad(habilidad.claseId,habilidad);
                   const habilidadVista = aprendida ? ajustarHabilidadPorNivel(habilidad, nivelActualHabilidad) : habilidad;
                   const requerida = habilidad.nivelJobRequerido ?? 1;
                   const coste = Math.max(1, habilidad.costePuntosHabilidad ?? 1);

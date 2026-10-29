@@ -81,8 +81,8 @@ const RANURAS_EQUIPO: Array<{ clave: TipoEquipamiento; nombre: string; icono: st
   { clave: "anillo2", nombre: "Anillo II", icono: "💍" },
 ];
 
-const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
-const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2"];
+const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"];
+const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2", "pasiva_3"];
 const SLOTS_HABILIDADES = [...SLOTS_ACTIVAS, ...SLOTS_PASIVAS];
 
 const ESTADISTICAS: Array<{ clave: keyof ModificadoresEstadisticas; nombre: string }> = [
@@ -172,6 +172,7 @@ export default function PersonajePage() {
   const [seccion, setSeccion] = useState<SeccionPersonaje>("personaje");
   const [categoria, setCategoria] = useState<CategoriaInventario>("todo");
   const [busquedaHabilidad, setBusquedaHabilidad] = useState("");
+  const [claseHabilidadSeleccionada,setClaseHabilidadSeleccionada]=useState("todas");
   const [ranuraSeleccionada, setRanuraSeleccionada] = useState<TipoEquipamiento | null>(null);
   const [datosObjetos, setDatosObjetos] = useState<DatosObjetos | null>(null);
   const [datosHabilidades, setDatosHabilidades] = useState<DatosHabilidades | null>(null);
@@ -295,15 +296,17 @@ export default function PersonajePage() {
   const habilidadesAprendidas = useMemo(() => datosHabilidades?.aprendidas ?? [], [datosHabilidades?.aprendidas]);
   const habilidadesEquipadas = useMemo(() => habilidadesAprendidas.filter((item) => esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
+  const clasesConHabilidadesAprendidas=useMemo(()=>[...new Set(habilidadesAprendidas.map(h=>h.habilidad.claseId??"novato"))].sort((a,b)=>(CLASES[a]?.nombre??a).localeCompare(CLASES[b]?.nombre??b,"es")),[habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {
     const query = busquedaHabilidad.trim().toLocaleLowerCase("es");
     return habilidadesSinEquipar.filter((item) => {
       const claseId = item.habilidad.claseId ?? "novato";
+      if(claseHabilidadSeleccionada!=="todas"&&claseId!==claseHabilidadSeleccionada)return false;
       const nombreClase = CLASES[claseId]?.nombre ?? claseId;
       const texto = [item.habilidad.nombre, item.habilidad.descripcion, nombreClase].join(" ").toLocaleLowerCase("es");
       return !query || texto.includes(query);
     });
-  }, [habilidadesSinEquipar, busquedaHabilidad]);
+  }, [habilidadesSinEquipar, busquedaHabilidad,claseHabilidadSeleccionada]);
 
   const renderEstadisticasObjeto = (item: ObjetoInventario) => {
     const estadisticas = obtenerEstadisticasNoCero(item.objeto, item.nivelMejora, item.bonificaciones);
@@ -508,7 +511,8 @@ export default function PersonajePage() {
     { id: "suerte", nombre: "Suerte", sigla: "SUE", icono: "🍀", valor: personaje.suerte },
   ] as const).map((atributo) => {
     const aporteNivelesBase = Math.floor((nivelBase - 1) * arquetipo.crecimientoBase[atributo.id]);
-    return { ...atributo, aporteNivelesBase, aporteNivelesClase: atributo.valor - 1 - aporteNivelesBase };
+    const aportePasivas=personaje.desgloseEstadisticas?.atributosPorPasivas?.[atributo.id]??0;
+    return { ...atributo, aporteNivelesBase, aportePasivas, aporteNivelesClase: atributo.valor - 1 - aporteNivelesBase-aportePasivas };
   });
 
   return (
@@ -604,6 +608,7 @@ export default function PersonajePage() {
                           <p className="flex justify-between gap-2"><span>Base inicial</span><strong>1</strong></p>
                           <p className="mt-1 flex justify-between gap-2"><span>Crecimiento por nivel BASE</span><strong>+{atributo.aporteNivelesBase}</strong></p>
                           <p className="mt-1 flex justify-between gap-2"><span>Nivel de clase activa · {claseActiva.nombre}</span><strong>+{atributo.aporteNivelesClase}</strong></p>
+                          {atributo.aportePasivas>0&&<p className="mt-1 flex justify-between gap-2"><span>Pasivas equipadas</span><strong>+{atributo.aportePasivas}</strong></p>}
                         </div>
                       </details>
                     </article>
@@ -931,6 +936,10 @@ export default function PersonajePage() {
                   <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Todas las aprendidas</h3>
                     <input value={busquedaHabilidad} onChange={(event) => setBusquedaHabilidad(event.target.value)} placeholder="Buscar habilidad o profesión..." aria-label="Buscar habilidad" className="min-h-9 rounded-lg border border-[#5a432a] bg-[#17130f] px-3 text-sm text-[#f0dfbd] outline-none placeholder:text-[#75634b] focus:border-amber-600 sm:w-72" />
+                    <select aria-label="Clase de las habilidades aprendidas" value={claseHabilidadSeleccionada} onChange={event=>setClaseHabilidadSeleccionada(event.target.value)} className="min-h-9 rounded-lg border border-[#5a432a] bg-[#17130f] px-3 text-sm text-[#f0dfbd]">
+                      <option value="todas">Todas las profesiones aprendidas</option>
+                      {clasesConHabilidadesAprendidas.map(id=><option key={id} value={id}>{CLASES[id]?.nombre??id}</option>)}
+                    </select>
                   </div>
                   {habilidadesAprendidas.length === 0 ? (
                     <div className="rounded-lg border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">

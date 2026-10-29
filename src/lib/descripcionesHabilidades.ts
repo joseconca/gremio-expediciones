@@ -10,6 +10,7 @@ function tieneEstado(habilidad: DefinicionHabilidad, tipo: EstadoSecundarioHabil
 
 /** Resumen breve y sin cifras para usar directamente en las tarjetas. */
 export function descripcionSimpleHabilidad(habilidad: DefinicionHabilidad): string {
+  if(habilidad.versionReglas===2&&(habilidad.disenoActiva||habilidad.reglaPasiva||habilidad.conversionReservaInteligencia))return habilidad.descripcion;
   if (tieneEstado(habilidad, "barrera")) return "Bloquea el siguiente ataque directo contra un aliado.";
   if (habilidad.tipo === "pasiva") {
     const rasgos: string[] = [];
@@ -53,6 +54,8 @@ export function descripcionSimpleHabilidad(habilidad: DefinicionHabilidad): stri
 /** Detalle numérico fiable construido a partir de los parámetros mecánicos. */
 export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string[] {
   const lineas: string[] = [];
+  if(habilidad.versionReglas===2&&(habilidad.disenoActiva||habilidad.reglaPasiva||habilidad.conversionReservaInteligencia))lineas.push(habilidad.descripcion);
+  if(habilidad.escaladoDano==="polivalente")lineas.push("Escala con la suma del ataque físico y mágico; exclusiva de las técnicas propias de Super Novato.");
   if (habilidad.escaladoDano === "fisico" && habilidad.tipoDano === "magico") lineas.push("Escala con ataque físico y se mitiga con defensa mágica.");
   if (habilidad.tipoDano) {
     const tipoDano = habilidad.tipoDano === "magico" ? "mágico" : habilidad.tipoDano === "hibrido" ? "híbrido" : "físico";
@@ -86,6 +89,10 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
   if (habilidad.bonusRegeneracionMana) lineas.push(`Regeneración de Maná: +${habilidad.bonusRegeneracionMana} por turno.`);
   if (habilidad.recuperarEnergia) lineas.push(`Recupera ${habilidad.recuperarEnergia} de Energía al usarla.`);
   if (habilidad.limpiarEstadosNegativos) lineas.push("Elimina los efectos negativos activos.");
+  for(const op of habilidad.disenoActiva?.operaciones??[]){
+    if(op.tipo==="guardia_porcentaje")lineas.push(`Protección: ${porcentaje(op.porcentaje)} de vida del lanzador durante ${op.duracion} turnos.`);
+    if(op.tipo==="invocar")lineas.push(`Acompañante: ${porcentaje(op.potencia)} del mejor ataque por orden; máximo 3 órdenes.`);
+  }
 
   for (const estado of habilidad.estadosSecundarios ?? []) {
     const turnos = estado.duracionTurnos;
@@ -105,7 +112,7 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
   }
 
   if (habilidad.duracionTurnos) lineas.push(`Duración: ${habilidad.duracionTurnos} turnos.`);
-  if (habilidad.cooldownTurnos) lineas.push(`Reutilización: cada ${habilidad.cooldownTurnos} turnos.`);
+  if (habilidad.cooldownTurnos) lineas.push(`Reutilización: cada ${habilidad.cooldownTurnos} ${habilidad.versionReglas===2?"ciclos":"turnos"}.`);
   if (habilidad.costeEnergia) lineas.push(`Coste de combate: ${habilidad.costeEnergia} de Energía.`);
   if (habilidad.costeMana) lineas.push(`Coste de combate: ${habilidad.costeMana} de Maná.`);
 

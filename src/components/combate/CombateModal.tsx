@@ -1490,7 +1490,7 @@ export default function CombateModal({
                       {habilidadEsperandoObjetivoId ? "Toca un objetivo en la escena" : "Habilidades equipadas"}
                     </span>
                     <span className="text-[10px] font-mono text-stone-500">
-                      {Math.min(habilidades.length, 3)}/3
+                      {Math.min(habilidades.length, 5)}/5
                     </span>
                   </div>
                   <button
@@ -1504,7 +1504,7 @@ export default function CombateModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-h-0 items-center">
                   {/* Zona Central / Izquierda del Panel: Lista de Habilidades */}
                   <div className="flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-1 max-h-full justify-center">
-                    {habilidades.slice(0, 3).map((h) => {
+                    {habilidades.slice(0, 5).map((h) => {
                       const cooldown = obtenerCooldown(h.habilidadId);
                       const costeEnergia = h.habilidad.costeEnergia ?? 0;
                       const costeMana = h.habilidad.costeMana ?? 0;

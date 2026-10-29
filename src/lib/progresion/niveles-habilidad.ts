@@ -1,5 +1,6 @@
 import type { DefinicionHabilidad } from "../tiposJuego";
 import { CLASES } from "./clases";
+import { describirDisenoActiva } from "./catalogo-redisenado";
 
 export const COSTE_PUNTO_POR_NIVEL_HABILIDAD = 1;
 export const COSTE_REINICIO_POR_NIVEL_JOB = 100;
@@ -7,7 +8,8 @@ export const COSTE_REINICIO_POR_NIVEL_JOB = 100;
 export type HabilidadAprendidaConNivel = string | { habilidadId: string; nivel?: number };
 
 /** El máximo depende de la profesión propietaria, incluso cuando la habilidad se hereda. */
-export function nivelMaximoHabilidad(claseId?: string | null): number {
+export function nivelMaximoHabilidad(claseId?: string | null, habilidad?: DefinicionHabilidad): number {
+  if(habilidad?.versionReglas===2&&(habilidad.reglaPasiva||habilidad.conversionReservaInteligencia||habilidad.id.endsWith("_tecnica_adicional")))return 1;
   const tier = CLASES[claseId ?? "novato"]?.tier ?? 0;
   return tier <= 0 ? 3 : tier === 1 ? 5 : 10;
 }
@@ -23,9 +25,12 @@ export function costeReinicioHabilidades(nivelJob: number): number {
  * Mejorar nunca aumenta el coste de Energía o Maná.
  */
 export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSolicitado = 1): DefinicionHabilidad {
-  const maximo = nivelMaximoHabilidad(habilidad.claseId);
+  const maximo = nivelMaximoHabilidad(habilidad.claseId,habilidad);
   const nivel = Number.isFinite(nivelSolicitado) ? Math.max(1, Math.min(maximo, Math.floor(nivelSolicitado))) : 1;
   if (nivel === 1) return habilidad;
+  // Las transformaciones conservan su presupuesto y sus relojes: subir rango
+  // no puede convertir una retirada/traslado en una cadena de acciones gratis.
+  if (habilidad.programaTactico || habilidad.id.endsWith("_tecnica_adicional")) return { ...habilidad };
 
   const tier = CLASES[habilidad.claseId ?? "novato"]?.tier ?? 0;
   const rangos = nivel - 1;
@@ -63,7 +68,7 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
     mejorada.multiplicadorCritico = Math.round(habilidad.multiplicadorCritico * factor * 100) / 100;
   }
 
-  const incrementoDuracion = tier <= 1 ? Math.floor(rangos / 2) : Math.floor(rangos / 3);
+  const incrementoDuracion = habilidad.versionReglas===2 ? 0 : tier <= 1 ? Math.floor(rangos / 2) : Math.floor(rangos / 3);
   if (incrementoDuracion > 0) {
     if (habilidad.duracionTurnos !== undefined) mejorada.duracionTurnos = habilidad.duracionTurnos + incrementoDuracion;
   }
@@ -71,7 +76,7 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   if (habilidad.cooldownTurnos !== undefined && habilidad.cooldownTurnos > 0 && reduccionCooldown > 0) {
     const recuperacionGratuita = (habilidad.recuperarEnergia ?? 0) > 0 && !(habilidad.costeEnergia || habilidad.costeMana);
     const curacion = habilidad.efecto === "curacion" || habilidad.efecto === "curacion_progresiva";
-    const minimo = recuperacionGratuita ? 4 : curacion ? 2 : 1;
+    const minimo = recuperacionGratuita ? 4 : habilidad.versionReglas===2 ? 2 : curacion ? 2 : 1;
     mejorada.cooldownTurnos = Math.max(minimo, habilidad.cooldownTurnos - reduccionCooldown);
   }
   if (habilidad.estadosSecundarios) {
@@ -85,6 +90,19 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
         : Math.round(estado.valor * factor * 10000) / 10000;
       return { ...estado, valor, duracionTurnos: estado.duracionTurnos + incrementoDuracion };
     });
+  }
+  if(habilidad.versionReglas===2&&habilidad.disenoActiva){
+    if(mejorada.roboVida)mejorada.roboVida=Math.min(.2,mejorada.roboVida);
+    mejorada.disenoActiva={...habilidad.disenoActiva,potencia:mejorada.multiplicadorDano,cura:mejorada.curacionPorcentaje??mejorada.curacionProgresivaPorcentaje,herida:mejorada.danoProgresivoPorcentaje,vendaje:mejorada.estadosSecundarios?.find(e=>e.tipo==="curacion_progresiva")?.valor,operaciones:habilidad.disenoActiva.operaciones.map(op=>{
+      if(op.tipo==="recurso"&&op.recurso==="energia")return {...op,cantidad:mejorada.recuperarEnergia??op.cantidad};
+      if(op.tipo==="guardia_porcentaje")return {...op,porcentaje:op.porcentaje*factor};
+      if(op.tipo==="invocar")return {...op,potencia:op.potencia*factor};
+      if(op.tipo==="estado"&&op.familia==="sello")return {...op,valor:op.valor*factor};
+      if(op.tipo==="sacrificar")return {...op,fraccion:Math.min(.75,op.fraccion*factor)};
+      return op;
+    })};
+    mejorada.disenoActiva.drenaje=mejorada.roboVida;
+    mejorada.descripcion=describirDisenoActiva(mejorada.disenoActiva);
   }
   return mejorada;
 }

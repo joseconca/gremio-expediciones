@@ -139,7 +139,7 @@ export default function HojaPersonajeModal({
       (habilidad) =>
         habilidad.slot === "activa_1" ||
         habilidad.slot === "activa_2" ||
-        habilidad.slot === "activa_3"
+        habilidad.slot === "activa_3" || habilidad.slot === "activa_4" || habilidad.slot === "activa_5"
     )
     .map((habilidad) => ({
       ...habilidad,
@@ -150,7 +150,7 @@ export default function HojaPersonajeModal({
   const habilidadesPasivas = personaje.habilidades
     .filter(
       (habilidad) =>
-        habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2"
+        habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2" || habilidad.slot === "pasiva_3"
     )
     .map((habilidad) => ({
       ...habilidad,

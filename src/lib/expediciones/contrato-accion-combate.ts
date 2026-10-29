@@ -5,8 +5,10 @@ export type TipoCombateContrato = "pve" | "pvp";
 export function obtenerObjetivoEsperadoAccion(
   accion: TipoAccionContrato,
   efectoHabilidad?: string | null,
+  equipoHabilidad?: string,
 ): ObjetivoAccionCombate {
   if (accion === "usar_objeto" || accion === "escapar") return "propio";
+  if (accion === "usar_habilidad" && equipoHabilidad) return equipoHabilidad === "enemigo" ? "oponente" : "propio";
   if (accion === "usar_habilidad" && efectoHabilidad !== "dano") return "propio";
   return "oponente";
 }
@@ -15,11 +17,12 @@ export function validarObjetivoAccionCombate(input: {
   accion: TipoAccionContrato;
   objetivo: unknown;
   efectoHabilidad?: string | null;
+  equipoHabilidad?: string;
   permitirInferencia?: boolean;
 }):
   | { valido: true; objetivo: ObjetivoAccionCombate; inferido: boolean }
   | { valido: false; error: string } {
-  const esperado = obtenerObjetivoEsperadoAccion(input.accion, input.efectoHabilidad);
+  const esperado = obtenerObjetivoEsperadoAccion(input.accion, input.efectoHabilidad,input.equipoHabilidad);
   if (input.objetivo === undefined || input.objetivo === null || input.objetivo === "") {
     if (input.permitirInferencia) return { valido: true, objetivo: esperado, inferido: true };
     return { valido: false, error: "Debes indicar el objetivo de la acción." };

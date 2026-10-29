@@ -281,7 +281,7 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
 
   const habilidades = require("../src/lib/habilidades.ts");
   const catalogo = habilidades.HABILIDADES;
-  assert.equal(catalogo.length, 301);
+  assert.equal(catalogo.length, 367);
   assert.ok(catalogo.every((habilidad) => Boolean(habilidad.claseId)), "Todas las habilidades pertenecen a una profesión");
   for (const clase of Object.values(CLASES)) {
     // Super Novato es generalista: su catálogo se compone de habilidades heredadas
@@ -305,7 +305,7 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   assert.equal(guardia.nivelJobRequerido, 5);
   assert.equal(guardia.costePuntosHabilidad, 1);
   assert.equal(guardia.costeEnergia, 25);
-  assert.equal(guardia.duracionTurnos, 4);
+  assert.equal(guardia.disenoActiva.operaciones.find(o=>o.tipo==="guardia_porcentaje").duracion, 2);
   assert.equal(guardia.cooldownTurnos, 4);
 
   const primerosAuxilios = HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios");
@@ -322,7 +322,7 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   assert.equal(rejuvenecer.costeMana, 12);
   assert.equal(rejuvenecer.cooldownTurnos, 4);
   assert.equal(rejuvenecer.duracionTurnos, 3);
-  assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.08);
+  assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.075);
 });
 
 test("las habilidades heredadas usan el nivel y los puntos de su clase propietaria", () => {
@@ -529,7 +529,7 @@ test("habilidades: límites por tier, progresión de efectos y coste de reseteo"
   const nivel3 = ajustarHabilidadPorNivel(basica, 3);
   assert.equal(nivel1.multiplicadorDano, basica.multiplicadorDano);
   assert.ok(nivel3.multiplicadorDano > nivel1.multiplicadorDano);
-  assert.ok(nivel3.cooldownTurnos < nivel1.cooldownTurnos);
+  assert.equal(nivel3.cooldownTurnos,2,"los ataques rediseñados conservan un mínimo de dos ciclos");
   assert.equal(ajustarHabilidadPorNivel(basica, 99).cooldownTurnos, nivel3.cooldownTurnos);
   const avanzada = obtenerHabilidadPorId("descarga_elemental");
   const avanzadaN1 = ajustarHabilidadPorNivel(avanzada, 1);
@@ -979,7 +979,7 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
   ).total;
   assert.equal(
     acolitoEquipado.regeneracionManaPorTurno,
-    baseAcolito.regeneracionManaPorTurno + 1,
+    baseAcolito.regeneracionManaPorTurno,
   );
 });
 
@@ -992,7 +992,7 @@ test("la ficha de habilidad compara valores actuales con la siguiente mejora", (
   const siguiente = ajustarHabilidadPorNivel(definicion, 3);
   const cambios = compararMejoraHabilidad(actual, siguiente);
 
-  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Defensa aumentada"));
-  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Duración" && cambio.valorActual.includes("4 turnos") && cambio.valorSiguiente.includes("5 turnos")));
-  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Reutilización" && cambio.valorActual.includes("4 turnos") && cambio.valorSiguiente.includes("3 turnos")));
+  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Protección"));
+  assert.equal(cambios.some((cambio) => cambio.etiqueta === "Duración"),false,"mejorar no añade turnos a las preparaciones");
+  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Reutilización" && cambio.valorActual.includes("4 ciclos") && cambio.valorSiguiente.includes("3 ciclos")));
 });

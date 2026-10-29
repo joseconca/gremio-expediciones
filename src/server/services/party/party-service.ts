@@ -1025,7 +1025,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
       energiaActual: true,
       manaActual: true,
       habilidades: {
-        where: { slot: { in: ["activa_1", "activa_2", "activa_3"] } },
+        where: { slot: { in: ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"] } },
         select: { habilidadId: true, nivel: true, slot: true },
       },
       inventario: {

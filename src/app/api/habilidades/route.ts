@@ -94,7 +94,7 @@ export async function GET(request: Request) {
       return {
         ...habilidad,
         ...evaluarRequisitosAprendizaje(habilidad, progresosClase),
-        nivelMaximo: nivelMaximoHabilidad(clasePropietariaId),
+        nivelMaximo: nivelMaximoHabilidad(clasePropietariaId,habilidad),
         clasePropietariaId,
         clasePropietariaNombre: CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId,
         modoAprendizaje: "job" as const,
@@ -115,7 +115,7 @@ export async function GET(request: Request) {
           id: habilidadAprendida.id,
           habilidadId: habilidadAprendida.habilidadId,
           nivel: habilidadAprendida.nivel,
-          nivelMaximo: nivelMaximoHabilidad(clasePropietariaId),
+          nivelMaximo: nivelMaximoHabilidad(clasePropietariaId,habilidad),
           slot: habilidadAprendida.slot,
           puntosHabilidadDisponiblesClase: progresoPropietario?.puntosHabilidadDisponibles ?? 0,
           nivelJobClase: progresoPropietario?.nivelJob ?? 0,

@@ -6,16 +6,8 @@ import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { SlotHabilidad } from "@/lib/tiposJuego";
 
-const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
-
-const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2"];
-
-function esSlotHabilidad(valor: unknown): valor is SlotHabilidad {
-  return (
-    typeof valor === "string" &&
-    [...SLOTS_ACTIVAS, ...SLOTS_PASIVAS].includes(valor as SlotHabilidad)
-  );
-}
+import { SLOTS_HABILIDADES_ACTIVAS as SLOTS_ACTIVAS } from "@/lib/tiposJuego";
+import { esSlotHabilidad } from "@/lib/progresion/equipo-habilidades";
 
 export async function POST(request: Request) {
   try {

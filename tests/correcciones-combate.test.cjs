@@ -94,8 +94,8 @@ test("el detalle de los efectos usa cantidades resueltas y la duración restante
 
 test("mejorar estados conserva la duración, sin aumentar cargas ni penalizaciones propias", () => {
   const mejorada = ajustarHabilidadPorNivel(obtenerHabilidadPorId("primeros_auxilios"), 3);
-  assert.equal(mejorada.estadosSecundarios[0].duracionTurnos, 3);
+  assert.equal(mejorada.estadosSecundarios[0].duracionTurnos, 2);
   assert.equal(ajustarHabilidadPorNivel(obtenerHabilidadPorId("abjurador_tactica"), 10).estadosSecundarios[0].valor, 1);
   const furia = ajustarHabilidadPorNivel(obtenerHabilidadPorId("berserker_tactica"), 10);
-  assert.equal(furia.estadosSecundarios.find((e) => e.tipo === "debuff_defensa").valor, 0.1);
+  assert.equal(furia.disenoActiva.operaciones.find((e) => e.tipo === "estado" && e.familia === "exposicion").valor, 0.1);
 });

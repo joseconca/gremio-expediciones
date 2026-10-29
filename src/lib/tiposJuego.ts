@@ -53,6 +53,7 @@ export type EfectoHabilidadActiva =
   | "bonus_ataque_magico";
 
 export type TipoEfectoTemporalHabilidad =
+  | "tactico"
   | "bonus_defensa"
   | "debuff_defensa"
   | "bonus_ataque"
@@ -66,6 +67,7 @@ export type TipoEfectoTemporalHabilidad =
   | "curacion_progresiva";
 
 export interface EstadoSecundarioHabilidad {
+  familia?: string;
   tipo: TipoEfectoTemporalHabilidad;
   /** Porcentajes como fracción: 0.12 equivale al 12 %. */
   valor: number;
@@ -76,6 +78,13 @@ export interface EstadoSecundarioHabilidad {
 export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
   habilidadId: string;
   turnosRestantes: number;
+  creadorId?: string;
+  datosTacticos?: {
+    version: 2;
+    propietarioId: string;
+    estados: import("./expediciones/motor-tactico").EstadoTactico[];
+    limites: Record<string, number>;
+  };
 }
 export type TipoDanoHabilidad = "fisico" | "magico" | "hibrido";
 
@@ -143,18 +152,24 @@ export type SlotHabilidad =
   | "activa_1"
   | "activa_2"
   | "activa_3"
+  | "activa_4"
+  | "activa_5"
   | "pasiva_1"
-  | "pasiva_2";
+  | "pasiva_2"
+  | "pasiva_3";
 
 export const SLOTS_HABILIDADES_ACTIVAS: SlotHabilidad[] = [
   "activa_1",
   "activa_2",
   "activa_3",
+  "activa_4",
+  "activa_5",
 ];
 
 export const SLOTS_HABILIDADES_PASIVAS: SlotHabilidad[] = [
   "pasiva_1",
   "pasiva_2",
+  "pasiva_3",
 ];
 
 /** COMBATE */
@@ -385,13 +400,19 @@ export interface ReglaObjetivoHabilidad {
 
 /** HABILIDADES */
 export interface DefinicionHabilidad {
+  rupturaDefensaTemporal?: number;
+  versionReglas?: 2;
+  disenoActiva?: import("./progresion/diseno-habilidades").DisenoActiva;
+  reglaPasiva?: import("./progresion/diseno-habilidades").ReglaPasiva;
+  conversionReservaInteligencia?: boolean;
+  programaTactico?: string;
   id: string;
   /** Clase propietaria; las profesiones descendientes heredan esta habilidad. */
   claseId?: string;
   /** Tipo de ataque utilizado por habilidades que infligen daño. */
   tipoDano?: TipoDanoHabilidad;
   /** Fuente de potencia independiente de la defensa que mitiga el daño. */
-  escaladoDano?: "fisico" | "magico" | "hibrido";
+  escaladoDano?: "fisico" | "magico" | "hibrido" | "polivalente";
   /** Nivel Job mínimo en la profesión activa para aprenderla. */
   nivelJobRequerido?: number;
   /** Puntos Job consumidos al aprender habilidades profesionales. */
