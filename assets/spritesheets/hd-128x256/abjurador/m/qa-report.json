@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-29T08:52:34.414768+00:00",
+  "classId": "abjurador",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\abjurador-m-sheet.png",
+  "sheetSha256": "cf7ca5f87b052b8a08e74cb6a783a0a259c7e76cb7c4c5500847dfe16fcf4f32",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\idle\\abjurador-m-idle-01.png",
+          "sha256": "4685a1f4ae66f9f687ffd88fa80fa6b2833916bbc904a358d5971dd2705da105",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\idle\\abjurador-m-idle-02.png",
+          "sha256": "bf813d09653fb69b1d8b8b4844558015e88c010f62b1bc6f11069547de972753",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\idle\\abjurador-m-idle-03.png",
+          "sha256": "367ef368f0565582041a0d924cb755238db1caf8f56a2720633da5f64fd0cee9",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\idle\\abjurador-m-idle-04.png",
+          "sha256": "edf4ec5c5d4470604dfa9aab599961c62cdd2b8f9dfe7b2697b90b9de356a988",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\walk\\abjurador-m-walk-01.png",
+          "sha256": "6e60755696bf0f4f550cf0644de006dc913d697136685da823005c0d30c3e3e9",
+          "alpha_bbox": [
+            11,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\walk\\abjurador-m-walk-02.png",
+          "sha256": "d3058a8be4714c59f72baa4adf866ca05f1a3fd772522671acf915421b226dfb",
+          "alpha_bbox": [
+            14,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\walk\\abjurador-m-walk-03.png",
+          "sha256": "f15e27d603d67007d262e5eb076bd649dacb18f35cb85cb0c5c26b67aa00cee7",
+          "alpha_bbox": [
+            13,
+            92,
+            118,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\walk\\abjurador-m-walk-04.png",
+          "sha256": "6018540b803325ec6ce430cd2bbac1a973289e06ad6e4259a2b195206d666e38",
+          "alpha_bbox": [
+            16,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\hurt\\abjurador-m-hurt-01.png",
+          "sha256": "87c737beab5af99b5f2ac99d23d366b9a77762ccf329f4090edfe1fb6b0ad5a4",
+          "alpha_bbox": [
+            25,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\hurt\\abjurador-m-hurt-02.png",
+          "sha256": "7d1ce2784d5ac3bb9e88d35442c3412cf934e9dec5f988d75f851cf985869920",
+          "alpha_bbox": [
+            28,
+            101,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\hurt\\abjurador-m-hurt-03.png",
+          "sha256": "5a7bd1a860b6089a4a20a7d4284af830364a47cfdf50dbc752bb80a61e575fa8",
+          "alpha_bbox": [
+            16,
+            120,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\hurt\\abjurador-m-hurt-04.png",
+          "sha256": "e6223f3641933397e08941986a571ab38a733be61c349747ca1cfebd69ff666b",
+          "alpha_bbox": [
+            16,
+            92,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\use_consumable\\abjurador-m-use_consumable-01.png",
+          "sha256": "552bbdeffd66ed8b0a529cbd2b453d2c7176a3889eae0f66badbdb02658b9a00",
+          "alpha_bbox": [
+            29,
+            93,
+            109,
+            252
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\use_consumable\\abjurador-m-use_consumable-02.png",
+          "sha256": "3e65a206e8f03b3d672db2488ccd9eb0f769d5b90999e663eacd79dd17723b88",
+          "alpha_bbox": [
+            31,
+            92,
+            112,
+            252
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\use_consumable\\abjurador-m-use_consumable-03.png",
+          "sha256": "a57d719358c8bb5aba3f1cbd51b6fb80b42e82af1e94c7a1c46997af6dfebfd8",
+          "alpha_bbox": [
+            30,
+            93,
+            111,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\use_consumable\\abjurador-m-use_consumable-04.png",
+          "sha256": "6d7bbfbdb2a52684389a794d40130d04de4c1482d799222d9abddfcb790d5d3c",
+          "alpha_bbox": [
+            30,
+            93,
+            110,
+            252
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\dodge\\abjurador-m-dodge-01.png",
+          "sha256": "2e8ce573da8d4bd7e1d684b66c734155085cca3d3c14cbaaa6ebae75cb654458",
+          "alpha_bbox": [
+            21,
+            98,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\dodge\\abjurador-m-dodge-02.png",
+          "sha256": "fd32c6122fa89ca0f6e776ec9f9b6cb70af86fc5f6e2f98928ed5c1fbcf4c9c0",
+          "alpha_bbox": [
+            23,
+            98,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\dodge\\abjurador-m-dodge-03.png",
+          "sha256": "46bd67a87d2085a1f061e5c7250e831c5c6bf53030e4b5566ead2adef2bc170b",
+          "alpha_bbox": [
+            16,
+            103,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\dodge\\abjurador-m-dodge-04.png",
+          "sha256": "f0ee89e920ce365052a8b3d1ee3a8b842f87bac074ad90f12840fb5e85d2561f",
+          "alpha_bbox": [
+            19,
+            98,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\block_shield\\abjurador-m-block_shield-01.png",
+          "sha256": "f3b5bbb13e3e26a8713ec962345df570114f3d5a028f0be2405a13703bbf8df9",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\block_shield\\abjurador-m-block_shield-02.png",
+          "sha256": "c1502ef22597987b0fb83f646edf656befae680d704d7c4b19011d7aa6a4830c",
+          "alpha_bbox": [
+            20,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\block_shield\\abjurador-m-block_shield-03.png",
+          "sha256": "81bb94771af2f46d5635c7f836171d4b360106b40b2a3f9378dbb8f3443b2030",
+          "alpha_bbox": [
+            19,
+            113,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\block_shield\\abjurador-m-block_shield-04.png",
+          "sha256": "d7c90c1999b156919a303ad4c8ec2fbe98c49e6415b9c6376b98deec9d5f76eb",
+          "alpha_bbox": [
+            22,
+            98,
+            114,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_sword\\abjurador-m-attack_sword-01.png",
+          "sha256": "9fba04861bf796942ae2139e93a15ef5d0219a59381eab2eb606a429c7ef9d93",
+          "alpha_bbox": [
+            11,
+            99,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_sword\\abjurador-m-attack_sword-02.png",
+          "sha256": "dcc96b3af1b772a8261194cbcb969c83f34cbc408cb4219d918d4450309e2713",
+          "alpha_bbox": [
+            7,
+            100,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_sword\\abjurador-m-attack_sword-03.png",
+          "sha256": "229d601350ff53daf74aaa67371cecd3f6679c0db64cc06b12ba74b63e81ce25",
+          "alpha_bbox": [
+            11,
+            103,
+            123,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_sword\\abjurador-m-attack_sword-04.png",
+          "sha256": "bb47c258233fb7132052011092c0a40e83200a7c3fae938dc9d7af927afa3086",
+          "alpha_bbox": [
+            15,
+            99,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_axe\\abjurador-m-attack_axe-01.png",
+          "sha256": "84ebeae4459a077bfdb5cf43d122019f416d814c9045dd9b1483444e7a72a150",
+          "alpha_bbox": [
+            10,
+            100,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_axe\\abjurador-m-attack_axe-02.png",
+          "sha256": "309e317e0497103dae752f20ce61b5fa15559468d574c5d1985700f8e22c1cd9",
+          "alpha_bbox": [
+            18,
+            113,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_axe\\abjurador-m-attack_axe-03.png",
+          "sha256": "2cef44189e2220db3eb24fbf006836b84c964242c348353dace324564403d869",
+          "alpha_bbox": [
+            12,
+            122,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_axe\\abjurador-m-attack_axe-04.png",
+          "sha256": "55d59f749962e8447ce8932d37522e7026532fbf89d3b17e4c2de9ff40652abb",
+          "alpha_bbox": [
+            27,
+            105,
+            123,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_spear\\abjurador-m-attack_spear-01.png",
+          "sha256": "ddf4df3d42a56eb01e2ee61354a9f1498af0d4a9b1de0054eb3d3fe42b9bb032",
+          "alpha_bbox": [
+            11,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_spear\\abjurador-m-attack_spear-02.png",
+          "sha256": "43ee5bf3e3a9cb375fc0f1927ee3b0a1a4f80c840ad2c733dc985473728dfe79",
+          "alpha_bbox": [
+            15,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_spear\\abjurador-m-attack_spear-03.png",
+          "sha256": "e4636f27a51d0dc41fc8423bd6da8fc0ea868eeea9796f8ee8e494bb490cd7f5",
+          "alpha_bbox": [
+            14,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_spear\\abjurador-m-attack_spear-04.png",
+          "sha256": "0c38ef12113b340e435c6601f3342631d20d299500457c95b76ded4ffbffe311",
+          "alpha_bbox": [
+            19,
+            92,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_dagger\\abjurador-m-attack_dagger-01.png",
+          "sha256": "37bafdee332bd55627480900889d3bedc3d34245d9efe84bd2b64a79d3c39a83",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_dagger\\abjurador-m-attack_dagger-02.png",
+          "sha256": "43dd54ea76bb769e766f3fc4364a8d0b39ce73352fab492881d3a1879407c6a2",
+          "alpha_bbox": [
+            29,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_dagger\\abjurador-m-attack_dagger-03.png",
+          "sha256": "36a69d11206abfd0080a00fb2709bf1f2dceb3b54fc741963761df06ba67d2f4",
+          "alpha_bbox": [
+            26,
+            95,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_dagger\\abjurador-m-attack_dagger-04.png",
+          "sha256": "dcbbcea296f62e985a38a163a8581122dca4d1fd2e96db7d17e19b45b55c65ac",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_bow\\abjurador-m-attack_bow-01.png",
+          "sha256": "a5b5163ca96225d60325e34a0b12c8e52884bf862dbab4919088e72ddadd45a7",
+          "alpha_bbox": [
+            25,
+            96,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_bow\\abjurador-m-attack_bow-02.png",
+          "sha256": "d541b70e007cb0ae013261bc43dbdf7407612ebab0d1f89a7fec577fdbcb1964",
+          "alpha_bbox": [
+            22,
+            96,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_bow\\abjurador-m-attack_bow-03.png",
+          "sha256": "2246a9642c1bb9addf8886742edef7cd8838f4544167cb58e6e95a66f1b9493d",
+          "alpha_bbox": [
+            22,
+            96,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_bow\\abjurador-m-attack_bow-04.png",
+          "sha256": "1296d16b94b5d13d334637abe7d6d3f0d1063add39b8426c3d8bc4c9047ce506",
+          "alpha_bbox": [
+            19,
+            96,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_staff\\abjurador-m-attack_staff-01.png",
+          "sha256": "31ee83693589b52b18ae652bee873e18bfe75582d76218b9890dbfbcd6f5ffcd",
+          "alpha_bbox": [
+            31,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_staff\\abjurador-m-attack_staff-02.png",
+          "sha256": "cc248960e360f67a8b9487ed7505085fdc216d3653656dc5c6f2dd8821b4dedd",
+          "alpha_bbox": [
+            25,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_staff\\abjurador-m-attack_staff-03.png",
+          "sha256": "c9ec915a4a7b14cad61c2b0d06a88d76eb38bb3a5f03e20c9573e27ac8bae9fd",
+          "alpha_bbox": [
+            28,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_staff\\abjurador-m-attack_staff-04.png",
+          "sha256": "e1b6806798d88996b5c727fda8a5678d1e2e8282cb38273ec3f1f77056e47ee7",
+          "alpha_bbox": [
+            21,
+            93,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_mace\\abjurador-m-attack_mace-01.png",
+          "sha256": "8edd82defae76c2c1b0dc2b9b872a6a7fe951eaf5b1c3ea7dcd20873afcb5b49",
+          "alpha_bbox": [
+            26,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_mace\\abjurador-m-attack_mace-02.png",
+          "sha256": "33fd3cd014240fe831809709f468c46ec9865ea5959b160eff1267ed2414b1c8",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_mace\\abjurador-m-attack_mace-03.png",
+          "sha256": "ed96e1f0f58ffad8c867405e2b7cd19d919f8bbb018c6494a53cf8a84c30e27f",
+          "alpha_bbox": [
+            27,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_mace\\abjurador-m-attack_mace-04.png",
+          "sha256": "31ab4c456ae25921d4c0cce850bbf1d251e03e374b8dc5006eba292a0643d04d",
+          "alpha_bbox": [
+            29,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_book\\abjurador-m-attack_book-01.png",
+          "sha256": "15f34bee1518dce2737b8c06341691c2f644a55ac0d9a9fe07af02bf88911b9f",
+          "alpha_bbox": [
+            26,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_book\\abjurador-m-attack_book-02.png",
+          "sha256": "e3fb47f83906c72a1260274ec22d373bd3a68ce3b99207bee8ab18ecf0e0003c",
+          "alpha_bbox": [
+            26,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_book\\abjurador-m-attack_book-03.png",
+          "sha256": "608bf2c6ddbbc87aceecb93de11abb2801ecd08a30ceb3eb77230555acb99a16",
+          "alpha_bbox": [
+            26,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_book\\abjurador-m-attack_book-04.png",
+          "sha256": "6b3412dbbe4f8c4dfe45167ddb0fd0709b131fa4851f92fc85902b2fdb52a6ac",
+          "alpha_bbox": [
+            26,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_gloves\\abjurador-m-attack_gloves-01.png",
+          "sha256": "ff2f0ef1c04c5f3be3b9a61b9a7139e1eb2c578d83a169472c76b6a76aafcdbe",
+          "alpha_bbox": [
+            26,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_gloves\\abjurador-m-attack_gloves-02.png",
+          "sha256": "8b9476a39f5c54ccda9fa622fa796fb5ce0f7366afe1b37d05a8437874af1ccb",
+          "alpha_bbox": [
+            25,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_gloves\\abjurador-m-attack_gloves-03.png",
+          "sha256": "4cd686be4786b9852ccf36afcc4ff5d3893036410b7e52cf9f0671704173f7d8",
+          "alpha_bbox": [
+            28,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\abjurador\\m\\frames\\attack_gloves\\abjurador-m-attack_gloves-04.png",
+          "sha256": "029296545b76b58a055a3e01fadf4a47c5b5694542c48c4ee906ab81592c0dae",
+          "alpha_bbox": [
+            26,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

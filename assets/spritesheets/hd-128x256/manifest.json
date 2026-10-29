@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "abjurador-m",
+  "nextVariant": "senor_guerra-m",
   "classes": [
     {
       "id": "novato",
@@ -429,7 +429,7 @@
       "name": "Abjurador",
       "tier": 3,
       "order": 53,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "senor_guerra",
@@ -246744,7 +246744,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/abjurador/m/abjurador-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/abjurador/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -246885,20 +246885,20 @@
                 "pixelSha256": "6f9099befc455e2ba377e299c250e7eff7d9f9209aff4eba299e0de0cfaedc3d"
               },
               "03": {
-                "sha256": "2a63af61d420d537db6ec4f86f023f885f2bb3f1043772458517d1601fb9753f",
-                "bytes": 23283,
+                "sha256": "f15e27d603d67007d262e5eb076bd649dacb18f35cb85cb0c5c26b67aa00cee7",
+                "bytes": 24674,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
+                  13,
                   92,
-                  116,
-                  248
+                  118,
+                  252
                 ],
-                "pixelSha256": "bd5765d10609a437cf8b398b208671e21bc7f840507a9158606b91daec54a1fa"
+                "pixelSha256": "8baf0b1fe79124c2fc830af9915e089fb5a598b3a24905ffaebde77d334dc1bd"
               },
               "04": {
                 "sha256": "6018540b803325ec6ce430cd2bbac1a973289e06ad6e4259a2b195206d666e38",
@@ -247868,13 +247868,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "8d43d7515f366278610b79e9e9618d468218430d1d3b9b05cc07a3e91e73b08e",
+          "sourceSha256": "e66bd6f9f610b50317735d2b77e042bd8c6ae59552edc307b8e245afc88852ed",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -247896,9 +247897,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Abjurador MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent. Adult masculine ward scholar, SILVER-WHITE short tousled layered hair with faint ice-blue shading, calm blue eyes, clean-shaven. Round silver spectacles in every pose. Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body. Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "ONE complete male Abjurador sprite portrait edit. Fix only far RIGHT arm: move black fist UP and LEFT a short distance until center black palm covers MAGENTA ring currently on its silver bracer. Shorten the bracer connection naturally. There must be exactly TWO hands total. Remove the erroneous white mitten/third-hand shaped bulge in center chest next to the three clasps; restore smooth ivory coat fabric there. Keep LEFT rear black fist exactly unchanged. Preserve head, face, glasses, hair, shoulder, legs, boots, costume, scale and canvas. Remove gray/color fringe around body: genuine completely transparent background with clean contours. No magic, equipment, text or rings. Full body and full boots with margins.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -247906,7 +247907,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "8d43d7515f366278610b79e9e9618d468218430d1d3b9b05cc07a3e91e73b08e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "8d43d7515f366278610b79e9e9618d468218430d1d3b9b05cc07a3e91e73b08e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame02-reference-v4.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "8d43d7515f366278610b79e9e9618d468218430d1d3b9b05cc07a3e91e73b08e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "8d43d7515f366278610b79e9e9618d468218430d1d3b9b05cc07a3e91e73b08e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Abjurador MALE, Tier 3, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent. Adult masculine ward scholar, SILVER-WHITE short tousled layered hair with faint ice-blue shading, calm blue eyes, clean-shaven. Round silver spectacles in every pose. Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body. Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "95cf635f7d8e2a2742f620ac358886bb5e34bd1cdbec694fee619b46dd6eb26b",
@@ -247944,7 +248078,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "dc9e841bb0628126836f65b5cbfe881b6ffb017348b7a8adf997c38a8ceffecd",
@@ -247982,7 +248117,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "5e6cc0daf8e1bf4dbbf0b2501124a602443e98dadc66f33b19c1cc49190040d8",
@@ -248026,7 +248162,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "4d2454114e25e5456d2e018ed36b4e7affab34318095d53bc9c38acc9b53c344",
@@ -248070,7 +248207,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "765923f892dabc2954f7786ffac252ef6a0d09df1bd446c5288e1316453beeaf",
@@ -248108,7 +248246,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "b95703e0c9be63458fb87b39dd95a3ebb36c04ef359ee5c66251029d768e8117",
@@ -248146,7 +248285,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "4b3c46a36bd14dc6f9a5588993d3ae66794b0a08509938fa5c08583b86b76f0d",
@@ -248184,7 +248324,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c25d898ceb9d3242027411bb4b64b27e6679d8c023f24d2133090876b7c517e4",
@@ -248316,7 +248456,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "821c49cd8e24df58cf58007e78198ed5b5ede01fd39b0b7a399c26068896748c",
@@ -248354,7 +248495,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "64b2f3a5822cc2d3978c7afa20de0ecf0792495b2967dfa8bd8101a50d49d0f1",
@@ -248392,7 +248534,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "74c0925a21da54faa933aecc6495146ff337438a32a460038922bd28621bb673",
@@ -248524,7 +248666,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "c3ae4a18c29e864026748c2b24985c6471e0799bd181e161d70318ec7127a4d2",
@@ -248562,7 +248705,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "864772c4eb97ea861498005d1c2b35d348088e46b560e28c4502fc67ca0277ce",
@@ -248600,7 +248744,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "a47333257e7e14856c20b0368f8881f4c260876e14f8c62800375c76469bf4c0",
@@ -248638,7 +248783,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "39741f2d9ffc44b696ad5385a6fd2a466e2010ddde9ecd661890022556bf6f2f",
@@ -248676,7 +248822,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -248697,11 +248844,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -248709,7 +248856,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -248951,6 +249098,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "abjurador",
+        "name": "Abjurador",
+        "tier": 3,
+        "costume": "Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body.",
+        "maleIdentity": "Adult masculine ward scholar, SILVER-WHITE short tousled layered hair with faint ice-blue shading, calm blue eyes, clean-shaven. Round silver spectacles in every pose.",
+        "femaleIdentity": "Adult feminine ward scholar, SILVER-WHITE hair in a compact LOW BRAIDED KNOT with side bangs and faint ice-blue shading, calm blue eyes. Round silver spectacles in every pose.",
+        "armPolicy": "Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent.",
+        "unique": "Short silver ward mantle, nested blue shield chevrons, hexagonal shield belt seal and silver spectacles.",
+        "advancement": "Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/abjurador/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "4685a1f4ae66f9f687ffd88fa80fa6b2833916bbc904a358d5971dd2705da105",
+            "bf813d09653fb69b1d8b8b4844558015e88c010f62b1bc6f11069547de972753",
+            "367ef368f0565582041a0d924cb755238db1caf8f56a2720633da5f64fd0cee9",
+            "edf4ec5c5d4470604dfa9aab599961c62cdd2b8f9dfe7b2697b90b9de356a988"
+          ],
+          "walk": [
+            "6e60755696bf0f4f550cf0644de006dc913d697136685da823005c0d30c3e3e9",
+            "d3058a8be4714c59f72baa4adf866ca05f1a3fd772522671acf915421b226dfb",
+            "f15e27d603d67007d262e5eb076bd649dacb18f35cb85cb0c5c26b67aa00cee7",
+            "6018540b803325ec6ce430cd2bbac1a973289e06ad6e4259a2b195206d666e38"
+          ],
+          "hurt": [
+            "87c737beab5af99b5f2ac99d23d366b9a77762ccf329f4090edfe1fb6b0ad5a4",
+            "7d1ce2784d5ac3bb9e88d35442c3412cf934e9dec5f988d75f851cf985869920",
+            "5a7bd1a860b6089a4a20a7d4284af830364a47cfdf50dbc752bb80a61e575fa8",
+            "e6223f3641933397e08941986a571ab38a733be61c349747ca1cfebd69ff666b"
+          ],
+          "use_consumable": [
+            "552bbdeffd66ed8b0a529cbd2b453d2c7176a3889eae0f66badbdb02658b9a00",
+            "3e65a206e8f03b3d672db2488ccd9eb0f769d5b90999e663eacd79dd17723b88",
+            "a57d719358c8bb5aba3f1cbd51b6fb80b42e82af1e94c7a1c46997af6dfebfd8",
+            "6d7bbfbdb2a52684389a794d40130d04de4c1482d799222d9abddfcb790d5d3c"
+          ],
+          "dodge": [
+            "2e8ce573da8d4bd7e1d684b66c734155085cca3d3c14cbaaa6ebae75cb654458",
+            "fd32c6122fa89ca0f6e776ec9f9b6cb70af86fc5f6e2f98928ed5c1fbcf4c9c0",
+            "46bd67a87d2085a1f061e5c7250e831c5c6bf53030e4b5566ead2adef2bc170b",
+            "f0ee89e920ce365052a8b3d1ee3a8b842f87bac074ad90f12840fb5e85d2561f"
+          ],
+          "block_shield": [
+            "f3b5bbb13e3e26a8713ec962345df570114f3d5a028f0be2405a13703bbf8df9",
+            "c1502ef22597987b0fb83f646edf656befae680d704d7c4b19011d7aa6a4830c",
+            "81bb94771af2f46d5635c7f836171d4b360106b40b2a3f9378dbb8f3443b2030",
+            "d7c90c1999b156919a303ad4c8ec2fbe98c49e6415b9c6376b98deec9d5f76eb"
+          ],
+          "attack_sword": [
+            "9fba04861bf796942ae2139e93a15ef5d0219a59381eab2eb606a429c7ef9d93",
+            "dcc96b3af1b772a8261194cbcb969c83f34cbc408cb4219d918d4450309e2713",
+            "229d601350ff53daf74aaa67371cecd3f6679c0db64cc06b12ba74b63e81ce25",
+            "bb47c258233fb7132052011092c0a40e83200a7c3fae938dc9d7af927afa3086"
+          ],
+          "attack_axe": [
+            "84ebeae4459a077bfdb5cf43d122019f416d814c9045dd9b1483444e7a72a150",
+            "309e317e0497103dae752f20ce61b5fa15559468d574c5d1985700f8e22c1cd9",
+            "2cef44189e2220db3eb24fbf006836b84c964242c348353dace324564403d869",
+            "55d59f749962e8447ce8932d37522e7026532fbf89d3b17e4c2de9ff40652abb"
+          ],
+          "attack_spear": [
+            "ddf4df3d42a56eb01e2ee61354a9f1498af0d4a9b1de0054eb3d3fe42b9bb032",
+            "43ee5bf3e3a9cb375fc0f1927ee3b0a1a4f80c840ad2c733dc985473728dfe79",
+            "e4636f27a51d0dc41fc8423bd6da8fc0ea868eeea9796f8ee8e494bb490cd7f5",
+            "0c38ef12113b340e435c6601f3342631d20d299500457c95b76ded4ffbffe311"
+          ],
+          "attack_dagger": [
+            "37bafdee332bd55627480900889d3bedc3d34245d9efe84bd2b64a79d3c39a83",
+            "43dd54ea76bb769e766f3fc4364a8d0b39ce73352fab492881d3a1879407c6a2",
+            "36a69d11206abfd0080a00fb2709bf1f2dceb3b54fc741963761df06ba67d2f4",
+            "dcbbcea296f62e985a38a163a8581122dca4d1fd2e96db7d17e19b45b55c65ac"
+          ],
+          "attack_bow": [
+            "a5b5163ca96225d60325e34a0b12c8e52884bf862dbab4919088e72ddadd45a7",
+            "d541b70e007cb0ae013261bc43dbdf7407612ebab0d1f89a7fec577fdbcb1964",
+            "2246a9642c1bb9addf8886742edef7cd8838f4544167cb58e6e95a66f1b9493d",
+            "1296d16b94b5d13d334637abe7d6d3f0d1063add39b8426c3d8bc4c9047ce506"
+          ],
+          "attack_staff": [
+            "31ee83693589b52b18ae652bee873e18bfe75582d76218b9890dbfbcd6f5ffcd",
+            "cc248960e360f67a8b9487ed7505085fdc216d3653656dc5c6f2dd8821b4dedd",
+            "c9ec915a4a7b14cad61c2b0d06a88d76eb38bb3a5f03e20c9573e27ac8bae9fd",
+            "e1b6806798d88996b5c727fda8a5678d1e2e8282cb38273ec3f1f77056e47ee7"
+          ],
+          "attack_mace": [
+            "8edd82defae76c2c1b0dc2b9b872a6a7fe951eaf5b1c3ea7dcd20873afcb5b49",
+            "33fd3cd014240fe831809709f468c46ec9865ea5959b160eff1267ed2414b1c8",
+            "ed96e1f0f58ffad8c867405e2b7cd19d919f8bbb018c6494a53cf8a84c30e27f",
+            "31ab4c456ae25921d4c0cce850bbf1d251e03e374b8dc5006eba292a0643d04d"
+          ],
+          "attack_book": [
+            "15f34bee1518dce2737b8c06341691c2f644a55ac0d9a9fe07af02bf88911b9f",
+            "e3fb47f83906c72a1260274ec22d373bd3a68ce3b99207bee8ab18ecf0e0003c",
+            "608bf2c6ddbbc87aceecb93de11abb2801ecd08a30ceb3eb77230555acb99a16",
+            "6b3412dbbe4f8c4dfe45167ddb0fd0709b131fa4851f92fc85902b2fdb52a6ac"
+          ],
+          "attack_gloves": [
+            "ff2f0ef1c04c5f3be3b9a61b9a7139e1eb2c578d83a169472c76b6a76aafcdbe",
+            "8b9476a39f5c54ccda9fa622fa796fb5ce0f7366afe1b37d05a8437874af1ccb",
+            "4cd686be4786b9852ccf36afcc4ff5d3893036410b7e52cf9f0671704173f7d8",
+            "029296545b76b58a055a3e01fadf4a47c5b5694542c48c4ee906ab81592c0dae"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -248963,7 +249225,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/abjurador/f/abjurador-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/abjurador/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -250087,7 +250349,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "e83ddc564077439ccf7f36c99666bec8004703592807ad728c903421a8bd8081",
@@ -250125,7 +250388,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "b8370c36b5f6dd13071407d0f475eb72f4c61478b99d51f431f1a5ba77e97eb3",
@@ -250257,7 +250520,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "46fadaa67d109dc2a5aac478dd16bf5fe6af037fcb409f6dda41b9f152d2d183",
@@ -250295,7 +250559,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "a27cc14b14fdb9d69139db58f8270a144f6d794b4fe07a3a3a846f61e59a8bb3",
@@ -250333,7 +250598,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "875ec31907144d84cb7b1291c87efdeb48f1af7ba9defcb6866cac13400e8abb",
@@ -250371,7 +250637,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "57d4e3eac4bb0383b59c90fa95b77308830eb29cfbfd651f969eee7d577ff91a",
@@ -250409,7 +250676,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "538f7b9945b70498c7bcf2ad2f8c4acd0cf81c8859421902cbbc0f1dc66321f5",
@@ -250447,7 +250715,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "58ed56fe74e7417110e5ea06db91927b3e39f3d7cc76a11db0f948bcdac8d68f",
@@ -250485,7 +250754,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "bc73a09141770efecd7f0eca8b9f844edd49e1390bd2880a06d144575af181fe",
@@ -250523,7 +250793,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "1631a292beae552ba815a032186430537410a84d51967c5c4e8e5b34825813a8",
@@ -250561,7 +250832,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "0052bad07e7faec01c1e13ed6bca7ad72051828d8d786291b5988ef22d9e313d",
@@ -250599,7 +250871,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "cd2e27f09aa9924c53ad7c327fe3c4cdad81a70032ce43f4117b24cb33db4436",
@@ -250637,7 +250910,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f9f627785b0f96fda64d2cac8c9e3f34adcb916f9d9c96f798ab11c0e59302aa",
@@ -250675,7 +250949,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "e8a233e0ee87d8bab980e2b7d50856465ca0ff0cb297f3676e019d7c89af09ff",
@@ -250713,7 +250988,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "759ff87d306ce3da704493a9538a096ad31dfc53a23c12e60160f17e7b82638b",
@@ -250751,7 +251027,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -251026,6 +251303,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "abjurador",
+        "name": "Abjurador",
+        "tier": 3,
+        "costume": "Elite arcane ward scholar, elegant LIGHT protective uniform: fitted PARCHMENT-IVORY high-collar coat over PERIWINKLE-blue inner tunic and fitted dark slate trousers. Short rigid SILVER shoulder mantle, ending at upper chest and upper back only, with THREE nested pale-blue shield chevrons engraved on each side; no long cape or scarf. Vertical silver coat fasteners, narrow periwinkle edging on split knee-length ivory tails. Large HEXAGONAL SILVER belt seal with concentric BLUE SHIELD motif. Compact silver wrist bracers engraved with pale-blue shield chevrons, BLACK fingerless gloves, ivory full sleeves ending above bracers. Charcoal boots with narrow SILVER shin plates and pale-blue teardrop inlays. Thin ROUND SILVER SPECTACLES on all four faces, including closed-eye blink. Small closed ivory scroll cylinder secured on belt. No helmet, weapon, shield held, book, magic effects, floating glyphs or glow outside body.",
+        "maleIdentity": "Adult masculine ward scholar, SILVER-WHITE short tousled layered hair with faint ice-blue shading, calm blue eyes, clean-shaven. Round silver spectacles in every pose.",
+        "femaleIdentity": "Adult feminine ward scholar, SILVER-WHITE hair in a compact LOW BRAIDED KNOT with side bangs and faint ice-blue shading, calm blue eyes. Round silver spectacles in every pose.",
+        "armPolicy": "Exact canonical empty hand and finger coordinates, black fingerless gloves, narrow silver bracers and full ivory sleeves. Keep rigid silver short mantle small and away from hands. All shield chevrons, hexagonal blue shield buckle, periwinkle trim and spectacles consistent.",
+        "unique": "Short silver ward mantle, nested blue shield chevrons, hexagonal shield belt seal and silver spectacles.",
+        "advancement": "Tier 3 defensive evolution of Escriba Arcano: luminous-looking polished silver ward mantle and structured ivory/periwinkle protective coat, visibly more advanced than simple scholar robes. Distinct from Runista navy coat and brass offensive rune armor; serenity, pale-blue shield geometry and silver define this barrier specialist.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/abjurador/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "d7151a85c57210d8f2b2ac465df406389bcf9fd6dddc73326f13dc1c4d9882ba",
+            "4b535b47338f0c6e5d873872182fbdbbe2cf4ad78f447e6b8115ab0e7dd9510c",
+            "d1a554240159dd275b6d7645615c6c136d344a4c278988209b42151086e4709f",
+            "fdefb1994496741babf94e1623055a934f7ac4a8f1abbce2809cf2ec8eacdec7"
+          ],
+          "walk": [
+            "9572e63534f3a88102d1da224c4582c90a8fbf41907fb5639da850919676584a",
+            "ad969c724fe9a5f02e1692b604d933fddb813898d577d92d67b5a64cc09b1e34",
+            "2012ccbcf6744eaaa9ae3198e7b238418ad0c298b1f60b73e072e775f535766d",
+            "e5513b95d61faedc3a106884709b4ecc6ea1c7d44ab913667780842dac4bd6d7"
+          ],
+          "hurt": [
+            "8a63205e30737e8287ec509d62dcd2739904311e4b9d5440fd9411b6fbe9a27c",
+            "bf93ca53bc70dfb9317235efdc5624118b941c19831fad1bbf8255d5c35ff39a",
+            "9b09922e5a866a463bf19a0ff1fb79b563a5e082a4be3d9c88ec7af7ccd9d55d",
+            "bf44e8acc0a186c87de6ca7826bf3fa3ebe0425f219ea68d109e6888941d678c"
+          ],
+          "use_consumable": [
+            "b7017934016a747cda698e9aa8b18d91b901193f49bfd21aaefb0f16a6fd7af2",
+            "e585619101694a88189dc86bebe12cd5cc0ae67a6a0484ac3c623acc8f3a0eaf",
+            "96782de5250b262e76b880689d9c342d080b01ccaf6b0bea77b047e850ef22ef",
+            "7969ad3b6ea79c003a99339135078b7efdda77cfcb1b65bb45c724605ebd77e3"
+          ],
+          "dodge": [
+            "7149ba6766f1efed88b84e43974af406b52370f828cbab74aeaac9f04e2a18bd",
+            "0cf80bdc4e2e30d295cab7e653a2eceb92ce33491d4acbd27cd064395d2ab233",
+            "0d2cdd8d97e4a99f73e5210763b00b7858e23e47696cd8b9ffba6b6d3cfe80b4",
+            "e959dd6984968bc56d2932e7ef7ad8ae06acba41df69246a97f7a3b35c56e6f4"
+          ],
+          "block_shield": [
+            "117d84f2fe3935b90931914ca6065a92f78fc3b265bd9dc6e7c9876c5e25cae4",
+            "9ede3a2eea6fd2bedf613db297d4d016a64d1a9e9eda6fe850162f9318c5fb7d",
+            "ae3c86c307ecd054a1b0fc19ad5ea735c81247d28512e5991c513522c4c43976",
+            "12bcf6158329c26a6719417301992bcd6f5fd943dbb8da93c5c8fbac032e51bb"
+          ],
+          "attack_sword": [
+            "da95d89d2597a7af48c1e0f199c562938afea5dcce58736374bd00854ad59ef2",
+            "d34dfb325a56434a90760c0db07677a31c1126342aa8f20a84f41be1b1f8259d",
+            "1bac35410f3f000677e785c3e2d7d05033579748bb184065085d15cc3ff97019",
+            "cf6745a7ea2cbb811822ef5ab0c9e7476831b7367571eaf759c7b907dafe440e"
+          ],
+          "attack_axe": [
+            "c36f04b3d85ad4c9411c76db3aede41ddbc7b8c9f9f98177d683b4cebcc96eea",
+            "50bf2d224d3fccb2dcbfc3e955be982fb6770563058e56c9ce668b10daa6fafc",
+            "c7a2341505bad8708e01288c53430020ac34a4e30fa2da68e74014aab87c877a",
+            "4f083dfe18f20b4b61edd998e3f1852fb81c7f1b80f49ace820d55ba006f47f3"
+          ],
+          "attack_spear": [
+            "f0791a788d4838592147e71dac53c67c2a8698cccf9d3f2b2b3df8ee552f5097",
+            "dd27ddad4da943a2287716bab113dc2ec7f788522228e5dd62e8642ea73b8470",
+            "cd04a2817ceb3affd4847bfb44c4c8412197394dac09a14c9d7eaf5dbc5d68e7",
+            "9cc42531d7ae8e346e0a245069a6ce33b2d0099df46d784a5c4fa49163a04bbd"
+          ],
+          "attack_dagger": [
+            "98f4ba8e2e609356498ab1325060cd6fd4b7cf13867c5cef6969b4ebca06592d",
+            "8321b77c568915d691dbd08dfe24d4c5caec0a5ad267290b6d61ab5a8393d3fc",
+            "1505c37b970ea8b2fe5312528d7aa83b972366db3b616965b1af181a43e7c1b4",
+            "0ee6f4086d62b99d0d7ad96112c75ecc9c50631fd5ce6081dfff4e3061c5437f"
+          ],
+          "attack_bow": [
+            "d6b88aca7e2e8d2c144476d359a1bfffbe09821f05adcfafd12e926a4d887078",
+            "f467c1a39c8a8dbb3a50754bd967ecb7eb40355975cb56a25c199099de98b8b6",
+            "3ba6d7549097a942b4805019ff2093526d8bf626a6cd83feb092e21bd0b87a70",
+            "93da62172de26ba39ab5ba7e438488fa7b0858a0df8bc205eb14b61afcdf1738"
+          ],
+          "attack_staff": [
+            "886adc9d30c8cf816833206ec03a3fbf87319163ab4db20bdf3616a95f35cc17",
+            "d170e26c4ed141ef15b7f0bbb496078b14f4d095d8e5309a8e4a0f74150476c2",
+            "eab8f25dffad41294c75ada8032694962ec6da4c9ebd1c4b61a967bb73979432",
+            "2c58dbb82d2dbe4c7740d44939b1d0ebf775bd2cc8c00f18b07bf07ab9107fcc"
+          ],
+          "attack_mace": [
+            "ec442138796af9cea35a5f5f99904c14a657de30c27b7ff0be485e8da2b889e0",
+            "1ebc262dbfdf9adf10d16e9740904b75ac57e25d61ae15d1030ccdb795d30322",
+            "17cfd30f6cbad7857f4e255dcdf30f880920079c0fb2d9588794a8655988a4af",
+            "44040f9097599360d4d907bb59e210459f6842a83b69220683189473a989eb7f"
+          ],
+          "attack_book": [
+            "52a467e840c817c476a0fa0c8c97e78062245d5aae7de90aacba5be8d9471a1d",
+            "2484c40376756819afeeeefea8fe6a2baa4a7ab0981e92b08e1a941a49bd7071",
+            "8f46f8381d13f8db87e9099b0c44efb40ad602e758429eb81b719d2f910acd44",
+            "431d594ecfd8f71e3cfcc8e78922ba093c43b54b360df02be482656d196d7543"
+          ],
+          "attack_gloves": [
+            "90ca32da2e6e9513b4064194b176b1a1eb012fe6be681e54146aef434508b660",
+            "45c3a2bbc1e489267324854a6512538b5914053a6e023661dc43e594ddbc99dd",
+            "6755142efef5ef646aa2cfc47c4d6da9c6fa244b51c1e6bd586831088d32e4c4",
+            "5525609b5d5136f492495586cb88fe073c8285172dcf78c1b3ef3a725e554a1d"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -251053,10 +251445,22 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -251130,13 +251534,214 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "f5d68e39af3e0066ef66140c3db47339dff29826bdf7b77d1ecb885782fdf3e1",
+                "bytes": 26292,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  114,
+                  249
+                ],
+                "pixelSha256": "455969824f58502978378694dd6cb3d091a24c9dc6b180d63ea4ae81f6c86c0d"
+              },
+              "02": {
+                "sha256": "9d7bc59c461e7cb04716d6fbb15fb9a02ff34e7c51b28c09899e1929e391963f",
+                "bytes": 23862,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  92,
+                  110,
+                  248
+                ],
+                "pixelSha256": "a2feb6bc37f86eeddd86d71d2101262e32bd764db855c0d90f869b3ec8ab76d6"
+              },
+              "03": {
+                "sha256": "5d91971d885ac12b1458ba81347d84b2e7e8fb8788c5071a9ab7a5ee67dcb61f",
+                "bytes": 24505,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  92,
+                  117,
+                  249
+                ],
+                "pixelSha256": "2f5c99ad36e60a8f9b9cf9c5b6265b83385a593ad517d29a04abab632d3330e4"
+              },
+              "04": {
+                "sha256": "02f8ae7350c85af48faebcdb471647bef5f8bd649614642c144a08baa1366c92",
+                "bytes": 25525,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "50042c4dd26d8d6ec8d5bd9fc813c6cf10bb76dfcfea47c0674eb12010329938"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "593b53dba5a731051677b5b11c102815ce84f3178aaa26ffc7748a613a82f220",
+                "bytes": 26329,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "9e7419be38075efa9b123267a835b22b4f3f90dd068a5e88ef934a5b1ec51b47"
+              },
+              "02": {
+                "sha256": "46cbb612a8caef32c43de87b2f7225f8779d592bae605a4b8d028b28c509ad91",
+                "bytes": 25633,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  99,
+                  113,
+                  248
+                ],
+                "pixelSha256": "4fba659ac3344fd35c909a3a46c316c6700588799e6c012f074045d93dc19800"
+              },
+              "03": {
+                "sha256": "5c71a3b6cd370606919ee7c928b33e45f733617f96b736e6242f1489cde498be",
+                "bytes": 22467,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  120,
+                  105,
+                  248
+                ],
+                "pixelSha256": "079da163921e1ca581c6855ff68185bd1b6f231e3b529a9faab27c1c74d9cb61"
+              },
+              "04": {
+                "sha256": "99d9ff5e36b49e3f1d4148e53a15af5e350a018a1eaa0673b9412f3c7a62d4ad",
+                "bytes": 26582,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  111,
+                  248
+                ],
+                "pixelSha256": "4c238d5b78d311b5980bfa03944122834316b09496b31477f218da9e97455240"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2e084f8899eae3bb8db240cdfbaae7a064c0c8f99369c5d429f6a1c970d255c8",
+                "bytes": 25252,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "21f7b6f4391c971d99bf1996625de6b63e4836520023fed855c9c6e688cf161b"
+              },
+              "02": {
+                "sha256": "eb6dcdc694914b7d12d4789773a60ae4935c3369097a3d3c0ef9713e449b0535",
+                "bytes": 24799,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  109,
+                  249
+                ],
+                "pixelSha256": "90617b4178119b50a7496585fb52e493a31554abe50638456a641d803f15fafe"
+              },
+              "03": {
+                "sha256": "9bdb87b9ec36a337f08d53c415ee6c874d6f1bda122583e869311ff291e9899c",
+                "bytes": 25814,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  109,
+                  249
+                ],
+                "pixelSha256": "7b0aeaa4abecf240baeb40a07812fe2168c39366b32a9de01272a6faae9749a8"
+              },
+              "04": {
+                "sha256": "089c0842a71f8442c159f4668ddeb91df17da24a68de5a0794323257312ccdc2",
+                "bytes": 25489,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  104,
+                  249
+                ],
+                "pixelSha256": "d063b056116c5393ef90a0736d66d693948d2272c159056f71cefbfd081bf81f"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -251145,31 +251750,634 @@
             "status": "missing"
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "845257b053dd0e4879308c0b04d381cee75688316292eaac91cc513bf7648fc3",
+                "bytes": 25760,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  98,
+                  108,
+                  247
+                ],
+                "pixelSha256": "74b8b7a5bd9e671c9630f894b93c68ecc61a5a290c02334367a8fa3d417899ff"
+              },
+              "02": {
+                "sha256": "2bd55d0fa8cb7b8f417d786a823290c03713edf26d6287bcaf63ca78a7ce4201",
+                "bytes": 25462,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  100,
+                  114,
+                  248
+                ],
+                "pixelSha256": "ac8f97ed90e43bd7e76f296cf9603bbdfc9924ced730e90c7ba218a82b280122"
+              },
+              "03": {
+                "sha256": "1e66f0500c3e021159257c4499f5d32d7507b1c124af089218d3d194280ee192",
+                "bytes": 25392,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  102,
+                  123,
+                  248
+                ],
+                "pixelSha256": "e21aad73cca7d54743c52e1078cf7665073bcee52272f139475f2f8136ebbc99"
+              },
+              "04": {
+                "sha256": "0353f205b404825f72b95393b4b52b3cfa5f59a086de86f0ddb42bc91dc13299",
+                "bytes": 25459,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  99,
+                  116,
+                  248
+                ],
+                "pixelSha256": "affa9c8a75d97e2722d8196dc4787c8f69822ffd2f57cb12daefa52fb04f65b6"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "049bfbdb9296c4a7c539ccab0b469244c21244d46a42c996a0dece3eb29a257b",
+                "bytes": 25007,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  100,
+                  110,
+                  249
+                ],
+                "pixelSha256": "4852377248add7f0fbb5199e91e2a017f23ab4fc93155b7f7753e3915cf404be"
+              },
+              "02": {
+                "sha256": "30c071fae559d0d791701319eb3c24e20596daf698da0b3bbd07204ffc111370",
+                "bytes": 22722,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  112,
+                  118,
+                  248
+                ],
+                "pixelSha256": "7c67dcd48dab5b91fb2e20291b02b9f5cb27b18c6e0fad2e5188eeb129281c5a"
+              },
+              "03": {
+                "sha256": "c7dc46fcacdbbdee873573b5275774f0f9de5f874efcf8accfdf6a654fbe7c69",
+                "bytes": 22654,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  121,
+                  115,
+                  248
+                ],
+                "pixelSha256": "f601f2c7bf7ba2ec2d8bf5a932c9efd5db415426ae00a318667c53925470d956"
+              },
+              "04": {
+                "sha256": "a65b8203023fdec5a04c8bfeb4098a49d2389b8853d9d87415d9995dd3f99706",
+                "bytes": 23411,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  104,
+                  120,
+                  249
+                ],
+                "pixelSha256": "267c6ac022ea70ff189d69de1654d122a5c197d357b42149c8e320874273d04c"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c1dc75576f26fbb331e008e325ed78a6c80667fd6ccb8bfbd6911c0c86989307",
+                "bytes": 25512,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "cbfda91ab7977ba3dddf69180d2d03dde6372e1eecd677bdb7f082c8226df36a"
+              },
+              "02": {
+                "sha256": "7aa6804561c408215a5940744ed8b5c4ce7849db255aef16d49dd4b56993ec65",
+                "bytes": 25272,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  92,
+                  104,
+                  248
+                ],
+                "pixelSha256": "4573a33c4ac6fed374f35d6b48c95f5835d08396e7587f8dbe5fd3349f97875b"
+              },
+              "03": {
+                "sha256": "3d7a3bd183bbe4db20d2c9f85117411529a67bf5c6637ff859c53f35685e2a20",
+                "bytes": 25911,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  119,
+                  248
+                ],
+                "pixelSha256": "c3cfcc1d51ffd9453647339f5d8fa0c0977213891d3d405a5abd6c5be1e62cc2"
+              },
+              "04": {
+                "sha256": "d7ffeebb8e213fc409f6954ec47270eb497d71c96bce1b5c98b7c52d2128805c",
+                "bytes": 25822,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  115,
+                  248
+                ],
+                "pixelSha256": "493e1f37af34f52d0f9729c1f3747319a5212acd318a871869d2e1c9f75d888b"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "229c5cde882f2c4188357098f7ca74a6aa25b3f919c812c825c9ef74e4c6a6c3",
+                "bytes": 24536,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  103,
+                  248
+                ],
+                "pixelSha256": "b6f1be8be71e17074316e87a5bc9ed7ec21b9e047529e54fcd316c59d9f5f14e"
+              },
+              "02": {
+                "sha256": "9cf5e2c3bf82d878c4cd2dd916a31e9fb6a29ae01d3cc4ccf08f94b942b48c6f",
+                "bytes": 24605,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  94,
+                  105,
+                  248
+                ],
+                "pixelSha256": "cedce9af46d4a8deb7a6fc979f146763ceda4c379b11e7f9750f2c5f6f819967"
+              },
+              "03": {
+                "sha256": "7eef5ca40352f7cbdf20b6f44cfe54f1cc23f2665e98bd47ea523c5e39738d50",
+                "bytes": 23818,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  97,
+                  108,
+                  248
+                ],
+                "pixelSha256": "dd2b7f019c60e7a48f5689dbfbc65c6c9427484e2645fb84385f137bf431b47f"
+              },
+              "04": {
+                "sha256": "e461b9aabaa3aabe610ece8c607b1826d46dc0c7558e20f7b72fdcc6d12be10f",
+                "bytes": 24468,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  93,
+                  103,
+                  248
+                ],
+                "pixelSha256": "084813816c8bfdcf5f00e38a784b168b58da8ae52287e8b418705a8c7e605208"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ebc0a7ecdf29706ac88ccc79b27a6c95862872bbc4145a75d9fb311f0d508be7",
+                "bytes": 24710,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  96,
+                  120,
+                  249
+                ],
+                "pixelSha256": "20bad430ffd7522cc42cead952611e97cac8564a1c2ac12413e1ea3ba36df004"
+              },
+              "02": {
+                "sha256": "cce5f4d458be55b36fe281b2543565c8483bce60ad82499ffa44d89c31a069b6",
+                "bytes": 24233,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  96,
+                  117,
+                  249
+                ],
+                "pixelSha256": "52ebb666ac6d86b0cc0eaa8a664db7d83bf4937d48fee972daaa1e50a36b8840"
+              },
+              "03": {
+                "sha256": "632a989be60c0d1564f683af4127ff0e6cc202e7e0553fd3c4081d955954bc74",
+                "bytes": 24322,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  96,
+                  114,
+                  249
+                ],
+                "pixelSha256": "3d1f40f17c9f89c23485ce0859b6cd5a4062fcda8c7ac696ca245f86622c1c14"
+              },
+              "04": {
+                "sha256": "7e1c2b87780efd3a9468803ec5ea9fb69f77d122578064c5e3362107ab97c2bc",
+                "bytes": 24903,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  96,
+                  112,
+                  249
+                ],
+                "pixelSha256": "3f3cd98238fe594c1deaf8e0e801302e9a27b5ce1f90737b9482f79c73fa35b9"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2a2ee59e763b04b5290a3a4c0c25261440089a7d1f77f89551890c80e868cc57",
+                "bytes": 24409,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  94,
+                  107,
+                  248
+                ],
+                "pixelSha256": "2f1b86176275acfc6415cbf3c6dafc7eac53ace76429bc97bb64d1a93f9b6902"
+              },
+              "02": {
+                "sha256": "6ab4709d2ca771a2b6568bea3ddad0232d2ac6d5fa784297ddc327ffd5f099f0",
+                "bytes": 24876,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  94,
+                  108,
+                  248
+                ],
+                "pixelSha256": "40f80b3ee300abddb309fd86111ce20733904d78444b944db759fafad0f452e1"
+              },
+              "03": {
+                "sha256": "f3d1a671e320561e6daa110113b36edb7eb7acf5a96590d59c19303968cef26e",
+                "bytes": 23857,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  94,
+                  110,
+                  248
+                ],
+                "pixelSha256": "6eec76b903aedf942eab992423081323390250ba668cd2d06ec816d72e34c552"
+              },
+              "04": {
+                "sha256": "db0e5770ed4b890e0da9f6b049ea004333e0b5702323a960650a43033de5e9af",
+                "bytes": 24439,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  94,
+                  99,
+                  248
+                ],
+                "pixelSha256": "2536d7e9f71419ab6720efe19add3c189fd37b09b6c46cf1f88667caaa46d245"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a9c654c2d294a7101dcf96c794c1623d305cba0e07f3e14074b191a29726a9c0",
+                "bytes": 24215,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "d7dcf0b646d172f3e079ff64f80cda305a8d1810d53a5693813cdcd43b51fb2e"
+              },
+              "02": {
+                "sha256": "67befd081e46ca2da4ed5f376847813cae048045ec0e0380f88c4cc6acdd3754",
+                "bytes": 25864,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  92,
+                  112,
+                  248
+                ],
+                "pixelSha256": "e1431286747ba56cc0856874f7e2cd962fe4bbe23aa37cdbef26b901d61e443a"
+              },
+              "03": {
+                "sha256": "568484908a73bb1452da0fb88b302f82f8b5fca63e0fdb69a52d8c0d8115b0aa",
+                "bytes": 23331,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  103,
+                  108,
+                  248
+                ],
+                "pixelSha256": "694ecc12d0df8eb6bfef3a48e910bfa501b8dd4b59c68a930fe0cb651c994b63"
+              },
+              "04": {
+                "sha256": "210416292b3d7c456a63119b010857c05b850d07cf32b737d90dccfbde2a3a4d",
+                "bytes": 24455,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  92,
+                  112,
+                  248
+                ],
+                "pixelSha256": "9fed4488eb11cd6853b82b620b3cccdb0ac86ab02653ef6719d02df5b87a7697"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ae633e37923996b00c358b6c671e9c2dd049f01c07539a179138cfdaeb32cdb9",
+                "bytes": 23831,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  100,
+                  248
+                ],
+                "pixelSha256": "10ed953f6c58f64408e46d0c6984c4139287b4797d7dc01cd23d4fa53e7a32e4"
+              },
+              "02": {
+                "sha256": "fa27147a6e1320891fb2514aded2ef3ecc1d20c03714feef98823c32b1178f1c",
+                "bytes": 23587,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  98,
+                  248
+                ],
+                "pixelSha256": "32fe40e93c53e79ab1b12202bfcbe48e8f1541f99f6b47791dad739b57c152d7"
+              },
+              "03": {
+                "sha256": "70ec5bf6eeae8193588d8a7e6495a4867a3604791de3973116254e39a3351b4e",
+                "bytes": 24311,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "2fd340a95a10778484cb0d96fd8b7f6e15b7e926132c2cd74ef3761d33494595"
+              },
+              "04": {
+                "sha256": "49bdc6c55ab0d52f71c698a5bc89b42e16ac7d5f1ec5675a08b454efdae7fab6",
+                "bytes": 23559,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  98,
+                  248
+                ],
+                "pixelSha256": "1b4be75d6cdc6dac0021ae27b9308e480c952895799e8772a47f8726e5f999d5"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b0a1be1e0276fb7b668d6c399fbe2eb61c69cae26fb160ae3836dde1306b4e43",
+                "bytes": 25163,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  107,
+                  247
+                ],
+                "pixelSha256": "75c5698bb410fbf562f0816bafc10328417d70a782f7cdbb783a946be0ca9727"
+              },
+              "02": {
+                "sha256": "1a49e1c517f3a7fa72083cd639424f97fa2ba7c3e12d2e643eb59ea87401f244",
+                "bytes": 25683,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  109,
+                  247
+                ],
+                "pixelSha256": "9cb8eb43f6210caa6cfb0c7e6fe6eecbba040a28c17b78d14c7da175bd846f33"
+              },
+              "03": {
+                "sha256": "c78aa19d2e67336782206906a9e4f988d239d013ba10a74ec0d1f93bc831fd00",
+                "bytes": 24939,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  109,
+                  247
+                ],
+                "pixelSha256": "6c326dcc8ef23615e61917f0b89b3bb4d731e6899bb2574e2443b06543d2f8aa"
+              },
+              "04": {
+                "sha256": "2912ea9a2382418ca81f169a6a332437bad46e0461224812f58da9870f47dec1",
+                "bytes": 25364,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  109,
+                  247
+                ],
+                "pixelSha256": "19443af7f08b18a641e65632cc82ff6696474da241342251c59015c0a450ec70"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -251211,6 +252419,462 @@
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "49e094f9da3ba2021606a9fca6d6d467216e3641186ebdc8bf20e79df93edb70",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            618,
+            18,
+            1069,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            12,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+            "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+            "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+            "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "a45a0ab271353c644e304754746c166758590e292dd0bb69124cb8b09b59ab6a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "e63fb534cd9fc5aebd6c75394991e31e3962d9215b9b4d4124f88532383f18fc",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "c1fcb993e2be50b1fab9f68c77be4bd3920e3a2f96796ba453c52624513875c0",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            592,
+            31,
+            1088,
+            680
+          ],
+          "scale": 0.23,
+          "origin": [
+            7,
+            99
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+            "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+            "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+            "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "ed673ff27540b2cb54b7b8b7ebcd1c2396293a2770ad4cb5af86042cdc3640e7",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.23,
+          "origin": [
+            10,
+            101
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+            "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+            "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+            "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "66635b808bc951b7413b0e23ada65cb8f5dd7984d5806de54361665fee90344f",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            604,
+            18,
+            1064,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+            "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+            "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+            "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "29d9da3fa80029b88d3c78ed443a9c33f1e17961ca61505dcc733b644915eba8",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            658,
+            22,
+            1007,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            24,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+            "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+            "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+            "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "f581ac0b6ee91a61e8ea52a42028a78f474ef08bc900300adb167eeeff1431ba",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.23,
+          "origin": [
+            8,
+            96
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+            "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+            "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+            "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "58262341f57728a2247524c9c5d4f31ce2b08c421ca1012f0f6527c8538f4ecd",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            615,
+            21,
+            1023,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "36d33689354a90e90cdf39468f9009bd50b1bae5e02d73894856d967695d0b12",
+            "cb8607b7c51b52e935eca74ac76d098668646d4689a8faf2e9fec4a59b75b6d9",
+            "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
+            "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "1b6165e6eec176eea222204b276a6ee52cb9e221f2143fcdc5b880b0535f6963",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            622,
+            21,
+            1014,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+            "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+            "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+            "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "1a813d6652cf38abd7209d9137808a568d38d594e104f91e6a3eab5442d310c3",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "0745e2015d65602092ec6305e2c424eabd9ee3a1032ab710887b8182ed8d59e6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra MALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding masculine warlord with STEEL-GRAY short tousled layered hair, silver temples, sharp amber eyes, clean-shaven, low gold battlement circlet. Canonical masculine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -251229,6 +252893,229 @@
         "idle/04": {
           "source": "sources.idle",
           "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "845257b053dd0e4879308c0b04d381cee75688316292eaac91cc513bf7648fc3"
+            },
+            {
+              "bodySha256": "2bd55d0fa8cb7b8f417d786a823290c03713edf26d6287bcaf63ca78a7ce4201"
+            },
+            {
+              "bodySha256": "1e66f0500c3e021159257c4499f5d32d7507b1c124af089218d3d194280ee192"
+            },
+            {
+              "bodySha256": "0353f205b404825f72b95393b4b52b3cfa5f59a086de86f0ddb42bc91dc13299"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
@@ -251257,10 +253144,14 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -251334,16 +253225,284 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "054eec9acf168dd23902541a9f1c109b80cf98e0b2d0ae75d5a494b8ea514f0c",
+                "bytes": 25365,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  93,
+                  107,
+                  246
+                ],
+                "pixelSha256": "2591a6501d95f03ff6e73841ec29d0a6858b1ebc32c2f769143dce4df32a6b93"
+              },
+              "02": {
+                "sha256": "00ad5c4a0ffa74ce0913ef459a22078b03fd1cd2655738e8847a923cca123ac3",
+                "bytes": 22359,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  90,
+                  248
+                ],
+                "pixelSha256": "8d97c05f6c6919c0aea626a5698297d5cb8531252bb349c576a10d2caf58e68c"
+              },
+              "03": {
+                "sha256": "0daf3a53ac64ced0efa954e8680c8fba7cb57dc1a0d3fbf48129820f6688569f",
+                "bytes": 24665,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  4,
+                  93,
+                  115,
+                  246
+                ],
+                "pixelSha256": "8815f92c12f7bbbdc9fa27ead0d2939630bcba45c3454a241585a8d0c72ca7ec"
+              },
+              "04": {
+                "sha256": "329e99b6bfce2004707ec63584a462813f5232c71efb81d33ddf1b09fc778287",
+                "bytes": 22141,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  97,
+                  248
+                ],
+                "pixelSha256": "b1d02af075690730ad72a008a2474a2bbcfcf6325d1212088c11d62d90d1b1f1"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "4fd3a023d52dc77a7ef9ee547a4f52ff03e819a171c05bef2bdb8f6755083375",
+                "bytes": 24701,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  97,
+                  111,
+                  246
+                ],
+                "pixelSha256": "02d41d7a72daa428ebb3992689e3576a11168dadbe7e8f51419e8f464a502e81"
+              },
+              "02": {
+                "sha256": "f9e8cf6ee8550fa3ec352da1b6ef08becb6ec5d1830bef000eaf55238636062c",
+                "bytes": 22968,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  97,
+                  105,
+                  246
+                ],
+                "pixelSha256": "cc20227418e97dfb0be25b41eaae40bcea508979cf1faf7b7721f787b29bb574"
+              },
+              "03": {
+                "sha256": "ec15fe11f8d70c1499f53e306674af47b220abebe2d5f19c755b4cbde408c8c7",
+                "bytes": 19951,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  120,
+                  95,
+                  248
+                ],
+                "pixelSha256": "b530f3e3356edc58fa4bef7cfe1cef9e77f2713e72c63edc6dc11e60616317f0"
+              },
+              "04": {
+                "sha256": "0d24c9428ac8011150fa9f83e8bd49d3326ea63e46eeefb5fe2cab833630417f",
+                "bytes": 24757,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  97,
+                  101,
+                  247
+                ],
+                "pixelSha256": "9d8949eeb97bcf1e85c7aa1c982c3f7831ff8943ef17d7c00701e9240c27f836"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b8d852268fb555c4b8f2859fd5d3f9d2c53431f77aa637479ee3bb3a5bb04354",
+                "bytes": 24805,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "c3e9a1686a357df24a283d346fd9e66bda623110c765d18f8d4fa10df55aeb3b"
+              },
+              "02": {
+                "sha256": "a915283b61ca934bf71a06b446aa779c9126c23828e610bc88ef2c9731ccb488",
+                "bytes": 24837,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "86c8a714bd8ba80508bc98d2e786fc73cac384948cd89871a3f9ff992e318435"
+              },
+              "03": {
+                "sha256": "7955c30f00ead27ab31ac536ce5421d3568cd7744b864d9d9f2f987144aa0b22",
+                "bytes": 24402,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "a264da2a6713221834074abd0158d3b87a477054d169bbd4c23c6257474cdd68"
+              },
+              "04": {
+                "sha256": "c41d62d02aa9c38fd97120700f923a842fb72b9aaafe956abc49fd3d8c145588",
+                "bytes": 25023,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "692358fbc8e307c343354f0239babcf7d41418f0dcc48731158f980fd98066b5"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9104e088b6324af0db1dc80f15c7df19b98724608380b55ef4f6d7e41a1d4592",
+                "bytes": 25750,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  113,
+                  249
+                ],
+                "pixelSha256": "ab3743f99c5887ff51adeec789777b4b2c3d81885118fe977a61117c49da339d"
+              },
+              "02": {
+                "sha256": "ad7594019725bf69998d9d688ab216cd15178867d1cba48b838aefa84e173d39",
+                "bytes": 25459,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  94,
+                  114,
+                  250
+                ],
+                "pixelSha256": "37cb4c54619350d1f3d2f2be45aabcac9db6f7e4a1e8b821dbcb8afd80101666"
+              },
+              "03": {
+                "sha256": "b2cea13e09ab48bc4567539d53cfa5cb7c786a5ae99c240d6d5ecaa854768e91",
+                "bytes": 21671,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  124,
+                  108,
+                  250
+                ],
+                "pixelSha256": "4f9db94b26214e94d9371b53b3ec5186a4fec70d06f7a7e216fcbb5f98c3c467"
+              },
+              "04": {
+                "sha256": "9202eca0b7de4f678131d21788659290c320074bb86d11899ec0c73d81ddae76",
+                "bytes": 25564,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  103,
+                  249
+                ],
+                "pixelSha256": "88bdb738d9716f67f988a5e689e38a6774f45fee1e4cf3f0236c230d6f8c0249"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -251415,6 +253574,158 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "794d1d1e910ba563ee9c0f9ff7e933fc8feed868b127603a7e5b6b4dfc890db3",
+          "sourceDimensions": [
+            2169,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra FEMALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding feminine warlord with STEEL-GRAY braided crown and compact low braided bun, silver temples, sharp amber eyes, low gold battlement circlet. Canonical feminine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "9c1dee6e79bde23127e773ff8aecbaaf7a83798b0772afe6d072efeda4400fc5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra FEMALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding feminine warlord with STEEL-GRAY braided crown and compact low braided bun, silver temples, sharp amber eyes, low gold battlement circlet. Canonical feminine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "31d2e2777376ed0122a8b9b1a3a56970ad2babee40ba4d7c9e9656498b87b1ba",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra FEMALE, Tier 3.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding feminine warlord with STEEL-GRAY braided crown and compact low braided bun, silver temples, sharp amber eyes, low gold battlement circlet. Canonical feminine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+            "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+            "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+            "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "01c4e4eeda0f15eb11f77a86710b7e334e21b5c1249b9be8e9a944348f64f206",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/senor_guerra/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Señor de la guerra FEMALE, Tier 3.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty hand and fingertip positions, slim black fingerless gloves. Burgundy sleeves and black/gold compact bracers stay away from palm centers. Compact ram head shoulder armor does not widen body beyond canonical frame. Circlet, fur gorget, gold ram buckle, rank bars and black/gold armor identical across all poses. Adult commanding feminine warlord with STEEL-GRAY braided crown and compact low braided bun, silver temples, sharp amber eyes, low gold battlement circlet. Canonical feminine head size and proportions. Tier 3.5 siege warlord heavy ceremonial battle armor: compact OBSIDIAN-BLACK layered plate cuirass with broad BURNISHED-GOLD borders over fitted deep BURGUNDY sleeves. Two sculpted GOLD RAM-HEAD shoulder guards with compact tightly curled ram horns hugging the shoulders, not wide protrusions. Short IVORY FUR gorget tight around neck beneath gold collar. Long split knee-length BURGUNDY command tabard with three diagonal GOLD rank bars on lower panels and small black armored hip tassets. Large ROUND GOLD RAM-HEAD belt medallion with tightly curled horns, black leather belt. Low compact GOLD BATTLEMENT CIRCLET on brow, five short square crenellations, fully visible face and hair, no tall helmet. Charcoal trousers, black heavy boots with GOLD RAM-HORN engraved shin and knee armor, gold squared toe caps. Black fingerless gloves and compact black plate wrist bracers with gold rims. No cape, scarf, bag, weapon, shield held or sheathed equipment. Tier 3.5 fusion of Verdugo raw strength and Mariscal battlefield command: regal gold siege armor, obsidian articulated cuirass and burgundy officer tabard make a visibly superior warlord. Ram heraldry and battlement crown distinguish it from Verdugo bear-paw/fang armor and Mariscal gate/ivory-tabard uniform. Compact mobile silhouette with full body and boots visible. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -251432,6 +253743,70 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       }

@@ -1,0 +1,155 @@
+{
+  "classId": "abjurador",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame02-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/abjurador/m/source/walk-frame04-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_spear-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_spear-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_spear-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_bow-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_bow-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_bow-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-reference-v3.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/abjurador/f/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/abjurador/f/source/attack_gloves-reference.png",
+      "overrides": {}
+    }
+  },
+  "notes": [
+    "Abjurador desarrolla la defensa del Escriba arcano con abrigo marfil, bordes azul pervinca y manto rigido de plata. Escudos azules concentricos en hombreras, brazales y hebilla hexagonal lo distinguen de las runas ofensivas de Runista. Gafas redondas plateadas y cabello blanco: corto masculino y recogido trenzado bajo femenino.",
+    "All thirty actions, eighteen source palm boards, representative equipment of every type and both axe structures were reviewed for both sexes. Fifteen actions and 682 contact checks per sex pass without warnings.",
+    "Male walk revision4 selects only complete portrait3v4. Male spear and bow revision2 each select only complete portrait4v2. Female walk revision3 selects only complete portrait1v3. All other poses retain originals. Rejected grip candidates and the rejected third-hand artifact remain unselected.",
+    "Only complete generated poses are selected with the fixed canonical transform. No body painting, limb transplants, class equipment offsets or pose-specific scaling. Legacy unused secondary wrist, fingertip and waist-return contacts were verified against rendered equipment. No runtime promotion."
+  ]
+}

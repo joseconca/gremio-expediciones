@@ -3,9 +3,9 @@
   "expectedVariants": 122,
   "expectedFrames": 7320,
   "technicallyCompleteVariants": 106,
-  "validFrames": 6368,
+  "validFrames": 6432,
   "invalidFrames": 0,
-  "missingActions": 238,
+  "missingActions": 222,
   "note": "Technical completion is not artistic approval or runtime promotion. Run auditar-sprites-hd.py before refreshing this derived report.",
   "classes": [
     {
@@ -1340,19 +1340,19 @@
       "variants": [
         {
           "sex": "m",
-          "validFrames": 4,
+          "validFrames": 52,
           "invalidFrames": 0,
-          "technicalActions": 1,
-          "missingActions": 14,
+          "technicalActions": 13,
+          "missingActions": 2,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         },
         {
           "sex": "f",
-          "validFrames": 4,
+          "validFrames": 20,
           "invalidFrames": 0,
-          "technicalActions": 1,
-          "missingActions": 14,
+          "technicalActions": 5,
+          "missingActions": 10,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         }
