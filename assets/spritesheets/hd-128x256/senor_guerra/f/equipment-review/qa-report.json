@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "senor_guerra",
   "sex": "f",
   "actions": [
@@ -28,12 +28,12 @@
     ],
     "walk": [
       "054eec9acf168dd23902541a9f1c109b80cf98e0b2d0ae75d5a494b8ea514f0c",
-      "00ad5c4a0ffa74ce0913ef459a22078b03fd1cd2655738e8847a923cca123ac3",
+      "0f7f4927d3c30e91ea0cd675227c21786fec018ab58c1f72ce17fef2aa774fd2",
       "0daf3a53ac64ced0efa954e8680c8fba7cb57dc1a0d3fbf48129820f6688569f",
       "329e99b6bfce2004707ec63584a462813f5232c71efb81d33ddf1b09fc778287"
     ],
     "hurt": [
-      "4fd3a023d52dc77a7ef9ee547a4f52ff03e819a171c05bef2bdb8f6755083375",
+      "40fb2572241287cc2d0f68c156598edfd28ed70772ff433e18c2eed4afe06913",
       "f9e8cf6ee8550fa3ec352da1b6ef08becb6ec5d1830bef000eaf55238636062c",
       "ec15fe11f8d70c1499f53e306674af47b220abebe2d5f19c755b4cbde408c8c7",
       "0026cb6e9a356a018cda7701bc894dcd52e1971f558fa808f070a9c381c0bd75"
@@ -102,54 +102,17 @@
       "3e80bfc7e9121b4406184da66568eb9215c1100529a487bc1cec681dffe5d78b",
       "ef00e810d02517313219b7e672e32e6f0e4ea21478385e96080367c456da753d",
       "daf22df7aa945d7d1f9addd60e7eee045dcca9772143ea07684a766bba069735",
-      "02714c618788431f8308048c3c57f932522d71b132f718831dc85f19379adfbe"
+      "af10e8449966071b9fe06860f6e913e2c7cfc4f77537df6bec0d0e623f5e1b7c"
     ],
     "attack_gloves": [
-      "560e116fd0394a469c1c1d950c376c2e3ed0ee315b0992e5d0e9725690e392cd",
+      "59042b230ca09379f47a52d6935f1cdc338716a223656a118cc5a8cd520d44e3",
       "2aa7eed57f8dd9ebd32b54ffa6bb2123ab706077846985fa723a66cd04517a8e",
       "a93392ea1121808063fd5899c15dce606315bf355633219139bc9c1e673e9d90",
-      "18d7b648c6780aa7166fe01ec1a7eaf949e00f4ed35398cc1971212357d3afa4"
+      "714daa210f4da2a660880cb22531fbd0a74b73185cd18bb51ad54422f6f19999"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_book",
-      "frame": 4,
-      "item": "grimorio_eclipse",
-      "point": [
-        90,
-        157
-      ]
-    },
-    {
-      "action": "attack_book",
-      "frame": 4,
-      "item": "grimorio_eclipse",
-      "point": [
-        75,
-        143
-      ]
-    },
-    {
-      "action": "attack_book",
-      "frame": 4,
-      "item": "libro_aprendiz",
-      "point": [
-        90,
-        157
-      ]
-    },
-    {
-      "action": "attack_book",
-      "frame": 4,
-      "item": "libro_aprendiz",
-      "point": [
-        75,
-        143
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 106,
-  "contactChecks": 72292,
+  "variants": 108,
+  "contactChecks": 73656,
   "warnings": 0,
   "reports": [
     {
@@ -600,6 +600,18 @@
     },
     {
       "classId": "saqueador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "senor_guerra",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "senor_guerra",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
