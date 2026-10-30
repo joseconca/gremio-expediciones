@@ -1,18 +1,18 @@
 {
   "status": "in-progress",
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "branch": "nuevas-clases",
-  "completedClasses": 53,
-  "remainingClasses": 8,
-  "closedFrames": 6360,
-  "closedContactChecks": 72292,
-  "lastCompletedClass": "abjurador",
+  "completedClasses": 54,
+  "remainingClasses": 7,
+  "closedFrames": 6480,
+  "closedContactChecks": 73656,
+  "lastCompletedClass": "senor_guerra",
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
-    "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2"
+    "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
+    "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad"
   },
   "remainingIds": [
-    "senor_guerra",
     "avatar_tormenta",
     "cazador_espectral",
     "arconte",
@@ -21,31 +21,18 @@
     "danzaespadas",
     "corsario"
   ],
-  "nextClass": "senor_guerra",
+  "nextClass": "avatar_tormenta",
   "generationBlock": null,
   "inProgress": {
-    "senor_guerra": {
+    "avatar_tormenta": {
       "m": {
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
         "registeredActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
+          "dodge",
+          "block_shield",
           "attack_sword",
           "attack_axe",
           "attack_spear",
@@ -56,27 +43,48 @@
           "attack_book",
           "attack_gloves"
         ],
-        "missingSourceActions": [
+        "generatedActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ]
       },
       "f": {
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge"
-        ],
         "registeredActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ],
-        "missingSourceActions": [
+        "generatedActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
           "block_shield",
           "attack_sword",
           "attack_axe",
@@ -90,13 +98,27 @@
         ]
       }
     },
-    "avatar_tormenta": {
+    "cazador_espectral": {
       "m": {
-        "generatedActions": [
-          "idle"
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ],
-        "registeredActions": [],
-        "missingSourceActions": [
+        "generatedActions": [
+          "idle",
           "walk",
           "hurt",
           "use_consumable",
@@ -114,9 +136,24 @@
         ]
       },
       "f": {
-        "generatedActions": [],
-        "registeredActions": [],
-        "missingSourceActions": [
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
+        "generatedActions": [
           "idle",
           "walk",
           "hurt",
@@ -134,23 +171,32 @@
           "attack_gloves"
         ]
       }
+    },
+    "arconte": {
+      "m": {
+        "registeredActions": [],
+        "generatedActions": [
+          "idle"
+        ]
+      },
+      "f": {
+        "registeredActions": [],
+        "generatedActions": []
+      }
     }
   },
   "reviewNotes": {
-    "senor_guerra": [
-      "Both idle identities viewed, canonical bounds passed, identity detail references reviewed. Both identities are registered.",
-      "Male original costume source boards 0,2,6,8,10,12,14 reviewed; dodge/block_shield sources missing. Female costume boards 0,2 reviewed; female dodge source exists but not visually reviewed yet.",
-      "Partial automated equipment QA: male 13 actions / 546 contacts, female 5 actions / 516 contacts, no alpha warnings. These are partial results, not class approval.",
-      "Male source palm boards idle, walk, hurt, use_consumable, attack_sword and attack_spear reviewed. Remaining male palms, all female palms and all equipment compositions still need manual review.",
-      "Manual candidate corrections: male walk3 secondary fist is below target; walk4 primary fist left of target; male sword4 primary target lies on bracer instead of palm. Check actual equipment before deciding exact repairs. No repairs generated or selected yet.",
-      "Do not count this class complete or add partial QA to the closed-class aggregate.",
-      "Resumed 2026-10-29: all30 sources now generated and registered; M walk revision3 selects3v3 and4v2; M sword revision2 only4v2; F walk revision3 only2v3; F hurt revision3 selects1v3 and4v2. Pending F book4 and gloves1/4 repairs."
+    "completed": [
+      "Senor de la guerra CLOSED, 30 actions / 120 frames, manual costume/palm/equipment review complete, 29 tests PASS, GitHub verified 27f623e1."
     ],
     "avatar_tormenta": [
-      "Both identities generated, viewed, canonical bounds passed and registered. Male and female action generation in progress."
+      "All 30 costumes, 18 original palm boards, all 10 equipment boards and both full axe structures visually inspected. Selected corrections registered by work/register-avatar-first-approved.py and work/register-avatar-second-approved.py. Female spear remaining candidate repairs; class NOT CLOSED."
     ],
-    "completed": [
-      "Runista and Abjurador each have both sexes, thirty actions, 120 frames, all representative weapon structures reviewed, 1364 contacts without warnings and 29 animation tests passed. Both class commits verified on GitHub."
+    "cazador_espectral": [
+      "All 30 sources registered. All 16 original costume boards, 18 original palm boards, 10 equipment boards and both full axe structures visually inspected. Ten portrait repairs generated, selected revisions still pending. Initial female walk3 has 24 alpha warnings, do not close."
+    ],
+    "arconte": [
+      "Male identity generation started using work/arconte-approved-brief.json, not yet approved."
     ]
   },
   "methodology": [
