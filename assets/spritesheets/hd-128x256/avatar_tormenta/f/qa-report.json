@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-30T08:49:18.158249+00:00",
+  "classId": "avatar_tormenta",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\avatar_tormenta-f-sheet.png",
+  "sheetSha256": "570902b67a0c29f8b6e74bb103c4477b9108f4cbf53d19a51fe145ad5e213382",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\idle\\avatar_tormenta-f-idle-01.png",
+          "sha256": "d993f62094bda6c15ba751441bedcc5a110a901e455c502da9228d32a2ab8407",
+          "alpha_bbox": [
+            23,
+            89,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\idle\\avatar_tormenta-f-idle-02.png",
+          "sha256": "2ac8616d9cadc7f7e96e8bea3c14f85a09d97d7e9e85b162267bcfd780eda779",
+          "alpha_bbox": [
+            23,
+            89,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\idle\\avatar_tormenta-f-idle-03.png",
+          "sha256": "b5c7535c25765475793ac875f2f2b1e834b24eb95169388b68bb29d67c0c720f",
+          "alpha_bbox": [
+            22,
+            89,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\idle\\avatar_tormenta-f-idle-04.png",
+          "sha256": "288728684d9b97d0e4db152fdfad3e9bed992c39c21bd5c6654264e8b8a55db2",
+          "alpha_bbox": [
+            22,
+            89,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\walk\\avatar_tormenta-f-walk-01.png",
+          "sha256": "ad99670892f0eb377fa58d4a3730e9c54534d2b9dfc4e8bd13043ac7e32cb184",
+          "alpha_bbox": [
+            11,
+            90,
+            104,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\walk\\avatar_tormenta-f-walk-02.png",
+          "sha256": "673dbf5798141d5992e7b3c5e528897d7b6c7e5dbc754ecabfa17e28ff1c93d3",
+          "alpha_bbox": [
+            28,
+            90,
+            92,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\walk\\avatar_tormenta-f-walk-03.png",
+          "sha256": "930c569d85034bb466ccae873c23804522e688acb0106c8b384115259e5635fb",
+          "alpha_bbox": [
+            7,
+            91,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\walk\\avatar_tormenta-f-walk-04.png",
+          "sha256": "c4ddc3d4f9cebae547df972372ed2fc59cb912f79879b54b0afbf96aadadd1a0",
+          "alpha_bbox": [
+            18,
+            91,
+            93,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\hurt\\avatar_tormenta-f-hurt-01.png",
+          "sha256": "19515d7557ab3d95e4f75025db23231a0846dc49bd6b58c019289d1b51a1566f",
+          "alpha_bbox": [
+            24,
+            92,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\hurt\\avatar_tormenta-f-hurt-02.png",
+          "sha256": "91959ead02d3ec04909e39fc556638a62ad082947dfb5023a2573d59cb716370",
+          "alpha_bbox": [
+            24,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\hurt\\avatar_tormenta-f-hurt-03.png",
+          "sha256": "21eda08f00047f8db5e819f23f651e7b823b53856d7b703561562b9ff23ca6a3",
+          "alpha_bbox": [
+            21,
+            116,
+            99,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\hurt\\avatar_tormenta-f-hurt-04.png",
+          "sha256": "a8484a5c2f52b9d5628aa2e8f9a8c0bfbbbb7a6193df9f1234ca625360aec4f9",
+          "alpha_bbox": [
+            18,
+            91,
+            102,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\use_consumable\\avatar_tormenta-f-use_consumable-01.png",
+          "sha256": "2fcde8009475329ccc4b5e72ab4d5d1f1695ef076d0197e550d3ba2273f65b46",
+          "alpha_bbox": [
+            25,
+            90,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\use_consumable\\avatar_tormenta-f-use_consumable-02.png",
+          "sha256": "fae4230a1b6d3e809b064255148f4b211be53ba60817387e74772d3e791ab7ab",
+          "alpha_bbox": [
+            25,
+            90,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\use_consumable\\avatar_tormenta-f-use_consumable-03.png",
+          "sha256": "15f246a8e08dc51bcad920e07886cd4a580a0136e4ce9e308be64bf749d38676",
+          "alpha_bbox": [
+            25,
+            90,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\use_consumable\\avatar_tormenta-f-use_consumable-04.png",
+          "sha256": "d5ce13f0fc116b66b7bef51b7e138ba6f7388e0abfd693e983fd4e4d332f4c43",
+          "alpha_bbox": [
+            25,
+            90,
+            103,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\dodge\\avatar_tormenta-f-dodge-01.png",
+          "sha256": "e588dc09a6a817e6f11964b345ff1a345dd0a47e784404bb50646fbfa331a526",
+          "alpha_bbox": [
+            31,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\dodge\\avatar_tormenta-f-dodge-02.png",
+          "sha256": "95d96cf1b7e73a81554b6b3685a9e4a9cd5cf6e49bded3a1624acf4bd65705af",
+          "alpha_bbox": [
+            29,
+            98,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\dodge\\avatar_tormenta-f-dodge-03.png",
+          "sha256": "825256f65d097c744a133507d86a1cc0304e796e7d1bbb22b803ec258a636123",
+          "alpha_bbox": [
+            24,
+            125,
+            107,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\dodge\\avatar_tormenta-f-dodge-04.png",
+          "sha256": "8d46ebaaa16bef466209e4849b7269dde0adc355c7effddd34c97b68246b967f",
+          "alpha_bbox": [
+            17,
+            94,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\block_shield\\avatar_tormenta-f-block_shield-01.png",
+          "sha256": "8c7c6d679aafd24b5cb411c62be456df04edbd95b0b7c0d4a4d838a152ab064e",
+          "alpha_bbox": [
+            28,
+            91,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\block_shield\\avatar_tormenta-f-block_shield-02.png",
+          "sha256": "7b81aad6590cba709b54905963562f84dc1466be5faa11edace3b2246fef66c2",
+          "alpha_bbox": [
+            27,
+            91,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\block_shield\\avatar_tormenta-f-block_shield-03.png",
+          "sha256": "b2bc554927ca76e37a6c960ab24d3a45117aac1198c88cd135897617a9f83833",
+          "alpha_bbox": [
+            26,
+            105,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\block_shield\\avatar_tormenta-f-block_shield-04.png",
+          "sha256": "32f2e61e09a9af5ecb8d262e48bb3e607cc426e10539fe8837754070db49d1de",
+          "alpha_bbox": [
+            21,
+            91,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_sword\\avatar_tormenta-f-attack_sword-01.png",
+          "sha256": "3b1c2b0819d5f1861044a9751ae9b5f459188f02d0a9539ee171c7345f01dc40",
+          "alpha_bbox": [
+            18,
+            91,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_sword\\avatar_tormenta-f-attack_sword-02.png",
+          "sha256": "adf74719927285394c7454dcd13d8b5e86348ca35cbf46df56077103b442aac6",
+          "alpha_bbox": [
+            18,
+            91,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_sword\\avatar_tormenta-f-attack_sword-03.png",
+          "sha256": "0ea05edacbdf9d75cbd8ef6a404cd225fc3f7279c1edad59da666354f1058796",
+          "alpha_bbox": [
+            14,
+            99,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_sword\\avatar_tormenta-f-attack_sword-04.png",
+          "sha256": "c061aaa468d402031eb343d0d9867ca56553141ad0a5d7b415376e029703c4be",
+          "alpha_bbox": [
+            16,
+            91,
+            107,
+            245
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_axe\\avatar_tormenta-f-attack_axe-01.png",
+          "sha256": "1bbba197d3dd3eadbd02452f0e2a134c1b2a13ac598c819a1e689217e136342c",
+          "alpha_bbox": [
+            23,
+            95,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_axe\\avatar_tormenta-f-attack_axe-02.png",
+          "sha256": "09482df6b7fa91af19ba69e08927d7f18c5a08405c62e0ec6ee3f9d4d619bf68",
+          "alpha_bbox": [
+            15,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_axe\\avatar_tormenta-f-attack_axe-03.png",
+          "sha256": "211792bb488070511a7df6bc015d80be197d351cdc2dd86e4697458d89163b74",
+          "alpha_bbox": [
+            13,
+            104,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_axe\\avatar_tormenta-f-attack_axe-04.png",
+          "sha256": "8c92a0b661738847420fdae52dbf999c49cda36e35a1f70019f48222b8582a1f",
+          "alpha_bbox": [
+            7,
+            95,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_spear\\avatar_tormenta-f-attack_spear-01.png",
+          "sha256": "b94a9ac29bee2b7074843afbeb3286d35f2df680b41f607270bdcc2fe62d87c4",
+          "alpha_bbox": [
+            11,
+            91,
+            113,
+            252
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_spear\\avatar_tormenta-f-attack_spear-02.png",
+          "sha256": "e362c03bc851168a3a8235f52f30b525d541995409f760b2be5fc7cee564c483",
+          "alpha_bbox": [
+            14,
+            92,
+            103,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_spear\\avatar_tormenta-f-attack_spear-03.png",
+          "sha256": "b1eb33b92fcd795405c15c279b58f3076c03245b5c0068df93feae12dd4385f4",
+          "alpha_bbox": [
+            13,
+            92,
+            116,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_spear\\avatar_tormenta-f-attack_spear-04.png",
+          "sha256": "4fae3a12d309600e58f9e5873c647c6943aa7f2c0a4756ddacbd068003e9338a",
+          "alpha_bbox": [
+            17,
+            91,
+            111,
+            253
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_dagger\\avatar_tormenta-f-attack_dagger-01.png",
+          "sha256": "8a368dc62b41d31089bd2ad682b39eb5db271f158dc042a48b1c36ce032e1bae",
+          "alpha_bbox": [
+            14,
+            89,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_dagger\\avatar_tormenta-f-attack_dagger-02.png",
+          "sha256": "344487667e6ad36370abf12bdd886becbb5acb04910d7a09908aabf99ed1df08",
+          "alpha_bbox": [
+            17,
+            90,
+            111,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_dagger\\avatar_tormenta-f-attack_dagger-03.png",
+          "sha256": "b8257eb926715e6ca339b03e6431935dc0c6245cb818b33a6129e0cef47edea2",
+          "alpha_bbox": [
+            16,
+            91,
+            109,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_dagger\\avatar_tormenta-f-attack_dagger-04.png",
+          "sha256": "ff36c2b31127cafd319c7a37420a17ad66dfe62ba32965fd2b34f70614812c0d",
+          "alpha_bbox": [
+            22,
+            90,
+            114,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_bow\\avatar_tormenta-f-attack_bow-01.png",
+          "sha256": "fff8085d3dc9b60e5b552ec87e2ef8a2b6accd96e0937bb17d8de87d5679f56a",
+          "alpha_bbox": [
+            22,
+            89,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_bow\\avatar_tormenta-f-attack_bow-02.png",
+          "sha256": "d0e8b25ecbca9c7cc5f86d7832ebe2f1644d0fd008dafe2863d0e35ee7504327",
+          "alpha_bbox": [
+            14,
+            89,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_bow\\avatar_tormenta-f-attack_bow-03.png",
+          "sha256": "f7e260ddd279df7ad6bb3a648f3b7f200a58e457019e489491e84d2aaf50cd22",
+          "alpha_bbox": [
+            17,
+            89,
+            117,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_bow\\avatar_tormenta-f-attack_bow-04.png",
+          "sha256": "87f8ccd752e9abd0f1cd6e5208724e268d5ac444c1c4031e8380b6244000a734",
+          "alpha_bbox": [
+            17,
+            89,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_staff\\avatar_tormenta-f-attack_staff-01.png",
+          "sha256": "7c02cf16c2cc7d0b0ff87717d4db43060365a594630871d85d74b568f3166155",
+          "alpha_bbox": [
+            24,
+            89,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_staff\\avatar_tormenta-f-attack_staff-02.png",
+          "sha256": "1a3d097971550dcb6fe70bf3e52d225c2675352fcf4005723c72aec44f9f57ac",
+          "alpha_bbox": [
+            21,
+            89,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_staff\\avatar_tormenta-f-attack_staff-03.png",
+          "sha256": "22fed12c0a517805468a0c42670a684b930cbc7886cb747a87c78d67d28059d4",
+          "alpha_bbox": [
+            19,
+            89,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_staff\\avatar_tormenta-f-attack_staff-04.png",
+          "sha256": "00c9ac27298d2a9b7f5a836c32ca517ba157b74afe7907d6e0c7c0d58793ba68",
+          "alpha_bbox": [
+            21,
+            89,
+            103,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_mace\\avatar_tormenta-f-attack_mace-01.png",
+          "sha256": "f0706a106cd4dec12a066ee6854ebd79ab9a67670f06a430075af6e419bfe2e6",
+          "alpha_bbox": [
+            30,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_mace\\avatar_tormenta-f-attack_mace-02.png",
+          "sha256": "16c65325e1db07f900268b78bcd7945994fac5635ce47b0301ff74e35011f1e6",
+          "alpha_bbox": [
+            23,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_mace\\avatar_tormenta-f-attack_mace-03.png",
+          "sha256": "cf3589a0c3cd7a2fac16b819827776edc27dc92ef7ab21ff0e4285d32955f613",
+          "alpha_bbox": [
+            19,
+            95,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_mace\\avatar_tormenta-f-attack_mace-04.png",
+          "sha256": "d4ce7ee5b77efeac38661ed0d190442cf9b52d5614b11b01d1811e8997d109e1",
+          "alpha_bbox": [
+            18,
+            89,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_book\\avatar_tormenta-f-attack_book-01.png",
+          "sha256": "7a58dcaf4c7637013edd8f8b09d3af95b11c5c3eccc603ed53300b55ce0f04c6",
+          "alpha_bbox": [
+            33,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_book\\avatar_tormenta-f-attack_book-02.png",
+          "sha256": "344b7638e17856120c5c481b8c7aaa86bc68ca58f3d8a5131437414f8a4b248d",
+          "alpha_bbox": [
+            28,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_book\\avatar_tormenta-f-attack_book-03.png",
+          "sha256": "352a393993f042d8ff2bdc951bffbc40e7917011768487735c7b0fc754f2b894",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_book\\avatar_tormenta-f-attack_book-04.png",
+          "sha256": "a4c7e1cd038336378c00531a520bd772bbc204cb052cdc67702f143d78fdbfe4",
+          "alpha_bbox": [
+            22,
+            90,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_gloves\\avatar_tormenta-f-attack_gloves-01.png",
+          "sha256": "927a959000a291e5235d9452086b19a8971fead5f964b23cf6f95c7cc46dc5fd",
+          "alpha_bbox": [
+            22,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_gloves\\avatar_tormenta-f-attack_gloves-02.png",
+          "sha256": "498b3d26d93138e494ed54e3d2525d7d08f1d43170b4066c329a42d58e0145d4",
+          "alpha_bbox": [
+            21,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_gloves\\avatar_tormenta-f-attack_gloves-03.png",
+          "sha256": "196593acfdd24a21eea2e9e1814862a1053557d25a6cddee3e71dfb3d503ccec",
+          "alpha_bbox": [
+            10,
+            91,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\avatar_tormenta\\f\\frames\\attack_gloves\\avatar_tormenta-f-attack_gloves-04.png",
+          "sha256": "e343d537ac3e2ed6007d7bfe4245e27e8863888e3246366f3b9e065d474c8449",
+          "alpha_bbox": [
+            14,
+            91,
+            101,
+            252
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

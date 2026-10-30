@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 108,
-  "contactChecks": 73656,
+  "variants": 110,
+  "contactChecks": 75020,
   "warnings": 0,
   "reports": [
     {
@@ -84,6 +84,18 @@
     },
     {
       "classId": "asesino",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "avatar_tormenta",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "avatar_tormenta",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

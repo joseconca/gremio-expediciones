@@ -2,18 +2,17 @@
   "status": "in-progress",
   "date": "2026-10-30",
   "branch": "nuevas-clases",
-  "completedClasses": 54,
-  "remainingClasses": 7,
-  "closedFrames": 6480,
-  "closedContactChecks": 73656,
-  "lastCompletedClass": "senor_guerra",
+  "completedClasses": 55,
+  "remainingClasses": 6,
+  "closedFrames": 6600,
+  "closedContactChecks": 75020,
+  "lastCompletedClass": "avatar_tormenta",
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
     "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
     "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad"
   },
   "remainingIds": [
-    "avatar_tormenta",
     "cazador_espectral",
     "arconte",
     "justiciero",
@@ -21,83 +20,9 @@
     "danzaespadas",
     "corsario"
   ],
-  "nextClass": "avatar_tormenta",
+  "nextClass": "cazador_espectral",
   "generationBlock": null,
   "inProgress": {
-    "avatar_tormenta": {
-      "m": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      },
-      "f": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      }
-    },
     "cazador_espectral": {
       "m": {
         "registeredActions": [
@@ -181,16 +106,56 @@
       },
       "f": {
         "registeredActions": [],
+        "generatedActions": [
+          "idle"
+        ]
+      }
+    },
+    "justiciero": {
+      "m": {
+        "registeredActions": [],
+        "generatedActions": []
+      },
+      "f": {
+        "registeredActions": [],
+        "generatedActions": []
+      }
+    },
+    "hoja_velo": {
+      "m": {
+        "registeredActions": [],
+        "generatedActions": []
+      },
+      "f": {
+        "registeredActions": [],
+        "generatedActions": []
+      }
+    },
+    "danzaespadas": {
+      "m": {
+        "registeredActions": [],
+        "generatedActions": []
+      },
+      "f": {
+        "registeredActions": [],
+        "generatedActions": []
+      }
+    },
+    "corsario": {
+      "m": {
+        "registeredActions": [],
+        "generatedActions": []
+      },
+      "f": {
+        "registeredActions": [],
         "generatedActions": []
       }
     }
   },
   "reviewNotes": {
     "completed": [
-      "Senor de la guerra CLOSED, 30 actions / 120 frames, manual costume/palm/equipment review complete, 29 tests PASS, GitHub verified 27f623e1."
-    ],
-    "avatar_tormenta": [
-      "All 30 costumes, 18 original palm boards, all 10 equipment boards and both full axe structures visually inspected. Selected corrections registered by work/register-avatar-first-approved.py and work/register-avatar-second-approved.py. Female spear remaining candidate repairs; class NOT CLOSED."
+      "Senor de la guerra CLOSED, 30 actions / 120 frames, manual costume/palm/equipment review complete, 29 tests PASS, GitHub verified 27f623e1.",
+      "avatar_tormenta CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
     ],
     "cazador_espectral": [
       "All 30 sources registered. All 16 original costume boards, 18 original palm boards, 10 equipment boards and both full axe structures visually inspected. Ten portrait repairs generated, selected revisions still pending. Initial female walk3 has 24 alpha warnings, do not close."

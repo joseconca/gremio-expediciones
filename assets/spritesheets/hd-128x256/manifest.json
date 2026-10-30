@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "avatar_tormenta-f",
+  "nextVariant": "cazador_espectral-m",
   "classes": [
     {
       "id": "novato",
@@ -443,7 +443,7 @@
       "name": "Avatar de la tormenta",
       "tier": 3.5,
       "order": 55,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "cazador_espectral",
@@ -256640,7 +256640,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/avatar_tormenta/m/avatar_tormenta-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/avatar_tormenta/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -257764,7 +257764,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "72ea1bc2e41bf3008284f4b163fcd676cc8a3a5b6237971c258c52f7b4c73b5a",
@@ -257802,7 +257803,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "9cfcdd39ec2350a859aa03b1c6f496bb834cc61d8d362382370c510b87bb542e",
@@ -257934,7 +257935,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "eb105b1a2cf552c5134dcfe2ee2c538196ab6d1220fbb1285c220d285d24573c",
@@ -257972,7 +257974,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "f9457bb217a4aeb3dbfd6c9f7f30cd002b9393c585ba2e1fbdd0a05a70e050fb",
@@ -258104,7 +258106,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "bfdc685cab0c20bb4dbece2255ae7507706cde4f852b618e151565ee360aae18",
@@ -258142,7 +258145,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "98a3a6d1914a85f484de93357069dcb22f296f970ee438d1233e3264deb92491",
@@ -258186,7 +258190,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "e20992c431ae9876ab7b2ed4a43f00c9e8f2abf92ef5c6902f299b4bc0b9a9dd",
@@ -258230,7 +258235,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "98eee78a43baa792763c89032c87d790da01ee4b7622e2708d1d932c27f31db0",
@@ -258268,7 +258274,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "9c9c06d29f605f7082781edd3646cf1c26c710e0c8a7b314bda2408eb26b76f4",
@@ -258400,7 +258406,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "de47bbafe8096b55d3ee511bef95262b71fe42d7a0c5964b07c94f02ae7e53e3",
@@ -258438,7 +258445,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "e3379f1dbe9337417f1e34eeb7384076ed48b470c9841540daf351323d2ebe34",
@@ -258476,7 +258484,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "d3378f532c16d416d365323f715de815116fb2ba75a65ae9fa92dbe00fad29ca",
@@ -258608,7 +258616,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "b4c6bcad008d0eca59092e915047c594758fa0a39aabce378d8acbf5773d679e",
@@ -258646,7 +258655,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "a5ffc13a8092f1958d0a80b92bb731e8da44ab07134655580a58b13890258710",
@@ -258684,7 +258694,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "3628a6a9adc7585938ca6cbe7bac7586141ef41396de35fffa5e5117b3116fe9",
@@ -258722,7 +258733,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "0cc5afe53c6d35179e45acf16eddaeb4325bfb16b4f6cee3a8e3d31f9c649881",
@@ -258760,7 +258772,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "ebf427b52a4a7804d88b8ab938b2ba2d4de8ea1dd73dbba66c21f486d60de180",
@@ -258798,7 +258811,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "4bde0a4b8240d129eb13887260a5bc63a946719d51cc87844916aa77d41c6bbb",
@@ -258836,7 +258850,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -259111,6 +259126,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "avatar_tormenta",
+        "name": "Avatar de la tormenta",
+        "tier": 3.5,
+        "costume": "Tier 3.5 storm martial arcanist medium armor: fitted deep INDIGO sleeveless cross-over martial jacket with crisp ELECTRIC-CYAN seams and white cloud-scroll brocade. Compact polished SILVER shoulder guards shaped as TWO interlocking CLOUD SPIRALS, etched with bright CYAN lightning zigzags. Small close silver pectoral plate bearing THREE stacked GOLD LIGHTNING chevrons. Broad WHITE wrapped fighting sash with large SILVER HEXAGONAL THUNDERBOLT belt buckle and two short cyan sash tabs at hip. Black fitted martial trousers, SILVER/CYAN knee guards and black split-toe boots with SILVER lightning shin inlays and cyan calf bands. BARE upper arms; compact black elbow guards with silver cloud spirals. White wrist wraps with black edging and BLACK fingerless glove palms, fingers exposed. Low SILVER double lightning temple band hugging forehead, hair fully visible. No cloak, scarf, equipment, held or sheathed weapons, floating effects, aura or magic.",
+        "maleIdentity": "Adult masculine storm martial master with PALE ICE-BLUE short swept layered hair and one narrow upward central quiff, sharp violet-blue eyes, clean-shaven. Canonical masculine head size and proportions.",
+        "femaleIdentity": "Adult feminine storm martial master with PALE ICE-BLUE hair in compact HIGH DOUBLE BRAIDED KNOTS, sharp violet-blue eyes. Canonical feminine head size and proportions.",
+        "armPolicy": "Preserve exact canonical body and fingertip positions. Bare upper arms, compact elbow guards and wrist wraps do not change hand geometry. Black fingerless palms with exposed fingertips. Keep cloud shoulders small inside canonical frame. Costume and insignia identical across all poses.",
+        "unique": "Silver double cloud-spiral pauldrons, cyan lightning embroidery, triple gold lightning chest chevrons and hexagonal thunderbolt sash clasp.",
+        "advancement": "Tier 3.5 fusion of Gran maestro martial discipline and Archimago elemental mastery: superior silver medium armor over indigo cloud brocade and electric cyan trim. Cloud spirals and lightning heraldry make the identity distinct from the Gran maestro crimson/gold knot and Archimago cobalt star constellation robe. Athletic compact silhouette at original body scale.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/avatar_tormenta/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "441c7ca8eed74df3c92e24b2343e7bb6cf7a3bd37c1996f31a7964a282d6104c",
+            "cd1054079d952aa52e0cde6fb6d8c940c2cdf35e4a658522526e52a6e4d829bf",
+            "e80a7e0ffd321604ca45f565c24115fb58145d514a1241b983a45a34ac582b91",
+            "b8db4484e64854d951bf1e47cb208cb1c455f1f4ee9870c909ec8646aeecf7f6"
+          ],
+          "walk": [
+            "0f8ed14ddebebba4f4213115b3c6c0c03e3cf272a13890479a7cc3a0db161de4",
+            "11ff7a56a323172ae2c0d0fb16a7e84d1017e297f0b606e6465280b48ae7bd7e",
+            "f1553aab0c57e69ed075e0a20140d6d7d8697ac97a2ed3b8b83548986adb5ff9",
+            "9656825f48da5ddb80a3412feebd023189c8d324ddeb42e594adc293d9c77f6a"
+          ],
+          "hurt": [
+            "2641abc33fbf77434cdad4ac25a52cf63ef18703cee2057ba0e2d9753f0f9b1e",
+            "45dc68f683165543c2ad94e5440114773153b8f23f8b18d3710071415c6c347b",
+            "80d175b487484ed2de940d095b9a90f9d8c05f0c19d3a6844e7af8be6c344bc2",
+            "f7aba0beaa04f7aaec88d33cf7483514616050d73bb8fbb96d40ed312ee07a7e"
+          ],
+          "use_consumable": [
+            "5d8d66726761fffae5d48ae759931f53ab46bb17587e3aef540211a02d689f75",
+            "11251a72ac6a6b2eb3e916d423e2c0e7841e38044d11995c178609275ca43f48",
+            "25a8e332a50aac1ebf0c439ed3f8900fb06627e10a4a732bc06b2c8d18797dfc",
+            "6149b6d78ce0bed3bee5bdf4203c5e22361f208b310551a97216c5e1f398d022"
+          ],
+          "dodge": [
+            "2f4127b8b75769bfc787a6a9ce72859e3e1d6b494223ff7cec4dbb99fbb5c6bf",
+            "e317a964e38ac67ed3509228a2b2504d43cb036cafe5f4ebca4108d881947de6",
+            "5f51a6c4a1c3d3d70c89b22b5336a423ce70b2d5ff3713ff5e58179a62da80db",
+            "2419a8f492ede03572645be9873482ffa4c2328b758ee1f9e026848e10f1fda8"
+          ],
+          "block_shield": [
+            "d5844870bd952ff09ac303dee5152f0bbfbefcdb87f5b5f7ea329db8d57a667d",
+            "ccaa2e3e96875b55804d443692b6158307223df7291c76437b86982a5de42d23",
+            "dbdefb3391a96cc6adb281b91795fc921012a788ad6c55aba5de20822ae016f4",
+            "f0bd98385d88fd20f1524c26a6a95e6c11197b2239da7716f448bc00b9b8b4e0"
+          ],
+          "attack_sword": [
+            "9d4a640f35f5d750bcda8c2c59289c336f4fcd1f92dcc6d44744a5930ad308e7",
+            "ae5a66e48f2fa0b8afabf69180bf655f33a0ba7bd90250e93a92b87c5a896621",
+            "45ecc4b35f4fe646e31210b926bd58eb8364114b85ed492d687668e1d3d9fe3f",
+            "90ef8d7ce7780cb951ff32a20b4d145b8e8b50a841e13894a8fbaac2bd0347c5"
+          ],
+          "attack_axe": [
+            "3b3c1fb449402dbeb081ea183bfde2af081ef62cbe4e1bf8259f5330f27577fd",
+            "6e29ac52823428f1743f3870307b9ee1bc5c86a7ac56967ce66bcffa80828629",
+            "06649be6cc33f230abee03671808ada282b999d33ac85be3b94bc07314ebf119",
+            "45957cb4eb6b209239e4658777eaec2b9160c06fa6e0ba93a9cd848b373d9ac8"
+          ],
+          "attack_spear": [
+            "0134974c42aaafe2700d0409cb4a37aade1749fbf870f5d9b6e2b7c51512752c",
+            "340cc617fc6e5b600627f42701655791716eb77db7d0705be1a9247dacba8d20",
+            "6ba91569e28d43723ac74dce61443a6c9ae5091849fa8bfbadde0774d8db88ce",
+            "a3de33389e11eda28ea3cd393c878ce9b5950993742c35d4093f6fc7d8c18f2c"
+          ],
+          "attack_dagger": [
+            "43bd55c63ca7e3fa5ead905d0c3406969f3d90cc0f643bc143f1e0cc8d47bc6c",
+            "c74df4ad6e1ef45dd31b67c3484a2028b39724ec3d7e8e7dec480afcde29dbf1",
+            "e5ca82ca93c9c49948eda964cddf836178f2c4074030cf2713037dc01d63a809",
+            "97b5576aefbc20704acc88d5f564228b474e374a4fce45bbd29d923c71de0cbe"
+          ],
+          "attack_bow": [
+            "e0e6c7ebc29ff63642e67887491cf3cdeaf78397a67e4d262806a41a566eae7c",
+            "a005093f8198af4e678fec071e3d05c17a322a538be2232aee23167763eab704",
+            "68b310b3d56ec3635b0a51dea917b64d6f707f1cb1c19f0300f1a9d90f264b85",
+            "a5cfe7fc2f227c9e5252a728b5577df93780c7835572f37ef2cfb81e0753bd0e"
+          ],
+          "attack_staff": [
+            "78ce8cd85ce97143741fbdd31886e0d96059cfc5873eb3aeded1a9608c9db4d5",
+            "761857ae376de0173205f0d5b11c71d39f6452d9fe04f40adf16a1635dd40ecc",
+            "978955c6725a24339e812b64136b120a2608e0fd7901bdcfb95e23da86182510",
+            "c6e8269ece2a13551fc7af57d769fbdbb2e5b388112717f885c58a76705f5043"
+          ],
+          "attack_mace": [
+            "f715c43335a0a69b0683e3ae41553c631f54773cb83c186a7a8ce65ea54d541a",
+            "228e7ab52bcf77ec83e9e462826269155c9b1f2185e1e9abf81483d34b3e0d16",
+            "1b24642c81bb9b2580e556a97cdc69142d90126215678ee58957c08db6d752ee",
+            "64c26d8980928818308649c62cf393a19d9ff0d00be968ef5fa6b1bf6749ae9b"
+          ],
+          "attack_book": [
+            "f59fa0050e38fe0abc8a7737c226270ea94f517135a63168ae55e90c1a561c48",
+            "782ec70f01ed6b30b7c432f225b17875bb99704cf009191ee809bc41186e48ce",
+            "a7344f58fefd177f1be89734200b6b6077e7fdac5295f5552f4866a0b4585d3d",
+            "574365f088700c5dde40cc1fdd19a2e2475a153b2b1c073366371b6976cd8236"
+          ],
+          "attack_gloves": [
+            "5a182e2634866b7af5390e7de70b462db0f2223a7db2cb554250ed60d2943566",
+            "52d94f11298f759d60c7405df7cc1de927d00f33ff81862aabcae027ec92364e",
+            "b60873ba990b7e06f273bbc8108ac0e2878c1fb478c38be1bf9980019cde8aa8",
+            "0830b6897c76cd842c4c6094364bf4b74fe0296228bc5bf5587f88cf9e3e9aa6"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -259123,7 +259253,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/avatar_tormenta-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/avatar_tormenta/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -259722,8 +259852,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2ac01c92944258be26a2403c89361911f94b3ecd46e4250dea9c4203d6081c6e",
-                "bytes": 25375,
+                "sha256": "b94a9ac29bee2b7074843afbeb3286d35f2df680b41f607270bdcc2fe62d87c4",
+                "bytes": 25418,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -259731,15 +259861,15 @@
                 ],
                 "bbox": [
                   11,
-                  92,
+                  91,
                   113,
-                  251
+                  252
                 ],
-                "pixelSha256": "f39db2eeb7f7848a720106a59044d38c868eaf0a4e15997a0de2c6bceef39432"
+                "pixelSha256": "1f845e331eff57d9ecacece18c28ba49335527332fd1d5960e12d975fe728780"
               },
               "02": {
-                "sha256": "6493cfe8c2dfa2417dc2d70f7b2723a726a65062f8ca2965c67accf9734b4358",
-                "bytes": 24533,
+                "sha256": "e362c03bc851168a3a8235f52f30b525d541995409f760b2be5fc7cee564c483",
+                "bytes": 24321,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -259751,11 +259881,11 @@
                   103,
                   251
                 ],
-                "pixelSha256": "c74c6d801cfcb5ba2d48b980257f609b85b817f40973682086055981dc2db225"
+                "pixelSha256": "5e7321f2007bf2973a68c18270504188034cb2405ebc77bf012ac50bbddbafbb"
               },
               "03": {
-                "sha256": "e2cb80b3b0dbb8c3d256fa4d6be23ddfc2a9d3026bc83a43cb150951623b6359",
-                "bytes": 24380,
+                "sha256": "b1eb33b92fcd795405c15c279b58f3076c03245b5c0068df93feae12dd4385f4",
+                "bytes": 24283,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -259767,11 +259897,11 @@
                   116,
                   251
                 ],
-                "pixelSha256": "de623d091af61745656134f1387bf0382d1be9a98b94976c622894536cbbba9d"
+                "pixelSha256": "02ed49e25dae590617c658361ac0b4ec66941582ec6b098a232f6b4c3366604f"
               },
               "04": {
-                "sha256": "db03e0bb16e478ca2a33a50d4b80ab24d3772ba20e44484b2dbc1aa4ac1f51d0",
-                "bytes": 25167,
+                "sha256": "4fae3a12d309600e58f9e5873c647c6943aa7f2c0a4756ddacbd068003e9338a",
+                "bytes": 25746,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -259779,11 +259909,11 @@
                 ],
                 "bbox": [
                   17,
-                  92,
-                  116,
-                  251
+                  91,
+                  111,
+                  253
                 ],
-                "pixelSha256": "b72c627b3c546d5d37faa884024d349aecdaaa4892c3af56146016472271569a"
+                "pixelSha256": "199819316263379285b8a5821e24b79ac83c1673b722aafbd5ece19fbc3b8a5c"
               }
             },
             "distinctFrames": 4
@@ -260247,7 +260377,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "3440f708511ef30e89527f9bcfbd07b70cc5598376afda1857c037b734a3db88",
@@ -260285,7 +260416,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "30a51db4444e29b9a8fe13fbf86fb827621c12e704a4c51745673b100c02b745",
@@ -260323,7 +260455,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "6d6e8d316ef9c894a03c7870dc03027b739bed1956ce7f104433ff8b3c3dd5eb",
@@ -260455,7 +260587,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "ec82a8b738f53af64fcbaaa234e91a21ff18736c43534aef0bb069f1ec586e35",
@@ -260493,7 +260626,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "c7cd0ed7ffd9f9305454280ecc2e9aa414c66106bc482e086e135afc7e84bf36",
@@ -260531,7 +260665,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "e21ce9ab198fed8a4aff441720c70db5ada53711826a471b2ee3990a9e56bd80",
@@ -260663,7 +260797,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "3b9b64497529fb09f99c04cfffc9c039a4dd4ebbe8a31a5eeb4bb080d1744462",
@@ -260701,7 +260836,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "c6016b8bfcda4f980a03e30111f2059be22f3ab361dfb71761810f8da1ec21a5",
@@ -260739,7 +260875,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "7b34fca45e054e646f0e71a728c920b6620cb018743b5172b6fefc26a213d2d0",
@@ -260777,13 +260914,14 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "184f3a4b4641d11f87691050875af056ea6ed802ae140a846c2582d791555d53",
+          "sourceSha256": "f655ce53cc92c1f7aadc2ec45be182a28ebf327ca5390d0a40c70b7057ea9142",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -260805,9 +260943,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-reference-v6.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Avatar de la tormenta FEMALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical body and fingertip positions. Bare upper arms, compact elbow guards and wrist wraps do not change hand geometry. Black fingerless palms with exposed fingertips. Keep cloud shoulders small inside canonical frame. Costume and insignia identical across all poses. Adult feminine storm martial master with PALE ICE-BLUE hair in compact HIGH DOUBLE BRAIDED KNOTS, sharp violet-blue eyes. Canonical feminine head size and proportions. Tier 3.5 storm martial arcanist medium armor: fitted deep INDIGO sleeveless cross-over martial jacket with crisp ELECTRIC-CYAN seams and white cloud-scroll brocade. Compact polished SILVER shoulder guards shaped as TWO interlocking CLOUD SPIRALS, etched with bright CYAN lightning zigzags. Small close silver pectoral plate bearing THREE stacked GOLD LIGHTNING chevrons. Broad WHITE wrapped fighting sash with large SILVER HEXAGONAL THUNDERBOLT belt buckle and two short cyan sash tabs at hip. Black fitted martial trousers, SILVER/CYAN knee guards and black split-toe boots with SILVER lightning shin inlays and cyan calf bands. BARE upper arms; compact black elbow guards with silver cloud spirals. White wrist wraps with black edging and BLACK fingerless glove palms, fingers exposed. Low SILVER double lightning temple band hugging forehead, hair fully visible. No cloak, scarf, equipment, held or sheathed weapons, floating effects, aura or magic. Tier 3.5 fusion of Gran maestro martial discipline and Archimago elemental mastery: superior silver medium armor over indigo cloud brocade and electric cyan trim. Cloud spirals and lightning heraldry make the identity distinct from the Gran maestro crimson/gold knot and Archimago cobalt star constellation robe. Athletic compact silhouette at original body scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete RPG sprite on transparent background. The far viewer-right fist is too far left and low: move ONLY that far fist RIGHT and slightly UP so its BLACK PALM center covers the magenta circle immediately above-right of it. Keep the near viewer-left fist EXACTLY fixed. Also BOTH boots touch the bottom edge: make only their soles and toe tips slightly more compact vertically, keeping all pixels of both boots fully inside canvas with clear transparent margin. Do not move or resize head torso legs or overall body. Preserve costume and face exactly, erase magenta annotation. No equipment, shadow or extra figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -260815,7 +260953,140 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "8b38d5ad3d7d67842d47fee911e94d36200b6ca5fd0219d1870b1e5f53d2630a",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame01-reference-v6.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "f9b008da806a12d2903107daecb8971ee13b33d87d6ccba30119d0b7ee67eb92",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame02-reference-v6.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "db8ac2b5e9f61ffde3f76cc9d4d15d7dda1e0723c96181d31ca04c2208a8b216",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame03-reference-v6.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "184f3a4b4641d11f87691050875af056ea6ed802ae140a846c2582d791555d53",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Avatar de la tormenta FEMALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Preserve exact canonical body and fingertip positions. Bare upper arms, compact elbow guards and wrist wraps do not change hand geometry. Black fingerless palms with exposed fingertips. Keep cloud shoulders small inside canonical frame. Costume and insignia identical across all poses. Adult feminine storm martial master with PALE ICE-BLUE hair in compact HIGH DOUBLE BRAIDED KNOTS, sharp violet-blue eyes. Canonical feminine head size and proportions. Tier 3.5 storm martial arcanist medium armor: fitted deep INDIGO sleeveless cross-over martial jacket with crisp ELECTRIC-CYAN seams and white cloud-scroll brocade. Compact polished SILVER shoulder guards shaped as TWO interlocking CLOUD SPIRALS, etched with bright CYAN lightning zigzags. Small close silver pectoral plate bearing THREE stacked GOLD LIGHTNING chevrons. Broad WHITE wrapped fighting sash with large SILVER HEXAGONAL THUNDERBOLT belt buckle and two short cyan sash tabs at hip. Black fitted martial trousers, SILVER/CYAN knee guards and black split-toe boots with SILVER lightning shin inlays and cyan calf bands. BARE upper arms; compact black elbow guards with silver cloud spirals. White wrist wraps with black edging and BLACK fingerless glove palms, fingers exposed. Low SILVER double lightning temple band hugging forehead, hair fully visible. No cloak, scarf, equipment, held or sheathed weapons, floating effects, aura or magic. Tier 3.5 fusion of Gran maestro martial discipline and Archimago elemental mastery: superior silver medium armor over indigo cloud brocade and electric cyan trim. Cloud spirals and lightning heraldry make the identity distinct from the Gran maestro crimson/gold knot and Archimago cobalt star constellation robe. Athletic compact silhouette at original body scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "5729f7ac5bc3e38b5157a84dd2907ffafedadadab2b1f44e53f3cb4a3a43f809",
@@ -260853,7 +261124,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "003d40afa70a30f68241cb437d5920650dbf679ad693283a8b67f2ed73cf2f34",
@@ -260985,7 +261256,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "bcc67adb0d599dc7ca1865571b95ebdc9b3080d7e19d133bd168857ba0788ac2",
@@ -261023,7 +261295,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4d6c115abc3ef661c7ad869c6db684ae57c85a08097004232ed6e6960a247e99",
@@ -261155,7 +261427,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "302aab9a1faa04001a02f0a5e9c8e96135566afe5140f4d70c256063671df41a",
@@ -261193,7 +261466,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "317faa6d168e612dc057e5a195d4242e39c0bdc1817deeaafae9339eb2681295",
@@ -261231,7 +261505,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "51dc6e550396c309a8fe621e70ea2aa303a79bb598ea3650f0371d5d030e439c",
@@ -261269,7 +261544,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "b96d82371f82a04be632e47a3cb24346f81cbc546afe6f9875a8ff4759ea9856",
@@ -261307,7 +261583,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "a410c69c0defd1b5463e3777803fb8f17493206b688f921bbb9f24635afa4b6e",
@@ -261439,7 +261715,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -261572,15 +261849,15 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
@@ -261714,6 +261991,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "avatar_tormenta",
+        "name": "Avatar de la tormenta",
+        "tier": 3.5,
+        "costume": "Tier 3.5 storm martial arcanist medium armor: fitted deep INDIGO sleeveless cross-over martial jacket with crisp ELECTRIC-CYAN seams and white cloud-scroll brocade. Compact polished SILVER shoulder guards shaped as TWO interlocking CLOUD SPIRALS, etched with bright CYAN lightning zigzags. Small close silver pectoral plate bearing THREE stacked GOLD LIGHTNING chevrons. Broad WHITE wrapped fighting sash with large SILVER HEXAGONAL THUNDERBOLT belt buckle and two short cyan sash tabs at hip. Black fitted martial trousers, SILVER/CYAN knee guards and black split-toe boots with SILVER lightning shin inlays and cyan calf bands. BARE upper arms; compact black elbow guards with silver cloud spirals. White wrist wraps with black edging and BLACK fingerless glove palms, fingers exposed. Low SILVER double lightning temple band hugging forehead, hair fully visible. No cloak, scarf, equipment, held or sheathed weapons, floating effects, aura or magic.",
+        "maleIdentity": "Adult masculine storm martial master with PALE ICE-BLUE short swept layered hair and one narrow upward central quiff, sharp violet-blue eyes, clean-shaven. Canonical masculine head size and proportions.",
+        "femaleIdentity": "Adult feminine storm martial master with PALE ICE-BLUE hair in compact HIGH DOUBLE BRAIDED KNOTS, sharp violet-blue eyes. Canonical feminine head size and proportions.",
+        "armPolicy": "Preserve exact canonical body and fingertip positions. Bare upper arms, compact elbow guards and wrist wraps do not change hand geometry. Black fingerless palms with exposed fingertips. Keep cloud shoulders small inside canonical frame. Costume and insignia identical across all poses.",
+        "unique": "Silver double cloud-spiral pauldrons, cyan lightning embroidery, triple gold lightning chest chevrons and hexagonal thunderbolt sash clasp.",
+        "advancement": "Tier 3.5 fusion of Gran maestro martial discipline and Archimago elemental mastery: superior silver medium armor over indigo cloud brocade and electric cyan trim. Cloud spirals and lightning heraldry make the identity distinct from the Gran maestro crimson/gold knot and Archimago cobalt star constellation robe. Athletic compact silhouette at original body scale.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/avatar_tormenta/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "d993f62094bda6c15ba751441bedcc5a110a901e455c502da9228d32a2ab8407",
+            "2ac8616d9cadc7f7e96e8bea3c14f85a09d97d7e9e85b162267bcfd780eda779",
+            "b5c7535c25765475793ac875f2f2b1e834b24eb95169388b68bb29d67c0c720f",
+            "288728684d9b97d0e4db152fdfad3e9bed992c39c21bd5c6654264e8b8a55db2"
+          ],
+          "walk": [
+            "ad99670892f0eb377fa58d4a3730e9c54534d2b9dfc4e8bd13043ac7e32cb184",
+            "673dbf5798141d5992e7b3c5e528897d7b6c7e5dbc754ecabfa17e28ff1c93d3",
+            "930c569d85034bb466ccae873c23804522e688acb0106c8b384115259e5635fb",
+            "c4ddc3d4f9cebae547df972372ed2fc59cb912f79879b54b0afbf96aadadd1a0"
+          ],
+          "hurt": [
+            "19515d7557ab3d95e4f75025db23231a0846dc49bd6b58c019289d1b51a1566f",
+            "91959ead02d3ec04909e39fc556638a62ad082947dfb5023a2573d59cb716370",
+            "21eda08f00047f8db5e819f23f651e7b823b53856d7b703561562b9ff23ca6a3",
+            "a8484a5c2f52b9d5628aa2e8f9a8c0bfbbbb7a6193df9f1234ca625360aec4f9"
+          ],
+          "use_consumable": [
+            "2fcde8009475329ccc4b5e72ab4d5d1f1695ef076d0197e550d3ba2273f65b46",
+            "fae4230a1b6d3e809b064255148f4b211be53ba60817387e74772d3e791ab7ab",
+            "15f246a8e08dc51bcad920e07886cd4a580a0136e4ce9e308be64bf749d38676",
+            "d5ce13f0fc116b66b7bef51b7e138ba6f7388e0abfd693e983fd4e4d332f4c43"
+          ],
+          "dodge": [
+            "e588dc09a6a817e6f11964b345ff1a345dd0a47e784404bb50646fbfa331a526",
+            "95d96cf1b7e73a81554b6b3685a9e4a9cd5cf6e49bded3a1624acf4bd65705af",
+            "825256f65d097c744a133507d86a1cc0304e796e7d1bbb22b803ec258a636123",
+            "8d46ebaaa16bef466209e4849b7269dde0adc355c7effddd34c97b68246b967f"
+          ],
+          "block_shield": [
+            "8c7c6d679aafd24b5cb411c62be456df04edbd95b0b7c0d4a4d838a152ab064e",
+            "7b81aad6590cba709b54905963562f84dc1466be5faa11edace3b2246fef66c2",
+            "b2bc554927ca76e37a6c960ab24d3a45117aac1198c88cd135897617a9f83833",
+            "32f2e61e09a9af5ecb8d262e48bb3e607cc426e10539fe8837754070db49d1de"
+          ],
+          "attack_sword": [
+            "3b1c2b0819d5f1861044a9751ae9b5f459188f02d0a9539ee171c7345f01dc40",
+            "adf74719927285394c7454dcd13d8b5e86348ca35cbf46df56077103b442aac6",
+            "0ea05edacbdf9d75cbd8ef6a404cd225fc3f7279c1edad59da666354f1058796",
+            "c061aaa468d402031eb343d0d9867ca56553141ad0a5d7b415376e029703c4be"
+          ],
+          "attack_axe": [
+            "1bbba197d3dd3eadbd02452f0e2a134c1b2a13ac598c819a1e689217e136342c",
+            "09482df6b7fa91af19ba69e08927d7f18c5a08405c62e0ec6ee3f9d4d619bf68",
+            "211792bb488070511a7df6bc015d80be197d351cdc2dd86e4697458d89163b74",
+            "8c92a0b661738847420fdae52dbf999c49cda36e35a1f70019f48222b8582a1f"
+          ],
+          "attack_spear": [
+            "b94a9ac29bee2b7074843afbeb3286d35f2df680b41f607270bdcc2fe62d87c4",
+            "e362c03bc851168a3a8235f52f30b525d541995409f760b2be5fc7cee564c483",
+            "b1eb33b92fcd795405c15c279b58f3076c03245b5c0068df93feae12dd4385f4",
+            "4fae3a12d309600e58f9e5873c647c6943aa7f2c0a4756ddacbd068003e9338a"
+          ],
+          "attack_dagger": [
+            "8a368dc62b41d31089bd2ad682b39eb5db271f158dc042a48b1c36ce032e1bae",
+            "344487667e6ad36370abf12bdd886becbb5acb04910d7a09908aabf99ed1df08",
+            "b8257eb926715e6ca339b03e6431935dc0c6245cb818b33a6129e0cef47edea2",
+            "ff36c2b31127cafd319c7a37420a17ad66dfe62ba32965fd2b34f70614812c0d"
+          ],
+          "attack_bow": [
+            "fff8085d3dc9b60e5b552ec87e2ef8a2b6accd96e0937bb17d8de87d5679f56a",
+            "d0e8b25ecbca9c7cc5f86d7832ebe2f1644d0fd008dafe2863d0e35ee7504327",
+            "f7e260ddd279df7ad6bb3a648f3b7f200a58e457019e489491e84d2aaf50cd22",
+            "87f8ccd752e9abd0f1cd6e5208724e268d5ac444c1c4031e8380b6244000a734"
+          ],
+          "attack_staff": [
+            "7c02cf16c2cc7d0b0ff87717d4db43060365a594630871d85d74b568f3166155",
+            "1a3d097971550dcb6fe70bf3e52d225c2675352fcf4005723c72aec44f9f57ac",
+            "22fed12c0a517805468a0c42670a684b930cbc7886cb747a87c78d67d28059d4",
+            "00c9ac27298d2a9b7f5a836c32ca517ba157b74afe7907d6e0c7c0d58793ba68"
+          ],
+          "attack_mace": [
+            "f0706a106cd4dec12a066ee6854ebd79ab9a67670f06a430075af6e419bfe2e6",
+            "16c65325e1db07f900268b78bcd7945994fac5635ce47b0301ff74e35011f1e6",
+            "cf3589a0c3cd7a2fac16b819827776edc27dc92ef7ab21ff0e4285d32955f613",
+            "d4ce7ee5b77efeac38661ed0d190442cf9b52d5614b11b01d1811e8997d109e1"
+          ],
+          "attack_book": [
+            "7a58dcaf4c7637013edd8f8b09d3af95b11c5c3eccc603ed53300b55ce0f04c6",
+            "344b7638e17856120c5c481b8c7aaa86bc68ca58f3d8a5131437414f8a4b248d",
+            "352a393993f042d8ff2bdc951bffbc40e7917011768487735c7b0fc754f2b894",
+            "a4c7e1cd038336378c00531a520bd772bbc204cb052cdc67702f143d78fdbfe4"
+          ],
+          "attack_gloves": [
+            "927a959000a291e5235d9452086b19a8971fead5f964b23cf6f95c7cc46dc5fd",
+            "498b3d26d93138e494ed54e3d2525d7d08f1d43170b4066c329a42d58e0145d4",
+            "196593acfdd24a21eea2e9e1814862a1053557d25a6cddee3e71dfb3d503ccec",
+            "e343d537ac3e2ed6007d7bfe4245e27e8863888e3246366f3b9e065d474c8449"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -266546,7 +266938,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
