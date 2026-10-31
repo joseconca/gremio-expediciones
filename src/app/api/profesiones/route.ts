@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prisma";
 import {
   evaluarDesbloqueoClase,
   CLASES,
-  esClaseDescubierta,
   obtenerDefinicionClase,
+  obtenerEstadoVisibilidadClase,
 } from "@/lib/progresion/clases";
 
 export async function GET() {
@@ -52,27 +52,46 @@ export async function GET() {
       _sum: { intercambios: true },
     });
     const contexto = { intercambiosComerciales: intercambios._sum.intercambios ?? 0 };
-    const clases = Object.values(CLASES).filter((clase) =>
-      esClaseDescubierta(clase.id, personaje.progresosClase, contexto)
-    ).map((clase) => {
-      const progreso = personaje.progresosClase.find(
-        (actual) => actual.claseId === clase.id
-      );
-      const desbloqueo = evaluarDesbloqueoClase(
-        clase.id,
-        personaje.progresosClase,
-        contexto,
-      );
+    const clases = Object.values(CLASES)
+      .map((clase) => {
+        const estadoVisibilidad = obtenerEstadoVisibilidadClase(
+          clase.id,
+          personaje.progresosClase,
+          contexto
+        );
+        if (estadoVisibilidad === "oculta") return null;
 
-      return {
-        ...clase,
-        progreso: progreso ?? null,
-        yaDesbloqueada: desbloqueo.yaDesbloqueada,
-        puedeDesbloquear: desbloqueo.puedeDesbloquear,
-        requisitosPendientes: desbloqueo.requisitosPendientes,
-        esActiva: clase.id === personaje.profesionActivaId,
-      };
-    });
+        const progreso = personaje.progresosClase.find(
+          (actual) => actual.claseId === clase.id
+        );
+        const desbloqueo = evaluarDesbloqueoClase(
+          clase.id,
+          personaje.progresosClase,
+          contexto
+        );
+
+        const esMisterio = estadoVisibilidad === "misterio";
+
+        return {
+          ...clase,
+          nombre: esMisterio ? "???" : clase.nombre,
+          descripcion: esMisterio
+            ? "Clase por descubrir. Aumenta el nivel de Job de las clases requisito para revelarla."
+            : clase.descripcion,
+          arquetipo: esMisterio ? "misterio" : clase.arquetipo,
+          armasDominadas: esMisterio ? [] : clase.armasDominadas,
+          armadurasDominadas: esMisterio ? [] : clase.armadurasDominadas,
+          bonoAtaqueArmaDominada: esMisterio ? 0 : clase.bonoAtaqueArmaDominada,
+          bonoDefensaArmaduraDominada: esMisterio ? 0 : clase.bonoDefensaArmaduraDominada,
+          progreso: progreso ?? null,
+          yaDesbloqueada: desbloqueo.yaDesbloqueada,
+          puedeDesbloquear: desbloqueo.puedeDesbloquear,
+          requisitosPendientes: desbloqueo.requisitosPendientes,
+          esActiva: clase.id === personaje.profesionActivaId,
+          esMisterio,
+        };
+      })
+      .filter((clase): clase is NonNullable<typeof clase> => clase !== null);
 
     return NextResponse.json(
       {

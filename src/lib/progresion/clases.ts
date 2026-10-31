@@ -920,6 +920,67 @@ export function evaluarDesbloqueoClase(
   };
 }
 
+export type EstadoVisibilidadClase =
+  | "desbloqueada"
+  | "disponible"
+  | "misterio"
+  | "oculta";
+
+/**
+ * Identifica si una clase es especial/secreta (tiers intermedios como 1.5, 2.5, 3.5 o descubrimiento).
+ * Estas clases no dan pistas ni interrogantes '?' hasta cumplir todos sus requisitos.
+ */
+export function esClaseEspecial(clase: DefinicionClase): boolean {
+  return clase.tier % 1 !== 0 || clase.descubrimiento !== undefined;
+}
+
+/**
+ * Determina el estado de visibilidad de una clase en el árbol/grafo de profesiones:
+ * - "desbloqueada": ya adquirida por el aventurero.
+ * - "disponible": lista para ser desbloqueada de inmediato.
+ * - "misterio": clase normal cuyos padres ya están desbloqueados pero falta subirles nivel de Job ('?').
+ * - "oculta": especial que aún no cumple requisitos, o clase lejana cuyos padres no han sido desbloqueados.
+ */
+export function obtenerEstadoVisibilidadClase(
+  claseId: string,
+  progresos: readonly ProgresoClaseRequisito[],
+  contexto: ContextoDesbloqueoClase = {}
+): EstadoVisibilidadClase {
+  const clase = obtenerDefinicionClase(claseId);
+  if (!clase) return "oculta";
+
+  // 1. Ya desbloqueada
+  if (progresos.some((p) => p.claseId === claseId && p.desbloqueada)) {
+    return "desbloqueada";
+  }
+
+  // 2. Comprobar si cumple todos los requisitos para desbloquearse ahora
+  const desbloqueo = evaluarDesbloqueoClase(claseId, progresos, contexto);
+  if (desbloqueo.puedeDesbloquear) {
+    return "disponible";
+  }
+
+  // 3. Clases especiales (tiers 1.5, 2.5, 3.5 o con descubrimiento secreto):
+  // No se ven con pistas ni '?' hasta que cumplen todos los requisitos.
+  if (esClaseEspecial(clase) || !esClaseDescubierta(claseId, progresos, contexto)) {
+    return "oculta";
+  }
+
+  // 4. Clases estándar (tier 1, 2, 3...):
+  // Si el aventurero ya tiene desbloqueadas TODAS las clases base/requisito,
+  // se muestra con interrogante '?' y sus requisitos de subir nivel de Job visibles.
+  if (
+    clase.requisitos.length > 0 &&
+    clase.requisitos.every((req) =>
+      progresos.some((p) => p.claseId === req.claseId && p.desbloqueada)
+    )
+  ) {
+    return "misterio";
+  }
+
+  return "oculta";
+}
+
 /** Incluye la clase activa, las ya desbloqueadas y las que pueden desbloquearse. */
 export function obtenerClasesVisibles(
   claseActivaId: string,

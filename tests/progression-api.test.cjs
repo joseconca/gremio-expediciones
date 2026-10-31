@@ -60,11 +60,56 @@ test("profesiones oculta las clases secretas y las revela al cumplir el hito com
   });
   const ocultas = (await route.GET()).body.clases;
   assert.ok(!ocultas.some((c) => ["comerciante", "alquimista", "herrero"].includes(c.id)));
-  assert.ok(ocultas.some((c) => c.id === "hoja_velo" && c.tier === 3.5));
+  assert.ok(ocultas.some((c) => c.id === "brujo" && c.tier === 2));
+  assert.ok(!ocultas.some((c) => c.id === "hoja_velo"), "Tier 3.5 permanece oculto al ser especial");
   intercambios = 5;
   const visibles = (await route.GET()).body.clases;
   assert.equal(visibles.find((c) => c.id === "comerciante").puedeDesbloquear, true);
-  assert.equal(visibles.find((c) => c.id === "alquimista").puedeDesbloquear, false);
+  assert.equal(visibles.find((c) => c.id === "alquimista"), undefined, "Alquimista permanece oculto hasta desbloquear comerciante");
+});
+
+test("un novato solo ve interrogantes '?' en las 4 de tier 1 y mantiene ocultas las clases especiales", async () => {
+  const clases = require("../src/lib/progresion/clases.ts");
+  const personaje = {
+    id: "p1",
+    nivel: 1,
+    experiencia: 0,
+    profesionActivaId: "novato",
+    progresosClase: [
+      { claseId: "novato", nivelJob: 1, desbloqueada: true },
+    ],
+  };
+  const route = loadSource("src/app/api/profesiones/route.ts", {
+    "next/server": { NextResponse: { json: (body, init = {}) => ({ body, status: init.status ?? 200 }) } },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
+    "@/lib/progresion/clases": clases,
+    "@/lib/prisma": {
+      prisma: {
+        personaje: { findUnique: async () => personaje },
+        afinidadComercial: { aggregate: async () => ({ _sum: { intercambios: 0 } }) },
+      },
+    },
+  });
+
+  const clasesDevueltas = (await route.GET()).body.clases;
+  assert.equal(clasesDevueltas.length, 5);
+  const novato = clasesDevueltas.find((c) => c.id === "novato");
+  assert.equal(novato.yaDesbloqueada, true);
+  assert.equal(novato.esMisterio, false);
+
+  const tier1 = clasesDevueltas.filter((c) => ["espadachin", "acolito", "arquero", "mago"].includes(c.id));
+  assert.equal(tier1.length, 4);
+  for (const c of tier1) {
+    assert.equal(c.esMisterio, true);
+    assert.equal(c.nombre, "???");
+    assert.equal(c.requisitosPendientes[0].claseId, "novato");
+    assert.equal(c.requisitosPendientes[0].nivelJobRequerido, 10);
+  }
+
+  assert.ok(!clasesDevueltas.some((c) => c.id === "superNovato"), "Tier 1.5 debe permanecer oculto");
+  assert.ok(!clasesDevueltas.some((c) => c.tier === 2), "Tier 2 debe permanecer oculto");
+  assert.ok(!clasesDevueltas.some((c) => c.tier === 2.5), "Tier 2.5 debe permanecer oculto");
+  assert.ok(!clasesDevueltas.some((c) => c.tier === 3.5), "Tier 3.5 debe permanecer oculto");
 });
 
 test("no se puede desbloquear Comerciante enviando su ID antes de cumplir el requisito secreto", async () => {

@@ -43,6 +43,7 @@ interface ClaseVista {
   puedeDesbloquear: boolean;
   requisitosPendientes: RequisitoPendiente[];
   esActiva: boolean;
+  esMisterio?: boolean;
 }
 
 interface DatosProfesiones {
@@ -192,6 +193,7 @@ export default function PanelProfesiones({
         x2: destino.x + ANCHO_NODO / 2,
         y2: destino.y,
         cumplida: Boolean(progresoOrigen?.desbloqueada && progresoOrigen.nivelJob >= requisito.nivelJob),
+        haciaMisterio: Boolean(destino.clase.esMisterio),
       }];
     }));
     const alto = Math.max(752, ...nodos.map((nodo) => nodo.y + ALTO_NODO + 12));
@@ -275,7 +277,11 @@ export default function PanelProfesiones({
                   {grafo.aristas.map((arista) => (
                     <path key={arista.id}
                       d={`M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 18}, ${arista.x2} ${arista.y2 - 18}, ${arista.x2} ${arista.y2}`}
-                      fill="none" stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"} strokeWidth={arista.cumplida ? 2.5 : 1.8} strokeLinecap="round" />
+                      fill="none"
+                      stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"}
+                      strokeWidth={arista.cumplida ? 2.5 : 1.8}
+                      strokeDasharray={arista.haciaMisterio && !arista.cumplida ? "4 3" : undefined}
+                      strokeLinecap="round" />
                   ))}
                 </svg>
                 {grafo.nodos.map(({ clase, x, y }) => {
@@ -284,22 +290,40 @@ export default function PanelProfesiones({
                   const progreso = clase.progreso;
                   const requisitos = clase.requisitos.length ? clase.requisitos.map((req) => `${nombreClase(req.claseId)} Job ${req.nivelJob}`).join(" + ") : "Profesión inicial";
                   const dominio = `Armas y equipo de mano dominados: ${clase.armasDominadas.join(", ") || "ninguno"}. Armas: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% ataque; escudo/mano secundaria: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% defensa. Armaduras corporales dominadas: ${clase.armadurasDominadas.join(", ") || "ninguna"}; aplican +${Math.round(clase.bonoDefensaArmaduraDominada * 100)}% defensa. Los tipos no dominados o sin bonificación positiva aportan el 75% de su estadística relevante.`;
-                  const tooltip = `${clase.descripcion} Requisitos: ${requisitos}. ${dominio}${progreso?.maestriaCompletada ? " Maestría completada." : ""}`;
+                  const tooltip = clase.esMisterio
+                    ? `Clase por descubrir. Requisitos necesarios: ${requisitos}.`
+                    : `${clase.descripcion} Requisitos: ${requisitos}. ${dominio}${progreso?.maestriaCompletada ? " Maestría completada." : ""}`;
+
                   return (
                     <article key={clase.id} title={tooltip} className={`absolute z-10 flex flex-col justify-between overflow-hidden rounded-md border px-2 py-1.5 shadow-md transition-colors ${
                       clase.esActiva ? "border-amber-400 bg-[#49331d] ring-1 ring-amber-400/40"
                         : clase.yaDesbloqueada ? "border-emerald-800 bg-[#1d3022]"
                         : clase.puedeDesbloquear ? "border-[#b38a4d] bg-[#382819]"
+                        : clase.esMisterio ? "border-dashed border-[#59442d] bg-[#1a140f]/90"
                         : "border-[#59442d] bg-[#211a14]"
                     }`} style={{ left: x, top: y, width: ANCHO_NODO, height: ALTO_NODO }}>
                       <div className="min-w-0">
                         <div className="flex items-start justify-between gap-1">
-                          <h3 className="line-clamp-2 text-[11px] font-black leading-4 text-[#f1dfba]">{clase.nombre}</h3>
+                          <h3 className={`line-clamp-2 text-[11px] font-black leading-4 ${clase.esMisterio ? "text-[#a9957b] tracking-wider" : "text-[#f1dfba]"}`}>
+                            {clase.esMisterio ? "???" : clase.nombre}
+                          </h3>
                           <span className={`shrink-0 text-[9px] font-black ${
-                            clase.esActiva ? "text-amber-300" : clase.yaDesbloqueada ? "text-emerald-300" : clase.puedeDesbloquear ? "text-amber-300" : "text-[#8a765d]"
-                          }`}>{clase.esActiva ? "◆" : clase.yaDesbloqueada ? "✓" : clase.puedeDesbloquear ? "!" : "🔒"}</span>
+                            clase.esActiva ? "text-amber-300"
+                              : clase.yaDesbloqueada ? "text-emerald-300"
+                              : clase.puedeDesbloquear ? "text-amber-300"
+                              : clase.esMisterio ? "text-amber-400/90 font-mono text-[10px]"
+                              : "text-[#8a765d]"
+                          }`}>{clase.esActiva ? "◆" : clase.yaDesbloqueada ? "✓" : clase.puedeDesbloquear ? "!" : clase.esMisterio ? "?" : "🔒"}</span>
                         </div>
-                        <p className="mt-0.5 truncate text-[9px] text-[#b69b73]">{progreso ? `Job ${progreso.nivelJob}/${clase.nivelJobMaximo}` : clase.requisitosPendientes.length ? `Req. Job ${clase.requisitosPendientes[0].nivelJobRequerido}` : `Job máx. ${clase.nivelJobMaximo}`}</p>
+                        <p className="mt-0.5 truncate text-[9px] text-[#b69b73]">
+                          {clase.esMisterio
+                            ? "Subir nivel de Job"
+                            : progreso
+                              ? `Job ${progreso.nivelJob}/${clase.nivelJobMaximo}`
+                              : clase.requisitosPendientes.length
+                                ? `Req. Job ${clase.requisitosPendientes[0].nivelJobRequerido}`
+                                : `Job máx. ${clase.nivelJobMaximo}`}
+                        </p>
                       </div>
                       {clase.esActiva ? <span className="mt-1 block text-center text-[9px] font-black uppercase tracking-wide text-amber-300">En uso</span>
                         : clase.yaDesbloqueada ? (
@@ -308,6 +332,13 @@ export default function PanelProfesiones({
                         ) : clase.puedeDesbloquear ? (
                           <button type="button" onClick={() => void ejecutarAccion(clase, "desbloquear")} disabled={procesandoId !== null}
                             className="mt-1 min-h-6 w-full rounded border border-amber-600 bg-amber-900/60 px-1 py-1 text-[9px] font-black text-amber-100 disabled:opacity-50">{desbloqueando ? "…" : "Desbloquear"}</button>
+                        ) : clase.esMisterio ? (
+                          <span
+                            className="mt-1 block truncate rounded border border-[#483726] bg-[#221a13] px-1 py-0.5 text-center text-[8px] font-bold text-amber-200/80"
+                            title={clase.requisitosPendientes.map((r) => `${r.nombreClase} Job ${r.nivelJobRequerido}`).join(" + ")}
+                          >
+                            {clase.requisitosPendientes[0] ? `${clase.requisitosPendientes[0].nombreClase} Job ${clase.requisitosPendientes[0].nivelJobRequerido}` : "Req. pendiente"}
+                          </span>
                         ) : (
                           <span className="mt-1 block truncate text-center text-[8px] text-[#938068]">{clase.requisitosPendientes[0] ? `${clase.requisitosPendientes[0].nombreClase} · Job ${clase.requisitosPendientes[0].nivelJobRequerido}` : "Bloqueada"}</span>
                         )}
@@ -320,7 +351,7 @@ export default function PanelProfesiones({
               <span><span className="text-amber-300">◆</span> Activa</span>
               <span><span className="text-emerald-300">✓</span> Desbloqueada</span>
               <span><span className="text-amber-300">!</span> Lista para desbloquear</span>
-              <span><span className="text-[#8a765d]">🔒</span> Bloqueada</span>
+              <span><span className="text-amber-400 font-mono font-bold">?</span> Desconocida (subir Job)</span>
             </div>
           </section>
         )}
