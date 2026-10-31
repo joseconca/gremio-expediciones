@@ -351,7 +351,7 @@ export default function PanelProfesiones({
               <span><span className="text-amber-300">◆</span> Activa</span>
               <span><span className="text-emerald-300">✓</span> Desbloqueada</span>
               <span><span className="text-amber-300">!</span> Lista para desbloquear</span>
-              <span><span className="text-amber-400 font-mono font-bold">?</span> Desconocida (subir Job)</span>
+              <span><span className="text-amber-400 font-mono font-bold">?</span> Desconocida</span>
             </div>
           </section>
         )}
