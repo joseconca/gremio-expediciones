@@ -155,3 +155,17 @@ export type EstadoParty = {
   trasladosPropios: TrasladoVista[];
   visitasEntrantes: TrasladoVista[];
 };
+
+/** Resultado disponible en el panel (parcial o histórico). */
+export type ResultadoCombatePanelParty = {
+    expedicionPartyId: string;
+    fase: "victoria" | "derrota" | "huida";
+    recompensas: ResultadoRecompensasParty | null;
+    tipo?: string;
+    nombre?: string;
+    dificultad?: number;
+    modoDificultad?: string;
+    duracionSegundos?: number;
+    enemigosDerrotados?: string[];
+    logCombate?: string[];
+  };

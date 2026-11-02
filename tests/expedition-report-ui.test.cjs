@@ -76,10 +76,12 @@ test("la crónica histórica de party empieza contraída y se expande al pulsar 
   assert.match(panel, /setEstadoInformeHistoricoParty/);
   assert.match(panel, /claveInformeHistoricoParty/);
   assert.match(panel, /estadoInformeHistoricoParty\.clave === claveInformeHistoricoParty && estadoInformeHistoricoParty\.abierto/);
-  assert.match(panel, /onClick=\{alternarInformeHistoricoParty\}/);
-  assert.match(panel, /aria-expanded=\{informeHistoricoPartyAbierto\}/);
-  assert.match(panel, /aria-controls="detalle-informe-historico-party"/);
-  assert.match(panel, /\{informeHistoricoPartyAbierto && \(/);
+  const informe = read("src/components/base/party/InformeHistoricoParty.tsx");
+  assert.match(panel, /<InformeHistoricoParty/);
+  assert.match(informe, /onClick=\{alternarInformeHistoricoParty\}/);
+  assert.match(informe, /aria-expanded=\{informeHistoricoPartyAbierto\}/);
+  assert.match(informe, /aria-controls="detalle-informe-historico-party"/);
+  assert.match(informe, /\{informeHistoricoPartyAbierto && \(/);
   assert.doesNotMatch(panel, /setInformeHistoricoPartyAbierto\(false\)/);
 });
 
