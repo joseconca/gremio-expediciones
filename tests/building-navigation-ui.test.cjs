@@ -181,11 +181,12 @@ test("el complejo Armería y Herrería permite entrar desde cada nombre y desde 
 
 
 test("la Armería separa las armas, armaduras y accesorios en secciones independientes", () => {
-  const pagina = read("src/app/base/armeria/page.tsx");
+  const pagina = read("src/components/armeria/CatalogoArmeria.tsx");
   assert.match(pagina, /titulo: "Armas"[\s\S]*?objeto\.tipo === "arma"/);
   assert.match(pagina, /titulo: "Armaduras y escudos"[\s\S]*?objeto\.tipo === "armadura"/);
   assert.match(pagina, /titulo: "Accesorios"[\s\S]*?objeto\.tipo === "accesorio"/);
   assert.match(pagina, /grupo\.objetos\.map\(\(objeto\) =>/);
+  assert.match(read("src/app/base/armeria/page.tsx"), /<CatalogoArmeria/);
 });
 
 test("el poblado usa todo el ancho, elimina el panel verde común y añade una cuarta columna en escritorio", () => {

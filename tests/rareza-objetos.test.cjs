@@ -28,7 +28,7 @@ test("las seis rarezas mantienen sus nombres y sus colores anteriores en las tre
 });
 
 test("Armería, Herrería y Botica usan el mismo catálogo con su variante visual propia", () => {
-  for (const ruta of ["src/app/base/armeria/page.tsx", "src/app/base/herreria/page.tsx"]) {
+  for (const ruta of ["src/components/armeria/CatalogoArmeria.tsx", "src/components/herreria/ForjaHerreria.tsx"]) {
     const pagina = read(ruta);
     assert.match(pagina, /import \{ nombreRareza, estiloRareza \} from "@\/components\/objetos\/resumen-objeto"/);
     assert.match(pagina, /estiloRareza\(objeto\.rareza, "tienda"\)/);

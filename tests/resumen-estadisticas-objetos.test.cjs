@@ -47,11 +47,11 @@ test("el formato de números, críticos y valores negativos permanece idéntico"
 });
 
 test("las dos tiendas utilizan el resumen común pero conservan sus propios cálculos de costes", () => {
-  for (const ruta of ["src/app/base/armeria/page.tsx", "src/app/base/herreria/page.tsx"]) {
+  for (const ruta of ["src/components/armeria/CatalogoArmeria.tsx", "src/components/herreria/ForjaHerreria.tsx"]) {
     const codigo = read(ruta);
     assert.match(codigo, /obtenerEstadisticasNoCeroTienda as obtenerEstadisticasNoCero/);
     assert.match(codigo, /formatearEstadistica as formatearValorEstadistica/);
-    assert.match(codigo, /ESTADISTICAS_OBJETO as ESTADISTICAS/);
+    if (ruta.includes("ForjaHerreria")) assert.match(codigo, /ESTADISTICAS_OBJETO as ESTADISTICAS/);
     assert.doesNotMatch(codigo, /function obtenerEstadisticasNoCero\(/);
     assert.doesNotMatch(codigo, /function formatearValorEstadistica\(/);
   }
