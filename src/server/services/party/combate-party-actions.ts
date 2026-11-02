@@ -106,13 +106,6 @@ async function cargarCombateParty(tx: Prisma.TransactionClient, expedicionPartyI
   return combate;
 }
 
-function registrarResultadoTerminal(
-  enemigoHp: number,
-  participantes: ParticipanteTurnoParty[],
-): "activo" | "victoria" | "derrota" | "huida" {
-  return resolverResultadoCombateParty(enemigoHp, participantes);
-}
-
 async function iniciarRegresoParty(
   tx: Prisma.TransactionClient,
   expedicionPartyId: string,
@@ -722,7 +715,7 @@ export async function ejecutarAccionCombateParty(
       const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
         p.usuarioId === usuarioId ? { ...p, estado: "huyo" } : p,
       );
-      const resultadoTerminal = registrarResultadoTerminal(combate.enemigoHp, estadoParticipantes);
+      const resultadoTerminal = resolverResultadoCombateParty(combate.enemigoHp, estadoParticipantes);
       const log = obtenerLog(combate.log);
       log.push(`🏃 ${usuarioId} huye del combate. Si sus compañeros vencen, conservará su parte del oro, pero no recibirá XP ni botín del enemigo.`);
       const terminal = resultadoTerminal !== "activo";
@@ -1224,7 +1217,7 @@ export async function ejecutarAccionCombateParty(
     const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
       p.usuarioId === usuarioId ? { ...p, jugadorHp, estado: jugadorHp > 0 ? "activo" : "caido" } : p,
     );
-    const resultadoTerminal = registrarResultadoTerminal(enemigoHp, estadoParticipantes);
+    const resultadoTerminal = resolverResultadoCombateParty(enemigoHp, estadoParticipantes);
     const log = obtenerLog(combate.log);
     log.push(...estadoInicioTurno.mensajes);
     log.push(accion.texto);
@@ -1646,7 +1639,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     const enemigoHp = hayEnemigosVivos ? enemigoPrincipalTrasTurno.hp : 0;
     const enemigoDefensa = enemigoPrincipalTrasTurno.defensa;
     const efectosEnemigo = obtenerEfectos(enemigoPrincipalTrasTurno.efectos);
-    const resultado = registrarResultadoTerminal(enemigoHp, participantesActualizados);
+    const resultado = resolverResultadoCombateParty(enemigoHp, participantesActualizados);
     let fase = "activo";
     let faseTurno: "jugador" | "enemigo" = "jugador";
     let turnoActualUsuarioId: string | null = null;
