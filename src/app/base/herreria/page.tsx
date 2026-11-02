@@ -6,6 +6,11 @@ import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
+import {
+  ESTADISTICAS_OBJETO as ESTADISTICAS,
+  obtenerEstadisticasNoCeroTienda as obtenerEstadisticasNoCero,
+  formatearEstadistica as formatearValorEstadistica,
+} from "@/components/objetos/resumen-objeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
@@ -17,7 +22,6 @@ import type {
   EquipoPersonaje,
   ObjetoInventario,
 } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
 interface DatosObjetos {
   herreriaNivel: number;
@@ -34,28 +38,6 @@ interface DatosObjetos {
 type TipoEquipamiento = "arma" | "armadura" | "accesorio";
 
 
-const ESTADISTICAS: Array<{
-  clave: keyof ModificadoresEstadisticas;
-  nombre: string;
-}> = [
-  { clave: "ataque", nombre: "Ataque" },
-  { clave: "ataqueMagico", nombre: "Ataque mágico" },
-  { clave: "defensa", nombre: "Defensa" },
-  { clave: "defensaMagica", nombre: "Defensa mágica" },
-  { clave: "velocidad", nombre: "Velocidad" },
-  { clave: "hpMaximo", nombre: "Vida máxima" },
-  { clave: "energiaMaxima", nombre: "Energía máxima" },
-  { clave: "manaMaximo", nombre: "Maná máximo" },
-  { clave: "precision", nombre: "Precisión" },
-  { clave: "evasion", nombre: "Evasión" },
-  { clave: "regeneracionVidaPorTurno", nombre: "Regeneración de vida" },
-  { clave: "regeneracionEnergiaPorTurno", nombre: "Regeneración de energía" },
-  { clave: "regeneracionManaPorTurno", nombre: "Regeneración de maná" },
-  { clave: "capacidadCarruaje", nombre: "Capacidad" },
-  { clave: "probCritico", nombre: "Prob. crítico" },
-  { clave: "danoCritico", nombre: "Daño crítico" },
-];
-
 function iconoTipo(tipo: TipoEquipamiento): string {
   switch (tipo) {
     case "arma":
@@ -67,45 +49,6 @@ function iconoTipo(tipo: TipoEquipamiento): string {
     case "accesorio":
       return "💍";
   }
-}
-
-function formatearNumero(valor: number): string {
-  return valor.toLocaleString("es-ES", {
-    maximumFractionDigits: 2,
-  });
-}
-
-function formatearValorEstadistica(
-  clave: keyof ModificadoresEstadisticas,
-  valor: number
-): string {
-  const signo = valor > 0 ? "+" : "";
-
-  if (clave === "probCritico") {
-    return `${signo}${formatearNumero(valor * 100)}%`;
-  }
-
-  if (clave === "danoCritico") {
-    return `${signo}${formatearNumero(valor)}×`;
-  }
-
-  return `${signo}${formatearNumero(valor)}`;
-}
-
-function obtenerEstadisticasNoCero(
-  objeto: DefinicionObjeto,
-  nivelMejora: number,
-  bonificaciones: Record<string, number> = {}
-) {
-  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
-
-  return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
-    ({ clave, nombre }) => ({
-      clave,
-      nombre,
-      valor: estadisticas[clave] ?? 0,
-    })
-  );
 }
 
 function obtenerDiferenciasMejora(

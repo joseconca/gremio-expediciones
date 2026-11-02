@@ -6,17 +6,18 @@ import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
-import { useGameStore } from "@/store/useGameStore";
 import {
-  calcularEstadisticasObjeto,
-  obtenerRanuraObjeto,
-} from "@/lib/objetos";
+  ESTADISTICAS_OBJETO as ESTADISTICAS,
+  obtenerEstadisticasNoCeroTienda as obtenerEstadisticasNoCero,
+  formatearEstadistica as formatearValorEstadistica,
+} from "@/components/objetos/resumen-objeto";
+import { useGameStore } from "@/store/useGameStore";
+import { obtenerRanuraObjeto } from "@/lib/objetos";
 import type {
   DefinicionObjeto,
   EquipoPersonaje,
   ObjetoInventario,
 } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 
 interface ObjetoEnVenta extends DefinicionObjeto {
@@ -43,28 +44,6 @@ type TipoEquipamiento = keyof EquipoPersonaje;
 type TipoObjetoEquipable = "arma" | "armadura" | "accesorio";
 
 const TIPOS_OBJETO_EQUIPABLE: TipoObjetoEquipable[] = ["arma", "armadura", "accesorio"];
-
-const ESTADISTICAS: Array<{
-  clave: keyof ModificadoresEstadisticas;
-  nombre: string;
-}> = [
-  { clave: "ataque", nombre: "Ataque" },
-  { clave: "ataqueMagico", nombre: "Ataque mágico" },
-  { clave: "defensa", nombre: "Defensa" },
-  { clave: "defensaMagica", nombre: "Defensa mágica" },
-  { clave: "velocidad", nombre: "Velocidad" },
-  { clave: "hpMaximo", nombre: "Vida máxima" },
-  { clave: "energiaMaxima", nombre: "Energía máxima" },
-  { clave: "manaMaximo", nombre: "Maná máximo" },
-  { clave: "precision", nombre: "Precisión" },
-  { clave: "evasion", nombre: "Evasión" },
-  { clave: "regeneracionVidaPorTurno", nombre: "Regeneración de vida" },
-  { clave: "regeneracionEnergiaPorTurno", nombre: "Regeneración de energía" },
-  { clave: "regeneracionManaPorTurno", nombre: "Regeneración de maná" },
-  { clave: "capacidadCarruaje", nombre: "Capacidad" },
-  { clave: "probCritico", nombre: "Prob. crítico" },
-  { clave: "danoCritico", nombre: "Daño crítico" },
-];
 
 function nombreTipo(tipo: TipoEquipamiento | TipoObjetoEquipable | "consumible"): string {
   switch (tipo) {
@@ -157,45 +136,6 @@ function nombreTipoObjeto(objeto: DefinicionObjeto): string {
     }
   }
   return nombreTipo(objeto.tipo as TipoObjetoEquipable | "consumible");
-}
-
-function formatearNumero(valor: number): string {
-  return valor.toLocaleString("es-ES", {
-    maximumFractionDigits: 2,
-  });
-}
-
-function formatearValorEstadistica(
-  clave: keyof ModificadoresEstadisticas,
-  valor: number
-): string {
-  const signo = valor > 0 ? "+" : "";
-
-  if (clave === "probCritico") {
-    return `${signo}${formatearNumero(valor * 100)}%`;
-  }
-
-  if (clave === "danoCritico") {
-    return `${signo}${formatearNumero(valor)}×`;
-  }
-
-  return `${signo}${formatearNumero(valor)}`;
-}
-
-function obtenerEstadisticasNoCero(
-  objeto: DefinicionObjeto,
-  nivelMejora: number,
-  bonificaciones: Record<string, number> = {}
-) {
-  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
-
-  return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
-    ({ clave, nombre }) => ({
-      clave,
-      nombre,
-      valor: estadisticas[clave] ?? 0,
-    })
-  );
 }
 
 export default function HerreriaPage() {

@@ -3,7 +3,11 @@ import type { DefinicionObjeto, Rareza } from "@/lib/tiposJuego";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
 // Presentación breve compartida por Equipo y Mochila, sin modificar mecánicas.
-const ESTADISTICAS: Array<{ clave: keyof ModificadoresEstadisticas; nombre: string }> = [
+/** Orden y etiquetas idénticos en Armería/Herrería; la ficha omite Capacidad. */
+export const ESTADISTICAS_OBJETO: ReadonlyArray<{
+  clave: keyof ModificadoresEstadisticas;
+  nombre: string;
+}> = [
   { clave: "ataque", nombre: "Ataque" },
   { clave: "ataqueMagico", nombre: "Ataque mágico" },
   { clave: "defensa", nombre: "Defensa" },
@@ -17,6 +21,7 @@ const ESTADISTICAS: Array<{ clave: keyof ModificadoresEstadisticas; nombre: stri
   { clave: "regeneracionVidaPorTurno", nombre: "Regeneración de vida" },
   { clave: "regeneracionEnergiaPorTurno", nombre: "Regeneración de energía" },
   { clave: "regeneracionManaPorTurno", nombre: "Regeneración de maná" },
+  { clave: "capacidadCarruaje", nombre: "Capacidad" },
   { clave: "probCritico", nombre: "Prob. crítico" },
   { clave: "danoCritico", nombre: "Daño crítico" },
 ];
@@ -63,13 +68,27 @@ export function estiloRareza(rareza: Rareza, presentacion: PresentacionRareza = 
   return ESTILOS_RAREZA_AVENTURERO[rareza];
 }
 
-export function obtenerEstadisticasNoCero(objeto: DefinicionObjeto, nivelMejora: number, bonificaciones: Record<string, number> = {}) {
+export function obtenerEstadisticasNoCero(
+  objeto: DefinicionObjeto,
+  nivelMejora: number,
+  bonificaciones: Record<string, number> = {},
+  opciones: { incluirCapacidad?: boolean } = {},
+) {
   const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
-  return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(({ clave, nombre }) => ({
+  return ESTADISTICAS_OBJETO.filter(({ clave }) => (opciones.incluirCapacidad || clave !== "capacidadCarruaje") && (estadisticas[clave] ?? 0) !== 0).map(({ clave, nombre }) => ({
     clave,
     nombre,
     valor: estadisticas[clave] ?? 0,
   }));
+}
+
+/** En tienda se muestra además la Capacidad del carruaje, igual que antes. */
+export function obtenerEstadisticasNoCeroTienda(
+  objeto: DefinicionObjeto,
+  nivelMejora: number,
+  bonificaciones: Record<string, number> = {},
+) {
+  return obtenerEstadisticasNoCero(objeto, nivelMejora, bonificaciones, { incluirCapacidad: true });
 }
 
 export function formatearEstadistica(clave: keyof ModificadoresEstadisticas, valor: number): string {
