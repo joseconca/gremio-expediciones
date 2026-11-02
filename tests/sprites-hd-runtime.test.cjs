@@ -137,3 +137,13 @@ test('both shields reflect around their grip and stay below the weapon in every 
     assert.ok(shield>=0);if(sword>=0)assert.ok(sword>shield);
   }
 });
+
+
+test('Berserker usa atlas HD masculino sin cargar recursos HD femeninos o retratos ausentes', () => {
+  assert.equal(hd.esClaseHeroeHd('berserker','m'), true);
+  assert.equal(hd.esClaseHeroeHd('berserker','f'), false);
+  assert.equal(hd.esRetratoHeroeHd('berserker','m'), false);
+  assert.ok(config.obtenerRutaSpritesheetHeroe(null,'chico','berserker').endsWith('/hd-v1/heroes/berserker/m-sheet.png'));
+  assert.ok(!config.obtenerRutaSpritesheetHeroe(null,'chica','berserker').includes('/hd-v1/heroes/berserker/'));
+  assert.ok(!config.obtenerSpriteHeroe(null,'chico','berserker').includes('/hd-v1/heroes/berserker/'));
+});
