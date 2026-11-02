@@ -47,7 +47,7 @@ function SpriteHeroeLegacy({
   reflejado = false,
 }: Omit<SpriteHeroeAnimadoProps, "accion"> & { accion?: "idle" | "walk" | "hurt" }) {
   const id = obtenerIdClaseParaSprite(clase, profesionActivaId);
-  const ruta = esClaseHeroeHd(id)
+  const ruta = esClaseHeroeHd(id, sexo === "chica" ? "f" : "m")
     ? `/sprites/heroes/${id}/${id}-${sexo === "chica" ? "f" : "m"}-sheet.png`
     : obtenerRutaSpritesheetHeroe(clase, sexo, profesionActivaId);
   const fila = FILA_ACCION[accion];
@@ -95,6 +95,6 @@ export default function SpriteHeroeAnimado(props: SpriteHeroeAnimadoProps) {
   const id = obtenerIdClaseParaSprite(props.clase, props.profesionActivaId);
   const accion = props.accion ?? "idle";
   const fallback = <SpriteHeroeLegacy {...props} accion={accion === "hurt" || accion === "dodge" ? "hurt" : accion === "idle" ? "idle" : "walk"} />;
-  if (!esClaseHeroeHd(id)) return fallback;
+  if (!esClaseHeroeHd(id, props.sexo === "chica" ? "f" : "m")) return fallback;
   return <SpriteHeroeHd key={`${id}/${props.sexo}`} {...props} claseId={id} sexo={props.sexo === "chica" ? "f" : "m"} accion={accion} fallback={fallback} />;
 }
