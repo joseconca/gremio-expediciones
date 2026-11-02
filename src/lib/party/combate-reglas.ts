@@ -1,3 +1,10 @@
+/** Limita el historial persistido, conservando el orden de las entradas válidas. */
+export function obtenerLogCombateParty(valor: unknown): string[] {
+  return Array.isArray(valor)
+    ? valor.filter((entrada): entrada is string => typeof entrada === "string").slice(-120)
+    : [];
+}
+
 export type FaseTurnoParty = "jugador" | "enemigo";
 export type FaseCombateParty = "activo" | "victoria" | "derrota" | "huida";
 

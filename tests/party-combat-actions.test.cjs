@@ -170,6 +170,21 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "./errores": { PartyServiceError: MockPartyError },
   };
+  // La liquidación extraída se ejecuta con los mismos mocks transaccionales y de botín.
+  // No se simula su resultado: estas pruebas comprueban reparto e idempotencia reales.
+  const liquidacionFilename = path.resolve(__dirname, "../src/server/services/party/liquidacion-recompensas.ts");
+  const liquidacionSource = fs.readFileSync(liquidacionFilename, "utf8");
+  const liquidacionCompilada = ts.transpileModule(liquidacionSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: liquidacionFilename,
+  }).outputText;
+  const liquidacionModule = { exports: {} };
+  vm.runInThisContext("(function(require, module, exports) {" + liquidacionCompilada + "\n})", { filename: liquidacionFilename })(
+    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+    liquidacionModule,
+    liquidacionModule.exports,
+  );
+  dependencies["./liquidacion-recompensas"] = liquidacionModule.exports;
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
