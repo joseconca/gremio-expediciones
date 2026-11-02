@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 const { CLASES_BASE } = require("../src/lib/progresion/catalogos/clases-base.ts");
-const { CLASES_NUEVAS } = require("../src/lib/progresion/clases-nuevas.ts");
+const { CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases-avanzadas.ts");
 const { HABILIDADES, HABILIDADES_BASE } = require("../src/lib/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/habilidades-nuevas.ts");
 const { HABILIDADES_TRONCALES } = require("../src/lib/progresion/catalogos/habilidades-troncales.ts");
