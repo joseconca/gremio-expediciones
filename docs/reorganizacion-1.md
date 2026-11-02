@@ -212,6 +212,16 @@ Ambos modales de combate utilizan el mismo `useBloquearScrollFondo.ts`, con una 
 
 Los tests que inspeccionan JSX siguen las responsabilidades nuevas sin rebajar las comprobaciones originales. **Estas últimas extracciones requieren confirmar la regresión del HEAD y revisión visual**, por separado del error preexistente de auditoría de sprites HD (Novato).
 
+### Fase 3.7 — Ficha y consulta uniforme de objetos
+
+`AsedioModal.tsx` reutiliza ahora `PanelHabilidadesCombate.tsx` igual que PvE: el panel solo muestra técnicas, costes y cooldowns; la lógica de atacar y lanzar habilidades sigue en el controlador de asedio.
+
+Las vistas **Personaje** (`/base/personaje`), **Botica**, **Armería**, **Herrería** y la hoja rápida usan `src/components/objetos/MiniaturaObjeto.tsx` para presentar una miniatura que abre el panel táctil/teclado existente `DescripcionTactil`. `detalles-objeto.ts` toma los valores del catálogo público `src/lib/objetos.ts` y del ejemplar de inventario (mejora, bonificaciones y cantidad): evita duplicar atributos y fórmulas visuales entre tiendas.
+
+`HojaPersonajeModal.tsx` ya delega habilidades y ranuras a `src/components/personaje/HabilidadesFichaPersonaje.tsx` y `EquipoFichaPersonaje.tsx`. **Ninguna extracción ha alterado las rutas HTTP ni la economía.** La compra, venta, equipamiento y mejora permanecen en sus pantallas y servicios existentes.
+
+La documentación operativa está en `src/components/objetos/README.md` y en el [mapa práctico de código](mapa-codigo.md). Se han añadido tests del formateo, las miniaturas accesibles y los estados de la ficha. Las nuevas ramas del frontend deben confirmarse mediante CI y revisión visual antes de fusionar.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.

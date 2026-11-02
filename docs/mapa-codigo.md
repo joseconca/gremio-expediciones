@@ -39,7 +39,12 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Quiero modificar… | Dónde está |
 | --- | --- |
 | Base y edificios | `src/app/base/`, `src/components/base/` |
-| Equipo, mochila y ficha del personaje | `src/components/HojaPersonajeModal.tsx` |
+| Hoja rápida de personaje (perfil y estadísticas) | `src/components/HojaPersonajeModal.tsx` |
+| Ranuras de equipo de la hoja rápida | `src/components/personaje/EquipoFichaPersonaje.tsx` |
+| Habilidades activas y pasivas de la hoja rápida | `src/components/personaje/HabilidadesFichaPersonaje.tsx` |
+| Gestión completa de equipo, mochila e inventario | `src/app/base/personaje/page.tsx` |
+| Miniatura con información desplegable de objetos | `src/components/objetos/MiniaturaObjeto.tsx` |
+| Estadísticas y detalles únicos de objetos en cualquier pantalla | `src/components/objetos/detalles-objeto.ts` |
 | Profesiones y aprendizaje | `src/components/progresion/PanelProfesiones.tsx` |
 | Combate en pantalla, sprites y selección de objetivos | `src/components/combate/CombateModal.tsx` |
 | Panel de habilidades equipadas dentro del combate | `src/components/combate/PanelHabilidadesCombate.tsx` |
