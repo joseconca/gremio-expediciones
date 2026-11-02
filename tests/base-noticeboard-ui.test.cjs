@@ -31,3 +31,15 @@ test("las visitas entrantes conservan confirmación del servidor, permisos y acc
   assert.match(visitas, /\/api\/party\/transfer\/aceptar/);
   assert.match(visitas, /\/api\/party\/transfer\/rechazar/);
 });
+
+test("los traslados de party conservan mapa, regreso y mensajes durante la espera", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+  const traslados = read("src/components/base/party/TrasladosPropiosParty.tsx");
+  assert.match(panel, /<TrasladosPropiosParty/);
+  assert.match(panel, /ejecutar=\{ejecutar\}/);
+  assert.match(traslados, /<MissionMap/);
+  assert.match(traslados, /regresando=\{regresando\}/);
+  assert.match(traslados, /\/api\/party\/transfer\/volver/);
+  assert.match(traslados, /traslado\.decision === "lider_disuelve"/);
+  assert.match(traslados, /traslado\.decision === "visitante_volver"/);
+});
