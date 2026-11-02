@@ -26,7 +26,7 @@ test("el botón global del aventurero y la navegación móvil abren Personaje", 
 });
 
 test("la Botica forma parte del poblado y conserva su sprite propio", () => {
-  const configuracion = read("src/lib/tiposJuego.ts");
+  const configuracion = read("src/lib/base/edificios.ts");
   const tienda = read("src/app/base/botica/page.tsx");
   const estado = read("src/store/useGameStore.ts");
   const panel = read("src/components/base/PanelEdificios.tsx");
