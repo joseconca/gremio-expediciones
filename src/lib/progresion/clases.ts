@@ -1,6 +1,5 @@
 import type { TipoArmadura, TipoEquipoDominado } from "../tiposJuego";
-import { CLASES_BASE } from "./catalogos/clases-base";
-import { CLASES_NUEVAS } from "./catalogos/clases-avanzadas";
+import { DEFINICIONES_CLASES } from "./catalogos/clases";
 
 export interface RequisitoClase {
   claseId: string;
@@ -207,7 +206,7 @@ export const ARQUETIPOS_CLASE = {
   },
 } as const satisfies Record<ArquetipoClaseId, PerfilArquetipoClase>;
 
-const catalogo: Record<string, DefinicionClase> = { ...CLASES_BASE, ...CLASES_NUEVAS };
+const catalogo: Readonly<Record<string, DefinicionClase>> = DEFINICIONES_CLASES;
 const resueltas: Record<string, DefinicionClase> = {};
 function resolverDominios(id: string, ruta = new Set<string>()): DefinicionClase {
   if (ruta.has(id)) throw new Error(`Ciclo detectado en el grafo de clases: ${id}`);
