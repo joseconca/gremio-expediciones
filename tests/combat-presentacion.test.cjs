@@ -5,6 +5,16 @@ const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad }
 const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
+const ataquesBasicos = require("../src/lib/expediciones/ataques-basicos.ts");
+
+test("la API histórica de combate conserva exactamente los ataques básicos", () => {
+  const publico = require("../src/lib/expediciones/combate.ts");
+  assert.strictEqual(publico.resolverAtaqueJugador, ataquesBasicos.resolverAtaqueJugador);
+  assert.strictEqual(publico.resolverAtaqueEnemigo, ataquesBasicos.resolverAtaqueEnemigo);
+  assert.strictEqual(publico.calcularDanoMitigado, ataquesBasicos.calcularDanoMitigado);
+  assert.strictEqual(publico.calcularProbabilidadImpacto, ataquesBasicos.calcularProbabilidadImpacto);
+  assert.equal(ataquesBasicos.calcularDanoMitigado(50, 100), 25);
+});
 
 test("un arco produce una presentación de proyectil físico", () => {
   assert.deepEqual(obtenerPresentacionAtaqueBasico("arco"), {
