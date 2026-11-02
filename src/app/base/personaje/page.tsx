@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { obtenerRanuraObjeto } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 import { CLASES } from "@/lib/progresion/clases";
