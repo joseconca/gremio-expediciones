@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
-import DescripcionTactil from "@/components/ui/DescripcionTactil";
+import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
@@ -530,23 +530,13 @@ export default function HerreriaPage() {
                       key={objeto.id}
                       className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1 rounded-md border border-[#4b5050] bg-[linear-gradient(110deg,#292522,#1d2021)] p-1.5 transition-colors hover:border-[#82704f] sm:grid-cols-[auto_minmax(0,1fr)_minmax(112px,auto)] sm:items-center sm:gap-3 sm:p-2"
                     >
-                      <DescripcionTactil
-                        titulo={objeto.nombre}
-                        resumen={objeto.descripcion}
-                        detalles={[
-                          `Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`,
-                          `Tipo: ${nombreTipoObjeto(objeto)}${detalleSubtipoObjeto(objeto)}.`,
-                          ...obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
-                          ...(objeto.manos === 2 ? ["Arma a dos manos: ocupa la mano principal y la secundaria."] : []),
-                        ]}
+                      <MiniaturaObjeto
+                        objeto={objeto}
+                        detallesAdicionales={[`Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`]}
+                        iconoAlternativo={iconoTipo(objeto.tipo)}
                         variante="metal"
-                        etiquetaAccesible={`Consultar ${objeto.nombre}`}
                         claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-14 sm:w-14"
-                      >
-                        {obtenerSpriteObjeto(objeto) ? (
-                          <Image src={obtenerSpriteObjeto(objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded object-contain [image-rendering:pixelated]" />
-                        ) : <span className="text-2xl" aria-hidden="true">{iconoTipo(objeto.tipo)}</span>}
-                      </DescripcionTactil>
+                      />
 
                       <div className="min-w-0 self-center">
                         <div className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5">
