@@ -9,6 +9,7 @@ La UI se encuentra aquí; **las reglas de daño, turnos, botín y persistencia n
 | Qué sucede al pulsar **Atacar**, **Habilidad**, **Objeto** o **Huir**; objetivos; estado del modal | `CombateModal.tsx` |
 | Diseño del informe al terminar, victoria, derrota, botín obtenido o perdido | `ResultadoCombate.tsx` |
 | Lista, descripción y uso de pociones durante el combate | `PanelConsumiblesCombate.tsx` |
+| Lista de habilidades equipadas, iconos, costes, cooldowns y descripción | `PanelHabilidadesCombate.tsx` |
 | Ventana **Info**: estadísticas de aventureros, aliados y enemigos | `InformacionCombatientes.tsx` |
 | Tipos de datos y callbacks que recibe el combate desde PvE o party | `tipos.ts` |
 | Los sprites de héroes que se animan en la escena | `SpriteHeroeAnimado.tsx`; definiciones en `src/lib/sprites/heroes.ts` |
