@@ -7,6 +7,7 @@ const ts = require("typescript");
 const React = require("react");
 const { renderToStaticMarkup } = require("react-dom/server");
 
+require.extensions[".css"] = (module) => { module.exports = { commands: "commands" }; };
 require.extensions[".tsx"] = (module, filename) => {
   const { outputText } = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
@@ -19,6 +20,7 @@ const ResultadoCombate = require("../src/components/combate/ResultadoCombate.tsx
 const InformacionCombatientes = require("../src/components/combate/InformacionCombatientes.tsx").default;
 const PanelConsumiblesCombate = require("../src/components/combate/PanelConsumiblesCombate.tsx").default;
 const PanelHabilidadesCombate = require("../src/components/combate/PanelHabilidadesCombate.tsx").default;
+const ComandosCombate = require("../src/components/combate/ComandosCombate.tsx").default;
 
 const combate = {
   fase: "derrota",
@@ -170,4 +172,33 @@ test("el panel de habilidades respeta energía, cooldown y objetivo pendiente", 
   const objetivo = render({ habilidadEsperandoObjetivoId: habilidad.habilidadId });
   assert.match(objetivo, /Toca un objetivo en la escena/);
   assert.match(objetivo, /ELIGE OBJETIVO/);
+});
+
+test("los comandos son presentacionales y reflejan la disponibilidad de cada acción", () => {
+  const base = {
+    mostrarHabilidades: false,
+    mostrarObjetos: false,
+    accionesDeshabilitadas: false,
+    huidaDeshabilitada: false,
+    hayHabilidades: true,
+    cantidadObjetos: 3,
+    onAtacar() {}, onHabilidades() {}, onObjetos() {}, onSolicitarHuida() {},
+  };
+  const render = (props) => renderToStaticMarkup(React.createElement(ComandosCombate, { ...base, ...props }));
+  const html = render({});
+  for (const accion of ["ATACAR", "HABILIDADES", "OBJETOS", "HUIR"]) {
+    assert.ok(html.includes(accion), accion);
+  }
+  assert.match(html, /data-active="true"/);
+  assert.equal((html.match(/disabled=""/g) || []).length, 0);
+
+  const bloqueado = render({
+    mostrarHabilidades: true,
+    accionesDeshabilitadas: true,
+    huidaDeshabilitada: true,
+    hayHabilidades: false,
+    cantidadObjetos: 0,
+  });
+  assert.match(bloqueado, /data-active="false"/);
+  assert.equal((bloqueado.match(/disabled=""/g) || []).length, 4);
 });
