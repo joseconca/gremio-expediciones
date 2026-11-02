@@ -37,8 +37,10 @@ test("el reporte de party mantiene su pergamino, oculta recompensas cero y plieg
 
   assert.match(panel, /cronicaPartyAbierta/);
   assert.match(panel, /aria-controls="cronica-expedicion-party"/);
-  assert.match(panel, /fila\.valor > 0/);
-  assert.match(panel, /obtenerSpriteObjeto/);
+  const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
+  assert.match(panel, /<RecompensasInformeParty/);
+  assert.match(recompensas, /fila\.valor > 0/);
+  assert.match(recompensas, /obtenerSpriteObjeto/);
   assert.match(panel, /Has derrotado a/);
   assert.match(service, /duracionSegundos:/);
   assert.match(service, /enemigosDerrotados:/);
@@ -66,8 +68,10 @@ test("el informe compartido conserva el diseño de pergamino y se anexa bajo el 
   assert.match(panel, /regresando=\{estado\.expedicionActiva\.fase === "regresando"\}/);
   assert.match(panel, /estado\.expedicionActiva\.fase === "regresando" && ultimoResultadoCombate\.expedicionPartyId === estado\.expedicionActiva\.id/);
   assert.match(panel, /Gremio · crónica compartida/);
-  assert.match(panel, /recompensa\.experienciaJob/);
-  assert.match(panel, /obtenerSpriteObjeto/);
+  const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
+  assert.match(panel, /<RecompensasInformeParty/);
+  assert.match(recompensas, /recompensa\.experienciaJob/);
+  assert.match(recompensas, /obtenerSpriteObjeto/);
 });
 
 test("la crónica histórica de party empieza contraída y se expande al pulsar su cabecera", () => {
@@ -93,4 +97,18 @@ test("toda la hoja de compañía tiene un tono más sólido y suave que el papel
   assert.match(panel, /bg-\[linear-gradient\(135deg,#bd776d_0%,#aa6158_58%,#98534b_100%\)\]/);
   assert.match(panel, /Aviso de compañía/);
   assert.match(panel, /focus-visible:ring-\[#f0c77f\]/);
+});
+
+test("el mismo desglose de recompensas sirve al informe provisional y al histórico", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+  const historico = read("src/components/base/party/InformeHistoricoParty.tsx");
+  const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
+  assert.match(panel, /<RecompensasInformeParty/);
+  assert.match(historico, /<RecompensasInformeParty/);
+  assert.match(recompensas, /filas\.length === 0 && objetos\.length === 0/);
+  assert.match(recompensas, /dropsEnemigo/);
+  assert.match(recompensas, /nivelesJobSubidos/);
+  assert.match(recompensas, /No hay recompensas de combate disponibles/);
+  assert.doesNotMatch(panel, /filas\.length === 0 && objetos\.length === 0/);
+  assert.doesNotMatch(historico, /filas\.length === 0 && objetos\.length === 0/);
 });
