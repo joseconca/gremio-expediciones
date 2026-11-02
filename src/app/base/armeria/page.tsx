@@ -138,7 +138,7 @@ function nombreTipoObjeto(objeto: DefinicionObjeto): string {
   return nombreTipo(objeto.tipo as TipoObjetoEquipable | "consumible");
 }
 
-export default function HerreriaPage() {
+export default function ArmeriaPage() {
   const router = useRouter();
   const { personaje, edificios, oro, cargarJugador } = useGameStore();
 
