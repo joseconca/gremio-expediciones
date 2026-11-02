@@ -8,42 +8,80 @@ import { obtenerEstadosTacticos as tacticos } from "./preparacion-habilidades";
 // Mantener la API de preparacion anterior para los importadores existentes.
 export { actualizarRelojContexto, prepararHabilidadRedisenada } from "./preparacion-habilidades";
 
-function esCondicion(r:ReglaPasiva,h:DefinicionHabilidad,c:ContextoTecnicaTactica,base:ResultadoHabilidad,m:MundoTactico,limpiezas:number,disipaciones:number):boolean{
-  const ops=h.disenoActiva?.operaciones??[];
-  const hay=(tipo:OperacionHabilidad["tipo"])=>ops.some(op=>op.tipo===tipo);
-  const anterior=tacticos(c.efectosActor).find(e=>e.clave==="_historial");
-  const hostil=!c.objetivoAliado;
-  const exito=base.accion.tipo!=="fallo";
-  switch(r.condicion){
-    case "ataque":return hostil&&base.accion.dano>0;
-    case "apoyo":return c.objetivoAliado&&exito;
-    case "cura_efectiva":return c.objetivoAliado&&(base.accion.curacion??0)>0;
-    case "herida":return (!!h.danoProgresivoPorcentaje&&base.accion.dano>0&&!base.impactoBloqueado)||ops.some(o=>o.tipo==="adelantar"&&o.familia==="herida")&&m.eventos.some(e=>e.tipo==="dano");
-    case "regeneracion":return h.efecto==="curacion_progresiva"||ops.some(o=>o.tipo==="adelantar"&&o.familia==="regeneracion");
-    case "guardia":return hay("guardia_porcentaje")||hay("transferir")||!!h.disenoActiva?.barrera;
-    case "ruptura":return ops.some(o=>o.tipo==="consumir_preparacion"&&o.efecto==="ruptura")&&m.eventos.some(e=>e.tipo==="consumo");
-    case "disipacion":return disipaciones>0;
-    case "limpieza":return limpiezas>0;
-    case "movilidad":return hay("mover");
-    case "invocacion":return hay("invocar")&&m.unidades[0].estados.some(e=>e.familia==="acompanante"&&e.fuenteId===h.id);
-    case "orden":return hay("ordenar")&&m.unidades[0].limites.pulsoAcompanante===c.ciclo&&!c.efectosActor.some(e=>e.datosTacticos?.limites.pulsoAcompanante===c.ciclo);
-    case "sacrificio":return hay("sacrificar")&&m.eventos.some(e=>e.tipo==="consumo");
-    case "pacto":return hay("pacto")&&m.eventos.some(e=>e.tipo==="recurso"&&e.detalle==="vida_comprometida"&&e.cantidad>0);
-    case "reaccion":return hay("reaccion")&&m.eventos.some(e=>e.tipo==="consumo");
-    case "preparacion":return ops.some(o=>o.tipo==="estado"&&o.familia==="preparacion");
-    case "consumo":return m.eventos.some(e=>e.tipo==="consumo");
-    case "alternar":return !!anterior&&anterior.valor!==(hostil?1:0);
-    case "cambiar_objetivo":return !!anterior&&anterior.destinatarioId!==c.objetivoId;
-    case "objetivo_herido":return c.objetivoHp<c.objetivoHpMaximo*.5;
-    case "vida_baja":return c.actorHp<c.actorHpMaximo*.3;
-    case "enemigo_protegido":return hostil&&c.efectosObjetivo.some(e=>e.tipo==="barrera"||e.tipo==="bonus_defensa"||e.datosTacticos?.estados.some(s=>s.familia==="guardia"));
-    case "objetivo_marcado":return tacticos(c.efectosObjetivo).some(e=>e.creadorId===c.actorId&&!e.clave.startsWith("_")&&["marca","sello"].includes(e.familia));
-    case "energia_baja":return c.energia-(h.costeEnergia??0)<c.energiaMaxima*.3;
-    case "mana_bajo":return c.manaMaximo>0&&c.mana-(h.costeMana??0)<c.manaMaximo*.3;
-    case "coste_mixto":return !!h.costeEnergia&&!!h.costeMana;
-    case "area":return (c.numeroObjetivos??1)>1;
-    case "fila_propia":return c.objetivoAliado&&c.filaActor===c.filaObjetivo;
-    case "sobrecuracion":return c.objetivoAliado&&h.efecto==="curacion"&&c.objetivoHp<c.objetivoHpMaximo&&c.objetivoHp+(c.objetivoHpMaximo*(h.curacionPorcentaje??0))>c.objetivoHpMaximo;
+/** Verifica las condiciones tácticas de las pasivas; no modifica el mundo. */
+function esCondicion(
+  regla: ReglaPasiva,
+  habilidad: DefinicionHabilidad,
+  contexto: ContextoTecnicaTactica,
+  resultado: ResultadoHabilidad,
+  mundo: MundoTactico,
+  limpiezas: number,
+  disipaciones: number
+): boolean {
+  const operaciones = habilidad.disenoActiva?.operaciones ?? [];
+  const hay = (tipo: OperacionHabilidad["tipo"]) => operaciones.some((op) => op.tipo === tipo);
+  const anterior = tacticos(contexto.efectosActor).find((e) => e.clave === "_historial");
+  const hostil = !contexto.objetivoAliado;
+  const exito = resultado.accion.tipo !== "fallo";
+  switch (regla.condicion) {
+    case "ataque":
+      return hostil&&resultado.accion.dano>0;
+    case "apoyo":
+      return contexto.objetivoAliado&&exito;
+    case "cura_efectiva":
+      return contexto.objetivoAliado&&(resultado.accion.curacion??0)>0;
+    case "herida":
+      return (!!habilidad.danoProgresivoPorcentaje&&resultado.accion.dano>0&&!resultado.impactoBloqueado)||operaciones.some(o=>o.tipo==="adelantar"&&o.familia==="herida")&&mundo.eventos.some(e=>e.tipo==="dano");
+    case "regeneracion":
+      return habilidad.efecto==="curacion_progresiva"||operaciones.some(o=>o.tipo==="adelantar"&&o.familia==="regeneracion");
+    case "guardia":
+      return hay("guardia_porcentaje")||hay("transferir")||!!habilidad.disenoActiva?.barrera;
+    case "ruptura":
+      return operaciones.some(o=>o.tipo==="consumir_preparacion"&&o.efecto==="ruptura")&&mundo.eventos.some(e=>e.tipo==="consumo");
+    case "disipacion":
+      return disipaciones>0;
+    case "limpieza":
+      return limpiezas>0;
+    case "movilidad":
+      return hay("mover");
+    case "invocacion":
+      return hay("invocar")&&mundo.unidades[0].estados.some(e=>e.familia==="acompanante"&&e.fuenteId===habilidad.id);
+    case "orden":
+      return hay("ordenar")&&mundo.unidades[0].limites.pulsoAcompanante===contexto.ciclo&&!contexto.efectosActor.some(e=>e.datosTacticos?.limites.pulsoAcompanante===contexto.ciclo);
+    case "sacrificio":
+      return hay("sacrificar")&&mundo.eventos.some(e=>e.tipo==="consumo");
+    case "pacto":
+      return hay("pacto")&&mundo.eventos.some(e=>e.tipo==="recurso"&&e.detalle==="vida_comprometida"&&e.cantidad>0);
+    case "reaccion":
+      return hay("reaccion")&&mundo.eventos.some(e=>e.tipo==="consumo");
+    case "preparacion":
+      return operaciones.some(o=>o.tipo==="estado"&&o.familia==="preparacion");
+    case "consumo":
+      return mundo.eventos.some(e=>e.tipo==="consumo");
+    case "alternar":
+      return !!anterior&&anterior.valor!==(hostil?1:0);
+    case "cambiar_objetivo":
+      return !!anterior&&anterior.destinatarioId!==contexto.objetivoId;
+    case "objetivo_herido":
+      return contexto.objetivoHp<contexto.objetivoHpMaximo*.5;
+    case "vida_baja":
+      return contexto.actorHp<contexto.actorHpMaximo*.3;
+    case "enemigo_protegido":
+      return hostil&&contexto.efectosObjetivo.some(e=>e.tipo==="barrera"||e.tipo==="bonus_defensa"||e.datosTacticos?.estados.some(s=>s.familia==="guardia"));
+    case "objetivo_marcado":
+      return tacticos(contexto.efectosObjetivo).some(e=>e.creadorId===contexto.actorId&&!e.clave.startsWith("_")&&["marca","sello"].includes(e.familia));
+    case "energia_baja":
+      return contexto.energia-(habilidad.costeEnergia??0)<contexto.energiaMaxima*.3;
+    case "mana_bajo":
+      return contexto.manaMaximo>0&&contexto.mana-(habilidad.costeMana??0)<contexto.manaMaximo*.3;
+    case "coste_mixto":
+      return !!habilidad.costeEnergia&&!!habilidad.costeMana;
+    case "area":
+      return (contexto.numeroObjetivos??1)>1;
+    case "fila_propia":
+      return contexto.objetivoAliado&&contexto.filaActor===contexto.filaObjetivo;
+    case "sobrecuracion":
+      return contexto.objetivoAliado&&habilidad.efecto==="curacion"&&contexto.objetivoHp<contexto.objetivoHpMaximo&&contexto.objetivoHp+(contexto.objetivoHpMaximo*(habilidad.curacionPorcentaje??0))>contexto.objetivoHpMaximo;
   }
 }
 
