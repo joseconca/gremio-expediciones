@@ -16,6 +16,32 @@ test("la API histórica de combate conserva exactamente los ataques básicos", (
   assert.equal(ataquesBasicos.calcularDanoMitigado(50, 100), 25);
 });
 
+test("el ataque básico enemigo mantiene selección mágica, mitigación y azar", () => {
+  const atacar = ataquesBasicos.resolverAtaqueEnemigo;
+  const randomOriginal = Math.random;
+  try {
+    for (const [usarMejorAtaqueMagico, danoEsperado] of [[true, 41], [false, 10]]) {
+      const valores = [0.5, 0, 0.5, 0.99];
+      Math.random = () => valores.shift() ?? 0.99;
+      const accion = atacar({
+        enemigoAtaque: 20,
+        enemigoAtaqueMagico: 40,
+        usarMejorAtaqueMagico,
+        enemigoProbCritico: 0,
+        enemigoDanoCritico: 1.5,
+        enemigoNombre: "Enemigo de prueba",
+        jugadorDefensa: 100,
+        jugadorDefensaMagica: 0,
+      });
+      assert.equal(accion.dano, danoEsperado);
+      assert.equal(accion.critico, false);
+      assert.equal(accion.tipo, "ataque");
+    }
+  } finally {
+    Math.random = randomOriginal;
+  }
+});
+
 test("un arco produce una presentación de proyectil físico", () => {
   assert.deepEqual(obtenerPresentacionAtaqueBasico("arco"), {
     modo: "proyectil",

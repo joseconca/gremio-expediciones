@@ -28,13 +28,13 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `src/lib/configuracionJuego.ts` actúa como **fachada de compatibilidad**. Redirige exports de edificios, progresión y sprites; su aspecto antiguo no implica que sea código muerto.
 - `src/lib/habilidades.ts` construye el registro que consumen las APIs y los combates. `progresion/generar-habilidades.ts`, `catalogo-redisenado.ts` y `tecnicas-adicionales.ts` son transformaciones del catálogo, no catálogos editables alternativos.
 - `src/lib/enemigos.ts` adapta los datos del catálogo de enemigos para dificultad, botín y selección; no sustituirlo por el JSON generado de sprites.
-- `src/lib/expediciones/presentacion-combate.ts` ya solo resuelve metadatos visuales. La regla de uso de ataque físico/mágico y la normalización de subtipos están en `src/lib/expediciones/ataque-basico-arma.ts`, consumida por PvE, PvP y party. Su comportamiento está cubierto por `tests/combat-presentacion.test.cjs`.
+- `src/lib/expediciones/presentacion-combate.ts` solo resuelve metadatos visuales: básicos y proyectiles de habilidades. `ataque-basico-arma.ts` decide la selección física/mágica del arma y `ataques-basicos.ts` contiene la resolución numérica, precisión y críticos. `combate.ts` conserva sus exportaciones previas. Las pruebas de `tests/combat-presentacion.test.cjs` protegen presentación, daño y API histórica.
 - `src/lib/expediciones/destinos-animacion-combate.ts` traduce metadatos de acciones para PvE, party y PvP. Que produzca datos visuales no significa que pueda moverse directamente a React: hay consumidores de servicios.
 - `src/lib/progresion/diseno-habilidades.ts` define contratos tácticos, mientras `src/lib/catalogos/habilidades.ts` contiene sus datos. No confundir una declaración de tipo con duplicación de contenido.
 
-## Siguiente orden de trabajo
+## Estado y siguiente orden de trabajo
 
-1. Cerrar en verde la CI de Botica y los cambios de ubicación antes de tocar más lógica.
-2. Verificar importadores reales de las fachadas y módulos sospechosos contra la **rama actual**, además de rutas API, pruebas y scripts. La búsqueda de código de GitHub puede indexar `main`, no necesariamente `reorganizacion-1`.
-3. Revisar la concentración de responsabilidades en `expediciones/` y `progresion/` según casos de uso; crear carpetas de subdominio solo cuando simplifiquen encontrar el código y no obliguen a añadir capas artificiales.
-4. Eliminar un archivo solo si sus referencias están identificadas, no existe carga dinámica y una prueba confirma que no se necesita. Mantener commits pequeños y sin cambios de balance.
+1. La regresión completa de `cf2fb4a` terminó correctamente. Los archivos de progresión y sus contratos públicos se han separado por responsabilidad sin alterar fórmulas.
+2. La presentación visual de ataques y habilidades y las reglas numéricas de básicos ya tienen ubicaciones distintas. Esperar la CI de esta reorganización antes de darla por validada.
+3. Continuar revisando las dependencias y responsabilidades de `motor-tactico.ts`, `combate.ts` y los servicios. **No dividir más por el mero tamaño** ni reunir las dos fórmulas de murallas, cuyos resultados no coinciden: verificar antes sus consumidores y su uso contextual.
+4. Comprobar importadores contra la **rama actual** (la búsqueda GitHub puede indexar `main`). Eliminar código solo con evidencia de ausencia de consumidores y pruebas suficientes. Mantener commits pequeños y sin cambiar balance.
