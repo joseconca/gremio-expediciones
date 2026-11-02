@@ -146,16 +146,20 @@ def estado_equipo(item_id: str) -> None:
 def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
     if argv and argv[0] == "heroe":
-        script("sprites.py", *argv[1:])
-        return 0
+        try:
+            script("sprites.py", *argv[1:])
+            return 0
+        except (ValueError, OSError) as error:
+            print("ERROR: " + str(error), file=sys.stderr)
+            return 1
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("tipo", choices=("enemigo", "equipo"))
     parser.add_argument("orden", choices=("estado", "actualizar", "validar", "publicar"))
     parser.add_argument("--id", type=identificador)
     parser.add_argument("--metadata", type=Path)
     parser.add_argument("--aprobado", action="store_true")
-    args = parser.parse_args(argv)
     try:
+        args = parser.parse_args(argv)
         if args.orden != "validar" and not args.id and not args.metadata:
             raise ValueError("Debes indicar --id o --metadata")
         if args.orden == "actualizar":
