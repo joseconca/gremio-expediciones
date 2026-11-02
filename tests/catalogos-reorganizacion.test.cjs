@@ -3,6 +3,9 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
+const { FICHAS_PROFESION, obtenerFichaProfesion } = require("../src/lib/progresion/catalogos/fichas-profesion.ts");
+const { obtenerFuentes, obtenerResumen } = require("../scripts/clase.cjs");
+
 const { CLASES_BASE } = require("../src/lib/progresion/catalogos/clases-base.ts");
 const { CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases-avanzadas.ts");
 const { HABILIDADES, HABILIDADES_BASE } = require("../src/lib/habilidades.ts");
@@ -38,4 +41,27 @@ test("la API de habilidades conserva todas las profesiones y las 367 habilidades
   for (const h of HABILIDADES) assert.ok(CLASES[h.claseId], h.id);
   assert.equal(HABILIDADES.filter(h => h.tipo === "activa").length, 245);
   assert.equal(HABILIDADES.filter(h => h.tipo === "pasiva").length, 122);
+});
+
+test("una sola ficha pública reúne todas las clases, habilidades propias y diseños", () => {
+  assert.deepEqual(Object.keys(FICHAS_PROFESION).sort(), Object.keys(CLASES).sort());
+  for (const [id, ficha] of Object.entries(FICHAS_PROFESION)) {
+    assert.equal(ficha.clase.id, id);
+    assert.ok(ficha.diseno, `Diseño V2 ausente: ${id}`);
+    assert.deepEqual(ficha.habilidades.map(h => h.id),
+      HABILIDADES.filter(h => h.claseId === id).map(h => h.id));
+    assert.equal(obtenerFichaProfesion(id), ficha);
+  }
+  assert.equal(obtenerFichaProfesion("clase_que_no_existe"), undefined);
+});
+
+test("Berserker se localiza con una orden sin consultar manifiestos manualmente", () => {
+  const info = obtenerResumen("berserker");
+  assert.equal(info.nombre, "Berserker");
+  assert.equal(info.disenoV2, true);
+  assert.deepEqual(info.spritesHD.atlas, ["m"]);
+  assert.deepEqual(info.spritesHD.retratos, []);
+  assert.ok(info.fuentes.includes("src/lib/progresion/catalogos/clases-avanzadas.ts"));
+  assert.ok(info.habilidades.length > 0);
+  assert.ok(obtenerFuentes("berserker").some(r => r.includes("habilidades-nuevas.ts")));
 });
