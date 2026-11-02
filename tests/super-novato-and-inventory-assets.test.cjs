@@ -63,8 +63,13 @@ test("las miniaturas devueltas para consumibles apuntan a assets existentes y lo
   assert.equal(obtenerIconoObjeto(obtenerObjetoPorId("ceniza_fenix")), "🔥");
   assert.equal(obtenerIconoObjeto(obtenerObjetoPorId("elixir_guerrero")), "⚗️");
   const ficha = read("src/app/base/personaje/page.tsx");
+  const mochila = read("src/components/personaje/MochilaPersonaje.tsx");
+  const equipo = read("src/components/personaje/EquipoPersonaje.tsx");
   const miniatura = read("src/components/objetos/MiniaturaObjeto.tsx");
-  assert.match(ficha, /<MiniaturaObjeto/);
+  assert.match(ficha, /<MochilaPersonaje/);
+  assert.match(ficha, /<EquipoPersonaje/);
+  assert.match(mochila, /<MiniaturaObjeto/);
+  assert.match(equipo, /<MiniaturaObjeto/);
   assert.match(miniatura, /obtenerIconoObjeto\(objeto\)/);
   assert.match(miniatura, /obtenerSpriteObjeto\(objeto\)/);
 });
