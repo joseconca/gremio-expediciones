@@ -170,73 +170,26 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "./errores": { PartyServiceError: MockPartyError },
   };
-  // La liquidación extraída se ejecuta con los mismos mocks transaccionales y de botín.
-  // No se simula su resultado: estas pruebas comprueban reparto e idempotencia reales.
-  const liquidacionFilename = path.resolve(__dirname, "../src/server/services/party/liquidacion-recompensas.ts");
-  const liquidacionSource = fs.readFileSync(liquidacionFilename, "utf8");
-  const liquidacionCompilada = ts.transpileModule(liquidacionSource, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
-    fileName: liquidacionFilename,
-  }).outputText;
-  const liquidacionModule = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + liquidacionCompilada + "\n})", { filename: liquidacionFilename })(
-    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
-    liquidacionModule,
-    liquidacionModule.exports,
-  );
-  dependencies["./liquidacion-recompensas"] = liquidacionModule.exports;
-  const regresoFilename = path.resolve(__dirname, "../src/server/services/party/regreso-combate.ts");
-  const regresoSource = fs.readFileSync(regresoFilename, "utf8");
-  const regresoCompilada = ts.transpileModule(regresoSource, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
-    fileName: regresoFilename,
-  }).outputText;
-  const regresoModule = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + regresoCompilada + "\n})", { filename: regresoFilename })(
-    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
-    regresoModule,
-    regresoModule.exports,
-  );
-  dependencies["./regreso-combate"] = regresoModule.exports;
-  const recursosFilename = path.resolve(__dirname, "../src/server/services/party/recursos-turno.ts");
-  const recursosSource = fs.readFileSync(recursosFilename, "utf8");
-  const recursosCompilada = ts.transpileModule(recursosSource, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
-    fileName: recursosFilename,
-  }).outputText;
-  const recursosModule = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + recursosCompilada + "\n})", { filename: recursosFilename })(
-    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
-    recursosModule,
-    recursosModule.exports,
-  );
-  dependencies["./recursos-turno"] = recursosModule.exports;
-  const contextoFilename = path.resolve(__dirname, "../src/server/services/party/contexto-combate.ts");
-  const contextoSource = fs.readFileSync(contextoFilename, "utf8");
-  const contextoCompilada = ts.transpileModule(contextoSource, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
-    fileName: contextoFilename,
-  }).outputText;
-  const contextoModule = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + contextoCompilada + "\n})", { filename: contextoFilename })(
-    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
-    contextoModule,
-    contextoModule.exports,
-  );
-  dependencies["./contexto-combate"] = contextoModule.exports;
-  const enemigoFilename = path.resolve(__dirname, "../src/server/services/party/turno-enemigo.ts");
-  const enemigoSource = fs.readFileSync(enemigoFilename, "utf8");
-  const enemigoCompilada = ts.transpileModule(enemigoSource, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
-    fileName: enemigoFilename,
-  }).outputText;
-  const enemigoModule = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + enemigoCompilada + "\n})", { filename: enemigoFilename })(
-    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
-    enemigoModule,
-    enemigoModule.exports,
-  );
-  dependencies["./turno-enemigo"] = enemigoModule.exports;
+  // Ejecutamos los servicios reales extraídos con los mismos mocks Prisma
+  // y de reglas que utiliza el orquestador. No se simulan sus resultados.
+  const cargarModuloServicio = (nombre) => {
+    const archivo = path.resolve(__dirname, "../src/server/services/party", nombre + ".ts");
+    const compilado = ts.transpileModule(fs.readFileSync(archivo, "utf8"), {
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+      fileName: archivo,
+    }).outputText;
+    const modulo = { exports: {} };
+    vm.runInThisContext("(function(require, module, exports) {" + compilado + "\n})", { filename: archivo })(
+      (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+      modulo,
+      modulo.exports,
+    );
+    dependencies["./" + nombre] = modulo.exports;
+  };
+  for (const nombre of [
+    "liquidacion-recompensas", "regreso-combate", "recursos-turno",
+    "contexto-combate", "turno-enemigo",
+  ]) cargarModuloServicio(nombre);
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
@@ -1391,4 +1344,12 @@ test("el regreso tras la victoria conserva la programación original aunque el c
   assert.equal(calls.expeditionWrites.length, 1);
   assert.equal(calls.expeditionWrites[0].data.fechaSalida.toISOString(), resultado.regreso.fechaSalida);
   assert.equal(calls.expeditionWrites[0].data.fechaLlegada.toISOString(), resultado.regreso.fechaLlegada);
+});
+
+
+test("las dos acciones de combate mantienen la API pública y los módulos separados", () => {
+  const { prisma } = mockPrisma(mkCombat());
+  const servicio = loadService(prisma);
+  assert.equal(typeof servicio.ejecutarAccionCombateParty, "function");
+  assert.equal(typeof servicio.ejecutarTurnoEnemigoParty, "function");
 });
