@@ -160,8 +160,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--aprobado", action="store_true")
     try:
         args = parser.parse_args(argv)
-        if args.orden != "validar" and not args.id and not args.metadata:
-            raise ValueError("Debes indicar --id o --metadata")
+        if args.orden == "estado" and not args.id:
+            raise ValueError("estado requiere --id")
+        if args.tipo == "enemigo" and args.orden == "publicar" and not args.id:
+            raise ValueError("publicar un enemigo requiere --id")
         if args.orden == "actualizar":
             if args.metadata is None:
                 raise ValueError("actualizar requiere --metadata con origen y revision")
