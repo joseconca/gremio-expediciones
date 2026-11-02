@@ -2,6 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const ts = require("typescript");
+const vm = require("node:vm");
 
 const ROOT = path.resolve(__dirname, "..");
 const read = (relative) => fs.readFileSync(path.join(ROOT, relative), "utf8");
@@ -117,4 +119,39 @@ test("el golpe terminal mantiene visible el impacto antes del resultado y el ase
   assert.match(combate, /esResultadoTerminal: \(\) => faseCombateRef\.current !== "activo"/);
   assert.match(asedio, /const \[mostrarResultado, setMostrarResultado\] = useState\(false\)/);
   assert.match(asedio, /if \(faseCombateRef\.current !== "activo"\) setMostrarResultado\(true\)/);
+});
+
+test("PvE y PvP utilizan el mismo hook que bloquea y restaura el scroll sin perder la posición", () => {
+  for (const componente of ["CombateModal.tsx", "AsedioModal.tsx"]) {
+    assert.match(read("src/components/combate/" + componente), /useBloquearScrollFondo\(\)/);
+  }
+  const source = read("src/components/combate/useBloquearScrollFondo.ts");
+  const { outputText } = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  });
+  const body = { style: { overflow: "auto", position: "relative", top: "12px", width: "85%" } };
+  const html = { style: { overflow: "scroll" } };
+  const document = { body, documentElement: html };
+  let restauracion = null;
+  let desplazamiento = null;
+  const window = { scrollY: 93, scrollTo(x, y) { desplazamiento = [x, y]; } };
+  const modulo = { exports: {} };
+  const factory = vm.runInNewContext("(function(require, module, exports, window, document) { " + outputText + "\n})");
+  factory((id) => {
+    assert.equal(id, "react");
+    return { useEffect(efecto) { restauracion = efecto(); } };
+  }, modulo, modulo.exports, window, document);
+
+  modulo.exports.useBloquearScrollFondo();
+  assert.equal(body.style.overflow, "hidden");
+  assert.equal(body.style.position, "fixed");
+  assert.equal(body.style.top, "-93px");
+  assert.equal(body.style.width, "100%");
+  assert.equal(html.style.overflow, "hidden");
+
+  assert.equal(typeof restauracion, "function");
+  restauracion();
+  assert.deepEqual(body.style, { overflow: "auto", position: "relative", top: "12px", width: "85%" });
+  assert.equal(html.style.overflow, "scroll");
+  assert.deepEqual(desplazamiento, [0, 93]);
 });
