@@ -139,10 +139,13 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 | `src/lib/party/recompensas.ts` | Lectura defensiva de recompensa, reparto entero, RNG de botín determinista, agregación de objetos | `server/services/party/combate-party-actions.ts` |
 | `src/components/base/party/tipos.ts` | Contratos de vistas y respuestas de la compañía | `components/base/PanelParty.tsx` |
 | `src/components/base/party/vista-combate.ts` | Adaptación pura del combate grupal al contrato de `CombateModal` | `components/base/PanelParty.tsx` |
+| `src/components/base/party/VisitasEntrantesParty.tsx` | Visitas entrantes, confirmación de llegada y aceptar/rechazar | `components/base/PanelParty.tsx` |
+| `src/components/base/party/TrasladosPropiosParty.tsx` | Traslados, cuenta atrás, mapa y regreso individual | `components/base/PanelParty.tsx` |
+| `src/components/base/party/InformeHistoricoParty.tsx` | Crónica histórica desplegable y recompensas individuales | `components/base/PanelParty.tsx` |
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 
-**Siguiente corte:** dividir bloques cohesivos de UI (viajes, visitas y crónicas de expedición) después de comprobar paridad de sus estados y accesibilidad. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserven el mismo contexto Prisma y la liquidación exactamente una vez. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
+**Siguiente corte:** comprobar las regresiones de los componentes visuales extraídos y preparar una comparación del informe provisional de regreso con el histórico antes de intentar unificarlos; comparten diseño pero no el mismo estado de apertura. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserven el mismo contexto Prisma y la liquidación exactamente una vez. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
 
 ### Áreas identificadas para una extracción posterior con pruebas
 

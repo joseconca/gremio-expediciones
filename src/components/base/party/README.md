@@ -4,6 +4,9 @@
 
 - `tipos.ts`: tipos de datos del API, expediciones, participantes, traslados e informes.
 - `vista-combate.ts`: conversión **pura** del combate grupal al contrato que recibe `CombateModal`.
+- `VisitasEntrantesParty.tsx`: avisos de llegadas y botones aceptar/rechazar; recibe permisos y callbacks del contenedor.
+- `TrasladosPropiosParty.tsx`: avisos de viaje, mapas y regreso voluntario; recibe reloj, personaje y acciones.
+- `InformeHistoricoParty.tsx`: pergamino histórico, crónica y recompensas individuales; recibe el estado expandido del contenedor.
 
 Las posiciones tácticas de los actores del modal se calculan en `src/lib/expediciones/formacion-party.ts`. El reparto, saneamiento de recompensas y RNG determinista están en `src/lib/party/recompensas.ts`. Las transacciones de combate siguen en `src/server/services/party/`.
 
