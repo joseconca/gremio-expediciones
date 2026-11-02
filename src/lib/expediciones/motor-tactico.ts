@@ -5,7 +5,6 @@
  */
 // Los consumidores existentes siguen importando tipos desde motor-tactico.
 import type {
-  ElementoTactico,
   FamiliaTactica,
   EstadoTactico,
   UnidadTactica,
