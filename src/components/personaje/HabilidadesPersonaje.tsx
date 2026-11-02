@@ -66,15 +66,15 @@ export default function HabilidadesPersonaje({
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const clasesConHabilidadesAprendidas=useMemo(()=>[...new Set(habilidadesAprendidas.map(h=>h.habilidad.claseId??"novato"))].sort((a,b)=>(CLASES[a]?.nombre??a).localeCompare(CLASES[b]?.nombre??b,"es")),[habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {
-    const query = busquedaHabilidad.trim().toLocaleLowerCase("es");
+    const query = busqueda.trim().toLocaleLowerCase("es");
     return habilidadesSinEquipar.filter((item) => {
       const claseId = item.habilidad.claseId ?? "novato";
-      if(claseHabilidadSeleccionada!=="todas"&&claseId!==claseHabilidadSeleccionada)return false;
+      if(claseSeleccionada!=="todas"&&claseId!==claseSeleccionada)return false;
       const nombreClase = CLASES[claseId]?.nombre ?? claseId;
       const texto = [item.habilidad.nombre, item.habilidad.descripcion, nombreClase].join(" ").toLocaleLowerCase("es");
       return !query || texto.includes(query);
     });
-  }, [habilidadesSinEquipar, busquedaHabilidad,claseHabilidadSeleccionada]);
+  }, [habilidadesSinEquipar, busqueda,claseSeleccionada]);
 
   return (
           <section className="overflow-hidden rounded-xl border border-[#5e482d] bg-[#211910] shadow-[0_10px_25px_rgba(0,0,0,0.3)]">
