@@ -9,7 +9,7 @@ import {
 } from "@/lib/configuracionJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
-import { obtenerSpriteObjeto } from "@/lib/objetos";
+import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
@@ -502,13 +502,21 @@ export default function HojaPersonajeModal({
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
               {ranurasEquipo.map((ranura) => {
                 const objeto = personaje.equipo[ranura.clave];
-                const sprite = objeto ? obtenerSpriteObjeto(objeto.objeto) : null;
+
                 return (
                   <article key={ranura.clave} className="flex min-h-[125px] min-w-0 flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">{ranura.nombre}</span>
                     {objeto ? (
                       <>
-                        {sprite ? <Image src={sprite} alt={objeto.objeto.nombre} width={52} height={52} className="mt-1 rounded-md [image-rendering:pixelated]" /> : <span className="mt-2 text-2xl">{ranura.emoji}</span>}
+                        <div className="mt-1">
+                           <MiniaturaObjeto
+                             objeto={objeto.objeto}
+                             instancia={objeto}
+                             variante="madera"
+                             claseBoton="flex h-14 w-14 items-center justify-center rounded-md border border-stone-400/60 bg-[#e4d4b3] p-1 transition hover:border-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-600"
+                             iconoAlternativo={ranura.emoji}
+                           />
+                         </div>
                         <span className="mt-2 break-words font-serif text-sm font-black text-stone-900">{objeto.objeto.nombre}</span>
                         {objeto.nivelMejora > 0 && <span className="mt-1 text-xs font-bold text-amber-700">+{objeto.nivelMejora}</span>}
                       </>
