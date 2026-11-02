@@ -15,7 +15,7 @@ import {
   type PasoTurnoVelocidad,
 } from "@/lib/expediciones/iniciativa-combate";
 
-import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
+import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";

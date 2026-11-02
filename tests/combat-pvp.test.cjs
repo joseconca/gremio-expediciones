@@ -26,7 +26,7 @@ const {
   distribuirEfectosHabilidadPvp,
   normalizarActorHabilidadDefensor,
 } = require("../src/lib/expediciones/contrato-accion-combate.ts");
-const { actualizarCombateVersionado } = require("../src/lib/expediciones/actualizar-combate-versionado.ts");
+const { actualizarCombateVersionado } = require("../src/server/services/combate/actualizar-combate-versionado.ts");
 const { TIEMPO_MAXIMO_TURNO_MS, haExpiradoTurnoPvp } = require("../src/lib/expediciones/turno-pvp.ts");
 
 test("la habilidad del defensor conserva actor y aplica efectos al participante real", () => {

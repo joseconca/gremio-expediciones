@@ -9,7 +9,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 
-import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
+import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
 import {
   calcularBonusDefensaMuralla,
   resolverAtaqueJugador,

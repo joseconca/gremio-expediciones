@@ -32,6 +32,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
+| Escritura SQL versionada de combates (protección contra turnos concurrentes) | `src/server/services/combate/actualizar-combate-versionado.ts` |
 | Combates de party | `src/server/services/party/combate-party-actions.ts` (jugador), `turno-enemigo.ts` (enemigos) |
 | Inicio del regreso tras una lucha de party | `src/server/services/party/regreso-combate.ts` |
 
