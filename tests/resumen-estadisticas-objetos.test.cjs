@@ -55,7 +55,7 @@ test("las dos tiendas utilizan el resumen común pero conservan sus propios cál
     assert.doesNotMatch(codigo, /function obtenerEstadisticasNoCero\(/);
     assert.doesNotMatch(codigo, /function formatearValorEstadistica\(/);
   }
-  assert.match(read("src/app/base/herreria/page.tsx"), /function obtenerDiferenciasMejora\(/);
-  assert.match(read("src/app/base/herreria/page.tsx"), /calcularCosteMejoraObjeto/);
+  assert.match(read("src/components/herreria/ForjaHerreria.tsx"), /function obtenerDiferenciasMejora\(/);
+  assert.match(read("src/components/herreria/ForjaHerreria.tsx"), /calcularCosteMejoraObjeto/);
   assert.match(read("src/app/base/armeria/page.tsx"), /calcularPrecioVentaObjeto/);
 });
