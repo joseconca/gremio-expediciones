@@ -24,7 +24,7 @@ import {
 import { calcularAtributosClase } from "@/lib/progresion/atributos-clase";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
   taberna: {

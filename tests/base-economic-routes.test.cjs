@@ -205,7 +205,7 @@ function makeCombatConsumableRoute({
       }),
     },
     "@/lib/progresion/clases": { CLASES: {}, puedeUsarHabilidadDeClase: () => true },
-    "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (name) => name },
+    "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (name) => name },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/progresion/niveles-habilidad": { ajustarHabilidadPorNivel: (habilidad) => habilidad },
     "@/lib/expediciones/combate": {
@@ -317,7 +317,7 @@ function loadSource(relativePath, dependencies = {}) {
           }),
         };
       }
-      if (name === "@/lib/sufijosObjetos") {
+      if (name === "@/lib/equipamiento/sufijos") {
         return {
           obtenerNombreObjetoConSufijo: (nombre) => nombre,
           sanitizarBonificacionesObjeto: (valor) =>
@@ -489,7 +489,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null },
-    "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
+    "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
     "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
     "@/lib/equipamiento/tienda": {
       puedeComprarObjeto: () => true,

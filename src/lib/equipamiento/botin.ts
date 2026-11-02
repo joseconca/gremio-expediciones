@@ -1,6 +1,6 @@
 import type { DefinicionEnemigo, DefinicionObjeto } from "../tiposJuego";
 import { obtenerObjetoPorId } from "../objetos";
-import { generarSufijoObjeto } from "../sufijosObjetos";
+import { generarSufijoObjeto } from "./sufijos";
 import { CLASES } from "../progresion/clases";
 
 export interface BotinObjeto {

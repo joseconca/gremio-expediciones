@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import {
   puedeComprarObjeto,

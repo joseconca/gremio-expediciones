@@ -8,7 +8,7 @@ import {
   obtenerRequisitosRareza,
 } from "@/lib/equipamiento/tienda";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
 
 function construirInventario(personaje: {
   inventario?: {

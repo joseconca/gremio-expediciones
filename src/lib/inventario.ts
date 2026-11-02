@@ -3,7 +3,7 @@ import { obtenerObjetoPorId } from "./objetos";
 import type { EquipoPersonaje, ObjetoInventario } from "./tiposJuego";
 
 export const LIMITE_INVENTARIO_OBJETOS = 30;
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./sufijosObjetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./equipamiento/sufijos";
 
 interface DatosObjetoInventario {
   id: string;

@@ -22,7 +22,7 @@ import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
-import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";

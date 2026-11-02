@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId, obtenerRanuraObjeto } from "@/lib/objetos";
-import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 
 const CAMPOS_RANURA = {
   arma: "armaInventarioId",

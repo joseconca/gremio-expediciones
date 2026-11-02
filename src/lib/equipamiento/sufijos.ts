@@ -1,4 +1,4 @@
-import type { DefinicionObjeto, Rareza } from "./tiposJuego";
+import type { DefinicionObjeto, Rareza } from "../tiposJuego";
 
 export type BonificacionesSufijo = Record<string, number>;
 

@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia/mercado";
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
 
 const CAMPOS_EQUIPO = [
   "armaInventarioId",

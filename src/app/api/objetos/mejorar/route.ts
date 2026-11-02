@@ -7,7 +7,7 @@ import {
   calcularCosteMejoraObjeto,
   calcularCosteRecursosMejora,
 } from "@/lib/objetos";
-import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 
 
 function personajeOcupado(estado: string): boolean {

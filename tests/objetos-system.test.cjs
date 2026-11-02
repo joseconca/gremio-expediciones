@@ -2,7 +2,7 @@ require("./load-typescript.cjs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { OBJETOS, obtenerObjetoPorId, obtenerRanuraObjeto, calcularEstadisticasObjeto } = require("../src/lib/objetos.ts");
-const { generarSufijoObjeto, obtenerNombreObjetoConSufijo } = require("../src/lib/sufijosObjetos.ts");
+const { generarSufijoObjeto, obtenerNombreObjetoConSufijo } = require("../src/lib/equipamiento/sufijos.ts");
 const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
 const { ENEMIGOS, JEFES_ELITE } = require("../src/lib/enemigos.ts");
 const { LIMITE_INVENTARIO_OBJETOS } = require("../src/lib/inventario.ts");
@@ -385,14 +385,14 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
       }
     },
   };
-  const suffixModule = require("../src/lib/sufijosObjetos.ts");
+  const suffixModule = require("../src/lib/equipamiento/sufijos.ts");
   const dependencies = {
     "next/server": { NextResponse: ApiNextResponse },
     "@prisma/client": { Prisma: ApiPrisma },
     "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId },
-    "@/lib/sufijosObjetos": suffixModule,
+    "@/lib/equipamiento/sufijos": suffixModule,
     "@/lib/economia/mercado": require("../src/lib/economia/mercado.ts"),
     "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS },
   };
