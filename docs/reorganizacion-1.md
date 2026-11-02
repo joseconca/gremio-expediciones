@@ -68,6 +68,14 @@ No existen otros catálogos editables de estos dominios. Los demás módulos son
 
 **Modificar clases o habilidades:** editar exclusivamente uno de los dos catálogos canónicos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
 
+### Catálogos adicionales separados de sus reglas
+
+- `src/lib/catalogos/objetos.ts`: **definiciones de los 62 objetos**. `src/lib/objetos.ts` conserva la API pública de consulta, estadísticas, sprites y costes de forja.
+- `src/lib/catalogos/enemigos.ts`: **42 criaturas, 12 jefes y tablas de botín**. `src/lib/enemigos.ts` conserva la API pública, los defaults de drops, la selección por amenaza y las rutas de sprites.
+- `src/lib/sufijosObjetos.ts`: catálogo pequeño de sufijos más sus reglas; se mantiene junto por ahora para evitar una separación artificial.
+
+Así, los datos se editan en un lugar por dominio, pero las funciones permanecen fuera del catálogo. **No se han cambiado precios, estadísticas, rarezas ni probabilidades**. Los importadores existentes siguen usando `src/lib/objetos.ts` y `src/lib/enemigos.ts`.
+
 ## Fase 3 — Servicios
 
 Se ha eliminado la duplicación exacta del adaptador `adjuntarPulsosEstado` entre PvE y PvP. Su propietario es ahora `src/server/services/combate/efectos-visualizacion.ts`. Los demás servicios siguen con sus rutas y firmas originales.

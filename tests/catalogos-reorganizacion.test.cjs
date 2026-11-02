@@ -56,3 +56,22 @@ test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
   assert.equal(require("../src/lib/progresion/catalogo-tecnicas-adicionales.ts").CATALOGO_TECNICAS_ADICIONALES, catalogo.CATALOGO_TECNICAS_ADICIONALES);
   assert.equal(new Set(Object.keys(DEFINICIONES_CLASES)).size, Object.keys(CLASES).length);
 });
+
+
+test("un único catálogo editable para objetos y criaturas sin romper las APIs", () => {
+  const { OBJETOS: DATOS_OBJETOS } = require("../src/lib/catalogos/objetos.ts");
+  const { ENEMIGOS_BASE, JEFES_ELITE_BASE, TABLAS_LOOT } = require("../src/lib/catalogos/enemigos.ts");
+  const { OBJETOS, obtenerObjetoPorId } = require("../src/lib/objetos.ts");
+  const { ENEMIGOS, JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
+  assert.equal(OBJETOS, DATOS_OBJETOS);
+  assert.equal(OBJETOS.length, 62);
+  assert.equal(ENEMIGOS.length, ENEMIGOS_BASE.length);
+  assert.equal(JEFES_ELITE.length, JEFES_ELITE_BASE.length);
+  assert.equal(ENEMIGOS.length, 42);
+  assert.equal(JEFES_ELITE.length, 12);
+  assert.equal(new Set(OBJETOS.map(x => x.id)).size, OBJETOS.length);
+  assert.equal(new Set([...ENEMIGOS, ...JEFES_ELITE].map(x => x.id)).size, ENEMIGOS.length + JEFES_ELITE.length);
+  for (const objeto of OBJETOS) assert.equal(obtenerObjetoPorId(objeto.id), objeto);
+  for (const enemigo of [...ENEMIGOS, ...JEFES_ELITE]) assert.equal(obtenerEnemigoPorId(enemigo.id), enemigo);
+  assert.ok(TABLAS_LOOT.comun.length > 0);
+});
