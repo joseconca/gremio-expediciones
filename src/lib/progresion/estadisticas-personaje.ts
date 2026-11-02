@@ -1,9 +1,6 @@
 import type { AtributosPrincipales } from "../tiposJuego";
-import { obtenerHabilidadPorId } from "../habilidades";
 import type { HabilidadAprendidaConNivel } from "./niveles-habilidad";
-import { obtenerModificadoresPasivas } from "./bonificaciones-pasivas";
-import { COEFICIENTES_ATRIBUTOS_RPG } from "./estadisticas";
-import { puedeUsarHabilidadDeClase } from "./clases";
+import { obtenerModificadoresPasivas, aplicarConversionReservaInteligencia } from "./bonificaciones-pasivas";
 import {
   obtenerAtributosPrincipales,
   obtenerEstadisticasBase,
@@ -56,29 +53,14 @@ export function calcularEstadisticasPersonaje(
   const atributosPrincipales={...obtenerAtributosPrincipales(personaje)};
   const atributosPorPasivas:Partial<AtributosPrincipales>={};
   const totalSinRedondear = sumarModificadores(base, mejoras, pasivas, equipo, combate);
-  const conversionActiva=habilidadesAprendidas.some(entrada=>{
-    const id=typeof entrada==="string"?entrada:entrada.habilidadId;
-    const h=obtenerHabilidadPorId(id);
-    return h?.conversionReservaInteligencia&&puedeUsarHabilidadDeClase(claseActualId,h.claseId);
+  aplicarConversionReservaInteligencia({
+    habilidadesAprendidas,
+    claseActualId,
+    atributosPrincipales,
+    atributosPorPasivas,
+    totalSinRedondear,
+    pasivas,
   });
-  if(conversionActiva){
-    const manaPrevio=totalSinRedondear.manaMaximo??0;
-    const inteligenciaPrevia=obtenerAtributosPrincipales(personaje).inteligencia;
-    const ganada=Math.min(Math.floor(manaPrevio*.1),Math.floor(inteligenciaPrevia*.2),12);
-    atributosPrincipales.inteligencia+=ganada;
-    atributosPorPasivas.inteligencia=ganada;
-    const ataque=ganada*COEFICIENTES_ATRIBUTOS_RPG.ataqueMagicoPorInteligencia;
-    const defensa=ganada*COEFICIENTES_ATRIBUTOS_RPG.defensaMagicaPorInteligencia;
-    const regeneracion=ganada*COEFICIENTES_ATRIBUTOS_RPG.regeneracionManaPorInteligencia;
-    totalSinRedondear.manaMaximo=Math.floor(manaPrevio*.9);
-    totalSinRedondear.ataqueMagico=(totalSinRedondear.ataqueMagico??0)+ataque;
-    totalSinRedondear.defensaMagica=(totalSinRedondear.defensaMagica??0)+defensa;
-    totalSinRedondear.regeneracionManaPorTurno=(totalSinRedondear.regeneracionManaPorTurno??0)+regeneracion;
-    pasivas.manaMaximo=(pasivas.manaMaximo??0)+Math.floor(manaPrevio*.9)-manaPrevio;
-    pasivas.ataqueMagico=(pasivas.ataqueMagico??0)+ataque;
-    pasivas.defensaMagica=(pasivas.defensaMagica??0)+defensa;
-    pasivas.regeneracionManaPorTurno=(pasivas.regeneracionManaPorTurno??0)+regeneracion;
-  }
 
   const precision = totalSinRedondear.precision ?? 75;
   const evasion = totalSinRedondear.evasion ?? 0;

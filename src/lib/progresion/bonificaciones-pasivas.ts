@@ -1,4 +1,6 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
+import type { AtributosPrincipales, DefinicionHabilidad } from "../tiposJuego";
+import { COEFICIENTES_ATRIBUTOS_RPG } from "./estadisticas";
+
 import { obtenerHabilidadPorId } from "../habilidades";
 import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "./clases";
@@ -44,4 +46,47 @@ export function obtenerModificadoresPasivas(
     regeneracionEnergiaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionEnergia) + sumar((habilidad) => habilidad.bonusEnergiaMaxima) * 0.2,
     regeneracionManaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionMana),
   };
+}
+
+/** Aplica la conversión especial de Núcleo arcano sobre el total y su desglose.
+ * Mantiene la mutación original: sólo se llama después de sumar equipo y pasivas.
+ */
+export function aplicarConversionReservaInteligencia({
+  habilidadesAprendidas,
+  claseActualId,
+  atributosPrincipales,
+  atributosPorPasivas,
+  totalSinRedondear,
+  pasivas,
+}: {
+  habilidadesAprendidas: HabilidadAprendidaConNivel[];
+  claseActualId: string;
+  atributosPrincipales: AtributosPrincipales;
+  atributosPorPasivas: Partial<AtributosPrincipales>;
+  totalSinRedondear: ModificadoresEstadisticas;
+  pasivas: ModificadoresEstadisticas;
+}): void {
+  const conversionActiva=habilidadesAprendidas.some(entrada=>{
+    const id=typeof entrada==="string"?entrada:entrada.habilidadId;
+    const h=obtenerHabilidadPorId(id);
+    return h?.conversionReservaInteligencia&&puedeUsarHabilidadDeClase(claseActualId,h.claseId);
+  });
+  if(conversionActiva){
+    const manaPrevio=totalSinRedondear.manaMaximo??0;
+    const inteligenciaPrevia=atributosPrincipales.inteligencia;
+    const ganada=Math.min(Math.floor(manaPrevio*.1),Math.floor(inteligenciaPrevia*.2),12);
+    atributosPrincipales.inteligencia+=ganada;
+    atributosPorPasivas.inteligencia=ganada;
+    const ataque=ganada*COEFICIENTES_ATRIBUTOS_RPG.ataqueMagicoPorInteligencia;
+    const defensa=ganada*COEFICIENTES_ATRIBUTOS_RPG.defensaMagicaPorInteligencia;
+    const regeneracion=ganada*COEFICIENTES_ATRIBUTOS_RPG.regeneracionManaPorInteligencia;
+    totalSinRedondear.manaMaximo=Math.floor(manaPrevio*.9);
+    totalSinRedondear.ataqueMagico=(totalSinRedondear.ataqueMagico??0)+ataque;
+    totalSinRedondear.defensaMagica=(totalSinRedondear.defensaMagica??0)+defensa;
+    totalSinRedondear.regeneracionManaPorTurno=(totalSinRedondear.regeneracionManaPorTurno??0)+regeneracion;
+    pasivas.manaMaximo=(pasivas.manaMaximo??0)+Math.floor(manaPrevio*.9)-manaPrevio;
+    pasivas.ataqueMagico=(pasivas.ataqueMagico??0)+ataque;
+    pasivas.defensaMagica=(pasivas.defensaMagica??0)+defensa;
+    pasivas.regeneracionManaPorTurno=(pasivas.regeneracionManaPorTurno??0)+regeneracion;
+  }
 }
