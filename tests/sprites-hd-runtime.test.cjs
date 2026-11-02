@@ -1,8 +1,8 @@
 require('./load-typescript.cjs');
 const test=require('node:test'); const assert=require('node:assert/strict');
 const fs=require('node:fs'); const path=require('node:path'); const crypto=require('node:crypto');
-const hd=require('../src/lib/sprites-heroes-hd.ts');
-const {dibujarHeroeHd}=require('../src/lib/dibujar-heroe-hd.ts');
+const hd=require('../src/lib/sprites/heroes.ts');
+const {dibujarHeroeHd}=require('../src/lib/sprites/dibujar-heroe.ts');
 const config=require('../src/lib/configuracionJuego.ts');
 const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p));

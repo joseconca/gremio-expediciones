@@ -4,7 +4,7 @@ import { calcularRestauracionConsumible, esConsumibleRestaurador } from "@/lib/e
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
-import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
+import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
 import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites-enemigos-hd";
 import { CLASES } from "@/lib/progresion/clases";

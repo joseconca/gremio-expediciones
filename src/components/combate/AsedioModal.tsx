@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
-import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
+import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";

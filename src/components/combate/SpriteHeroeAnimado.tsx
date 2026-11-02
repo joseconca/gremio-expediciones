@@ -5,7 +5,7 @@ import {
   obtenerIdClaseParaSprite,
   obtenerIdVisualClase,
 } from "@/lib/configuracionJuego";
-import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites-heroes-hd";
+import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites/heroes";
 import SpriteHeroeHd from "./SpriteHeroeHd";
 import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 

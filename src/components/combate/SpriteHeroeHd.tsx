@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { obtenerCapasHeroeHd, obtenerFotogramaHeroeHd, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites-heroes-hd";
-import { dibujarHeroeHd } from "@/lib/dibujar-heroe-hd";
+import { obtenerCapasHeroeHd, obtenerFotogramaHeroeHd, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites/heroes";
+import { dibujarHeroeHd } from "@/lib/sprites/dibujar-heroe";
 import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 
 const imagenes = new Map<string, Promise<HTMLImageElement>>();

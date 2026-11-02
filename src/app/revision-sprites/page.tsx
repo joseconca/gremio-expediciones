@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
-import { BIBLIOTECA_SPRITES_HD, resolverAccionHeroeHd, type AccionHeroeHd } from "@/lib/sprites-heroes-hd";
+import { BIBLIOTECA_SPRITES_HD, resolverAccionHeroeHd, type AccionHeroeHd } from "@/lib/sprites/heroes";
 
 const NOMBRES: Record<string, string> = { novato: "Novato", mago: "Mago", espadachin: "Espadachín", acolito: "Acólito", arquero: "Arquero" };
 const OPCIONES: [string, string][] = [["idle", "En reposo"], ["walk", "Caminar"], ["attack", "Atacar"], ["hurt", "Recibir daño"], ["dodge", "Esquivar"], ["block_shield", "Bloquear"], ["use_consumable", "Beber poción"]];

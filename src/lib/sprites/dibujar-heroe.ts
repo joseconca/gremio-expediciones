@@ -1,4 +1,4 @@
-import { BIBLIOTECA_SPRITES_HD, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites-heroes-hd";
+import { BIBLIOTECA_SPRITES_HD, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites/heroes";
 import posicionesReposo from "@/lib/generated/posiciones-idle-hd.json";
 
 export interface CapaHeroeHd { id: string; imagen: CanvasImageSource }
