@@ -1,7 +1,4 @@
 import type { Rareza, ClasePersonaje } from "./tiposJuego";
-import { CLASES, obtenerAncestrosClase } from "./progresion/clases";
-import { CLASES_NUEVAS } from "./catalogos/clases";
-import { esClaseHeroeHd, esRetratoHeroeHd } from "./sprites/heroes";
 
 /** Fachada pública: se conservan importaciones y contratos históricos. */
 export { REQUISITOS_EDIFICIOS, calcularCosteEdificio } from "./base/edificios";
@@ -80,110 +77,16 @@ export type { CampoMejora, IdAtributo } from "./base/mejoras";
 // ============================================================
 // HEROES
 // ============================================================
-const CLASES_LEGACY_POR_NOMBRE: Record<string, string> = {
-  Novato: "novato",
-  Guerrero: "guerrero",
-  Explorador: "explorador",
-  Comerciante: "comerciante",
-};
-
-export type SexoPersonaje = "chico" | "chica";
-
-/**
- * Resuelve el directorio visual sin modificar la clase almacenada en el personaje.
- * La profesión activa prevalece; las etiquetas antiguas siguen teniendo fallback.
- */
-export function obtenerIdClaseParaSprite(
-  clase?: string | null,
-  profesionActivaId?: string | null,
-): string {
-  const claseLegacy = clase ? CLASES_LEGACY_POR_NOMBRE[clase] : undefined;
-  // Los personajes antiguos conservan su avatar original mientras sigan en Novato.
-  if (claseLegacy && (!profesionActivaId || profesionActivaId === "novato")) {
-    return claseLegacy;
-  }
-  if (profesionActivaId && Object.prototype.hasOwnProperty.call(CLASES, profesionActivaId)) {
-    return profesionActivaId;
-  }
-  if (clase && Object.prototype.hasOwnProperty.call(CLASES, clase)) {
-    return clase;
-  }
-  if (claseLegacy) {
-    return claseLegacy;
-  }
-  return "novato";
-}
-
-export function obtenerNombreClaseHeroe(
-  clase?: string | null,
-  profesionActivaId?: string | null,
-): string {
-  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
-  return CLASES[idClase]?.nombre ?? (idClase === "guerrero" ? "Guerrero" : "Comerciante");
-}
-
-/** Las clases sin arte propio usan un antecesor existente hasta incorporar sus sprites. */
-export function obtenerIdVisualClase(id: string, sexo?: "m" | "f"): string {
-  if (sexo && esClaseHeroeHd(id, sexo)) return id;
-  if (!CLASES_NUEVAS[id] || id === "comerciante") return id;
-  return obtenerAncestrosClase(id).find((padre) => !CLASES_NUEVAS[padre]) ?? "novato";
-}
-
-/** Devuelve el sprite masculino/femenino de la profesión activa del personaje. */
-export function obtenerSpriteHeroe(
-  clase?: string | null,
-  sexo?: string | null,
-  profesionActivaId?: string | null,
-): string {
-  const sufijoSexo = sexo === "chica" ? "f" : "m";
-  const idOriginal = obtenerIdClaseParaSprite(clase, profesionActivaId);
-  const idClase = obtenerIdVisualClase(idOriginal);
-  if (esRetratoHeroeHd(idOriginal, sufijoSexo)) return `/sprites/hd-v1/heroes/${idOriginal}/${sufijoSexo}-portrait.png`;
-  return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
-}
-
-/**
- * Contrato de filas de los spritesheets de combate.
- * Cada fila contiene cuatro fotogramas: HD 128 × 256; fallback 64 × 128 px.
- */
-export const FILAS_ANIMACION_SPRITESHEET_HEROE = [
-  { id: "idle", nombre: "Idle", fila: 0 },
-  { id: "walk", nombre: "Caminar", fila: 1 },
-  { id: "hurt", nombre: "Recibir daño", fila: 2 },
-  { id: "use_consumable", nombre: "Usar consumible", fila: 3 },
-  { id: "dodge", nombre: "Esquivar", fila: 4 },
-  { id: "block_shield", nombre: "Bloquear con escudo", fila: 5 },
-  { id: "attack_sword", nombre: "Ataque con espada", fila: 6 },
-  { id: "attack_axe", nombre: "Ataque con hacha", fila: 7 },
-  { id: "attack_spear", nombre: "Ataque con lanza", fila: 8 },
-  { id: "attack_dagger", nombre: "Ataque con daga", fila: 9 },
-  { id: "attack_bow", nombre: "Ataque con arco", fila: 10 },
-  { id: "attack_staff", nombre: "Ataque con bastón", fila: 11 },
-  { id: "attack_mace", nombre: "Ataque con maza", fila: 12 },
-  { id: "attack_book", nombre: "Ataque con libro", fila: 13 },
-  { id: "attack_gloves", nombre: "Ataque con guantes", fila: 14 },
-] as const;
-
-/** Ruta a la hoja animada; los retratos estáticos siguen usando obtenerSpriteHeroe. */
-export function obtenerRutaSpritesheetHeroe(
-  clase?: string | null,
-  sexo?: string | null,
-  profesionActivaId?: string | null,
-): string {
-  const sufijoSexo = sexo === "chica" ? "f" : "m";
-  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId), sufijoSexo);
-  if (esClaseHeroeHd(idClase, sufijoSexo)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-sheet.png`;
-  return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}-sheet.png`;
-}
-
-/** Logo reutilizable de clase para miniaturas, nombres de grupo y listados. */
-export function obtenerLogoClaseHeroe(
-  clase?: string | null,
-  profesionActivaId?: string | null,
-): string {
-  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
-  return `/sprites/heroes/${idClase}/${idClase}-logo.svg`;
-}
+export {
+  FILAS_ANIMACION_SPRITESHEET_HEROE,
+  obtenerIdClaseParaSprite,
+  obtenerNombreClaseHeroe,
+  obtenerIdVisualClase,
+  obtenerSpriteHeroe,
+  obtenerRutaSpritesheetHeroe,
+  obtenerLogoClaseHeroe,
+} from "./sprites/heroes";
+export type { SexoPersonaje } from "./sprites/heroes";
 
 // ============================================================
 // PROGRESIÓN
