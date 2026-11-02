@@ -28,6 +28,7 @@ test("el tablón presenta comercio amarillento, asedio rojizo y expedición norm
 
 test("la compañía mantiene su desplegable y la expedición compartida el suyo propio", () => {
   const party = read("src/components/base/PanelParty.tsx");
+  const aviso = read("src/components/base/party/AvisoCompaniaParty.tsx");
   const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
   assert.match(party, /<ExpedicionActivaParty/);
   assert.match(party, /aria-expanded=\\{partyDetalleAbierto\\}/);
@@ -39,7 +40,9 @@ test("la compañía mantiene su desplegable y la expedición compartida el suyo 
 });
 
 test("las visitas entrantes conservan confirmación del servidor, permisos y acciones de aceptación", () => {
-  const panel = read("src/components/base/PanelParty.tsx");
+  const panel = read("src/components/base/party/AvisoCompaniaParty.tsx");
+  const contenedor = read("src/components/base/PanelParty.tsx");
+  assert.match(contenedor, /<AvisoCompaniaParty/);
   const visitas = read("src/components/base/party/VisitasEntrantesParty.tsx");
   assert.match(panel, /<VisitasEntrantesParty/);
   assert.match(panel, /ejecutar=\{ejecutar\}/);
@@ -51,7 +54,9 @@ test("las visitas entrantes conservan confirmación del servidor, permisos y acc
 });
 
 test("los traslados de party conservan mapa, regreso y mensajes durante la espera", () => {
-  const panel = read("src/components/base/PanelParty.tsx");
+  const panel = read("src/components/base/party/AvisoCompaniaParty.tsx");
+  const contenedor = read("src/components/base/PanelParty.tsx");
+  assert.match(contenedor, /<AvisoCompaniaParty/);
   const traslados = read("src/components/base/party/TrasladosPropiosParty.tsx");
   assert.match(panel, /<TrasladosPropiosParty/);
   assert.match(panel, /ejecutar=\{ejecutar\}/);
