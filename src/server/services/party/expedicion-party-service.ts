@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
-import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
 import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import { leerCoordenadasBase, ESTADOS_TRASLADO_ACTIVOS } from "@/lib/party/reglas";

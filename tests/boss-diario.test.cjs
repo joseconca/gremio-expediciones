@@ -2,7 +2,7 @@ require('./load-typescript.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { bossDiarioDisponible, ESPERA_BOSS_DIARIO_MS } = require('../src/lib/expediciones/boss-diario.ts');
-const { generarMisionesDisponibles } = require('../src/lib/generadorMisiones.ts');
+const { generarMisionesDisponibles } = require('../src/lib/expediciones/generador-misiones.ts');
 const { obtenerEnemigoPorId } = require('../src/lib/enemigos.ts');
 const victoria = new Date('2026-10-25T22:00:00Z');
 const opciones = { baseLat: 28, baseLng: -15, nivelPersonaje: 1, ultimaMisionElite: null, ahora: victoria };

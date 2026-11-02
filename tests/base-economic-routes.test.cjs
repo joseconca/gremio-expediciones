@@ -780,7 +780,7 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 1 },
     "@/lib/expediciones/comercio": { calcularOroBaseComercio: () => 20 },
-    "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [] },
+    "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => undefined },
     "../../../../lib/expediciones/dificultad": {
       esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),

@@ -34,7 +34,7 @@ const {
   seleccionarEnemigosNormales,
   PESOS_COMPOSICION_ENCUENTRO,
 } = require("../src/lib/expediciones/normal.ts");
-const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
+const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/expediciones/generador-misiones.ts");
 const {
   calcularCosteRecursosMejora,
   calcularCosteMejoraObjeto,

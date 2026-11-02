@@ -52,7 +52,7 @@ function loadService(prisma, misionPrueba = mission) {
     },
     "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
-    "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [misionPrueba] },
+    "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [misionPrueba] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: (id) => id === "enemigo-test" ? {

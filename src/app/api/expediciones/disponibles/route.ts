@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
 import { obtenerRangoMaximoDesbloqueado } from "../../../../lib/expediciones/dificultad";
 
 export const dynamic = "force-dynamic";
