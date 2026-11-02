@@ -98,6 +98,8 @@ python scripts/recursos.py equipo estado --id espada_hierro
 
 El acceso a sprites en runtime está centralizado en `src/lib/sprites/heroes.ts` y `src/lib/sprites/enemigos.ts`. La visualización está en `src/components/combate/SpriteHeroeAnimado.tsx` y `SpriteEnemigoAnimado.tsx`. Los derivados JSON están en `src/lib/generated/`, no son catálogos.
 
+Consulta también la [auditoría estructural de `src/lib/`](auditoria-src-lib.md), con cambios de ubicación confirmados y candidatos que no deben borrarse sin revisar.
+
 ## Cambios seguros y comprobación
 
 1. Encuentra el **propietario único** de la regla o vista, evitando nuevas capas para funciones triviales.
