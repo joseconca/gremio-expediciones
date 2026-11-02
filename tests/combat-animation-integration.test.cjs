@@ -89,7 +89,7 @@ test("el turno enemigo espera antes de atacar tanto en solitario como en party",
 test("los ataques de varios enemigos se animan por separado con una pausa de un segundo", () => {
   const contrato = read("src/lib/expediciones/combate.ts");
   const pve = read("src/server/services/combate/pve.ts");
-  const party = read("src/server/services/party/combate-party-actions.ts");
+  const party = read("src/server/services/party/turno-enemigo.ts");
   const hook = read("src/components/combate/animaciones/useAnimacionesCombate.ts");
 
   const modal = read("src/components/combate/CombateModal.tsx");

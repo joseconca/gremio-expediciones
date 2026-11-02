@@ -89,7 +89,7 @@ test("si se agota el ciclo se genera el siguiente con la ronda incrementada", ()
 test("PvE y party consumen la cola persistida y procesan un enemigo por acción", () => {
   const leer = (archivo) => fs.readFileSync(path.resolve(__dirname, archivo), "utf8");
   const pve = leer("../src/server/services/combate/pve.ts");
-  const party = leer("../src/server/services/party/combate-party-actions.ts");
+  const party = leer("../src/server/services/party/turno-enemigo.ts");
   const iniciarPve = leer("../src/server/services/expediciones/llegar-expedicion.ts");
   const iniciarParty = leer("../src/server/services/party/combate-party-service.ts");
   const esquema = leer("../prisma/schema.prisma");

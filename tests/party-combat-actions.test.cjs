@@ -224,6 +224,19 @@ function loadService(prisma, testOptions = {}) {
     contextoModule.exports,
   );
   dependencies["./contexto-combate"] = contextoModule.exports;
+  const enemigoFilename = path.resolve(__dirname, "../src/server/services/party/turno-enemigo.ts");
+  const enemigoSource = fs.readFileSync(enemigoFilename, "utf8");
+  const enemigoCompilada = ts.transpileModule(enemigoSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: enemigoFilename,
+  }).outputText;
+  const enemigoModule = { exports: {} };
+  vm.runInThisContext("(function(require, module, exports) {" + enemigoCompilada + "\n})", { filename: enemigoFilename })(
+    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+    enemigoModule,
+    enemigoModule.exports,
+  );
+  dependencies["./turno-enemigo"] = enemigoModule.exports;
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
