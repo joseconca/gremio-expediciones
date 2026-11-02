@@ -5,7 +5,10 @@ Esta carpeta contiene operaciones persistentes; las reglas puras y catálogos vi
 - `party-service.ts`: membresía, invitaciones y traslados entre bases.
 - `expedicion-party-service.ts`: inicio, viaje y estado de las expediciones compartidas.
 - `combate-party-service.ts`: consultas y representación persistida del combate.
-- `combate-party-actions.ts`: turnos de jugador/enemigo y control de concurrencia. Invoca las reglas puras de `src/lib/party/iniciativa.ts`.
+- `combate-party-actions.ts`: acciones del **jugador** y API pública compatible para el turno enemigo. Gestiona ataques, habilidades, consumibles, formación y huida sin cambiar los contratos de endpoints.
+- `turno-enemigo.ts`: ejecución y persistencia del **turno enemigo**, con efectos, selección de objetivos, barreras, iniciativa y control de versión.
+- `contexto-combate.ts`: validación de IDs, carga de combate dentro de la transacción y proyección de participantes. Compartido por ambos turnos.
+- `recursos-turno.ts`: regeneración de energía/maná del personaje cuando le corresponde actuar, sin abrir nuevas transacciones.
 - `liquidacion-recompensas.ts`: resolución de recompensas de victoria/derrota en la **misma transacción serializable** que el combate, sin abrir otra. Conserva marca de liquidación, comprobación de versión, reparto de oro, XP Base/Job, equipo, drops y log persistido.
 - `regreso-combate.ts`: transición transaccional al regreso tras la victoria/derrota/huida; preserva la hora de llegada programada independientemente de cuándo se resuelve el combate.
 - `inventario-recompensas.ts`: **solo** persistencia de objetos y botín al inventario durante la liquidación. Recibe el mismo `Prisma.TransactionClient`; no crea transacciones propias. Sus dependencias de catálogo y límite son explícitas para conservar el comportamiento y facilitar las pruebas.

@@ -1,4 +1,13 @@
-import { consumirPrecisionTactica, calcularAtaqueModificado, calcularEvasionModificada, calcularPrecisionModificada, leerEfectosCombate, avanzarEfectosCombate, procesarEfectosTurno, aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
+import {
+  consumirPrecisionTactica,
+  calcularAtaqueModificado,
+  calcularEvasionModificada,
+  calcularPrecisionModificada,
+  leerEfectosCombate,
+  avanzarEfectosCombate,
+  procesarEfectosTurno,
+  aplicarBarreraAccion,
+} from "@/lib/expediciones/estados-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { resolverAtaqueEnemigo, type AccionAnimadaCombate } from "@/lib/expediciones/combate";

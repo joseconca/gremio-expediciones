@@ -176,6 +176,17 @@ El test de acciones de combate carga y ejecuta la liquidación extraída con sus
 
 El paso al regreso se aisló también en `server/services/party/regreso-combate.ts`. Recibe el mismo `Prisma.TransactionClient`, mantiene las comprobaciones de fase, participantes y versiones, y calcula la fecha de vuelta desde la **hora original del encuentro**, nunca desde el momento en que el jugador termina el combate. Los tests aislados ejecutan la implementación real y verifican ambas fechas. Se añadió una prueba específica para el contrato histórico de normalización del log. **Los resultados del workflow de regresión deberán comprobarse antes de continuar extrayendo turnos.**
 
+### Fase 3.4 — Acciones y turno enemigo con propietarios separados
+
+El servicio histórico `src/server/services/party/combate-party-actions.ts` conserva `ejecutarAccionCombateParty` y reexporta `ejecutarTurnoEnemigoParty` para mantener sin cambios las rutas HTTP y los consumidores externos. La implementación de la segunda está ahora en `server/services/party/turno-enemigo.ts`; su código de selección de objetivo, pulsos, barreras, ataque, cola de iniciativa, actualización de HP y guardado se trasladó sin alterar las secuencias.
+
+- `server/services/party/recursos-turno.ts` contiene la regeneración que comparten ambos tipos de turno, incluidas las estadísticas, el equipo y el control optimista sobre energía/maná.
+- `server/services/party/contexto-combate.ts` es el propietario de la validación del identificador, carga del combate y normalización de participantes.
+- Los servicios de turnos reutilizan `liquidacion-recompensas.ts` y `regreso-combate.ts` con el mismo cliente transaccional; no hay transacciones nuevas ni dobles liquidaciones.
+- El test aislado de combate ejecuta los módulos reales con sus mocks habituales mediante un único cargador. Las pruebas que inspeccionaban el código de animaciones e iniciativa se han redirigido al módulo propietario, conservando las aserciones.
+
+El archivo original de acciones se redujo de **1.313 a unas 864 líneas** en esta etapa. **Falta confirmar la regresión de los commits nuevos** y la comprobación visual antes de reorganizar la UI de combate. No se ha modificado `main` ni la auditoría artística de Novato.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
