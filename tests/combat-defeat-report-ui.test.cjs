@@ -8,11 +8,14 @@ const leer = (archivo) => fs.readFileSync(path.join(root, archivo), "utf8");
 
 test("las habilidades se ejecutan desde la lista o al tocar el objetivo, sin botón de lanzamiento", () => {
   const modal = leer("src/components/combate/CombateModal.tsx");
-  assert.doesNotMatch(modal, /LANZAR HABILIDAD/);
+  const panelHabilidades = leer("src/components/combate/PanelHabilidadesCombate.tsx");
+  assert.match(modal, /<PanelHabilidadesCombate/);
+  assert.doesNotMatch(modal + panelHabilidades, /LANZAR HABILIDAD/);
   assert.match(modal, /void ejecutarHabilidad\(h\.habilidadId, objetivoAutomatico\)/);
   assert.match(modal, /void ejecutarHabilidad\(habilidadEsperandoObjetivoId, enemigo\.id\)/);
   assert.match(modal, /void ejecutarHabilidad\(habilidadPendiente\.habilidadId, participante\.usuarioId\)/);
-  assert.match(modal, /Toca un objetivo en la escena/);
+  assert.match(panelHabilidades, /Toca un objetivo en la escena/);
+  assert.match(panelHabilidades, /onSeleccionar\(h\)/);
 });
 
 test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realmente obtenido", () => {
