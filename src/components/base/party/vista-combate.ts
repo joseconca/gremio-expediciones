@@ -1,4 +1,6 @@
 import type { CombatePve } from "@/store/useGameStore";
+import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import type { CombatePartyModalUI } from "@/components/combate/tipos";
 import type { EstadoParty } from "./tipos";
 
 type CombatePartyVista = NonNullable<NonNullable<EstadoParty["expedicionActiva"]>["combate"]>;
@@ -65,4 +67,62 @@ export function crearVistaCombate(
       creado: expedicionConCombate.fechaSalida,
       actualizado: expedicionConCombate.fechaLlegada,
     };
+}
+
+/**
+ * Contrato de presentación del modo de compañía. Los identificadores, estados,
+ * recursos y apariencias de los participantes se proyectan una sola vez aquí.
+ * No resuelve turnos ni modifica el estado persistido.
+ */
+export function crearModoCombateParty(
+  estado: EstadoParty,
+  expedicionConCombate: EstadoParty["expedicionActiva"],
+  combatePartyDatos: CombatePartyVista,
+  participanteModal: CombatePartyVista["participantes"][number] | undefined,
+  ejecutarAccionCombatePartyUI: CombatePartyModalUI["onAccionParty"],
+): CombatePartyModalUI {
+  return {
+    usuarioId: estado.usuarioId,
+    nombreExpedicion: expedicionConCombate?.nombre ?? "Expedición compartida",
+    faseTurno: combatePartyDatos.faseTurno === "enemigo" ? "enemigo" : "jugador",
+    turnoActualUsuarioId: combatePartyDatos.turnoActualUsuarioId,
+    estadoJugador: participanteModal?.estado ?? "activo",
+    participantes: combatePartyDatos.participantes.map((participante) => ({
+      id: participante.id,
+      usuarioId: participante.usuarioId,
+      nombre: participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero",
+      clase: participante.usuario?.personaje?.clase ?? "novato",
+      sexo: participante.usuario?.personaje?.sexo === "chica" ? "chica" : "chico",
+      esLider: participante.usuarioId === estado.party?.liderUsuarioId,
+      ordenTurno: participante.ordenTurno,
+      estado: participante.estado,
+      jugadorPosicion: participante.jugadorPosicion,
+      jugadorHp: participante.jugadorHp,
+      jugadorHpMaximo: participante.jugadorHpMaximo,
+      jugadorAtaque: participante.jugadorAtaque,
+      jugadorAtaqueMagico: participante.jugadorAtaqueMagico,
+      jugadorDefensa: participante.jugadorDefensa,
+      jugadorDefensaMagica: participante.jugadorDefensaMagica,
+      jugadorVelocidad: participante.jugadorVelocidad,
+      jugadorProbCritico: participante.jugadorProbCritico,
+      jugadorDanoCritico: participante.jugadorDanoCritico,
+      jugadorPrecision: participante.jugadorPrecision,
+      jugadorEvasion: participante.jugadorEvasion,
+      jugadorNivel: participante.jugadorNivel,
+      profesionActivaId: participante.profesionActivaId,
+      armaSpriteId: participante.armaSpriteId,
+      escudoSpriteId: participante.escudoSpriteId,
+      jugadorEnergiaActual: participante.jugadorEnergiaActual,
+      jugadorEnergiaMaxima: participante.jugadorEnergiaMaxima,
+      jugadorManaActual: participante.jugadorManaActual,
+      jugadorManaMaximo: participante.jugadorManaMaximo,
+      efectos: participante.efectos,
+      comidaActiva: participante.comidaActiva,
+      pasivas: participante.pasivas,
+    })),
+    ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
+      ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
+      : null,
+    onAccionParty: ejecutarAccionCombatePartyUI,
+  };
 }

@@ -10,7 +10,7 @@ import { obtenerObjetoPorId } from "@/lib/objetos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
-import { crearVistaCombate } from "./party/vista-combate";
+import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
 import InformeHistoricoParty from "./party/InformeHistoricoParty";
 import ConfirmacionDisolucionParty from "./party/ConfirmacionDisolucionParty";
 import ExpedicionActivaParty from "./party/ExpedicionActivaParty";
@@ -641,50 +641,13 @@ export default function PanelParty() {
             botin: botinInformeParty,
           } : null}
           procesando={Boolean(accion)}
-          partyMode={{
-            usuarioId: estado.usuarioId,
-            nombreExpedicion: expedicionConCombate?.nombre ?? "Expedición compartida",
-            faseTurno: combatePartyDatos.faseTurno === "enemigo" ? "enemigo" : "jugador",
-            turnoActualUsuarioId: combatePartyDatos.turnoActualUsuarioId,
-            estadoJugador: participanteModal?.estado ?? "activo",
-            participantes: combatePartyDatos.participantes.map((participante) => ({
-              id: participante.id,
-              usuarioId: participante.usuarioId,
-              nombre: participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero",
-              clase: participante.usuario?.personaje?.clase ?? "novato",
-              sexo: participante.usuario?.personaje?.sexo === "chica" ? "chica" : "chico",
-              esLider: participante.usuarioId === estado.party?.liderUsuarioId,
-              ordenTurno: participante.ordenTurno,
-              estado: participante.estado,
-              jugadorPosicion: participante.jugadorPosicion,
-              jugadorHp: participante.jugadorHp,
-              jugadorHpMaximo: participante.jugadorHpMaximo,
-              jugadorAtaque: participante.jugadorAtaque,
-              jugadorAtaqueMagico: participante.jugadorAtaqueMagico,
-              jugadorDefensa: participante.jugadorDefensa,
-              jugadorDefensaMagica: participante.jugadorDefensaMagica,
-              jugadorVelocidad: participante.jugadorVelocidad,
-              jugadorProbCritico: participante.jugadorProbCritico,
-              jugadorDanoCritico: participante.jugadorDanoCritico,
-              jugadorPrecision: participante.jugadorPrecision,
-              jugadorEvasion: participante.jugadorEvasion,
-              jugadorNivel: participante.jugadorNivel,
-              profesionActivaId: participante.profesionActivaId,
-              armaSpriteId: participante.armaSpriteId,
-              escudoSpriteId: participante.escudoSpriteId,
-              jugadorEnergiaActual: participante.jugadorEnergiaActual,
-              jugadorEnergiaMaxima: participante.jugadorEnergiaMaxima,
-              jugadorManaActual: participante.jugadorManaActual,
-              jugadorManaMaximo: participante.jugadorManaMaximo,
-              efectos: participante.efectos,
-              comidaActiva: participante.comidaActiva,
-              pasivas: participante.pasivas,
-            })),
-            ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
-              ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
-              : null,
-            onAccionParty: ejecutarAccionCombatePartyUI,
-          }}
+          partyMode={crearModoCombateParty(
+            estado,
+            expedicionConCombate,
+            combatePartyDatos,
+            participanteModal,
+            ejecutarAccionCombatePartyUI,
+          )}
           onCerrar={() => setCombatePartyCerradoId(combatePartyDatos.id)}
         />
       )}
