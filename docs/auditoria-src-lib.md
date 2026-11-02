@@ -30,6 +30,7 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `src/lib/enemigos.ts` adapta los datos del catálogo de enemigos para dificultad, botín y selección; no sustituirlo por el JSON generado de sprites.
 - `src/lib/expediciones/presentacion-combate.ts` solo resuelve metadatos visuales: básicos y proyectiles de habilidades. `ataque-basico-arma.ts` decide la selección física/mágica del arma y `ataques-basicos.ts` contiene la resolución numérica, precisión y críticos. `combate.ts` conserva sus exportaciones previas. Las pruebas de `tests/combat-presentacion.test.cjs` protegen presentación, daño y API histórica.
 - `src/lib/expediciones/destinos-animacion-combate.ts` traduce metadatos de acciones para PvE, party y PvP. Que produzca datos visuales no significa que pueda moverse directamente a React: hay consumidores de servicios.
+- `src/lib/expediciones/preparacion-habilidades.ts` reúne el reloj y la preparación de acciones; `mecanicas-habilidades.ts` aplica operaciones y pasivas. `motor-tactico.ts` conserva intactas sus funciones; sus contratos se editarán en `tipos-tacticos.ts` y se reexportan para mantener compatibles a adaptadores y técnicas adicionales. Las pruebas cubren preparación de área, caducidad y reserva de efectos.
 - `src/lib/progresion/diseno-habilidades.ts` define contratos tácticos, mientras `src/lib/catalogos/habilidades.ts` contiene sus datos. No confundir una declaración de tipo con duplicación de contenido.
 
 ## Estado y siguiente orden de trabajo

@@ -37,6 +37,53 @@ test('la preparación mantiene la API antigua y no modifica la definición origi
   assert.equal(habilidad.multiplicadorDano, 2);
 });
 
+test('el reloj táctico elimina preparaciones caducadas sin alterar los efectos originales', () => {
+  const efecto = {
+    tipo: 'tactico',
+    datosTacticos: {
+      limites: { _ciclo: 1, 'pago:2:habilidad': 1, 'pago:3:habilidad': 2, 'cura_pasiva:2': 3, 'cura_pasiva:3': 4 },
+      estados: [
+        { clave: 'preparacion_caducada', reloj: 'ciclo', restantes: 2 },
+        { clave: 'herida_vigente', reloj: 'turno', restantes: 2 },
+      ],
+    },
+  };
+  const contexto = { ciclo: 3, efectosActor: [efecto], efectosObjetivo: [] };
+  const siguiente = actualizarRelojContexto(contexto);
+  assert.notStrictEqual(siguiente, contexto);
+  assert.deepEqual(siguiente.efectosActor[0].datosTacticos.estados.map(e => e.clave), ['herida_vigente']);
+  assert.equal(siguiente.efectosActor[0].datosTacticos.estados[0].restantes, 2);
+  assert.deepEqual(siguiente.efectosActor[0].datosTacticos.limites, {
+    _ciclo: 3, 'pago:3:habilidad': 2, 'cura_pasiva:3': 4,
+  });
+  assert.equal(efecto.datosTacticos.estados.length, 2, 'No mutar el estado persistido');
+  assert.equal(efecto.datosTacticos.limites._ciclo, 1);
+});
+
+test('una preparación sólo se consume en la acción principal y limita la ruptura', () => {
+  const efecto = {
+    datosTacticos: {
+      estados: [{ clave: 'observacion', creadorId: 'a', restantes: 2, valor: 2 }],
+    },
+  };
+  const habilidad = {
+    id: 'test_ruptura', claseId: 'cazador',
+    multiplicadorDano: 2,
+    disenoActiva: { operaciones: [
+      { tipo: 'consumir_preparacion', clave: 'observacion', efecto: 'potencia', factor: .1 },
+      { tipo: 'consumir_preparacion', clave: 'observacion', efecto: 'ruptura', factor: .3 },
+    ] },
+  };
+  const contexto = { actorId: 'a', efectosActor: [efecto], efectosObjetivo: [], numeroObjetivos: 1 };
+  const principal = prepararHabilidadRedisenada(habilidad, contexto);
+  assert.ok(Math.abs(principal.multiplicadorDano - 2.4) < 1e-10);
+  assert.equal(principal.rupturaDefensaTemporal, .3);
+  const secundaria = prepararHabilidadRedisenada(habilidad, { ...contexto, principal: false });
+  assert.equal(secundaria.multiplicadorDano, 2);
+  assert.equal(secundaria.rupturaDefensaTemporal, 0);
+  assert.equal(habilidad.multiplicadorDano, 2);
+});
+
 test('las 61 clases tienen un catálogo activo completo, una técnica adicional e iconos existentes', () => {
   assert.equal(HABILIDADES.length, 367);
   assert.equal(HABILIDADES.filter(h => h.tipo === 'activa').length, 245);
