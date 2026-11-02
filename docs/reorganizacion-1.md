@@ -129,6 +129,21 @@ La separación actual tiene sentido y no requiere repartir cada pequeña funció
 | API y pantallas | `src/app/`, `src/components/` | Mantener rutas delgadas y componentes de presentación |
 | Arte y manifiestos de sprites | `assets/`, `src/lib/generated/`, `scripts/recursos.py` | La fuente artística no es el JSON generado |
 
+## Fase 3.1 — Primeras extracciones de combate y party
+
+Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoints, estados React ni transacciones:
+
+| Propietario | Contenido | Consumidor |
+|---|---|---|
+| `src/lib/expediciones/formacion-party.ts` | Carriles, orden de líder y ajuste de una pareja de aliados | `components/combate/CombateModal.tsx` |
+| `src/lib/party/recompensas.ts` | Lectura defensiva de recompensa, reparto entero, RNG de botín determinista, agregación de objetos | `server/services/party/combate-party-actions.ts` |
+| `src/components/base/party/tipos.ts` | Contratos de vistas y respuestas de la compañía | `components/base/PanelParty.tsx` |
+| `src/components/base/party/vista-combate.ts` | Adaptación pura del combate grupal al contrato de `CombateModal` | `components/base/PanelParty.tsx` |
+
+Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
+
+**Siguiente corte:** dividir bloques cohesivos de UI (viajes, visitas y crónicas de expedición) después de comprobar paridad de sus estados y accesibilidad. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserven el mismo contexto Prisma y la liquidación exactamente una vez. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
+
 ### Áreas identificadas para una extracción posterior con pruebas
 
 1. `src/components/combate/CombateModal.tsx` (~108 KB): separar fases, selectors y paneles visuales. Compartir subcomponentes de PvE/PvP/asedio sin alterar la cronología de turnos.
