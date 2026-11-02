@@ -161,13 +161,14 @@ test("el panel de habilidades respeta energía, cooldown y objetivo pendiente", 
   assert.match(disponible, /10 ENE/);
   assert.match(disponible, /Curación:/);
   assert.match(disponible, /aria-label="Usar habilidad Primeros auxilios"/);
-  assert.doesNotMatch(disponible, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+  const botonHabilidad = (html) => html.match(/<button[^>]*aria-label="Usar habilidad Primeros auxilios"[^>]*>/)?.[0] ?? "";
+  assert.doesNotMatch(botonHabilidad(disponible), /\sdisabled=""/);
 
   const bloqueadaEnergia = render({ energiaActual: 0 });
-  assert.match(bloqueadaEnergia, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+  assert.match(botonHabilidad(bloqueadaEnergia), /\sdisabled=""/);
   const bloqueadaCooldown = render({ obtenerCooldown: () => 3 });
   assert.match(bloqueadaCooldown, /CD 3/);
-  assert.match(bloqueadaCooldown, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+  assert.match(botonHabilidad(bloqueadaCooldown), /\sdisabled=""/);
 
   const objetivo = render({ habilidadEsperandoObjetivoId: habilidad.habilidadId });
   assert.match(objetivo, /Toca un objetivo en la escena/);
