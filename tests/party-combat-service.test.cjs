@@ -71,6 +71,7 @@ function loadService(prisma) {
   });
   const dependencies = {
     "@prisma/client": { Prisma: { TransactionIsolationLevel: { Serializable: "Serializable" } } },
+    "./consultas": require("../src/server/services/party/consultas.ts"),
     "@/lib/prisma": { prisma },
     "@/lib/progresion/estadisticas-personaje": {
       calcularEstadisticasPersonaje: (personaje) => ({

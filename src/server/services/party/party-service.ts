@@ -1,3 +1,4 @@
+import { incluirPersonajeParty as incluirPersonajeRecursosParty } from "./consultas";
 import { PartyServiceError } from "./errores";
 export { PartyServiceError } from "./errores";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
@@ -22,26 +23,6 @@ import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
 } as const;
-
-const incluirEquipoRecursosParty = {
-  arma: true,
-  armadura: true,
-  accesorio: true,
-  manoSecundaria: true,
-  casco: true,
-  pantalones: true,
-  botas: true,
-  guantes: true,
-  anillo1: true,
-  anillo2: true,
-} satisfies Prisma.EquipoEquipadoInclude;
-
-const incluirPersonajeRecursosParty = {
-  habilidades: true,
-  progresosClase: true,
-  inventario: { include: { objetos: true } },
-  equipoEquipado: { include: incluirEquipoRecursosParty },
-} satisfies Prisma.PersonajeInclude;
 
 type PersonajeRecursosParty = Prisma.PersonajeGetPayload<{
   include: typeof incluirPersonajeRecursosParty;

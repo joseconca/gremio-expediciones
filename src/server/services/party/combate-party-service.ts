@@ -1,3 +1,4 @@
+import { incluirPersonajeParty as incluirPersonaje } from "./consultas";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
@@ -13,26 +14,6 @@ import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-com
 import { PartyServiceError } from "./errores";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
-
-const incluirEquipo = {
-  arma: true,
-  armadura: true,
-  accesorio: true,
-  manoSecundaria: true,
-  casco: true,
-  pantalones: true,
-  botas: true,
-  guantes: true,
-  anillo1: true,
-  anillo2: true,
-} satisfies Prisma.EquipoEquipadoInclude;
-
-const incluirPersonaje = {
-  habilidades: true,
-  progresosClase: true,
-  inventario: { include: { objetos: true } },
-  equipoEquipado: { include: incluirEquipo },
-} satisfies Prisma.PersonajeInclude;
 
 const incluirExpedicionCombate = {
   participantes: {
