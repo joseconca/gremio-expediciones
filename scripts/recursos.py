@@ -169,7 +169,11 @@ def main(argv: list[str] | None = None) -> int:
                 script("registrar-enemigo-hd.py", "--metadata", str(args.metadata),
                        *(["--reviewed"] if args.aprobado else []))
             else:
+                # Registro + ensamblado de la pieza en una sola orden.
+                # La validacion global y la promocion siguen siendo explicitas.
+                item_id = identificador(cargar(args.metadata)["id"])
                 script("registrar-equipo-hd.py", str(args.metadata))
+                script("ensamblar-equipo-hd.py", "--items", item_id)
         elif args.tipo == "enemigo":
             if args.orden == "estado":
                 estado_enemigo(args.id)
