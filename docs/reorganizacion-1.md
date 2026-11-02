@@ -137,6 +137,8 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 |---|---|---|
 | `src/lib/expediciones/formacion-party.ts` | Carriles, orden de líder y ajuste de una pareja de aliados | `components/combate/CombateModal.tsx` |
 | `src/lib/party/recompensas.ts` | Lectura defensiva de recompensa, reparto entero, RNG de botín determinista, agregación de objetos | `server/services/party/combate-party-actions.ts` |
+| `src/lib/party/iniciativa.ts` | Recuperación de colas y preparación del siguiente turno de party; reutiliza la iniciativa general | `server/services/party/combate-party-actions.ts` |
+| `src/lib/expediciones/enemigos-combate.ts` | Interpretación de rosters persistidos y adaptación de enemigos legacy | `server/services/party/combate-party-actions.ts` |
 | `src/components/base/party/tipos.ts` | Contratos de vistas y respuestas de la compañía | `components/base/PanelParty.tsx` |
 | `src/components/base/party/vista-combate.ts` | Adaptación pura del combate grupal al contrato de `CombateModal` | `components/base/PanelParty.tsx` |
 | `src/components/base/party/VisitasEntrantesParty.tsx` | Visitas entrantes, confirmación de llegada y aceptar/rechazar | `components/base/PanelParty.tsx` |
@@ -147,7 +149,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 
-**Siguiente corte:** confirmar la regresión de los informes compartidos y de la extracción de inventario. La entrega de objetos de botín se ha movido a `src/server/services/party/inventario-recompensas.ts`, recibiendo el mismo `Prisma.TransactionClient` del servicio de combate y las dependencias de catálogo/límite inyectadas, sin iniciar una transacción adicional. La liquidación exactamente una vez sigue bajo `combate-party-actions.ts`. Los estados de apertura de los informes y el polling se mantienen en `PanelParty.tsx`. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
+**Siguiente corte:** confirmar la regresión de la iniciativa de party y del roster de enemigos, así como los tests de compatibilidad. La entrega de objetos de botín se ha movido a `src/server/services/party/inventario-recompensas.ts`, recibiendo el mismo `Prisma.TransactionClient` del servicio de combate y las dependencias de catálogo/límite inyectadas, sin iniciar una transacción adicional. La liquidación exactamente una vez sigue bajo `combate-party-actions.ts`. Los estados de apertura de los informes y el polling se mantienen en `PanelParty.tsx`. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
 
 ### Áreas identificadas para una extracción posterior con pruebas
 
