@@ -8,13 +8,13 @@ import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
 import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
-import type { CombatePve, Personaje } from "@/store/useGameStore";
+import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
 import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import type { ObjetoInventario, ReglaObjetivoHabilidad, RecompensaMision } from "@/lib/tiposJuego";
+import type { ObjetoInventario } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
@@ -22,116 +22,9 @@ import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
+import type { CombateModalProps, HabilidadEquipable } from "./tipos";
 import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
 import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
-
-type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
-
-interface ParticipanteCombatePartyUI {
-  id: string;
-  usuarioId: string;
-  nombre: string;
-  clase: string;
-  sexo: "chico" | "chica";
-  esLider: boolean;
-  ordenTurno: number;
-  estado: string;
-  jugadorPosicion: string;
-  jugadorHp: number;
-  jugadorHpMaximo: number;
-  jugadorAtaque: number;
-  jugadorAtaqueMagico: number;
-  jugadorDefensa: number;
-  jugadorDefensaMagica: number;
-  jugadorVelocidad: number;
-  jugadorProbCritico: number;
-  jugadorDanoCritico: number;
-  jugadorPrecision: number;
-  jugadorEvasion: number;
-  jugadorNivel: number;
-  profesionActivaId: string;
-  armaSpriteId?: string | null;
-  escudoSpriteId?: string | null;
-  jugadorEnergiaActual: number;
-  jugadorEnergiaMaxima: number;
-  jugadorManaActual: number;
-  jugadorManaMaximo: number;
-  efectos?: unknown;
-  comidaActiva?: string | null;
-  bonificacionesComida?: unknown;
-  pasivas?: { habilidadId: string; slot: string | null; nivel?: number }[];
-}
-
-type AccionAnimadaPartyUI = AccionAnimadaCombate;
-
-interface CombatePartyModalUI {
-  usuarioId: string;
-  nombreExpedicion: string;
-  faseTurno: "jugador" | "enemigo";
-  turnoActualUsuarioId: string | null;
-  estadoJugador: string;
-  participantes: ParticipanteCombatePartyUI[];
-  ultimaAccion: AccionAnimadaPartyUI | null;
-  onAccionParty: (accion: AccionCombatePartyUI, payload?: string) => Promise<AccionAnimadaCombate | null>;
-}
-
-interface RecompensaInformeCombate {
-  oro: number;
-  madera: number;
-  piedra: number;
-  metal: number;
-  experiencia: number;
-  experienciaJob: number;
-  botin: string[];
-}
-
-interface CombateModalProps {
-  habilidadesIniciales?: HabilidadEquipable[];
-  combate: CombatePve;
-  personaje: Personaje;
-  comidaActiva?: string | null;
-  bonificacionesComida?: unknown;
-  recompensa?: RecompensaMision | null;
-  recompensaInforme?: RecompensaInformeCombate | null;
-  procesando?: boolean;
-  onAccionCombate?: (
-    accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
-    payload?: string
-  ) => Promise<AccionAnimadaCombate | null>;
-  partyMode?: CombatePartyModalUI;
-  onCerrar?: () => void;
-}
-
-interface HabilidadCombate {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  tipo: "activa" | "pasiva";
-  efecto?: string;
-  objetivo?: ReglaObjetivoHabilidad;
-  rareza: string;
-  precio: number;
-  costeEnergia?: number;
-  costeMana?: number;
-  tipoDano?: "fisico" | "magico";
-  cooldownTurnos?: number;
-  danoBase?: number;
-  multiplicadorDano?: number;
-  curacion?: number;
-  bonusAtaque?: number;
-  bonusDefensa?: number;
-  bonusVelocidad?: number;
-  bonusHpMaximo?: number;
-  duracionTurnos?: number;
-  probabilidad?: number;
-}
-
-interface HabilidadEquipable {
-  id: string;
-  habilidadId: string;
-  slot: string;
-  habilidad: HabilidadCombate;
-}
 
 function esperar(milisegundos: number): Promise<void> {
   return new Promise((resolver) => window.setTimeout(resolver, milisegundos));
