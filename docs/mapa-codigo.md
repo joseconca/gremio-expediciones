@@ -49,6 +49,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Ventana de estadísticas de los combatientes | `src/components/combate/InformacionCombatientes.tsx` |
 | Animaciones, impactos y proyectiles | `src/components/combate/animaciones/` |
 | Estado, acciones HTTP y sondeo de party | `src/components/base/PanelParty.tsx` |
+| Adaptación de datos de combate party a UI | `src/components/base/party/vista-combate.ts` |
 | Aviso de compañía del tablón (miembros, visitas, traslados) | `src/components/base/party/AvisoCompaniaParty.tsx` |
 | Contrato de expedición de party, mapa y regreso | `src/components/base/party/ExpedicionActivaParty.tsx` |
 | Confirmación de disolución de party | `src/components/base/party/ConfirmacionDisolucionParty.tsx` |

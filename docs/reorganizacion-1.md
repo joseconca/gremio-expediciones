@@ -206,7 +206,7 @@ En `src/components/combate/README.md` hay un **mapa de mantenimiento por tarea**
 
 Se han extraído `ResultadoAsedio.tsx` (resultado PvP) e `InformacionAsedio.tsx` (estadísticas de ambos bandos); `AsedioModal.tsx` conserva el estado, las consultas de apariencia y los turnos. El tipo `HabilidadCombate` es compartido con PvE desde `src/components/combate/tipos.ts`, sin duplicar declaraciones.
 
-`PanelParty.tsx` conserva el sondeo, los intervalos, la resolución de combates y las llamadas HTTP. `AvisoCompaniaParty.tsx` presenta los miembros y avisos del tablón; `ExpedicionActivaParty.tsx` muestra la expedición y sus informes; `ConfirmacionDisolucionParty.tsx` presenta el diálogo de disolución. Las confirmaciones y llamadas HTTP siguen siendo callbacks explícitos del contenedor. El panel principal pasa de unas 941 a unas 694 líneas.
+`PanelParty.tsx` conserva el sondeo, los intervalos, la resolución de combates y las llamadas HTTP. `AvisoCompaniaParty.tsx` presenta los miembros y avisos del tablón; `ExpedicionActivaParty.tsx` muestra la expedición y sus informes; `ConfirmacionDisolucionParty.tsx` presenta el diálogo de disolución. Las confirmaciones y llamadas HTTP siguen siendo callbacks explícitos del contenedor. El panel principal pasa de unas 941 a unas 657 líneas. El mapeo de datos y participantes hacia `CombateModal` se ha consolidado en `vista-combate.ts`, que ahora proporciona ambos contratos de presentación sin lógica de red.
 
 Ambos modales de combate utilizan el mismo `useBloquearScrollFondo.ts`, con una prueba que reproduce bloqueo, restauración de estilos y posición del scroll.
 

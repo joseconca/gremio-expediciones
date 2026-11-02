@@ -6,7 +6,7 @@
 - `ExpedicionActivaParty.tsx`: contrato de expedición compartida, ruta, estado de ida/regreso, acceso al combate y crónica provisional.
 - `ConfirmacionDisolucionParty.tsx`: diálogo que solicita confirmación antes de disolver; solo presenta mensajes y llama a callbacks del contenedor.
 - `tipos.ts`: tipos de datos del API, expediciones, participantes, traslados e informes.
-- `vista-combate.ts`: conversión **pura** del combate grupal al contrato que recibe `CombateModal`.
+- `vista-combate.ts`: conversiones **puras** de los datos de combate persistido a las props de `CombateModal`, incluida la lista completa de participantes, sus recursos, sprites, turno y acción. No hacer esa proyección dentro del JSX del contenedor.
 - `VisitasEntrantesParty.tsx`: avisos de llegadas y botones aceptar/rechazar; recibe permisos y callbacks del contenedor.
 - `TrasladosPropiosParty.tsx`: avisos de viaje, mapas y regreso voluntario; recibe reloj, personaje y acciones.
 - `InformeProvisionalParty.tsx`: crónica que se anexa bajo el mapa durante el regreso; no controla el estado de la expedición.
