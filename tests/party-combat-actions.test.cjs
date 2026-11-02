@@ -198,6 +198,19 @@ function loadService(prisma, testOptions = {}) {
     regresoModule.exports,
   );
   dependencies["./regreso-combate"] = regresoModule.exports;
+  const recursosFilename = path.resolve(__dirname, "../src/server/services/party/recursos-turno.ts");
+  const recursosSource = fs.readFileSync(recursosFilename, "utf8");
+  const recursosCompilada = ts.transpileModule(recursosSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: recursosFilename,
+  }).outputText;
+  const recursosModule = { exports: {} };
+  vm.runInThisContext("(function(require, module, exports) {" + recursosCompilada + "\n})", { filename: recursosFilename })(
+    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+    recursosModule,
+    recursosModule.exports,
+  );
+  dependencies["./recursos-turno"] = recursosModule.exports;
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
