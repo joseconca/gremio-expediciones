@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  obtenerRutaSpritesheetHeroe,
   FILAS_ANIMACION_SPRITESHEET_HEROE,
   obtenerIdClaseParaSprite,
   obtenerIdVisualClase,
