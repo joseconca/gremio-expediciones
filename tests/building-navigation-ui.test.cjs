@@ -56,9 +56,10 @@ test("Personaje y Botica usan la navegación común y Botica incluye solo la moc
   assert.match(botica, /<CabeceraEdificio/);
   assert.doesNotMatch(botica, /href="\/base\/personaje"/);
   assert.doesNotMatch(botica, /href="\/base"[^>]*>← Volver a la base/);
-  assert.match(botica, /Mochila · Consumibles/);
+  assert.match(botica, /<MochilaBotica/);
+  assert.match(read("src/components/botica/MochilaBotica.tsx"), /Mochila · Consumibles/);
   assert.match(botica, /datos\.inventario\.filter\(\(item\) => item\.objeto\.tipo === "consumible"\)/);
-  assert.match(botica, /consumibles\.map\(\(item\) =>/);
+  assert.match(read("src/components/botica/MochilaBotica.tsx"), /consumibles\.map\(\(item\) =>/);
   assert.match(botica, /await Promise\.all\(\[cargarJugador\(\), cargarMochila\(\)\]\)/);
 });
 
