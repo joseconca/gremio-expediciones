@@ -55,6 +55,8 @@ def promote():
         if group in result['compositions'] and result['compositions'][group]!=shapes:raise ValueError('Different contacts within equipment family')
         result['compositions'][group]=shapes
         result['items'][key]={'family':item['family'],'hands':item['hands'],'composition':group,'actions':list(item['sheets']['m']['actions']),'frames':packed}
+    result['availableSexes']={c:[s for s in ('m','f') if (OUT/'heroes'/c/f'{s}-sheet.png').is_file()] for c in result['classes']}
+    result['availablePortraits']={c:[s for s in ('m','f') if (OUT/'heroes'/c/f'{s}-portrait.png').is_file()] for c in result['classes']}
     target=ROOT/'src/lib/generated/sprites-hd.json';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
     print('Promoted 10 body atlases, 10 idle frames, 10 calibrated portraits and 56 shared equipment atlases.')
 if __name__=='__main__':promote()
