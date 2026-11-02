@@ -187,23 +187,118 @@ export function aplicarMecanicasHabilidad(
       reloj: "turno",
       cargas: 1,
     });
-  for(const op of habilidad.disenoActiva?.operaciones??[]){
-    if(resultadoBase.impactoBloqueado&&!("objetivo"in op&&op.objetivo==="actor"))continue;
-    if(contexto.principal===false&&(op.tipo==="consumir_preparacion"||op.tipo==="invocar"||op.tipo==="ordenar"||op.tipo==="mover"||op.tipo==="pacto"||op.tipo==="sacrificar"||("objetivo"in op&&op.objetivo==="actor")))continue;
-    if(resultadoBase.accion.tipo==="fallo"&&!("objetivo" in op&&op.objetivo==="actor"))continue;
-    if(op.tipo==="disipar"){
-      const esActor=op.objetivo==="actor",efectos=esActor?efectosActor:efectosObjetivo;
-      const indice=efectos.findIndex(e=>op.negativo?["dano_progresivo","debuff_defensa","debuff_ataque","debuff_precision"].includes(e.tipo):["bonus_defensa","bonus_ataque","bonus_ataque_magico","bonus_evasion","bonus_precision","barrera"].includes(e.tipo));
-      if(indice>=0){const [retirado]=efectos.splice(indice,1);if(op.negativo)limpiezas++;else disipaciones++;const u=esActor?actor:objetivo;u.estados=u.estados.filter(e=>e.fuenteId!==retirado.habilidadId);if(retirado.tipo==="debuff_defensa"){if(esActor||propio)defensaActor+=retirado.valor;if(esActor?(propio||!contexto.objetivoAliado):contexto.objetivoAliado)resultadoBase.jugadorDefensa+=retirado.valor;else if(!esActor)resultadoBase.enemigoDefensa+=retirado.valor;}if(retirado.tipo==="bonus_defensa"){if(esActor||propio)defensaActor=Math.max(0,defensaActor-retirado.valor);if(esActor?(propio||!contexto.objetivoAliado):contexto.objetivoAliado)resultadoBase.jugadorDefensa=Math.max(0,resultadoBase.jugadorDefensa-retirado.valor);else if(!esActor)resultadoBase.enemigoDefensa=Math.max(0,resultadoBase.enemigoDefensa-retirado.valor);}}
-      else {const u=esActor?actor:objetivo;const e=u.estados.find(e=>op.negativo?["herida","exposicion"].includes(e.familia):["guardia","precision","resistencia"].includes(e.familia));if(e){u.estados=u.estados.filter(s=>s!==e);if(op.negativo)limpiezas++;else disipaciones++;}}
-    }else if(op.tipo==="consumir_preparacion"){
-      const e=actor.estados.find(e=>e.clave===op.clave||e.clave===`enlace_residual:${habilidad.claseId}`);
-      if(e){actor.estados=actor.estados.filter(s=>s!==e);mundo.eventos.push({tipo:"consumo",actorId:actor.id,objetivoId:actor.id,fuenteId:habilidad.id,cantidad:1});if(op.efecto==="guardia")agregarEstado(actor,"guardia_preparada","guardia",actor.hpMaximo*.04,2);if(op.efecto==="cura")curarTactico(mundo,actor.id,contexto.objetivoAliado?objetivo.id:actor.id,habilidad.id,actor.hpMaximo*.04/numeroObjetivos);}
-    }else if(op.tipo==="guardia_porcentaje")agregarEstado(op.objetivo==="actor"?actor:objetivo,`guardia:${habilidad.id}`,"guardia",Math.floor(actor.hpMaximo*op.porcentaje/numeroObjetivos),op.duracion);
-    else if(op.tipo==="invocar")ejecutarComandosTacticos(mundo,actor.id,objetivo.id,habilidad.id,[{...op,potencia:Math.max(1,Math.floor(Math.max(actor.ataque,actor.ataqueMagico)*op.potencia))}]);
-    else if(op.tipo==="estado"&&op.familia==="sello")ejecutarComandosTacticos(mundo,actor.id,objetivo.id,habilidad.id,[{...op,valor:Math.max(1,Math.floor(Math.max(actor.ataque,actor.ataqueMagico)*op.valor/numeroObjetivos))}]);
-    else if(op.tipo==="recuperar_mana")actor.mana=Math.min(actor.manaMaximo,actor.mana+op.cantidad);
-    else if(op.tipo!=="recurso"||op.recurso!=="energia")ejecutarComandosTacticos(mundo,actor.id,objetivo.id,habilidad.id,[op]);
+  // Las acciones secundarias no consumen preparaciones ni aplican efectos propios.
+  for (const operacion of habilidad.disenoActiva?.operaciones ?? []) {
+    const dirigidaAlActor = "objetivo" in operacion && operacion.objetivo === "actor";
+    if (resultadoBase.impactoBloqueado && !dirigidaAlActor) continue;
+    if (
+      contexto.principal === false &&
+      (
+        operacion.tipo === "consumir_preparacion" ||
+        operacion.tipo === "invocar" ||
+        operacion.tipo === "ordenar" ||
+        operacion.tipo === "mover" ||
+        operacion.tipo === "pacto" ||
+        operacion.tipo === "sacrificar" ||
+        dirigidaAlActor
+      )
+    ) continue;
+    if (resultadoBase.accion.tipo === "fallo" && !dirigidaAlActor) continue;
+
+    if (operacion.tipo === "disipar") {
+      const esActor = operacion.objetivo === "actor";
+      const efectos = esActor ? efectosActor : efectosObjetivo;
+      const indice = efectos.findIndex((efecto) =>
+        operacion.negativo
+          ? ["dano_progresivo", "debuff_defensa", "debuff_ataque", "debuff_precision"].includes(efecto.tipo)
+          : ["bonus_defensa", "bonus_ataque", "bonus_ataque_magico", "bonus_evasion", "bonus_precision", "barrera"].includes(efecto.tipo)
+      );
+
+      if (indice >= 0) {
+        const [retirado] = efectos.splice(indice, 1);
+        if (operacion.negativo) limpiezas++;
+        else disipaciones++;
+
+        const unidad = esActor ? actor : objetivo;
+        unidad.estados = unidad.estados.filter((efecto) => efecto.fuenteId !== retirado.habilidadId);
+
+        if (retirado.tipo === "debuff_defensa") {
+          if (esActor || propio) defensaActor += retirado.valor;
+          if (esActor ? (propio || !contexto.objetivoAliado) : contexto.objetivoAliado) {
+            resultadoBase.jugadorDefensa += retirado.valor;
+          } else if (!esActor) {
+            resultadoBase.enemigoDefensa += retirado.valor;
+          }
+        }
+        if (retirado.tipo === "bonus_defensa") {
+          if (esActor || propio) defensaActor = Math.max(0, defensaActor - retirado.valor);
+          if (esActor ? (propio || !contexto.objetivoAliado) : contexto.objetivoAliado) {
+            resultadoBase.jugadorDefensa = Math.max(0, resultadoBase.jugadorDefensa - retirado.valor);
+          } else if (!esActor) {
+            resultadoBase.enemigoDefensa = Math.max(0, resultadoBase.enemigoDefensa - retirado.valor);
+          }
+        }
+      } else {
+        const unidad = esActor ? actor : objetivo;
+        const estado = unidad.estados.find((efecto) =>
+          operacion.negativo
+            ? ["herida", "exposicion"].includes(efecto.familia)
+            : ["guardia", "precision", "resistencia"].includes(efecto.familia)
+        );
+        if (estado) {
+          unidad.estados = unidad.estados.filter((efecto) => efecto !== estado);
+          if (operacion.negativo) limpiezas++;
+          else disipaciones++;
+        }
+      }
+    } else if (operacion.tipo === "consumir_preparacion") {
+      const preparacion = actor.estados.find((estado) =>
+        estado.clave === operacion.clave ||
+        estado.clave === `enlace_residual:${habilidad.claseId}`
+      );
+      if (preparacion) {
+        actor.estados = actor.estados.filter((estado) => estado !== preparacion);
+        mundo.eventos.push({
+          tipo: "consumo",
+          actorId: actor.id,
+          objetivoId: actor.id,
+          fuenteId: habilidad.id,
+          cantidad: 1,
+        });
+        if (operacion.efecto === "guardia") {
+          agregarEstado(actor, "guardia_preparada", "guardia", actor.hpMaximo * 0.04, 2);
+        }
+        if (operacion.efecto === "cura") {
+          curarTactico(
+            mundo, actor.id,
+            contexto.objetivoAliado ? objetivo.id : actor.id,
+            habilidad.id, actor.hpMaximo * 0.04 / numeroObjetivos
+          );
+        }
+      }
+    } else if (operacion.tipo === "guardia_porcentaje") {
+      agregarEstado(
+        operacion.objetivo === "actor" ? actor : objetivo,
+        `guardia:${habilidad.id}`,
+        "guardia",
+        Math.floor(actor.hpMaximo * operacion.porcentaje / numeroObjetivos),
+        operacion.duracion
+      );
+    } else if (operacion.tipo === "invocar") {
+      ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [{
+        ...operacion,
+        potencia: Math.max(1, Math.floor(Math.max(actor.ataque, actor.ataqueMagico) * operacion.potencia)),
+      }]);
+    } else if (operacion.tipo === "estado" && operacion.familia === "sello") {
+      ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [{
+        ...operacion,
+        valor: Math.max(1, Math.floor(Math.max(actor.ataque, actor.ataqueMagico) * operacion.valor / numeroObjetivos)),
+      }]);
+    } else if (operacion.tipo === "recuperar_mana") {
+      actor.mana = Math.min(actor.manaMaximo, actor.mana + operacion.cantidad);
+    } else if (operacion.tipo !== "recurso" || operacion.recurso !== "energia") {
+      ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [operacion]);
+    }
   }
   if(contexto.principal!==false){
     for(const pasiva of (contexto.pasivas??[]).slice(0,3)){
