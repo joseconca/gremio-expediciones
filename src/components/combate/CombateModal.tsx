@@ -556,6 +556,60 @@ export default function CombateModal({
     (reglaObjetivoSeleccionada.patron === "todos" || objetivoElegidoId === idObjetivoPropio)
   );
 
+  /** Selección y resolución de objetivos: la regla permanece en el coordinador. */
+  const seleccionarHabilidad = (h: HabilidadEquipable) => {
+    const regla = obtenerReglaObjetivoHabilidad(h.habilidad);
+    const propio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+    const idsAliados = partyMode
+      ? partyMode.participantes
+          .filter((participante) =>
+            participante.estado === "activo" &&
+            participante.jugadorHp > 0 &&
+            (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
+          )
+          .map((participante) => participante.usuarioId)
+      : [personaje.id ?? "jugador"];
+
+    setHabilidadSeleccionadaId(h.habilidadId);
+    setMostrarObjetos(false);
+    setMostrarHabilidades(true);
+
+    // Las habilidades de objetivo único reutilizan el enemigo
+    // que ya se haya marcado en la escena. Si no hay uno,
+    // se pide seleccionar objetivo en vez de elegir el primero.
+    if (regla.patron !== "todos" && regla.equipo === "enemigo") {
+      if (enemigoObjetivoElegidoId) {
+        setObjetivoHabilidadId(enemigoObjetivoElegidoId);
+        setHabilidadEsperandoObjetivoId(null);
+        void ejecutarHabilidad(h.habilidadId, enemigoObjetivoElegidoId);
+      } else {
+        setObjetivoHabilidadId(null);
+        setHabilidadEsperandoObjetivoId(h.habilidadId);
+      }
+      return;
+    }
+
+    // Las curas y mejoras a aliados siempre piden selección
+    // cuando hay varios compañeros válidos, sin heredar el
+    // objetivo enemigo que pudiera estar marcado.
+    if (regla.patron !== "todos" && regla.equipo === "aliado" && idsAliados.length > 1) {
+      setObjetivoHabilidadId(null);
+      setHabilidadEsperandoObjetivoId(h.habilidadId);
+      return;
+    }
+
+    const objetivoAutomatico = regla.equipo === "enemigo"
+      ? enemigoObjetivoElegidoId
+      : regla.equipo === "propio"
+        ? propio
+        : idsAliados[0] ?? null;
+    setObjetivoHabilidadId(objetivoAutomatico);
+    setHabilidadEsperandoObjetivoId(null);
+    if (regla.equipo === "aliado" && !objetivoAutomatico) return;
+    void ejecutarHabilidad(h.habilidadId, objetivoAutomatico);
+  };
+
+
   return (
     <div
       className={`${styles.root} fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans`}
@@ -1202,57 +1256,7 @@ export default function CombateModal({
                       return (
                         <button
                           key={h.id}
-                          onClick={() => {
-                            const regla = obtenerReglaObjetivoHabilidad(h.habilidad);
-                            const propio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
-                            const idsAliados = partyMode
-                              ? partyMode.participantes
-                                  .filter((participante) =>
-                                    participante.estado === "activo" &&
-                                    participante.jugadorHp > 0 &&
-                                    (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
-                                  )
-                                  .map((participante) => participante.usuarioId)
-                              : [personaje.id ?? "jugador"];
-
-                            setHabilidadSeleccionadaId(h.habilidadId);
-                            setMostrarObjetos(false);
-                            setMostrarHabilidades(true);
-
-                            // Las habilidades de objetivo único reutilizan el enemigo
-                            // que ya se haya marcado en la escena. Si no hay uno,
-                            // se pide seleccionar objetivo en vez de elegir el primero.
-                            if (regla.patron !== "todos" && regla.equipo === "enemigo") {
-                              if (enemigoObjetivoElegidoId) {
-                                setObjetivoHabilidadId(enemigoObjetivoElegidoId);
-                                setHabilidadEsperandoObjetivoId(null);
-                                void ejecutarHabilidad(h.habilidadId, enemigoObjetivoElegidoId);
-                              } else {
-                                setObjetivoHabilidadId(null);
-                                setHabilidadEsperandoObjetivoId(h.habilidadId);
-                              }
-                              return;
-                            }
-
-                            // Las curas y mejoras a aliados siempre piden selección
-                            // cuando hay varios compañeros válidos, sin heredar el
-                            // objetivo enemigo que pudiera estar marcado.
-                            if (regla.patron !== "todos" && regla.equipo === "aliado" && idsAliados.length > 1) {
-                              setObjetivoHabilidadId(null);
-                              setHabilidadEsperandoObjetivoId(h.habilidadId);
-                              return;
-                            }
-
-                            const objetivoAutomatico = regla.equipo === "enemigo"
-                              ? enemigoObjetivoElegidoId
-                              : regla.equipo === "propio"
-                                ? propio
-                                : idsAliados[0] ?? null;
-                            setObjetivoHabilidadId(objetivoAutomatico);
-                            setHabilidadEsperandoObjetivoId(null);
-                            if (regla.equipo === "aliado" && !objetivoAutomatico) return;
-                            void ejecutarHabilidad(h.habilidadId, objetivoAutomatico);
-                          }}
+                          onClick={() => seleccionarHabilidad(h)}
                           onMouseEnter={() => setHabilidadSeleccionadaId(h.habilidadId)}
                           aria-label={`Usar habilidad ${h.habilidad.nombre}`}
                           disabled={bloqueada}
