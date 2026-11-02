@@ -13,6 +13,7 @@ import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
+import { useBloquearScrollFondo } from "./useBloquearScrollFondo";
 import ResultadoAsedio from "./ResultadoAsedio";
 import InformacionAsedio from "./InformacionAsedio";
 import styles from "./combate-rpg.module.css";
@@ -98,33 +99,7 @@ export default function AsedioModal({
    * ============================================================
    */
 
-  useEffect(() => {
-    const scrollY = window.scrollY;
-    const body = document.body;
-    const html = document.documentElement;
-
-    const bodyOverflow = body.style.overflow;
-    const bodyPosition = body.style.position;
-    const bodyTop = body.style.top;
-    const bodyWidth = body.style.width;
-    const htmlOverflow = html.style.overflow;
-
-    body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.width = "100%";
-    html.style.overflow = "hidden";
-
-    return () => {
-      body.style.overflow = bodyOverflow;
-      body.style.position = bodyPosition;
-      body.style.top = bodyTop;
-      body.style.width = bodyWidth;
-      html.style.overflow = htmlOverflow;
-
-      window.scrollTo(0, scrollY);
-    };
-  }, []);
+  useBloquearScrollFondo();
 
   /*
    * ============================================================
