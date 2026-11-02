@@ -70,6 +70,26 @@ function obtenerDiferenciasMejora(
     .filter(({ valor }) => valor !== 0);
 }
 
+/** Herrería: agrupa por tipo, con las piezas equipadas delante y después por nombre. */
+function ordenarObjetosParaForja(
+  inventario: ObjetoInventario[],
+  tipo: TipoEquipamiento,
+  estaEquipado: (instanciaId: string) => boolean,
+): ObjetoInventario[] {
+  return inventario
+    .filter((instancia) => instancia.objeto.tipo === tipo)
+    .sort((a, b) => {
+      const aEquipado = estaEquipado(a.id);
+      const bEquipado = estaEquipado(b.id);
+
+      if (aEquipado !== bEquipado) {
+        return aEquipado ? -1 : 1;
+      }
+
+      return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
+    });
+}
+
 export default function HerreriaPage() {
   const router = useRouter();
   const { personaje, edificios, oro, madera, piedra, metal, cargarJugador } = useGameStore();
@@ -183,56 +203,18 @@ export default function HerreriaPage() {
     idsEquipados.has(objetoInventarioId)
   ), [idsEquipados]);
 
-  const inventarioArmas = useMemo(() => {
-    const objetos = (datos?.inventario ?? []).filter(
-      (objetoInventario) => objetoInventario.objeto.tipo === "arma"
-    );
-
-    return [...objetos].sort((a, b) => {
-      const aEquipado = estaObjetoEquipado(a.id);
-      const bEquipado = estaObjetoEquipado(b.id);
-
-      if (aEquipado !== bEquipado) {
-        return aEquipado ? -1 : 1;
-      }
-
-      return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
-    });
-  }, [datos?.inventario, estaObjetoEquipado]);
-
-  const inventarioArmaduras = useMemo(() => {
-    const objetos = (datos?.inventario ?? []).filter(
-      (objetoInventario) => objetoInventario.objeto.tipo === "armadura"
-    );
-
-    return [...objetos].sort((a, b) => {
-      const aEquipado = estaObjetoEquipado(a.id);
-      const bEquipado = estaObjetoEquipado(b.id);
-
-      if (aEquipado !== bEquipado) {
-        return aEquipado ? -1 : 1;
-      }
-
-      return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
-    });
-  }, [datos?.inventario, estaObjetoEquipado]);
-
-  const inventarioAccesorios = useMemo(() => {
-    const objetos = (datos?.inventario ?? []).filter(
-      (objetoInventario) => objetoInventario.objeto.tipo === "accesorio"
-    );
-
-    return [...objetos].sort((a, b) => {
-      const aEquipado = estaObjetoEquipado(a.id);
-      const bEquipado = estaObjetoEquipado(b.id);
-
-      if (aEquipado !== bEquipado) {
-        return aEquipado ? -1 : 1;
-      }
-
-      return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
-    });
-  }, [datos?.inventario, estaObjetoEquipado]);
+  const inventarioArmas = useMemo(
+    () => ordenarObjetosParaForja(datos?.inventario ?? [], "arma", estaObjetoEquipado),
+    [datos?.inventario, estaObjetoEquipado],
+  );
+  const inventarioArmaduras = useMemo(
+    () => ordenarObjetosParaForja(datos?.inventario ?? [], "armadura", estaObjetoEquipado),
+    [datos?.inventario, estaObjetoEquipado],
+  );
+  const inventarioAccesorios = useMemo(
+    () => ordenarObjetosParaForja(datos?.inventario ?? [], "accesorio", estaObjetoEquipado),
+    [datos?.inventario, estaObjetoEquipado],
+  );
 
   const nivelMaximoMejora = nivelHerreria * 3;
 
