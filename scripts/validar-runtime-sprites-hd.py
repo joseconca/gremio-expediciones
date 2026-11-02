@@ -13,7 +13,26 @@ def visible_bytes(im):
     im=im.copy();im.paste((0,0,0,0),(0,0),im.getchannel('A').point(lambda a:255 if a==0 else 0));return im.tobytes()
 def validate():
     m=json.loads((H/'equipment/manifest.json').read_text(encoding='utf-8'));d=json.loads((R/'src/lib/generated/sprites-hd.json').read_text(encoding='utf-8'))
-    if d['classes']!=m['classes'] or d['actions']!=m['actions'] or set(d['items'])!=set(m['items']):raise ValueError('Runtime catalog mismatch')
+    base_classes=m['classes']
+    runtime_classes=d['classes']
+    if (runtime_classes[:len(base_classes)]!=base_classes
+            or len(runtime_classes)!=len(set(runtime_classes))
+            or d['actions']!=m['actions']
+            or set(d['items'])!=set(m['items'])):
+        raise ValueError('Runtime catalog mismatch')
+    for c in runtime_classes:
+        published=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-sheet.png').is_file()]
+        portraits=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-portrait.png').is_file()]
+        if not published or published!=d.get('availableSexes',{}).get(c):
+            raise ValueError('Published hero variants mismatch: '+c)
+        if portraits!=d.get('availablePortraits',{}).get(c):
+            raise ValueError('Published hero portraits mismatch: '+c)
+        if c not in base_classes:
+            for sexo in published:
+                actual=P/'heroes'/c/f'{sexo}-sheet.png'
+                reporte=H/c/sexo/'qa-report.json'
+                if png(actual).size!=(512,3840) or sha(actual)!=json.loads(reporte.read_text(encoding='utf-8'))['sheetSha256']:
+                    raise ValueError('Unapproved extra hero atlas: '+c+'/'+sexo)
     counts={'bodyAtlases':0,'staticImages':0,'equipmentAtlases':0,'equipmentFrames':0,'unchangedBodyFrames':0};pixels=0
     for c in m['classes']:
         for s in ('m','f'):
