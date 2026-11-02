@@ -61,7 +61,7 @@ El publicador global de equipo ya no borra del catálogo las clases publicadas f
 - `src/lib/progresion/catalogos/habilidades-evoluciones.ts`: datos legacy de las evoluciones.
 - `src/lib/progresion/catalogos/crear-habilidad.ts`: aplicación común de valores por defecto.
 - `src/lib/habilidades-nuevas.ts`, `src/lib/progresion/diseno-habilidades.ts`, `src/lib/progresion/catalogo-redisenado.ts`: **todavía necesarios**, generan o transforman las habilidades actuales; no fusionar sin pruebas de equivalencia.
-- `src/lib/progresion/clases-nuevas.ts`: reexportación temporal necesaria para imports y tests existentes; no contiene ya definiciones duplicadas.
+- `src/lib/progresion/clases-nuevas.ts`: eliminado; sus consumidores importan directamente `catalogos/clases-avanzadas.ts`.
 
 No se han modificado atributos, requisitos de desbloqueo, coste o valores de las habilidades. Queda pendiente unificar aún más las definiciones por clase con el diseño v2 cuando exista un mecanismo de migración testeado.
 
@@ -73,9 +73,29 @@ Objetivo siguiente: revisar rutas HTTP y extraer una fachada por funcionalidad p
 
 ## Fase 4 — Limpieza verificada
 
-No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` sigue siendo necesaria para consumidores existentes.
+No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
 
 Antes de eliminar cualquier archivo: buscar importaciones estáticas y dinámicas, usos en scripts/CI, rutas públicas y documentación; exigir prueba de regresión y realizar commit dedicado. **La eliminación sistemática de obsoletos está pendiente.**
+
+
+## Acceso rápido al desarrollo
+
+```bash
+npm run clase -- berserker
+npm run clase -- mago
+npm run audit:estructura
+```
+
+- `npm run clase`: consulta una **ficha de lectura** con definición, requisitos, habilidades activas/pasivas y diseño V2; señala los archivos fuente y qué variantes HD existen. Internamente usa `src/lib/progresion/catalogos/fichas-profesion.ts`. Es una agregación de datos, **no** otra copia de las definiciones.
+- `npm run audit:estructura`: búsqueda orientativa de módulos sin imports entrantes y referencias no resueltas. No elimina nada. Una ruta HTTP, un import dinámico, un archivo de Prisma o un recurso gráfico pueden usarse sin imports normales; cada candidato requiere investigación.
+- `src/server/services/expediciones/index.ts`, `combate/index.ts` y `party/index.ts`: fachadas públicas. Las rutas de expediciones y los endpoints explícitos PvE/PvP ya usan los índices. El endpoint de combate genérico continúa pasando por el adaptador antiguo para no romper clientes.
+- `src/lib/economia.ts`: única fuente de validación de recursos, cantidades y nivel del Mercado; usada por `api/mercado/comprar` y `api/mercado/vender`.
+
+### CI y revisión
+
+PR de trabajo en borrador: https://github.com/joseconca/gremio-expediciones/pull/9
+
+Los primeros jobs de CI localizaron dependencias de rutas internas en tests, un chequeo del catálogo HD que no admitía clases añadidas y un tipo opcional en la ficha. Se incorporaron correcciones en commits posteriores. Solo considerar la rama apta para fusionar cuando la ejecución actualizada confirme todos los trabajos verdes y se pruebe visualmente el equipo superpuesto.
 
 ## Pruebas incorporadas y validación necesaria
 
