@@ -1,7 +1,7 @@
 import type { Rareza, ClasePersonaje, IdEdificio } from "./tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "./tiposJuego";
 import { CLASES, obtenerAncestrosClase } from "./progresion/clases";
-import { CLASES_NUEVAS } from "./progresion/clases-nuevas";
+import { CLASES_NUEVAS } from "./progresion/catalogos/clases-avanzadas";
 import { esClaseHeroeHd, esRetratoHeroeHd } from "./sprites-heroes-hd";
 
 export const REQUISITOS_EDIFICIOS: Partial<
