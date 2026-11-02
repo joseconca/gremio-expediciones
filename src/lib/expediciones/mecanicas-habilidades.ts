@@ -300,34 +300,132 @@ export function aplicarMecanicasHabilidad(
       ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [operacion]);
     }
   }
-  if(contexto.principal!==false){
-    for(const pasiva of (contexto.pasivas??[]).slice(0,3)){
-      const r=pasiva.reglaPasiva;
-      if(!r||!esCondicion(r,habilidad,contexto,resultadoBase,mundo,limpiezas,disipaciones))continue;
-      const limite=`pasiva:${pasiva.id}`,reloj=r.condicion==="vida_baja"?-1:contexto.ciclo;
-      if(actor.limites[limite]===reloj)continue;actor.limites[limite]=reloj;
-      const clave=`pasiva:${r.ventaja}`;
-      const estadoPasivo=(u:UnidadTactica,k:string,f:import("./motor-tactico").FamiliaTactica,v:number,d=2)=>agregarEstado(u,k,f,v,d,pasiva.id);
-      switch(r.ventaja){
-        case "mana":devolverRecursoTactico(mundo,actor.id,pasiva.id,"mana",5,habilidad.costeMana??0,habilidad.id);break;
-        case "energia":devolverRecursoTactico(mundo,actor.id,pasiva.id,"energia",10,habilidad.costeEnergia??0,habilidad.id);break;
-        case "precision":estadoPasivo(actor,clave,"precision",5,2);break;
-        case "guardia":estadoPasivo(actor,clave,"guardia",actor.hpMaximo*.03,2);break;
-        case "curacion":{const max=Math.floor(actor.hpMaximo*.06),k=`cura_pasiva:${contexto.ciclo}`,usado=actor.limites[k]??0;const cantidad=Math.min(Math.floor(actor.hpMaximo*.02),Math.max(0,max-usado));curarTactico(mundo,actor.id,actor.id,pasiva.id,cantidad);actor.limites[k]=usado+cantidad;break;}
-        case "regeneracion":estadoPasivo(actor,clave,"regeneracion",Math.max(1,Math.floor(actor.hpMaximo*.01)),2);break;
-        case "resistir":estadoPasivo(actor,clave,"resistencia",.15,2);break;
-        case "exponer":if(!contexto.objetivoAliado)estadoPasivo(objetivo,clave,"exposicion",.05,2);break;
-        case "estabilizar":{const e=actor.estados.find(e=>e.familia==="herida");if(e)e.restantes--;actor.estados=actor.estados.filter(e=>e.restantes>0);break;}
-        case "limpiar_herida":actor.estados=actor.estados.filter((e,i,a)=>e!==a.find(s=>s.familia==="herida"));break;
-        case "guardar_preparacion":estadoPasivo(actor,`enlace_residual:${pasiva.claseId}`,"preparacion",.5,2);break;
+  if (contexto.principal !== false) {
+    for (const pasiva of (contexto.pasivas ?? []).slice(0, 3)) {
+      const regla = pasiva.reglaPasiva;
+      if (!regla || !esCondicion(
+        regla, habilidad, contexto, resultadoBase, mundo, limpiezas, disipaciones
+      )) continue;
+
+      // Las pasivas normales se activan una vez por ciclo; la de vida baja una sola vez.
+      const limite = `pasiva:${pasiva.id}`;
+      const reloj = regla.condicion === "vida_baja" ? -1 : contexto.ciclo;
+      if (actor.limites[limite] === reloj) continue;
+      actor.limites[limite] = reloj;
+
+      const clave = `pasiva:${regla.ventaja}`;
+      const estadoPasivo = (
+        unidad: UnidadTactica,
+        claveEstado: string,
+        familia: import("./motor-tactico").FamiliaTactica,
+        valor: number,
+        duracion = 2
+      ) => agregarEstado(unidad, claveEstado, familia, valor, duracion, pasiva.id);
+
+      switch (regla.ventaja) {
+        case "mana":
+          devolverRecursoTactico(
+            mundo, actor.id, pasiva.id, "mana", 5,
+            habilidad.costeMana ?? 0, habilidad.id
+          );
+          break;
+        case "energia":
+          devolverRecursoTactico(
+            mundo, actor.id, pasiva.id, "energia", 10,
+            habilidad.costeEnergia ?? 0, habilidad.id
+          );
+          break;
+        case "precision":
+          estadoPasivo(actor, clave, "precision", 5, 2);
+          break;
+        case "guardia":
+          estadoPasivo(actor, clave, "guardia", actor.hpMaximo * 0.03, 2);
+          break;
+        case "curacion": {
+          const maximo = Math.floor(actor.hpMaximo * 0.06);
+          const claveCura = `cura_pasiva:${contexto.ciclo}`;
+          const usado = actor.limites[claveCura] ?? 0;
+          const cantidad = Math.min(
+            Math.floor(actor.hpMaximo * 0.02),
+            Math.max(0, maximo - usado)
+          );
+          curarTactico(mundo, actor.id, actor.id, pasiva.id, cantidad);
+          actor.limites[claveCura] = usado + cantidad;
+          break;
+        }
+        case "regeneracion":
+          estadoPasivo(actor, clave, "regeneracion", Math.max(1, Math.floor(actor.hpMaximo * 0.01)), 2);
+          break;
+        case "resistir":
+          estadoPasivo(actor, clave, "resistencia", 0.15, 2);
+          break;
+        case "exponer":
+          if (!contexto.objetivoAliado) estadoPasivo(objetivo, clave, "exposicion", 0.05, 2);
+          break;
+        case "estabilizar": {
+          const herida = actor.estados.find((estado) => estado.familia === "herida");
+          if (herida) herida.restantes--;
+          actor.estados = actor.estados.filter((estado) => estado.restantes > 0);
+          break;
+        }
+        case "limpiar_herida":
+          actor.estados = actor.estados.filter(
+            (estado, _indice, estados) => estado !== estados.find((otro) => otro.familia === "herida")
+          );
+          break;
+        case "guardar_preparacion":
+          estadoPasivo(actor, `enlace_residual:${pasiva.claseId}`, "preparacion", 0.5, 2);
+          break;
       }
     }
-    agregarEstado(actor,"_historial","preparacion",contexto.objetivoAliado?0:1,3);
-    const historial=actor.estados.find(e=>e.clave==="_historial");if(historial){historial.destinatarioId=contexto.objetivoId;historial.elemento=habilidad.tipoDano==="magico"?"arcano":"fisico";}
+
+    agregarEstado(actor, "_historial", "preparacion", contexto.objetivoAliado ? 0 : 1, 3);
+    const historial = actor.estados.find((estado) => estado.clave === "_historial");
+    if (historial) {
+      historial.destinatarioId = contexto.objetivoId;
+      historial.elemento = habilidad.tipoDano === "magico" ? "arcano" : "fisico";
+    }
   }
-  const propios=exportarEstadosTacticos(actor,efectosActor).map(e=>({...e,objetivo:"jugador" as const}));
-  const ajenos=exportarEstadosTacticos(objetivo,efectosObjetivo).map(e=>({...e,objetivo:contexto.objetivoAliado?"jugador" as const:"enemigo" as const}));
-  const danoExtra=mundo.eventos.filter(e=>e.tipo==="dano"&&e.objetivoId===contexto.objetivoId).reduce((s,e)=>s+e.cantidad,0);
-  const curacionExtra=Math.max(0,actor.hp-(resultadoBase.actorHpActualizado??(contexto.objetivoAliado&&!propio?contexto.actorHp:resultadoBase.jugadorHp)));
-  return {...resultadoBase,accion:{...resultadoBase.accion,dano:Math.min(contexto.objetivoHp,resultadoBase.accion.dano+danoExtra),...(curacionExtra>0?{curacion:(resultadoBase.accion.curacion??0)+curacionExtra}:{}),texto:resultadoBase.accion.texto},jugadorHp:contexto.objetivoAliado?objetivo.hp:actor.hp,actorHpActualizado:actor.hp,actorDefensaActualizada:defensaActor,filaActorActualizada:actor.fila,efectos:[],efectosActorActualizados:propios,...(contexto.objetivoAliado?{efectosJugadorActualizados:ajenos}:{efectosJugadorActualizados:propios,efectosEnemigoActualizados:ajenos}),recursosRecuperados:{energia:Math.max(0,actor.energia-energiaAntes),mana:Math.max(0,actor.mana-manaAntes)}};
+
+  const propios = exportarEstadosTacticos(actor, efectosActor).map((efecto) => ({
+    ...efecto,
+    objetivo: "jugador" as const,
+  }));
+  const ajenos = exportarEstadosTacticos(objetivo, efectosObjetivo).map((efecto) => ({
+    ...efecto,
+    objetivo: contexto.objetivoAliado ? "jugador" as const : "enemigo" as const,
+  }));
+  const danoExtra = mundo.eventos
+    .filter((evento) => evento.tipo === "dano" && evento.objetivoId === contexto.objetivoId)
+    .reduce((total, evento) => total + evento.cantidad, 0);
+  const curacionExtra = Math.max(
+    0,
+    actor.hp - (resultadoBase.actorHpActualizado ??
+      (contexto.objetivoAliado && !propio ? contexto.actorHp : resultadoBase.jugadorHp))
+  );
+
+  return {
+    ...resultadoBase,
+    accion: {
+      ...resultadoBase.accion,
+      dano: Math.min(contexto.objetivoHp, resultadoBase.accion.dano + danoExtra),
+      ...(curacionExtra > 0
+        ? { curacion: (resultadoBase.accion.curacion ?? 0) + curacionExtra }
+        : {}),
+      texto: resultadoBase.accion.texto,
+    },
+    jugadorHp: contexto.objetivoAliado ? objetivo.hp : actor.hp,
+    actorHpActualizado: actor.hp,
+    actorDefensaActualizada: defensaActor,
+    filaActorActualizada: actor.fila,
+    efectos: [],
+    efectosActorActualizados: propios,
+    ...(contexto.objetivoAliado
+      ? { efectosJugadorActualizados: ajenos }
+      : { efectosJugadorActualizados: propios, efectosEnemigoActualizados: ajenos }),
+    recursosRecuperados: {
+      energia: Math.max(0, actor.energia - energiaAntes),
+      mana: Math.max(0, actor.mana - manaAntes),
+    },
+  };
 }
