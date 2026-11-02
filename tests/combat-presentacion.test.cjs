@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { obtenerPresentacionAtaqueBasico } = require("../src/lib/expediciones/presentacion-combate.ts");
+const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad } = require("../src/lib/expediciones/presentacion-combate.ts");
 const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
@@ -84,6 +84,18 @@ test("las habilidades de proyectil declaran una presentación explícita por ele
   assert.equal(obtenerHabilidadPorId("bola_fuego")?.presentacionVisual?.elemento, "fuego");
   assert.equal(obtenerHabilidadPorId("descarga_elemental")?.presentacionVisual?.proyectil, "rayo");
   assert.equal(obtenerHabilidadPorId("drenaje_vital")?.presentacionVisual?.proyectil, "orbe_sombra");
+});
+
+test("la presentación de respaldo de habilidades no altera sus efectos de combate", () => {
+  const fisica = { id: "flecha_prueba", nombre: "Disparo", claseId: "arquero", tipoDano: "fisico", efecto: "dano" };
+  const magia = { id: "fuego_prueba", nombre: "Llama", claseId: "mago", tipoDano: "magico", efecto: "dano" };
+  assert.deepEqual(obtenerPresentacionProyectilHabilidad(fisica), {
+    modo: "proyectil", proyectil: "flecha", elemento: "fisico", impacto: "golpe",
+  });
+  assert.deepEqual(obtenerPresentacionProyectilHabilidad(magia), {
+    modo: "proyectil", proyectil: "bola_fuego", elemento: "fuego", impacto: "explosion",
+  });
+  assert.equal(obtenerPresentacionProyectilHabilidad({ ...fisica, efecto: "curacion" }), undefined);
 });
 
 const contextoPrueba = {
