@@ -7,23 +7,8 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import ForjaHerreria from "@/components/herreria/ForjaHerreria";
 import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
 import { useGameStore } from "@/store/useGameStore";
-import type {
-  DefinicionObjeto,
-  EquipoPersonaje,
-  ObjetoInventario,
-} from "@/lib/tiposJuego";
-
-interface DatosObjetos {
-  herreriaNivel: number;
-  fecha: string;
-  enVenta: DefinicionObjeto[];
-  inventario: ObjetoInventario[];
-  equipo: EquipoPersonaje;
-  oro: number;
-  madera: number;
-  piedra: number;
-  metal: number;
-}
+import type { ObjetoInventario } from "@/lib/tiposJuego";
+import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
 
 type TipoEquipamiento = "arma" | "armadura" | "accesorio";
 

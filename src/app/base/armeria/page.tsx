@@ -6,22 +6,9 @@ import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import CatalogoArmeria from "@/components/armeria/CatalogoArmeria";
 import VentaArmeria from "@/components/armeria/VentaArmeria";
-import type { UltimaVentaObjeto } from "@/components/armeria/VentaArmeria";
-import type { ObjetoEnVenta } from "@/components/armeria/CatalogoArmeria";
 import { useGameStore } from "@/store/useGameStore";
-import type { EquipoPersonaje, ObjetoInventario } from "@/lib/tiposJuego";
+import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
 import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
-
-interface DatosObjetos {
-  herreriaNivel: number;
-  fecha: string;
-  enVenta: ObjetoEnVenta[];
-  inventario: ObjetoInventario[];
-  equipo: EquipoPersonaje;
-  oro: number;
-  espaciosInventario: { ocupados: number; maximo: number };
-  ultimaVenta: UltimaVentaObjeto | null;
-}
 
 export default function ArmeriaPage() {
   const router = useRouter();

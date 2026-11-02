@@ -7,12 +7,8 @@ import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import { OBJETOS } from "@/lib/objetos";
 import type { DefinicionObjeto, ObjetoInventario } from "@/lib/tiposJuego";
+import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
 import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
-
-interface DatosMochila {
-  inventario: ObjetoInventario[];
-  espaciosInventario: { ocupados: number; maximo: number };
-}
 
 export default function BoticaPage() {
   const router = useRouter();
@@ -29,7 +25,7 @@ export default function BoticaPage() {
       const respuesta = await fetch("/api/objetos", { cache: "no-store" });
       const resultado = await respuesta.json();
       if (!respuesta.ok) throw new Error(resultado.error || "No se pudo cargar la mochila.");
-      const datos = resultado as DatosMochila;
+      const datos = resultado as Pick<DatosObjetos, "inventario" | "espaciosInventario">;
       setConsumibles(datos.inventario.filter((item) => item.objeto.tipo === "consumible"));
     } catch (fallo) {
       setError(fallo instanceof Error ? fallo.message : "No se pudo cargar la mochila.");

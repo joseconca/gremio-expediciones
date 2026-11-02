@@ -4,25 +4,14 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { obtenerRanuraObjeto } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
-import type { DefinicionObjeto, EquipoPersonaje, ObjetoInventario } from "@/lib/tiposJuego";
+import type { DefinicionObjeto, ObjetoInventario } from "@/lib/tiposJuego";
+import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { nombreRareza, estiloRareza, obtenerEstadisticasNoCero, formatearEstadistica } from "@/components/objetos/resumen-objeto";
 import { RANURAS_EQUIPO } from "@/components/personaje/EquipoPersonaje";
 import type { TipoEquipamiento } from "@/components/personaje/EquipoPersonaje";
 
 export type CategoriaInventario = "todo" | "armas" | "armaduras" | "accesorios" | "consumibles" | "varios";
-
-export interface DatosObjetos {
-  inventario: ObjetoInventario[];
-  equipo: EquipoPersonaje;
-  oro: number;
-  espaciosInventario: { ocupados: number; maximo: number };
-  ultimaVenta: {
-    nombreObjeto: string;
-    precioRecompra: number;
-    vendidoEn: string;
-  } | null;
-}
 
 function obtenerCategoria(objeto: DefinicionObjeto): CategoriaInventario {
   const tipo = objeto.tipo as string;
@@ -34,7 +23,7 @@ function obtenerCategoria(objeto: DefinicionObjeto): CategoriaInventario {
 }
 
 interface MochilaPersonajeProps {
-  datos: DatosObjetos | null;
+  datos: Pick<DatosObjetos, "inventario" | "equipo" | "oro" | "espaciosInventario" | "ultimaVenta"> | null;
   inventario: ObjetoInventario[];
   objetosEquipados: ReadonlySet<string | undefined>;
   categoria: CategoriaInventario;

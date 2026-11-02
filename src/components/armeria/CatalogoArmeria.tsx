@@ -4,11 +4,7 @@ import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { nombreRareza, estiloRareza, obtenerEstadisticasNoCeroTienda as obtenerEstadisticasNoCero, formatearEstadistica as formatearValorEstadistica } from "@/components/objetos/resumen-objeto";
 import { obtenerRanuraObjeto } from "@/lib/objetos";
 import type { DefinicionObjeto, EquipoPersonaje, ObjetoInventario } from "@/lib/tiposJuego";
-
-export interface ObjetoEnVenta extends DefinicionObjeto {
-  puedeComprar: boolean;
-  nivelHeroeNecesario: number;
-}
+import type { ObjetoEnVenta } from "@/lib/equipamiento/datos-objetos";
 
 type TipoEquipamiento = keyof EquipoPersonaje;
 type TipoObjetoEquipable = "arma" | "armadura" | "accesorio";

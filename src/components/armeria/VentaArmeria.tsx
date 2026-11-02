@@ -3,12 +3,7 @@
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
-
-export interface UltimaVentaObjeto {
-  nombreObjeto: string;
-  precioRecompra: number;
-  vendidoEn: string;
-}
+import type { UltimaVentaObjeto } from "@/lib/equipamiento/datos-objetos";
 
 interface VentaArmeriaProps {
   ventaAnterior: UltimaVentaObjeto | null;

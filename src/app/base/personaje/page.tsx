@@ -14,7 +14,8 @@ import RegistroAventurero from "@/components/personaje/RegistroAventurero";
 import HabilidadesPersonaje from "@/components/personaje/HabilidadesPersonaje";
 import type { DatosHabilidades } from "@/components/personaje/HabilidadesPersonaje";
 import MochilaPersonaje from "@/components/personaje/MochilaPersonaje";
-import type { CategoriaInventario, DatosObjetos } from "@/components/personaje/MochilaPersonaje";
+import type { CategoriaInventario } from "@/components/personaje/MochilaPersonaje";
+import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
 
 type SeccionPersonaje = "personaje" | "equipo" | "mochila" | "habilidades";
 export default function PersonajePage() {
