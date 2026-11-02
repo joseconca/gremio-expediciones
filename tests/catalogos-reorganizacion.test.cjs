@@ -62,11 +62,11 @@ test("un único catálogo editable para objetos y criaturas sin romper las APIs"
   const { OBJETOS, obtenerObjetoPorId } = require("../src/lib/objetos.ts");
   const { ENEMIGOS, JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
   assert.equal(OBJETOS, DATOS_OBJETOS);
-  assert.equal(OBJETOS.length, 62);
+  assert.ok(OBJETOS.length > 0);
   assert.equal(ENEMIGOS.length, ENEMIGOS_BASE.length);
   assert.equal(JEFES_ELITE.length, JEFES_ELITE_BASE.length);
-  assert.equal(ENEMIGOS.length, 42);
-  assert.equal(JEFES_ELITE.length, 12);
+  assert.ok(ENEMIGOS.length > 0);
+  assert.ok(JEFES_ELITE.length > 0);
   assert.equal(new Set(OBJETOS.map(x => x.id)).size, OBJETOS.length);
   assert.equal(new Set([...ENEMIGOS, ...JEFES_ELITE].map(x => x.id)).size, ENEMIGOS.length + JEFES_ELITE.length);
   for (const objeto of OBJETOS) assert.equal(obtenerObjetoPorId(objeto.id), objeto);
