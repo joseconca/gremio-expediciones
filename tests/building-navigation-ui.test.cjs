@@ -120,7 +120,11 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /enviarAccionObjeto\("desequipar", undefined, ranuraEquipada\)/);
   assert.doesNotMatch(pagina, /Abrir mochila →/);
   assert.doesNotMatch(pagina, /Redistribuir ·/);
-  assert.match(pagina, /Gestionar en Escuela de Batalla/);
+  assert.match(pagina, /<HabilidadesPersonaje/);
+  const habilidades = read("src/components/personaje/HabilidadesPersonaje.tsx");
+  assert.match(habilidades, /Gestionar en Escuela de Batalla/);
+  assert.match(habilidades, /Ranuras preparadas/);
+  assert.match(habilidades, /Todas las aprendidas/);
   assert.match(pagina, /armaDosManosEquipada/);
   for (const categoria of ["Armas", "Armaduras", "Accesorios", "Consumibles", "Varios"]) {
     assert.ok(pagina.includes(categoria), `Falta la categoría de mochila ${categoria}`);
