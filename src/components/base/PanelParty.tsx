@@ -10,15 +10,14 @@ import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/configuracionJuego";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
-import MissionMap from "@/components/MissionMap";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
 import { crearVistaCombate } from "./party/vista-combate";
 import VisitasEntrantesParty from "./party/VisitasEntrantesParty";
 import TrasladosPropiosParty from "./party/TrasladosPropiosParty";
 import InformeHistoricoParty from "./party/InformeHistoricoParty";
-import InformeProvisionalParty from "./party/InformeProvisionalParty";
 import ConfirmacionDisolucionParty from "./party/ConfirmacionDisolucionParty";
+import ExpedicionActivaParty from "./party/ExpedicionActivaParty";
 
 function segundosRestantes(fecha: string, ahora: number): number {
   return Math.max(0, Math.ceil((new Date(fecha).getTime() - ahora) / 1000));
@@ -693,124 +692,20 @@ export default function PanelParty() {
         )}
       </aside>
       {estado?.expedicionActiva && (
-        <article className="relative isolate w-full overflow-hidden border border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%)] text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.3),inset_0_0_0_2px_rgba(255,231,220,0.32)]"
-          style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
-        >
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" />
-          <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
-          <button
-            type="button"
-            onClick={() => setExpedicionDetalleAbierto((abierto) => !abierto)}
-            aria-expanded={expedicionDetalleAbierto}
-            className="relative z-10 flex min-h-14 w-full items-center gap-2.5 px-3 pb-3 pt-5 text-left transition-colors hover:bg-[#f9ddd4]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22]"
-          >
-            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#ad756c] bg-[#f4d3ca]/80 text-lg text-[#7a3029]">🧭</span>
-            <span className="min-w-0 flex-1">
-              <span className="block truncate font-serif text-sm font-black text-[#49231f]">{estado.expedicionActiva.nombre}</span>
-              <span className={`mt-0.5 block truncate text-[11px] font-semibold ${estado.expedicionActiva.fase === "combatiendo" ? "text-[#842c26]" : estado.expedicionActiva.fase === "regresando" ? "text-[#36543a]" : "text-[#75483d]"}`}>
-                {estado.expedicionActiva.fase === "en_viaje"
-                  ? `En ruta · ${formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}`
-                  : estado.expedicionActiva.fase === "lista_para_combate"
-                    ? "Llegada · preparando combate"
-                    : estado.expedicionActiva.fase === "regresando"
-                      ? `Regresando · ${formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}`
-                      : estado.expedicionActiva.combate?.fase !== "activo"
-                        ? estado.expedicionActiva.combate?.fase === "victoria" ? "Victoria · regresando con botín" : estado.expedicionActiva.combate?.fase === "huida" ? "Retirada del grupo" : "Combate terminado"
-                        : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && estado.expedicionActiva.combate.faseTurno === "jugador"
-                          ? "¡Tu turno! · toca para actuar"
-                          : estado.expedicionActiva.combate.faseTurno === "enemigo"
-                            ? "Turno del enemigo"
-                            : "Combate compartido"}
-              </span>
-              <span className="mt-1 block truncate text-[10px] text-[#76524b]">
-                Amenaza {estado.expedicionActiva.dificultad} · {estado.expedicionActiva.modoDificultad} · {estado.expedicionActiva.participantes.length} aventureros
-                {estado.expedicionActiva.combate ? ` · Enemigo ${estado.expedicionActiva.combate.enemigoHp}/${estado.expedicionActiva.combate.enemigoHpMaximo} HP` : ""}
-              </span>
-            </span>
-            <span aria-hidden="true" className="shrink-0 text-sm text-[#8f302b]">{expedicionDetalleAbierto ? "⌃" : "⌄"}</span>
-          </button>
-          {expedicionDetalleAbierto && (
-            <div className="relative z-10 border-t border-[#ad6257] p-2 sm:p-3">
-              {estado.expedicionActiva.origenCoords && estado.expedicionActiva.destinoCoords && (
-                <div className="h-[280px] w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900 sm:h-[360px]">
-                  <MissionMap
-                    baseCoords={estado.expedicionActiva.origenCoords}
-                    destinoExpedicion={estado.expedicionActiva.destinoCoords}
-                    fechaSalida={estado.expedicionActiva.fechaSalida}
-                    fechaLlegada={estado.expedicionActiva.fechaLlegada}
-                    nombreHeroe={`Compañía de ${estado.party?.lider.personaje?.nombre ?? estado.party?.lider.nombre ?? "aventureros"}`}
-                    claseHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.clase}
-                    sexoHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.sexo}
-                    profesionActivaIdHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.profesionActivaId}
-                    regresando={estado.expedicionActiva.fase === "regresando"}
-                    ajustarVistaRuta
-                    etiquetaBase={`Base de ${estado.party?.lider.personaje?.nombre ?? estado.party?.lider.nombre ?? "la compañía"}`}
-                    etiquetaDestino={estado.expedicionActiva.fase === "regresando" ? "Destino de la expedición · ruta de regreso" : "Destino de la expedición compartida"}
-                    misiones={[]}
-                    onSelectMission={() => undefined}
-                  />
-                </div>
-              )}
-              <InformeProvisionalParty
-                estado={estado}
-                ultimoResultadoCombate={ultimoResultadoCombate}
-                cronicaPartyAbierta={cronicaPartyAbierta}
-                setCronicaPartyAbierta={setCronicaPartyAbierta}
-                formatoCuentaAtras={formatoCuentaAtras}
-                nombreObjetoRecompensa={nombreObjetoRecompensa}
-              />
-              {estado.expedicionActiva.fase === "en_viaje" ? (
-                <p className="mt-2 text-sm text-[#70372f]">
-                  La party está de camino. Llegada estimada en {formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}.
-                </p>
-              ) : estado.expedicionActiva.fase === "lista_para_combate" ? (
-                <p className="mt-2 text-sm text-[#38613b]">
-                  La party ha llegado. Preparando el combate compartido...
-                </p>
-              ) : estado.expedicionActiva.fase === "combatiendo" && estado.expedicionActiva.combate ? (
-                <div className="mt-2 rounded border border-[#7b332c] bg-[#542521] p-3">
-                  <p className="text-sm font-bold text-red-200">
-                    ⚔️ {estado.expedicionActiva.combate.enemigoNombre} · Ronda {estado.expedicionActiva.combate.ronda}
-                  </p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    {estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.usuarioId)?.estado === "huyo"
-                      ? "Has huido de la batalla y esperas a que termine. Sigues formando parte de la party."
-                      : estado.expedicionActiva.combate.faseTurno === "enemigo"
-                        ? "Turno del enemigo."
-                        : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
-                          ? "¡Es tu turno!"
-                          : `Turno de ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.nombre ?? "otro aventurero"}.`}
-                  </p>
-                  <button type="button" onClick={() => setCombatePartyCerradoId(null)}
-                    className="mt-3 min-h-10 w-full rounded border border-amber-700 bg-amber-800 px-3 py-2 text-sm font-black text-amber-50 transition hover:bg-amber-700">
-                    Abrir combate
-                  </button>
-                </div>
-              ) : estado.expedicionActiva.fase === "combatiendo" ? (
-                <p className="mt-2 text-sm text-red-200">El combate compartido está inicializándose.</p>
-              ) : (
-                <p className="mt-2 text-sm text-slate-300">
-                  {estado.expedicionActiva.fase === "regresando" ? "La party regresa a casa." : `Estado: ${estado.expedicionActiva.fase}`}
-                </p>
-              )}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {estado.expedicionActiva.participantes.map((participante) => {
-                  const personajeParticipante = participante.usuario?.personaje;
-                  return (
-                    <span key={participante.id} className="inline-flex items-center gap-1.5 rounded border border-[#aa665b] bg-[#f7d9d2]/80 px-2 py-1 text-[11px] text-[#5a3029]">
-                      {personajeParticipante && (
-                        <Image src={obtenerLogoClaseHeroe(personajeParticipante.clase, personajeParticipante.profesionActivaId)} alt="" width={18} height={18} className="h-[18px] w-[18px] shrink-0 object-contain" />
-                      )}
-                      <span>{personajeParticipante?.nombre ?? participante.usuario?.nombre ?? "Aventurero"}</span>
-                      {personajeParticipante && <span className="text-[9px] font-bold text-[#80463d]">{obtenerNombreClaseHeroe(personajeParticipante.clase, personajeParticipante.profesionActivaId)}</span>}
-                      <span className="text-[10px] opacity-70">· {participante.estado.replaceAll("_", " ")}</span>
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </article>
+        <ExpedicionActivaParty
+          estado={estado}
+          expedicion={estado.expedicionActiva}
+          ahora={ahora}
+          expedicionDetalleAbierto={expedicionDetalleAbierto}
+          onAlternarDetalle={() => setExpedicionDetalleAbierto((abierto) => !abierto)}
+          ultimoResultadoCombate={ultimoResultadoCombate}
+          cronicaPartyAbierta={cronicaPartyAbierta}
+          setCronicaPartyAbierta={setCronicaPartyAbierta}
+          formatoCuentaAtras={formatoCuentaAtras}
+          segundosRestantes={segundosRestantes}
+          nombreObjetoRecompensa={nombreObjetoRecompensa}
+          onAbrirCombate={() => setCombatePartyCerradoId(null)}
+        />
       )}
       <InformeHistoricoParty
         estado={estado}
