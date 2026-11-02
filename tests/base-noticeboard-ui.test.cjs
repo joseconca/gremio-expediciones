@@ -19,3 +19,15 @@ test("la compañía tiene una hoja rojiza expandible y la expedición compartida
   assert.match(party, /aria-expanded=\{partyDetalleAbierto\}/);
   assert.match(party, /aria-expanded=\{expedicionDetalleAbierto\}/);
 });
+
+test("las visitas entrantes conservan confirmación del servidor, permisos y acciones de aceptación", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+  const visitas = read("src/components/base/party/VisitasEntrantesParty.tsx");
+  assert.match(panel, /<VisitasEntrantesParty/);
+  assert.match(panel, /ejecutar=\{ejecutar\}/);
+  assert.match(visitas, /haLlegadoEnServidor \?\? restante === 0/);
+  assert.match(visitas, /restante === 0 && !haLlegado/);
+  assert.match(visitas, /disabled=\{Boolean\(accion\) \|\| !puedeGestionarVisitasParty \|\| ocupado\}/);
+  assert.match(visitas, /\/api\/party\/transfer\/aceptar/);
+  assert.match(visitas, /\/api\/party\/transfer\/rechazar/);
+});
