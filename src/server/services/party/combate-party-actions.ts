@@ -12,6 +12,8 @@ import {
 } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
