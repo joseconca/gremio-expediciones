@@ -64,10 +64,16 @@ test("la animación horizontal encuadra cuatro fotogramas completos sin deriva",
 
 test("el cartel de compañía y los participantes de expedición identifican la clase de cada aventurero", () => {
   const panel = read("src/components/base/PanelParty.tsx");
+  const aviso = read("src/components/base/party/AvisoCompaniaParty.tsx");
+  const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
   const servicio = read("src/server/services/party/party-service.ts");
-  assert.match(panel, /obtenerLogoClaseHeroe/);
-  assert.match(panel, /obtenerNombreClaseHeroe/);
-  assert.match(panel, /Líder de la compañía/);
+  assert.match(panel, /<AvisoCompaniaParty/);
+  assert.match(panel, /<ExpedicionActivaParty/);
+  for (const vista of [aviso, expedicion]) {
+    assert.match(vista, /obtenerLogoClaseHeroe/);
+    assert.match(vista, /obtenerNombreClaseHeroe/);
+  }
+  assert.match(aviso, /Líder de la compañía/);
   const tipos = read("src/components/base/party/tipos.ts");
   assert.match(tipos, /profesionActivaId\?: string \| null/);
   assert.match(servicio, /profesionActivaId: true/);
