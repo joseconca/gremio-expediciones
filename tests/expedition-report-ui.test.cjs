@@ -62,13 +62,15 @@ test("el cartel expandido anexa el informe provisional bajo el mapa durante el r
 
 test("el informe compartido conserva el diseño de pergamino y se anexa bajo el mapa al regresar", () => {
   const panel = read("src/components/base/PanelParty.tsx");
+  const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
 
   const tipos = read("src/components/base/party/tipos.ts");
   assert.match(tipos, /origenCoords\?: \{ lat: number; lng: number \} \| null/);
-  assert.match(panel, /<MissionMap[\s\S]*?destinoExpedicion=\{estado\.expedicionActiva\.destinoCoords\}/);
-  assert.match(panel, /regresando=\{estado\.expedicionActiva\.fase === "regresando"\}/);
+  assert.match(panel, /<ExpedicionActivaParty/);
+  assert.match(expedicion, /<MissionMap[\s\S]*?destinoExpedicion=\{expedicion.destinoCoords\}/);
+  assert.match(expedicion, /regresando=\{expedicion.fase === "regresando"\}/);
   const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
-  assert.match(panel, /<InformeProvisionalParty/);
+  assert.match(expedicion, /<InformeProvisionalParty/);
   assert.match(provisional, /estado\.expedicionActiva\.fase === "regresando" && ultimoResultadoCombate\.expedicionPartyId === estado\.expedicionActiva\.id/);
   assert.match(provisional, /Gremio · crónica compartida/);
   const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
@@ -93,7 +95,9 @@ test("la crónica histórica de party empieza contraída y se expande al pulsar 
 });
 
 test("toda la hoja de compañía tiene un tono más sólido y suave que el papel de misión", () => {
-  const panel = read("src/components/base/PanelParty.tsx");
+  const panel = read("src/components/base/party/AvisoCompaniaParty.tsx");
+  const contenedor = read("src/components/base/PanelParty.tsx");
+  assert.match(contenedor, /<AvisoCompaniaParty/);
 
   assert.match(panel, /border-\[#995f56\] bg-\[linear-gradient\(155deg,#dfb1a7_0%,#d09a90_58%,#c38980_100%\)\]/);
   assert.match(panel, /bg-\[#edc5bc\] p-2 sm:p-3/);
@@ -104,10 +108,12 @@ test("toda la hoja de compañía tiene un tono más sólido y suave que el papel
 
 test("el mismo desglose de recompensas sirve al informe provisional y al histórico", () => {
   const panel = read("src/components/base/PanelParty.tsx");
+  const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
   const historico = read("src/components/base/party/InformeHistoricoParty.tsx");
   const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
   const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
-  assert.match(panel, /<InformeProvisionalParty/);
+  assert.match(panel, /<ExpedicionActivaParty/);
+  assert.match(expedicion, /<InformeProvisionalParty/);
   assert.match(provisional, /<RecompensasInformeParty/);
   assert.match(historico, /<RecompensasInformeParty/);
   assert.match(recompensas, /filas\.length === 0 && objetos\.length === 0/);
