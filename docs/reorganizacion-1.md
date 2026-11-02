@@ -141,11 +141,13 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 | `src/components/base/party/vista-combate.ts` | Adaptación pura del combate grupal al contrato de `CombateModal` | `components/base/PanelParty.tsx` |
 | `src/components/base/party/VisitasEntrantesParty.tsx` | Visitas entrantes, confirmación de llegada y aceptar/rechazar | `components/base/PanelParty.tsx` |
 | `src/components/base/party/TrasladosPropiosParty.tsx` | Traslados, cuenta atrás, mapa y regreso individual | `components/base/PanelParty.tsx` |
-| `src/components/base/party/InformeHistoricoParty.tsx` | Crónica histórica desplegable y recompensas individuales | `components/base/PanelParty.tsx` |
+| `src/components/base/party/InformeProvisionalParty.tsx` | Informe que se anexa al mapa mientras la party regresa | `components/base/PanelParty.tsx` |
+| `src/components/base/party/InformeHistoricoParty.tsx` | Informe histórico con cabecera y detalle plegables | `components/base/PanelParty.tsx` |
+| `src/components/base/party/RecompensasInformeParty.tsx` | Una sola presentación de recursos, experiencia y botín para ambos informes | `InformeProvisionalParty.tsx` e `InformeHistoricoParty.tsx` |
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 
-**Siguiente corte:** comprobar las regresiones de los componentes visuales extraídos y preparar una comparación del informe provisional de regreso con el histórico antes de intentar unificarlos; comparten diseño pero no el mismo estado de apertura. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserven el mismo contexto Prisma y la liquidación exactamente una vez. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
+**Siguiente corte:** completar la regresión del desglose único de recompensas y de ambos informes. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserve el mismo `Prisma.TransactionClient` y la liquidación exactamente una vez. Los estados de apertura de los informes y el polling se mantienen en `PanelParty.tsx`. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
 
 ### Áreas identificadas para una extracción posterior con pruebas
 
