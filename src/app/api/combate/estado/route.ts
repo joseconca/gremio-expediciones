@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { procesarTurnoAutomaticoAsedio } from "@/lib/expediciones/procesarTurnoAsedio";
+import { procesarTurnoAutomaticoAsedio } from "@/server/services/asedios/procesar-turno-asedio";
 
 export async function GET() {
   try {

@@ -108,7 +108,7 @@ test("tras recargar, el endpoint recupera el mismo combate para atacante y defen
       "next/server": { NextResponse: { json: (body, init = {}) => ({ body, status: init.status ?? 200 }) } },
       "@/lib/auth": { getAuthenticatedUser: async () => ({ id: usuarioId }) },
       "@/lib/prisma": { prisma },
-      "@/lib/expediciones/procesarTurnoAsedio": {
+      "@/server/services/asedios/procesar-turno-asedio": {
         procesarTurnoAutomaticoAsedio: async (id) => ({
           combate: id === combate.id ? structuredClone(combate) : null,
           procesado: false,

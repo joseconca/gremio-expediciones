@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client";
-import { haExpiradoTurnoPvp } from "./turno-pvp";
-export { TIEMPO_MAXIMO_TURNO_MS } from "./turno-pvp";
+import { haExpiradoTurnoPvp } from "@/lib/expediciones/turno-pvp";
+export { TIEMPO_MAXIMO_TURNO_MS } from "@/lib/expediciones/turno-pvp";
 import { prisma } from "@/lib/prisma";
 import {
   resolverAtaqueJugador,
@@ -20,7 +20,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
-} from "./estados-combate";
+} from "@/lib/expediciones/estados-combate";
 
 function obtenerCooldowns(valor: unknown): Record<string, number> {
   if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
