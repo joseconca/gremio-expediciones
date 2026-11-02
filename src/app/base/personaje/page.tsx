@@ -7,7 +7,8 @@ import { useGameStore } from "@/store/useGameStore";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { CLASES } from "@/lib/progresion/clases";
 import type { SlotHabilidad } from "@/lib/tiposJuego";
-import EquipoPersonaje, { RANURAS_EQUIPO } from "@/components/personaje/EquipoPersonaje";
+import EquipoPersonaje from "@/components/personaje/EquipoPersonaje";
+import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
 import type { TipoEquipamiento } from "@/components/personaje/EquipoPersonaje";
 import RegistroAventurero from "@/components/personaje/RegistroAventurero";
 import HabilidadesPersonaje from "@/components/personaje/HabilidadesPersonaje";
@@ -131,7 +132,7 @@ export default function PersonajePage() {
   };
 
   const inventario = useMemo(() => datosObjetos?.inventario ?? [], [datosObjetos?.inventario]);
-  const objetosEquipados = useMemo(() => new Set(RANURAS_EQUIPO.map((ranura) => datosObjetos?.equipo[ranura.clave]?.id).filter(Boolean)), [datosObjetos?.equipo]);
+  const objetosEquipados = useMemo(() => obtenerIdsObjetosEquipados(datosObjetos?.equipo), [datosObjetos?.equipo]);
   if (!personaje) {
     return <main className="min-h-screen bg-[#171512] p-6 text-center text-amber-100">Cargando personaje...</main>;
   }

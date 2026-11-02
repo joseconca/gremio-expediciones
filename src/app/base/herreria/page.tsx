@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
+import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
 import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
 import {
   ESTADISTICAS_OBJETO as ESTADISTICAS,
@@ -177,20 +178,10 @@ export default function HerreriaPage() {
     }
   };
 
-  const estaObjetoEquipado = useCallback((objetoInventarioId: string): boolean => {
-    return [
-      datos?.equipo.arma,
-      datos?.equipo.manoSecundaria,
-      datos?.equipo.casco,
-      datos?.equipo.armadura,
-      datos?.equipo.pantalones,
-      datos?.equipo.botas,
-      datos?.equipo.guantes,
-      datos?.equipo.accesorio,
-      datos?.equipo.anillo1,
-      datos?.equipo.anillo2,
-    ].some((objeto) => objeto?.id === objetoInventarioId);
-  }, [datos?.equipo]);
+  const idsEquipados = useMemo(() => obtenerIdsObjetosEquipados(datos?.equipo), [datos?.equipo]);
+  const estaObjetoEquipado = useCallback((objetoInventarioId: string): boolean => (
+    idsEquipados.has(objetoInventarioId)
+  ), [idsEquipados]);
 
   const inventarioArmas = useMemo(() => {
     const objetos = (datos?.inventario ?? []).filter(

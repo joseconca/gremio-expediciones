@@ -12,6 +12,7 @@
 | Añadir enemigos, ajustar estadísticas o definir botín | [`src/lib/catalogos/enemigos.ts`](../src/lib/catalogos/enemigos.ts) |
 | Cómo se calculan las estadísticas y el progreso JOB | `src/lib/progresion/`; ver [su README](../src/lib/progresion/README.md) |
 | Equipo, inventario, sufijos y drops | `src/lib/equipamiento/` |
+| Identificar objetos equipados en todas las ranuras | `src/lib/equipamiento/ranuras.ts` |
 | Reglas del mercado | [`src/lib/economia/mercado.ts`](../src/lib/economia/mercado.ts) |
 | Edificios de la base y sus mejoras | `src/lib/base/`; ver [su README](../src/lib/base/README.md) |
 

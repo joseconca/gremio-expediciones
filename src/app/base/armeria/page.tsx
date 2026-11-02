@@ -19,6 +19,7 @@ import type {
   ObjetoInventario,
 } from "@/lib/tiposJuego";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
+import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
 
 interface ObjetoEnVenta extends DefinicionObjeto {
   puedeComprar: boolean;
@@ -290,18 +291,7 @@ export default function ArmeriaPage() {
     }
   };
 
-  const idsEquipados = new Set([
-    datos?.equipo.arma?.id,
-    datos?.equipo.manoSecundaria?.id,
-    datos?.equipo.casco?.id,
-    datos?.equipo.armadura?.id,
-    datos?.equipo.pantalones?.id,
-    datos?.equipo.botas?.id,
-    datos?.equipo.guantes?.id,
-    datos?.equipo.accesorio?.id,
-    datos?.equipo.anillo1?.id,
-    datos?.equipo.anillo2?.id,
-  ].filter((id): id is string => typeof id === "string"));
+  const idsEquipados = obtenerIdsObjetosEquipados(datos?.equipo);
   const objetosInventarioVendibles = (datos?.inventario ?? []).filter(
     (item) => item.objeto.tipo === "arma" || item.objeto.tipo === "armadura",
   );
