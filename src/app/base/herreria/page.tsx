@@ -2,16 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image"
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
-import DescripcionTactil from "@/components/ui/DescripcionTactil";
+import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
   calcularCosteRecursosMejora,
   calcularEstadisticasObjeto,
-  obtenerSpriteObjeto,
 } from "@/lib/objetos";
 import type {
   DefinicionObjeto,
@@ -523,22 +521,13 @@ export default function HerreriaPage() {
                               {/* INFORMACIÓN */}
                               <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <DescripcionTactil
-                                    titulo={objeto.nombre}
-                                    resumen={objeto.descripcion}
-                                    detalles={[
-                                      ...obtenerEstadisticasNoCero(objeto, objetoInventario.nivelMejora, objetoInventario.bonificaciones)
-                                        .map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
-                                      ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
-                                    ]}
-                                    variante="metal"
-                                    etiquetaAccesible={`Consultar ${objeto.nombre}`}
-                                    claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] p-1 text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-16 sm:w-16 sm:text-3xl"
-                                  >
-                                    {obtenerSpriteObjeto(objeto) ? (
-                                      <Image src={obtenerSpriteObjeto(objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded-md object-contain [image-rendering:pixelated]" />
-                                    ) : iconoTipo(categoria.tipo)}
-                                  </DescripcionTactil>
+                                  <MiniaturaObjeto
+                        objeto={objeto}
+                        instancia={objetoInventario}
+                        iconoAlternativo={iconoTipo(categoria.tipo)}
+                        variante="metal"
+                        claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] p-1 text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-16 sm:w-16 sm:text-3xl"
+                      />
 
                                   <h4 className="min-w-0 text-lg font-black text-[#e3dfd8]">
                                     {objeto.nombre}
