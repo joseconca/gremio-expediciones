@@ -68,7 +68,8 @@ test("el cartel de compañía y los participantes de expedición identifican la 
   assert.match(panel, /obtenerLogoClaseHeroe/);
   assert.match(panel, /obtenerNombreClaseHeroe/);
   assert.match(panel, /Líder de la compañía/);
-  assert.match(panel, /profesionActivaId\?: string \| null/);
+  const tipos = read("src/components/base/party/tipos.ts");
+  assert.match(tipos, /profesionActivaId\?: string \| null/);
   assert.match(servicio, /profesionActivaId: true/);
 });
 
