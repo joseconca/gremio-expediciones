@@ -71,3 +71,30 @@ test("un único catálogo editable para objetos y criaturas sin romper las APIs"
   for (const enemigo of [...ENEMIGOS, ...JEFES_ELITE]) assert.equal(obtenerEnemigoPorId(enemigo.id), enemigo);
   assert.ok(TABLAS_LOOT.comun.length > 0);
 });
+
+test("la fachada histórica conserva las mismas APIs de base, progresión y sprites", () => {
+  const configuracion = require("../src/lib/configuracionJuego.ts");
+  const tipos = require("../src/lib/tiposJuego.ts");
+  const edificios = require("../src/lib/base/edificios.ts");
+  const mejoras = require("../src/lib/base/mejoras.ts");
+  const escuela = require("../src/lib/base/escuela.ts");
+  const experiencia = require("../src/lib/progresion/experiencia.ts");
+  const estadisticas = require("../src/lib/progresion/estadisticas.ts");
+  const sprites = require("../src/lib/sprites/heroes.ts");
+
+  assert.equal(tipos.CONFIGURACION_EDIFICIOS, edificios.CONFIGURACION_EDIFICIOS);
+  assert.equal(configuracion.calcularCosteEdificio, edificios.calcularCosteEdificio);
+  assert.equal(configuracion.REQUISITOS_EDIFICIOS, edificios.REQUISITOS_EDIFICIOS);
+  assert.equal(configuracion.calcularCosteAtributo, mejoras.calcularCosteAtributo);
+  assert.equal(configuracion.CONFIGURACION_ATRIBUTOS, mejoras.CONFIGURACION_ATRIBUTOS);
+  assert.equal(configuracion.puedeAprenderHabilidad, escuela.puedeAprenderHabilidad);
+  assert.equal(configuracion.experienciaParaNivel, experiencia.experienciaParaNivel);
+  assert.equal(configuracion.calcularEstadisticasBase, estadisticas.calcularEstadisticasBase);
+  assert.equal(configuracion.obtenerSpriteHeroe, sprites.obtenerSpriteHeroe);
+  assert.equal(configuracion.obtenerRutaSpritesheetHeroe, sprites.obtenerRutaSpritesheetHeroe);
+
+  assert.equal(configuracion.calcularCosteEdificio("taberna", 0).oro, 630);
+  assert.equal(configuracion.calcularCosteAtributo("velocidad", 0), 100);
+  assert.equal(configuracion.experienciaParaNivel(1), 500);
+  assert.equal(configuracion.puedeAprenderHabilidad("raro", 2), true);
+});
