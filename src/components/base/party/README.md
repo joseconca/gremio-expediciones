@@ -12,6 +12,6 @@
 
 Los informes provisional e histórico conservan sus condiciones de visibilidad y sus controles de apertura. No unificar los estados de ambos por el mero hecho de compartir la presentación de recompensas.
 
-Las posiciones tácticas de los actores del modal se calculan en `src/lib/expediciones/formacion-party.ts`. El reparto, saneamiento de recompensas y RNG determinista están en `src/lib/party/recompensas.ts`. Las transacciones de combate siguen en `src/server/services/party/`.
+Las posiciones tácticas de los actores del modal se calculan en `src/lib/expediciones/formacion-party.ts`. El reparto, saneamiento de recompensas y RNG determinista están en `src/lib/party/recompensas.ts`. Las transacciones de combate siguen en `src/server/services/party/`: `inventario-recompensas.ts` entrega objetos **dentro de la transacción recibida**, mientras `combate-party-actions.ts` conserva la responsabilidad de liquidar una única vez.
 
 Al extraer componentes, conservar el ritmo de polling, los estados de diálogo, la selección de objetivo, los informes individuales y las rutas existentes; cada cambio requiere pruebas del dominio y compilación.

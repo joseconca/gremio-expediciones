@@ -147,7 +147,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 
-**Siguiente corte:** completar la regresión del desglose único de recompensas y de ambos informes. Para los servicios, separar inventario/recompensas transaccionales solo cuando se preserve el mismo `Prisma.TransactionClient` y la liquidación exactamente una vez. Los estados de apertura de los informes y el polling se mantienen en `PanelParty.tsx`. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
+**Siguiente corte:** confirmar la regresión de los informes compartidos y de la extracción de inventario. La entrega de objetos de botín se ha movido a `src/server/services/party/inventario-recompensas.ts`, recibiendo el mismo `Prisma.TransactionClient` del servicio de combate y las dependencias de catálogo/límite inyectadas, sin iniciar una transacción adicional. La liquidación exactamente una vez sigue bajo `combate-party-actions.ts`. Los estados de apertura de los informes y el polling se mantienen en `PanelParty.tsx`. No duplicar las fórmulas de iniciativa, daños, curas ni distribución de loot.
 
 ### Áreas identificadas para una extracción posterior con pruebas
 
