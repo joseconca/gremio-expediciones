@@ -1,16 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { PRECIOS_RECURSOS, calcularPrecioRecurso } from "@/lib/economia";
-
-type Recurso = keyof typeof PRECIOS_RECURSOS;
-
-const MAX_INT_POSTGRES = 2_147_483_647;
-const MAX_CANTIDAD_COMPRA = 1_000_000;
-
-function esRecursoValido(valor: unknown): valor is Recurso {
-  return valor === "madera" || valor === "piedra" || valor === "metal";
-}
+import { calcularPrecioRecurso, MAX_INT_POSTGRES, MAX_CANTIDAD_MERCADO, esRecursoValido, esCantidadMercadoValida, leerNivelMercado } from "@/lib/economia";
 
 export async function POST(request: Request) {
   try {
@@ -34,13 +25,10 @@ export async function POST(request: Request) {
     }
 
     if (
-      typeof cantidad !== "number" ||
-      !Number.isSafeInteger(cantidad) ||
-      cantidad <= 0 ||
-      cantidad > MAX_CANTIDAD_COMPRA
+      !esCantidadMercadoValida(cantidad)
     ) {
       return NextResponse.json(
-        { error: `La cantidad debe ser un entero entre 1 y ${MAX_CANTIDAD_COMPRA}.` },
+        { error: `La cantidad debe ser un entero entre 1 y ${MAX_CANTIDAD_MERCADO}.` },
         { status: 400 }
       );
     }
@@ -61,17 +49,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
     }
 
-    const edificios =
-      typeof usuario.edificios === "object" &&
-      usuario.edificios !== null &&
-      !Array.isArray(usuario.edificios)
-        ? (usuario.edificios as Record<string, unknown>)
-        : {};
-
-    const nivelMercado =
-      typeof edificios.mercado === "number" && Number.isFinite(edificios.mercado)
-        ? edificios.mercado
-        : 0;
+    const nivelMercado = leerNivelMercado(usuario.edificios);
 
     if (nivelMercado <= 0) {
       return NextResponse.json(
