@@ -7,7 +7,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import CatalogoArmeria from "@/components/armeria/CatalogoArmeria";
 import VentaArmeria from "@/components/armeria/VentaArmeria";
 import { useGameStore } from "@/store/useGameStore";
-import type { DatosObjetos } from "@/lib/equipamiento/datos-objetos";
+import { useDatosObjetosEdificio } from "@/hooks/useDatosObjetosEdificio";
 import { obtenerIdsObjetosEquipados } from "@/lib/equipamiento/ranuras";
 
 export default function ArmeriaPage() {
@@ -22,10 +22,12 @@ export default function ArmeriaPage() {
 
   const descripcionArmeria = armeria.descripcion;
 
-  const [datos, setDatos] = useState<DatosObjetos | null>(null);
-  const [cargando, setCargando] = useState(true);
+  const { datos, cargando, error, setError, recargarObjetos } = useDatosObjetosEdificio(
+    nivelArmeria !== 0,
+    String(nivelArmeria),
+  );
+
   const [procesando, setProcesando] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,59 +35,6 @@ export default function ArmeriaPage() {
       router.push("/base");
     }
   }, [nivelArmeria, router]);
-
-  useEffect(() => {
-    if (nivelArmeria === 0) {
-      return;
-    }
-
-    const cargarObjetos = async () => {
-      setCargando(true);
-      setError(null);
-
-      try {
-        const respuesta = await fetch("/api/objetos", {
-          cache: "no-store",
-        });
-
-        const resultado = await respuesta.json();
-
-        if (!respuesta.ok) {
-          setError(resultado.error || "No se pudieron cargar los objetos.");
-          return;
-        }
-
-        setDatos(resultado as DatosObjetos);
-      } catch {
-        setError("No se pudieron cargar los objetos.");
-      } finally {
-        setCargando(false);
-      }
-    };
-
-    void cargarObjetos();
-  }, [nivelArmeria]);
-
-  const recargarObjetos = async () => {
-    try {
-      const respuesta = await fetch("/api/objetos", {
-        cache: "no-store",
-      });
-
-      const resultado = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudieron actualizar los objetos.");
-        return false;
-      }
-
-      setDatos(resultado as DatosObjetos);
-      return true;
-    } catch {
-      setError("No se pudieron actualizar los objetos.");
-      return false;
-    }
-  };
 
   const comprarObjeto = async (objetoId: string) => {
     setProcesando(`comprar:${objetoId}`);
