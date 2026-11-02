@@ -48,6 +48,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Categorías de mochila, miniaturas y acciones de objetos | `src/components/personaje/MochilaPersonaje.tsx` |
 | Nombres/estilos de rareza y resúmenes de estadísticas (Personaje, Armería, Herrería, Botica) | `src/components/objetos/resumen-objeto.ts` |
 | Tarjetas, categorías y costes de mejora en la forja | `src/components/herreria/ForjaHerreria.tsx` |
+| Ofertas, miniaturas y requisitos de compra en Armería | `src/components/armeria/CatalogoArmeria.tsx` |
 | Ranuras, filtros y lista de habilidades aprendidas | `src/components/personaje/HabilidadesPersonaje.tsx` |
 | Progreso, atributos y desglose de estadísticas en la ficha completa | `src/components/personaje/RegistroAventurero.tsx` |
 | Miniatura con información desplegable de objetos | `src/components/objetos/MiniaturaObjeto.tsx` |
