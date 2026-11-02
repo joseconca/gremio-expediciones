@@ -241,7 +241,7 @@ export default function ArmeriaPage() {
         />
 
         <VentaArmeria
-          ventaAnterior={ventaAnterior}
+          ventaAnterior={ventaAnterior ?? null}
           objetosInventarioVendibles={objetosInventarioVendibles}
           idsEquipados={idsEquipados}
           espaciosInventario={datos?.espaciosInventario}
