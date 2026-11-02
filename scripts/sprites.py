@@ -15,7 +15,6 @@ import json
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 from PIL import Image
@@ -122,6 +121,8 @@ def actualizar(clase: str, sexo: str, accion: str, tira: Path | None, carpeta: P
     if any(not p.is_file() for p in rutas):
         raise ValueError("Faltan fotogramas originales: no se sobrescribira una variante incompleta")
     anteriores = [p.read_bytes() for p in rutas]
+    manifiesto = STAGING / "manifest.json"
+    manifiesto_anterior = manifiesto.read_bytes() if manifiesto.is_file() else None
     atlas = base / f"{clase}-{sexo}-sheet.png"
     informe = base / "qa-report.json"
     vista = base / "preview.png"
@@ -136,10 +137,13 @@ def actualizar(clase: str, sexo: str, accion: str, tira: Path | None, carpeta: P
                 temporal.unlink(missing_ok=True)
         ensamblar(clase, sexo)
         # El auditor vuelve a calcular el manifiesto; invalida aprobaciones de hashes antiguos.
-        ejecutar(AUDITOR, "--write")
+        if manifiesto_anterior is not None:
+            ejecutar(AUDITOR, "--write")
     except Exception:
         for destino, anterior in zip(rutas, anteriores):
             destino.write_bytes(anterior)
+        if manifiesto_anterior is not None:
+            manifiesto.write_bytes(manifiesto_anterior)
         for destino, anterior in derivados.items():
             if anterior is None:
                 destino.unlink(missing_ok=True)
