@@ -57,5 +57,5 @@ test("las dos tiendas utilizan el resumen común pero conservan sus propios cál
   }
   assert.match(read("src/components/herreria/ForjaHerreria.tsx"), /function obtenerDiferenciasMejora\(/);
   assert.match(read("src/components/herreria/ForjaHerreria.tsx"), /calcularCosteMejoraObjeto/);
-  assert.match(read("src/app/base/armeria/page.tsx"), /calcularPrecioVentaObjeto/);
+  assert.match(read("src/components/armeria/VentaArmeria.tsx"), /calcularPrecioVentaObjeto/);
 });

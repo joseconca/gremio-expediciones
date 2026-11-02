@@ -64,12 +64,12 @@ test("Personaje y Botica usan la navegación común y Botica incluye solo la moc
 
 test("la Armería permite vender armas y armaduras y recomprar la última venta", () => {
   const pagina = read("src/app/base/armeria/page.tsx");
-  assert.match(pagina, /calcularPrecioVentaObjeto/);
+  assert.match(read("src/components/armeria/VentaArmeria.tsx"), /calcularPrecioVentaObjeto/);
   assert.match(pagina, /item\.objeto\.tipo === "arma" \|\| item\.objeto\.tipo === "armadura"/);
   assert.match(pagina, /\/api\/objetos\/vender/);
   assert.match(pagina, /\/api\/objetos\/recomprar/);
-  assert.match(pagina, /Recomprar " \+ ventaAnterior\.nombreObjeto/);
-  assert.match(pagina, /idsEquipados\.has\(item\.id\)/);
+  assert.match(read("src/components/armeria/VentaArmeria.tsx"), /Recomprar " \+ ventaAnterior\.nombreObjeto/);
+  assert.match(read("src/components/armeria/VentaArmeria.tsx"), /idsEquipados\.has\(item\.id\)/);
   assert.match(pagina, /bloqueadoPorEstado/);
 });
 
