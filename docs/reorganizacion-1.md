@@ -53,12 +53,12 @@ El publicador global de equipo ya no borra del catálogo las clases publicadas f
 - `src/lib/progresion/clases.ts`: tipos, arquetipos, herencia, dominios, desbloqueos y API `CLASES`.
 - `src/lib/habilidades.ts`: API `HABILIDADES` y búsquedas, compuesta en el mismo orden anterior.
 
-### Dos catálogos editables (uno por dominio)
+### Catálogos editables reunidos en una carpeta
 
-- `src/lib/progresion/catalogos/clases.ts`: **todas las definiciones de clases** (base y avanzadas), con requisitos, maestrías y bonificaciones.
-- `src/lib/progresion/catalogos/habilidades.ts`: **todos los datos editables de habilidades**: escuelas, habilidades troncales, evoluciones, Super Novato, diseños V2, nombres y técnicas adicionales.
+- `src/lib/catalogos/clases.ts`: **todas las definiciones de clases** (base y avanzadas), con requisitos, maestrías y bonificaciones.
+- `src/lib/catalogos/habilidades.ts`: **todos los datos editables de habilidades**: escuelas, habilidades troncales, evoluciones, Super Novato, diseños V2, nombres y técnicas adicionales.
 
-No existen otros catálogos editables de estos dominios. Los demás módulos son motores, APIs o **adaptadores temporales sin definiciones copiadas**:
+Los cuatro catálogos canónicos están ahora juntos en `src/lib/catalogos/`: clases, habilidades, objetos y enemigos. No existen otros catálogos editables de estos dominios. Los demás módulos son motores, APIs o **adaptadores temporales sin definiciones copiadas**:
 
 - `src/lib/progresion/clases.ts`: herencia, desbloqueos y API pública `CLASES`.
 - `src/lib/habilidades.ts`: construcción de la API `HABILIDADES`, conservando orden e identificadores.
@@ -88,7 +88,7 @@ La separación actual tiene sentido y no requiere repartir cada pequeña funció
 
 | Capa | Fuente de verdad / responsabilidad | Criterio |
 |---|---|---|
-| Definiciones RPG | `src/lib/progresion/catalogos/{clases,habilidades}.ts` | Editar solo ahí; APIs públicas en `progresion/clases.ts` y `lib/habilidades.ts` |
+| Definiciones RPG | `src/lib/catalogos/{clases,habilidades}.ts` | Editar solo ahí; APIs públicas en `progresion/clases.ts` y `lib/habilidades.ts` |
 | Objetos y enemigos | `src/lib/catalogos/{objetos,enemigos}.ts` | Datos únicos; reglas, fórmulas y búsquedas fuera |
 | Reglas puras de combate | `src/lib/expediciones/` | No acceder a Prisma ni HTTP |
 | Operaciones persistentes y PvE/PvP/party | `src/server/services/` | Orquestación, transacciones, validaciones; no replicar el motor táctico |

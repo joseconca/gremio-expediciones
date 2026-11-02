@@ -1,5 +1,5 @@
 import type { TipoArmadura, TipoEquipoDominado } from "../tiposJuego";
-import { DEFINICIONES_CLASES } from "./catalogos/clases";
+import { DEFINICIONES_CLASES } from "../catalogos/clases";
 
 export interface RequisitoClase {
   claseId: string;

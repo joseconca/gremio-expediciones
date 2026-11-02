@@ -1,4 +1,4 @@
-import type { DefinicionClase, RequisitoClase } from "../clases";
+import type { DefinicionClase, RequisitoClase } from "../progresion/clases";
 
 /** Única fuente editable de definiciones de profesiones. */
 

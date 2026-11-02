@@ -4,10 +4,10 @@ const assert = require("node:assert/strict");
 
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 
-const { CLASES_BASE, CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases.ts");
+const { CLASES_BASE, CLASES_NUEVAS } = require("../src/lib/catalogos/clases.ts");
 const { HABILIDADES, HABILIDADES_BASE } = require("../src/lib/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/habilidades-nuevas.ts");
-const { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES } = require("../src/lib/progresion/catalogos/habilidades.ts");
+const { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES } = require("../src/lib/catalogos/habilidades.ts");
 
 test("las definiciones de clases solo tienen un propietario y una API publica", () => {
   const originales = Object.keys(CLASES_BASE);
@@ -40,8 +40,8 @@ test("la API de habilidades conserva todas las profesiones y las 367 habilidades
 });
 
 test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
-  const { DEFINICIONES_CLASES, CLASES_BASE: base, CLASES_NUEVAS: avanzadas } = require("../src/lib/progresion/catalogos/clases.ts");
-  const catalogo = require("../src/lib/progresion/catalogos/habilidades.ts");
+  const { DEFINICIONES_CLASES, CLASES_BASE: base, CLASES_NUEVAS: avanzadas } = require("../src/lib/catalogos/clases.ts");
+  const catalogo = require("../src/lib/catalogos/habilidades.ts");
   assert.equal(base, CLASES_BASE);
   assert.equal(avanzadas, CLASES_NUEVAS);
   assert.equal(Object.keys(DEFINICIONES_CLASES).length, Object.keys(CLASES).length);

@@ -1,8 +1,8 @@
-import type { DefinicionHabilidad } from "../../tiposJuego";
-import type { ElementoTactico } from "../../expediciones/motor-tactico";
-import type { CondicionPasiva, VentajaPasiva } from "../diseno-habilidades";
-import { habilidad } from "../crear-habilidad";
-import type { DisenoActiva, DisenoClase, OperacionHabilidad, ReglaPasiva } from "../diseno-habilidades";
+import type { DefinicionHabilidad } from "../tiposJuego";
+import type { ElementoTactico } from "../expediciones/motor-tactico";
+import type { CondicionPasiva, VentajaPasiva } from "../progresion/diseno-habilidades";
+import { habilidad } from "../progresion/crear-habilidad";
+import type { DisenoActiva, DisenoClase, OperacionHabilidad, ReglaPasiva } from "../progresion/diseno-habilidades";
 
 /** ÚNICO CATÁLOGO EDITABLE DE HABILIDADES: datos originales, escuelas y diseños v2.
  * Los motores y adaptadores de compatibilidad no contienen definiciones.

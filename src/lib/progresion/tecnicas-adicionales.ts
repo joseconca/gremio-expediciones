@@ -1,5 +1,5 @@
 import { CLASES } from "./clases";
-import { CATALOGO_TECNICAS_ADICIONALES } from "./catalogos/habilidades";
+import { CATALOGO_TECNICAS_ADICIONALES } from "../catalogos/habilidades";
 import type { ComandoTactico, FamiliaTactica, TecnicaTactica, UnidadTactica } from "../expediciones/motor-tactico";
 import type { DefinicionHabilidad } from "../tiposJuego";
 import { describirDisenoActiva } from "./catalogo-redisenado";

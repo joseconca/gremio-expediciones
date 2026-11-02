@@ -8,7 +8,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), "u
 const exists = (relativePath) => fs.existsSync(path.join(root, relativePath));
 
 test("todas las clases jugables tienen sprite femenino, masculino y emblema provisional", () => {
-  const clases = read("src/lib/progresion/catalogos/clases.ts");
+  const clases = read("src/lib/catalogos/clases.ts");
   const ids = [...clases.matchAll(/^\s{2}([a-z][a-z0-9_]+): \{\n\s*id: "\1",\s*nombre:/gm)]
     .map((coincidencia) => coincidencia[1]);
   assert.ok(ids.length >= 30, `Se esperaban las clases jugables actuales; detectadas: ${ids.length}`);

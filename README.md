@@ -2,7 +2,7 @@
 
 ## Guía de desarrollo en la rama `reorganizacion-1`
 
-**Fuentes editables:** [clases](src/lib/progresion/catalogos/clases.ts) · [habilidades](src/lib/progresion/catalogos/habilidades.ts) · [objetos](src/lib/catalogos/objetos.ts) · [enemigos](src/lib/catalogos/enemigos.ts). Los módulos de juego conservan sus APIs de consulta.
+**Fuentes editables:** [clases](src/lib/catalogos/clases.ts) · [habilidades](src/lib/catalogos/habilidades.ts) · [objetos](src/lib/catalogos/objetos.ts) · [enemigos](src/lib/catalogos/enemigos.ts). Los módulos de juego conservan sus APIs de consulta.
 
 Para consultar y publicar sprites sin abrir manifiestos ni editar hashes:
 

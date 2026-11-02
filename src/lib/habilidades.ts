@@ -1,7 +1,7 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
 import { puedeUsarHabilidadDeClase } from "./progresion/clases";
 import { HABILIDADES_NUEVAS } from "./habilidades-nuevas";
-import { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES, HABILIDADES_SUPER_NOVATO } from "./progresion/catalogos/habilidades";
+import { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES, HABILIDADES_SUPER_NOVATO } from "./catalogos/habilidades";
 import { crearCatalogoRedisenado } from "./progresion/catalogo-redisenado";
 import { HABILIDADES_ADICIONALES } from "./progresion/tecnicas-adicionales";
 
