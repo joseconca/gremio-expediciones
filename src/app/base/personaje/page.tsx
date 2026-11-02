@@ -9,7 +9,6 @@ import {
   calcularEstadisticasObjeto,
   obtenerRanuraObjeto,
   obtenerSpriteObjeto,
-  obtenerIconoObjeto,
 } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
@@ -421,11 +420,18 @@ export default function PersonajePage() {
         )}>
           <p className="truncate text-[9px] font-black uppercase tracking-wide text-[#a99069]">{ranura.nombre}</p>
           <div className="mt-1 flex min-w-0 items-center gap-1.5">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#725638] bg-[#17130e] p-0.5">
-              {item && obtenerSpriteObjeto(item.objeto) ? (
-                <Image src={obtenerSpriteObjeto(item.objeto) as string} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full object-contain [image-rendering:pixelated]" />
-              ) : <span className="text-sm" aria-hidden="true">{ranura.icono}</span>}
-            </div>
+            {item ? (
+              <MiniaturaObjeto
+                objeto={item.objeto}
+                instancia={item}
+                claseBoton="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#725638] bg-[#17130e] p-0.5 transition hover:border-amber-400"
+                iconoAlternativo={ranura.icono}
+              />
+            ) : (
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#725638] bg-[#17130e] p-0.5">
+                <span className="text-sm" aria-hidden="true">{ranura.icono}</span>
+              </div>
+            )}
             <p className="min-w-0 break-words text-[10px] font-bold leading-tight text-[#f0dfbd]">{item ? item.objeto.nombre : "Vacía"}</p>
           </div>
           {item ? (
@@ -452,11 +458,18 @@ export default function PersonajePage() {
         item ? "border-[#89643b] bg-gradient-to-br from-[#38291b] to-[#20170f]" : "border-dashed border-[#51412d] bg-[#191510]/80"
       )}>
         <div className="flex items-start gap-2">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#17130e] p-1">
-            {item && obtenerSpriteObjeto(item.objeto) ? (
-              <Image src={obtenerSpriteObjeto(item.objeto) as string} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full object-contain [image-rendering:pixelated]" />
-            ) : <span className="text-xl" aria-hidden="true">{ranura.icono}</span>}
-          </div>
+          {item ? (
+            <MiniaturaObjeto
+              objeto={item.objeto}
+              instancia={item}
+              claseBoton="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#17130e] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+              iconoAlternativo={ranura.icono}
+            />
+          ) : (
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#17130e] p-1">
+              <span className="text-xl" aria-hidden="true">{ranura.icono}</span>
+            </div>
+          )}
           <div className="min-w-0 flex-1">
             <p className="text-[10px] font-black uppercase tracking-wider text-[#a99069]">{ranura.nombre}</p>
             {item ? (
