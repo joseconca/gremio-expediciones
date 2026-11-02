@@ -6,6 +6,7 @@ const {
   leerEnemigosEnCombate,
   obtenerEnemigoVivoPorId,
   crearEnemigoLegacy,
+  leerRosterEnemigosParty,
 } = require("../src/lib/expediciones/enemigos-combate.ts");
 
 function enemigo(id, difMin, overrides = {}) {
@@ -95,4 +96,32 @@ test("la formación rechaza grupos vacíos y grupos mayores que nueve", () => {
     Array.from({ length: 10 }, (_, i) => enemigo("enemy-" + i, 1)),
     "normal",
   ), RangeError);
+});
+
+test("el roster de party conserva varios enemigos almacenados antes de recurrir al legado", () => {
+  const guardados = crearEnemigosEnCombate([enemigo("slime", 2), enemigo("goblin", 1)], "normal");
+  const campos = {
+    enemigos: guardados, enemigoId: "otro", enemigoNombre: "Otro", enemigoHp: 1, enemigoHpMaximo: 1,
+    enemigoAtaque: 1, enemigoAtaqueMagico: 1, enemigoDefensa: 1, enemigoDefensaMagica: 1,
+    enemigoVelocidad: 1, enemigoProbCritico: 0, enemigoDanoCritico: 1,
+    enemigoPrecision: 75, enemigoEvasion: 0, enemigoNivel: 1, efectosEnemigo: [],
+  };
+  const leidos = leerRosterEnemigosParty(campos);
+  assert.deepEqual(leidos.map(x => x.enemigoId), ["slime", "goblin"]);
+  assert.deepEqual(leidos.map(x => x.id), guardados.map(x => x.id));
+});
+
+test("el roster de party recupera sin cambios un combate anterior de un enemigo", () => {
+  const campos = {
+    enemigos: null, enemigoId: "slime", enemigoNombre: "Slime", enemigoHp: 13, enemigoHpMaximo: 40,
+    enemigoAtaque: 7, enemigoAtaqueMagico: 7, enemigoDefensa: 3, enemigoDefensaMagica: 3,
+    enemigoVelocidad: 6, enemigoProbCritico: 0.1, enemigoDanoCritico: 1.5,
+    enemigoPrecision: 76, enemigoEvasion: 2, enemigoNivel: 3, efectosEnemigo: [],
+  };
+  const roster = leerRosterEnemigosParty(campos);
+  assert.equal(roster.length, 1);
+  assert.equal(roster[0].enemigoId, "slime");
+  assert.equal(roster[0].hp, 13);
+  assert.equal(roster[0].ataque, 7);
+  assert.equal(roster[0].precision, 76);
 });

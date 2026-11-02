@@ -172,3 +172,44 @@ export function obtenerEnemigoVivoPorId(
   if (id) return vivos.find((enemigo) => enemigo.id === id) ?? null;
   return [...vivos].sort((a, b) => a.casilla - b.casilla)[0] ?? null;
 }
+
+/** Interpreta rosters persistidos de party, conservando combates antiguos de un enemigo. */
+export function leerRosterEnemigosParty(combate: {
+  enemigos: unknown;
+  enemigoId: string;
+  enemigoNombre: string;
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoAtaqueMagico: number;
+  enemigoDefensa: number;
+  enemigoDefensaMagica: number;
+  enemigoVelocidad: number;
+  enemigoProbCritico: number;
+  enemigoDanoCritico: number;
+  enemigoPrecision: number;
+  enemigoEvasion: number;
+  enemigoNivel: number;
+  efectosEnemigo: unknown;
+}): EnemigoEnCombate[] {
+  const guardados = leerEnemigosEnCombate(combate.enemigos);
+  if (guardados.length > 0) return guardados;
+  const legado = crearEnemigoLegacy({
+    enemigoId: combate.enemigoId,
+    enemigoNombre: combate.enemigoNombre,
+    enemigoHp: combate.enemigoHp,
+    enemigoHpMaximo: combate.enemigoHpMaximo,
+    enemigoAtaque: combate.enemigoAtaque,
+    enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+    enemigoDefensa: combate.enemigoDefensa,
+    enemigoDefensaMagica: combate.enemigoDefensaMagica,
+    enemigoVelocidad: combate.enemigoVelocidad,
+    enemigoProbCritico: combate.enemigoProbCritico,
+    enemigoDanoCritico: combate.enemigoDanoCritico,
+    enemigoPrecision: combate.enemigoPrecision,
+    enemigoEvasion: combate.enemigoEvasion,
+    enemigoNivel: combate.enemigoNivel,
+    efectos: combate.efectosEnemigo,
+  });
+  return legado ? [legado] : [];
+}
