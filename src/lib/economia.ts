@@ -6,6 +6,26 @@ export const PRECIOS_RECURSOS = {
 
 export type RecursoMercado = keyof typeof PRECIOS_RECURSOS;
 
+
+/** Un solo contrato para las rutas de compra y venta de recursos. */
+export const MAX_CANTIDAD_MERCADO = 1_000_000;
+export const MAX_INT_POSTGRES = 2_147_483_647;
+
+export function esRecursoValido(valor: unknown): valor is RecursoMercado {
+  return valor === "madera" || valor === "piedra" || valor === "metal";
+}
+
+export function esCantidadMercadoValida(valor: unknown): valor is number {
+  return typeof valor === "number" &&
+    Number.isSafeInteger(valor) && valor > 0 && valor <= MAX_CANTIDAD_MERCADO;
+}
+
+export function leerNivelMercado(edificios: unknown): number {
+  if (!edificios || typeof edificios !== "object" || Array.isArray(edificios)) return 0;
+  const nivel = (edificios as Record<string, unknown>).mercado;
+  return typeof nivel === "number" && Number.isFinite(nivel) ? nivel : 0;
+}
+
 /** Descuento adicional del 10 % por nivel, limitado al máximo actual del Mercado. */
 export function calcularPrecioRecurso(recurso: RecursoMercado, nivelMercado: number): number {
   const nivelSeguro = Number.isFinite(nivelMercado)
