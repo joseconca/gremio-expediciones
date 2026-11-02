@@ -585,3 +585,18 @@ test("el error de party conserva identidad, estado, código y exportación hist�
   assert.equal(new PartyServiceError("Falta", 404, "NO_ENCONTRADO").status, 404);
   assert.equal(loadService({}).PartyServiceError, PartyServiceError);
 });
+
+
+test("la consulta compartida de party conserva todas las relaciones Prisma", () => {
+  const { incluirPersonajeParty } = require("../src/server/services/party/consultas.ts");
+  assert.deepEqual(incluirPersonajeParty, {
+    habilidades: true,
+    progresosClase: true,
+    inventario: { include: { objetos: true } },
+    equipoEquipado: { include: {
+      arma: true, armadura: true, accesorio: true, manoSecundaria: true,
+      casco: true, pantalones: true, botas: true, guantes: true,
+      anillo1: true, anillo2: true,
+    } },
+  });
+});

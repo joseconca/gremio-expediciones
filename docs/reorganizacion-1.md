@@ -161,6 +161,13 @@ Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-for
 
 **No aplicar una fragmentación masiva sin pruebas de paridad.** Los módulos de operaciones PvP, PvE y party no son catálogos duplicados: su separación refleja flujos distintos. Los ~49 scripts Python/Node incluyen validadores y herramientas invocadas por la CI; `scripts/recursos.py` es la interfaz común, y los motores especializados se conservan mientras sean necesarios.
 
+### Fase 3.2 — Dependencias entre servicios de party (2 de noviembre de 2026)
+
+- `server/services/party/errores.ts` es el propietario de `PartyServiceError`. Los módulos `http.ts`, `expedicion-party-service.ts`, `combate-party-service.ts` y `combate-party-actions.ts` lo importan directamente. `party-service.ts` e `index.ts` mantienen el símbolo público; la clase no se duplica para preservar `instanceof`, códigos y estados HTTP.
+- `server/services/party/consultas.ts` centraliza el `Prisma.PersonajeInclude` compartido por los tres servicios de membresía, expediciones y consultas de combate. Se mantienen idénticas todas las ranuras de equipo, habilidades, progresos de clase y objetos del inventario.
+- Las pruebas con servicios aislados se adaptaron a las nuevas dependencias. Los cambios están en los commits `7cd9020` y `aecbe48`, sin alterar el motor táctico, los datos guardados ni los tiempos de expedición.
+- La ejecución de CI correspondiente debe confirmar el resultado antes de considerar la rama apta para fusionar. El fallo preexistente de la auditoría HD de equipo se examina por separado.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
