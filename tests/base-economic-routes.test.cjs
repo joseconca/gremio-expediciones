@@ -491,7 +491,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     "@/lib/objetos": { obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null },
     "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
     "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
-    "@/lib/tiendaObjetos": {
+    "@/lib/equipamiento/tienda": {
       puedeComprarObjeto: () => true,
       obtenerRequisitosRareza: () => ({ nivelArmeria: 1, nivelHeroe: 1 }),
     },

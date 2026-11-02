@@ -2,7 +2,7 @@ require("./load-typescript.cjs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { OBJETOS, obtenerObjetoPorId, calcularCosteRecursosMejora, calcularCosteMejoraObjeto } = require("../src/lib/objetos.ts");
-const { obtenerObjetosVisiblesEnArmeria, puedeComprarObjeto } = require("../src/lib/tiendaObjetos.ts");
+const { obtenerObjetosVisiblesEnArmeria, puedeComprarObjeto } = require("../src/lib/equipamiento/tienda.ts");
 const { COMIDAS_TABERNA } = require("../src/lib/base/taberna.ts");
 const { MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const { calcularOroBaseComercio, calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");

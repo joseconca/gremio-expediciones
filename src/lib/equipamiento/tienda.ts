@@ -1,5 +1,5 @@
-import { OBJETOS } from "./objetos";
-import type { DefinicionObjeto, Rareza } from "./tiposJuego";
+import { OBJETOS } from "../objetos";
+import type { DefinicionObjeto, Rareza } from "../tiposJuego";
 
 export const REQUISITOS_RAREZA: Record<
   Rareza,

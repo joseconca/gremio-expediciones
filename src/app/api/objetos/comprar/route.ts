@@ -8,7 +8,7 @@ import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import {
   puedeComprarObjeto,
   obtenerRequisitosRareza,
-} from "@/lib/tiendaObjetos";
+} from "@/lib/equipamiento/tienda";
 
 export async function POST(request: Request) {
   try {

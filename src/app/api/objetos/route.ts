@@ -6,7 +6,7 @@ import {
   obtenerObjetosVisiblesEnArmeria,
   puedeComprarObjeto,
   obtenerRequisitosRareza,
-} from "@/lib/tiendaObjetos";
+} from "@/lib/equipamiento/tienda";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
