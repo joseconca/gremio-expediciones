@@ -140,7 +140,7 @@ function loadService(prisma, testOptions = {}) {
         return objeto ? { objeto, sufijoId: "del test", bonificaciones: { vitalidad: 1 } } : null;
       },
     },
-    "@/lib/inventario": {
+    "@/lib/equipamiento/inventario": {
       LIMITE_INVENTARIO_OBJETOS: 30,
       obtenerEquipoDesdePersonaje: () => ({
         arma: null, manoSecundaria: null, casco: null, armadura: null, pantalones: null,

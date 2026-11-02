@@ -15,7 +15,7 @@ import {
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
@@ -44,7 +44,7 @@ import {
 import { PartyServiceError } from "@/server/services/party/party-service";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
-import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,

@@ -5,7 +5,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 
 export const dynamic = "force-dynamic";
 

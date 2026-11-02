@@ -9,7 +9,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";

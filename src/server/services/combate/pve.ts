@@ -21,7 +21,7 @@ import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
-import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";

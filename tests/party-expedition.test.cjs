@@ -50,7 +50,7 @@ function loadService(prisma, misionPrueba = mission) {
       calcularEstadisticasPersonaje: stats,
       calcularModificadoresEquipo: () => ({}),
     },
-    "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
+    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [misionPrueba] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },

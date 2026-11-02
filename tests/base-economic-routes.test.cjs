@@ -193,7 +193,7 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
     "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
     "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
-    "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
+    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: () => ({ id: "slime_verde", nombre: "Slime", botin: 0, difMin: 0 }),
@@ -490,7 +490,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
-    "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
+    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
     "@/lib/equipamiento/tienda": {
       puedeComprarObjeto: () => true,
       obtenerRequisitosRareza: () => ({ nivelArmeria: 1, nivelHeroe: 1 }),
@@ -736,7 +736,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         regeneracionManaPorTurno: 1,
       }),
     },
-    "@/lib/inventario": { asegurarInventarioYEquipo: async () => {} },
+    "@/lib/equipamiento/inventario": { asegurarInventarioYEquipo: async () => {} },
   });
   return { POST: route.POST, getState };
 }
@@ -777,7 +777,7 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40, ataque: 5, defensa: 2, velocidad: 5 } }),
       calcularModificadoresEquipo: () => ({}),
     },
-    "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
+    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 1 },
     "@/lib/expediciones/comercio": { calcularOroBaseComercio: () => 20 },
     "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [] },
@@ -840,7 +840,7 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/estadisticasPersonaje": {
       calcularModificadoresEquipo: () => ({}),
     },
-    "@/lib/inventario": {
+    "@/lib/equipamiento/inventario": {
       obtenerEquipoDesdePersonaje: () => ({}),
     },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },

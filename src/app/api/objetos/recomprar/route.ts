@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
-import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 
 interface VentaGuardada {
   instanciaId: string;

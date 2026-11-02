@@ -3,7 +3,7 @@ import { esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate"
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import {
   calcularFechaLlegadaTraslado,

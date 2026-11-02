@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { seleccionarEnemigosNormales } from "@/lib/expediciones/normal";
 import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";

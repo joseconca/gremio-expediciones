@@ -89,7 +89,7 @@ function loadService(prisma) {
       }),
       calcularModificadoresEquipo: () => ({}),
     },
-    "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
+    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/expediciones/normal": { seleccionarEnemigosNormales: () => [enemy] },
     "@/lib/expediciones/enemigos-combate": {
       crearEnemigosEnCombate: (definiciones) => definiciones.map((enemigo, indice) => ({

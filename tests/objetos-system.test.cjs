@@ -5,7 +5,7 @@ const { OBJETOS, obtenerObjetoPorId, obtenerRanuraObjeto, calcularEstadisticasOb
 const { generarSufijoObjeto, obtenerNombreObjetoConSufijo } = require("../src/lib/equipamiento/sufijos.ts");
 const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
 const { ENEMIGOS, JEFES_ELITE } = require("../src/lib/enemigos.ts");
-const { LIMITE_INVENTARIO_OBJETOS } = require("../src/lib/inventario.ts");
+const { LIMITE_INVENTARIO_OBJETOS } = require("../src/lib/equipamiento/inventario.ts");
 
 test("los objetos básicos y comunes no generan sufijo", () => {
   assert.deepEqual(generarSufijoObjeto({ rareza: "basico" }, false, () => 0), {
@@ -394,7 +394,7 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
     "@/lib/objetos": { obtenerObjetoPorId },
     "@/lib/equipamiento/sufijos": suffixModule,
     "@/lib/economia/mercado": require("../src/lib/economia/mercado.ts"),
-    "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS },
+    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS },
   };
   return { state, sell: loadApiRoute("src/app/api/objetos/vender/route.ts", dependencies).POST,
     buyback: loadApiRoute("src/app/api/objetos/recomprar/route.ts", dependencies).POST };

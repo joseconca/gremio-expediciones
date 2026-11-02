@@ -1,5 +1,5 @@
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo, type DatosPersonajeEstadisticas } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { normalizarPosicionFormacion } from "@/lib/expediciones/objetivos-combate";
 import type { ContextoTecnicaTactica } from "@/lib/expediciones/adaptador-tactico";
 import type { EstadoEfectoHabilidad } from "@/lib/tiposJuego";

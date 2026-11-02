@@ -14,7 +14,7 @@ import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
-import { asegurarInventarioYEquipo } from "@/lib/inventario";
+import { asegurarInventarioYEquipo } from "@/lib/equipamiento/inventario";
 
 const SEXOS = new Set(["chico", "chica"]);
 
