@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { obtenerCapasHeroeHd, obtenerFotogramaHeroeHd, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites/heroes";
 import { dibujarHeroeHd } from "@/lib/sprites/dibujar-heroe";
-import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
+import { estiloSombraCombate } from "@/components/combate/estilo-sombra-combate";
 
 const imagenes = new Map<string, Promise<HTMLImageElement>>();
 function cargar(ruta: string) {

@@ -7,7 +7,7 @@ import {
 } from "@/lib/configuracionJuego";
 import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites/heroes";
 import SpriteHeroeHd from "./SpriteHeroeHd";
-import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
+import { estiloSombraCombate } from "@/components/combate/estilo-sombra-combate";
 
 export type AccionSpriteHeroe = AccionHeroeHd;
 

@@ -48,7 +48,7 @@ test("the animated sprite viewport advances through exactly four aligned columns
 
 
 test("the shadow stays attached to the feet, extends upward and preserves horizontal orientation", () => {
-  const { estiloSombraCombate } = require("../src/lib/expediciones/sombra-combate.ts");
+  const { estiloSombraCombate } = require("../src/components/combate/estilo-sombra-combate.ts");
   for (const contexto of ["party", "hero"]) {
     const style = estiloSombraCombate(contexto);
     assert.equal(style.transformOrigin, "50% 100%");

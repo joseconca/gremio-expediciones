@@ -1,4 +1,4 @@
-/** Project the actor toward the back of the floor, anchored at its feet, without mirroring it. */
+/** Proyecta la sombra del sprite hacia el fondo, anclada a los pies y sin reflejar el personaje. */
 export function estiloSombraCombate(contexto: "party" | "hero" = "party") {
   const compresion = contexto === "party" ? 0.28 : 0.32;
   return {

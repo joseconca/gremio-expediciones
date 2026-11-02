@@ -14,6 +14,7 @@ La UI se encuentra aquí; **las reglas de daño, turnos, botín y persistencia n
 | Ventana **Info**: estadísticas de aventureros, aliados y enemigos | `InformacionCombatientes.tsx` |
 | Tipos de datos y callbacks que recibe el combate desde PvE o party | `tipos.ts` |
 | Los sprites de héroes que se animan en la escena | `SpriteHeroeAnimado.tsx`; definiciones en `src/lib/sprites/heroes.ts` |
+| Estilo y proyección de las sombras de sprites | `estilo-sombra-combate.ts` |
 | Los sprites de los enemigos | `SpriteEnemigoAnimado.tsx`; definiciones en `src/lib/sprites/enemigos.ts` |
 | Posición y barras de vida de los combatientes en otras vistas | `EstadoSobreActor.tsx` y `PanelCombatientes.tsx` |
 | Iconos de estados, duraciones y efectos de comida | `IndicadoresEfectosCombate.tsx` |
