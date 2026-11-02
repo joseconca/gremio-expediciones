@@ -15,6 +15,7 @@ require.extensions[".tsx"] = (module, filename) => {
 };
 
 const RegistroAventurero = require("../src/components/personaje/RegistroAventurero.tsx").default;
+const { CLASES } = require("../src/lib/progresion/clases.ts");
 
 const personaje = {
   nivel: 3, experiencia: 12, nivelJob: 5, experienciaJob: 8,
@@ -37,7 +38,8 @@ test("el registro conserva progreso, atributos y estadísticas desplegables", ()
 
 test("el registro indica la maestría de clase al alcanzar su nivel máximo", () => {
   const html = renderToStaticMarkup(React.createElement(RegistroAventurero, {
-    personaje: { ...personaje, nivelJob: 10 },
+    personaje: { ...personaje, nivelJob: CLASES.novato.nivelJobMaximo },
   }));
   assert.match(html, /Maestría alcanzada/);
+  assert.match(html, /width:100%/);
 });

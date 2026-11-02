@@ -104,8 +104,11 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /label: "Equipo"/);
   assert.match(pagina, /label: "Mochila"/);
   assert.match(pagina, /label: "Habilidades"/);
-  assert.match(pagina, /Atributos principales/);
-  assert.match(pagina, /Estadísticas de combate/);
+  // La presentación de atributos y estadísticas pertenece ahora a RegistroAventurero.
+  assert.match(pagina, /<RegistroAventurero personaje=\{personaje\}/);
+  const registro = read("src/components/personaje/RegistroAventurero.tsx");
+  assert.match(registro, /Atributos principales/);
+  assert.match(registro, /Estadísticas de combate/);
   assert.match(pagina, /aria-label="Vista de equipamiento"/);
   assert.match(pagina, /grid-cols-\[minmax\(0,1fr\)_92px_minmax\(0,1fr\)\]/);
   assert.match(pagina, /sm:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);

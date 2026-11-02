@@ -23,6 +23,11 @@ const base = {
   onAtacar() {}, onAlternarHabilidades() {},
 };
 
+// Solo se considera deshabilitado el atributo HTML, no clases Tailwind disabled:.
+function estaDeshabilitado(atributos) {
+  return /(?:^|\s)disabled(?:\s|=|$)/.test(atributos);
+}
+
 function botones(html) {
   return [...html.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g)].map(match => ({
     atributos: match[1],
@@ -37,9 +42,9 @@ test("el asedio muestra los mismos comandos y conserva objetos bloqueados", () =
   assert.match(controles[0].texto, /ATACAR/);
   assert.match(controles[1].texto, /HABILIDADES/);
   assert.match(controles[2].texto, /OBJETOS/);
-  assert.doesNotMatch(controles[0].atributos, /disabled/);
-  assert.doesNotMatch(controles[1].atributos, /disabled/);
-  assert.match(controles[2].atributos, /disabled/);
+  assert.equal(estaDeshabilitado(controles[0].atributos), false);
+  assert.equal(estaDeshabilitado(controles[1].atributos), false);
+  assert.equal(estaDeshabilitado(controles[2].atributos), true);
   assert.match(html, /TU TURNO/);
 });
 
@@ -47,6 +52,6 @@ test("el asedio bloquea acciones fuera de turno y cuando no hay habilidades", ()
   const html = renderToStaticMarkup(React.createElement(ControlesAsedio, {
     ...base, accionesDeshabilitadas: true, miTurno: false, hayHabilidades: false,
   }));
-  assert.ok(botones(html).every(boton => boton.atributos.includes("disabled")));
+  assert.ok(botones(html).every(boton => estaDeshabilitado(boton.atributos)));
   assert.match(html, /ESPERANDO AL RIVAL/);
 });
