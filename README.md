@@ -1,3 +1,29 @@
+# Gremio-Expediciones
+
+## Guía de desarrollo en la rama `reorganizacion-1`
+
+Para encontrar rápidamente todo lo relacionado con una clase:
+
+```bash
+npm run clase -- berserker
+```
+
+Para consultar y publicar sprites sin abrir manifiestos ni editar hashes:
+
+```bash
+python scripts/recursos.py heroe estado --clase berserker --sexo m
+python scripts/recursos.py enemigo estado --id slime_acido
+python scripts/recursos.py equipo estado --id espada_hierro
+```
+
+Para investigar posibles módulos sin referencias antes de limpiar el repositorio:
+
+```bash
+npm run audit:estructura
+```
+
+Consulta [el mapa de arquitectura y el estado de la reorganización](docs/reorganizacion-1.md). Los recursos de Berserker todavía están publicados de forma parcial; la disponibilidad se consulta por sexo y tipo de recurso. Los comandos no generan arte nuevo y la promoción exige validación y aprobación visual. No fusionar la rama hasta superar la CI.
+
 # Spritesheets de personajes
 
 Novato, Mago, Espadachín, Acólito y Arquero usan los nuevos cuerpos HD de 128×256 y equipo compartido entre clases, con una hoja por sexo. El montaje, las sombras y las acciones están conectados al combate individual, grupo y asedio. Las demás clases mantienen su arte actual.
