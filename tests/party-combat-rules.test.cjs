@@ -129,3 +129,49 @@ test("una derrota sin nadie que haya huido no se convierte en huida", () => {
   const grupo = participantes().map((p) => ({ ...p, estado: "caido", jugadorHp: 0 }));
   assert.equal(resolverResultadoCombateParty(10, grupo), "derrota");
 });
+
+const {
+  construirActoresVivosParty,
+  obtenerColaActualParty,
+  prepararSiguienteTurnoVelocidad,
+} = require("../src/lib/party/iniciativa.ts");
+
+test("la iniciativa de party excluye caídos y enemigos derrotados", () => {
+  const participantes = [
+    { usuarioId: "u1", ordenTurno: 0, estado: "activo", jugadorHp: 100, jugadorVelocidad: 30 },
+    { usuarioId: "u2", ordenTurno: 1, estado: "activo", jugadorHp: 60, jugadorVelocidad: 10 },
+    { usuarioId: "u3", ordenTurno: 2, estado: "huyo", jugadorHp: 80, jugadorVelocidad: 50 },
+  ];
+  const enemigos = [
+    { id: "e1", hp: 40, velocidad: 15 },
+    { id: "e2", hp: 0, velocidad: 100 },
+  ];
+  const activos = construirActoresVivosParty(participantes, enemigos);
+  assert.deepEqual(activos.map(x => x.actorId), ["u1", "u2", "e1"]);
+  const herido = construirActoresVivosParty(participantes, enemigos, [
+    { usuarioId: "u2", ordenTurno: 1, estado: "caido", jugadorHp: 0 },
+  ]);
+  assert.deepEqual(herido.map(x => x.actorId), ["u1", "e1"]);
+});
+
+test("la iniciativa de party mantiene la cola válida y reconstruye la histórica", () => {
+  const participantes = [
+    { usuarioId: "u1", ordenTurno: 0, estado: "activo", jugadorHp: 100, jugadorVelocidad: 20 },
+    { usuarioId: "u2", ordenTurno: 1, estado: "activo", jugadorHp: 100, jugadorVelocidad: 10 },
+  ];
+  const enemigos = [{ id: "e1", hp: 30, velocidad: 10 }];
+  const guardada = [
+    { actorId: "u1", equipo: "jugador" },
+    { actorId: "e1", equipo: "enemigo" },
+  ];
+  const combate = { id: "combate-1", faseTurno: "jugador", turnoActualUsuarioId: "u1", ronda: 2, turnosPendientes: guardada };
+  assert.deepEqual(obtenerColaActualParty(combate, participantes, enemigos), guardada);
+  const avance = prepararSiguienteTurnoVelocidad(combate, participantes, enemigos);
+  assert.equal(avance.faseTurno, "enemigo");
+  assert.equal(avance.turnoActualUsuarioId, null);
+  assert.equal(avance.ronda, 2);
+  const historica = { ...combate, turnosPendientes: [] };
+  const colaReconstruida = obtenerColaActualParty(historica, participantes, enemigos);
+  assert.equal(colaReconstruida[0].actorId, "u1");
+  assert.deepEqual(colaReconstruida, obtenerColaActualParty(historica, participantes, enemigos));
+});
