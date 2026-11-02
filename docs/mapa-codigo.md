@@ -62,6 +62,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Avisos de party, traslados, crónicas e informes | `src/components/base/party/` |
 | Informes de expedición y comercio | `src/components/reportes/` |
 | Asedio PvP, lógica visual y estado | `src/components/combate/AsedioModal.tsx` |
+| Acciones disponibles en el panel de asedio PvP | `src/components/combate/ControlesAsedio.tsx` |
 | Resultado de un asedio y ventana de estadísticas PvP | `src/components/combate/ResultadoAsedio.tsx`, `InformacionAsedio.tsx` |
 | Endpoints REST | `src/app/api/`, organizados por dominio |
 
