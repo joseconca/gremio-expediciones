@@ -23,7 +23,7 @@ import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
-import { compactarPareja } from "@/lib/expediciones/formacion-party";
+import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
 
 type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
 
@@ -63,41 +63,6 @@ interface ParticipanteCombatePartyUI {
 }
 
 type AccionAnimadaPartyUI = AccionAnimadaCombate;
-
-function distribuirFormacionParty(
-  participantes: ParticipanteCombatePartyUI[],
-  alto: number, alturaHeroe: number, ancho: number,
-): { participante: ParticipanteCombatePartyUI; x: number; y: number }[] {
-  const columnas = { retaguardia: 30, centro: 56, mele: 76 } as const;
-  const minimoY = Math.min(48, (alturaHeroe / 2 + (ancho >= 768 ? 102 : 84)) / Math.max(1, alto) * 100);
-  const maximoY = Math.max(minimoY, 100 - (alturaHeroe / 2 + 18) / Math.max(1, alto) * 100);
-  const carrilesY = { mele: minimoY, retaguardia: (minimoY + maximoY) / 2, centro: maximoY };
-  const grupos: Record<keyof typeof columnas, ParticipanteCombatePartyUI[]> = {
-    retaguardia: [],
-    centro: [],
-    mele: [],
-  };
-  for (const participante of participantes) {
-    const posicion = normalizarPosicionCombate(participante.jugadorPosicion);
-    grupos[posicion].push(participante);
-  }
-
-  const resultado: { participante: ParticipanteCombatePartyUI; x: number; y: number }[] = [];
-  for (const posicion of ["retaguardia", "centro", "mele"] as const) {
-    // Los aventureros en carriles distintos se alinean horizontalmente.
-    // Si comparten carril, se escalonan verticalmente y el líder queda abajo.
-    const grupo = grupos[posicion].sort((a, b) =>
-      Number(a.esLider) - Number(b.esLider) ||
-      a.ordenTurno - b.ordenTurno,
-    );
-    const nivelesY = grupo.length === 1 ? [carrilesY[posicion]]
-      : grupo.map((_, indice) => minimoY + indice * (maximoY - minimoY) / Math.max(1, grupo.length - 1));
-    grupo.forEach((participante, indice) => {
-      resultado.push({ participante, x: columnas[posicion], y: nivelesY[indice] });
-    });
-  }
-  return compactarPareja(resultado, alto, ancho, alturaHeroe, minimoY, maximoY);
-}
 
 interface CombatePartyModalUI {
   usuarioId: string;
