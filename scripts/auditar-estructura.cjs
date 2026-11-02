@@ -34,10 +34,11 @@ const resolvePath = (from, imported) => {
   let base;
   if (imported.startsWith("@/")) base = path.join(ROOT, "src", imported.slice(2));
   else if (imported.startsWith(".")) base = path.resolve(path.dirname(from), imported);
+  else if (imported.startsWith("src/")) base = path.join(ROOT, imported);
   else return null;
   const choices = [base, ...EXT.map(ext => base + ext),
                    ...EXT.map(ext => path.join(base, "index" + ext))];
-  return choices.find(file => available.has(normalized(file))) ?? null;
+  return choices.find(file => fs.existsSync(file) && fs.statSync(file).isFile()) ?? null;
 };
 for (const file of candidates) {
   const source = fs.readFileSync(file, "utf8");
@@ -48,9 +49,9 @@ for (const file of candidates) {
   for (const name of imported) {
     const target = resolvePath(file, name);
     if (target) {
-      incoming.get(target).add(file);
+      if (incoming.has(target)) incoming.get(target).add(file);
       edges.push({ from: path.relative(ROOT, file), to: path.relative(ROOT, target) });
-    } else if (name.startsWith("@/") || name.startsWith(".")) {
+    } else if (name.startsWith("@/") || name.startsWith(".") || name.startsWith("src/")) {
       // Imports de paquetes externos no se consideran errores.
       missing.push({ from: path.relative(ROOT, file), import: name });
     }
