@@ -20,7 +20,7 @@ test("todas las clases jugables tienen sprite femenino, masculino y emblema prov
 });
 
 test("los sprites priorizan la profesión activa y mantienen el fallback de las clases antiguas", () => {
-  const config = read("src/lib/configuracionJuego.ts");
+  const config = read("src/lib/sprites/heroes.ts");
   assert.match(config, /profesionActivaId && Object\.prototype\.hasOwnProperty\.call\(CLASES, profesionActivaId\)/);
   assert.match(config, /Novato: "novato"/);
   assert.match(config, /claseLegacy && \(!profesionActivaId \|\| profesionActivaId === "novato"\)/);
@@ -31,7 +31,7 @@ test("los sprites priorizan la profesión activa y mantienen el fallback de las 
 });
 
 test("el contrato de spritesheets define las 15 filas y resuelve rutas por clase y sexo", () => {
-  const config = read("src/lib/configuracionJuego.ts");
+  const config = read("src/lib/sprites/heroes.ts");
   const docs = read("docs/plan-spritesheets-hd-128x256.md");
 
   assert.match(config, /FILAS_ANIMACION_SPRITESHEET_HEROE = \[/);
