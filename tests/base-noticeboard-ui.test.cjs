@@ -3,6 +3,19 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
+require("./load-typescript.cjs");
+const ts = require("typescript");
+const React = require("react");
+const { renderToStaticMarkup } = require("react-dom/server");
+require.extensions[".tsx"] = (module, filename) => module._compile(
+  ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
+    fileName: filename,
+  }).outputText,
+  filename,
+);
+const ConfirmacionDisolucionParty = require("../src/components/base/party/ConfirmacionDisolucionParty.tsx").default;
+
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
 
 test("el tablón presenta comercio amarillento, asedio rojizo y expedición normal blanquecina", () => {
@@ -13,11 +26,16 @@ test("el tablón presenta comercio amarillento, asedio rojizo y expedición norm
   assert.match(misiones, /aria-expanded=\{expedicionExpandida\}/);
 });
 
-test("la compañía tiene una hoja rojiza expandible y la expedición compartida conserva su propio desplegable", () => {
+test("la compañía mantiene su desplegable y la expedición compartida el suyo propio", () => {
   const party = read("src/components/base/PanelParty.tsx");
-  assert.match(party, /bg-\[linear-gradient\(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%\)\]/);
-  assert.match(party, /aria-expanded=\{partyDetalleAbierto\}/);
-  assert.match(party, /aria-expanded=\{expedicionDetalleAbierto\}/);
+  const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
+  assert.match(party, /<ExpedicionActivaParty/);
+  assert.match(party, /aria-expanded=\\{partyDetalleAbierto\\}/);
+  assert.match(expedicion, /aria-expanded=\\{expedicionDetalleAbierto\\}/);
+  assert.match(expedicion, /<MissionMap/);
+  assert.match(expedicion, /<InformeProvisionalParty/);
+  assert.match(expedicion, /onAbrirCombate/);
+  assert.match(expedicion, /#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%/);
 });
 
 test("las visitas entrantes conservan confirmación del servidor, permisos y acciones de aceptación", () => {
@@ -42,4 +60,18 @@ test("los traslados de party conservan mapa, regreso y mensajes durante la esper
   assert.match(traslados, /\/api\/party\/transfer\/volver/);
   assert.match(traslados, /traslado\.decision === "lider_disuelve"/);
   assert.match(traslados, /traslado\.decision === "visitante_volver"/);
+});
+
+test("la confirmación de disolución conserva los avisos y bloquea ambos botones durante la petición", () => {
+  const props = { enViaje: false, accion: null, onCancelar() {}, onConfirmar() {} };
+  const render = (data) => renderToStaticMarkup(React.createElement(ConfirmacionDisolucionParty, { ...props, ...data }));
+  const reposo = render({});
+  assert.match(reposo, /¿Disolver la compañía\?/);
+  assert.match(reposo, /Los integrantes regresarán a sus bases/);
+  assert.match(reposo, /Sí, disolver/);
+  assert.match(reposo, /aria-modal="true"/);
+  assert.match(render({ enViaje: true }), /Se cancelará el contrato antes del combate/);
+  const enviando = render({ accion: "disolver" });
+  assert.match(enviando, /Disolviendo\.\.\./);
+  assert.equal((enviando.match(/disabled=""/g) || []).length, 2);
 });
