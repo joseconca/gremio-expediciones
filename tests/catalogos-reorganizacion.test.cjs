@@ -3,8 +3,6 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
-const { FICHAS_PROFESION, obtenerFichaProfesion } = require("../src/lib/progresion/catalogos/fichas-profesion.ts");
-const { obtenerFuentes, obtenerResumen } = require("../scripts/clase.cjs");
 
 const { CLASES_BASE } = require("../src/lib/progresion/catalogos/clases-base.ts");
 const { CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases-avanzadas.ts");
