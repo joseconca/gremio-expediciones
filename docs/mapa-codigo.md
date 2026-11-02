@@ -15,7 +15,7 @@
 | Reglas del mercado | [`src/lib/economia/mercado.ts`](../src/lib/economia/mercado.ts) |
 | Edificios de la base y sus mejoras | `src/lib/base/`; ver [su README](../src/lib/base/README.md) |
 
-Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable**. Los archivos `src/lib/clases.ts` (si existiera), `src/lib/habilidades.ts`, `src/lib/objetos.ts` y los servicios actúan como APIs o transformaciones: no dupliques allí las definiciones. Más detalles: [README de catálogos](../src/lib/catalogos/README.md).
+Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable**. Los módulos de acceso `src/lib/habilidades.ts`, `src/lib/objetos.ts`, `src/lib/progresion/clases.ts` y los servicios actúan como APIs o transformaciones: no dupliques allí las definiciones. Más detalles: [README de catálogos](../src/lib/catalogos/README.md).
 
 ## Cambiar cómo funciona el juego
 
@@ -43,6 +43,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Profesiones y aprendizaje | `src/components/progresion/PanelProfesiones.tsx` |
 | Combate en pantalla, sprites y selección de objetivos | `src/components/combate/CombateModal.tsx` |
 | Panel de habilidades equipadas dentro del combate | `src/components/combate/PanelHabilidadesCombate.tsx` |
+| Barra de acciones, botones y sus estilos | `src/components/combate/ComandosCombate.tsx` |
 | Panel de objetos consumibles | `src/components/combate/PanelConsumiblesCombate.tsx` |
 | Informe al terminar una batalla | `src/components/combate/ResultadoCombate.tsx` |
 | Ventana de estadísticas de los combatientes | `src/components/combate/InformacionCombatientes.tsx` |

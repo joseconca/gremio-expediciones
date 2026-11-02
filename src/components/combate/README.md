@@ -7,6 +7,7 @@ La UI se encuentra aquí; **las reglas de daño, turnos, botín y persistencia n
 | Quiero modificar… | Archivo principal |
 | --- | --- |
 | Qué sucede al pulsar **Atacar**, **Habilidad**, **Objeto** o **Huir**; objetivos; estado del modal | `CombateModal.tsx` |
+| Dónde están los **botones** de Atacar, Habilidades, Objetos y Huir, su estilo y estado disabled | `ComandosCombate.tsx` |
 | Diseño del informe al terminar, victoria, derrota, botín obtenido o perdido | `ResultadoCombate.tsx` |
 | Lista, descripción y uso de pociones durante el combate | `PanelConsumiblesCombate.tsx` |
 | Lista de habilidades equipadas, iconos, costes, cooldowns y descripción | `PanelHabilidadesCombate.tsx` |
