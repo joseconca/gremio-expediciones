@@ -17,18 +17,20 @@ test("las habilidades se ejecutan desde la lista o al tocar el objetivo, sin bot
 
 test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realmente obtenido", () => {
   const modal = leer("src/components/combate/CombateModal.tsx");
+  const resultado = leer("src/components/combate/ResultadoCombate.tsx");
   const accionesPve = leer("src/server/services/combate/pve.ts");
   const accionesParty = leer("src/server/services/party/combate-party-actions.ts");
   const liquidacionParty = leer("src/server/services/party/liquidacion-recompensas.ts");
   const panelParty = leer("src/components/base/PanelParty.tsx");
   const base = leer("src/app/base/page.tsx");
-  assert.match(modal, /Informe de combate/);
-  assert.match(modal, /Experiencia Base/);
-  assert.match(modal, /Experiencia Job/);
-  assert.match(modal, /Madera asegurada/);
-  assert.match(modal, /Piedra asegurada/);
-  assert.match(modal, /Metal asegurado/);
-  assert.match(modal, /Botín de criaturas abatidas/);
+  assert.match(modal, /<ResultadoCombate/);
+  assert.match(resultado, /Informe de combate/);
+  assert.match(resultado, /Experiencia Base/);
+  assert.match(resultado, /Experiencia Job/);
+  assert.match(resultado, /Madera asegurada/);
+  assert.match(resultado, /Piedra asegurada/);
+  assert.match(resultado, /Metal asegurado/);
+  assert.match(resultado, /Botín de criaturas abatidas/);
   assert.match(accionesPve, /calcularRecompensasParcialesDerrota/);
   assert.match(accionesPve, /Botín obtenido:/);
   assert.match(accionesPve, /⭐ Job XP:/);
