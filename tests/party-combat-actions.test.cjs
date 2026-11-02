@@ -185,6 +185,19 @@ function loadService(prisma, testOptions = {}) {
     liquidacionModule.exports,
   );
   dependencies["./liquidacion-recompensas"] = liquidacionModule.exports;
+  const regresoFilename = path.resolve(__dirname, "../src/server/services/party/regreso-combate.ts");
+  const regresoSource = fs.readFileSync(regresoFilename, "utf8");
+  const regresoCompilada = ts.transpileModule(regresoSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: regresoFilename,
+  }).outputText;
+  const regresoModule = { exports: {} };
+  vm.runInThisContext("(function(require, module, exports) {" + regresoCompilada + "\n})", { filename: regresoFilename })(
+    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+    regresoModule,
+    regresoModule.exports,
+  );
+  dependencies["./regreso-combate"] = regresoModule.exports;
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
