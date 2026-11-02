@@ -199,6 +199,8 @@ Las declaraciones de entrada de `CombateModal` (PVE/party, habilidades y recompe
 
 En `src/components/combate/README.md` hay un **mapa de mantenimiento por tarea**, para saber dónde cambiar una mecánica, el aspecto visual o un sprite sin recorrer el repositorio. Los tests de informe se actualizaron para seguir verificando las mismas etiquetas desde su componente propietario. La CI del commit `46afc8d` fue verde, pero **todavía hay que confirmar la regresión del último cambio visual** y la auditoría HD continúa pendiente por una discrepancia de Novato.
 
+**Mapa recomendado para mantenimiento cotidiano:** [`docs/mapa-codigo.md`](mapa-codigo.md). El presente documento conserva el historial técnico de la reorganización y sus precauciones; no es necesario recorrerlo para editar una habilidad, sprite o edificio.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.

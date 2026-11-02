@@ -2,6 +2,8 @@
 
 ## Guía de desarrollo en la rama `reorganizacion-1`
 
+**¿Dónde se modifica cada cosa?** Consulta el [mapa práctico del código](docs/mapa-codigo.md): catálogos, mecánicas, edificios, combate, servicios y sprites.
+
 **Fuentes editables:** [clases](src/lib/catalogos/clases.ts) · [habilidades](src/lib/catalogos/habilidades.ts) · [objetos](src/lib/catalogos/objetos.ts) · [enemigos](src/lib/catalogos/enemigos.ts). Los módulos de juego conservan sus APIs de consulta.
 
 ## Mapa de carpetas
