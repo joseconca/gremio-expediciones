@@ -43,33 +43,6 @@ test("la API de habilidades conserva todas las profesiones y las 367 habilidades
   assert.equal(HABILIDADES.filter(h => h.tipo === "pasiva").length, 122);
 });
 
-test("una sola ficha pública reúne todas las clases, habilidades propias y diseños", () => {
-  assert.deepEqual(Object.keys(FICHAS_PROFESION).sort(), Object.keys(CLASES).sort());
-  for (const [id, ficha] of Object.entries(FICHAS_PROFESION)) {
-    assert.equal(ficha.clase.id, id);
-    assert.ok(ficha.diseno, `Diseño V2 ausente: ${id}`);
-    assert.deepEqual(ficha.habilidades.map(h => h.id),
-      HABILIDADES.filter(h => h.claseId === id).map(h => h.id));
-    assert.equal(obtenerFichaProfesion(id), ficha);
-  }
-  assert.equal(obtenerFichaProfesion("clase_que_no_existe"), undefined);
-});
-
-test("Berserker se localiza con una orden sin consultar manifiestos manualmente", () => {
-  const info = obtenerResumen("berserker");
-  assert.equal(info.nombre, "Berserker");
-  assert.equal(info.disenoV2, true);
-  assert.deepEqual(info.spritesHD.atlas, ["m"]);
-  assert.deepEqual(info.spritesHD.retratos, []);
-  assert.deepEqual(info.fuentes, [
-    "src/lib/progresion/catalogos/clases.ts",
-    "src/lib/progresion/catalogos/habilidades.ts",
-  ]);
-  assert.ok(info.habilidades.length > 0);
-  assert.deepEqual(obtenerFuentes("berserker"), info.fuentes);
-});
-
-
 test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
   const { DEFINICIONES_CLASES, CLASES_BASE: base, CLASES_NUEVAS: avanzadas } = require("../src/lib/progresion/catalogos/clases.ts");
   const catalogo = require("../src/lib/progresion/catalogos/habilidades.ts");
@@ -81,5 +54,5 @@ test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
   assert.equal(require("../src/lib/progresion/diseno-habilidades.ts").DISENO_HABILIDADES, catalogo.DISENO_HABILIDADES);
   assert.equal(require("../src/lib/progresion/nombres-redisenio.ts").NOMBRES_REDISENIO, catalogo.NOMBRES_REDISENIO);
   assert.equal(require("../src/lib/progresion/catalogo-tecnicas-adicionales.ts").CATALOGO_TECNICAS_ADICIONALES, catalogo.CATALOGO_TECNICAS_ADICIONALES);
-  assert.deepEqual(obtenerFuentes("no_existe"), []);
+  assert.equal(new Set(Object.keys(DEFINICIONES_CLASES)).size, Object.keys(CLASES).length);
 });

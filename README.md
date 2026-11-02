@@ -4,12 +4,6 @@
 
 **Fuentes únicas:** [catálogo de clases](src/lib/progresion/catalogos/clases.ts) · [catálogo de habilidades](src/lib/progresion/catalogos/habilidades.ts). Los módulos de juego conservan sus APIs de consulta.
 
-Para encontrar rápidamente todo lo relacionado con una clase:
-
-```bash
-npm run clase -- berserker
-```
-
 Para consultar y publicar sprites sin abrir manifiestos ni editar hashes:
 
 ```bash

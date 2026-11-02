@@ -66,7 +66,7 @@ No existen otros catálogos editables de estos dominios. Los demás módulos son
 - `src/lib/progresion/catalogo-redisenado.ts` y `src/lib/progresion/tecnicas-adicionales.ts`: transformaciones y ejecución de reglas.
 - Las rutas legacy de catálogos, diseño V2 y nombres solo reexportan constantes; son transitorias hasta migrar sus consumidores. `catalogos/crear-habilidad.ts` contiene únicamente un constructor con defaults.
 
-**Modificar clases o habilidades:** abrir uno de esos dos archivos. `npm run clase -- berserker` señala solo las dos fuentes de datos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
+**Modificar clases o habilidades:** editar exclusivamente uno de los dos catálogos canónicos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
 
 ## Fase 3 — Servicios
 
@@ -84,12 +84,9 @@ Antes de eliminar cualquier archivo: buscar importaciones estáticas y dinámica
 ## Acceso rápido al desarrollo
 
 ```bash
-npm run clase -- berserker
-npm run clase -- mago
 npm run audit:estructura
 ```
 
-- `npm run clase`: consulta una **ficha de lectura** con definición, requisitos, habilidades activas/pasivas y diseño V2; señala los archivos fuente y qué variantes HD existen. Internamente usa `src/lib/progresion/catalogos/fichas-profesion.ts`. Es una agregación de datos, **no** otra copia de las definiciones.
 - `npm run audit:estructura`: búsqueda orientativa de módulos sin imports entrantes y referencias no resueltas. No elimina nada. Una ruta HTTP, un import dinámico, un archivo de Prisma o un recurso gráfico pueden usarse sin imports normales; cada candidato requiere investigación.
 - `src/server/services/expediciones/index.ts`, `combate/index.ts` y `party/index.ts`: fachadas públicas. Las rutas de expediciones y los endpoints explícitos PvE/PvP ya usan los índices. El endpoint de combate genérico continúa pasando por el adaptador antiguo para no romper clientes.
 - `src/lib/economia.ts`: única fuente de validación de recursos, cantidades y nivel del Mercado; usada por `api/mercado/comprar` y `api/mercado/vender`.
