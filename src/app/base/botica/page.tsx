@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import { OBJETOS } from "@/lib/objetos";
 import type { DefinicionObjeto, ObjetoInventario } from "@/lib/tiposJuego";
@@ -170,9 +171,12 @@ export default function BoticaPage() {
                 return (
                   <article key={objeto.id} className="flex min-w-0 flex-col rounded-lg border border-[#59432b] bg-[#1c150f] p-3">
                     <div className="flex items-start gap-3">
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] text-3xl shadow-inner" aria-hidden="true">
-                        {iconoConsumible(objeto)}
-                      </div>
+                      <MiniaturaObjeto
+                        objeto={objeto}
+                        iconoAlternativo={iconoConsumible(objeto)}
+                        variante="madera"
+                        claseBoton="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] p-1 text-3xl shadow-inner transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                      />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-1.5">
                           <h4 className="break-words text-sm font-black leading-tight text-[#f2dfbf]">{objeto.nombre}</h4>
@@ -216,9 +220,13 @@ export default function BoticaPage() {
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {consumibles.map((item) => (
                   <article key={item.id} className="flex min-w-0 items-center gap-3 rounded-lg border border-[#59432b] bg-[#1c150f] p-2.5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] text-2xl" aria-hidden="true">
-                      {iconoConsumible(item.objeto)}
-                    </div>
+                    <MiniaturaObjeto
+                      objeto={item.objeto}
+                      instancia={item}
+                      iconoAlternativo={iconoConsumible(item.objeto)}
+                      variante="madera"
+                      claseBoton="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] p-1 text-2xl transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                    />
                     <div className="min-w-0 flex-1">
                       <h3 className="break-words text-xs font-black leading-4 text-[#f2dfbf]">{item.objeto.nombre}</h3>
                       <p className="mt-0.5 line-clamp-2 text-[10px] leading-4 text-[#a99169]">{item.objeto.descripcion}</p>
