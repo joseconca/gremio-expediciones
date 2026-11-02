@@ -62,7 +62,11 @@ test("las miniaturas devueltas para consumibles apuntan a assets existentes y lo
   }
   assert.equal(obtenerIconoObjeto(obtenerObjetoPorId("ceniza_fenix")), "🔥");
   assert.equal(obtenerIconoObjeto(obtenerObjetoPorId("elixir_guerrero")), "⚗️");
-  assert.match(read("src/app/base/personaje/page.tsx"), /obtenerIconoObjeto\(objeto\)/);
+  const ficha = read("src/app/base/personaje/page.tsx");
+  const miniatura = read("src/components/objetos/MiniaturaObjeto.tsx");
+  assert.match(ficha, /<MiniaturaObjeto/);
+  assert.match(miniatura, /obtenerIconoObjeto\(objeto\)/);
+  assert.match(miniatura, /obtenerSpriteObjeto\(objeto\)/);
 });
 
 test("el retrato pequeño del layout usa un zoom más moderado y encuadre desplazado hacia abajo", () => {
