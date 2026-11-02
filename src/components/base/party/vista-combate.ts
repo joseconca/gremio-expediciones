@@ -79,8 +79,7 @@ export function crearModoCombateParty(
   expedicionConCombate: EstadoParty["expedicionActiva"],
   combatePartyDatos: CombatePartyVista,
   participanteModal: CombatePartyVista["participantes"][number] | undefined,
-  ejecutarAccionCombatePartyUI: CombatePartyModalUI["onAccionParty"],
-): CombatePartyModalUI {
+): Omit<CombatePartyModalUI, "onAccionParty"> {
   return {
     usuarioId: estado.usuarioId,
     nombreExpedicion: expedicionConCombate?.nombre ?? "Expedición compartida",
@@ -123,6 +122,5 @@ export function crearModoCombateParty(
     ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
       ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
       : null,
-    onAccionParty: ejecutarAccionCombatePartyUI,
   };
 }

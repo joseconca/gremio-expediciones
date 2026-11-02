@@ -120,8 +120,7 @@ test("la vista de combate de party mapea todos los participantes sin ejecutar ac
     turnoActualUsuarioId: "u1", ultimaAccion,
   };
   const estado = { usuarioId: "u1", party: { liderUsuarioId: "u1" } };
-  const enviar = async () => null;
-  const resultado = crearModoCombateParty(estado, { nombre: "Cueva helada" }, combateParty, jugador, enviar);
+  const resultado = crearModoCombateParty(estado, { nombre: "Cueva helada" }, combateParty, jugador);
 
   assert.equal(resultado.nombreExpedicion, "Cueva helada");
   assert.equal(resultado.faseTurno, "jugador");
@@ -134,6 +133,6 @@ test("la vista de combate de party mapea todos los participantes sin ejecutar ac
   assert.equal(resultado.participantes[0].jugadorEnergiaActual, 25);
   assert.equal(resultado.participantes[1].estado, "huyo");
   assert.equal(resultado.ultimaAccion, ultimaAccion);
-  assert.equal(resultado.onAccionParty, enviar);
-  assert.equal(crearModoCombateParty(estado, null, { ...combateParty, ultimaAccion: null }, undefined, enviar).estadoJugador, "activo");
+  assert.ok(!Object.hasOwn(resultado, "onAccionParty"), "Las acciones se conectan en el componente, fuera del adaptador");
+  assert.equal(crearModoCombateParty(estado, null, { ...combateParty, ultimaAccion: null }, undefined).estadoJugador, "activo");
 });

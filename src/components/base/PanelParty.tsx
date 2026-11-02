@@ -641,13 +641,10 @@ export default function PanelParty() {
             botin: botinInformeParty,
           } : null}
           procesando={Boolean(accion)}
-          partyMode={crearModoCombateParty(
-            estado,
-            expedicionConCombate,
-            combatePartyDatos,
-            participanteModal,
-            ejecutarAccionCombatePartyUI,
-          )}
+          partyMode={{
+            ...crearModoCombateParty(estado, expedicionConCombate, combatePartyDatos, participanteModal),
+            onAccionParty: ejecutarAccionCombatePartyUI,
+          }}
           onCerrar={() => setCombatePartyCerradoId(combatePartyDatos.id)}
         />
       )}
