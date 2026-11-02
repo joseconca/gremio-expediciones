@@ -181,10 +181,18 @@ def publicar(clase: str, sexo: str, aprobado: bool) -> None:
     retrato.save(destino / f"{sexo}-portrait.png")
     if clase not in catalogo["classes"]:
         catalogo["classes"].append(clase)
-        CATALOGO.write_text(
-            json.dumps(catalogo, ensure_ascii=False, separators=(",", ":")) + "\n",
-            encoding="utf-8",
-        )
+    catalogo["availableSexes"] = {
+        c: [s for s in ("m", "f") if (RUNTIME / c / f"{s}-sheet.png").is_file()]
+        for c in catalogo["classes"]
+    }
+    catalogo["availablePortraits"] = {
+        c: [s for s in ("m", "f") if (RUNTIME / c / f"{s}-portrait.png").is_file()]
+        for c in catalogo["classes"]
+    }
+    CATALOGO.write_text(
+        json.dumps(catalogo, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
     print(f"Publicado {clase}/{sexo}: atlas, reposo, retrato y registro de runtime.")
     print("La aprobacion visual fue confirmada expresamente con --aprobado.")
 
