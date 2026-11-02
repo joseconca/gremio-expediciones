@@ -18,7 +18,7 @@ import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import {
   descripcionSimpleHabilidad,
   detalleNumericoHabilidad,
-} from "@/lib/descripcionesHabilidades";
+} from "@/lib/progresion/descripciones-habilidades";
 import type {
   DefinicionHabilidad,
   DefinicionObjeto,
