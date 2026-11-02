@@ -1,4 +1,3 @@
-import type { Rareza } from "./tiposJuego";
 
 /** Fachada pública: se conservan importaciones y contratos históricos. */
 export { REQUISITOS_EDIFICIOS, calcularCosteEdificio } from "./base/edificios";
@@ -41,18 +40,4 @@ export { experienciaBaseReferenciaParaNivel, experienciaParaNivel } from "./prog
 // HABILIDADES
 // ============================================================
 
-export const NIVEL_ESCUELA_POR_RAREZA: Record<Rareza, number> = {
-  basico: 1,
-  comun: 1,
-  poco_comun: 2,
-  raro: 2,
-  epico: 3,
-  legendario: Infinity,
-};
-
-export function puedeAprenderHabilidad(
-  rareza: Rareza,
-  nivelEscuela: number
-): boolean {
-  return nivelEscuela >= NIVEL_ESCUELA_POR_RAREZA[rareza];
-}
+export { NIVEL_ESCUELA_POR_RAREZA, puedeAprenderHabilidad } from "./base/escuela";
