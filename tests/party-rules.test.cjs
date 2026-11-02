@@ -95,3 +95,45 @@ test("el RNG de botín compartido es reproducible y los objetos se agrupan", () 
   registrarObjetoRecompensa(objetos, "espada", 0);
   assert.deepEqual(objetos, [{ objetoId: "pocion", cantidad: 5 }, { objetoId: "espada", cantidad: 1 }]);
 });
+
+test("la vista de combate de party mapea todos los participantes sin ejecutar acciones", () => {
+  const { crearModoCombateParty } = require("../src/components/base/party/vista-combate.ts");
+  const jugador = {
+    id: "p1", usuarioId: "u1", estado: "activo",
+    ordenTurno: 1, jugadorPosicion: "centro", jugadorHp: 61, jugadorHpMaximo: 90,
+    jugadorAtaque: 17, jugadorAtaqueMagico: 4, jugadorDefensa: 8,
+    jugadorDefensaMagica: 5, jugadorVelocidad: 12, jugadorProbCritico: 0.14,
+    jugadorDanoCritico: 1.8, jugadorPrecision: 74, jugadorEvasion: 0.09, jugadorNivel: 7,
+    profesionActivaId: "espadachin", armaSpriteId: "espada_hierro", escudoSpriteId: null,
+    jugadorEnergiaActual: 25, jugadorEnergiaMaxima: 45,
+    jugadorManaActual: 10, jugadorManaMaximo: 20,
+    efectos: [{ tipo: "bonus_defensa" }], comidaActiva: "guiso", pasivas: [],
+    usuario: { nombre: "Base Uno", personaje: { nombre: "Heroína", clase: "Espadachín", sexo: "chica" } },
+  };
+  const aliado = {
+    ...jugador, id: "p2", usuarioId: "u2", estado: "huyo",
+    usuario: { nombre: "Base Dos", personaje: { nombre: "Aliado", clase: "Mago", sexo: "chico" } },
+  };
+  const ultimaAccion = { actor: "enemigo", tipo: "ataque" };
+  const combateParty = {
+    participantes: [jugador, aliado], faseTurno: "jugador",
+    turnoActualUsuarioId: "u1", ultimaAccion,
+  };
+  const estado = { usuarioId: "u1", party: { liderUsuarioId: "u1" } };
+  const enviar = async () => null;
+  const resultado = crearModoCombateParty(estado, { nombre: "Cueva helada" }, combateParty, jugador, enviar);
+
+  assert.equal(resultado.nombreExpedicion, "Cueva helada");
+  assert.equal(resultado.faseTurno, "jugador");
+  assert.equal(resultado.estadoJugador, "activo");
+  assert.equal(resultado.participantes.length, 2);
+  assert.deepEqual(resultado.participantes.map((p) => [p.nombre, p.sexo, p.esLider]), [
+    ["Heroína", "chica", true], ["Aliado", "chico", false],
+  ]);
+  assert.equal(resultado.participantes[0].armaSpriteId, "espada_hierro");
+  assert.equal(resultado.participantes[0].jugadorEnergiaActual, 25);
+  assert.equal(resultado.participantes[1].estado, "huyo");
+  assert.equal(resultado.ultimaAccion, ultimaAccion);
+  assert.equal(resultado.onAccionParty, enviar);
+  assert.equal(crearModoCombateParty(estado, null, { ...combateParty, ultimaAccion: null }, undefined, enviar).estadoJugador, "activo");
+});
