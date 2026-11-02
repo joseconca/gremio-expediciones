@@ -82,14 +82,16 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 
 | Dominio | Ubicación de las reglas y recursos |
 |---|---|
-| Base y taberna | `src/lib/base/taberna.ts` (la configuración general de edificios sigue en `configuracionJuego.ts`) |
+| Base y edificios | `src/lib/base/{edificios,mejoras,escuela,taberna}.ts`: catálogo de edificios, construcción, mejoras, escuela y comidas |
 | Equipamiento | `src/lib/equipamiento/{inventario,tienda,botin,sufijos}.ts` |
 | Economía | `src/lib/economia/mercado.ts` |
 | Generación de expediciones | `src/lib/expediciones/generador-misiones.ts` |
-| Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts` |
+| Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts`; rutas y retrocompatibilidad del héroe centralizadas en `heroes.ts` |
 | Catálogos editables | `src/lib/catalogos/{clases,habilidades,objetos,enemigos}.ts` |
 | Rutas e interfaz de base | `src/app/base/` y `src/components/base/` (se conservan las URLs) |
 | Operaciones persistentes | `src/server/services/` |
+
+`src/lib/configuracionJuego.ts` se conserva como **fachada pública** de edificios, mejoras, estadísticas, experiencia, habilidades y sprites. Ya no contiene fórmulas propias. Las reglas de estadísticas y experiencia Base comparten módulos con la progresión Job (`progresion/estadisticas.ts` y `progresion/experiencia.ts`); el aprendizaje de habilidades está en `progresion/aprendizaje.ts`. El catálogo editable de edificios vive únicamente en `base/edificios.ts`, aunque `tiposJuego.ts` conserva sus antiguos exports para los consumidores.
 
 La reorganización de scripts y tests se abordará por separado: `scripts/recursos.py` y los workflows invocan rutas concretas que no deben romperse por mover carpetas. La fase siguiente será extraer funciones de archivos grandes **solo cuando estos traslados hayan pasado la regresión completa**.
 
@@ -117,7 +119,7 @@ La separación actual tiene sentido y no requiere repartir cada pequeña funció
 1. `src/components/combate/CombateModal.tsx` (~108 KB): separar fases, selectors y paneles visuales. Compartir subcomponentes de PvE/PvP/asedio sin alterar la cronología de turnos.
 2. `src/server/services/party/combate-party-actions.ts` (~94 KB): dividir acciones por responsabilidad (objetivos, resultados, efectos y persistencia) manteniendo **un solo motor de reglas**.
 3. `src/components/base/PanelParty.tsx` (~89 KB) y `src/app/base/personaje/page.tsx` (~69 KB): extraer secciones independientes, evitando estados duplicados.
-4. `src/lib/tiposJuego.ts` (725 líneas): candidatear tipos por dominio cuando sus dependencias lo permitan; evitar ciclos entre `src/lib` y `src/server`.
+4. `src/lib/tiposJuego.ts` (ahora sin el catálogo de edificios): estudiar los tipos por dominio cuando sus dependencias lo permitan; evitar ciclos entre `src/lib` y `src/server`.
 5. Evitar reconstruir fachadas innecesarias para catálogos ya consolidados; la compatibilidad solo se conserva cuando existe un consumidor verificado.
 
 **No aplicar una fragmentación masiva sin pruebas de paridad.** Los módulos de operaciones PvP, PvE y party no son catálogos duplicados: su separación refleja flujos distintos. Los ~49 scripts Python/Node incluyen validadores y herramientas invocadas por la CI; `scripts/recursos.py` es la interfaz común, y los motores especializados se conservan mientras sean necesarios.

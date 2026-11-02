@@ -7,7 +7,7 @@
 ## Mapa de carpetas
 
 - `src/lib/catalogos/`: datos editables de clases, habilidades, objetos y enemigos.
-- `src/lib/base/`: reglas de la base, empezando por las comidas de taberna.
+- `src/lib/base/`: edificios, costes de construcción, mejoras, Escuela de Batalla y taberna.
 - `src/lib/equipamiento/`: inventario, sufijos, tienda y botín.
 - `src/lib/economia/`: mercado y precios.
 - `src/lib/expediciones/`: reglas de expedición, combate y generación de misiones.
