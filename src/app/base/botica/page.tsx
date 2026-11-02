@@ -7,34 +7,11 @@ import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import { OBJETOS } from "@/lib/objetos";
 import type { DefinicionObjeto, ObjetoInventario } from "@/lib/tiposJuego";
+import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
 
 interface DatosMochila {
   inventario: ObjetoInventario[];
   espaciosInventario: { ocupados: number; maximo: number };
-}
-
-function nombreRareza(rareza: DefinicionObjeto["rareza"]): string {
-  const nombres: Record<DefinicionObjeto["rareza"], string> = {
-    basico: "Básico",
-    comun: "Común",
-    poco_comun: "Poco común",
-    raro: "Raro",
-    epico: "Épico",
-    legendario: "Legendario",
-  };
-  return nombres[rareza];
-}
-
-function estiloRareza(rareza: DefinicionObjeto["rareza"]): string {
-  const estilos: Record<DefinicionObjeto["rareza"], string> = {
-    basico: "border-neutral-500/60 bg-neutral-900/60 text-neutral-300",
-    comun: "border-emerald-700/60 bg-emerald-950/40 text-emerald-300",
-    poco_comun: "border-sky-700/60 bg-sky-950/40 text-sky-300",
-    raro: "border-amber-700/60 bg-amber-950/40 text-amber-300",
-    epico: "border-fuchsia-700/60 bg-fuchsia-950/40 text-fuchsia-300",
-    legendario: "border-red-700/60 bg-red-950/40 text-red-300",
-  };
-  return estilos[rareza];
 }
 
 export default function BoticaPage() {
@@ -171,7 +148,7 @@ export default function BoticaPage() {
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-1.5">
                           <h4 className="break-words text-sm font-black leading-tight text-[#f2dfbf]">{objeto.nombre}</h4>
-                          <span className={`rounded border px-1.5 py-0.5 text-[9px] font-black uppercase ${estiloRareza(objeto.rareza)}`}>{nombreRareza(objeto.rareza)}</span>
+                          <span className={`rounded border px-1.5 py-0.5 text-[9px] font-black uppercase ${estiloRareza(objeto.rareza, "botica")}`}>{nombreRareza(objeto.rareza)}</span>
                         </div>
                         <p className="mt-1 text-xs leading-5 text-[#b3a187]">{objeto.descripcion}</p>
                         {objeto.duracionTurnos && <p className="mt-1 text-[10px] font-bold text-amber-300">Duración prevista: {objeto.duracionTurnos} turnos</p>}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
+import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
@@ -15,7 +16,6 @@ import type {
   DefinicionObjeto,
   EquipoPersonaje,
   ObjetoInventario,
-  Rareza,
 } from "@/lib/tiposJuego";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
@@ -55,50 +55,6 @@ const ESTADISTICAS: Array<{
   { clave: "probCritico", nombre: "Prob. crítico" },
   { clave: "danoCritico", nombre: "Daño crítico" },
 ];
-
-function nombreRareza(rareza: Rareza): string {
-  switch (rareza) {
-    case "basico":
-      return "Básico";
-
-    case "comun":
-      return "Común";
-
-    case "poco_comun":
-      return "Poco común";
-
-    case "raro":
-      return "Raro";
-
-    case "epico":
-      return "Épico";
-
-    case "legendario":
-      return "Legendario";
-  }
-}
-
-function estiloRareza(rareza: Rareza): string {
-  switch (rareza) {
-    case "basico":
-      return "border-neutral-500/60 bg-[#34383a] text-[#ddd8cf]";
-
-    case "comun":
-      return "border-green-700/60 bg-[#233329] text-green-400";
-
-    case "poco_comun":
-      return "border-sky-600/60 bg-[#21333d] text-sky-300";
-
-    case "raro":
-      return "border-amber-600/60 bg-[#40351f] text-amber-300";
-
-    case "epico":
-      return "border-fuchsia-700/60 bg-[#392538] text-fuchsia-300";
-
-    case "legendario":
-      return "border-red-700/60 bg-[#402322] text-red-300";
-  }
-}
 
 function iconoTipo(tipo: TipoEquipamiento): string {
   switch (tipo) {
@@ -535,9 +491,7 @@ export default function HerreriaPage() {
 
 
                                   <span
-                                    className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(
-                                      objeto.rareza
-                                    )}`}
+                                    className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(objeto.rareza, "tienda")}`}
                                   >
                                     {nombreRareza(objeto.rareza)}
                                   </span>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
+import { nombreRareza, estiloRareza } from "@/components/objetos/resumen-objeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
@@ -14,7 +15,6 @@ import type {
   DefinicionObjeto,
   EquipoPersonaje,
   ObjetoInventario,
-  Rareza,
 } from "@/lib/tiposJuego";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
@@ -65,50 +65,6 @@ const ESTADISTICAS: Array<{
   { clave: "probCritico", nombre: "Prob. crítico" },
   { clave: "danoCritico", nombre: "Daño crítico" },
 ];
-
-function nombreRareza(rareza: Rareza): string {
-  switch (rareza) {
-    case "basico":
-      return "Básico";
-
-    case "comun":
-      return "Común";
-
-    case "poco_comun":
-      return "Poco común";
-
-    case "raro":
-      return "Raro";
-
-    case "epico":
-      return "Épico";
-
-    case "legendario":
-      return "Legendario";
-  }
-}
-
-function estiloRareza(rareza: Rareza): string {
-  switch (rareza) {
-    case "basico":
-      return "border-neutral-500/60 bg-[#34383a] text-[#ddd8cf]";
-
-    case "comun":
-      return "border-green-700/60 bg-[#233329] text-green-400";
-
-    case "poco_comun":
-      return "border-sky-600/60 bg-[#21333d] text-sky-300";
-
-    case "raro":
-      return "border-amber-600/60 bg-[#40351f] text-amber-300";
-
-    case "epico":
-      return "border-fuchsia-700/60 bg-[#392538] text-fuchsia-300";
-
-    case "legendario":
-      return "border-red-700/60 bg-[#402322] text-red-300";
-  }
-}
 
 function nombreTipo(tipo: TipoEquipamiento | TipoObjetoEquipable | "consumible"): string {
   switch (tipo) {
@@ -538,7 +494,7 @@ export default function HerreriaPage() {
 
                       <div className="min-w-0 self-center">
                         <div className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5">
-                          <span className={`rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide ${estiloRareza(objeto.rareza)}`}>
+                          <span className={`rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide ${estiloRareza(objeto.rareza, "tienda")}`}>
                             {nombreRareza(objeto.rareza)}
                           </span>
                           <span className="text-[9px] font-bold uppercase leading-3 tracking-wide text-[#887d6b]">
