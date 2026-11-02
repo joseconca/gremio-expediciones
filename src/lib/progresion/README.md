@@ -13,9 +13,10 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas.ts` |
 | Cambiar cómo influyen clase y Job en los atributos | `atributos-clase.ts` |
 | Calcular el total y el desglose de estadísticas del personaje | `estadisticas-personaje.ts` |
+| Revisar estadísticas heredadas, base RPG y aportes por atributo | `estadisticas-base-personaje.ts` |
 | Cambiar los contratos y la suma de modificadores | `modificadores-estadisticas.ts` |
 | Aplicar dominio de armas, armaduras y escudos y adaptar el equipo al modelo RPG | `bonificaciones-equipo.ts` |
-| Calcular las bonificaciones de habilidades pasivas aprendidas | `bonificaciones-pasivas.ts` |
+| Calcular bonificaciones pasivas y conversión de maná a inteligencia (Núcleo arcano) | `bonificaciones-pasivas.ts` |
 | Modificar descripciones numéricas de habilidades | `descripciones-habilidades.ts` |
 
 ## Registro y ejecución de habilidades
@@ -28,4 +29,4 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 
 **Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para los consumidores externos, no el lugar para crear nuevas reglas.
 
-**Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas y la conversión especial de maná a inteligencia permanecen en el cálculo final; no eliminarlas por parecer heredadas.
+**Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas viven en `estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.

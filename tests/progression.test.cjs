@@ -61,6 +61,67 @@ test("los módulos de estadísticas mantienen el cálculo público y los modific
   assert.equal(obtenerModificadoresPasivas(["reserva_arcana"], "novato").manaMaximo, 0);
 });
 
+test("las cuentas heredadas conservan sus fórmulas físicas hasta cambiar de profesión", () => {
+  const { calcularEstadisticasBase } = require("../src/lib/progresion/estadisticas.ts");
+  const personaje = {
+    clase: "Guerrero",
+    profesionActivaId: "novato",
+    nivel: 8,
+    velocidadMejoras: 0,
+    capacidadCarruajeMejoras: 0,
+  };
+  const legado = calcularEstadisticasPersonaje(personaje);
+  const original = calcularEstadisticasBase("Guerrero", 8);
+  for (const clave of ["hpMaximo", "ataque", "defensa", "velocidad", "probCritico", "danoCritico"]) {
+    assert.equal(legado.base[clave], original[clave], clave);
+  }
+  assert.equal(legado.atributos.vitalidad.hpMaximo, undefined);
+  assert.equal(legado.atributos.fuerza.ataque, undefined);
+  assert.ok(legado.atributos.inteligencia.ataqueMagico > 0);
+  assert.equal(legado.baseSinAtributos.hpMaximo, original.hpMaximo);
+
+  const evolucionado = calcularEstadisticasPersonaje({
+    ...personaje,
+    profesionActivaId: "espadachin",
+  });
+  assert.ok(evolucionado.atributos.vitalidad.hpMaximo > 0);
+  assert.ok(evolucionado.atributos.fuerza.ataque > 0);
+});
+
+test("Núcleo arcano conserva la conversión limitada y no puede aplicarse desde otra clase", () => {
+  const { aplicarConversionReservaInteligencia } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
+  const { MODIFICADORES_VACIOS } = require("../src/lib/progresion/modificadores-estadisticas.ts");
+  const entrada = (claseActualId) => ({
+    habilidadesAprendidas: ["nucleo_arcano"],
+    claseActualId,
+    atributosPrincipales: {
+      fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 50, destreza: 1, suerte: 1,
+    },
+    atributosPorPasivas: {},
+    totalSinRedondear: {
+      ...MODIFICADORES_VACIOS,
+      manaMaximo: 200, ataqueMagico: 33, defensaMagica: 5, regeneracionManaPorTurno: 4,
+    },
+    pasivas: { ...MODIFICADORES_VACIOS },
+  });
+
+  const archimago = entrada("archimago");
+  aplicarConversionReservaInteligencia(archimago);
+  assert.equal(archimago.atributosPrincipales.inteligencia, 60);
+  assert.equal(archimago.atributosPorPasivas.inteligencia, 10);
+  assert.equal(archimago.totalSinRedondear.manaMaximo, 180);
+  assert.equal(archimago.totalSinRedondear.ataqueMagico, 53);
+  assert.equal(archimago.totalSinRedondear.defensaMagica, 20);
+  assert.equal(archimago.totalSinRedondear.regeneracionManaPorTurno, 5);
+  assert.equal(archimago.pasivas.manaMaximo, -20);
+
+  const novato = entrada("novato");
+  aplicarConversionReservaInteligencia(novato);
+  assert.equal(novato.atributosPrincipales.inteligencia, 50);
+  assert.deepEqual(novato.atributosPorPasivas, {});
+  assert.equal(novato.totalSinRedondear.manaMaximo, 200);
+});
+
 test("la composición de encuentros respeta probabilidades de party y límites de dificultad", () => {
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.1), [6]);
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.5), [6, 6]);
