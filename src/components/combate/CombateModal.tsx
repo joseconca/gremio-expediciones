@@ -24,7 +24,7 @@ import ResultadoCombate from "./ResultadoCombate";
 import InformacionCombatientes from "./InformacionCombatientes";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
-import type { CombateModalProps, HabilidadEquipable } from "./tipos";
+import type { CombateModalProps, HabilidadCombate, HabilidadEquipable } from "./tipos";
 import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
 import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
 
