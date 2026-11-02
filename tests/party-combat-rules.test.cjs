@@ -175,3 +175,13 @@ test("la iniciativa de party mantiene la cola válida y reconstruye la históric
   assert.equal(colaReconstruida[0].actorId, "u1");
   assert.deepEqual(colaReconstruida, obtenerColaActualParty(historica, participantes, enemigos));
 });
+
+
+test("el log compartido de party conserva el filtro y el límite de 120 entradas", () => {
+  const { obtenerLogCombateParty } = require("../src/lib/party/combate-reglas.ts");
+  assert.deepEqual(obtenerLogCombateParty(null), []);
+  assert.deepEqual(obtenerLogCombateParty({ mensaje: "incorrecto" }), []);
+  assert.deepEqual(obtenerLogCombateParty(["primero", null, 0, "segundo"]), ["primero", "segundo"]);
+  const historial = Array.from({ length: 140 }, (_, indice) => "entrada-" + indice);
+  assert.deepEqual(obtenerLogCombateParty(historial), historial.slice(-120));
+});

@@ -168,6 +168,12 @@ Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-for
 - Las pruebas con servicios aislados se adaptaron a las nuevas dependencias. Los cambios están en los commits `7cd9020` y `aecbe48`, sin alterar el motor táctico, los datos guardados ni los tiempos de expedición.
 - La ejecución de CI correspondiente debe confirmar el resultado antes de considerar la rama apta para fusionar. El fallo preexistente de la auditoría HD de equipo se examina por separado.
 
+### Fase 3.3 — Liquidación de resultados de party
+
+La rutina transaccional `liquidarRecompensasParty` se trasladó íntegra de `server/services/party/combate-party-actions.ts` a `server/services/party/liquidacion-recompensas.ts`. El orquestador conserva la secuencia de acciones del jugador y turno enemigo, pero delega la liquidación. Se conserva la misma instancia de `Prisma.TransactionClient`, el control optimista por `version`, el guardado `recompensasResueltas`, el botín determinista, los informes y la concesión individual de experiencia. La normalización del log ahora es una única función pura `lib/party/combate-reglas.ts`.
+
+El test de acciones de combate carga y ejecuta la liquidación extraída con sus dependencias simuladas habituales (sin reemplazar su resultado), protegiendo los casos de victoria, derrota, huida, botín, límites del inventario e idempotencia. Se añadió una prueba específica para el contrato histórico de normalización del log. **Los resultados del workflow de regresión deberán comprobarse antes de continuar extrayendo turnos.**
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
