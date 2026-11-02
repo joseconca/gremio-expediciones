@@ -21,6 +21,8 @@ const InformacionCombatientes = require("../src/components/combate/InformacionCo
 const PanelConsumiblesCombate = require("../src/components/combate/PanelConsumiblesCombate.tsx").default;
 const PanelHabilidadesCombate = require("../src/components/combate/PanelHabilidadesCombate.tsx").default;
 const ComandosCombate = require("../src/components/combate/ComandosCombate.tsx").default;
+const ResultadoAsedio = require("../src/components/combate/ResultadoAsedio.tsx").default;
+const InformacionAsedio = require("../src/components/combate/InformacionAsedio.tsx").default;
 
 const combate = {
   fase: "derrota",
@@ -202,4 +204,53 @@ test("los comandos son presentacionales y reflejan la disponibilidad de cada acc
   });
   assert.match(bloqueado, /data-active="false"/);
   assert.equal((bloqueado.match(/disabled=""/g) || []).length, 4);
+});
+
+test("el resultado de un asedio distingue victoria, derrota y rol del jugador", () => {
+  const render = (props) => renderToStaticMarkup(React.createElement(ResultadoAsedio, {
+    fase: "victoria", esAtacante: true, nombreRival: "Rival", onCerrar() {}, ...props,
+  }));
+  assert.match(render({}), /VICTORIA/);
+  assert.match(render({}), /Has derrotado a Rival/);
+  assert.match(render({}), /CONTINUAR/);
+  assert.match(render({ esAtacante: false }), /Has defendido el gremio/);
+  assert.match(render({ fase: "derrota", esAtacante: true }), /Has sido derrotado por Rival/);
+  assert.match(render({ fase: "derrota", esAtacante: false }), /El atacante Rival ha vencido/);
+});
+
+test("la información de asedio conserva estadísticas de atacante y defensor", () => {
+  const combateAsedio = {
+    jugadorPosicion: "mele", enemigoPosicion: "retaguardia",
+    jugadorAtaque: 20, enemigoAtaque: 12,
+    jugadorDefensa: 17, enemigoDefensa: 8,
+    jugadorVelocidad: 11, enemigoVelocidad: 9,
+    jugadorPrecision: 75, enemigoPrecision: 65,
+    jugadorEvasion: 0.1, enemigoEvasion: 0.05,
+    jugadorProbCritico: 0.12, enemigoProbCritico: 0.08,
+    jugadorDanoCritico: 2, enemigoDanoCritico: 1.5,
+  };
+  const personajeAsedio = {
+    nombre: "Guerrera", clase: "Novato", nivel: 6, nivelJob: 3,
+    profesionActivaId: "novato", ataqueMagico: 3, defensaMagica: 4, precision: 75, evasion: 0.1,
+    fuerza: 7, agilidad: 5, vitalidad: 6, inteligencia: 2, destreza: 4, suerte: 3,
+  };
+  const props = {
+    combate: combateAsedio, personaje: personajeAsedio, esAtacante: true,
+    nombreRival: "Caballero", claseRival: "caballero", nombreClaseActiva: "Novato",
+    hpMaximoPropio: 120,
+    statsRival: { hpMaximo: 90, ataque: 12, defensa: 8, velocidad: 9, nivel: 5 },
+    panelStatsRival: "rival",
+    onCambiarPanel() {}, onCerrar() {},
+  };
+  const render = (p) => renderToStaticMarkup(React.createElement(InformacionAsedio, { ...props, ...p }));
+  const rival = render({});
+  assert.match(rival, /Información del asedio/);
+  assert.match(rival, /Caballero/);
+  assert.match(rival, /Posición:/);
+  assert.match(rival, /Daño crítico/);
+  const jugador = render({ panelStatsRival: "jugador" });
+  assert.match(jugador, /Guerrera/);
+  assert.match(jugador, /Nivel Base 6/);
+  assert.match(jugador, /Atributos/);
+  assert.match(jugador, /Defensa mágica/);
 });
