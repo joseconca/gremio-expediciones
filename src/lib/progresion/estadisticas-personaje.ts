@@ -1,12 +1,9 @@
 import type {
   DefinicionHabilidad,
-  EquipoPersonaje,
-  ObjetoInventario,
   AtributosPrincipales,
 } from "../tiposJuego";
 import { obtenerHabilidadPorId } from "../habilidades";
 import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./niveles-habilidad";
-import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../objetos";
 import {
   calcularEstadisticasBase,
   calcularEstadisticasDerivadasRpg,
@@ -15,7 +12,6 @@ import {
 import { calcularAtributosClase } from "./atributos-clase";
 import {
   CLASES,
-  calcularBonificacionesDominioEquipo,
   puedeUsarHabilidadDeClase,
 } from "./clases";
 
@@ -38,91 +34,8 @@ export type {
   AportesPorAtributo,
 } from "./modificadores-estadisticas";
 
-/**
- * Calcula las estadísticas de una pieza y aplica dominio de armas/armaduras.
- * Las joyas son objetos de tipo "accesorio", por lo que quedan fuera de la
- * penalización de armadura aunque aporten defensa.
- */
-function calcularEstadisticasPiezaEquipamiento(
-  pieza: ObjetoInventario,
-  claseId?: string | null
-): ModificadoresEstadisticas {
-  const estadisticas = calcularEstadisticasObjeto(
-    pieza.objeto,
-    pieza.nivelMejora,
-    pieza.bonificaciones
-  );
-  if (!claseId) return estadisticas;
-
-  if (pieza.objeto.tipo === "arma") {
-    // Un arma sin subtipo explícito se considera no dominada para que no
-    // pueda eludir la penalización del 25 %.
-    const tipoArma = pieza.objeto.subtipo ?? "__sin_tipo__";
-    const dominio = calcularBonificacionesDominioEquipo(
-      claseId,
-      tipoArma
-    );
-    estadisticas.ataque *= dominio.multiplicadorAtaqueArma;
-    if (typeof estadisticas.ataqueMagico === "number") {
-      estadisticas.ataqueMagico *= dominio.multiplicadorAtaqueArma;
-    }
-  } else if (pieza.objeto.tipo === "armadura" && pieza.objeto.slot === "mano_secundaria") {
-    // El escudo se domina como un tipo de equipamiento de mano, no como
-    // armadura ligera/media/pesada. Las piezas legacy sin subtipo se tratan como escudos.
-    const tipoEscudo = pieza.objeto.subtipo ?? "escudo";
-    const dominio = calcularBonificacionesDominioEquipo(
-      claseId,
-      tipoEscudo
-    );
-    estadisticas.defensa *= dominio.multiplicadorAtaqueArma;
-    if (typeof estadisticas.defensaMagica === "number") {
-      estadisticas.defensaMagica *= dominio.multiplicadorAtaqueArma;
-    }
-  } else if (pieza.objeto.tipo === "armadura") {
-    // Una armadura sin subtipo conocido se trata como no dominada, nunca como
-    // una pieza que evita por accidente la penalización.
-    const subtipo = obtenerSubtipoArmadura(pieza.objeto) ?? "__sin_subtipo__";
-    const dominio = calcularBonificacionesDominioEquipo(
-      claseId,
-      undefined,
-      subtipo
-    );
-    estadisticas.defensa *= dominio.multiplicadorDefensaArmadura;
-    if (typeof estadisticas.defensaMagica === "number") {
-      estadisticas.defensaMagica *= dominio.multiplicadorDefensaArmadura;
-    }
-  }
-
-  return estadisticas;
-}
-
-/** Aplica dominios en todas las ranuras; las joyas no se consideran armadura. */
-export function calcularModificadoresEquipo(
-  equipo: EquipoPersonaje,
-  claseId?: string | null
-): ModificadoresEstadisticas {
-  const piezas: Array<ObjetoInventario | null> = [
-    equipo.arma,
-    equipo.manoSecundaria,
-    equipo.casco,
-    equipo.armadura,
-    equipo.pantalones,
-    equipo.botas,
-    equipo.guantes,
-    equipo.accesorio,
-    equipo.anillo1,
-    equipo.anillo2,
-  ];
-
-  return sumarModificadores(
-    ...piezas
-      .filter((pieza): pieza is ObjetoInventario => pieza !== null)
-      .map((pieza) => {
-        const stats = calcularEstadisticasPiezaEquipamiento(pieza, claseId);
-        return { ...stats, regeneracionEnergiaPorTurno: (stats.regeneracionEnergiaPorTurno ?? 0) + (stats.energiaMaxima ?? 0) * 0.2 };
-      })
-  );
-}
+// API pública histórica: se mantiene para no modificar sus consumidores.
+export { calcularModificadoresEquipo } from "./bonificaciones-equipo";
 
 function obtenerModificadoresPasivas(
   habilidadesAprendidas: HabilidadAprendidaConNivel[],
