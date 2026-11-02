@@ -18,6 +18,7 @@ require.extensions[".tsx"] = (module, filename) => {
 const ResultadoCombate = require("../src/components/combate/ResultadoCombate.tsx").default;
 const InformacionCombatientes = require("../src/components/combate/InformacionCombatientes.tsx").default;
 const PanelConsumiblesCombate = require("../src/components/combate/PanelConsumiblesCombate.tsx").default;
+const PanelHabilidadesCombate = require("../src/components/combate/PanelHabilidadesCombate.tsx").default;
 
 const combate = {
   fase: "derrota",
@@ -122,4 +123,51 @@ test("el panel de consumibles muestra los porcentajes de curación y conserva el
   }));
   assert.match(lleno, /Recursos al máximo/);
   assert.match(lleno, /disabled=""/);
+});
+
+test("el panel de habilidades respeta energía, cooldown y objetivo pendiente", () => {
+  const habilidad = {
+    id: "equipada-1",
+    habilidadId: "primeros_auxilios",
+    habilidad: {
+      nombre: "Primeros auxilios",
+      descripcion: "Cura a un compañero.",
+      rareza: "Basica",
+      costeEnergia: 10,
+      costeMana: 0,
+      cooldownTurnos: 2,
+      curacion: 15,
+    },
+  };
+  const base = {
+    habilidades: [habilidad],
+    habilidadSeleccionadaId: habilidad.habilidadId,
+    habilidadEsperandoObjetivoId: null,
+    energiaActual: 20,
+    manaActual: 10,
+    ocupado: false,
+    puedeActuarJugador: true,
+    obtenerCooldown: () => 0,
+    onSeleccionar() {},
+    onPrevisualizar() {},
+    onCerrar() {},
+  };
+  const render = (props) => renderToStaticMarkup(React.createElement(PanelHabilidadesCombate, { ...base, ...props }));
+  const disponible = render({});
+  assert.match(disponible, /Habilidades equipadas/);
+  assert.match(disponible, /Primeros auxilios/);
+  assert.match(disponible, /10 ENE/);
+  assert.match(disponible, /Curación:/);
+  assert.match(disponible, /aria-label="Usar habilidad Primeros auxilios"/);
+  assert.doesNotMatch(disponible, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+
+  const bloqueadaEnergia = render({ energiaActual: 0 });
+  assert.match(bloqueadaEnergia, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+  const bloqueadaCooldown = render({ obtenerCooldown: () => 3 });
+  assert.match(bloqueadaCooldown, /CD 3/);
+  assert.match(bloqueadaCooldown, /aria-label="Usar habilidad Primeros auxilios"[^>]*disabled/);
+
+  const objetivo = render({ habilidadEsperandoObjetivoId: habilidad.habilidadId });
+  assert.match(objetivo, /Toca un objetivo en la escena/);
+  assert.match(objetivo, /ELIGE OBJETIVO/);
 });
