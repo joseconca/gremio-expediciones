@@ -193,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
             # Verificacion global: pivotes y agarres se comparten entre clases.
             script("validar-equipo-hd.py")
         elif args.orden == "publicar":
+            if args.id:
+                raise ValueError("La publicación de equipo es global; omite --id")
             if not args.aprobado:
                 raise ValueError("Para publicar el equipo utiliza --aprobado")
             script("validar-equipo-hd.py")
