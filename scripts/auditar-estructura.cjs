@@ -25,7 +25,6 @@ for (const root of SCAN) {
   visit(root);
 }
 
-const available = new Set(candidates);
 const incoming = new Map(candidates.map(f => [f, new Set()]));
 const missing = [];
 const edges = [];
