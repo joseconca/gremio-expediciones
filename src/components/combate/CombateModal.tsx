@@ -24,6 +24,7 @@ import ResultadoCombate from "./ResultadoCombate";
 import InformacionCombatientes from "./InformacionCombatientes";
 import PanelConsumiblesCombate from "./PanelConsumiblesCombate";
 import PanelHabilidadesCombate from "./PanelHabilidadesCombate";
+import ComandosCombate from "./ComandosCombate";
 import styles from "./combate-rpg.module.css";
 import type { CombateModalProps, HabilidadCombate, HabilidadEquipable } from "./tipos";
 import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
@@ -610,6 +611,25 @@ export default function CombateModal({
   };
 
 
+  const alternarHabilidades = () => {
+    if (!mostrarHabilidades && !habilidadSeleccionadaId && habilidades.length > 0) {
+      setHabilidadSeleccionadaId(habilidades[0].habilidadId);
+    }
+    setMostrarObjetos(false);
+    if (mostrarHabilidades) setHabilidadEsperandoObjetivoId(null);
+    setMostrarHabilidades((actual) => !actual);
+  };
+
+  const alternarObjetos = () => {
+    setMostrarHabilidades(false);
+    setHabilidadEsperandoObjetivoId(null);
+    setMostrarObjetos((actual) => !actual);
+    if (!objetoSeleccionadoId && objetosConsumibles.length > 0) {
+      setObjetoSeleccionadoId(objetosConsumibles[0].id);
+    }
+  };
+
+
   return (
     <div
       className={`${styles.root} fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans`}
@@ -1108,98 +1128,19 @@ export default function CombateModal({
         {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
         <section className={styles.dock}>
 
-          {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
-          <div className={styles.commands}>
-            <div className="flex flex-col gap-2 w-full max-w-[200px]">
-              <button
-                data-active={!mostrarHabilidades && !mostrarObjetos}
-                onClick={() => void ejecutarAtaqueJugador()}
-                disabled={
-                  procesando ||
-                  procesandoLocal ||
-                  combateTerminado ||
-                  !puedeActuarJugador
-                }
-                className="group flex w-full items-center justify-between rounded border border-stone-600 bg-stone-700 px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-300 group-disabled:text-stone-600">
-                  ATACAR
-                </span>
-              </button>
-
-              <button
-                data-active={mostrarHabilidades}
-                onClick={() => {
-                  if (
-                    !mostrarHabilidades &&
-                    !habilidadSeleccionadaId &&
-                    habilidades.length > 0
-                  ) {
-                    setHabilidadSeleccionadaId(habilidades[0].habilidadId);
-                  }
-                  setMostrarObjetos(false);
-                  if (mostrarHabilidades) setHabilidadEsperandoObjetivoId(null);
-                  setMostrarHabilidades((actual) => !actual);
-                }}
-                disabled={
-                  procesando ||
-                  procesandoLocal ||
-                  combateTerminado ||
-                  !puedeActuarJugador ||
-                  habilidades.length === 0
-                }
-                className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40
-                  ${
-                    mostrarHabilidades
-                      ? "border-stone-600 bg-stone-500"
-                      : "border-stone-600 bg-stone-700"
-                  }
-                `}
-              >
-                <span
-                  className={`text-xs sm:text-sm font-bold tracking-widest transition-colors ${
-                    mostrarHabilidades
-                      ? "text-stone-400"
-                      : "text-stone-300 group-disabled:text-stone-600"
-                  }`}
-                >
-                  HABILIDADES
-                </span>
-              </button>
-
-              <button
-                data-active={mostrarObjetos}
-                onClick={() => {
-                  setMostrarHabilidades(false);
-                  setHabilidadEsperandoObjetivoId(null);
-                  setMostrarObjetos((actual) => !actual);
-                  if (!objetoSeleccionadoId && objetosConsumibles.length > 0) {
-                    setObjetoSeleccionadoId(objetosConsumibles[0].id);
-                  }
-                }}
-                disabled={
-                  procesando || procesandoLocal || combateTerminado ||
-                  !puedeActuarJugador || objetosConsumibles.length === 0
-                }
-                className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40 ${mostrarObjetos ? "border-emerald-700 bg-emerald-950" : "border-stone-600 bg-stone-700"}`}
-              >
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-200">
-                  OBJETOS
-                </span>
-                <span className="font-mono text-[10px] text-emerald-300">
-                  {objetosConsumibles.reduce((total, item) => total + item.cantidad, 0)}
-                </span>
-              </button>
-
-              <button
-                onClick={() => confirmacionHuidaRef.current?.showModal()}
-                disabled={procesando || !puedeHuir || (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))}
-                className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
-              </button>
-            </div>
-          </div>
+          {/* Comandos: los botones no gestionan el estado ni las peticiones. */}
+          <ComandosCombate
+            mostrarHabilidades={mostrarHabilidades}
+            mostrarObjetos={mostrarObjetos}
+            accionesDeshabilitadas={procesando || procesandoLocal || combateTerminado || !puedeActuarJugador}
+            huidaDeshabilitada={procesando || !puedeHuir || (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))}
+            hayHabilidades={habilidades.length > 0}
+            cantidadObjetos={objetosConsumibles.reduce((total, item) => total + item.cantidad, 0)}
+            onAtacar={() => void ejecutarAtaqueJugador()}
+            onHabilidades={alternarHabilidades}
+            onObjetos={alternarObjetos}
+            onSolicitarHuida={() => confirmacionHuidaRef.current?.showModal()}
+          />
 
           {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
           <div className={styles.content}>
