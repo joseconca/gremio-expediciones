@@ -2,14 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import MiniaturaObjeto from "@/components/objetos/MiniaturaObjeto";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
-  obtenerSpriteObjeto,
   obtenerRanuraObjeto,
 } from "@/lib/objetos";
 import type {
@@ -641,11 +639,12 @@ export default function HerreriaPage() {
                   const vendiendo = procesando === "vender:" + item.id;
                   return (
                     <article key={item.id} className="flex min-w-0 items-center gap-3 rounded-lg border border-[#59432b] bg-[#17130f] p-2">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#100e0b] p-1">
-                        {obtenerSpriteObjeto(item.objeto) ? (
-                          <Image src={obtenerSpriteObjeto(item.objeto) as string} alt="" aria-hidden="true" width={56} height={56} className="h-full w-full object-contain [image-rendering:pixelated]" />
-                        ) : <span className="text-2xl" aria-hidden="true">{iconoTipo(item.objeto.tipo)}</span>}
-                      </div>
+                      <MiniaturaObjeto
+                        objeto={item.objeto}
+                        instancia={item}
+                        iconoAlternativo={iconoTipo(item.objeto.tipo)}
+                        claseBoton="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#100e0b] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                      />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-1.5">
                           <h3 className="break-words text-xs font-black text-[#f2dfbf]">{item.objeto.nombre}</h3>
