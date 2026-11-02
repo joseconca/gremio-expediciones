@@ -260,6 +260,7 @@ function makeCombatConsumableRoute({
     "../../../lib/expediciones/dificultad": commonDependencies["../../../../lib/expediciones/dificultad"],
     "../../../lib/expediciones/estados-combate": commonDependencies["../../../../lib/expediciones/estados-combate"],
     "./accion-combate": common,
+    "./efectos-visualizacion": loadSource("src/server/services/combate/efectos-visualizacion.ts"),
   };
   const { ejecutarAccionPve: POST } = loadSource(
     "src/server/services/combate/pve.ts",
