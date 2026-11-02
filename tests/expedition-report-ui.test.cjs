@@ -36,12 +36,13 @@ test("el reporte de party mantiene su pergamino, oculta recompensas cero y plieg
   const service = read("src/server/services/party/party-service.ts");
 
   assert.match(panel, /cronicaPartyAbierta/);
-  assert.match(panel, /aria-controls="cronica-expedicion-party"/);
+  const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
+  assert.match(provisional, /aria-controls="cronica-expedicion-party"/);
   const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
-  assert.match(panel, /<RecompensasInformeParty/);
+  assert.match(provisional, /<RecompensasInformeParty/);
   assert.match(recompensas, /fila\.valor > 0/);
   assert.match(recompensas, /obtenerSpriteObjeto/);
-  assert.match(panel, /Has derrotado a/);
+  assert.match(provisional, /Has derrotado a/);
   assert.match(service, /duracionSegundos:/);
   assert.match(service, /enemigosDerrotados:/);
   assert.match(service, /logCombate:/);
@@ -66,10 +67,12 @@ test("el informe compartido conserva el diseño de pergamino y se anexa bajo el 
   assert.match(tipos, /origenCoords\?: \{ lat: number; lng: number \} \| null/);
   assert.match(panel, /<MissionMap[\s\S]*?destinoExpedicion=\{estado\.expedicionActiva\.destinoCoords\}/);
   assert.match(panel, /regresando=\{estado\.expedicionActiva\.fase === "regresando"\}/);
-  assert.match(panel, /estado\.expedicionActiva\.fase === "regresando" && ultimoResultadoCombate\.expedicionPartyId === estado\.expedicionActiva\.id/);
-  assert.match(panel, /Gremio · crónica compartida/);
+  const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
+  assert.match(panel, /<InformeProvisionalParty/);
+  assert.match(provisional, /estado\.expedicionActiva\.fase === "regresando" && ultimoResultadoCombate\.expedicionPartyId === estado\.expedicionActiva\.id/);
+  assert.match(provisional, /Gremio · crónica compartida/);
   const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
-  assert.match(panel, /<RecompensasInformeParty/);
+  assert.match(provisional, /<RecompensasInformeParty/);
   assert.match(recompensas, /recompensa\.experienciaJob/);
   assert.match(recompensas, /obtenerSpriteObjeto/);
 });
@@ -103,7 +106,9 @@ test("el mismo desglose de recompensas sirve al informe provisional y al histór
   const panel = read("src/components/base/PanelParty.tsx");
   const historico = read("src/components/base/party/InformeHistoricoParty.tsx");
   const recompensas = read("src/components/base/party/RecompensasInformeParty.tsx");
-  assert.match(panel, /<RecompensasInformeParty/);
+  const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
+  assert.match(panel, /<InformeProvisionalParty/);
+  assert.match(provisional, /<RecompensasInformeParty/);
   assert.match(historico, /<RecompensasInformeParty/);
   assert.match(recompensas, /filas\.length === 0 && objetos\.length === 0/);
   assert.match(recompensas, /dropsEnemigo/);
@@ -111,4 +116,16 @@ test("el mismo desglose de recompensas sirve al informe provisional y al histór
   assert.match(recompensas, /No hay recompensas de combate disponibles/);
   assert.doesNotMatch(panel, /filas\.length === 0 && objetos\.length === 0/);
   assert.doesNotMatch(historico, /filas\.length === 0 && objetos\.length === 0/);
+});
+
+test("provisional e histórico mantienen controles de apertura independientes", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+  const provisional = read("src/components/base/party/InformeProvisionalParty.tsx");
+  const historico = read("src/components/base/party/InformeHistoricoParty.tsx");
+  assert.match(panel, /cronicaPartyAbierta=\{cronicaPartyAbierta\}/);
+  assert.match(panel, /informeHistoricoPartyAbierto=\{informeHistoricoPartyAbierto\}/);
+  assert.match(provisional, /aria-controls="cronica-expedicion-party"/);
+  assert.match(historico, /aria-controls="detalle-informe-historico-party"/);
+  assert.match(provisional, /<RecompensasInformeParty/);
+  assert.match(historico, /<RecompensasInformeParty/);
 });
