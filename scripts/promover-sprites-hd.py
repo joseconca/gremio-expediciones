@@ -11,7 +11,15 @@ def promote():
     m=json.loads((HD/'equipment/manifest.json').read_text(encoding='utf-8'))
     qa=json.loads((HD/'equipment/validation-report.json').read_text(encoding='utf-8'))
     if qa['status']!='passed' or qa['bodyFramesUnchanged']!=600:raise ValueError('Validate equipment before promotion')
-    result={'version':'hd-v1','classes':m['classes'],'actions':m['actions'],'timings':{s:r['timings'] for s,r in m['rigs'].items()},'items':{},'compositions':{}}
+    # Preserve individually published classes (e.g. Berserker) when refreshing shared equipment.
+    # Only classes owned by the equipment manifest are rebuilt by this bulk publisher.
+    previous_path=ROOT/'src/lib/generated/sprites-hd.json'
+    previous=json.loads(previous_path.read_text(encoding='utf-8')) if previous_path.exists() else {}
+    extras=[c for c in previous.get('classes',[]) if c not in m['classes']]
+    for clase in extras:
+        if not (OUT/'heroes'/clase/'m-sheet.png').is_file() and not (OUT/'heroes'/clase/'f-sheet.png').is_file():
+            raise ValueError('Extra runtime class has no published atlas: '+clase)
+    result={'version':'hd-v1','classes':list(dict.fromkeys([*m['classes'],*extras])),'actions':m['actions'],'timings':{s:r['timings'] for s,r in m['rigs'].items()},'items':{},'compositions':{}}
     for c in m['classes']:
         for s in ('m','f'):
             sheet=HD/c/s/f'{c}-{s}-sheet.png'
