@@ -98,6 +98,7 @@ function loadService(prisma, testOptions = {}) {
       },
     },
     "@/lib/party/combate-reglas": reglas,
+    "@/lib/party/recompensas": require("../src/lib/party/recompensas.ts"),
     "@/lib/expediciones/objetivos-combate": require("../src/lib/expediciones/objetivos-combate.ts"),
     "@/lib/expediciones/enemigos-combate": require("../src/lib/expediciones/enemigos-combate.ts"),
     "@/lib/habilidades": {

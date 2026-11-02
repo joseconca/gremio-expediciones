@@ -56,3 +56,42 @@ test("los estados de traslado activos y finales son explícitos", () => {
   assert.equal(obtenerEstadoFinalTraslado("rechazada"), "rechazada");
   assert.equal(obtenerEstadoFinalTraslado("salida_voluntaria"), "completada");
 });
+
+const {
+  leerRecompensaParty,
+  repartirCantidadEntera,
+  crearRngDeterminista,
+  registrarObjetoRecompensa,
+} = require("../src/lib/party/recompensas.ts");
+
+test("las recompensas compartidas se leen sin cantidades negativas ni objetos inválidos", () => {
+  assert.deepEqual(leerRecompensaParty(null), { oro: 0, madera: 0, piedra: 0, metal: 0, objetos: [] });
+  assert.deepEqual(leerRecompensaParty({
+    oro: 10.9, madera: -5, piedra: "4", metal: 3,
+    objetos: [{ objetoId: "pocion", cantidad: 2.9 }, { objetoId: "", cantidad: 8 }, { objetoId: "espada", cantidad: -2 }],
+  }), { oro: 10, madera: 0, piedra: 0, metal: 3, objetos: [{ objetoId: "pocion", cantidad: 2 }] });
+});
+
+test("el reparto de oro y recursos no crea ni pierde unidades", () => {
+  for (const total of [0, 1, 2, 7, 99, 100]) for (const miembros of [2, 3]) {
+    const repartos = Array.from({ length: miembros }, (_, i) => repartirCantidadEntera(total, miembros, i));
+    assert.equal(repartos.reduce((sum, n) => sum + n, 0), total);
+    assert.ok(Math.max(...repartos) - Math.min(...repartos) <= 1);
+  }
+  assert.equal(repartirCantidadEntera(8, 0, 0), 0);
+});
+
+test("el RNG de botín compartido es reproducible y los objetos se agrupan", () => {
+  const a = crearRngDeterminista("combate-1:jugador-1");
+  const b = crearRngDeterminista("combate-1:jugador-1");
+  const tiradasA = Array.from({ length: 5 }, () => a());
+  const tiradasB = Array.from({ length: 5 }, () => b());
+  assert.deepEqual(tiradasA, tiradasB);
+  assert.ok(tiradasA.every(v => v >= 0 && v < 1));
+  const objetos = [];
+  registrarObjetoRecompensa(objetos, "pocion", 2);
+  registrarObjetoRecompensa(objetos, "pocion", 3);
+  registrarObjetoRecompensa(objetos, "espada", 1);
+  registrarObjetoRecompensa(objetos, "espada", 0);
+  assert.deepEqual(objetos, [{ objetoId: "pocion", cantidad: 5 }, { objetoId: "espada", cantidad: 1 }]);
+});
