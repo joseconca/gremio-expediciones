@@ -1339,3 +1339,17 @@ test("el botín con sufijo conserva su instancia y utiliza el inventario transac
   assert.equal(await agregarInstanciaBotinAlInventario(tx, "personaje-1", drop, deps), false);
   assert.equal(items.length, 1);
 });
+
+
+test("el regreso tras la victoria conserva la programación original aunque el combate termine tarde", async () => {
+  const combat = mkCombat({ enemigoHp: 10 });
+  const { prisma, calls } = mockPrisma(combat);
+  const resultado = await loadService(prisma).ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(resultado.fase, "victoria");
+  assert.equal(resultado.regreso.fase, "regresando");
+  assert.equal(resultado.regreso.fechaSalida, "2026-10-15T10:15:00.000Z");
+  assert.equal(resultado.regreso.fechaLlegada, "2026-10-15T10:30:00.000Z");
+  assert.equal(calls.expeditionWrites.length, 1);
+  assert.equal(calls.expeditionWrites[0].data.fechaSalida.toISOString(), resultado.regreso.fechaSalida);
+  assert.equal(calls.expeditionWrites[0].data.fechaLlegada.toISOString(), resultado.regreso.fechaLlegada);
+});

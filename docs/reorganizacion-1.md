@@ -172,7 +172,9 @@ Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-for
 
 La rutina transaccional `liquidarRecompensasParty` se trasladó íntegra de `server/services/party/combate-party-actions.ts` a `server/services/party/liquidacion-recompensas.ts`. El orquestador conserva la secuencia de acciones del jugador y turno enemigo, pero delega la liquidación. Se conserva la misma instancia de `Prisma.TransactionClient`, el control optimista por `version`, el guardado `recompensasResueltas`, el botín determinista, los informes y la concesión individual de experiencia. La normalización del log ahora es una única función pura `lib/party/combate-reglas.ts`.
 
-El test de acciones de combate carga y ejecuta la liquidación extraída con sus dependencias simuladas habituales (sin reemplazar su resultado), protegiendo los casos de victoria, derrota, huida, botín, límites del inventario e idempotencia. Se añadió una prueba específica para el contrato histórico de normalización del log. **Los resultados del workflow de regresión deberán comprobarse antes de continuar extrayendo turnos.**
+El test de acciones de combate carga y ejecuta la liquidación extraída con sus dependencias simuladas habituales (sin reemplazar su resultado), protegiendo los casos de victoria, derrota, huida, botín, límites del inventario e idempotencia.
+
+El paso al regreso se aisló también en `server/services/party/regreso-combate.ts`. Recibe el mismo `Prisma.TransactionClient`, mantiene las comprobaciones de fase, participantes y versiones, y calcula la fecha de vuelta desde la **hora original del encuentro**, nunca desde el momento en que el jugador termina el combate. Los tests aislados ejecutan la implementación real y verifican ambas fechas. Se añadió una prueba específica para el contrato histórico de normalización del log. **Los resultados del workflow de regresión deberán comprobarse antes de continuar extrayendo turnos.**
 
 ## Fase 4 — Limpieza verificada
 
