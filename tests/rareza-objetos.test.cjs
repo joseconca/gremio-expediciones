@@ -37,7 +37,7 @@ test("Armería, Herrería y Botica usan el mismo catálogo con su variante visua
     assert.doesNotMatch(pagina, /function nombreRareza\(/);
     assert.doesNotMatch(pagina, /function estiloRareza\(/);
   }
-  const botica = read("src/app/base/botica/page.tsx");
+  const botica = read("src/components/botica/CatalogoBotica.tsx");
   assert.match(botica, /estiloRareza\(objeto\.rareza, "botica"\)/);
   assert.doesNotMatch(botica, /function nombreRareza\(/);
   assert.doesNotMatch(botica, /function estiloRareza\(/);
