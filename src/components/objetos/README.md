@@ -24,6 +24,9 @@ La tarjeta o fila **mantiene su propio layout** (nombre, cantidad, precio, boton
 - Bonificaciones por nivel y sprite: `src/lib/objetos.ts`.
 - Texto o formato de la ventana: `detalles-objeto.ts` (sin alterar mecánicas).
 - Aspecto de la miniatura: `MiniaturaObjeto.tsx`.
-- Compra, venta, forja, inventario y equipamiento: `src/app/base/{armeria,herreria,botica,personaje}/page.tsx`.
+- Operaciones de compra, venta, forja, inventario y equipamiento: `src/app/base/{armeria,herreria,botica,personaje}/page.tsx`.
+- Presentación de ofertas, ventas y forja: `src/components/armeria/` y `src/components/herreria/`.
+- Contrato de datos de `GET /api/objetos`: `src/lib/equipamiento/datos-objetos.ts`.
+- Carga inicial y recarga compartidas por Armería y Herrería: `src/hooks/useDatosObjetosEdificio.ts`.
 
 Verificación: `npm run test:base` incluye `tests/objetos-presentacion.test.cjs`; revisar también `npm run test:progression`, `npm run lint` y `npm run build`. La interfaz final requiere comprobación visual tanto en móvil como en PC.
