@@ -11,8 +11,31 @@ const { establecerCooldownHabilidad } = require('../src/lib/expediciones/cooldow
 const { calcularPesosCuracion } = require('../src/lib/expediciones/presupuesto-curacion.ts');
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/motor-tactico.ts');
+const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });
+
+test('la preparación mantiene la API antigua y no modifica la definición original', () => {
+  const antiguo = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  assert.strictEqual(antiguo.prepararHabilidadRedisenada, prepararHabilidadRedisenada);
+  assert.strictEqual(antiguo.actualizarRelojContexto, actualizarRelojContexto);
+  const habilidad = {
+    id: 'test_preparacion', claseId: 'espadachin',
+    multiplicadorDano: 2, danoProgresivoPorcentaje: .3,
+    curacionPorcentaje: .4, curacionProgresivaPorcentaje: .2,
+    disenoActiva: { operaciones: [] },
+  };
+  const c = { numeroObjetivos: 2, pesoCuracion: .25, efectosActor: [], efectosObjetivo: [] };
+  const preparada = prepararHabilidadRedisenada(habilidad, c);
+  assert.notStrictEqual(preparada, habilidad);
+  assert.equal(preparada.multiplicadorDano, 1);
+  assert.equal(preparada.danoProgresivoPorcentaje, .15);
+  assert.equal(preparada.curacionPorcentaje, .1);
+  assert.equal(preparada.curacionProgresivaPorcentaje, .1);
+  assert.equal(preparada.rupturaDefensaTemporal, 0);
+  assert.equal(habilidad.rupturaDefensaTemporal, undefined);
+  assert.equal(habilidad.multiplicadorDano, 2);
+});
 
 test('las 61 clases tienen un catálogo activo completo, una técnica adicional e iconos existentes', () => {
   assert.equal(HABILIDADES.length, 367);
