@@ -1257,3 +1257,55 @@ test("una poción de maná se puede usar con la vida completa y restaura sus rec
   assert.ok(calls.characterWrites.some((w) => w.where.id === "personaje-u1" && w.data.manaActual?.increment === 10));
   assert.equal(calls.inventoryWrites.length, 1);
 });
+
+test("la entrega transaccional apila consumibles antes de aplicar el límite de slots", async () => {
+  const { agregarObjetoAlInventario } = require("../src/server/services/party/inventario-recompensas.ts");
+  const items = [];
+  const tx = {
+    inventario: {
+      findUnique: async () => ({ id: "inventario-1" }),
+      create: async () => { throw new Error("No debería crear un inventario existente"); },
+    },
+    inventarioObjeto: {
+      findFirst: async ({ where }) => items.find(item => item.objetoId === where.objetoId) ?? null,
+      update: async ({ where, data }) => {
+        const item = items.find(x => x.id === where.id);
+        item.cantidad += data.cantidad.increment;
+      },
+      count: async () => items.length,
+      create: async ({ data }) => items.push({ id: "stack-" + (items.length + 1), ...data }),
+    },
+  };
+  const dependencias = { existeObjeto: id => ["pocion", "espada"].includes(id), limiteInventario: 1 };
+  assert.equal(await agregarObjetoAlInventario(tx, "personaje-1", "pocion", 2, dependencias), true);
+  assert.equal(await agregarObjetoAlInventario(tx, "personaje-1", "pocion", 3, dependencias), true);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].cantidad, 5);
+  assert.equal(await agregarObjetoAlInventario(tx, "personaje-1", "espada", 1, dependencias), false);
+  assert.equal(await agregarObjetoAlInventario(tx, "personaje-1", "desconocido", 1, dependencias), false);
+  assert.equal(items.length, 1);
+});
+
+test("el botín con sufijo conserva su instancia y utiliza el inventario transaccional", async () => {
+  const { agregarInstanciaBotinAlInventario } = require("../src/server/services/party/inventario-recompensas.ts");
+  const items = [];
+  const tx = {
+    inventario: {
+      findUnique: async () => null,
+      create: async () => ({ id: "nuevo-inventario" }),
+    },
+    inventarioObjeto: {
+      count: async () => items.length,
+      create: async ({ data }) => items.push(data),
+    },
+  };
+  const drop = { objeto: { id: "espada" }, sufijoId: "del vigor", bonificaciones: { fuerza: 2 } };
+  const deps = { existeObjeto: () => true, limiteInventario: 1 };
+  assert.equal(await agregarInstanciaBotinAlInventario(tx, "personaje-1", drop, deps), true);
+  assert.deepEqual(items[0], {
+    inventarioId: "nuevo-inventario", objetoId: "espada", cantidad: 1,
+    nivelMejora: 0, sufijoId: "del vigor", bonificaciones: { fuerza: 2 },
+  });
+  assert.equal(await agregarInstanciaBotinAlInventario(tx, "personaje-1", drop, deps), false);
+  assert.equal(items.length, 1);
+});

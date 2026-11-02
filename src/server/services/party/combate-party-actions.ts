@@ -59,6 +59,7 @@ import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
 import { leerRecompensaParty, repartirCantidadEntera, crearRngDeterminista, registrarObjetoRecompensa } from "@/lib/party/recompensas";
+import { agregarObjetoAlInventario, agregarInstanciaBotinAlInventario } from "./inventario-recompensas";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 
@@ -435,75 +436,10 @@ function validarCostesHabilidad(personaje: { energiaActual: number; manaActual: 
   }
 }
 
-async function agregarObjetoAlInventario(
-  tx: Prisma.TransactionClient,
-  personajeId: string,
-  objetoId: string,
-  cantidad: number,
-): Promise<boolean> {
-  if (cantidad <= 0 || !Number.isInteger(cantidad) || !obtenerObjetoPorId(objetoId)) return false;
-  const inventarioExistente = await tx.inventario.findUnique({
-    where: { personajeId },
-    select: { id: true },
-  });
-  const inventario = inventarioExistente ?? await tx.inventario.create({
-    data: { personajeId },
-    select: { id: true },
-  });
-  const stack = await tx.inventarioObjeto.findFirst({
-    where: { inventarioId: inventario.id, objetoId },
-    select: { id: true, cantidad: true },
-    orderBy: { id: "asc" },
-  });
-  if (stack) {
-    await tx.inventarioObjeto.update({
-      where: { id: stack.id },
-      data: { cantidad: { increment: cantidad } },
-    });
-    return true;
-  }
-  const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
-  if (ocupados >= LIMITE_INVENTARIO_OBJETOS) return false;
-  await tx.inventarioObjeto.create({
-    data: {
-      inventarioId: inventario.id,
-      objetoId,
-      cantidad,
-      nivelMejora: 0,
-      sufijoId: null,
-      bonificaciones: {},
-    },
-  });
-  return true;
-}
-
-async function agregarInstanciaBotinAlInventario(
-  tx: Prisma.TransactionClient,
-  personajeId: string,
-  botin: NonNullable<ReturnType<typeof tirarBotinEnemigo>>,
-): Promise<boolean> {
-  const inventarioExistente = await tx.inventario.findUnique({
-    where: { personajeId },
-    select: { id: true },
-  });
-  const inventario = inventarioExistente ?? await tx.inventario.create({
-    data: { personajeId },
-    select: { id: true },
-  });
-  const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
-  if (ocupados >= LIMITE_INVENTARIO_OBJETOS) return false;
-  await tx.inventarioObjeto.create({
-    data: {
-      inventarioId: inventario.id,
-      objetoId: botin.objeto.id,
-      cantidad: 1,
-      nivelMejora: 0,
-      sufijoId: botin.sufijoId,
-      bonificaciones: botin.bonificaciones as unknown as Prisma.InputJsonValue,
-    },
-  });
-  return true;
-}
+const dependenciasInventarioRecompensas = {
+  existeObjeto: (objetoId: string) => Boolean(obtenerObjetoPorId(objetoId)),
+  limiteInventario: LIMITE_INVENTARIO_OBJETOS,
+};
 
 /** Liquida una victoria compartida exactamente una vez dentro de la transacción serializable. */
 async function liquidarRecompensasParty(
@@ -758,7 +694,7 @@ async function liquidarRecompensasParty(
     for (const objeto of (faseResultado === "victoria" ? recompensaMision.objetos : [])) {
       const cantidad = repartirCantidadEntera(objeto.cantidad, totalMiembros, indice);
       if (cantidad <= 0) continue;
-      const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad);
+      const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad, dependenciasInventarioRecompensas);
       if (agregado) {
         registrarObjetoRecompensa(objetosRepartidos, objeto.objetoId, cantidad);
       } else {
@@ -802,7 +738,7 @@ async function liquidarRecompensasParty(
       );
       if (!drop) continue;
 
-      const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, drop);
+      const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, drop, dependenciasInventarioRecompensas);
       if (!agregado) {
         logLiquidacion.push(
           `🎒 El botín de ${entradaEnemigo.snapshot.nombre} para ${miembro.usuarioId} se ha perdido porque su inventario está lleno.`,
