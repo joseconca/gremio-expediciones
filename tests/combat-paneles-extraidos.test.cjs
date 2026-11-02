@@ -17,6 +17,7 @@ require.extensions[".tsx"] = (module, filename) => {
 
 const ResultadoCombate = require("../src/components/combate/ResultadoCombate.tsx").default;
 const InformacionCombatientes = require("../src/components/combate/InformacionCombatientes.tsx").default;
+const PanelConsumiblesCombate = require("../src/components/combate/PanelConsumiblesCombate.tsx").default;
 
 const combate = {
   fase: "derrota",
@@ -95,4 +96,30 @@ test("la ventana de información conserva los paneles de aliados y enemigos", ()
   assert.match(aliado, /Party · 1/);
   assert.match(aliado, /Heroína/);
   assert.match(aliado, /PV actuales/);
+});
+
+test("el panel de consumibles muestra los porcentajes de curación y conserva el bloqueo al estar lleno", () => {
+  const pocion = { id: "inv-1", cantidad: 2, objeto: {
+    id: "pocion", nombre: "Poción de vida", descripcion: "Restaura salud",
+    tipo: "consumible", curacion: 15, curacionPorcentaje: 0.15,
+  } };
+  const props = {
+    combate: { jugadorHp: 50, jugadorHpMaximo: 100, turno: "jugador" },
+    personaje: { energiaActual: 20, energiaMaxima: 100, manaActual: 10, manaMaximo: 50 },
+    objetosConsumibles: [pocion],
+    objetoSeleccionadoId: "inv-1",
+    ocupado: false,
+    onSeleccionarObjeto() {}, onUsarObjeto: async () => {}, onCerrar() {},
+  };
+  const disponible = renderToStaticMarkup(React.createElement(PanelConsumiblesCombate, props));
+  assert.match(disponible, /Poción de vida/);
+  assert.match(disponible, /2 disponibles/);
+  assert.match(disponible, /\+30 PV/);
+  assert.match(disponible, /USAR OBJETO/);
+
+  const lleno = renderToStaticMarkup(React.createElement(PanelConsumiblesCombate, {
+    ...props, combate: { ...props.combate, jugadorHp: 100 },
+  }));
+  assert.match(lleno, /Recursos al máximo/);
+  assert.match(lleno, /disabled=""/);
 });
