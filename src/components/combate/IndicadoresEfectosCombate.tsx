@@ -6,7 +6,7 @@ import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
-import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { obtenerComidaTaberna } from "@/lib/base/taberna";
 import { leerEfectosCombate } from "@/lib/expediciones/estados-combate";
 import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
 

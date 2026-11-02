@@ -18,7 +18,7 @@ import {
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { esModoDificultad } from "../../../lib/expediciones/dificultad";
-import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 

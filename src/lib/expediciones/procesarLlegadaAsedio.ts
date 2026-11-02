@@ -11,7 +11,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {

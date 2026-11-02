@@ -116,7 +116,7 @@ function loadService(prisma) {
       })),
     },
     "@/lib/expediciones/elite": { seleccionarJefeElite: () => enemy },
-    "@/lib/comidasTaberna": {
+    "@/lib/base/taberna": {
       aplicarEfectoComida: (stats) => stats,
       calcularBonificacionesComida: () => ({}),
       comidaOtorgaIniciativa: (comida) => comida === "iniciativa",

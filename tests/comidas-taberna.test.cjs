@@ -6,7 +6,7 @@ const {
   COMIDAS_TABERNA,
   aplicarEfectoComida,
   obtenerComidaTaberna,
-} = require("../src/lib/comidasTaberna.ts");
+} = require("../src/lib/base/taberna.ts");
 
 const atributosBase = {
   ataque: 100,

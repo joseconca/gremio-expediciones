@@ -708,7 +708,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
-    "@/lib/comidasTaberna": {
+    "@/lib/base/taberna": {
       obtenerComidaTaberna: (id) => ({
         "carne-cazadora": { id, nombre: "Carne del cazador", coste: 8, nivelRequerido: 1 },
         "raices-vigorizantes": { id, nombre: "Guiso de raíces vigorizantes", coste: 16, nivelRequerido: 2 },

@@ -12,7 +12,7 @@ import {
 import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
-import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { obtenerComidaTaberna } from "@/lib/base/taberna";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
 import { asegurarInventarioYEquipo } from "@/lib/inventario";
 

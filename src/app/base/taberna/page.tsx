@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import { COMIDAS_TABERNA, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { COMIDAS_TABERNA, obtenerComidaTaberna } from "@/lib/base/taberna";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import DescripcionTactil from "@/components/ui/DescripcionTactil";

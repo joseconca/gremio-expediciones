@@ -1,4 +1,4 @@
-import { aplicarModificadoresPosicion } from "./expediciones/posicion-combate";
+import { aplicarModificadoresPosicion } from "../expediciones/posicion-combate";
 export type AtributoComida = "ataque" | "ataqueMagico" | "defensa" | "velocidad";
 
 export type EfectoComida =
