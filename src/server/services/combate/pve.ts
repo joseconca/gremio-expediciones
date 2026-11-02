@@ -1,3 +1,4 @@
+import { adjuntarPulsosEstado } from "./efectos-visualizacion";
 import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
 import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
@@ -14,16 +15,6 @@ import {
   type PasoTurnoVelocidad,
 } from "@/lib/expediciones/iniciativa-combate";
 
-function adjuntarPulsosEstado(
-  accion: AccionAnimadaCombate,
-  objetivo: "jugador" | "enemigo",
-  cambios: { danoAplicado: number; curacionAplicada: number },
-): AccionAnimadaCombate {
-  const pulsosEstado = [...(accion.pulsosEstado ?? [])];
-  if (cambios.danoAplicado > 0) pulsosEstado.push({ objetivo, tipo: "dano", cantidad: cambios.danoAplicado });
-  if (cambios.curacionAplicada > 0) pulsosEstado.push({ objetivo, tipo: "curacion", cantidad: cambios.curacionAplicada });
-  return { ...accion, ...(pulsosEstado.length > 0 ? { pulsosEstado } : {}) };
-}
 import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
