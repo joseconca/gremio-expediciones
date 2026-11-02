@@ -88,6 +88,23 @@ class ResourceCliTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no coincide"):
             cli.publicar_enemigo(enemy_id, True)
 
+    def test_equipo_publicar_sin_id_valida_antes_de_promover(self):
+        with patch.object(cli, "script") as ejecutar:
+            self.assertEqual(cli.main(["equipo", "publicar", "--aprobado"]), 0)
+            self.assertEqual(ejecutar.call_count, 2)
+            self.assertEqual(ejecutar.call_args_list[0].args[0], "validar-equipo-hd.py")
+            self.assertEqual(ejecutar.call_args_list[1].args[0], "promover-sprites-hd.py")
+
+    def test_equipo_actualizar_ensambla_una_sola_pieza(self):
+        metadata = self.root / "item.json"
+        metadata.write_text('{"id":"espada_hierro"}', encoding="utf-8")
+        with patch.object(cli, "script") as ejecutar:
+            self.assertEqual(cli.main(["equipo", "actualizar", "--metadata", str(metadata)]), 0)
+            self.assertEqual(ejecutar.call_count, 2)
+            self.assertEqual(ejecutar.call_args_list[0].args[0], "registrar-equipo-hd.py")
+            self.assertEqual(ejecutar.call_args_list[1].args,
+                             ("ensamblar-equipo-hd.py", "--items", "espada_hierro"))
+
     def test_heroe_delega_y_devuelve_error_legible(self):
         with patch.object(cli, "script", side_effect=ValueError("fallo controlado")):
             self.assertEqual(cli.main(["heroe", "estado", "--clase", "novato", "--sexo", "m"]), 1)
