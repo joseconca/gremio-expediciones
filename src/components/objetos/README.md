@@ -26,6 +26,7 @@ La tarjeta o fila **mantiene su propio layout** (nombre, cantidad, precio, boton
 - Aspecto de la miniatura: `MiniaturaObjeto.tsx`.
 - Operaciones de compra, venta, forja, inventario y equipamiento: `src/app/base/{armeria,herreria,botica,personaje}/page.tsx`.
 - Presentación de ofertas, ventas y forja: `src/components/armeria/` y `src/components/herreria/`.
+- Botica: `src/components/botica/CatalogoBotica.tsx` y `MochilaBotica.tsx`; el filtro por nivel, las peticiones y las compras siguen en `src/app/base/botica/page.tsx`.
 - Contrato de datos de `GET /api/objetos`: `src/lib/equipamiento/datos-objetos.ts`.
 - Carga inicial y recarga compartidas por Armería y Herrería: `src/hooks/useDatosObjetosEdificio.ts`.
 
