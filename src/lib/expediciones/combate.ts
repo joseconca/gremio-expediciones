@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad } from "@/lib/tiposJuego";
+import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
 import { obtenerPresentacionProyectilHabilidad } from "./presentacion-combate";
 import {
   d20,
