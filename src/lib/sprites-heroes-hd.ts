@@ -19,11 +19,18 @@ export interface EquipoSpriteHd {
 }
 export const BIBLIOTECA_SPRITES_HD = biblioteca as {
   version: string; classes: string[]; actions: AccionHeroeHd[];
+  availableSexes?: Record<string, SexoSpriteHd[]>;
+  availablePortraits?: Record<string, SexoSpriteHd[]>;
   timings: Record<SexoSpriteHd, Record<AccionHeroeHd, number[]>>;
   items: Record<string, EquipoSpriteHd>;
   compositions: Record<string, Record<SexoSpriteHd, Partial<Record<AccionHeroeHd, ContactoEquipoHd[]>>>>;
 };
-export const esClaseHeroeHd = (id: string) => BIBLIOTECA_SPRITES_HD.classes.includes(id);
+/** La pertenencia al catalogo no garantiza que ambos sexos esten publicados. */
+export const esClaseHeroeHd = (id: string, sexo?: SexoSpriteHd) =>
+  BIBLIOTECA_SPRITES_HD.classes.includes(id)
+  && (!sexo || BIBLIOTECA_SPRITES_HD.availableSexes?.[id]?.includes(sexo) === true);
+export const esRetratoHeroeHd = (id: string, sexo: SexoSpriteHd) =>
+  esClaseHeroeHd(id, sexo) && BIBLIOTECA_SPRITES_HD.availablePortraits?.[id]?.includes(sexo) === true;
 export const obtenerEquipoSpriteHd = (id?: string | null) => id ? BIBLIOTECA_SPRITES_HD.items[id] : undefined;
 const ATAQUES_FAMILIA: Record<string, AccionHeroeHd> = {
   sword: "attack_sword", axe: "attack_axe", spear: "attack_spear", dagger: "attack_dagger",
