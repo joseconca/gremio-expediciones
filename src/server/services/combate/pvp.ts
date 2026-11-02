@@ -1,3 +1,4 @@
+import { adjuntarPulsosEstado } from "./efectos-visualizacion";
 import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
 import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
@@ -8,16 +9,6 @@ import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 
-function adjuntarPulsosEstado(
-  accion: AccionAnimadaCombate,
-  objetivo: "jugador" | "enemigo",
-  cambios: { danoAplicado: number; curacionAplicada: number },
-): AccionAnimadaCombate {
-  const pulsosEstado = [...(accion.pulsosEstado ?? [])];
-  if (cambios.danoAplicado > 0) pulsosEstado.push({ objetivo, tipo: "dano", cantidad: cambios.danoAplicado });
-  if (cambios.curacionAplicada > 0) pulsosEstado.push({ objetivo, tipo: "curacion", cantidad: cambios.curacionAplicada });
-  return { ...accion, ...(pulsosEstado.length > 0 ? { pulsosEstado } : {}) };
-}
 import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import {
   calcularBonusDefensaMuralla,
