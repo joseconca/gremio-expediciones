@@ -11,7 +11,7 @@ import {
   obtenerSpriteObjeto,
   obtenerIconoObjeto,
 } from "@/lib/objetos";
-import { calcularPrecioVentaObjeto } from "@/lib/economia";
+import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";

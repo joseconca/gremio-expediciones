@@ -418,7 +418,7 @@ function makeMarketRoute({ authenticated = true, initialUser = {} } = {}) {
     "next/server": { NextResponse },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
-    "@/lib/economia": require("../src/lib/economia.ts"),
+    "@/lib/economia/mercado": require("../src/lib/economia/mercado.ts"),
   });
   return { POST: route.POST, getState };
 }

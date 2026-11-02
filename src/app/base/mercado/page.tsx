@@ -4,7 +4,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { PRECIOS_RECURSOS, calcularPrecioRecurso, calcularPrecioVentaRecurso } from "@/lib/economia";
+import { PRECIOS_RECURSOS, calcularPrecioRecurso, calcularPrecioVentaRecurso } from "@/lib/economia/mercado";
 
 type Recurso = "madera" | "piedra" | "metal";
 

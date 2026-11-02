@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia";
+import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia/mercado";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
 const CAMPOS_EQUIPO = [

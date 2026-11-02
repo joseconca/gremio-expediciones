@@ -19,7 +19,7 @@ import type {
   Rareza,
 } from "@/lib/tiposJuego";
 import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
-import { calcularPrecioVentaObjeto } from "@/lib/economia";
+import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 
 interface ObjetoEnVenta extends DefinicionObjeto {
   puedeComprar: boolean;

@@ -14,7 +14,7 @@ const {
   calcularPrecioVentaRecurso,
   calcularPrecioVentaObjeto,
   calcularPrecioRecompraObjeto,
-} = require("../src/lib/economia.ts");
+} = require("../src/lib/economia/mercado.ts");
 const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
 
 test("el catálogo completo contiene precios positivos y progresión coherente entre equipo", () => {
@@ -297,7 +297,7 @@ test("las operaciones de mercado comparten el contrato de validación", () => {
   const {
     esRecursoValido, esCantidadMercadoValida, leerNivelMercado,
     MAX_CANTIDAD_MERCADO,
-  } = require("../src/lib/economia.ts");
+  } = require("../src/lib/economia/mercado.ts");
   assert.equal(MAX_CANTIDAD_MERCADO, 1_000_000);
   for (const recurso of ["madera", "piedra", "metal"]) assert.ok(esRecursoValido(recurso));
   for (const recurso of ["oro", "", null, 3]) assert.equal(esRecursoValido(recurso), false);

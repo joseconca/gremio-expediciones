@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { calcularPrecioRecurso, MAX_INT_POSTGRES, MAX_CANTIDAD_MERCADO, esRecursoValido, esCantidadMercadoValida, leerNivelMercado } from "@/lib/economia";
+import { calcularPrecioRecurso, MAX_INT_POSTGRES, MAX_CANTIDAD_MERCADO, esRecursoValido, esCantidadMercadoValida, leerNivelMercado } from "@/lib/economia/mercado";
 
 export async function POST(request: Request) {
   try {
