@@ -292,3 +292,21 @@ test("el catálogo añade botín exclusivo en todas las familias de equipo y una
     }
   }
 });
+
+test("las operaciones de mercado comparten el contrato de validación", () => {
+  const {
+    esRecursoValido, esCantidadMercadoValida, leerNivelMercado,
+    MAX_CANTIDAD_MERCADO,
+  } = require("../src/lib/economia.ts");
+  assert.equal(MAX_CANTIDAD_MERCADO, 1_000_000);
+  for (const recurso of ["madera", "piedra", "metal"]) assert.ok(esRecursoValido(recurso));
+  for (const recurso of ["oro", "", null, 3]) assert.equal(esRecursoValido(recurso), false);
+  for (const cantidad of [1, 50, MAX_CANTIDAD_MERCADO]) assert.ok(esCantidadMercadoValida(cantidad));
+  for (const cantidad of [0, -1, 1.5, "2", Infinity, MAX_CANTIDAD_MERCADO + 1]) {
+    assert.equal(esCantidadMercadoValida(cantidad), false);
+  }
+  assert.equal(leerNivelMercado({ mercado: 2 }), 2);
+  assert.equal(leerNivelMercado({ mercado: 0 }), 0);
+  assert.equal(leerNivelMercado(null), 0);
+  assert.equal(leerNivelMercado({ mercado: "3" }), 0);
+});
