@@ -41,6 +41,26 @@ const {
   obtenerObjetoPorId,
 } = require("../src/lib/objetos.ts");
 
+test("los módulos de estadísticas mantienen el cálculo público y los modificadores originales", () => {
+  const publico = require("../src/lib/progresion/estadisticas-personaje.ts");
+  const equipo = require("../src/lib/progresion/bonificaciones-equipo.ts");
+  const { MODIFICADORES_VACIOS, sumarModificadores } = require("../src/lib/progresion/modificadores-estadisticas.ts");
+  const { obtenerModificadoresPasivas } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
+
+  assert.strictEqual(publico.calcularModificadoresEquipo, equipo.calcularModificadoresEquipo);
+  assert.deepEqual(
+    sumarModificadores(
+      { ...MODIFICADORES_VACIOS, ataque: 3, manaMaximo: 7 },
+      { ...MODIFICADORES_VACIOS, ataque: Number.NaN, manaMaximo: 5 }
+    ),
+    { ...MODIFICADORES_VACIOS, ataque: 3, manaMaximo: 12 },
+    "Los valores no numéricos no alteran las estadísticas",
+  );
+
+  assert.equal(obtenerModificadoresPasivas(["reserva_arcana"], "mago").manaMaximo, 20);
+  assert.equal(obtenerModificadoresPasivas(["reserva_arcana"], "novato").manaMaximo, 0);
+});
+
 test("la composición de encuentros respeta probabilidades de party y límites de dificultad", () => {
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.1), [6]);
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.5), [6, 6]);

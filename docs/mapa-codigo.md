@@ -11,6 +11,10 @@
 | Añadir armas, armaduras, consumibles o materiales | [`src/lib/catalogos/objetos.ts`](../src/lib/catalogos/objetos.ts) |
 | Añadir enemigos, ajustar estadísticas o definir botín | [`src/lib/catalogos/enemigos.ts`](../src/lib/catalogos/enemigos.ts) |
 | Cómo se calculan las estadísticas y el progreso JOB | `src/lib/progresion/`; ver [su README](../src/lib/progresion/README.md) |
+| Total de atributos, equipo y pasivas del personaje | `src/lib/progresion/estadisticas-personaje.ts` |
+| Maestrías y bonificaciones del equipo | `src/lib/progresion/bonificaciones-equipo.ts` |
+| Bonificaciones pasivas aprendidas | `src/lib/progresion/bonificaciones-pasivas.ts` |
+| Tipos compartidos y suma de modificadores | `src/lib/progresion/modificadores-estadisticas.ts` |
 | Equipo, inventario, sufijos y drops | `src/lib/equipamiento/` |
 | Identificar objetos equipados en todas las ranuras | `src/lib/equipamiento/ranuras.ts` |
 | Tipo de respuesta de `/api/objetos` (tiendas, forja, mochila y Botica) | `src/lib/equipamiento/datos-objetos.ts` |
