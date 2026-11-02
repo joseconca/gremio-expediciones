@@ -122,6 +122,28 @@ test("Núcleo arcano conserva la conversión limitada y no puede aplicarse desde
   assert.equal(novato.totalSinRedondear.manaMaximo, 200);
 });
 
+test("Núcleo arcano mantiene su efecto dentro del cálculo completo del personaje", () => {
+  const personaje = {
+    clase: "Novato",
+    profesionActivaId: "archimago",
+    nivel: 50,
+    nivelJob: 40,
+    progresosClase: [{ claseId: "archimago", nivelJob: 40, desbloqueada: true }],
+    velocidadMejoras: 0,
+    capacidadCarruajeMejoras: 0,
+  };
+  const sinConversion = calcularEstadisticasPersonaje(personaje);
+  const conConversion = calcularEstadisticasPersonaje(personaje, ["nucleo_arcano"]);
+  const manaPrevio = sinConversion.total.manaMaximo;
+  const inteligenciaPrevia = sinConversion.atributosPrincipales.inteligencia;
+  const ganada = Math.min(Math.floor(manaPrevio * 0.1), Math.floor(inteligenciaPrevia * 0.2), 12);
+  assert.ok(ganada > 0);
+  assert.equal(conConversion.atributosPorPasivas.inteligencia, ganada);
+  assert.equal(conConversion.atributosPrincipales.inteligencia, inteligenciaPrevia + ganada);
+  assert.equal(conConversion.total.manaMaximo, Math.floor(manaPrevio * 0.9));
+  assert.equal(conConversion.total.ataqueMagico - sinConversion.total.ataqueMagico, ganada * 2);
+});
+
 test("la composición de encuentros respeta probabilidades de party y límites de dificultad", () => {
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.1), [6]);
   assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.5), [6, 6]);

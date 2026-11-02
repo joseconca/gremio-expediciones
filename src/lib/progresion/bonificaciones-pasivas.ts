@@ -66,27 +66,38 @@ export function aplicarConversionReservaInteligencia({
   totalSinRedondear: ModificadoresEstadisticas;
   pasivas: ModificadoresEstadisticas;
 }): void {
-  const conversionActiva=habilidadesAprendidas.some(entrada=>{
-    const id=typeof entrada==="string"?entrada:entrada.habilidadId;
-    const h=obtenerHabilidadPorId(id);
-    return h?.conversionReservaInteligencia&&puedeUsarHabilidadDeClase(claseActualId,h.claseId);
+  const conversionActiva = habilidadesAprendidas.some((entrada) => {
+    const id = typeof entrada === "string" ? entrada : entrada.habilidadId;
+    const habilidad = obtenerHabilidadPorId(id);
+    return habilidad?.conversionReservaInteligencia &&
+      puedeUsarHabilidadDeClase(claseActualId, habilidad.claseId);
   });
-  if(conversionActiva){
-    const manaPrevio=totalSinRedondear.manaMaximo??0;
-    const inteligenciaPrevia=atributosPrincipales.inteligencia;
-    const ganada=Math.min(Math.floor(manaPrevio*.1),Math.floor(inteligenciaPrevia*.2),12);
-    atributosPrincipales.inteligencia+=ganada;
-    atributosPorPasivas.inteligencia=ganada;
-    const ataque=ganada*COEFICIENTES_ATRIBUTOS_RPG.ataqueMagicoPorInteligencia;
-    const defensa=ganada*COEFICIENTES_ATRIBUTOS_RPG.defensaMagicaPorInteligencia;
-    const regeneracion=ganada*COEFICIENTES_ATRIBUTOS_RPG.regeneracionManaPorInteligencia;
-    totalSinRedondear.manaMaximo=Math.floor(manaPrevio*.9);
-    totalSinRedondear.ataqueMagico=(totalSinRedondear.ataqueMagico??0)+ataque;
-    totalSinRedondear.defensaMagica=(totalSinRedondear.defensaMagica??0)+defensa;
-    totalSinRedondear.regeneracionManaPorTurno=(totalSinRedondear.regeneracionManaPorTurno??0)+regeneracion;
-    pasivas.manaMaximo=(pasivas.manaMaximo??0)+Math.floor(manaPrevio*.9)-manaPrevio;
-    pasivas.ataqueMagico=(pasivas.ataqueMagico??0)+ataque;
-    pasivas.defensaMagica=(pasivas.defensaMagica??0)+defensa;
-    pasivas.regeneracionManaPorTurno=(pasivas.regeneracionManaPorTurno??0)+regeneracion;
+
+  if (conversionActiva) {
+    // El mana total ya incluye equipo y pasivas, sin redondeo de estadísticas.
+    const manaPrevio = totalSinRedondear.manaMaximo ?? 0;
+    const inteligenciaPrevia = atributosPrincipales.inteligencia;
+    const ganada = Math.min(
+      Math.floor(manaPrevio * 0.1),
+      Math.floor(inteligenciaPrevia * 0.2),
+      12
+    );
+    atributosPrincipales.inteligencia += ganada;
+    atributosPorPasivas.inteligencia = ganada;
+
+    const ataque = ganada * COEFICIENTES_ATRIBUTOS_RPG.ataqueMagicoPorInteligencia;
+    const defensa = ganada * COEFICIENTES_ATRIBUTOS_RPG.defensaMagicaPorInteligencia;
+    const regeneracion = ganada * COEFICIENTES_ATRIBUTOS_RPG.regeneracionManaPorInteligencia;
+
+    totalSinRedondear.manaMaximo = Math.floor(manaPrevio * 0.9);
+    totalSinRedondear.ataqueMagico = (totalSinRedondear.ataqueMagico ?? 0) + ataque;
+    totalSinRedondear.defensaMagica = (totalSinRedondear.defensaMagica ?? 0) + defensa;
+    totalSinRedondear.regeneracionManaPorTurno =
+      (totalSinRedondear.regeneracionManaPorTurno ?? 0) + regeneracion;
+
+    pasivas.manaMaximo = (pasivas.manaMaximo ?? 0) + Math.floor(manaPrevio * 0.9) - manaPrevio;
+    pasivas.ataqueMagico = (pasivas.ataqueMagico ?? 0) + ataque;
+    pasivas.defensaMagica = (pasivas.defensaMagica ?? 0) + defensa;
+    pasivas.regeneracionManaPorTurno = (pasivas.regeneracionManaPorTurno ?? 0) + regeneracion;
   }
 }

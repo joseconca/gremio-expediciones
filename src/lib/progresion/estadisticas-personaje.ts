@@ -1,6 +1,9 @@
 import type { AtributosPrincipales } from "../tiposJuego";
 import type { HabilidadAprendidaConNivel } from "./niveles-habilidad";
-import { obtenerModificadoresPasivas, aplicarConversionReservaInteligencia } from "./bonificaciones-pasivas";
+import {
+  obtenerModificadoresPasivas,
+  aplicarConversionReservaInteligencia,
+} from "./bonificaciones-pasivas";
 import {
   obtenerAtributosPrincipales,
   obtenerEstadisticasBase,
@@ -16,7 +19,6 @@ import type {
   DatosPersonajeEstadisticas,
   ModificadoresEstadisticas,
   DesgloseEstadisticasPersonaje,
-  AportesPorAtributo,
 } from "./modificadores-estadisticas";
 
 // Mantener el contrato público de estadísticas del personaje para sus consumidores actuales.
@@ -50,8 +52,8 @@ export function calcularEstadisticasPersonaje(
   };
 
   const pasivas = obtenerModificadoresPasivas(habilidadesAprendidas, claseActualId);
-  const atributosPrincipales={...obtenerAtributosPrincipales(personaje)};
-  const atributosPorPasivas:Partial<AtributosPrincipales>={};
+  const atributosPrincipales = { ...obtenerAtributosPrincipales(personaje) };
+  const atributosPorPasivas: Partial<AtributosPrincipales> = {};
   const totalSinRedondear = sumarModificadores(base, mejoras, pasivas, equipo, combate);
   aplicarConversionReservaInteligencia({
     habilidadesAprendidas,
