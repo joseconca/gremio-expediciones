@@ -211,6 +211,19 @@ function loadService(prisma, testOptions = {}) {
     recursosModule.exports,
   );
   dependencies["./recursos-turno"] = recursosModule.exports;
+  const contextoFilename = path.resolve(__dirname, "../src/server/services/party/contexto-combate.ts");
+  const contextoSource = fs.readFileSync(contextoFilename, "utf8");
+  const contextoCompilada = ts.transpileModule(contextoSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: contextoFilename,
+  }).outputText;
+  const contextoModule = { exports: {} };
+  vm.runInThisContext("(function(require, module, exports) {" + contextoCompilada + "\n})", { filename: contextoFilename })(
+    (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
+    contextoModule,
+    contextoModule.exports,
+  );
+  dependencies["./contexto-combate"] = contextoModule.exports;
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),

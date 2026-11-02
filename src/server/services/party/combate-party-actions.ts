@@ -30,7 +30,6 @@ import {
 import {
   resolverResultadoCombateParty,
   obtenerLogCombateParty,
-  type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
@@ -41,50 +40,17 @@ import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
+import { validarExpedicionId, obtenerEstadoParticipantes, cargarCombateParty } from "./contexto-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, leerRosterEnemigosParty, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 
-function validarExpedicionId(valor: unknown): string {
-  if (typeof valor !== "string" || !valor.trim() || valor.length > 100) {
-    throw new PartyServiceError("El identificador de expedición no es válido.", 400, "EXPEDICION_ID_INVALIDO");
-  }
-  return valor.trim();
-}
 
 
 function obtenerEfectos(valor: unknown) {
   return leerEfectosCombate(valor);
 }
 
-function obtenerEstadoParticipantes(
-  participantes: Array<{ usuarioId: string; ordenTurno: number; jugadorHp: number; estado: string }>,
-): ParticipanteTurnoParty[] {
-  return participantes.map((participante) => ({
-    usuarioId: participante.usuarioId,
-    ordenTurno: participante.ordenTurno,
-    jugadorHp: participante.jugadorHp,
-    estado: participante.estado,
-  }));
-}
-
-async function cargarCombateParty(tx: Prisma.TransactionClient, expedicionPartyId: string) {
-  const combate = await tx.combateParty.findUnique({
-    where: { expedicionPartyId },
-    include: { participantes: { orderBy: { ordenTurno: "asc" } } },
-  });
-  if (!combate) {
-    throw new PartyServiceError("La expedición todavía no tiene un combate inicializado.", 409, "COMBATE_PARTY_NO_INICIADO");
-  }
-  const expedicion = await tx.expedicionParty.findUnique({
-    where: { id: expedicionPartyId },
-    select: { fase: true },
-  });
-  if (!expedicion || expedicion.fase !== "combatiendo") {
-    throw new PartyServiceError("La expedición ya no está en fase de combate.", 409, "EXPEDICION_PARTY_NO_COMBATIENDO");
-  }
-  return combate;
-}
 
 
 async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string) {
