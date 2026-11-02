@@ -1,8 +1,8 @@
 name: Validar sprites HD
 on:
   push:
-    branches: [creacion-sprite-sheets, main]
-    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+    branches: [creacion-sprite-sheets, main, reorganizacion-1]
+    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'scripts/sprites.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   pull_request:
     branches: [main]
     paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install Pillow
+      - name: Public sprite command regression tests
+        run: python scripts/test-sprites-cli.py
       - name: Regression tests for CRC, decoded pixels and approvals
         run: python scripts/test-auditar-sprites-hd.py
       - name: Complete atlas assembly regression tests
