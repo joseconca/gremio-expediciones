@@ -15,6 +15,7 @@ import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
+import type { HabilidadEquipable } from "./tipos";
 
 interface AsedioModalProps {
   habilidadesIniciales?: HabilidadEquipable[];
@@ -33,35 +34,6 @@ interface AsedioModalProps {
 interface AparienciaAsedio {
   clase: string; sexo: string; profesionActivaId: string;
   armaSpriteId: string | null; escudoSpriteId: string | null;
-}
-
-interface HabilidadCombate {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  tipo: "activa" | "pasiva";
-  rareza: string;
-  precio: number;
-  costeEnergia?: number;
-  costeMana?: number;
-  tipoDano?: "fisico" | "magico";
-  cooldownTurnos?: number;
-  danoBase?: number;
-  multiplicadorDano?: number;
-  curacion?: number;
-  bonusAtaque?: number;
-  bonusDefensa?: number;
-  bonusVelocidad?: number;
-  bonusHpMaximo?: number;
-  duracionTurnos?: number;
-  probabilidad?: number;
-}
-
-interface HabilidadEquipable {
-  id: string;
-  habilidadId: string;
-  slot: string;
-  habilidad: HabilidadCombate;
 }
 
 export default function AsedioModal({
