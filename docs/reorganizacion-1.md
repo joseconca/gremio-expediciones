@@ -187,6 +187,16 @@ El servicio histórico `src/server/services/party/combate-party-actions.ts` cons
 
 El archivo original de acciones se redujo de **1.313 a unas 864 líneas** en esta etapa. **Falta confirmar la regresión de los commits nuevos** y la comprobación visual antes de reorganizar la UI de combate. No se ha modificado `main` ni la auditoría artística de Novato.
 
+### Fase 3.5 — Interfaz de combate: módulos que se reconocen por su nombre
+
+Las declaraciones de entrada de `CombateModal` (PVE/party, habilidades y recompensas) están ahora en `src/components/combate/tipos.ts`. Se extrajeron dos bloques visuales **sin modificar el diseño**:
+
+- `ResultadoCombate.tsx`: victoria, derrota, huida e informe de bajas y recompensas (incluye el filtrado del botín individual).
+- `InformacionCombatientes.tsx`: ventana de estadísticas del jugador, los compañeros y los enemigos.
+- `CombateModal.tsx`: mantiene la coordinación de animaciones, objetivos y acciones, y decide cuándo mostrar cada panel. Queda reducido de 1.882 a unas 1.507 líneas: sigue siendo grande, así que la siguiente extracción prioritaria será la zona de habilidades/objetos, sin fragmentar cada botón en componentes independientes.
+
+En `src/components/combate/README.md` hay un **mapa de mantenimiento por tarea**, para saber dónde cambiar una mecánica, el aspecto visual o un sprite sin recorrer el repositorio. Los tests de informe se actualizaron para seguir verificando las mismas etiquetas desde su componente propietario. La CI del commit `46afc8d` fue verde, pero **todavía hay que confirmar la regresión del último cambio visual** y la auditoría HD continúa pendiente por una discrepancia de Novato.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
