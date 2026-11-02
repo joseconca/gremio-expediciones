@@ -23,7 +23,7 @@ const {
   registrarVictoriaRangoNormal,
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
-const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/tiendaHabilidades.ts");
+const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/progresion/aprendizaje.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const {
   seleccionarEnemigoNormal,

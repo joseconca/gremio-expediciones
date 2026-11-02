@@ -844,7 +844,7 @@ function makeInvalidBodyRoute(relativePath) {
       obtenerEquipoDesdePersonaje: () => ({}),
     },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
-    "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
+    "@/lib/progresion/aprendizaje": { obtenerHabilidadesEnVenta: () => [] },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
     "@/lib/expediciones/combate": {
       calcularBonusDefensaMuralla: () => 0,

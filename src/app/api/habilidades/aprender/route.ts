@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
+import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/progresion/aprendizaje";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 
