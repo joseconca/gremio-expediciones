@@ -10,7 +10,7 @@ const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts
 const { aplicarBarreraAccion, calcularAtaqueModificado, calcularPrecisionModificada, procesarEfectosTurno, retirarEfectosHabilidad, leerEfectosCombate } = require("../src/lib/expediciones/estados-combate.ts");
 const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/niveles-habilidad.ts");
 const { calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
-const { tirarBotinEnemigo } = require("../src/lib/lootObjetos.ts");
+const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
 const { obtenerSpriteHeroe, obtenerRutaSpritesheetHeroe, obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } = require("../src/lib/configuracionJuego.ts");
 
 const progreso = (claseId, nivelJob) => ({ claseId, nivelJob, desbloqueada: true });

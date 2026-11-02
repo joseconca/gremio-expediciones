@@ -126,7 +126,7 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/enemigos": {
       obtenerEnemigoPorId: (id) => ({ id, botin: 10, difMin: 1, ...(testOptions.enemigo ?? {}) }),
     },
-    "@/lib/lootObjetos": {
+    "@/lib/equipamiento/botin": {
       tirarBotinEnemigo: (enemigo, rng = Math.random) => {
         if (!enemigo?.tablaLoot?.length) return null;
         const tirada = rng();

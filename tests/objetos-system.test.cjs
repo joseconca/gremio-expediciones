@@ -3,7 +3,7 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { OBJETOS, obtenerObjetoPorId, obtenerRanuraObjeto, calcularEstadisticasObjeto } = require("../src/lib/objetos.ts");
 const { generarSufijoObjeto, obtenerNombreObjetoConSufijo } = require("../src/lib/sufijosObjetos.ts");
-const { tirarBotinEnemigo } = require("../src/lib/lootObjetos.ts");
+const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
 const { ENEMIGOS, JEFES_ELITE } = require("../src/lib/enemigos.ts");
 const { LIMITE_INVENTARIO_OBJETOS } = require("../src/lib/inventario.ts");
 

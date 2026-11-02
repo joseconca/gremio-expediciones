@@ -10,7 +10,7 @@ import {
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
-import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
 import type { RecompensaMision, TipoMision } from "@/lib/tiposJuego";

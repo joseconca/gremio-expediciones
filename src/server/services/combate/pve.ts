@@ -20,7 +20,7 @@ import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";

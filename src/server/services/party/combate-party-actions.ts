@@ -43,7 +43,7 @@ import {
 } from "@/lib/expediciones/iniciativa-combate";
 import { PartyServiceError } from "@/server/services/party/party-service";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
