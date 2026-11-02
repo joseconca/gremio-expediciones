@@ -8,7 +8,7 @@ const {
   puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo, obtenerClasesVisibles,
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
-const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
+const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
 const { ajustarHabilidadPorNivel, nivelMaximoHabilidad, costeReinicioHabilidades } = require("../src/lib/progresion/niveles-habilidad.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
@@ -235,7 +235,7 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
     anillo1: pieza("anillo_resistencia"),
     anillo2: pieza("anillo_maldito"),
   };
-  const { calcularModificadoresEquipo } = require("../src/lib/estadisticasPersonaje.ts");
+  const { calcularModificadoresEquipo } = require("../src/lib/progresion/estadisticas-personaje.ts");
   const stats = calcularModificadoresEquipo(equipo, "espadachin");
   const defensaEscudo = calcularEstadisticasObjeto(obtenerObjetoPorId("escudo_madera"), 0).defensa * 1.15;
   const defensaOtrasArmaduras = ["casco_cuero", "armadura_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero"]
@@ -254,7 +254,7 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
     bonificaciones: {},
     objeto: { id: "arma_sin_tipo", nombre: "Arma sin tipo", tipo: "arma", slot: "arma", descripcion: "", rareza: "basico", vendibleEnArmeria: false, precio: 1, ataqueBase: 10 },
   };
-  const { calcularModificadoresEquipo: calcularEquipo } = require("../src/lib/estadisticasPersonaje.ts");
+  const { calcularModificadoresEquipo: calcularEquipo } = require("../src/lib/progresion/estadisticas-personaje.ts");
   assert.equal(
     calcularEquipo({ arma: armaSinTipo, manoSecundaria: null, casco: null, armadura: null, pantalones: null, botas: null, guantes: null, accesorio: null, anillo1: null, anillo2: null }, "arquero").ataque,
     7.5,
@@ -941,7 +941,7 @@ test("objetos: los sprites de armadura se organizan por ranura", () => {
 });
 
 test("las pasivas equipadas de recurso se reflejan en máximos y regeneración", () => {
-  const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
+  const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
   const basePersonaje = {
     clase: "Novato",
     nivel: 1,

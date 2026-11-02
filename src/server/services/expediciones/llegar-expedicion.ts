@@ -14,7 +14,7 @@ import { procesarLlegadaAsedio } from "@/lib/expediciones/procesarLlegadaAsedio"
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/estadisticasPersonaje";
+} from "@/lib/progresion/estadisticas-personaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { esModoDificultad } from "../../../lib/expediciones/dificultad";

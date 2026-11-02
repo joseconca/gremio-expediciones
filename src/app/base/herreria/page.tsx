@@ -19,7 +19,7 @@ import type {
   ObjetoInventario,
   Rareza,
 } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
 interface DatosObjetos {
   herreriaNivel: number;

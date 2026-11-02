@@ -192,7 +192,7 @@ function makeCombatConsumableRoute({
     }) },
     "@/lib/progresion/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
     "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
-    "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
+    "@/lib/progresion/estadisticas-personaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
     "@/lib/enemigos": {
@@ -724,7 +724,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
       calcularEstadisticasBase: () => ({ hpMaximo: 40 }),
     },
     "@/lib/tiposJuego": { CONFIGURACION_EDIFICIOS: configEdificios },
-    "@/lib/estadisticasPersonaje": {
+    "@/lib/progresion/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40 } }),
     },
     "@/lib/progresion/estadisticas": {
@@ -773,7 +773,7 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/regeneracion": { sincronizarRegeneracion: async (personaje) => personaje },
-    "@/lib/estadisticasPersonaje": {
+    "@/lib/progresion/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40, ataque: 5, defensa: 2, velocidad: 5 } }),
       calcularModificadoresEquipo: () => ({}),
     },
@@ -837,7 +837,7 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/progresion/bonificaciones-equipo": {
       mapearBonificacionesEquipoRpg: () => ({}),
     },
-    "@/lib/estadisticasPersonaje": {
+    "@/lib/progresion/estadisticas-personaje": {
       calcularModificadoresEquipo: () => ({}),
     },
     "@/lib/equipamiento/inventario": {

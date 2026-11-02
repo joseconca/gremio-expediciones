@@ -9,7 +9,7 @@ const { nivelMaximoHabilidad } = require('../src/lib/progresion/niveles-habilida
 const { aplicarBarreraAccion, procesarEfectosTurno } = require('../src/lib/expediciones/estados-combate.ts');
 const { establecerCooldownHabilidad } = require('../src/lib/expediciones/cooldowns-habilidades.ts');
 const { calcularPesosCuracion } = require('../src/lib/expediciones/presupuesto-curacion.ts');
-const { calcularEstadisticasPersonaje } = require('../src/lib/estadisticasPersonaje.ts');
+const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/motor-tactico.ts');
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });

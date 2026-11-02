@@ -11,7 +11,7 @@ import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { obtenerSpriteObjeto } from "@/lib/objetos";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
-import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 
 function formatearValorDesglose(
   clave: keyof ModificadoresEstadisticas,

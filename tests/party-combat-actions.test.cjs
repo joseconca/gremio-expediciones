@@ -461,7 +461,7 @@ test("solo el aventurero que tiene el turno puede atacar", async () => {
 
 test("las 245 activas con cinco ranuras y tres pasivas persisten en party el mismo resultado que individual", async () => {
   const {HABILIDADES,obtenerHabilidadesDisponiblesParaClase}=require("../src/lib/habilidades.ts");
-  const {calcularEstadisticasPersonaje}=require("../src/lib/estadisticasPersonaje.ts");
+  const {calcularEstadisticasPersonaje}=require("../src/lib/progresion/estadisticas-personaje.ts");
   const {resolverHabilidadJugador}=require("../src/lib/expediciones/combate.ts");
   const rng=Math.random;Math.random=()=>.5;
   let comprobadas=0;

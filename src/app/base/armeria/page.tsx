@@ -18,7 +18,7 @@ import type {
   ObjetoInventario,
   Rareza,
 } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 import { calcularPrecioVentaObjeto } from "@/lib/economia/mercado";
 
 interface ObjetoEnVenta extends DefinicionObjeto {

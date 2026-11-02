@@ -3,7 +3,7 @@ require('../tests/load-typescript.cjs');
 const fs=require('node:fs');
 const {HABILIDADES,obtenerHabilidadesDisponiblesParaClase}=require('../src/lib/habilidades.ts');
 const {CLASES,obtenerAncestrosClase}=require('../src/lib/progresion/clases.ts');
-const {calcularEstadisticasPersonaje}=require('../src/lib/estadisticasPersonaje.ts');
+const {calcularEstadisticasPersonaje}=require('../src/lib/progresion/estadisticas-personaje.ts');
 const {ajustarHabilidadPorNivel,nivelMaximoHabilidad}=require('../src/lib/progresion/niveles-habilidad.ts');
 const {resolverHabilidadJugador,resolverAtaqueJugador}=require('../src/lib/expediciones/combate.ts');
 const {procesarEfectosTurno,aplicarBarreraAccion,calcularAtaqueModificado,calcularPrecisionModificada,consumirPrecisionTactica}=require('../src/lib/expediciones/estados-combate.ts');

@@ -1,4 +1,4 @@
-import { calcularEstadisticasPersonaje, calcularModificadoresEquipo, type DatosPersonajeEstadisticas } from "@/lib/estadisticasPersonaje";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo, type DatosPersonajeEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { normalizarPosicionFormacion } from "@/lib/expediciones/objetivos-combate";
 import type { ContextoTecnicaTactica } from "@/lib/expediciones/adaptador-tactico";

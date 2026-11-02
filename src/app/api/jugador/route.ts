@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/estadisticasPersonaje";
+} from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 
 export const dynamic = "force-dynamic";

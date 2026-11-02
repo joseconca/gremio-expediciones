@@ -46,7 +46,7 @@ function loadService(prisma, misionPrueba = mission) {
   const dependencies = {
     "@prisma/client": { Prisma: { TransactionIsolationLevel: { Serializable: "Serializable" } } },
     "@/lib/prisma": { prisma },
-    "@/lib/estadisticasPersonaje": {
+    "@/lib/progresion/estadisticas-personaje": {
       calcularEstadisticasPersonaje: stats,
       calcularModificadoresEquipo: () => ({}),
     },

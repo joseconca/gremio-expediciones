@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/estadisticasPersonaje";
+} from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";

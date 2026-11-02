@@ -3,21 +3,21 @@ import type {
   EquipoPersonaje,
   ObjetoInventario,
   AtributosPrincipales,
-} from "./tiposJuego";
-import { calcularEstadisticasBase } from "./configuracionJuego";
-import { obtenerHabilidadPorId } from "./habilidades";
-import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./progresion/niveles-habilidad";
-import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "./objetos";
+} from "../tiposJuego";
+import { calcularEstadisticasBase } from "../configuracionJuego";
+import { obtenerHabilidadPorId } from "../habilidades";
+import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./niveles-habilidad";
+import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../objetos";
 import {
   calcularEstadisticasDerivadasRpg,
   COEFICIENTES_ATRIBUTOS_RPG,
-} from "./progresion/estadisticas";
-import { calcularAtributosClase } from "./progresion/atributos-clase";
+} from "./estadisticas";
+import { calcularAtributosClase } from "./atributos-clase";
 import {
   CLASES,
   calcularBonificacionesDominioEquipo,
   puedeUsarHabilidadDeClase,
-} from "./progresion/clases";
+} from "./clases";
 
 export interface DatosPersonajeEstadisticas {
   clase: string;

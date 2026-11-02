@@ -6,7 +6,7 @@ import { resolverComercio } from "@/lib/expediciones/comercio";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/estadisticasPersonaje";
+} from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";

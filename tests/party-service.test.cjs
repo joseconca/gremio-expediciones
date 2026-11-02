@@ -19,7 +19,7 @@ function loadService(prisma) {
   const dependencies = {
     "@prisma/client": { Prisma: { TransactionIsolationLevel: { Serializable: "Serializable" } } },
     "@/lib/prisma": { prisma },
-    "@/lib/estadisticasPersonaje": {
+    "@/lib/progresion/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 20, manaMaximo: 10 } }),
       calcularModificadoresEquipo: () => ({}),
     },

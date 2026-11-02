@@ -27,7 +27,7 @@ import type {
   Rareza,
   SlotHabilidad,
 } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
 import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
