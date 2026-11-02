@@ -82,6 +82,29 @@ Se ha eliminado la duplicación exacta del adaptador `adjuntarPulsosEstado` entr
 
 Objetivo siguiente: revisar rutas HTTP y extraer una fachada por funcionalidad para combate, expediciones, party, inventario, edificios y economía; migrar consumidores en grupos con pruebas de integración. **No está terminada esta fase.** No mover servicios voluminosos antes de un mapa de llamadas y pruebas de paridad.
 
+## Auditoría de estructura general (2 de noviembre de 2026)
+
+La separación actual tiene sentido y no requiere repartir cada pequeña función en un archivo propio:
+
+| Capa | Fuente de verdad / responsabilidad | Criterio |
+|---|---|---|
+| Definiciones RPG | `src/lib/progresion/catalogos/{clases,habilidades}.ts` | Editar solo ahí; APIs públicas en `progresion/clases.ts` y `lib/habilidades.ts` |
+| Objetos y enemigos | `src/lib/catalogos/{objetos,enemigos}.ts` | Datos únicos; reglas, fórmulas y búsquedas fuera |
+| Reglas puras de combate | `src/lib/expediciones/` | No acceder a Prisma ni HTTP |
+| Operaciones persistentes y PvE/PvP/party | `src/server/services/` | Orquestación, transacciones, validaciones; no replicar el motor táctico |
+| API y pantallas | `src/app/`, `src/components/` | Mantener rutas delgadas y componentes de presentación |
+| Arte y manifiestos de sprites | `assets/`, `src/lib/generated/`, `scripts/recursos.py` | La fuente artística no es el JSON generado |
+
+### Áreas identificadas para una extracción posterior con pruebas
+
+1. `src/components/combate/CombateModal.tsx` (~108 KB): separar fases, selectors y paneles visuales. Compartir subcomponentes de PvE/PvP/asedio sin alterar la cronología de turnos.
+2. `src/server/services/party/combate-party-actions.ts` (~94 KB): dividir acciones por responsabilidad (objetivos, resultados, efectos y persistencia) manteniendo **un solo motor de reglas**.
+3. `src/components/base/PanelParty.tsx` (~89 KB) y `src/app/base/personaje/page.tsx` (~69 KB): extraer secciones independientes, evitando estados duplicados.
+4. `src/lib/tiposJuego.ts` (725 líneas): candidatear tipos por dominio cuando sus dependencias lo permitan; evitar ciclos entre `src/lib` y `src/server`.
+5. Las rutas de compatibilidad de los catálogos antiguos reexportan constantes: eliminarlas únicamente tras migrar sus importadores y verificar tests, scripts y CI; no reintroducir datos ahí.
+
+**No aplicar una fragmentación masiva sin pruebas de paridad.** Los módulos de operaciones PvP, PvE y party no son catálogos duplicados: su separación refleja flujos distintos. Los ~49 scripts Python/Node incluyen validadores y herramientas invocadas por la CI; `scripts/recursos.py` es la interfaz común, y los motores especializados se conservan mientras sean necesarios.
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.
