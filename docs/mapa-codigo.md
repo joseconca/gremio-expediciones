@@ -34,6 +34,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
 | Escritura SQL versionada de combates (protección contra turnos concurrentes) | `src/server/services/combate/actualizar-combate-versionado.ts` |
 | Combates de party | `src/server/services/party/combate-party-actions.ts` (jugador), `turno-enemigo.ts` (enemigos) |
+| Preparación y persistencia del combate de asedio al llegar | `src/server/services/asedios/procesar-llegada-asedio.ts` |
 | Inicio del regreso tras una lucha de party | `src/server/services/party/regreso-combate.ts` |
 
 **Regla de mantenimiento:** `src/lib/` contiene reglas y transformaciones reutilizables; `src/server/services/` ejecuta operaciones con Prisma, transacciones y controles de concurrencia. No pongas consultas a la base de datos en los componentes.

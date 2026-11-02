@@ -9,7 +9,7 @@ import { seleccionarEnemigosNormales } from "@/lib/expediciones/normal";
 import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 
-import { procesarLlegadaAsedio } from "@/lib/expediciones/procesarLlegadaAsedio";
+import { procesarLlegadaAsedio } from "@/server/services/asedios/procesar-llegada-asedio";
 
 import {
   calcularEstadisticasPersonaje,

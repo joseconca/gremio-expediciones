@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { procesarLlegadaAsedio } from "@/lib/expediciones/procesarLlegadaAsedio";
+import { procesarLlegadaAsedio } from "@/server/services/asedios/procesar-llegada-asedio";
 
 export async function POST() {
   try {
