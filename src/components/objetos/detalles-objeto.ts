@@ -1,15 +1,8 @@
 import { calcularEstadisticasObjeto } from "@/lib/objetos";
-import type { DefinicionObjeto, Rareza } from "@/lib/tiposJuego";
+import type { DefinicionObjeto } from "@/lib/tiposJuego";
+import { NOMBRES_RAREZA_OBJETO } from "./resumen-objeto";
+export { NOMBRES_RAREZA_OBJETO } from "./resumen-objeto";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
-
-export const NOMBRES_RAREZA_OBJETO: Record<Rareza, string> = {
-  basico: "Básico",
-  comun: "Común",
-  poco_comun: "Poco común",
-  raro: "Raro",
-  epico: "Épico",
-  legendario: "Legendario",
-};
 
 const ETIQUETAS_ESTADISTICAS: Array<[keyof ModificadoresEstadisticas, string]> = [
   ["ataque", "Ataque"], ["ataqueMagico", "Ataque mágico"],

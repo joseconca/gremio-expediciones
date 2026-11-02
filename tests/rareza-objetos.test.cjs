@@ -4,7 +4,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const { nombreRareza, estiloRareza } = require("../src/components/objetos/resumen-objeto.ts");
+const { nombreRareza, estiloRareza, NOMBRES_RAREZA_OBJETO } = require("../src/components/objetos/resumen-objeto.ts");
+const { NOMBRES_RAREZA_OBJETO: NOMBRES_RAREZA_DETALLES, obtenerDetallesObjeto } = require("../src/components/objetos/detalles-objeto.ts");
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
 
 const rarezas = [
@@ -38,4 +39,13 @@ test("Armería, Herrería y Botica usan el mismo catálogo con su variante visua
   assert.match(botica, /estiloRareza\(objeto\.rareza, "botica"\)/);
   assert.doesNotMatch(botica, /function nombreRareza\(/);
   assert.doesNotMatch(botica, /function estiloRareza\(/);
+});
+
+test("las ventanas de detalles utilizan el mismo catálogo de nombres de rareza", () => {
+  assert.strictEqual(NOMBRES_RAREZA_DETALLES, NOMBRES_RAREZA_OBJETO);
+  for (const [id, nombre] of rarezas.map(([id, nombre]) => [id, nombre])) {
+    assert.equal(NOMBRES_RAREZA_OBJETO[id], nombre);
+    const detalles = obtenerDetallesObjeto({ id: "objeto_prueba", tipo: "arma", rareza: id, nombre: "Arma", descripcion: "Prueba" });
+    assert.ok(detalles.includes("Rareza: " + nombre + "."));
+  }
 });

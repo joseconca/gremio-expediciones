@@ -26,16 +26,17 @@ export const ESTADISTICAS_OBJETO: ReadonlyArray<{
   { clave: "danoCritico", nombre: "Daño crítico" },
 ];
 
+export const NOMBRES_RAREZA_OBJETO: Record<Rareza, string> = {
+  basico: "Básico",
+  comun: "Común",
+  poco_comun: "Poco común",
+  raro: "Raro",
+  epico: "Épico",
+  legendario: "Legendario",
+};
+
 export function nombreRareza(rareza: Rareza): string {
-  const etiquetas: Record<Rareza, string> = {
-    basico: "Básico",
-    comun: "Común",
-    poco_comun: "Poco común",
-    raro: "Raro",
-    epico: "Épico",
-    legendario: "Legendario",
-  };
-  return etiquetas[rareza];
+  return NOMBRES_RAREZA_OBJETO[rareza];
 }
 
 /** Las etiquetas son comunes; se mantienen las variantes visuales históricas por pantalla. */
