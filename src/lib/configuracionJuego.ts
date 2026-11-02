@@ -2,7 +2,7 @@ import type { Rareza, ClasePersonaje, IdEdificio } from "./tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "./tiposJuego";
 import { CLASES, obtenerAncestrosClase } from "./progresion/clases";
 import { CLASES_NUEVAS } from "./progresion/clases-nuevas";
-import { esClaseHeroeHd } from "./sprites-heroes-hd";
+import { esClaseHeroeHd, esRetratoHeroeHd } from "./sprites-heroes-hd";
 
 export const REQUISITOS_EDIFICIOS: Partial<
   Record<IdEdificio, { edificio: IdEdificio; nivel: number }>
@@ -174,7 +174,8 @@ export function obtenerNombreClaseHeroe(
 }
 
 /** Las clases sin arte propio usan un antecesor existente hasta incorporar sus sprites. */
-export function obtenerIdVisualClase(id: string): string {
+export function obtenerIdVisualClase(id: string, sexo?: "m" | "f"): string {
+  if (sexo && esClaseHeroeHd(id, sexo)) return id;
   if (!CLASES_NUEVAS[id] || id === "comerciante") return id;
   return obtenerAncestrosClase(id).find((padre) => !CLASES_NUEVAS[padre]) ?? "novato";
 }
@@ -185,9 +186,10 @@ export function obtenerSpriteHeroe(
   sexo?: string | null,
   profesionActivaId?: string | null,
 ): string {
-  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
   const sufijoSexo = sexo === "chica" ? "f" : "m";
-  if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-portrait.png`;
+  const idOriginal = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const idClase = obtenerIdVisualClase(idOriginal);
+  if (esRetratoHeroeHd(idOriginal, sufijoSexo)) return `/sprites/hd-v1/heroes/${idOriginal}/${sufijoSexo}-portrait.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
 }
 
@@ -219,9 +221,9 @@ export function obtenerRutaSpritesheetHeroe(
   sexo?: string | null,
   profesionActivaId?: string | null,
 ): string {
-  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
   const sufijoSexo = sexo === "chica" ? "f" : "m";
-  if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-sheet.png`;
+  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId), sufijoSexo);
+  if (esClaseHeroeHd(idClase, sufijoSexo)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-sheet.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}-sheet.png`;
 }
 
