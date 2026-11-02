@@ -4,11 +4,11 @@ import type {
   ObjetoInventario,
   AtributosPrincipales,
 } from "../tiposJuego";
-import { calcularEstadisticasBase } from "../configuracionJuego";
 import { obtenerHabilidadPorId } from "../habilidades";
 import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./niveles-habilidad";
 import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../objetos";
 import {
+  calcularEstadisticasBase,
   calcularEstadisticasDerivadasRpg,
   COEFICIENTES_ATRIBUTOS_RPG,
 } from "./estadisticas";
