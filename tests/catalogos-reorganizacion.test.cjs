@@ -61,7 +61,25 @@ test("Berserker se localiza con una orden sin consultar manifiestos manualmente"
   assert.equal(info.disenoV2, true);
   assert.deepEqual(info.spritesHD.atlas, ["m"]);
   assert.deepEqual(info.spritesHD.retratos, []);
-  assert.ok(info.fuentes.includes("src/lib/progresion/catalogos/clases-avanzadas.ts"));
+  assert.deepEqual(info.fuentes, [
+    "src/lib/progresion/catalogos/clases.ts",
+    "src/lib/progresion/catalogos/habilidades.ts",
+  ]);
   assert.ok(info.habilidades.length > 0);
-  assert.ok(obtenerFuentes("berserker").some(r => r.includes("habilidades-nuevas.ts")));
+  assert.deepEqual(obtenerFuentes("berserker"), info.fuentes);
+});
+
+
+test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
+  const { DEFINICIONES_CLASES, CLASES_BASE: base, CLASES_NUEVAS: avanzadas } = require("../src/lib/progresion/catalogos/clases.ts");
+  const catalogo = require("../src/lib/progresion/catalogos/habilidades.ts");
+  assert.equal(base, CLASES_BASE);
+  assert.equal(avanzadas, CLASES_NUEVAS);
+  assert.equal(Object.keys(DEFINICIONES_CLASES).length, Object.keys(CLASES).length);
+  assert.equal(catalogo.HABILIDADES_TRONCALES, HABILIDADES_TRONCALES);
+  assert.equal(catalogo.HABILIDADES_EVOLUCIONES, HABILIDADES_EVOLUCIONES);
+  assert.equal(require("../src/lib/progresion/diseno-habilidades.ts").DISENO_HABILIDADES, catalogo.DISENO_HABILIDADES);
+  assert.equal(require("../src/lib/progresion/nombres-redisenio.ts").NOMBRES_REDISENIO, catalogo.NOMBRES_REDISENIO);
+  assert.equal(require("../src/lib/progresion/catalogo-tecnicas-adicionales.ts").CATALOGO_TECNICAS_ADICIONALES, catalogo.CATALOGO_TECNICAS_ADICIONALES);
+  assert.deepEqual(obtenerFuentes("no_existe"), []);
 });

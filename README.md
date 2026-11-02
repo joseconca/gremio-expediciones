@@ -2,6 +2,8 @@
 
 ## Guía de desarrollo en la rama `reorganizacion-1`
 
+**Fuentes únicas:** [catálogo de clases](src/lib/progresion/catalogos/clases.ts) · [catálogo de habilidades](src/lib/progresion/catalogos/habilidades.ts). Los módulos de juego conservan sus APIs de consulta.
+
 Para encontrar rápidamente todo lo relacionado con una clase:
 
 ```bash

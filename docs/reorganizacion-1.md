@@ -53,17 +53,20 @@ El publicador global de equipo ya no borra del catálogo las clases publicadas f
 - `src/lib/progresion/clases.ts`: tipos, arquetipos, herencia, dominios, desbloqueos y API `CLASES`.
 - `src/lib/habilidades.ts`: API `HABILIDADES` y búsquedas, compuesta en el mismo orden anterior.
 
-### Fuentes de datos separadas de las reglas
+### Dos catálogos editables (uno por dominio)
 
-- `src/lib/progresion/catalogos/clases-base.ts`: profesiones originales por tier.
-- `src/lib/progresion/catalogos/clases-avanzadas.ts`: evoluciones y especializaciones.
-- `src/lib/progresion/catalogos/habilidades-troncales.ts`: datos legacy de las 14 profesiones iniciales.
-- `src/lib/progresion/catalogos/habilidades-evoluciones.ts`: datos legacy de las evoluciones.
-- `src/lib/progresion/catalogos/crear-habilidad.ts`: aplicación común de valores por defecto.
-- `src/lib/habilidades-nuevas.ts`, `src/lib/progresion/diseno-habilidades.ts`, `src/lib/progresion/catalogo-redisenado.ts`: **todavía necesarios**, generan o transforman las habilidades actuales; no fusionar sin pruebas de equivalencia.
-- `src/lib/progresion/clases-nuevas.ts`: eliminado; sus consumidores importan directamente `catalogos/clases-avanzadas.ts`.
+- `src/lib/progresion/catalogos/clases.ts`: **todas las definiciones de clases** (base y avanzadas), con requisitos, maestrías y bonificaciones.
+- `src/lib/progresion/catalogos/habilidades.ts`: **todos los datos editables de habilidades**: escuelas, habilidades troncales, evoluciones, Super Novato, diseños V2, nombres y técnicas adicionales.
 
-No se han modificado atributos, requisitos de desbloqueo, coste o valores de las habilidades. Queda pendiente unificar aún más las definiciones por clase con el diseño v2 cuando exista un mecanismo de migración testeado.
+No existen otros catálogos editables de estos dominios. Los demás módulos son motores, APIs o **adaptadores temporales sin definiciones copiadas**:
+
+- `src/lib/progresion/clases.ts`: herencia, desbloqueos y API pública `CLASES`.
+- `src/lib/habilidades.ts`: construcción de la API `HABILIDADES`, conservando orden e identificadores.
+- `src/lib/habilidades-nuevas.ts`: generador de habilidades estándar desde el catálogo único.
+- `src/lib/progresion/catalogo-redisenado.ts` y `src/lib/progresion/tecnicas-adicionales.ts`: transformaciones y ejecución de reglas.
+- Las rutas legacy de catálogos, diseño V2 y nombres solo reexportan constantes; son transitorias hasta migrar sus consumidores. `catalogos/crear-habilidad.ts` contiene únicamente un constructor con defaults.
+
+**Modificar clases o habilidades:** abrir uno de esos dos archivos. `npm run clase -- berserker` señala solo las dos fuentes de datos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
 
 ## Fase 3 — Servicios
 
