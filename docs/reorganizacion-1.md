@@ -1,40 +1,91 @@
-# Reorganización 1 — estado y contrato
+# Reorganización 1 — mapa de módulos y estado verificable
 
-Rama aislada creada desde `main` (84fd4db). La prioridad es reducir puntos de entrada sin alterar reglas, balance ni assets históricos.
+Rama `reorganizacion-1` creada desde `main` (`84fd4db`). **No fusionar hasta pasar tests, lint, build y prueba visual.** El objetivo es reducir archivos que el desarrollador necesita conocer, sin cambiar las reglas del juego.
 
-## Fase 1: sprites de héroes HD
+## Fase 1 — Sprites HD y recursos
 
-Entrada para el desarrollador: `python scripts/sprites.py`. Requiere Python 3 y Pillow.
+**Punto de entrada recomendado:** `python scripts/recursos.py` (Python 3 + Pillow). Los scripts existentes son motores especializados internos; no se han borrado porque los usa CI y conservan políticas de manos, hashes y procedencia.
 
 ```bash
-python scripts/sprites.py estado --clase berserker --sexo m
-python scripts/sprites.py actualizar --clase berserker --sexo m --accion idle --tira mi-idle.png
-python scripts/sprites.py validar --clase berserker --sexo m
-python scripts/sprites.py publicar --clase berserker --sexo m --aprobado
+# Héroes: consultar, actualizar una animación, validar o publicar.
+python scripts/recursos.py heroe estado --clase berserker --sexo m
+python scripts/recursos.py heroe actualizar --clase berserker --sexo m --accion idle --tira idle.png
+python scripts/recursos.py heroe validar --clase berserker --sexo m
+python scripts/recursos.py heroe publicar --clase berserker --sexo m --aprobado
+
+# Enemigos: consulta y publicación INDIVIDUAL sin reconstruir los otros 53.
+python scripts/recursos.py enemigo estado --id slime_acido
+python scripts/recursos.py enemigo validar --id slime_acido
+python scripts/recursos.py enemigo publicar --id slime_acido --aprobado
+
+# Equipo superpuesto: consulta por pieza; validación y promoción GLOBALES
+# porque los agarres y trayectorias se comparten entre clases.
+python scripts/recursos.py equipo estado --id espada_hierro
+python scripts/recursos.py equipo validar
+python scripts/recursos.py equipo publicar --aprobado
 ```
 
-`actualizar` acepta una tira RGBA transparente de 512×256 (4 poses de 128×256) o cuatro PNG RGBA `01.png`–`04.png` con `--fotogramas carpeta`. Verifica dimensiones, transparencia, poses distintas y los 60 fotogramas; reconstruye el atlas de preparación, genera QA y previsualización, y recalcula el progreso cuando existe manifiesto. Los fotogramas anteriores y los derivados se restituyen si falla la actualización. La publicación es independiente: exige revisión humana expresada mediante `--aprobado` y sincroniza atlas, reposo, retrato y lista de clases del catálogo de runtime.
+Para añadir/actualizar fuentes de enemigos o equipo, usar `actualizar --metadata archivo.json`: delega en los registradores existentes, que requieren procedencia y revisión. **No confundir actualización técnica con aprobación artística.** El comando de héroes acepta tiras PNG RGBA de 512×256 o cuatro `01.png`–`04.png` de 128×256 con `--fotogramas carpeta`; comprueba diferencia entre fotogramas y reconstruye la hoja de 60 fotogramas. No genera arte nuevo ni hace commits automáticamente.
 
-**Importante:** no genera ilustraciones nuevas; empaqueta cuatro fotogramas ya preparados. No realiza commits automáticos. Los cambios se revisan y versionan con Git. El comando no publica equipo superpuesto ni modifica animaciones de enemigos. La herramienta `promover-sprites-hd.py` sigue siendo necesaria para publicar y verificar en bloque los equipos y los conjuntos antiguos. No ejecutar a ciegas dicho script después de publicar una clase nueva: su política interna de clases procede del manifiesto de equipo, que puede no incluirla.
+### Disponibilidad real de Berserker
 
-Carpeta fuente: `assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/`.
-Carpeta publicada: `public/sprites/hd-v1/heroes/<clase>/`.
-Catálogo runtime: `src/lib/generated/sprites-hd.json` (generado, no modificar manualmente).
+Hay atlas masculino publicado de Berserker, pero no retrato HD masculino ni atlas/retrato femenino publicados. El catálogo runtime `src/lib/generated/sprites-hd.json` ahora distingue `availableSexes` (atlas) y `availablePortraits` (retratos). La UI utiliza el atlas masculino donde existe y recurre a su ancestro legacy para lo que aún falta; evita rutas HD inexistentes. La publicación individual y la global recalculan esos campos.
 
-### Riesgos y validación pendientes
+El publicador global de equipo ya no borra del catálogo las clases publicadas fuera del manifiesto de equipo. **Limitación actual:** la publicación de equipo permanece global, costosa y ligada a todos los agarres; no está implementado todavía un publicador individual verificable de equipo. El publicador individual de enemigos compara los 16 fotogramas y SHA del QA, exige confirmación y conserva las otras entradas del registro.
 
-- Probar en entorno local con Pillow y los sprites reales antes de considerar cerrado el flujo.
-- Ajustar el CI para incluir este comando y validar el catálogo publicado frente a la lista de clases.
-- Revisar el caso de una nueva clase sin directorio fuente y el contrato de publicación de equipo compartido.
-- Conservar los originales y las aprobaciones visuales. No borrar hashes ni QA hasta eliminar su dependencia demostrablemente.
-- Evitar regenerar en masa el catálogo porque actualmente la publicación de equipos incluye reglas de composición y manos que el comando individual no modifica.
+### Ubicaciones a conocer
 
-## Fases posteriores
+| Qué | Ruta |
+|---|---|
+| Comando común | `scripts/recursos.py` |
+| Operaciones de héroes | `scripts/sprites.py` |
+| Fuentes de héroes | `assets/spritesheets/hd-128x256/<clase>/<sexo>/frames/<accion>/` |
+| Fuentes de equipo compartido | `assets/spritesheets/hd-128x256/equipment/` |
+| Fuentes de enemigos | `assets/spritesheets/enemies-hd/<enemigo>/` |
+| Publicación HD | `public/sprites/hd-v1/`, `public/sprites/enemies-hd-v1/` |
+| Registros de runtime | `src/lib/generated/sprites-hd.json` y `enemies-hd.json` |
+| Lectura en juego | `src/lib/sprites-heroes-hd.ts`, `src/lib/sprites-enemigos-hd.ts` |
 
-**2. Clases y habilidades.** Crear un índice de origen por `claseId`, identificar duplicaciones entre `src/lib/habilidades.ts`, `src/lib/habilidades-nuevas.ts`, `src/lib/progresion/diseno-habilidades.ts` y `src/lib/progresion/catalogo-redisenado.ts`. Migrar una familia cada vez, con pruebas de paridad de IDs, costes, tier y progresión. Mantener una sola API pública.
+## Fase 2 — Clases y habilidades
 
-**3. Servicios.** Mapear las entradas de expediciones, combate, party, inventario, edificios y economía antes de mover archivos. Extraer contratos estables y cambiar importaciones por funcionalidad en commits independientes.
+### Registros públicos (únicos)
 
-**4. Limpieza.** Generar un informe de archivos huérfanos usando búsqueda de imports, referencias dinámicas y assets, revisar pruebas y despliegue. Eliminar exclusivamente aquellos con evidencia de no uso; guardar el inventario en documentación y un commit por grupo.
+- `src/lib/progresion/clases.ts`: tipos, arquetipos, herencia, dominios, desbloqueos y API `CLASES`.
+- `src/lib/habilidades.ts`: API `HABILIDADES` y búsquedas, compuesta en el mismo orden anterior.
 
-Ninguna de estas fases posteriores se considera implementada todavía.
+### Fuentes de datos separadas de las reglas
+
+- `src/lib/progresion/catalogos/clases-base.ts`: profesiones originales por tier.
+- `src/lib/progresion/catalogos/clases-avanzadas.ts`: evoluciones y especializaciones.
+- `src/lib/progresion/catalogos/habilidades-troncales.ts`: datos legacy de las 14 profesiones iniciales.
+- `src/lib/progresion/catalogos/habilidades-evoluciones.ts`: datos legacy de las evoluciones.
+- `src/lib/progresion/catalogos/crear-habilidad.ts`: aplicación común de valores por defecto.
+- `src/lib/habilidades-nuevas.ts`, `src/lib/progresion/diseno-habilidades.ts`, `src/lib/progresion/catalogo-redisenado.ts`: **todavía necesarios**, generan o transforman las habilidades actuales; no fusionar sin pruebas de equivalencia.
+- `src/lib/progresion/clases-nuevas.ts`: reexportación temporal necesaria para imports y tests existentes; no contiene ya definiciones duplicadas.
+
+No se han modificado atributos, requisitos de desbloqueo, coste o valores de las habilidades. Queda pendiente unificar aún más las definiciones por clase con el diseño v2 cuando exista un mecanismo de migración testeado.
+
+## Fase 3 — Servicios
+
+Se ha eliminado la duplicación exacta del adaptador `adjuntarPulsosEstado` entre PvE y PvP. Su propietario es ahora `src/server/services/combate/efectos-visualizacion.ts`. Los demás servicios siguen con sus rutas y firmas originales.
+
+Objetivo siguiente: revisar rutas HTTP y extraer una fachada por funcionalidad para combate, expediciones, party, inventario, edificios y economía; migrar consumidores en grupos con pruebas de integración. **No está terminada esta fase.** No mover servicios voluminosos antes de un mapa de llamadas y pruebas de paridad.
+
+## Fase 4 — Limpieza verificada
+
+No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` sigue siendo necesaria para consumidores existentes.
+
+Antes de eliminar cualquier archivo: buscar importaciones estáticas y dinámicas, usos en scripts/CI, rutas públicas y documentación; exigir prueba de regresión y realizar commit dedicado. **La eliminación sistemática de obsoletos está pendiente.**
+
+## Pruebas incorporadas y validación necesaria
+
+- `python scripts/test-sprites-cli.py`
+- `python scripts/test-recursos-cli.py`
+- `node --test tests/sprites-hd-runtime.test.cjs`
+- `npm run test:progression` (incluye `tests/catalogos-reorganizacion.test.cjs`)
+- `npm run test:party`
+- `npm run test:base`
+- `npm run lint`
+- `npm run build`
+
+El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado una ejecución verde de CI ni una compilación local completa en esta intervención**. La publicación de enemigos y de equipo exige una comprobación visual posterior. Si falla un test existente, investigar el fallo antes de fusionar; no relajar aserciones para declarar éxito.
