@@ -16,6 +16,8 @@ require.extensions[".tsx"] = (module, filename) => {
 
 const { obtenerDetallesObjeto } = require("../src/components/objetos/detalles-objeto.ts");
 const MiniaturaObjeto = require("../src/components/objetos/MiniaturaObjeto.tsx").default;
+const EquipoFichaPersonaje = require("../src/components/personaje/EquipoFichaPersonaje.tsx").default;
+const HabilidadesFichaPersonaje = require("../src/components/personaje/HabilidadesFichaPersonaje.tsx").default;
 
 const arma = {
   id: "espada_hierro", nombre: "Espada de hierro", tipo: "arma",
@@ -62,4 +64,24 @@ test("la misma miniatura ofrece acceso táctil y teclado al detalle en cualquier
   }));
   assert.match(sinSprite, /aria-label="Consultar Collar de cobre"/);
   assert.match(sinSprite, /📿/);
+});
+
+test("la ficha rápida distingue ranuras vacías y equipo con acceso a detalles", () => {
+  const equipo = { arma: {
+    id: "instancia-1", objetoId: arma.id, cantidad: 1,
+    nivelMejora: 2, sufijoId: null, bonificaciones: {}, objeto: arma,
+  } };
+  const html = renderToStaticMarkup(React.createElement(EquipoFichaPersonaje, { equipo }));
+  assert.match(html, /10 ranuras ocupadas|1 \/ 10 ranuras ocupadas/);
+  assert.match(html, /Espada de hierro/);
+  assert.match(html, /aria-label="Consultar Espada de hierro"/);
+  assert.match(html, /Sin equipar/);
+});
+
+test("las habilidades de la ficha distinguen las listas de activas y pasivas", () => {
+  const html = renderToStaticMarkup(React.createElement(HabilidadesFichaPersonaje, { habilidades: [] }));
+  assert.match(html, /Activas/);
+  assert.match(html, /Pasivas/);
+  assert.match(html, /Sin habilidades activas equipadas/);
+  assert.match(html, /Sin dones pasivos aprendidos/);
 });
