@@ -4,6 +4,7 @@ import {
   obtenerRutaSpritesheetHeroe,
   FILAS_ANIMACION_SPRITESHEET_HEROE,
   obtenerIdClaseParaSprite,
+  obtenerIdVisualClase,
 } from "@/lib/configuracionJuego";
 import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites-heroes-hd";
 import SpriteHeroeHd from "./SpriteHeroeHd";
@@ -47,9 +48,10 @@ function SpriteHeroeLegacy({
   reflejado = false,
 }: Omit<SpriteHeroeAnimadoProps, "accion"> & { accion?: "idle" | "walk" | "hurt" }) {
   const id = obtenerIdClaseParaSprite(clase, profesionActivaId);
-  const ruta = esClaseHeroeHd(id, sexo === "chica" ? "f" : "m")
-    ? `/sprites/heroes/${id}/${id}-${sexo === "chica" ? "f" : "m"}-sheet.png`
-    : obtenerRutaSpritesheetHeroe(clase, sexo, profesionActivaId);
+  // El fallback nunca debe intentar cargar la misma hoja HD dañada
+  // ni una ruta legacy inexistente de una clase avanzada.
+  const legado = obtenerIdVisualClase(id);
+  const ruta = `/sprites/heroes/${legado}/${legado}-${sexo === "chica" ? "f" : "m"}-sheet.png`;
   const fila = FILA_ACCION[accion];
   // Para 15 filas, CSS tiene 14 intervalos verticales. Horizontalmente son 3 intervalos para 4 frames.
   const desplazamientoVertical = `${(fila / (FILAS_ANIMACION_SPRITESHEET_HEROE.length - 1)) * 100}%`;
