@@ -44,7 +44,7 @@ El publicador global de equipo ya no borra del catálogo las clases publicadas f
 | Fuentes de enemigos | `assets/spritesheets/enemies-hd/<enemigo>/` |
 | Publicación HD | `public/sprites/hd-v1/`, `public/sprites/enemies-hd-v1/` |
 | Registros de runtime | `src/lib/generated/sprites-hd.json` y `enemies-hd.json` |
-| Lectura en juego | `src/lib/sprites-heroes-hd.ts`, `src/lib/sprites-enemigos-hd.ts` |
+| Lectura en juego | `src/lib/sprites/heroes.ts`, `src/lib/sprites/enemigos.ts` y `src/lib/sprites/dibujar-heroe.ts` |
 
 ## Fase 2 — Clases y habilidades
 
@@ -72,9 +72,26 @@ Los cuatro catálogos canónicos están ahora juntos en `src/lib/catalogos/`: cl
 
 - `src/lib/catalogos/objetos.ts`: **definiciones de los 62 objetos**. `src/lib/objetos.ts` conserva la API pública de consulta, estadísticas, sprites y costes de forja.
 - `src/lib/catalogos/enemigos.ts`: **42 criaturas, 12 jefes y tablas de botín**. `src/lib/enemigos.ts` conserva la API pública, los defaults de drops, la selección por amenaza y las rutas de sprites.
-- `src/lib/sufijosObjetos.ts`: catálogo pequeño de sufijos más sus reglas; se mantiene junto por ahora para evitar una separación artificial.
+- `src/lib/equipamiento/sufijos.ts`: catálogo pequeño de sufijos más sus reglas; se mantiene junto por ahora para evitar una separación artificial.
 
 Así, los datos se editan en un lugar por dominio, pero las funciones permanecen fuera del catálogo. **No se han cambiado precios, estadísticas, rarezas ni probabilidades**. Los importadores existentes siguen usando `src/lib/objetos.ts` y `src/lib/enemigos.ts`.
+
+## Fase 2.5 — Ordenación de carpetas sin cambiar las reglas
+
+Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, secuencias de combate y rutas públicas HTTP/Next.js. En cada traslado se han corregido imports de consumidores y rutas de tests; no se han fragmentado funciones.
+
+| Dominio | Ubicación de las reglas y recursos |
+|---|---|
+| Base y taberna | `src/lib/base/taberna.ts` (la configuración general de edificios sigue en `configuracionJuego.ts`) |
+| Equipamiento | `src/lib/equipamiento/{inventario,tienda,botin,sufijos}.ts` |
+| Economía | `src/lib/economia/mercado.ts` |
+| Generación de expediciones | `src/lib/expediciones/generador-misiones.ts` |
+| Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts` |
+| Catálogos editables | `src/lib/catalogos/{clases,habilidades,objetos,enemigos}.ts` |
+| Rutas e interfaz de base | `src/app/base/` y `src/components/base/` (se conservan las URLs) |
+| Operaciones persistentes | `src/server/services/` |
+
+La reorganización de scripts y tests se abordará por separado: `scripts/recursos.py` y los workflows invocan rutas concretas que no deben romperse por mover carpetas. La fase siguiente será extraer funciones de archivos grandes **solo cuando estos traslados hayan pasado la regresión completa**.
 
 ## Fase 3 — Servicios
 
@@ -120,7 +137,7 @@ npm run audit:estructura
 
 - `npm run audit:estructura`: búsqueda orientativa de módulos sin imports entrantes y referencias no resueltas. No elimina nada. Una ruta HTTP, un import dinámico, un archivo de Prisma o un recurso gráfico pueden usarse sin imports normales; cada candidato requiere investigación.
 - `src/server/services/expediciones/index.ts`, `combate/index.ts` y `party/index.ts`: fachadas públicas. Las rutas de expediciones y los endpoints explícitos PvE/PvP ya usan los índices. El endpoint de combate genérico continúa pasando por el adaptador antiguo para no romper clientes.
-- `src/lib/economia.ts`: única fuente de validación de recursos, cantidades y nivel del Mercado; usada por `api/mercado/comprar` y `api/mercado/vender`.
+- `src/lib/economia/mercado.ts`: única fuente de validación de recursos, cantidades y nivel del Mercado; usada por `api/mercado/comprar` y `api/mercado/vender`.
 
 ### CI y revisión
 

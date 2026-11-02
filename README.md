@@ -4,6 +4,19 @@
 
 **Fuentes editables:** [clases](src/lib/catalogos/clases.ts) · [habilidades](src/lib/catalogos/habilidades.ts) · [objetos](src/lib/catalogos/objetos.ts) · [enemigos](src/lib/catalogos/enemigos.ts). Los módulos de juego conservan sus APIs de consulta.
 
+## Mapa de carpetas
+
+- `src/lib/catalogos/`: datos editables de clases, habilidades, objetos y enemigos.
+- `src/lib/base/`: reglas de la base, empezando por las comidas de taberna.
+- `src/lib/equipamiento/`: inventario, sufijos, tienda y botín.
+- `src/lib/economia/`: mercado y precios.
+- `src/lib/expediciones/`: reglas de expedición, combate y generación de misiones.
+- `src/lib/sprites/`: lectura y renderizado de héroes y enemigos HD.
+- `src/app/base/` y `src/components/base/`: rutas y UI de edificios (no se mueven para mantener las URLs).
+- `src/server/services/`: persistencia y operaciones del servidor.
+
+[Mapa detallado y estado de la reorganización](docs/reorganizacion-1.md). Para recursos gráficos, usar la interfaz pública `scripts/recursos.py` y no modificar los JSON generados manualmente.
+
 Para consultar y publicar sprites sin abrir manifiestos ni editar hashes:
 
 ```bash

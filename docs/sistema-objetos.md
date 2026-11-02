@@ -37,7 +37,7 @@ Los objetos básicos y comunes no llevan sufijo. Los objetos de mayor rareza que
 
 Los enemigos normales no pueden generar sufijos legendarios. Los jefes tienen mayor probabilidad de soltar un objeto y pueden generar sufijos legendarios. Las bonificaciones almacenadas se añaden al cálculo de estadísticas reales de combate; no son solo un cambio visual del nombre. Comprar una copia en la Armería crea un objeto normal, sin rerollear sufijos.
 
-La tabla de sufijos está en `src/lib/sufijosObjetos.ts`; las probabilidades y tablas de botín se definen en `src/lib/enemigos.ts`, y la tirada ponderada en `src/lib/lootObjetos.ts`.
+La tabla de sufijos está en `src/lib/equipamiento/sufijos.ts`; las probabilidades y tablas de botín se definen en `src/lib/catalogos/enemigos.ts`, y la tirada ponderada en `src/lib/equipamiento/botin.ts`.
 
 ## Consumibles en combate
 
