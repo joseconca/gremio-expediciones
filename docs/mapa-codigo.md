@@ -43,6 +43,8 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Ranuras de equipo de la hoja rápida | `src/components/personaje/EquipoFichaPersonaje.tsx` |
 | Habilidades activas y pasivas de la hoja rápida | `src/components/personaje/HabilidadesFichaPersonaje.tsx` |
 | Gestión completa de equipo, mochila e inventario | `src/app/base/personaje/page.tsx` |
+| Silueta, ranuras, selección y botones de equipamiento | `src/components/personaje/EquipoPersonaje.tsx` |
+| Formatos breves de estadísticas y rarezas en equipo y mochila | `src/components/objetos/resumen-objeto.ts` |
 | Ranuras, filtros y lista de habilidades aprendidas | `src/components/personaje/HabilidadesPersonaje.tsx` |
 | Progreso, atributos y desglose de estadísticas en la ficha completa | `src/components/personaje/RegistroAventurero.tsx` |
 | Miniatura con información desplegable de objetos | `src/components/objetos/MiniaturaObjeto.tsx` |

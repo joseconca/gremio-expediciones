@@ -109,12 +109,14 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   const registro = read("src/components/personaje/RegistroAventurero.tsx");
   assert.match(registro, /Atributos principales/);
   assert.match(registro, /Estadísticas de combate/);
-  assert.match(pagina, /aria-label="Vista de equipamiento"/);
-  assert.match(pagina, /grid-cols-\[minmax\(0,1fr\)_92px_minmax\(0,1fr\)\]/);
-  assert.match(pagina, /sm:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);
-  assert.match(pagina, /obtenerObjetosCompatiblesRanura/);
-  assert.match(pagina, /No hay objetos compatibles en la mochila/);
-  assert.match(pagina, /aria-expanded=\{ranuraSeleccionada === ranura\.clave\}/);
+  const equipo = read("src/components/personaje/EquipoPersonaje.tsx");
+  assert.match(pagina, /<EquipoPersonaje/);
+  assert.match(equipo, /aria-label="Vista de equipamiento"/);
+  assert.match(equipo, /grid-cols-\[minmax\(0,1fr\)_92px_minmax\(0,1fr\)\]/);
+  assert.match(equipo, /sm:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);
+  assert.match(equipo, /obtenerObjetosCompatiblesRanura/);
+  assert.match(equipo, /No hay objetos compatibles en la mochila/);
+  assert.match(equipo, /aria-expanded=\{ranuraSeleccionada === ranura\.clave\}/);
   assert.doesNotMatch(pagina, /Ver en equipo/);
   assert.match(pagina, /ranuraEquipada/);
   assert.match(pagina, /enviarAccionObjeto\("desequipar", undefined, ranuraEquipada\)/);
@@ -125,7 +127,7 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(habilidades, /Gestionar en Escuela de Batalla/);
   assert.match(habilidades, /Ranuras preparadas/);
   assert.match(habilidades, /Todas las aprendidas/);
-  assert.match(pagina, /armaDosManosEquipada/);
+  assert.match(equipo, /armaDosManosEquipada/);
   for (const categoria of ["Armas", "Armaduras", "Accesorios", "Consumibles", "Varios"]) {
     assert.ok(pagina.includes(categoria), `Falta la categoría de mochila ${categoria}`);
   }
