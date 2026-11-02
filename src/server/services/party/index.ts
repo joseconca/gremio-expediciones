@@ -2,6 +2,7 @@
 export {
   solicitarVisita, marcarLlegadaTraslado, aceptarVisita, rechazarVisita,
   volverDeVisita, completarRegreso, abandonarParty, disolverParty,
-  obtenerEstadoParty, PartyServiceError,
+  obtenerEstadoParty,
 } from "./party-service";
 export { ejecutarRutaParty } from "./http";
+export { PartyServiceError } from "./errores";

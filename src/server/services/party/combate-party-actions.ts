@@ -36,7 +36,7 @@ import {
 } from "@/lib/party/combate-reglas";
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
-import { PartyServiceError } from "@/server/services/party/party-service";
+import { PartyServiceError } from "./errores";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";

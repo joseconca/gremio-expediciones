@@ -29,6 +29,7 @@ function loadService(prisma) {
     "@/lib/party/expedicion-reglas": reglasExpedicionParty,
     "@/lib/habilidades": { obtenerHabilidadPorId: () => undefined },
     "@/lib/objetos": { obtenerObjetoPorId: () => undefined },
+    "./errores": require("../src/server/services/party/errores.ts"),
   };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
@@ -570,4 +571,16 @@ test("abandonar party se bloquea durante una expedición aunque el miembro haya 
     servicio.abandonarParty("visitante"),
     (error) => error.status === 409 && error.code === "PARTY_EXPEDICION_ACTIVA",
   );
+});
+
+
+test("el error de party conserva identidad, estado, código y exportación histórica", () => {
+  const { PartyServiceError } = require("../src/server/services/party/errores.ts");
+  const error = new PartyServiceError("Conflicto");
+  assert.equal(error.name, "PartyServiceError");
+  assert.equal(error.message, "Conflicto");
+  assert.equal(error.status, 409);
+  assert.equal(error.code, "PARTY_CONFLICT");
+  assert.equal(new PartyServiceError("Falta", 404, "NO_ENCONTRADO").status, 404);
+  assert.equal(loadService({}).PartyServiceError, PartyServiceError);
 });

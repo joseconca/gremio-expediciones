@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { PartyServiceError } from "@/server/services/party/party-service";
+import { PartyServiceError } from "./errores";
 
 type Body = Record<string, unknown> | null;
 type PartyHandler = (usuarioId: string, body: Body) => Promise<Record<string, unknown>>;

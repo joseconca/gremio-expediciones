@@ -12,7 +12,7 @@ import {
   esMisionPveCompartida,
   ESTADOS_EXPEDICION_PARTY_ACTIVOS,
 } from "@/lib/party/expedicion-reglas";
-import { PartyServiceError } from "@/server/services/party/party-service";
+import { PartyServiceError } from "./errores";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";

@@ -168,7 +168,7 @@ function loadService(prisma, testOptions = {}) {
       leerCoordenadasBase: (value) => value && typeof value.lat === "number" && typeof value.lng === "number" ? value : null,
     },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
-    "@/server/services/party/party-service": { PartyServiceError: MockPartyError },
+    "./errores": { PartyServiceError: MockPartyError },
   };
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(

@@ -1,3 +1,5 @@
+import { PartyServiceError } from "./errores";
+export { PartyServiceError } from "./errores";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate";
 import { Prisma } from "@prisma/client";
@@ -88,18 +90,6 @@ type UsuarioBase = {
   personaje: { id: string; estado: string } | null;
   expedicionActiva: { id: string } | null;
 };
-
-export class PartyServiceError extends Error {
-  readonly status: number;
-  readonly code: string;
-
-  constructor(message: string, status = 409, code = "PARTY_CONFLICT") {
-    super(message);
-    this.name = "PartyServiceError";
-    this.status = status;
-    this.code = code;
-  }
-}
 
 function exigirId(valor: unknown, campo: string): string {
   if (typeof valor !== "string" || valor.trim().length === 0 || valor.length > 100) {

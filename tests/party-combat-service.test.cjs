@@ -131,7 +131,7 @@ function loadService(prisma) {
       calcularMultiplicadoresEnemigo: () => ({ vida: 1, ataque: 1, defensa: 1 }),
     },
     "@/lib/party/combate-reglas": reglasCombate,
-    "@/server/services/party/party-service": { PartyServiceError: MockPartyError },
+    "./errores": { PartyServiceError: MockPartyError },
   };
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(

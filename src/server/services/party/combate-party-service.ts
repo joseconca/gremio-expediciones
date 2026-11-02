@@ -10,7 +10,7 @@ import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { esModoDificultad } from "@/lib/expediciones/dificultad";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
-import { PartyServiceError } from "@/server/services/party/party-service";
+import { PartyServiceError } from "./errores";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 

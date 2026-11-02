@@ -81,7 +81,7 @@ function loadService(prisma, misionPrueba = mission) {
         value && typeof value.lat === "number" && typeof value.lng === "number" ? value : null,
     },
     "@/lib/party/expedicion-reglas": expedicionRules,
-    "@/server/services/party/party-service": { PartyServiceError: MockPartyError },
+    "./errores": { PartyServiceError: MockPartyError },
     "../../../lib/expediciones/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
     },
