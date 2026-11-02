@@ -1,4 +1,4 @@
-import type { AtributosPrincipales } from "../tiposJuego";
+import type { AtributosPrincipales, ClasePersonaje } from "../tiposJuego";
 
 /** Coeficientes iniciales de balance: se ajustan aquí, no en las rutas de API. */
 export const COEFICIENTES_ATRIBUTOS_RPG = {
@@ -81,4 +81,70 @@ export function calcularEstadisticasDerivadasRpg(
     regeneracionEnergiaPorTurno: Math.max(0, suma("regeneracionEnergiaPorTurno", (c.energiaBase + (bonificaciones.energiaMaxima ?? 0)) * 0.2)),
     regeneracionManaPorTurno: Math.max(0, suma("regeneracionManaPorTurno", c.regeneracionManaBase + inteligencia * c.regeneracionManaPorInteligencia)),
   };
+}
+
+
+// Estadísticas iniciales del personaje (compatibilidad con clases históricas).
+export interface EstadisticasBasePersonaje {
+  hpMaximo: number;
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  capacidadCarruaje: number;
+  probCritico: number;
+  danoCritico: number;
+}
+
+export function calcularEstadisticasBase(
+  clase: ClasePersonaje,
+  nivel: number
+): EstadisticasBasePersonaje {
+  const nivelSeguro = Math.max(1, nivel);
+  const nivelesExtra = nivelSeguro - 1;
+
+  switch (clase) {
+    case "Novato":
+      return {
+        hpMaximo: 65 + nivelesExtra * 5,
+        ataque: 5 + nivelesExtra,
+        defensa: 3 + nivelesExtra * 0.8,
+        velocidad: 5 + nivelesExtra * 0.4,
+        capacidadCarruaje: 8 + nivelesExtra,
+        probCritico: 0.03,
+        danoCritico: 1.5,
+      };
+
+    case "Guerrero":
+      return {
+        hpMaximo: 85 + nivelesExtra * 6,
+        ataque: 7 + nivelesExtra * 1.4,
+        defensa: 6 + nivelesExtra * 1.3,
+        velocidad: 5 + nivelesExtra * 0.5,
+        capacidadCarruaje: 10 + nivelesExtra,
+        probCritico: 0.05,
+        danoCritico: 1.5,
+      };
+
+    case "Explorador":
+      return {
+        hpMaximo: 75 + nivelesExtra * 5,
+        ataque: 6.5 + nivelesExtra * 1.2,
+        defensa: 4 + nivelesExtra * 0.9,
+        velocidad: 9 + nivelesExtra,
+        capacidadCarruaje: 10 + nivelesExtra,
+        probCritico: 0.05,
+        danoCritico: 1.5,
+      };
+
+    case "Comerciante":
+      return {
+        hpMaximo: 80 + nivelesExtra * 5,
+        ataque: 6 + nivelesExtra * 1.05,
+        defensa: 5 + nivelesExtra,
+        velocidad: 7 + nivelesExtra * 0.7,
+        capacidadCarruaje: 14 + nivelesExtra * 1.2,
+        probCritico: 0.05,
+        danoCritico: 1.5,
+      };
+  }
 }

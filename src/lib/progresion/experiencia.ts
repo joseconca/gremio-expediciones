@@ -71,3 +71,13 @@ export function aplicarExperienciaJob(
       nivelJob >= maximo ? null : experienciaJobParaNivel(nivelJob) - experienciaJob,
   };
 }
+
+// Experiencia Base; conserva la misma curva previa a la reorganización.
+export function experienciaBaseReferenciaParaNivel(nivel: number): number {
+  const nivelSeguro = Number.isFinite(nivel) ? Math.max(1, Math.floor(nivel)) : 1;
+  return Math.round(500 * nivelSeguro ** 1.83);
+}
+
+export function experienciaParaNivel(nivel: number): number {
+  return experienciaBaseReferenciaParaNivel(nivel);
+}
