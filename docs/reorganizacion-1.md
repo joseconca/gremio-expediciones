@@ -64,7 +64,7 @@ No existen otros catálogos editables de estos dominios. Los demás módulos son
 - `src/lib/habilidades.ts`: construcción de la API `HABILIDADES`, conservando orden e identificadores.
 - `src/lib/habilidades-nuevas.ts`: generador de habilidades estándar desde el catálogo único.
 - `src/lib/progresion/catalogo-redisenado.ts` y `src/lib/progresion/tecnicas-adicionales.ts`: transformaciones y ejecución de reglas.
-- Las rutas legacy de clases, habilidades originales, nombres, Super Novato y técnicas adicionales se han retirado tras actualizar consumidores y pruebas. `progresion/diseno-habilidades.ts` permanece como módulo de tipos, y `catalogos/crear-habilidad.ts` contiene únicamente un constructor con defaults.
+- Las rutas legacy de clases, habilidades originales, nombres, Super Novato y técnicas adicionales se han retirado tras actualizar consumidores y pruebas. `progresion/diseno-habilidades.ts` permanece como módulo de tipos, y `progresion/crear-habilidad.ts` contiene únicamente un constructor con defaults.
 
 **Modificar clases o habilidades:** editar exclusivamente uno de los dos catálogos canónicos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
 

@@ -1,7 +1,7 @@
 import type { DefinicionHabilidad } from "../../tiposJuego";
 import type { ElementoTactico } from "../../expediciones/motor-tactico";
 import type { CondicionPasiva, VentajaPasiva } from "../diseno-habilidades";
-import { habilidad } from "./crear-habilidad";
+import { habilidad } from "../crear-habilidad";
 import type { DisenoActiva, DisenoClase, OperacionHabilidad, ReglaPasiva } from "../diseno-habilidades";
 
 /** ÚNICO CATÁLOGO EDITABLE DE HABILIDADES: datos originales, escuelas y diseños v2.
