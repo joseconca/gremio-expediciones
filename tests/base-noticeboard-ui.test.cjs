@@ -31,8 +31,8 @@ test("la compañía mantiene su desplegable y la expedición compartida el suyo 
   const aviso = read("src/components/base/party/AvisoCompaniaParty.tsx");
   const expedicion = read("src/components/base/party/ExpedicionActivaParty.tsx");
   assert.match(party, /<ExpedicionActivaParty/);
-  assert.match(party, /aria-expanded=\\{partyDetalleAbierto\\}/);
-  assert.match(expedicion, /aria-expanded=\\{expedicionDetalleAbierto\\}/);
+  assert.match(aviso, /aria-expanded=\{partyDetalleAbierto\}/);
+  assert.match(expedicion, /aria-expanded=\{expedicionDetalleAbierto\}/);
   assert.match(expedicion, /<MissionMap/);
   assert.match(expedicion, /<InformeProvisionalParty/);
   assert.match(expedicion, /onAbrirCombate/);
