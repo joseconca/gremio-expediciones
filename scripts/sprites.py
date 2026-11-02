@@ -243,6 +243,8 @@ def main() -> int:
         elif args.orden == "actualizar":
             if args.aprobado and not args.publicar:
                 raise ValueError("--aprobado solo tiene sentido con --publicar")
+            if args.publicar and not args.aprobado:
+                raise ValueError("--publicar requiere --aprobado antes de modificar los fotogramas")
             actualizar(args.clase, args.sexo, args.accion, args.tira, args.fotogramas)
             if args.publicar:
                 publicar(args.clase, args.sexo, args.aprobado)
