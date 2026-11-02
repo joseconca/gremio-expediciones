@@ -4,12 +4,10 @@ const assert = require("node:assert/strict");
 
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 
-const { CLASES_BASE } = require("../src/lib/progresion/catalogos/clases-base.ts");
-const { CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases-avanzadas.ts");
+const { CLASES_BASE, CLASES_NUEVAS } = require("../src/lib/progresion/catalogos/clases.ts");
 const { HABILIDADES, HABILIDADES_BASE } = require("../src/lib/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/habilidades-nuevas.ts");
-const { HABILIDADES_TRONCALES } = require("../src/lib/progresion/catalogos/habilidades-troncales.ts");
-const { HABILIDADES_EVOLUCIONES } = require("../src/lib/progresion/catalogos/habilidades-evoluciones.ts");
+const { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES } = require("../src/lib/progresion/catalogos/habilidades.ts");
 
 test("las definiciones de clases solo tienen un propietario y una API publica", () => {
   const originales = Object.keys(CLASES_BASE);
@@ -50,8 +48,8 @@ test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
   assert.equal(catalogo.HABILIDADES_TRONCALES, HABILIDADES_TRONCALES);
   assert.equal(catalogo.HABILIDADES_EVOLUCIONES, HABILIDADES_EVOLUCIONES);
   assert.equal(require("../src/lib/progresion/diseno-habilidades.ts").DISENO_HABILIDADES, catalogo.DISENO_HABILIDADES);
-  assert.equal(require("../src/lib/progresion/nombres-redisenio.ts").NOMBRES_REDISENIO, catalogo.NOMBRES_REDISENIO);
-  assert.equal(require("../src/lib/progresion/catalogo-tecnicas-adicionales.ts").CATALOGO_TECNICAS_ADICIONALES, catalogo.CATALOGO_TECNICAS_ADICIONALES);
+  assert.ok(Object.keys(catalogo.NOMBRES_REDISENIO).length > 0);
+  assert.ok(Object.keys(catalogo.CATALOGO_TECNICAS_ADICIONALES).length > 0);
   assert.equal(new Set(Object.keys(DEFINICIONES_CLASES)).size, Object.keys(CLASES).length);
 });
 

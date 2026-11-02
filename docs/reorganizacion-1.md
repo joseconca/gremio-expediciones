@@ -64,7 +64,7 @@ No existen otros catálogos editables de estos dominios. Los demás módulos son
 - `src/lib/habilidades.ts`: construcción de la API `HABILIDADES`, conservando orden e identificadores.
 - `src/lib/habilidades-nuevas.ts`: generador de habilidades estándar desde el catálogo único.
 - `src/lib/progresion/catalogo-redisenado.ts` y `src/lib/progresion/tecnicas-adicionales.ts`: transformaciones y ejecución de reglas.
-- Las rutas legacy de catálogos, diseño V2 y nombres solo reexportan constantes; son transitorias hasta migrar sus consumidores. `catalogos/crear-habilidad.ts` contiene únicamente un constructor con defaults.
+- Las rutas legacy de clases, habilidades originales, nombres, Super Novato y técnicas adicionales se han retirado tras actualizar consumidores y pruebas. `progresion/diseno-habilidades.ts` permanece como módulo de tipos, y `catalogos/crear-habilidad.ts` contiene únicamente un constructor con defaults.
 
 **Modificar clases o habilidades:** editar exclusivamente uno de los dos catálogos canónicos. Las habilidades V2 actuales se generan desde datos declarativos, no se deben copiar en otros ficheros.
 
@@ -101,7 +101,7 @@ La separación actual tiene sentido y no requiere repartir cada pequeña funció
 2. `src/server/services/party/combate-party-actions.ts` (~94 KB): dividir acciones por responsabilidad (objetivos, resultados, efectos y persistencia) manteniendo **un solo motor de reglas**.
 3. `src/components/base/PanelParty.tsx` (~89 KB) y `src/app/base/personaje/page.tsx` (~69 KB): extraer secciones independientes, evitando estados duplicados.
 4. `src/lib/tiposJuego.ts` (725 líneas): candidatear tipos por dominio cuando sus dependencias lo permitan; evitar ciclos entre `src/lib` y `src/server`.
-5. Las rutas de compatibilidad de los catálogos antiguos reexportan constantes: eliminarlas únicamente tras migrar sus importadores y verificar tests, scripts y CI; no reintroducir datos ahí.
+5. Evitar reconstruir fachadas innecesarias para catálogos ya consolidados; la compatibilidad solo se conserva cuando existe un consumidor verificado.
 
 **No aplicar una fragmentación masiva sin pruebas de paridad.** Los módulos de operaciones PvP, PvE y party no son catálogos duplicados: su separación refleja flujos distintos. Los ~49 scripts Python/Node incluyen validadores y herramientas invocadas por la CI; `scripts/recursos.py` es la interfaz común, y los motores especializados se conservan mientras sean necesarios.
 
