@@ -28,7 +28,7 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `src/lib/configuracionJuego.ts` actúa como **fachada de compatibilidad**. Redirige exports de edificios, progresión y sprites; su aspecto antiguo no implica que sea código muerto.
 - `src/lib/habilidades.ts` construye el registro que consumen las APIs y los combates. `progresion/generar-habilidades.ts`, `catalogo-redisenado.ts` y `tecnicas-adicionales.ts` son transformaciones del catálogo, no catálogos editables alternativos.
 - `src/lib/enemigos.ts` adapta los datos del catálogo de enemigos para dificultad, botín y selección; no sustituirlo por el JSON generado de sprites.
-- `src/lib/expediciones/presentacion-combate.ts` combina interpretación del tipo de ataque básico y metadatos visuales. Requiere un análisis de dependencias antes de separar esos usos.
+- `src/lib/expediciones/presentacion-combate.ts` ya solo resuelve metadatos visuales. La regla de uso de ataque físico/mágico y la normalización de subtipos están en `src/lib/expediciones/ataque-basico-arma.ts`, consumida por PvE, PvP y party. Su comportamiento está cubierto por `tests/combat-presentacion.test.cjs`.
 - `src/lib/expediciones/destinos-animacion-combate.ts` traduce metadatos de acciones para PvE, party y PvP. Que produzca datos visuales no significa que pueda moverse directamente a React: hay consumidores de servicios.
 - `src/lib/progresion/diseno-habilidades.ts` define contratos tácticos, mientras `src/lib/catalogos/habilidades.ts` contiene sus datos. No confundir una declaración de tipo con duplicación de contenido.
 

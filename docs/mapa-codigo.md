@@ -25,6 +25,8 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Quiero modificar… | Dónde está |
 | --- | --- |
 | Daño físico/mágico, curación y habilidades durante combate | `src/lib/expediciones/combate.ts`, `mecanicas-habilidades.ts` |
+| Qué armas permiten comparar ataque físico y mágico en el básico | `src/lib/expediciones/ataque-basico-arma.ts` |
+| Cómo se representa visualmente el ataque básico (flecha, esfera arcana) | `src/lib/expediciones/presentacion-combate.ts` |
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
 | Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
 | Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |

@@ -2,6 +2,7 @@ require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { obtenerPresentacionAtaqueBasico } = require("../src/lib/expediciones/presentacion-combate.ts");
+const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
 
@@ -34,6 +35,15 @@ test("bastón y libro lanzan una esfera arcana en el ataque básico", () => {
   assert.deepEqual(obtenerPresentacionAtaqueBasico("baston"), esperada);
   assert.deepEqual(obtenerPresentacionAtaqueBasico("Bastón"), esperada);
   assert.deepEqual(obtenerPresentacionAtaqueBasico("libro"), esperada);
+});
+
+test("solo bastón y libro habilitan la comparación entre ataque físico y mágico", () => {
+  for (const subtipo of ["baston", "Bastón", "  LIBRO  "]) {
+    assert.equal(usaAtaqueMagicoBasico(subtipo), true, subtipo);
+  }
+  for (const subtipo of ["arco", "espada", "daga", "", null, undefined]) {
+    assert.equal(usaAtaqueMagicoBasico(subtipo), false, String(subtipo));
+  }
 });
 
 test("el básico con bastón/libro compara ataque físico y mágico y mitiga con la defensa correspondiente", () => {
