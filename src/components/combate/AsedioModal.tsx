@@ -15,7 +15,7 @@ import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
-import type { HabilidadEquipable } from "./tipos";
+import type { HabilidadCombate, HabilidadEquipable } from "./tipos";
 
 interface AsedioModalProps {
   habilidadesIniciales?: HabilidadEquipable[];
