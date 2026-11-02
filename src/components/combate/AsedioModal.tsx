@@ -15,8 +15,8 @@ import HistorialCombate from "./HistorialCombate";
 import { useBloquearScrollFondo } from "./useBloquearScrollFondo";
 import ResultadoAsedio from "./ResultadoAsedio";
 import InformacionAsedio from "./InformacionAsedio";
+import PanelHabilidadesCombate from "./PanelHabilidadesCombate";
 import styles from "./combate-rpg.module.css";
-import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import type { HabilidadCombate, HabilidadEquipable } from "./tipos";
 
 interface AsedioModalProps {
@@ -366,10 +366,6 @@ export default function AsedioModal({
 
     return typeof cooldown === "number" && cooldown > 0 ? cooldown : 0;
   };
-
-  const habilidadSeleccionada = habilidades.find(
-    (h) => h.habilidadId === habilidadSeleccionadaId
-  );
 
   /*
    * ============================================================
@@ -781,161 +777,19 @@ export default function AsedioModal({
 
           <div className={styles.content}>
             {mostrarHabilidades ? (
-              <div className="flex h-full w-full animate-fade-in flex-col">
-                <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 sm:text-xs">
-                      Habilidades equipadas
-                    </span>
-
-                    <span className="font-mono text-[10px] text-stone-500">
-                      {Math.min(habilidades.length, 5)}/5
-                    </span>
-                  </div>
-
-                  <button
-                    onClick={() => setMostrarHabilidades(false)}
-                    className="text-[10px] font-bold tracking-widest text-stone-500"
-                  >
-                    VOLVER ✕
-                  </button>
-                </div>
-
-                <div className="grid min-h-0 flex-1 grid-cols-1 items-center gap-4 sm:grid-cols-2">
-                  <div className="custom-scrollbar flex max-h-full flex-col justify-center gap-2 overflow-y-auto pr-1">
-                    {habilidades.slice(0, 5).map((h) => {
-                      const cooldown = obtenerCooldown(h.habilidadId);
-
-                      const costeEnergia = h.habilidad.costeEnergia ?? 0;
-                      const costeMana = h.habilidad.costeMana ?? 0;
-                      const recursoInsuficiente =
-                        personaje.energiaActual < costeEnergia ||
-                        personaje.manaActual < costeMana;
-                      const bloqueada =
-                        cooldown > 0 ||
-                        recursoInsuficiente ||
-                        procesando ||
-                        procesandoLocal ||
-                        !miTurno ||
-                        combateTerminado;
-
-                      const seleccionada =
-                        habilidadSeleccionadaId === h.habilidadId;
-
-                      return (
-                        <button
-                          key={h.id}
-                          aria-label={`Usar habilidad ${h.habilidad.nombre}`}
-                          onClick={() => void ejecutarHabilidad(h.habilidadId)}
-                          onMouseEnter={() =>
-                            setHabilidadSeleccionadaId(h.habilidadId)
-                          }
-                          disabled={bloqueada}
-                          className={`group relative flex w-full items-center justify-between overflow-hidden rounded border px-3 py-2.5 text-left transition-all sm:px-4 sm:py-3 ${
-                            seleccionada
-                              ? "border-stone-500 bg-stone-800"
-                              : "border-stone-800 bg-stone-950/80 hover:border-stone-600 hover:bg-stone-900"
-                          } disabled:opacity-50`}
-                        >
-                          <div
-                            className={`absolute left-0 top-0 h-full w-1 bg-stone-500 transition-opacity ${
-                              seleccionada
-                                ? "opacity-100"
-                                : "opacity-0 group-hover:opacity-100"
-                            }`}
-                          />
-
-                          <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2 pr-2">
-                            <IconoHabilidad habilidadId={h.habilidadId} className="h-9 w-9 shrink-0 rounded-md border border-stone-700 bg-stone-900 p-0.5" />
-                            <div className="min-w-0 flex-1">
-                              <p className={`truncate text-xs font-bold tracking-wide sm:text-sm ${seleccionada ? "text-stone-400" : "text-stone-200"}`}>{h.habilidad.nombre}</p>
-                              <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
-                                {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
-                                {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
-                                {costeMana > 0 ? `${costeMana} MAN` : ""}
-                                {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="relative z-10 flex shrink-0 items-center justify-end">
-                            {cooldown > 0 ? (
-                              <span className="rounded border border-red-900/50 bg-red-950 px-1.5 py-0.5 text-[9px] font-black tracking-widest text-red-400 sm:px-2 sm:py-1 sm:text-[10px]">
-                                CD {cooldown}
-                              </span>
-                            ) : (
-                              <span className="text-[9px] font-black tracking-widest text-stone-500 sm:text-[10px]">
-                                USAR
-                              </span>
-                            )}
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="hidden h-full max-h-[160px] flex-col justify-between overflow-y-auto rounded border border-stone-800 bg-stone-950/90 p-4 shadow-inner sm:flex">
-                    {habilidadSeleccionada ? (
-                      <>
-                        <div>
-                          <div className="mb-1 flex items-center justify-between">
-                            <h4 className="text-xs font-bold tracking-wide text-indigo-400 sm:text-sm">
-                              {habilidadSeleccionada.habilidad.nombre}
-                            </h4>
-
-                            <span className="rounded border border-stone-800 bg-stone-900 px-1.5 py-0.5 font-mono text-[9px] uppercase text-stone-400">
-                              {habilidadSeleccionada.habilidad.rareza}
-                            </span>
-                          </div>
-
-                          <p className="line-clamp-3 text-xs leading-relaxed text-stone-300">
-                            {habilidadSeleccionada.habilidad.descripcion}
-                          </p>
-                        </div>
-
-                        <div className="mt-2 flex items-center justify-between border-t border-stone-800/80 pt-2">
-                          <div className="flex gap-3 font-mono text-[10px] text-stone-400">
-                            {habilidadSeleccionada.habilidad.cooldownTurnos ? (
-                              <span>
-                                CD:{" "}
-                                {habilidadSeleccionada.habilidad.cooldownTurnos}
-                                t
-                              </span>
-                            ) : null}
-
-                            {habilidadSeleccionada.habilidad.danoBase ? (
-                              <span>
-                                Daño: {habilidadSeleccionada.habilidad.danoBase}
-                              </span>
-                            ) : null}
-
-                            {habilidadSeleccionada.habilidad.curacion ? (
-                              <span className="font-bold text-emerald-400">
-                                Curación:{" "}
-                                {habilidadSeleccionada.habilidad.curacion}
-                              </span>
-                            ) : null}
-                            {(habilidadSeleccionada.habilidad.costeEnergia ?? 0) > 0 ? (
-                              <span className="text-blue-300">
-                                {habilidadSeleccionada.habilidad.costeEnergia} ENE
-                              </span>
-                            ) : null}
-                            {(habilidadSeleccionada.habilidad.costeMana ?? 0) > 0 ? (
-                              <span className="text-violet-300">
-                                {habilidadSeleccionada.habilidad.costeMana} MAN
-                              </span>
-                            ) : null}
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-xs italic text-stone-500">
-                        Selecciona una habilidad.
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <PanelHabilidadesCombate
+                habilidades={habilidades}
+                habilidadSeleccionadaId={habilidadSeleccionadaId}
+                habilidadEsperandoObjetivoId={null}
+                energiaActual={personaje.energiaActual}
+                manaActual={personaje.manaActual}
+                ocupado={procesando || procesandoLocal || combateTerminado}
+                puedeActuarJugador={miTurno}
+                obtenerCooldown={obtenerCooldown}
+                onSeleccionar={(habilidad) => void ejecutarHabilidad(habilidad.habilidadId)}
+                onPrevisualizar={setHabilidadSeleccionadaId}
+                onCerrar={() => setMostrarHabilidades(false)}
+              />
             ) : (
               <HistorialCombate lineas={combate.log} onAmpliar={() => setLogExpandido(true)} />
             )}
