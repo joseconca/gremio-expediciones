@@ -10,6 +10,7 @@
 - `src/lib/base/`: edificios, costes de construcción, mejoras, Escuela de Batalla y taberna.
 - `src/lib/equipamiento/`: inventario, sufijos, tienda y botín.
 - `src/lib/economia/`: mercado y precios.
+- `src/lib/progresion/`: clases y habilidades en ejecución, estadísticas del personaje y textos de habilidades.
 - `src/lib/expediciones/`: reglas de expedición, combate y generación de misiones.
 - `src/lib/sprites/`: lectura y renderizado de héroes y enemigos HD.
 - `src/app/base/` y `src/components/base/`: rutas y UI de edificios (no se mueven para mantener las URLs).

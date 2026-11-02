@@ -84,6 +84,7 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 |---|---|
 | Base y edificios | `src/lib/base/{edificios,mejoras,escuela,taberna}.ts`: catálogo de edificios, construcción, mejoras, escuela y comidas |
 | Equipamiento | `src/lib/equipamiento/{inventario,tienda,botin,sufijos}.ts` |
+| Progresión y estadísticas | `src/lib/progresion/{descripciones-habilidades,generar-habilidades,estadisticas-personaje}.ts` y reglas de clases, experiencia, atributos y niveles |
 | Economía | `src/lib/economia/mercado.ts` |
 | Generación de expediciones | `src/lib/expediciones/generador-misiones.ts` |
 | Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts`; rutas y retrocompatibilidad del héroe centralizadas en `heroes.ts` |
@@ -92,6 +93,20 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 | Operaciones persistentes | `src/server/services/` |
 
 `src/lib/configuracionJuego.ts` se conserva como **fachada pública** de edificios, mejoras, estadísticas, experiencia, habilidades y sprites. Ya no contiene fórmulas propias. Las reglas de estadísticas y experiencia Base comparten módulos con la progresión Job (`progresion/estadisticas.ts` y `progresion/experiencia.ts`); el aprendizaje de habilidades está en `progresion/aprendizaje.ts`. El catálogo editable de edificios vive únicamente en `base/edificios.ts`, aunque `tiposJuego.ts` conserva sus antiguos exports para los consumidores.
+
+### Auditoría de los archivos en la raíz de `src/lib/`
+
+Después de estos movimientos quedan solo **ocho archivos TypeScript** en la raíz, con motivos concretos para mantenerlos:
+
+| Archivo | Motivo de mantenerlo aquí |
+|---|---|
+| `configuracionJuego.ts` | Fachada temporal que conserva imports históricos durante la migración |
+| `habilidades.ts`, `objetos.ts`, `enemigos.ts` | APIs públicas de consulta por dominio (catálogos editables en `catalogos/`) |
+| `tiposJuego.ts` | Contratos compartidos por varios sistemas; dividirlo requiere estudiar ciclos y consumidores |
+| `auth.ts`, `prisma.ts` | Infraestructura y autenticación transversal; se mantienen estables para no cambiar dependencias del servidor |
+| `utils.ts` | Dos utilidades generales sin justificación para capas nuevas |
+
+Las descripciones de habilidades, la generación de técnicas y las estadísticas agregadas del personaje ya tienen un único propietario en `progresion/`. No se han copiado reglas: se movieron los módulos enteros, actualizando sus consumidores y tests. **No crear adaptadores nuevos para rutas antiguas una vez que sus consumidores se han migrado.**
 
 La reorganización de scripts y tests se abordará por separado: `scripts/recursos.py` y los workflows invocan rutas concretas que no deben romperse por mover carpetas. La fase siguiente será extraer funciones de archivos grandes **solo cuando estos traslados hayan pasado la regresión completa**.
 

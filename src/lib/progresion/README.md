@@ -4,6 +4,9 @@
 - `aprendizaje.ts`: requisitos y listado de habilidades aprendibles para cada profesión.
 - `experiencia.ts`: experiencia Base y Job, aplicación de ganancias de Job.
 - `estadisticas.ts`: estadísticas derivadas RPG e iniciales históricas del personaje.
+- `estadisticas-personaje.ts`: agregación final de equipo, atributos y habilidades del personaje.
+- `descripciones-habilidades.ts`: textos y comparaciones numéricas para visualizar técnicas.
+- `generar-habilidades.ts`: convierte datos del catálogo único en habilidades estándar.
 - `niveles-habilidad.ts`: niveles de habilidades y costes de reseteo.
 - `catalogo-redisenado.ts`, `tecnicas-adicionales.ts`: transformación de datos declarativos en técnicas ejecutables.
 
