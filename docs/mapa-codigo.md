@@ -34,7 +34,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Cálculo de daño, crítico, acierto y fallo de ataques básicos | `src/lib/expediciones/ataques-basicos.ts` |
 | Cómo se representan proyectiles de básicos y habilidades | `src/lib/expediciones/presentacion-combate.ts` |
 | Preparación de técnicas, ajustes por área y reloj de efectos | `src/lib/expediciones/preparacion-habilidades.ts` |
-| Aplicar operaciones y pasivas tras ejecutar una habilidad | `src/lib/expediciones/mecanicas-habilidades.ts` |
+| Aplicar operaciones, disipaciones, pasivas e historial tras una habilidad | `src/lib/expediciones/mecanicas-habilidades.ts` |
 | Definiciones de unidad, estado, técnica y comandos tácticos | `src/lib/expediciones/tipos-tacticos.ts` |
 | Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/motor-tactico.ts` |
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |

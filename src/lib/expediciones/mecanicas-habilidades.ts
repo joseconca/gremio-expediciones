@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../tiposJuego";
+import type { DefinicionHabilidad } from "../tiposJuego";
 import type { ResultadoHabilidad } from "./combate";
 import { convertirEstadosTacticos, exportarEstadosTacticos, type ContextoTecnicaTactica } from "./adaptador-tactico";
 import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos, type MundoTactico, type UnidadTactica } from "./motor-tactico";

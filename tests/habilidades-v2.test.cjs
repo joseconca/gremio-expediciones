@@ -205,6 +205,59 @@ function resolver(h, c) {
   } finally { Math.random = random; }
 }
 
+test('la disipación elimina perjuicios y revierte la defensa sin alterar otras estadísticas', () => {
+  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  const perjuicio = {
+    habilidadId: 'debuff_prueba',
+    tipo: 'debuff_defensa',
+    valor: 5,
+    duracionTurnos: 2,
+    turnosRestantes: 2,
+    objetivo: 'jugador',
+  };
+  const c = contexto({
+    actorId: 'a', objetivoId: 'a', objetivoAliado: true,
+    objetivoHp: 50, objetivoHpMaximo: 100,
+    efectosActor: [perjuicio], efectosObjetivo: [perjuicio],
+    principal: false,
+  });
+  const base = {
+    accion: { actor: 'jugador', tipo: 'habilidad', animacion: 'defensiva', dano: 0, critico: false, texto: 'Purificar' },
+    jugadorHp: 50, jugadorDefensa: 10, enemigoDefensa: 0, efectos: [],
+  };
+  const habilidad = {
+    id: 'purificar_prueba', efecto: 'estado',
+    disenoActiva: { operaciones: [{ tipo: 'disipar', objetivo: 'actor', negativo: true }] },
+  };
+  const resultado = aplicarMecanicasHabilidad(habilidad, c, base);
+  assert.equal(resultado.actorDefensaActualizada, 15);
+  assert.equal(resultado.jugadorDefensa, 15);
+  assert.equal(resultado.actorHpActualizado, 50);
+  assert.ok(resultado.efectosActorActualizados.every(e => e.tipo !== 'debuff_defensa'));
+});
+
+test('los efectos de invocación no se aplican dos veces en acciones secundarias', () => {
+  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  const habilidad = {
+    id: 'invocar_prueba', efecto: 'estado',
+    disenoActiva: { operaciones: [
+      { tipo: 'invocar', clave: 'bestia_prueba', potencia: .1, duracion: 3, mantenimiento: 0 },
+    ] },
+  };
+  const base = () => ({
+    accion: { actor: 'jugador', tipo: 'habilidad', animacion: 'defensiva', dano: 0, critico: false, texto: 'Invocar' },
+    jugadorHp: 50, jugadorDefensa: 10, enemigoDefensa: 0, efectos: [],
+  });
+  const estados = (resultado) => resultado.efectosActorActualizados.flatMap(
+    e => e.datosTacticos?.estados ?? []
+  );
+  const c = contexto();
+  const secundario = aplicarMecanicasHabilidad(habilidad, { ...c, principal: false }, base());
+  assert.equal(estados(secundario).filter(e => e.familia === 'acompanante').length, 0);
+  const principal = aplicarMecanicasHabilidad(habilidad, { ...c, principal: true }, base());
+  assert.equal(estados(principal).filter(e => e.familia === 'acompanante').length, 1);
+});
+
 test('tres pasivas de maná comparten el pago y el límite de cinco por ciclo', () => {
   const pasivas = ['apoyo', 'preparacion', 'cambiar_objetivo'].map(condicion => HABILIDADES.find(h => h.reglaPasiva?.condicion === condicion && h.reglaPasiva?.ventaja === 'mana'));
   assert.ok(pasivas.every(Boolean));

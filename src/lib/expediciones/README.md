@@ -5,7 +5,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `combate.ts`: API pública del combate y resolución de habilidades; mantiene las exportaciones históricas de ataques básicos.
 - `ataques-basicos.ts`: tiradas, precisión, daño mitigado y resolución de ataques básicos de héroes y enemigos.
 - `preparacion-habilidades.ts`: actualiza el reloj de contexto y prepara una copia local de la habilidad para el número de objetivos; sin modificar el catálogo.
-- `mecanicas-habilidades.ts`: ejecuta operaciones y bonificaciones condicionales tras resolver la habilidad; conserva las exportaciones anteriores de preparación.
+- `mecanicas-habilidades.ts`: aplica el resultado básico en este orden: efectos y unidades, operaciones (incluidas disipaciones), ventajas pasivas, historial y resultado final. Conserva las exportaciones anteriores de preparación.
 - `tipos-tacticos.ts`: contratos de estado, unidad, mundo y comando. `motor-tactico.ts` los sigue reexportando.
 - `motor-tactico.ts`: motor puro de comandos, estados, pulsos, recursos y ciclos.
 - `estados-combate.ts`, `objetivos-combate.ts`, `iniciativa-combate.ts`: reglas de estado, selección de objetivos e iniciativa.
