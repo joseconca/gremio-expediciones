@@ -17,6 +17,9 @@ export interface FichaProfesion {
 
 const habilidadesPorClase = new Map<string, DefinicionHabilidad[]>();
 for (const habilidad of HABILIDADES) {
+  // La definición genérica permite claseId opcional; las técnicas globales
+  // no pertenecen a ninguna ficha profesional.
+  if (!habilidad.claseId) continue;
   const lista = habilidadesPorClase.get(habilidad.claseId) ?? [];
   lista.push(habilidad);
   habilidadesPorClase.set(habilidad.claseId, lista);
