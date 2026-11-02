@@ -2,6 +2,9 @@
 
 `PanelParty.tsx` es el contenedor de estado, sondeo y acciones HTTP; no se deben mover de aquí los efectos ni temporizadores sin pruebas de reconexión y concurrencia.
 
+- `AvisoCompaniaParty.tsx`: pergamino de compañía con integrantes, botón abandonar/disolver, traslados propios y visitas entrantes. La ejecución HTTP, los permisos y el estado siguen en `PanelParty.tsx`.
+- `ExpedicionActivaParty.tsx`: contrato de expedición compartida, ruta, estado de ida/regreso, acceso al combate y crónica provisional.
+- `ConfirmacionDisolucionParty.tsx`: diálogo que solicita confirmación antes de disolver; solo presenta mensajes y llama a callbacks del contenedor.
 - `tipos.ts`: tipos de datos del API, expediciones, participantes, traslados e informes.
 - `vista-combate.ts`: conversión **pura** del combate grupal al contrato que recibe `CombateModal`.
 - `VisitasEntrantesParty.tsx`: avisos de llegadas y botones aceptar/rechazar; recibe permisos y callbacks del contenedor.

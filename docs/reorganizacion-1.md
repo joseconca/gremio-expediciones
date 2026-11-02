@@ -202,6 +202,16 @@ En `src/components/combate/README.md` hay un **mapa de mantenimiento por tarea**
 
 **Mapa recomendado para mantenimiento cotidiano:** [`docs/mapa-codigo.md`](mapa-codigo.md). El presente documento conserva el historial técnico de la reorganización y sus precauciones; no es necesario recorrerlo para editar una habilidad, sprite o edificio.
 
+### Fase 3.6 — Asedio y compañía: límites visuales independientes
+
+Se han extraído `ResultadoAsedio.tsx` (resultado PvP) e `InformacionAsedio.tsx` (estadísticas de ambos bandos); `AsedioModal.tsx` conserva el estado, las consultas de apariencia y los turnos. El tipo `HabilidadCombate` es compartido con PvE desde `src/components/combate/tipos.ts`, sin duplicar declaraciones.
+
+`PanelParty.tsx` conserva el sondeo, los intervalos, la resolución de combates y las llamadas HTTP. `AvisoCompaniaParty.tsx` presenta los miembros y avisos del tablón; `ExpedicionActivaParty.tsx` muestra la expedición y sus informes; `ConfirmacionDisolucionParty.tsx` presenta el diálogo de disolución. Las confirmaciones y llamadas HTTP siguen siendo callbacks explícitos del contenedor. El panel principal pasa de unas 941 a unas 694 líneas.
+
+Ambos modales de combate utilizan el mismo `useBloquearScrollFondo.ts`, con una prueba que reproduce bloqueo, restauración de estilos y posición del scroll.
+
+Los tests que inspeccionan JSX siguen las responsabilidades nuevas sin rebajar las comprobaciones originales. **Estas últimas extracciones requieren confirmar la regresión del HEAD y revisión visual**, por separado del error preexistente de auditoría de sprites HD (Novato).
+
 ## Fase 4 — Limpieza verificada
 
 No se han borrado históricos de sprites, manifiestos, SHA, QA ni scripts de origen: varios siguen siendo requeridos para garantizar compatibilidad y revisar arte. La reexportación `clases-nuevas.ts` se ha eliminado tras migrar sus consumidores y sus pruebas.

@@ -48,10 +48,14 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Informe al terminar una batalla | `src/components/combate/ResultadoCombate.tsx` |
 | Ventana de estadísticas de los combatientes | `src/components/combate/InformacionCombatientes.tsx` |
 | Animaciones, impactos y proyectiles | `src/components/combate/animaciones/` |
-| Pantalla de party y sondeo | `src/components/base/PanelParty.tsx` |
+| Estado, acciones HTTP y sondeo de party | `src/components/base/PanelParty.tsx` |
+| Aviso de compañía del tablón (miembros, visitas, traslados) | `src/components/base/party/AvisoCompaniaParty.tsx` |
+| Contrato de expedición de party, mapa y regreso | `src/components/base/party/ExpedicionActivaParty.tsx` |
+| Confirmación de disolución de party | `src/components/base/party/ConfirmacionDisolucionParty.tsx` |
 | Avisos de party, traslados, crónicas e informes | `src/components/base/party/` |
 | Informes de expedición y comercio | `src/components/reportes/` |
-| Asedio PvP | `src/components/combate/AsedioModal.tsx` |
+| Asedio PvP, lógica visual y estado | `src/components/combate/AsedioModal.tsx` |
+| Resultado de un asedio y ventana de estadísticas PvP | `src/components/combate/ResultadoAsedio.tsx`, `InformacionAsedio.tsx` |
 | Endpoints REST | `src/app/api/`, organizados por dominio |
 
 Para combatientes y animaciones consulta [la guía específica de combate](../src/components/combate/README.md); para compañías, [la guía de party](../src/components/base/party/README.md).

@@ -20,7 +20,10 @@ La UI se encuentra aquí; **las reglas de daño, turnos, botín y persistencia n
 | Animaciones, impactos, números flotantes, pausas y proyectiles | `animaciones/useAnimacionesCombate.ts` y `animaciones/CapaEfectosCombate.tsx` |
 | Historial de acciones | `HistorialCombate.tsx` |
 | Colores y composición propios de combate | `combate-rpg.module.css` y estilos compartidos en `src/app/globals.css` |
-| Modal de asedio PvP | `AsedioModal.tsx` |
+| Modal de asedio PvP y coordinación de turnos | `AsedioModal.tsx` |
+| Resultado visual de victoria o derrota en asedio | `ResultadoAsedio.tsx` |
+| Estadísticas del atacante y defensor | `InformacionAsedio.tsx` |
+| Bloqueo y restauración del desplazamiento de fondo (PvE/PvP) | `useBloquearScrollFondo.ts` |
 
 ## Lógica del juego: fuera de la interfaz
 
