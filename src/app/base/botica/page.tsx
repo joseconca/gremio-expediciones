@@ -13,14 +13,6 @@ interface DatosMochila {
   espaciosInventario: { ocupados: number; maximo: number };
 }
 
-function iconoConsumible(objeto: DefinicionObjeto): string {
-  if (objeto.id.includes("fenix")) return "🔥";
-  if (objeto.id.includes("mana") || objeto.id.includes("mago")) return "🔮";
-  if (objeto.id.includes("energia") || objeto.id.includes("velocidad")) return "⚡";
-  if (objeto.id.includes("elixir")) return "🧪";
-  return "🧴";
-}
-
 function nombreRareza(rareza: DefinicionObjeto["rareza"]): string {
   const nombres: Record<DefinicionObjeto["rareza"], string> = {
     basico: "Básico",
@@ -173,7 +165,6 @@ export default function BoticaPage() {
                     <div className="flex items-start gap-3">
                       <MiniaturaObjeto
                         objeto={objeto}
-                        iconoAlternativo={iconoConsumible(objeto)}
                         variante="madera"
                         claseBoton="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] p-1 text-3xl shadow-inner transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                       />
@@ -223,7 +214,6 @@ export default function BoticaPage() {
                     <MiniaturaObjeto
                       objeto={item.objeto}
                       instancia={item}
-                      iconoAlternativo={iconoConsumible(item.objeto)}
                       variante="madera"
                       claseBoton="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] p-1 text-2xl transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                     />
