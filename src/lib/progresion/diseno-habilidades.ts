@@ -26,4 +26,4 @@ export type DisenoActiva = {
 };
 export type DisenoClase = { activas: DisenoActiva[]; pasivas: [ReglaPasiva,ReglaPasiva] };
 /** Datos definidos únicamente en el catálogo editable de habilidades. */
-export { DISENO_HABILIDADES } from "./catalogos/habilidades";
+export { DISENO_HABILIDADES } from "../catalogos/habilidades";
