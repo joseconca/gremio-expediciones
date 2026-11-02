@@ -10,7 +10,6 @@ import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-anim
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
-import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import { useBloquearScrollFondo } from "./useBloquearScrollFondo";
