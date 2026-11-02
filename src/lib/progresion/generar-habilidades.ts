@@ -1,5 +1,5 @@
-import type { DefinicionHabilidad } from "./tiposJuego";
-import { ESCUELAS, TECNICAS_AVANZADAS } from "./catalogos/habilidades";
+import type { DefinicionHabilidad } from "../tiposJuego";
+import { ESCUELAS, TECNICAS_AVANZADAS } from "../catalogos/habilidades";
 
 /** Generador de técnicas estándar, sin definiciones editables duplicadas. */
 export const HABILIDADES_NUEVAS: DefinicionHabilidad[] = ESCUELAS.flatMap(({ claseId, costes, ataque, tactica, pasiva }) => {
