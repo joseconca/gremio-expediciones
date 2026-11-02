@@ -1,7 +1,7 @@
 require('./load-typescript.cjs');
 const test=require('node:test');const assert=require('node:assert/strict');
 const fs=require('node:fs');const path=require('node:path');const crypto=require('node:crypto');
-const {ENEMIGOS_HD,ACCIONES_ENEMIGO_HD,propsSpriteEnemigoHd,fotogramaEnemigoHd,dibujarEnemigoHd}=require('../src/lib/sprites-enemigos-hd.ts');
+const {ENEMIGOS_HD,ACCIONES_ENEMIGO_HD,propsSpriteEnemigoHd,fotogramaEnemigoHd,dibujarEnemigoHd}=require('../src/lib/sprites/enemigos.ts');
 const root=path.resolve(__dirname,'..');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 
@@ -43,7 +43,7 @@ test('every action crops exactly one cell, without fitting or shrinking the artw
 });
 
 test('all animation bounds fit mobile and desktop battle regions without changing scale between poses',()=>{
-  const {escalaEnemigoEnEscena}=require('../src/lib/sprites-enemigos-hd.ts');
+  const {escalaEnemigoEnEscena}=require('../src/lib/sprites/enemigos.ts');
   for(const [id,s] of Object.entries(ENEMIGOS_HD)) {
     const qa=JSON.parse(fs.readFileSync(path.join(root,'assets/spritesheets/enemies-hd',id,'qa-report.json'),'utf8'));
     const frames=Object.values(qa.frameData).flat();

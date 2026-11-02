@@ -2,7 +2,7 @@ require('./load-typescript.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } = require('../src/lib/expediciones/escala-combate.ts');
-const { ENEMIGOS_HD, escalaEnemigoEnEscena } = require('../src/lib/sprites-enemigos-hd.ts');
+const { ENEMIGOS_HD, escalaEnemigoEnEscena } = require('../src/lib/sprites/enemigos.ts');
 
 test('los humanoides no superan la altura del jugador en móvil, solo y party', () => {
   for (const [ancho, alto] of [[320, 320], [344, 400], [374, 420], [414, 480], [1056, 420]]) {

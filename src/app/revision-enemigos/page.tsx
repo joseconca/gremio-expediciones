@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
-import { ENEMIGOS_HD, type AccionEnemigoHd } from "@/lib/sprites-enemigos-hd";
+import { ENEMIGOS_HD, type AccionEnemigoHd } from "@/lib/sprites/enemigos";
 
 const ACCIONES: [AccionEnemigoHd, string][] = [["idle", "Reposo"], ["hurt", "Recibir daño"], ["attack", "Atacar"], ["dodge", "Esquivar"]];
 export default function RevisionEnemigos() {

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties }
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
-import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites-enemigos-hd";
+import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";

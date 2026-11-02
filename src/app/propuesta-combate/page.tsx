@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
-import { ENEMIGOS_HD } from "@/lib/sprites-enemigos-hd";
+import { ENEMIGOS_HD } from "@/lib/sprites/enemigos";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import styles from "./estados.module.css";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";

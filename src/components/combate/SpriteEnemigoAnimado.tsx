@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
-import { ENEMIGOS_HD, dibujarEnemigoHd, fotogramaEnemigoHd, type AccionEnemigoHd } from "@/lib/sprites-enemigos-hd";
+import { ENEMIGOS_HD, dibujarEnemigoHd, fotogramaEnemigoHd, type AccionEnemigoHd } from "@/lib/sprites/enemigos";
 import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 
 const imagenes = new Map<string, Promise<HTMLImageElement>>();

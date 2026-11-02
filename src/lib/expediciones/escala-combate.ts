@@ -9,7 +9,7 @@ export function alturaCombatiente(ancho: number, alto: number, enParty: boolean,
 export function limiteEscalaEnemigo(alturaHeroe: number, boss: boolean, alturaSprite = 170, factorBoss = 2.4): number {
   return alturaHeroe / Math.max(1, alturaSprite) * (boss ? factorBoss : 1);
 }
-import type { SpriteEnemigoHd } from "../sprites-enemigos-hd";
+import type { SpriteEnemigoHd } from "../sprites/enemigos";
 
 
 /** Move edge actors inward before reducing their size, using the complete animation envelope. */
