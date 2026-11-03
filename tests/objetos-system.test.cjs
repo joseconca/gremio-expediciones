@@ -404,11 +404,44 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
     "@/lib/objetos": { obtenerObjetoPorId },
     "@/lib/equipamiento/sufijos": suffixModule,
     "@/lib/economia/mercado": require("../src/lib/economia/mercado.ts"),
+    "@/lib/equipamiento/ultima-venta": require("../src/lib/equipamiento/ultima-venta.ts"),
     "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario: (n) => n < LIMITE_INVENTARIO_OBJETOS },
   };
   return { state, sell: loadApiRoute("src/app/api/objetos/vender/route.ts", dependencies).POST,
     buyback: loadApiRoute("src/app/api/objetos/recomprar/route.ts", dependencies).POST };
 }
+
+test("el recibo único conserva las bonificaciones y fórmulas y valida datos históricos", () => {
+  const { crearUltimaVenta, leerUltimaVenta } = require("../src/lib/equipamiento/ultima-venta.ts");
+  const instancia = {
+    id: "prueba-1", objetoId: "espada_runa", cantidad: 1, nivelMejora: 2,
+    sufijoId: "del_dragon", bonificaciones: { ataque: 4, probCritico: 0.04 },
+  };
+  const snapshot = crearUltimaVenta(
+    instancia,
+    { nombre: "Espada rúnica", precio: 6500 },
+    new Date("2026-11-03T10:00:00.000Z"),
+  );
+  assert.equal(snapshot.precioVenta, 2275);
+  assert.equal(snapshot.precioRecompra, 4550);
+  assert.equal(snapshot.instanciaId, "prueba-1");
+  assert.equal(snapshot.sufijoId, "del_dragon");
+  assert.equal(snapshot.vendidoEn, "2026-11-03T10:00:00.000Z");
+  assert.deepEqual(snapshot.bonificaciones, instancia.bonificaciones);
+  assert.deepEqual(leerUltimaVenta(snapshot), snapshot);
+  for (const valor of [null, [], {}, { instanciaId: "x", objetoId: "espada_runa", cantidad: 1, nivelMejora: 0, precioRecompra: Infinity }]) {
+    assert.equal(leerUltimaVenta(valor), null);
+  }
+  const historico = leerUltimaVenta({
+    instanciaId: "vieja-1", objetoId: "espada_runa", cantidad: 0, nivelMejora: -2,
+    precioRecompra: 8.9,
+  });
+  assert.equal(historico.cantidad, 1);
+  assert.equal(historico.nivelMejora, 0);
+  assert.equal(historico.precioRecompra, 8);
+  assert.equal(historico.sufijoId, null);
+  assert.deepEqual(historico.bonificaciones, {});
+});
 
 test("vender y recomprar restaura la misma instancia, sufijo, mejoras y bonificaciones", async () => {
   const api = makeTradeApi();
