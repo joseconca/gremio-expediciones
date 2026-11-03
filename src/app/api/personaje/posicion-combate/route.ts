@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { POSICIONES_COMBATE, type PosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { POSICIONES_COMBATE, type PosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 
 export async function POST(request: Request) {
   try {

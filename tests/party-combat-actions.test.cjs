@@ -101,7 +101,7 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/party/iniciativa": require("../src/lib/party/iniciativa.ts"),
     "@/lib/party/recompensas": require("../src/lib/party/recompensas.ts"),
     "./inventario-recompensas": require("../src/server/services/party/inventario-recompensas.ts"),
-    "@/lib/expediciones/objetivos-combate": require("../src/lib/expediciones/objetivos-combate.ts"),
+    "@/lib/expediciones/combate/objetivos-combate": require("../src/lib/expediciones/combate/objetivos-combate.ts"),
     "@/lib/expediciones/combate/enemigos-combate": require("../src/lib/expediciones/combate/enemigos-combate.ts"),
     "@/lib/habilidades": {
       obtenerHabilidadPorId: (id) => testOptions.habilidadesPorId?.[id] ?? (id === "golpe_arcano" ? {

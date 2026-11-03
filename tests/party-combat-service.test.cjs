@@ -123,7 +123,7 @@ function loadService(prisma) {
       comidaOtorgaIniciativa: (comida) => comida === "iniciativa",
       obtenerComidaTaberna: (comida) => comida ? { nombre: "Ración de prueba", descripcion: "Asegura iniciativa" } : null,
     },
-    "@/lib/expediciones/posicion-combate": {
+    "@/lib/expediciones/combate/posicion-combate": {
       normalizarPosicionCombate: (value) => ["mele", "centro", "retaguardia"].includes(value) ? value : "centro",
       aplicarModificadoresPosicion: (stats) => stats,
     },

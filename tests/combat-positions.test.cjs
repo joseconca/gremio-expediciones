@@ -5,7 +5,7 @@ const path = require("node:path");
 const Module = require("node:module");
 const ts = require("typescript");
 
-const sourcePath = path.resolve(__dirname, "../src/lib/expediciones/posicion-combate.ts");
+const sourcePath = path.resolve(__dirname, "../src/lib/expediciones/combate/posicion-combate.ts");
 const source = fs.readFileSync(sourcePath, "utf8");
 const compiled = ts.transpileModule(source, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },

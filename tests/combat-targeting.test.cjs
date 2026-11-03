@@ -7,7 +7,7 @@ const {
   posicionDesdeIndiceCasilla,
   obtenerReglaObjetivoHabilidad,
   resolverObjetivosHabilidad,
-} = require("../src/lib/expediciones/objetivos-combate.ts");
+} = require("../src/lib/expediciones/combate/objetivos-combate.ts");
 
 function combatiente(id, equipo, posicion, columna, extra = {}) {
   return { id, nombre: id, equipo, posicion, columna, hpActual: 100, estado: "activo", ...extra };

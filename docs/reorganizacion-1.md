@@ -158,7 +158,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 
 | Propietario | Contenido | Consumidor |
 |---|---|---|
-| `src/lib/expediciones/formacion-party.ts` | Carriles, orden de líder y ajuste de una pareja de aliados | `components/combate/CombateModal.tsx` |
+| `src/lib/expediciones/combate/formacion-party.ts` | Carriles, orden de líder y ajuste de una pareja de aliados | `components/combate/CombateModal.tsx` |
 | `src/lib/party/recompensas.ts` | Lectura defensiva de recompensa, reparto entero, RNG de botín determinista, agregación de objetos | `server/services/party/combate-party-actions.ts` |
 | `src/lib/party/iniciativa.ts` | Recuperación de colas y preparación del siguiente turno de party; reutiliza la iniciativa general | `server/services/party/combate-party-actions.ts` |
 | `src/lib/expediciones/combate/enemigos-combate.ts` | Interpretación de rosters persistidos y adaptación de enemigos legacy | `server/services/party/combate-party-actions.ts` |

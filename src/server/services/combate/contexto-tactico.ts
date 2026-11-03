@@ -4,7 +4,7 @@ import {
   type DatosPersonajeEstadisticas,
 } from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
-import { normalizarPosicionFormacion } from "@/lib/expediciones/objetivos-combate";
+import { normalizarPosicionFormacion } from "@/lib/expediciones/combate/objetivos-combate";
 import type { ContextoTecnicaTactica } from "@/lib/expediciones/adaptador-tactico";
 import type { EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";

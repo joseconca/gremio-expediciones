@@ -19,7 +19,7 @@ import {
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { esModoDificultad } from "../../../lib/expediciones/encuentros/dificultad";
 import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
-import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 
 export async function llegarExpedicion() {

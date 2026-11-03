@@ -37,7 +37,7 @@ import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/p
 import { PartyServiceError } from "./errores";
 import { gastarRecursosHabilidad } from "@/server/services/combate/accion-combate";
 import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
-import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
+import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";

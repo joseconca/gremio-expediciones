@@ -7,7 +7,7 @@ import {
   ETIQUETAS_POSICION_COMBATE,
   POSICIONES_COMBATE,
   type PosicionCombate,
-} from "@/lib/expediciones/posicion-combate";
+} from "@/lib/expediciones/combate/posicion-combate";
 
 export default function SelectorPosicionCombate() {
   const personaje = useGameStore((state) => state.personaje);

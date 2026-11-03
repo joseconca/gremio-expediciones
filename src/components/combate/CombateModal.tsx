@@ -13,9 +13,9 @@ import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
 import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
-import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
-import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
+import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import EstadoSobreActor from "./EstadoSobreActor";
@@ -29,7 +29,7 @@ import ComandosCombate from "./ComandosCombate";
 import styles from "./combate-rpg.module.css";
 import type { CombateModalProps, HabilidadCombate, HabilidadEquipable } from "./tipos";
 import { alturaCombatiente, calcularDisposicionEnemigoEnEscena } from "@/lib/sprites/escala-combate";
-import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
+import { distribuirFormacionParty } from "@/lib/expediciones/combate/formacion-party";
 
 function esperar(milisegundos: number): Promise<void> {
   return new Promise((resolver) => window.setTimeout(resolver, milisegundos));

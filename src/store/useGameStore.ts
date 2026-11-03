@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import type { EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
-import type { PosicionCombate } from "@/lib/expediciones/posicion-combate";
+import type { PosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 import { calcularCosteEdificio, CONFIGURACION_EDIFICIOS, type CosteEdificio } from "@/lib/base/edificios";
 import type {
   EquipoPersonaje,

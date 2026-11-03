@@ -1,7 +1,7 @@
 require('./load-typescript.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { compactarPareja } = require('../src/lib/expediciones/formacion-party.ts');
+const { compactarPareja } = require('../src/lib/expediciones/combate/formacion-party.ts');
 
 test('dos aliados del mismo carril se acercan y se centran, dejando sitio para sus barras', () => {
   for (const [alto, ancho, altura] of [[508, 374, 110], [800, 1300, 144]]) {
