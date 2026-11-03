@@ -1,7 +1,7 @@
 import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-import type { CombatePartyModalUI } from "@/components/combate/tipos";
-import type { EstadoParty } from "./tipos";
+import type { CombatePartyModalUI, RecompensaInformeCombate } from "@/components/combate/tipos";
+import type { EstadoParty, ResultadoCombatePanelParty } from "./tipos";
 
 type CombatePartyVista = NonNullable<NonNullable<EstadoParty["expedicionActiva"]>["combate"]>;
 
@@ -123,4 +123,36 @@ export function crearModoCombateParty(
       ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
       : null,
   };
+}
+
+/**
+ * Construye el resumen del combate exclusivamente con recompensas del usuario actual.
+ * Prioriza la liquidación más reciente del servidor y utiliza el informe local
+ * solo si pertenece a esta expedición; no reparte ni recalcula botín.
+ */
+export function crearRecompensaInformeCombateParty(
+  estado: EstadoParty | null,
+  ultimoResultadoCombate: ResultadoCombatePanelParty | null,
+): RecompensaInformeCombate | null {
+  const expedicion = estado?.expedicionActiva;
+  const resultadoRecompensasParty = expedicion?.combate?.recompensasResultado
+    ?? (ultimoResultadoCombate && ultimoResultadoCombate.expedicionPartyId === expedicion?.id
+      ? ultimoResultadoCombate.recompensas
+      : null);
+  const recompensa = resultadoRecompensasParty?.recompensas.find(
+    (resultado) => resultado.usuarioId === estado?.usuarioId,
+  );
+  const botin = (resultadoRecompensasParty?.dropsEnemigo ?? [])
+    .filter((drop) => drop.usuarioId === estado?.usuarioId)
+    .map((drop) => `${drop.nombre}${drop.sufijoId ? ` ${drop.sufijoId}` : ""} ×${drop.cantidad}`);
+
+  return recompensa ? {
+    oro: recompensa.oro,
+    madera: recompensa.madera,
+    piedra: recompensa.piedra,
+    metal: recompensa.metal,
+    experiencia: recompensa.experiencia,
+    experienciaJob: recompensa.experienciaJob ?? 0,
+    botin,
+  } : null;
 }

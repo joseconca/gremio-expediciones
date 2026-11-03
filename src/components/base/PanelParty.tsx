@@ -12,7 +12,7 @@ import { useAutomatismosParty } from "./party/useAutomatismosParty";
 import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
-import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
+import { crearModoCombateParty, crearVistaCombate, crearRecompensaInformeCombateParty } from "./party/vista-combate";
 import InformeHistoricoParty from "./party/InformeHistoricoParty";
 import ConfirmacionDisolucionParty from "./party/ConfirmacionDisolucionParty";
 import ExpedicionActivaParty from "./party/ExpedicionActivaParty";
@@ -237,16 +237,7 @@ export default function PanelParty() {
   const combatePartyDatos = expedicionConCombate?.combate ?? null;
   const participanteModal = combatePartyDatos?.participantes.find((p) => p.usuarioId === estado?.usuarioId);
   const combateModalParty = crearVistaCombate(estado, personaje, expedicionConCombate, combatePartyDatos, participanteModal);
-  const resultadoRecompensasParty = combatePartyDatos?.recompensasResultado
-    ?? (ultimoResultadoCombate && ultimoResultadoCombate.expedicionPartyId === expedicionConCombate?.id
-      ? ultimoResultadoCombate.recompensas
-      : null);
-  const recompensaInformeParty = resultadoRecompensasParty?.recompensas.find(
-    (resultado) => resultado.usuarioId === estado?.usuarioId,
-  );
-  const botinInformeParty = (resultadoRecompensasParty?.dropsEnemigo ?? [])
-    .filter((drop) => drop.usuarioId === estado?.usuarioId)
-    .map((drop) => `${drop.nombre}${drop.sufijoId ? ` ${drop.sufijoId}` : ""} ×${drop.cantidad}`);
+  const recompensaInforme = crearRecompensaInformeCombateParty(estado, ultimoResultadoCombate);
   const mostrarCombateParty = Boolean(
     combateModalParty &&
     combatePartyDatos &&
@@ -338,15 +329,7 @@ export default function PanelParty() {
           combate={combateModalParty}
           personaje={personaje}
           comidaActiva={personaje.comidaPreparada}
-          recompensaInforme={recompensaInformeParty ? {
-            oro: recompensaInformeParty.oro,
-            madera: recompensaInformeParty.madera,
-            piedra: recompensaInformeParty.piedra,
-            metal: recompensaInformeParty.metal,
-            experiencia: recompensaInformeParty.experiencia,
-            experienciaJob: recompensaInformeParty.experienciaJob ?? 0,
-            botin: botinInformeParty,
-          } : null}
+          recompensaInforme={recompensaInforme}
           procesando={Boolean(accion)}
           partyMode={{
             ...crearModoCombateParty(estado, expedicionConCombate, combatePartyDatos, participanteModal),

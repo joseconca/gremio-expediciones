@@ -2,6 +2,7 @@ require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { obtenerResultadoInformeParty } = require("../src/components/base/party/resultado-informe.ts");
+const { crearRecompensaInformeCombateParty } = require("../src/components/base/party/vista-combate.ts");
 
 const recompensa = { liquidacionYaResuelta: true, recompensas: [{ usuarioId: "u1", oro: 17 }] };
 const enemigo = { id: "e1", enemigoId: "slime_acido", nombre: "Slime Ácido", hp: 0, hpMaximo: 20, ataque: 2, defensa: 1, casilla: 4 };
@@ -68,4 +69,59 @@ test("histórico: preserva resultado local y desaparece fuera de la compañía",
   const otro = obtenerResultadoInformeParty({ ...estado, ultimoResultadoExpedicion: { ...historico, expedicionPartyId: "exp-2" } }, previo);
   assert.equal(otro.recompensas, null);
   assert.deepEqual(otro.logCombate, ["servidor"]);
+});
+
+test("el resumen de combate solo contiene la recompensa y el botín de su aventurero", () => {
+  const liquidacion = {
+    liquidacionYaResuelta: true,
+    recompensas: [
+      { usuarioId: "u1", oro: 35, madera: 3, piedra: 2, metal: 1, experiencia: 20, experienciaJob: 7, objetos: [] },
+      { usuarioId: "u2", oro: 70, madera: 9, piedra: 8, metal: 7, experiencia: 30, experienciaJob: 8, objetos: [] },
+    ],
+    dropsEnemigo: [
+      { usuarioId: "u1", nombre: "Espada", sufijoId: "fuego", cantidad: 1 },
+      { usuarioId: "u2", nombre: "Daga", sufijoId: null, cantidad: 2 },
+      { usuarioId: "u1", nombre: "Poción", sufijoId: null, cantidad: 3 },
+    ],
+  };
+  const entrada = { ...base, expedicionActiva: { ...expedicion, combate: { ...expedicion.combate, recompensasResultado: liquidacion } } };
+  const resultado = crearRecompensaInformeCombateParty(entrada, null);
+  assert.deepEqual(resultado, {
+    oro: 35, madera: 3, piedra: 2, metal: 1, experiencia: 20, experienciaJob: 7,
+    botin: ["Espada fuego ×1", "Poción ×3"],
+  });
+  assert.equal(crearRecompensaInformeCombateParty({ ...entrada, usuarioId: "u3" }, null), null);
+});
+
+test("el informe local solo sirve como respaldo si corresponde a la expedición activa", () => {
+  const anterior = {
+    expedicionPartyId: "exp-1", fase: "victoria", recompensas: {
+      liquidacionYaResuelta: true,
+      recompensas: [{ usuarioId: "u1", oro: 13, madera: 1, piedra: 0, metal: 0, experiencia: 5, objetos: [] }],
+      dropsEnemigo: [],
+    },
+  };
+  const enCurso = { ...base, expedicionActiva: { ...expedicion, combate: { ...expedicion.combate, recompensasResultado: null } } };
+  assert.deepEqual(crearRecompensaInformeCombateParty(enCurso, anterior), {
+    oro: 13, madera: 1, piedra: 0, metal: 0, experiencia: 5, experienciaJob: 0, botin: [],
+  });
+  assert.equal(crearRecompensaInformeCombateParty({ ...enCurso, expedicionActiva: { ...enCurso.expedicionActiva, id: "exp-2" } }, anterior), null);
+  assert.equal(crearRecompensaInformeCombateParty({ ...base, expedicionActiva: null }, anterior), null);
+  assert.equal(crearRecompensaInformeCombateParty(null, anterior), null);
+});
+
+test("las recompensas del servidor tienen prioridad sobre las provisionales locales", () => {
+  const local = {
+    expedicionPartyId: "exp-1", fase: "victoria",
+    recompensas: { liquidacionYaResuelta: false, recompensas: [{ usuarioId: "u1", oro: 999, experiencia: 99, objetos: [] }] },
+  };
+  const definitiva = {
+    liquidacionYaResuelta: true,
+    recompensas: [{ usuarioId: "u1", oro: 15, madera: 0, piedra: 2, metal: 0, experiencia: 12, objetos: [] }],
+  };
+  const entrada = { ...base, expedicionActiva: { ...expedicion, combate: { ...expedicion.combate, recompensasResultado: definitiva } } };
+  const resultado = crearRecompensaInformeCombateParty(entrada, local);
+  assert.equal(resultado.oro, 15);
+  assert.equal(resultado.experienciaJob, 0);
+  assert.deepEqual(resultado.botin, []);
 });
