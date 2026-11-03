@@ -70,7 +70,7 @@ export function normalizarSecuenciaTurnosVelocidad(valor: unknown): PasoTurnoVel
 export function crearSecuenciaTurnosVelocidad(
   actoresEntrada: ActorTurnoVelocidad[],
   semilla: string,
-  actorActualLegacy?: string | null,
+  actorPreferido?: string | null,
 ): PasoTurnoVelocidad[] {
   const actores = normalizarActores(actoresEntrada);
   if (actores.length === 0) return [];
@@ -104,9 +104,9 @@ export function crearSecuenciaTurnosVelocidad(
   );
   const secuencia: PasoTurnoVelocidad[] = eventos.map((evento) => evento.paso);
 
-  // Solo para recuperar el actor de combates antiguos sin cola persistida.
-  if (actorActualLegacy) {
-    const indice = secuencia.findIndex((p) => p.actorId === actorActualLegacy);
+  // Al reconstruir una cola faltante, mantener el actor elegido para el turno actual.
+  if (actorPreferido) {
+    const indice = secuencia.findIndex((p) => p.actorId === actorPreferido);
     if (indice > 0) return [...secuencia.slice(indice), ...secuencia.slice(0, indice)];
   }
   return secuencia;

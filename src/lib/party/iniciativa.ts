@@ -2,7 +2,7 @@ import { avanzarSecuenciaTurnosVelocidad, crearSecuenciaTurnosVelocidad, normali
 import type { ParticipanteTurnoParty } from "./combate-reglas";
 import type { EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
-/** Iniciativa compartida y compatibilidad con colas antiguas, sin acceso a Prisma. */
+/** Iniciativa de la compañía: cola de velocidad y recuperación ante estados inconsistentes. */
 export type ParticipanteConVelocidadParty = {
   usuarioId: string;
   ordenTurno: number;
@@ -53,7 +53,7 @@ export function obtenerColaActualParty(
       : primera.equipo === "enemigo");
   if (turnoGuardadoValido) return guardada;
 
-  // Compatibilidad para combates iniciados antes de añadir la cola persistida.
+  // Reconstruye la cola si está vacía o no coincide con el turno registrado.
   const enemigosVivos = actores
     .filter((actor) => actor.equipo === "enemigo")
     .sort((a, b) => b.velocidad - a.velocidad || a.actorId.localeCompare(b.actorId));
