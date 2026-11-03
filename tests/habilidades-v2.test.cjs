@@ -219,17 +219,22 @@ test('la disipación elimina perjuicios y revierte la defensa sin alterar otras 
     actorId: 'a', objetivoId: 'a', objetivoAliado: true,
     objetivoHp: 50, objetivoHpMaximo: 100,
     efectosActor: [perjuicio], efectosObjetivo: [perjuicio],
-    principal: false,
   });
-  const base = {
+  const base = () => ({
     accion: { actor: 'jugador', tipo: 'habilidad', animacion: 'defensiva', dano: 0, critico: false, texto: 'Purificar' },
     jugadorHp: 50, jugadorDefensa: 10, enemigoDefensa: 0, efectos: [],
-  };
+  });
   const habilidad = {
     id: 'purificar_prueba', efecto: 'estado',
     disenoActiva: { operaciones: [{ tipo: 'disipar', objetivo: 'actor', negativo: true }] },
   };
-  const resultado = aplicarMecanicasHabilidad(habilidad, c, base);
+  // Una acción secundaria no puede ejecutar una operación dirigida al actor.
+  const secundario = aplicarMecanicasHabilidad(habilidad, { ...c, principal: false }, base());
+  assert.equal(secundario.actorDefensaActualizada, 10);
+  assert.ok(secundario.efectosActorActualizados.some(e => e.tipo === 'debuff_defensa'));
+
+  // La disipación sí se aplica en la acción principal y revierte la defensa.
+  const resultado = aplicarMecanicasHabilidad(habilidad, { ...c, principal: true }, base());
   assert.equal(resultado.actorDefensaActualizada, 15);
   assert.equal(resultado.jugadorDefensa, 15);
   assert.equal(resultado.actorHpActualizado, 50);
