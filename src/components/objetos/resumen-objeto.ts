@@ -1,6 +1,6 @@
 import { calcularEstadisticasObjeto } from "@/lib/objetos";
 import type { DefinicionObjeto, Rareza } from "@/lib/tiposJuego";
-import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 
 // Presentación breve compartida por Equipo y Mochila, sin modificar mecánicas.
 /** Orden y etiquetas idénticos en Armería/Herrería; la ficha omite Capacidad. */

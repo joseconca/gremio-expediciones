@@ -2,7 +2,7 @@ import { calcularEstadisticasObjeto } from "@/lib/objetos";
 import type { DefinicionObjeto } from "@/lib/tiposJuego";
 import { NOMBRES_RAREZA_OBJETO } from "./resumen-objeto";
 export { NOMBRES_RAREZA_OBJETO } from "./resumen-objeto";
-import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 
 const ETIQUETAS_ESTADISTICAS: Array<[keyof ModificadoresEstadisticas, string]> = [
   ["ataque", "Ataque"], ["ataqueMagico", "Ataque mágico"],

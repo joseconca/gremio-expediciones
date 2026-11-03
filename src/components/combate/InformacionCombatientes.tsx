@@ -1,9 +1,9 @@
 "use client";
 
 import type { CombatePve, Personaje } from "@/store/useGameStore";
-import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import type { EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import type { CombatePartyModalUI } from "./tipos";
-import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 import IndicadoresEfectosCombate from "./IndicadoresEfectosCombate";
 
 type PanelEstadisticas = "jugador" | "enemigo";

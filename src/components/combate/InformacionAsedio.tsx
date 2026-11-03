@@ -2,7 +2,7 @@
 
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import { CLASES } from "@/lib/progresion/clases";
-import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 
 type PanelEstadisticasAsedio = "jugador" | "rival";
 

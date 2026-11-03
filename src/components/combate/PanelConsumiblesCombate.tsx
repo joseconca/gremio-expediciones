@@ -1,6 +1,6 @@
 "use client";
 
-import { calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
+import { calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 
