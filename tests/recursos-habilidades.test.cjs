@@ -191,3 +191,56 @@ test("habilidades antiguas conservan el descuento condicional sin consultar esta
     data: { energiaActual: { decrement: 6 } },
   }]);
 });
+
+test("la regeneración PvE/PvP conserva límites, consulta propia y escritura optimista", async () => {
+  const { regenerarRecursosPorTurno } = require("../src/server/services/combate/accion-combate.ts");
+  const personaje = { ...personajeRecursos(), manaRegeneracionPendiente: 0 };
+  const consultas = [];
+  const escrituras = [];
+  const tx = {
+    personaje: {
+      findUnique: async (args) => {
+        consultas.push(args);
+        return personaje;
+      },
+      updateMany: async (args) => {
+        escrituras.push(args);
+        return { count: 1 };
+      },
+    },
+  };
+
+  await regenerarRecursosPorTurno(tx, "usuario-prueba");
+  assert.deepEqual(consultas.map((entrada) => entrada.where), [{ usuarioId: "usuario-prueba" }]);
+  assert.equal(escrituras.length, 1);
+  assert.deepEqual(escrituras[0].where, {
+    id: "personaje-prueba",
+    energiaActual: 45,
+    manaActual: 8,
+  });
+  assert.ok(escrituras[0].data.energiaActual > 45);
+  assert.ok(escrituras[0].data.manaActual >= 8);
+  assert.ok(Number.isFinite(escrituras[0].data.manaRegeneracionPendiente));
+
+  const conflicto = {
+    personaje: {
+      findUnique: async () => personaje,
+      updateMany: async () => ({ count: 0 }),
+    },
+  };
+  await assert.rejects(
+    regenerarRecursosPorTurno(conflicto, "usuario-prueba"),
+    /RECURSO_COMBATE_MODIFICADO/
+  );
+});
+
+test("la regeneración sin personaje no genera escrituras", async () => {
+  const { regenerarRecursosPorTurno } = require("../src/server/services/combate/accion-combate.ts");
+  const tx = {
+    personaje: {
+      findUnique: async () => null,
+      updateMany: async () => { throw new Error("No se debe actualizar"); },
+    },
+  };
+  await regenerarRecursosPorTurno(tx, "usuario-inexistente");
+});
