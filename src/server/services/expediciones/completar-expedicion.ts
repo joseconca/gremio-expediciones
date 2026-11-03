@@ -694,8 +694,10 @@ export async function completarExpedicion() {
         },
       });
 
-      await tx.expedicionActiva.update({
-        where: { id: expedicion.id },
+      // Sólo la primera petición puede confirmar el resultado del comercio.
+      // El control se ejecuta dentro de la transacción que registra el regreso.
+      const transicion = await tx.expedicionActiva.updateMany({
+        where: { id: expedicion.id, fase: "en_viaje" },
         data: {
           fase: "regresando",
           fechaSalida: fechaSalidaRegreso,
@@ -713,6 +715,9 @@ export async function completarExpedicion() {
           experienciaGanada: resultado.experienciaGanada,
         },
       });
+      if (transicion.count !== 1) {
+        throw new Error("EXPEDICION_FASE_MODIFICADA");
+      }
 
       await tx.registroAccion.create({
         data: {
@@ -773,6 +778,12 @@ export async function completarExpedicion() {
       usuario: datos,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "EXPEDICION_FASE_MODIFICADA") {
+      return NextResponse.json(
+        { error: "La expedición ha cambiado de fase mientras se procesaba la acción." },
+        { status: 409 }
+      );
+    }
     console.error("Error al completar expedición:", error);
 
     return NextResponse.json(
