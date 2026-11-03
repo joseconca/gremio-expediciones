@@ -127,14 +127,16 @@ test("las reglas tácticas movidas conservan sus exportaciones y se pueden impor
 });
 
 
-test("todas las importaciones relativas de expediciones resuelven a módulos reales", () => {
+test("las importaciones relativas de expediciones, progresión y catálogos resuelven a módulos reales", () => {
   const recorrer = (directorio) => fs.readdirSync(directorio, { withFileTypes: true }).flatMap((entrada) => {
     const ruta = path.join(directorio, entrada.name);
     return entrada.isDirectory()
       ? recorrer(ruta)
       : /\.(ts|tsx)$/.test(entrada.name) ? [ruta] : [];
   });
-  const fuentes = recorrer(path.join(root, "src/lib/expediciones"));
+  const fuentes = ["expediciones", "progresion", "catalogos"].flatMap((carpeta) =>
+    recorrer(path.join(root, "src/lib", carpeta))
+  );
   const referencias = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)["'](\.{1,2}\/[^"']+)["']/g;
   const extensiones = ["", ".ts", ".tsx", ".js", ".json", ".d.ts", "/index.ts", "/index.tsx"];
 

@@ -294,3 +294,14 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - `acab176`: añade una prueba de resolución de imports relativos para todo `src/lib/expediciones/` (incluidas subcarpetas).
 - `4b98c7b`: agrupa ataques básicos, selección de ataque por arma y contrato de acciones en `expediciones/combate/`. Las reglas, cifras y APIs no cambian: son traslados íntegros.
 - `src/lib/expediciones/combate/README.md` contiene el mapa navegable de funciones y responsabilidades. Próximos cortes: aislar el código de presentación visual y seguir con la progresión.
+
+
+### Organización de presentación, habilidades y estadísticas (3 de noviembre)
+
+- `fe36ba0`: las reglas puras de presentación visual (`presentacion-combate`, `destinos-animacion-combate` y `descripciones-efectos`) se trasladan a `src/lib/expediciones/presentacion/`. La UI sigue en componentes React.
+- `4c84c95`: diseño de habilidades, adaptación del catálogo al motor y técnicas adicionales se agrupan en `progresion/habilidades/`, manteniendo el catálogo editable único en `src/lib/catalogos/habilidades.ts`.
+- `62778fb`: constructores y generación de habilidades migrados a ese mismo directorio.
+- `899454e`: aprendizaje, equipamiento y descripciones de habilidades migrados al mismo directorio.
+- `b36ac4f`: atributos por clase y bonificaciones de equipo/pasivas migrados a `progresion/estadisticas/`. `estadisticas.ts` y `estadisticas-personaje.ts` permanecen como entradas estables.
+- `niveles-habilidad.ts` permanece de momento en `progresion/` porque `scripts/auditar-recursos-habilidades.cjs` carga una versión histórica de su ruta mediante `git show` al comparar balances. Requiere migración con compatibilidad de referencias antiguas; no moverlo solo por uniformidad.
+- Prueba recursiva de importaciones relativas ampliada a `expediciones/`, `progresion/` y `catalogos/`; revisiones de estructura sin duplicados en `tests/estructura-lib.test.cjs`.
