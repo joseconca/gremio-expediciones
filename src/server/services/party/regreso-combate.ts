@@ -1,5 +1,5 @@
 import type { Prisma } from "@prisma/client";
-import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
+import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/viajes/tiempos";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
 import { PartyServiceError } from "./errores";
 

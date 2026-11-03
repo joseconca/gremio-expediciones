@@ -1,6 +1,6 @@
 # Reglas y mecánicas de expediciones
 
-Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, encuentros, asedios y viajes. Los cálculos auxiliares de restauración, regeneración y reparto de curas están agrupados en `combate/`, evitando mezclar consumibles con la selección de destinos. No debe recibir nuevas consultas Prisma ni operaciones de persistencia.
+Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, encuentros, asedios y viajes. Los cálculos auxiliares de restauración, regeneración y reparto de curas están agrupados en `combate/`; las reglas de duración y liquidación de regreso viven en `viajes/`, evitando mezclar consumibles con la selección de destinos. No debe recibir nuevas consultas Prisma ni operaciones de persistencia.
 
 - `combate.ts`: API pública del combate y resolución de habilidades; mantiene las exportaciones históricas de ataques básicos.
 - `ataques-basicos.ts`: tiradas, precisión, daño mitigado y resolución de ataques básicos de héroes y enemigos.
@@ -12,13 +12,13 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `estados-combate.ts`, `objetivos-combate.ts`, `iniciativa-combate.ts`: reglas de estado, selección de objetivos e iniciativa.
 - `contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
 - `cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
-- `recompensas-regreso.ts`: normaliza los premios enteros recibidos al finalizar y calcula los recursos aceptados/perdidos por el límite de almacén; el oro no está limitado. No toca Prisma.
+- `viajes/recompensas-regreso.ts`: normaliza los premios enteros recibidos al finalizar y calcula los recursos aceptados/perdidos por el límite de almacén; el oro no está limitado. No toca Prisma.
 - `combate/presupuesto-curacion.ts`: asigna el peso proporcional de curación solo a miembros con vida faltante. Lo usa el servicio de combate de party; los objetivos sanos no consumen reserva.
 - `combate/consumibles-combate.ts`: distingue pociones restauradoras y calcula la cantidad fija más porcentaje sobre el máximo del destinatario, respetando su vida/energía/maná faltante.
 - `combate/recursos-combate.ts`: regeneración de energía y maná por turno con topes y resto fraccionario persistente, compartida por PvE y party.
-- `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `tiempos.ts`: encuentros y expediciones.
+- `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `viajes/tiempos.ts`: encuentros y expediciones.
   - Los pesos de dificultad mínima y rareza de `normal.ts` son detalles privados del selector; las funciones de ponderación, composición y probabilidad del Mímico siguen públicas para sus consumidores y pruebas.
-  - `tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
+  - `viajes/tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.
 - `ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.
 - `presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.

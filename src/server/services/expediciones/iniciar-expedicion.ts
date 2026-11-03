@@ -9,7 +9,7 @@ import {
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
-import { calcularFechaEncuentroProgramada, clasificarClimaExpedicion } from "@/lib/expediciones/tiempos";
+import { calcularFechaEncuentroProgramada, clasificarClimaExpedicion } from "@/lib/expediciones/viajes/tiempos";
 import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
 import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";

@@ -6,7 +6,7 @@ import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
+import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/viajes/tiempos";
 import {
   avanzarSecuenciaTurnosVelocidad,
   crearSecuenciaTurnosVelocidad,

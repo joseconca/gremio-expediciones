@@ -6,7 +6,7 @@ const {
   calcularFechaEncuentroProgramada,
   calcularRegresoComercioProgramado,
   clasificarClimaExpedicion,
-} = require("../src/lib/expediciones/tiempos.ts");
+} = require("../src/lib/expediciones/viajes/tiempos.ts");
 
 test("una expedición de 30 minutos programa encuentro a los 15 y regreso a los 30", () => {
   const salida = new Date("2026-10-15T10:00:00.000Z");

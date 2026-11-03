@@ -163,7 +163,7 @@ function loadService(prisma, testOptions = {}) {
       calcularFechaLlegadaParty: (_distance, velocidades, _multiplicador, salida) =>
         new Date(salida.getTime() + Math.max(30_000, 1000 / Math.min(...velocidades))),
     },
-    "@/lib/expediciones/tiempos": require("../src/lib/expediciones/tiempos.ts"),
+    "@/lib/expediciones/viajes/tiempos": require("../src/lib/expediciones/viajes/tiempos.ts"),
     "@/lib/party/reglas": {
       leerCoordenadasBase: (value) => value && typeof value.lat === "number" && typeof value.lng === "number" ? value : null,
     },

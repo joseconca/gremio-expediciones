@@ -252,7 +252,7 @@ function makeCombatConsumableRoute({
     "next/server": { NextResponse },
     "@prisma/client": commonDependencies["@prisma/client"],
     "@/lib/prisma": { prisma },
-    "@/lib/expediciones/tiempos": loadSource("src/lib/expediciones/tiempos.ts"),
+    "@/lib/expediciones/viajes/tiempos": loadSource("src/lib/expediciones/viajes/tiempos.ts"),
     "@/server/services/combate/actualizar-combate-versionado": loadSource("src/server/services/combate/actualizar-combate-versionado.ts"),
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
     "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
@@ -1400,7 +1400,7 @@ test("expediciones: rutas requieren sesión y las misiones manipuladas se rechaz
 
 test("asedios concurrentes: el botín se calcula con los recursos restantes y nunca los hace negativos", async () => {
   const { finalizarAsedio } = loadSource("src/lib/expediciones/asedio.ts", {
-    "./tiempos": loadSource("src/lib/expediciones/tiempos.ts"),
+    "./viajes/tiempos": loadSource("src/lib/expediciones/viajes/tiempos.ts"),
   });
   const state = {
     users: {

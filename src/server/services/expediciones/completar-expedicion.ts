@@ -3,7 +3,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { resolverComercio } from "@/lib/expediciones/comercio";
-import { calcularRegresoComercioProgramado } from "@/lib/expediciones/tiempos";
+import { calcularRegresoComercioProgramado } from "@/lib/expediciones/viajes/tiempos";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -14,7 +14,7 @@ import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
-import { leerRecompensaRegreso, calcularRecompensaAlmacen } from "@/lib/expediciones/recompensas-regreso";
+import { leerRecompensaRegreso, calcularRecompensaAlmacen } from "@/lib/expediciones/viajes/recompensas-regreso";
 import type { TipoMision } from "@/lib/tiposJuego";
 
 function leerArrayStrings(valor: unknown): string[] {

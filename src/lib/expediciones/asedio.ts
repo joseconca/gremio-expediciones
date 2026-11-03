@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import type { AccionAnimadaCombate } from "./combate";
 import type { EstadoEfectoHabilidad } from "../tiposJuego";
-import { calcularFechasRegresoProgramadas } from "./tiempos";
+import { calcularFechasRegresoProgramadas } from "./viajes/tiempos";
 
 export type EfectoCombateAsedio = EstadoEfectoHabilidad;
 

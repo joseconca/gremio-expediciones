@@ -9,7 +9,7 @@ const ts = require("typescript");
 const {
   leerRecompensaRegreso,
   calcularRecompensaAlmacen,
-} = require("../src/lib/expediciones/recompensas-regreso.ts");
+} = require("../src/lib/expediciones/viajes/recompensas-regreso.ts");
 
 test("el regreso normaliza cantidades enteras y rechaza recompensas incompletas", () => {
   assert.deepEqual(leerRecompensaRegreso({
@@ -66,7 +66,7 @@ function cargarServicioComercial(prisma, resolverComercio) {
     "@/lib/equipamiento/botin": { tirarBotinEnemigo: () => null },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
     "@/lib/expediciones/asedio": { calcularCapacidadAlmacen: () => 100 },
-    "@/lib/expediciones/recompensas-regreso": require("../src/lib/expediciones/recompensas-regreso.ts"),
+    "@/lib/expediciones/viajes/recompensas-regreso": require("../src/lib/expediciones/viajes/recompensas-regreso.ts"),
   };
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
