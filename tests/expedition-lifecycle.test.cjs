@@ -224,3 +224,24 @@ test("dos llegadas PvE simultáneas sólo crean un combate y una transición", a
   assert.equal(estado.transiciones, 1);
   assert.equal(estado.fase, "combatiendo");
 });
+
+test("un encuentro PvE ya creado se devuelve sin iniciar otra transición", async () => {
+  const combate = { id: "combate-existente", fase: "activo" };
+  const prisma = {
+    usuario: {
+      findUnique: async () => ({
+        id: "emisor",
+        personaje: { nombre: "Aventurero", nivel: 1, habilidades: [] },
+        expedicionActiva: {
+          id: "expedicion-pve", tipo: "normal", fase: "combatiendo",
+          combateActivo: combate,
+        },
+      }),
+    },
+    $transaction: async () => { throw new Error("Un combate existente no abre transacción"); },
+  };
+  const llegarExpedicion = cargarServicioLlegada(prisma);
+  const respuesta = await llegarExpedicion();
+  assert.equal(respuesta.status, 200);
+  assert.deepEqual(respuesta.body, { combate });
+});
