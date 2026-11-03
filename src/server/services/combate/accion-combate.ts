@@ -94,6 +94,48 @@ export async function otorgarExperienciaJob(
 }
 
 
+/**
+ * Estadísticas de recursos compartidas por el pago de habilidades y el cierre
+ * del turno. Las consultas y escrituras siguen en sus orquestadores.
+ */
+type PersonajeConEstadisticasRecursos =
+  Parameters<typeof calcularEstadisticasPersonaje>[0] &
+  Pick<Parameters<typeof obtenerEquipoDesdePersonaje>[0], "equipoEquipado"> & {
+    habilidades: { habilidadId: string; nivel: number }[];
+  };
+
+function calcularEstadisticasRecursosPersonaje(personaje: PersonajeConEstadisticasRecursos) {
+  const equipo = obtenerEquipoDesdePersonaje({
+    equipoEquipado: personaje.equipoEquipado,
+  });
+  const modificadoresEquipo = calcularModificadoresEquipo(
+    equipo,
+    personaje.profesionActivaId
+  );
+  const progresoActivo = personaje.progresosClase?.find(
+    (progreso) =>
+      progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada
+  );
+
+  return calcularEstadisticasPersonaje({
+    clase: personaje.clase,
+    profesionActivaId: personaje.profesionActivaId,
+    nivel: personaje.nivel,
+    nivelJob: progresoActivo?.nivelJob ?? 1,
+    progresosClase: personaje.progresosClase,
+    fuerza: personaje.fuerza,
+    agilidad: personaje.agilidad,
+    vitalidad: personaje.vitalidad,
+    inteligencia: personaje.inteligencia,
+    destreza: personaje.destreza,
+    suerte: personaje.suerte,
+    velocidadMejoras: personaje.velocidadMejoras,
+    capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
+  }, personaje.habilidades.map(
+    (habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })
+  ), modificadoresEquipo).total;
+}
+
 async function recuperarEnergiaLimitada(
   tx: Prisma.TransactionClient,
   personajeId: string,
@@ -137,26 +179,7 @@ async function recuperarEnergiaLimitada(
     return;
   }
 
-  const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
-  const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
-  const progresoActivo = personaje.progresosClase.find(
-    (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada,
-  );
-  const estadisticas = calcularEstadisticasPersonaje({
-    clase: personaje.clase,
-    profesionActivaId: personaje.profesionActivaId,
-    nivel: personaje.nivel,
-    nivelJob: progresoActivo?.nivelJob ?? 1,
-    progresosClase: personaje.progresosClase,
-    fuerza: personaje.fuerza,
-    agilidad: personaje.agilidad,
-    vitalidad: personaje.vitalidad,
-    inteligencia: personaje.inteligencia,
-    destreza: personaje.destreza,
-    suerte: personaje.suerte,
-    velocidadMejoras: personaje.velocidadMejoras,
-    capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
-  }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
+  const estadisticas = calcularEstadisticasRecursosPersonaje(personaje);
   const energiaDisponible = Math.min(
     personaje.energiaActual,
     estadisticas.energiaMaxima ?? 100
@@ -300,31 +323,7 @@ export async function regenerarRecursosPorTurno(
   });
   if (!personaje) return;
 
-  const equipoPersonaje = obtenerEquipoDesdePersonaje({
-    equipoEquipado: personaje.equipoEquipado,
-  });
-  const modificadoresEquipo = calcularModificadoresEquipo(
-    equipoPersonaje,
-    personaje.profesionActivaId
-  );
-  const progresoActivo = personaje.progresosClase.find(
-    (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada
-  );
-  const estadisticas = calcularEstadisticasPersonaje({
-    clase: personaje.clase,
-    profesionActivaId: personaje.profesionActivaId,
-    nivel: personaje.nivel,
-    nivelJob: progresoActivo?.nivelJob ?? 1,
-    progresosClase: personaje.progresosClase,
-    fuerza: personaje.fuerza,
-    agilidad: personaje.agilidad,
-    vitalidad: personaje.vitalidad,
-    inteligencia: personaje.inteligencia,
-    destreza: personaje.destreza,
-    suerte: personaje.suerte,
-    velocidadMejoras: personaje.velocidadMejoras,
-    capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
-  }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
+  const estadisticas = calcularEstadisticasRecursosPersonaje(personaje);
 
   const energiaMaxima = estadisticas.energiaMaxima ?? 100;
   const manaMaximo = estadisticas.manaMaximo ?? 10;
