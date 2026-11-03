@@ -5,19 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia/mercado";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
-
-const CAMPOS_EQUIPO = [
-  "armaInventarioId",
-  "manoSecundariaInventarioId",
-  "cascoInventarioId",
-  "armaduraInventarioId",
-  "pantalonesInventarioId",
-  "botasInventarioId",
-  "guantesInventarioId",
-  "accesorioInventarioId",
-  "anillo1InventarioId",
-  "anillo2InventarioId",
-] as const;
+import { estaInstanciaEquipadaPersistida } from "@/lib/equipamiento/ranuras";
 
 export async function POST(request: Request) {
   try {
@@ -51,7 +39,7 @@ export async function POST(request: Request) {
       const equipo = await tx.equipoEquipado.findUnique({
         where: { personajeId: personaje.id },
       });
-      if (equipo && CAMPOS_EQUIPO.some((campo) => equipo[campo] === item.id)) {
+      if (estaInstanciaEquipadaPersistida(equipo, item.id)) {
         throw new Error("OBJETO_EQUIPADO");
       }
 

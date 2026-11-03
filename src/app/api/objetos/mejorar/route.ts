@@ -8,6 +8,7 @@ import {
   calcularCosteRecursosMejora,
 } from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
+import { estaInstanciaEquipadaPersistida } from "@/lib/equipamiento/ranuras";
 
 
 function personajeOcupado(estado: string): boolean {
@@ -131,19 +132,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const ranurasEquipo = [
-      personaje.equipoEquipado.armaInventarioId,
-      personaje.equipoEquipado.manoSecundariaInventarioId,
-      personaje.equipoEquipado.cascoInventarioId,
-      personaje.equipoEquipado.armaduraInventarioId,
-      personaje.equipoEquipado.pantalonesInventarioId,
-      personaje.equipoEquipado.botasInventarioId,
-      personaje.equipoEquipado.guantesInventarioId,
-      personaje.equipoEquipado.accesorioInventarioId,
-      personaje.equipoEquipado.anillo1InventarioId,
-      personaje.equipoEquipado.anillo2InventarioId,
-    ];
-    const objetoEstaEquipado = ranurasEquipo.includes(objetoInventario.id);
+    const objetoEstaEquipado = estaInstanciaEquipadaPersistida(
+      personaje.equipoEquipado,
+      objetoInventario.id,
+    );
 
     if (!objetoEstaEquipado) {
       return NextResponse.json(
@@ -216,18 +208,7 @@ export async function POST(request: Request) {
       const equipoActual = await tx.equipoEquipado.findUnique({
         where: { personajeId: personaje.id },
       });
-      const objetoSigueEquipado = [
-        equipoActual?.armaInventarioId,
-        equipoActual?.manoSecundariaInventarioId,
-        equipoActual?.cascoInventarioId,
-        equipoActual?.armaduraInventarioId,
-        equipoActual?.pantalonesInventarioId,
-        equipoActual?.botasInventarioId,
-        equipoActual?.guantesInventarioId,
-        equipoActual?.accesorioInventarioId,
-        equipoActual?.anillo1InventarioId,
-        equipoActual?.anillo2InventarioId,
-      ].includes(objetoInventario.id);
+      const objetoSigueEquipado = estaInstanciaEquipadaPersistida(equipoActual, objetoInventario.id);
       if (!objetoSigueEquipado) throw new Error("OBJETO_NO_EQUIPADO");
 
       // El oro y los tres materiales se descuentan en una sola operación
