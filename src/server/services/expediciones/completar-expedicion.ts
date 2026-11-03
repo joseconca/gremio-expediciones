@@ -144,7 +144,7 @@ export async function completarExpedicion() {
 
       const capacidadAlmacen = calcularCapacidadAlmacen(nivelAlmacen);
 
-      const { recompensaRecibida, recursosPerdidos } = calcularRecompensaAlmacen(
+      const { recompensaRecibida, recursosPerdidos: detalleRecursosPerdidos } = calcularRecompensaAlmacen(
         recompensa,
         { madera: usuario.madera, piedra: usuario.piedra, metal: usuario.metal },
         capacidadAlmacen
@@ -153,7 +153,7 @@ export async function completarExpedicion() {
         madera: maderaPerdida,
         piedra: piedraPerdida,
         metal: metalPerdido,
-      } = recursosPerdidos;
+      } = detalleRecursosPerdidos;
 
       let logRegreso: string[];
 
