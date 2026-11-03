@@ -8,7 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
-import { obtenerAccionAutomaticaTraslado } from "./party/automatismos";
+import { obtenerAccionAutomaticaTraslado, obtenerPasoExpedicionParty } from "./party/automatismos";
 import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, enviarTurnoEnemigoParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
@@ -199,19 +199,18 @@ export default function PanelParty() {
   }, [estado?.trasladosPropios, ahora, actualizarEstado, cargarJugador]);
 
   useEffect(() => {
-    const expedicion = estado?.expedicionActiva;
-    if (!expedicion || expedicion.fase !== "en_viaje") return;
-    if (new Date(expedicion.fechaLlegada).getTime() > ahora) return;
+    const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null, ahora);
+    if (paso?.tipo !== "llegar") return;
 
-    const clave = `expedicion-party:${expedicion.id}:llegar`;
+    const { clave } = paso;
     if (procesandoAutomatico.current.has(clave)) return;
     procesandoAutomatico.current.add(clave);
 
     void (async () => {
       try {
         await enviarAccionParty(
-          "/api/expediciones/party/llegar",
-          expedicion.id,
+          paso.ruta,
+          paso.expedicionId,
           "expedicionPartyId",
         );
         await actualizarEstado(true);
@@ -230,18 +229,18 @@ export default function PanelParty() {
   }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
 
   useEffect(() => {
-    const expedicion = estado?.expedicionActiva;
-    if (!expedicion || expedicion.fase !== "lista_para_combate" || expedicion.combate) return;
+    const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null);
+    if (paso?.tipo !== "iniciar-combate") return;
 
-    const clave = `expedicion-party:${expedicion.id}:iniciar-combate`;
+    const { clave } = paso;
     if (procesandoAutomatico.current.has(clave)) return;
     procesandoAutomatico.current.add(clave);
 
     void (async () => {
       try {
         await enviarAccionParty(
-          "/api/expediciones/party/combate/iniciar",
-          expedicion.id,
+          paso.ruta,
+          paso.expedicionId,
           "expedicionPartyId",
         );
         await actualizarEstado(true);
@@ -260,18 +259,18 @@ export default function PanelParty() {
   }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
 
   useEffect(() => {
-    const expedicion = estado?.expedicionActiva;
-    if (!expedicion || expedicion.fase !== "regresando" || new Date(expedicion.fechaLlegada).getTime() > ahora) return;
+    const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null, ahora);
+    if (paso?.tipo !== "regreso") return;
 
-    const clave = `expedicion-party:${expedicion.id}:regreso`;
+    const { clave } = paso;
     if (procesandoAutomatico.current.has(clave)) return;
     procesandoAutomatico.current.add(clave);
 
     void (async () => {
       try {
         await enviarAccionParty(
-          "/api/expediciones/party/regreso",
-          expedicion.id,
+          paso.ruta,
+          paso.expedicionId,
           "expedicionPartyId",
         );
         await actualizarEstado(true);
