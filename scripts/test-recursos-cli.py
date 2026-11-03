@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import contextlib
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -74,6 +76,47 @@ class ResourceCliTests(unittest.TestCase):
         self.assertFalse(validator.coinciden_variantes(["m"], ["m", "m"]))
         self.assertFalse(validator.coinciden_variantes(["m"], ["m", "otro"]))
         self.assertFalse(validator.coinciden_variantes(["m"], None))
+
+    def test_resumen_muestra_atlas_publicados_y_variantes_faltantes(self):
+        heroes = self.root / "src/lib/generated/sprites-hd.json"
+        heroes.write_text(json.dumps({
+            "classes": ["novato", "berserker"],
+            "items": {"espada_hierro": {}},
+        }), encoding="utf-8")
+        self.catalog.write_text(json.dumps({
+            "enemies": {"slime_acido": {}, "mimic": {}},
+        }), encoding="utf-8")
+
+        for clase, sexos in (("novato", ("m", "f")), ("berserker", ("m",))):
+            carpeta = self.root / "public/sprites/hd-v1/heroes" / clase
+            carpeta.mkdir(parents=True)
+            for sexo in sexos:
+                (carpeta / f"{sexo}-sheet.png").write_bytes(b"atlas-ficticio")
+
+        equipo = self.root / "public/sprites/hd-v1/equipment/espada_hierro"
+        equipo.mkdir(parents=True)
+        for sexo in ("m", "f"):
+            (equipo / f"{sexo}-sheet.png").write_bytes(b"equipo-ficticio")
+        self.output.mkdir(parents=True)
+        (self.output / "slime_acido-sheet.png").write_bytes(b"enemigo-ficticio")
+
+        resultado = cli.resumen_publicacion()
+        self.assertEqual(resultado["ubicacionRuntime"], "public/sprites/")
+        self.assertEqual(resultado["heroes"]["clasesEnCatalogoHd"], 2)
+        self.assertEqual(resultado["heroes"]["atlasPublicados"], 3)
+        self.assertEqual(resultado["heroes"]["variantesPendientes"], {
+            "berserker": ["f"],
+        })
+        self.assertEqual(resultado["enemigos"], {
+            "registrados": 2, "atlasPublicados": 1,
+        })
+        self.assertEqual(resultado["equipo"], {
+            "piezasRegistradas": 1, "piezasConAmbosAtlas": 1,
+        })
+        salida = io.StringIO()
+        with contextlib.redirect_stdout(salida):
+            self.assertEqual(cli.main(["resumen"]), 0)
+        self.assertEqual(json.loads(salida.getvalue()), resultado)
 
     def test_identificador_bloquea_rutas(self):
         for invalid in ("../x", "a/b", "Elfo", "123", ""):
