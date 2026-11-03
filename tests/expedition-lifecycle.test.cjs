@@ -6,6 +6,41 @@ const path = require("node:path");
 const vm = require("node:vm");
 const ts = require("typescript");
 
+const {
+  leerRecompensaRegreso,
+  calcularRecompensaAlmacen,
+} = require("../src/lib/expediciones/recompensas-regreso.ts");
+
+test("el regreso normaliza cantidades enteras y rechaza recompensas incompletas", () => {
+  assert.deepEqual(leerRecompensaRegreso({
+    oro: 14.9, madera: 6.2, piedra: -3.7, metal: 1.99, objetos: [{ objetoId: "x" }],
+  }), { oro: 14, madera: 6, piedra: 0, metal: 1 });
+  const cero = { oro: 0, madera: 0, piedra: 0, metal: 0 };
+  for (const valor of [null, undefined, "no-json", [], {}, { oro: 3, madera: 4, piedra: 5 }]) {
+    assert.deepEqual(leerRecompensaRegreso(valor), cero);
+  }
+});
+
+test("el almacén limita cada recurso por separado sin limitar oro ni mutar entradas", () => {
+  const recompensa = { oro: 400, madera: 12, piedra: 9, metal: 7 };
+  const actuales = { madera: 95, piedra: 99, metal: 30 };
+  const resultado = calcularRecompensaAlmacen(recompensa, actuales, 100);
+  assert.deepEqual(resultado.recompensaRecibida, { oro: 400, madera: 5, piedra: 1, metal: 7 });
+  assert.deepEqual(resultado.recursosPerdidos, { madera: 7, piedra: 8, metal: 0 });
+  assert.deepEqual(recompensa, { oro: 400, madera: 12, piedra: 9, metal: 7 });
+  assert.deepEqual(actuales, { madera: 95, piedra: 99, metal: 30 });
+});
+
+test("los recursos con el almacén lleno se pierden pero el oro se conserva", () => {
+  const resultado = calcularRecompensaAlmacen(
+    { oro: 35, madera: 3, piedra: 4, metal: 5 },
+    { madera: 100, piedra: 101, metal: 110 },
+    100
+  );
+  assert.deepEqual(resultado.recompensaRecibida, { oro: 35, madera: 0, piedra: 0, metal: 0 });
+  assert.deepEqual(resultado.recursosPerdidos, { madera: 3, piedra: 4, metal: 5 });
+});
+
 // Carga aislada del servicio real: sin base de datos, sesión ni red.
 function cargarServicioComercial(prisma, resolverComercio) {
   const filename = path.resolve(__dirname, "../src/server/services/expediciones/completar-expedicion.ts");
