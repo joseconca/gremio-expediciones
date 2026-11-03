@@ -308,3 +308,12 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - **Nueva estructura única:** `estadisticas.ts` y `estadisticas-personaje.ts` se trasladaron también a `progresion/estadisticas/`, actualizando los importadores de servicios, rutas, auditorías y pruebas; no se conservan sus archivos anteriores ni reexports de compatibilidad de rutas.
 
 - **Retirada de código legado:** `configuracionJuego.ts` eliminada tras migrar servicios, interfaces, tests y scripts a `base/`, `progresion/` y `sprites/`. La prueba de estructura impide volver a depender de esa fachada.
+
+
+### Revisión de importaciones tras eliminar las rutas antiguas (3 de noviembre)
+
+- Corregidos los imports residuales en el catálogo de habilidades, el cálculo de ataques básicos y la iniciativa de party.
+- Migrados a los módulos propietarios los últimos imports detectados en los servicios de **asedios** y **liquidación, regeneración y turno enemigo de party**. No se reintroduce `configuracionJuego.ts` ni ninguna ruta puente.
+- Actualizadas las vistas de **party, combate, inventario y ficha del personaje** para importar sprites, niveles, descripciones, estadísticas y experiencia desde sus carpetas actuales.
+- `tests/estructura-lib.test.cjs` ahora resuelve imports locales relativos y alias `@/` de **todo `src/`** (incluidos componentes y servidor), en vez de revisar únicamente los imports relativos de tres subcarpetas. Una ruta trasladada pero no actualizada provoca fallo en pruebas.
+- Cambios limitados a importaciones, documentación y una prueba estructural; **no se han cambiado las reglas del combate, recompensas ni contratos HTTP**. Falta confirmar la ejecución completa de `Regression` en el último commit.

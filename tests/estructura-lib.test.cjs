@@ -153,14 +153,14 @@ test("las reglas tácticas movidas conservan sus exportaciones y se pueden impor
 });
 
 
-test("todos los imports locales de src/lib resuelven a archivos de la estructura actual", () => {
+test("todos los imports locales de src resuelven a archivos de la estructura actual", () => {
   const recorrer = (directorio) => fs.readdirSync(directorio, { withFileTypes: true }).flatMap((entrada) => {
     const ruta = path.join(directorio, entrada.name);
     return entrada.isDirectory()
       ? recorrer(ruta)
       : /\.(ts|tsx)$/.test(entrada.name) ? [ruta] : [];
   });
-  const fuentes = recorrer(path.join(root, "src/lib"));
+  const fuentes = recorrer(path.join(root, "src"));
   // Cubre imports de valor/tipo, reexports, import("...") y require("...").
   // La auditoría anterior solo revisaba rutas relativas en tres subdirectorios.
   const referencias = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*|\bimport\s+)["']((?:\.{1,2}\/|@\/)[^"']+)["']/g;
