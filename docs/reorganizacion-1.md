@@ -91,6 +91,9 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 | Equipamiento | `src/lib/equipamiento/{inventario,tienda,botin,sufijos}.ts` |
 | Progresión y estadísticas | `src/lib/progresion/{descripciones-habilidades,generar-habilidades,estadisticas-personaje}.ts` y reglas de clases, experiencia, atributos y niveles |
 | Economía | `src/lib/economia/mercado.ts` |
+| Expediciones – combate | `src/lib/expediciones/combate/`: curación, consumibles y regeneración. `combate.ts` continúa como API pública |
+| Expediciones – viajes | `src/lib/expediciones/viajes/`: tiempos de ida/vuelta y recompensas de regreso |
+| Progresión – base de estadísticas | `src/lib/progresion/estadisticas/`: modificadores y cálculo base; `estadisticas.ts` y `estadisticas-personaje.ts` conservan su API |
 | Generación de expediciones | `src/lib/expediciones/generador-misiones.ts` |
 | Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts`; rutas y retrocompatibilidad del héroe centralizadas en `heroes.ts` |
 | Catálogos editables | `src/lib/catalogos/{clases,habilidades,objetos,enemigos}.ts` |
@@ -98,6 +101,19 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 | Operaciones persistentes | `src/server/services/` |
 
 `src/lib/configuracionJuego.ts` se conserva como **fachada pública** de edificios, mejoras, estadísticas, experiencia, habilidades y sprites. Ya no contiene fórmulas propias. Las reglas de estadísticas y experiencia Base comparten módulos con la progresión Job (`progresion/estadisticas.ts` y `progresion/experiencia.ts`); el aprendizaje de habilidades está en `progresion/aprendizaje.ts`. El catálogo editable de edificios vive únicamente en `base/edificios.ts`, aunque `tiposJuego.ts` conserva sus antiguos exports para los consumidores.
+
+
+### Ordenación interna en curso (3 de noviembre de 2026)
+
+Las carpetas generales ya estaban creadas, pero `expediciones/` y `progresion/` aún tenían demasiados archivos al mismo nivel. Se está **moviendo código real, no creando reexports duplicados**:
+
+- `expediciones/combate/`: `consumibles-combate.ts`, `recursos-combate.ts`, `presupuesto-curacion.ts`.
+- `expediciones/viajes/`: `tiempos.ts`, `recompensas-regreso.ts`.
+- `progresion/estadisticas/`: `modificadores-estadisticas.ts`, `estadisticas-base-personaje.ts`.
+
+**Siguientes agrupaciones pendientes** (no darlas por terminadas): selección de encuentros/enemigos (`normal`, `elite`, `dificultad`), mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
+
+El mapa navegable para quien mantiene el proyecto está en `src/lib/README.md`.
 
 ### Auditoría de los archivos en la raíz de `src/lib/`
 
