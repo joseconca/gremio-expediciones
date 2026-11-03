@@ -55,6 +55,13 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `tests/expedition-lifecycle.test.cjs` prueba ambas carreras simuladas con la lógica real del servicio y dobles de Prisma, sin dependencia de base de datos; está incorporado a `test:progression`.
 - Siguiente revisión: casos de errores de transacción, límites de inventario y efectos de los servicios de economía. No asumir que las pruebas con dobles sustituyen una prueba de integración PostgreSQL.
 
+### Premios de regreso e inventario
+
+- `src/lib/expediciones/recompensas-regreso.ts` concentra reglas puras: lectura de premios enteros de la vuelta, oro completo y límites independientes por madera, piedra y metal. La transacción, tirada de botín e informes siguen en `completar-expedicion.ts`. El lector de combate conserva decimales y **no** se ha fusionado con el de regreso.
+- `src/lib/equipamiento/inventario.ts` expone `hayHuecoInventario` para la comprobación común en regreso individual y en la party; el límite habitual sigue siendo 30 objetos. La gestión de stacks e instancias sigue separada según su comportamiento.
+- `tests/expedition-lifecycle.test.cjs` prueba las recompensas, capacidad de almacén y las transiciones. `tests/objetos-system.test.cjs` protege el límite del inventario.
+- La recepción final sigue borrando la expedición en una transacción serializable, por lo que los cambios de reparto se deben comprobar contra una PostgreSQL real antes de una modificación adicional. Las pruebas con dobles no bastan para certificar carreras de base de datos.
+
 ## Estado y siguiente orden de trabajo
 
 1. La regresión de `154cdfb` terminó correctamente, incluyendo las pruebas de motor y adaptador tácticos. Los catálogos y los contratos públicos ya tienen entradas reconocibles. Las nuevas pruebas de recursos deben superar también su propia CI.

@@ -19,6 +19,8 @@ En `src/lib/expediciones/tiempos.ts` viven tres cálculos distintos:
 
 `clasificarClimaExpedicion` traduce únicamente los códigos meteorológicos a penalización de velocidad/tiempo y texto, sin depender del proveedor. La petición a Open-Meteo, el timeout y el fallback ante errores permanecen en `iniciar-expedicion.ts`.
 
-No fusionar los lectores de recompensas de `../combate/accion-combate.ts` y `completar-expedicion.ts` por su nombre: el primero conserva valores numéricos decimales y el segundo aplica `Math.trunc` antes de la liquidación. Cambiarlo puede afectar al balance.
+La normalización de recompensas enteras y el límite por recurso del almacén están en `src/lib/expediciones/recompensas-regreso.ts`; `completar-expedicion.ts` sólo orquesta su aplicación dentro de la transacción. No fusionar este lector con el de `../combate/accion-combate.ts`: el segundo conserva decimales y el de regreso aplica `Math.trunc` antes de liquidar. Cambiarlo afectaría al balance.
+
+El control común de huecos de inventario es `hayHuecoInventario` en `src/lib/equipamiento/inventario.ts`. Se usa en el regreso individual y en `../party/inventario-recompensas.ts`; **no** unificar sin pruebas el apilamiento de objetos de party y las instancias con sufijos, ya que son contratos distintos.
 
 **Pruebas:** `tests/expedition-times.test.cjs` cubre plazos y límites; `tests/expedition-lifecycle.test.cjs` comprueba dos solicitudes simultáneas en comercio y PvE, y el retorno de un combate existente. Ambas se ejecutan en `npm run test:progression`. También deben seguir pasando las pruebas de expediciones y reportes, party, lint y build. No alterar contratos HTTP, transacciones ni orden de escrituras durante la limpieza.

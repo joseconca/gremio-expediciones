@@ -46,6 +46,8 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Fecha del encuentro, regreso de combate/comercio y penalizaciones climáticas | `src/lib/expediciones/tiempos.ts` |
 | Iniciar, llegar y completar expediciones individuales (Prisma y fases) | `src/server/services/expediciones/`; ver [README](../src/server/services/expediciones/README.md) |
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
+| Premios de expedición al volver y capacidad del almacén | `src/lib/expediciones/recompensas-regreso.ts` y `src/server/services/expediciones/completar-expedicion.ts` |
+| Límite de huecos del inventario en regreso y party | `src/lib/equipamiento/inventario.ts` (`hayHuecoInventario`) |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
 | Combates PvP y asedios entre jugadores | `src/server/services/combate/pvp.ts` |
