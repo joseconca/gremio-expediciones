@@ -1,7 +1,8 @@
 import type { DefinicionHabilidad } from "../tiposJuego";
 import type { ResultadoHabilidad } from "./combate";
 import { convertirEstadosTacticos, exportarEstadosTacticos, type ContextoTecnicaTactica } from "./adaptador-tactico";
-import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos, type MundoTactico, type UnidadTactica } from "./motor-tactico";
+import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos } from "./motor-tactico";
+import type { FamiliaTactica, MundoTactico, UnidadTactica } from "./tipos-tacticos";
 import type { OperacionHabilidad, ReglaPasiva } from "../progresion/diseno-habilidades";
 import { obtenerEstadosTacticos as tacticos } from "./preparacion-habilidades";
 
@@ -171,7 +172,7 @@ export function aplicarMecanicasHabilidad(
   const agregarEstado = (
     destino: UnidadTactica,
     clave: string,
-    familia: import("./motor-tactico").FamiliaTactica,
+    familia: FamiliaTactica,
     valor: number,
     duracion = 2,
     origen = fuente
@@ -317,7 +318,7 @@ export function aplicarMecanicasHabilidad(
       const estadoPasivo = (
         unidad: UnidadTactica,
         claveEstado: string,
-        familia: import("./motor-tactico").FamiliaTactica,
+        familia: FamiliaTactica,
         valor: number,
         duracion = 2
       ) => agregarEstado(unidad, claveEstado, familia, valor, duracion, pasiva.id);
