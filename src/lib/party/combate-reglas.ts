@@ -5,7 +5,6 @@ export function obtenerLogCombateParty(valor: unknown): string[] {
     : [];
 }
 
-export type FaseTurnoParty = "jugador" | "enemigo";
 export type FaseCombateParty = "activo" | "victoria" | "derrota" | "huida";
 
 export interface ParticipanteTurnoParty {
@@ -13,14 +12,6 @@ export interface ParticipanteTurnoParty {
   ordenTurno: number;
   jugadorHp: number;
   estado: string;
-}
-
-export interface EstadoTurnoParty {
-  faseCombate: FaseCombateParty;
-  faseTurno: FaseTurnoParty;
-  turnoActualUsuarioId: string | null;
-  ronda: number;
-  turnoInicialEnemigo?: boolean;
 }
 
 function ordenarParticipantes(participantes: ParticipanteTurnoParty[]) {
@@ -43,89 +34,4 @@ export function resolverResultadoCombateParty(
   if (enemigoHp <= 0) return "victoria";
   if (obtenerParticipantesVivos(participantes).length > 0) return "activo";
   return participantes.some((participante) => participante.estado === "huyo") ? "huida" : "derrota";
-}
-
-/**
- * Avanza un solo actor del ciclo compartido:
- * jugador -> siguiente jugador vivo -> enemigo -> siguiente ronda.
- * La lista de participantes mantiene su orden congelado al crear el combate.
- */
-export function calcularSiguienteTurnoParty(
-  estado: EstadoTurnoParty,
-  participantes: ParticipanteTurnoParty[],
-): EstadoTurnoParty {
-  if (estado.faseCombate !== "activo") return { ...estado };
-
-  const vivos = obtenerParticipantesVivos(participantes);
-  if (vivos.length === 0) {
-    return {
-      faseCombate: participantes.some((participante) => participante.estado === "huyo") ? "huida" : "derrota",
-      faseTurno: "enemigo",
-      turnoActualUsuarioId: null,
-      ronda: estado.ronda,
-    };
-  }
-
-  if (estado.faseTurno === "jugador") {
-    const actual = participantes.find(
-      (participante) => participante.usuarioId === estado.turnoActualUsuarioId,
-    );
-    if (!actual) {
-      return {
-        faseCombate: "activo",
-        faseTurno: "jugador",
-        turnoActualUsuarioId: vivos[0].usuarioId,
-        ronda: estado.ronda,
-      };
-    }
-
-    const siguiente = vivos.find((participante) => participante.ordenTurno > actual.ordenTurno);
-    if (siguiente) {
-      return {
-        faseCombate: "activo",
-        faseTurno: "jugador",
-        turnoActualUsuarioId: siguiente.usuarioId,
-        ronda: estado.ronda,
-      };
-    }
-
-    return {
-      faseCombate: "activo",
-      faseTurno: "enemigo",
-      turnoActualUsuarioId: null,
-      ronda: estado.ronda,
-    };
-  }
-
-  return {
-    faseCombate: "activo",
-    faseTurno: "jugador",
-    turnoActualUsuarioId: vivos[0].usuarioId,
-    ronda: estado.ronda + (estado.turnoInicialEnemigo ? 0 : 1),
-  };
-}
-
-export function crearEstadoInicialTurnoParty(
-  participantes: ParticipanteTurnoParty[],
-  iniciarJugador = true,
-): EstadoTurnoParty {
-  const vivos = obtenerParticipantesVivos(participantes);
-  if (vivos.length < 2 || vivos.length > 3) {
-    throw new RangeError("El combate de party requiere dos o tres participantes vivos.");
-  }
-  if (!iniciarJugador) {
-    return {
-      faseCombate: "activo",
-      faseTurno: "enemigo",
-      turnoActualUsuarioId: null,
-      ronda: 1,
-      turnoInicialEnemigo: true,
-    };
-  }
-  return {
-    faseCombate: "activo",
-    faseTurno: "jugador",
-    turnoActualUsuarioId: vivos[0].usuarioId,
-    ronda: 1,
-  };
 }

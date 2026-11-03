@@ -1,12 +1,11 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const reglas = require("../src/lib/party/combate-reglas.ts");
 const {
   obtenerParticipantesVivos,
   resolverResultadoCombateParty,
-  calcularSiguienteTurnoParty,
-  crearEstadoInicialTurnoParty,
-} = require("../src/lib/party/combate-reglas.ts");
+} = reglas;
 
 const participantes = () => [
   { usuarioId: "u2", ordenTurno: 1, jugadorHp: 100, estado: "activo" },
@@ -14,49 +13,11 @@ const participantes = () => [
   { usuarioId: "u3", ordenTurno: 2, jugadorHp: 100, estado: "activo" },
 ];
 
-test("el orden inicial de turno es el orden persistido de los participantes", () => {
-  const estado = crearEstadoInicialTurnoParty(participantes());
-  assert.deepEqual(estado, {
-    faseCombate: "activo",
-    faseTurno: "jugador",
-    turnoActualUsuarioId: "u1",
-    ronda: 1,
-  });
-});
-
-test("los aventureros actúan por orden y después actúa el enemigo", () => {
+test("la lista viva respeta el orden congelado e ignora caídos", () => {
   const grupo = participantes();
-  let estado = crearEstadoInicialTurnoParty(grupo);
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.turnoActualUsuarioId, "u2");
-  assert.equal(estado.faseTurno, "jugador");
-
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.turnoActualUsuarioId, "u3");
-
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.deepEqual(
-    { faseTurno: estado.faseTurno, turnoActualUsuarioId: estado.turnoActualUsuarioId, ronda: estado.ronda },
-    { faseTurno: "enemigo", turnoActualUsuarioId: null, ronda: 1 },
-  );
-
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.deepEqual(
-    { faseTurno: estado.faseTurno, turnoActualUsuarioId: estado.turnoActualUsuarioId, ronda: estado.ronda },
-    { faseTurno: "jugador", turnoActualUsuarioId: "u1", ronda: 2 },
-  );
-});
-
-test("se salta a personajes caídos sin ceder dos turnos al mismo jugador", () => {
-  const grupo = participantes();
-  let estado = crearEstadoInicialTurnoParty(grupo);
+  assert.deepEqual(obtenerParticipantesVivos(grupo).map(p => p.usuarioId), ["u1", "u2", "u3"]);
   grupo[0].jugadorHp = 0;
-  grupo[0].estado = "caido";
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.turnoActualUsuarioId, "u3");
-
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.faseTurno, "enemigo");
+  assert.deepEqual(obtenerParticipantesVivos(grupo).map(p => p.usuarioId), ["u1", "u3"]);
 });
 
 test("la derrota ocurre solo cuando no quedan personajes vivos y la victoria prioriza al enemigo derrotado", () => {
@@ -72,62 +33,22 @@ test("la derrota ocurre solo cuando no quedan personajes vivos y la victoria pri
   assert.equal(resolverResultadoCombateParty(0, grupo), "victoria");
 });
 
-test("al inicio y al avanzar un turno se exigen estados coherentes", () => {
-  assert.throws(() => crearEstadoInicialTurnoParty([]), RangeError);
-  assert.throws(() => crearEstadoInicialTurnoParty(participantes().slice(0, 1)), RangeError);
-  assert.throws(() => resolverResultadoCombateParty(Number.NaN, participantes()), RangeError);
-  const terminado = { faseCombate: "victoria", faseTurno: "enemigo", turnoActualUsuarioId: null, ronda: 7 };
-  assert.deepEqual(calcularSiguienteTurnoParty(terminado, participantes()), terminado);
-});
-
-
-test("si el enemigo tiene la iniciativa, su primer turno no salta la ronda", () => {
-  const grupo = participantes();
-  let estado = crearEstadoInicialTurnoParty(grupo, false);
-  assert.equal(estado.faseTurno, "enemigo");
-  assert.equal(estado.turnoInicialEnemigo, true);
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.deepEqual(
-    { faseTurno: estado.faseTurno, turnoActualUsuarioId: estado.turnoActualUsuarioId, ronda: estado.ronda },
-    { faseTurno: "jugador", turnoActualUsuarioId: "u1", ronda: 1 },
-  );
-
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.faseTurno, "enemigo");
-  estado = calcularSiguienteTurnoParty(estado, grupo);
-  assert.equal(estado.ronda, 2);
-});
-
-
-test("la huida saca al aventurero del orden y termina si ya no queda nadie activo", () => {
+test("la huida se distingue de una derrota y el HP enemigo debe ser finito", () => {
   const grupo = participantes();
   grupo[0].estado = "huyo";
-  const siguiente = calcularSiguienteTurnoParty({
-    faseCombate: "activo",
-    faseTurno: "jugador",
-    turnoActualUsuarioId: "u2",
-    ronda: 1,
-  }, grupo);
-  assert.equal(siguiente.turnoActualUsuarioId, "u3");
-  assert.equal(siguiente.faseTurno, "jugador");
-
-  grupo[2].estado = "huyo";
   grupo[1].estado = "caido";
+  grupo[2].estado = "huyo";
   assert.equal(resolverResultadoCombateParty(10, grupo), "huida");
-  const terminal = calcularSiguienteTurnoParty({
-    faseCombate: "activo",
-    faseTurno: "jugador",
-    turnoActualUsuarioId: "u1",
-    ronda: 1,
-  }, grupo);
-  assert.equal(terminal.faseCombate, "huida");
+  assert.equal(resolverResultadoCombateParty(0, grupo), "victoria");
+  assert.throws(() => resolverResultadoCombateParty(Number.NaN, participantes()), RangeError);
+  const derrota = participantes().map(p => ({ ...p, estado: "caido", jugadorHp: 0 }));
+  assert.equal(resolverResultadoCombateParty(10, derrota), "derrota");
 });
 
-test("una derrota sin nadie que haya huido no se convierte en huida", () => {
-  const grupo = participantes().map((p) => ({ ...p, estado: "caido", jugadorHp: 0 }));
-  assert.equal(resolverResultadoCombateParty(10, grupo), "derrota");
+test("la iniciativa utiliza un solo planificador actual, basado en velocidad", () => {
+  assert.equal("calcularSiguienteTurnoParty" in reglas, false);
+  assert.equal("crearEstadoInicialTurnoParty" in reglas, false);
+  assert.equal("EstadoTurnoParty" in reglas, false);
 });
 
 const {
@@ -154,7 +75,7 @@ test("la iniciativa de party excluye caídos y enemigos derrotados", () => {
   assert.deepEqual(herido.map(x => x.actorId), ["u1", "e1"]);
 });
 
-test("la iniciativa de party mantiene la cola válida y reconstruye la histórica", () => {
+test("la iniciativa de party mantiene la cola válida y reconstruye turnos pendientes", () => {
   const participantes = [
     { usuarioId: "u1", ordenTurno: 0, estado: "activo", jugadorHp: 100, jugadorVelocidad: 20 },
     { usuarioId: "u2", ordenTurno: 1, estado: "activo", jugadorHp: 100, jugadorVelocidad: 10 },

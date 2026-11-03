@@ -317,3 +317,10 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - Actualizadas las vistas de **party, combate, inventario y ficha del personaje** para importar sprites, niveles, descripciones, estadísticas y experiencia desde sus carpetas actuales.
 - `tests/estructura-lib.test.cjs` ahora resuelve imports locales relativos y alias `@/` de **todo `src/`** (incluidos componentes y servidor), en vez de revisar únicamente los imports relativos de tres subcarpetas. Una ruta trasladada pero no actualizada provoca fallo en pruebas.
 - Cambios limitados a importaciones, documentación y una prueba estructural; **no se han cambiado las reglas del combate, recompensas ni contratos HTTP**. Falta confirmar la ejecución completa de `Regression` en el último commit.
+
+### Unificación del planificador de party (3 de noviembre)
+
+- Eliminado el planificador antiguo por turnos fijos `calcularSiguienteTurnoParty` / `crearEstadoInicialTurnoParty` y su contrato `EstadoTurnoParty`; solo existían consumidores en pruebas de ese algoritmo superado.
+- El combate real continúa utilizando `party/iniciativa.ts` y `expediciones/combate/iniciativa-combate.ts`, con acciones proporcionales a velocidad y cola persistida.
+- Las pruebas de party mantienen casos de participantes vivos, victoria, derrota, huida, límites de log y cola de velocidad; se retiraron las aserciones del algoritmo antiguo.
+- Sin cambios en Prisma, API, botín, temporizadores o el cálculo de ataques. Pendiente validar CI tras este commit.
