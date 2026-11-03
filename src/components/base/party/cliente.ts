@@ -103,3 +103,17 @@ export function intervaloConsultaParty(estado: EstadoParty | null, ahora: number
   if (estado?.party) return 15000;
   return 30000;
 }
+
+/** Resuelve un turno enemigo sin gestionar aquí la pausa visual ni el sondeo. */
+export async function enviarTurnoEnemigoParty(
+  expedicionPartyId: string,
+): Promise<RespuestaAccionCombateParty> {
+  const respuestaTurno = await fetch("/api/expediciones/party/combate/turno-enemigo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ expedicionPartyId }),
+  });
+  const datosTurno = (await respuestaTurno.json().catch(() => ({}))) as RespuestaAccionCombateParty;
+  if (!respuestaTurno.ok) throw new Error(datosTurno.error || "No se pudo resolver el turno del enemigo.");
+  return datosTurno;
+}

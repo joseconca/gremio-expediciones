@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { consultarEstadoParty, enviarAccionParty, prepararPayloadAccionCombateParty, enviarAccionCombateParty, intervaloConsultaParty } =
+const { consultarEstadoParty, enviarAccionParty, prepararPayloadAccionCombateParty, enviarAccionCombateParty, enviarTurnoEnemigoParty, intervaloConsultaParty } =
   require("../src/components/base/party/cliente.ts");
 
 test("payload de ataque: conserva objetivo enemigo solo cuando llega JSON válido", () => {
@@ -117,4 +117,25 @@ test("sondeo de party prioriza combate, expedición, traslados y visitas próxim
   assert.equal(intervaloConsultaParty({ ...base, trasladosPropios: [{ id: "t1" }], visitasEntrantes: [visita(2)] }, ahora), 5000);
   assert.equal(intervaloConsultaParty({ ...base, expedicionActiva: { fase: "en_viaje" }, visitasEntrantes: [visita(2)] }, ahora), 5000);
   assert.equal(intervaloConsultaParty({ ...base, expedicionActiva: { fase: "combatiendo" }, trasladosPropios: [{ id: "t1" }] }, ahora), 3000);
+});
+
+test("turno enemigo party: POST único con la expedición y error del servidor", async () => {
+  const datosTurno = { fase: "activo", accion: { actor: "enemigo-1", dano: 4 } };
+  await conFetchSimulado(async () => ({ ok: true, json: async () => datosTurno }), async (peticiones) => {
+    assert.equal(await enviarTurnoEnemigoParty("exp-1"), datosTurno);
+    assert.deepEqual(peticiones, [{
+      url: "/api/expediciones/party/combate/turno-enemigo",
+      opciones: {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expedicionPartyId: "exp-1" }),
+      },
+    }]);
+  });
+  await conFetchSimulado(async () => ({ ok: false, json: async () => ({ error: "Versión desactualizada" }) }), async () => {
+    await assert.rejects(enviarTurnoEnemigoParty("exp-1"), /Versión desactualizada/);
+  });
+  await conFetchSimulado(async () => ({ ok: false, json: async () => { throw new Error("sin JSON"); } }), async () => {
+    await assert.rejects(enviarTurnoEnemigoParty("exp-1"), /No se pudo resolver el turno del enemigo/);
+  });
 });

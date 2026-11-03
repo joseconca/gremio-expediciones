@@ -8,7 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
-import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, intervaloConsultaParty } from "./party/cliente";
+import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, enviarTurnoEnemigoParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
 import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
@@ -310,13 +310,7 @@ export default function PanelParty() {
         // Aplicamos el mismo ritmo al turno compartido de party antes de resolverlo.
         const tiempoEsperaEnemigo = Math.random() * 1200 + 300;
         await new Promise<void>((resolve) => window.setTimeout(resolve, tiempoEsperaEnemigo));
-        const respuestaTurno = await fetch("/api/expediciones/party/combate/turno-enemigo", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ expedicionPartyId: expedicion.id }),
-        });
-        const datosTurno = await respuestaTurno.json().catch(() => ({}));
-        if (!respuestaTurno.ok) throw new Error(datosTurno.error || "No se pudo resolver el turno del enemigo.");
+        const datosTurno = await enviarTurnoEnemigoParty(expedicion.id);
         guardarResultadoCombate(expedicion.id, datosTurno);
         await actualizarEstado(true);
         await cargarJugador();
