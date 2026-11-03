@@ -681,19 +681,6 @@ export async function completarExpedicion() {
     // GUARDAR RESULTADO Y COMENZAR REGRESO
     // ============================================================
     const actualizado = await prisma.$transaction(async (tx) => {
-      await tx.personaje.update({
-        where: {
-          usuarioId: usuario.id,
-        },
-        data: {
-          hpActual: Math.max(
-            1,
-            usuario.personaje!.hpActual - resultado.hpPerdido
-          ),
-          estado: "de_viaje",
-        },
-      });
-
       // Sólo la primera petición puede confirmar el resultado del comercio.
       // El control se ejecuta dentro de la transacción que registra el regreso.
       const transicion = await tx.expedicionActiva.updateMany({
@@ -718,6 +705,19 @@ export async function completarExpedicion() {
       if (transicion.count !== 1) {
         throw new Error("EXPEDICION_FASE_MODIFICADA");
       }
+
+      await tx.personaje.update({
+        where: {
+          usuarioId: usuario.id,
+        },
+        data: {
+          hpActual: Math.max(
+            1,
+            usuario.personaje!.hpActual - resultado.hpPerdido
+          ),
+          estado: "de_viaje",
+        },
+      });
 
       await tx.registroAccion.create({
         data: {
