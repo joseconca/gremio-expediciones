@@ -6,7 +6,7 @@ const {
   convertirEstadosTacticos,
   exportarEstadosTacticos,
   resolverTecnicaAdicional,
-} = require("../src/lib/expediciones/adaptador-tactico.ts");
+} = require("../src/lib/expediciones/combate/tacticas/adaptador-tactico.ts");
 
 const efectoPeriodico = (tipo, habilidadId, valor, turnosRestantes) => ({
   habilidadId,

@@ -14,7 +14,7 @@ const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidade
 const { describirReglaPasiva, describirDisenoActiva } = require("../src/lib/progresion/catalogo-redisenado.ts");
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/combate/tacticas/motor-tactico.ts');
-const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/preparacion-habilidades.ts");
+const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/combate/tacticas/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });
 
@@ -101,7 +101,7 @@ test("el rediseño conserva los casos especiales y los costes de técnicas", () 
 });
 
 test('la preparación mantiene la API antigua y no modifica la definición original', () => {
-  const antiguo = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  const antiguo = require('../src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts');
   assert.strictEqual(antiguo.prepararHabilidadRedisenada, prepararHabilidadRedisenada);
   assert.strictEqual(antiguo.actualizarRelojContexto, actualizarRelojContexto);
   const habilidad = {
@@ -322,7 +322,7 @@ function resolver(h, c) {
 }
 
 test('la disipación elimina perjuicios y revierte la defensa sin alterar otras estadísticas', () => {
-  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts');
   const perjuicio = {
     habilidadId: 'debuff_prueba',
     tipo: 'debuff_defensa',
@@ -358,7 +358,7 @@ test('la disipación elimina perjuicios y revierte la defensa sin alterar otras 
 });
 
 test('los efectos de invocación no se aplican dos veces en acciones secundarias', () => {
-  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/mecanicas-habilidades.ts');
+  const { aplicarMecanicasHabilidad } = require('../src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts');
   const habilidad = {
     id: 'invocar_prueba', efecto: 'estado',
     disenoActiva: { operaciones: [

@@ -15,9 +15,9 @@ export {
   resolverAtaqueEnemigo,
 } from "./ataques-basicos";
 import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./combate/estados-combate";
-import { aplicarMecanicasHabilidad } from "./mecanicas-habilidades";
-import { actualizarRelojContexto, prepararHabilidadRedisenada } from "./preparacion-habilidades";
-import { resolverTecnicaAdicional, type ContextoTecnicaTactica } from "./adaptador-tactico";
+import { aplicarMecanicasHabilidad } from "./combate/tacticas/mecanicas-habilidades";
+import { actualizarRelojContexto, prepararHabilidadRedisenada } from "./combate/tacticas/preparacion-habilidades";
+import { resolverTecnicaAdicional, type ContextoTecnicaTactica } from "./combate/tacticas/adaptador-tactico";
 
 export type AccionAnimadaCombate = {
   actor: "jugador" | "enemigo";

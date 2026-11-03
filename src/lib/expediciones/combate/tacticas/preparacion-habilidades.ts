@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../tiposJuego";
+import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../../../tiposJuego";
 import type { ContextoTecnicaTactica } from "./adaptador-tactico";
 
 /** Extrae los estados tácticos sin modificar los efectos originales. */

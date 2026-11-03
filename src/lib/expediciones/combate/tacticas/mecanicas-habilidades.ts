@@ -1,9 +1,9 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
-import type { ResultadoHabilidad } from "./combate";
+import type { DefinicionHabilidad } from "../../../tiposJuego";
+import type { ResultadoHabilidad } from "../../combate";
 import { convertirEstadosTacticos, exportarEstadosTacticos, type ContextoTecnicaTactica } from "./adaptador-tactico";
-import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos } from "./combate/tacticas/motor-tactico";
-import type { FamiliaTactica, MundoTactico, UnidadTactica } from "./combate/tacticas/tipos-tacticos";
-import type { OperacionHabilidad, ReglaPasiva } from "../progresion/diseno-habilidades";
+import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos } from "./motor-tactico";
+import type { FamiliaTactica, MundoTactico, UnidadTactica } from "./tipos-tacticos";
+import type { OperacionHabilidad, ReglaPasiva } from "../../../progresion/diseno-habilidades";
 import { obtenerEstadosTacticos as tacticos } from "./preparacion-habilidades";
 
 // Mantener la API de preparacion anterior para los importadores existentes.
