@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       });
       await tx.inventario.update({
         where: { id: personaje.inventario!.id },
-        data: { ultimaVenta: snapshot as Prisma.InputJsonValue },
+        data: { ultimaVenta: snapshot as unknown as Prisma.InputJsonValue },
       });
       return { snapshot, precioVenta, precioRecompra };
     }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
