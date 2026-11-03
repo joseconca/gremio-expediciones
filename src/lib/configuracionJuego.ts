@@ -6,8 +6,8 @@ export type { CosteEdificio } from "./base/edificios";
 // ============================================================
 // CLASES
 // ============================================================
-export { calcularEstadisticasBase } from "./progresion/estadisticas";
-export type { EstadisticasBasePersonaje } from "./progresion/estadisticas";
+export { calcularEstadisticasBase } from "./progresion/estadisticas/estadisticas";
+export type { EstadisticasBasePersonaje } from "./progresion/estadisticas/estadisticas";
 
 export { CONFIGURACION_ATRIBUTOS, calcularCosteAtributo } from "./base/mejoras";
 export type { CampoMejora, IdAtributo } from "./base/mejoras";

@@ -1,7 +1,7 @@
 import type { DefinicionObjeto, TipoArmadura } from "./tiposJuego";
 import { OBJETOS } from "./catalogos/objetos";
 export { OBJETOS } from "./catalogos/objetos";
-import type { ModificadoresEstadisticas } from "./progresion/estadisticas-personaje";
+import type { ModificadoresEstadisticas } from "./progresion/estadisticas/estadisticas-personaje";
 
 export function calcularEstadisticasObjeto(
   objeto: DefinicionObjeto,
