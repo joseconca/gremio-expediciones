@@ -8,6 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
+import { obtenerAccionAutomaticaTraslado } from "./party/automatismos";
 import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, enviarTurnoEnemigoParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
@@ -162,16 +163,9 @@ export default function PanelParty() {
 
   useEffect(() => {
     for (const traslado of estado?.trasladosPropios ?? []) {
-      if (new Date(traslado.fechaLlegada).getTime() > ahora) continue;
-      const ruta =
-        traslado.estado === "en_viaje"
-          ? "/api/party/transfer/llegar"
-          : traslado.estado === "regresando"
-            ? "/api/party/transfer/completar-regreso"
-            : null;
-      if (!ruta) continue;
-
-      const clave = `${traslado.id}:${traslado.estado}`;
+      const accionPendiente = obtenerAccionAutomaticaTraslado(traslado, ahora);
+      if (!accionPendiente) continue;
+      const { clave, ruta } = accionPendiente;
       if (procesandoAutomatico.current.has(clave)) continue;
       // Si los relojes del navegador y del servidor difieren unos segundos,
       // no repitamos el POST ni la consulta de estado en cada tick del contador.
