@@ -7,11 +7,8 @@ import { usePathname, useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Sugerencias from "@/components/Sugerencias";
 import Image from "next/image";
-import {
-  obtenerSpriteHeroe,
-  experienciaParaNivel,
-} from "@/lib/configuracionJuego";
-import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
+import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
+import { experienciaJobParaNivel, experienciaParaNivel } from "@/lib/progresion/experiencia";
 import { CLASES } from "@/lib/progresion/clases";
 import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/tiposJuego";
 

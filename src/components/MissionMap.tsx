@@ -13,7 +13,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 
 const campIcon = new L.Icon({
   iconUrl: "/sprites/buildings/camp.png",

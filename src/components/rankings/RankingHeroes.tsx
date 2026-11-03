@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { obtenerNombreClaseHeroe, obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerNombreClaseHeroe, obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 
 interface HeroeRanking {
   nombreBase: string;

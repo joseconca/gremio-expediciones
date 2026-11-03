@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 import { CLASES } from "@/lib/progresion/clases";
 import type { SlotHabilidad } from "@/lib/tiposJuego";
 import EquipoPersonaje from "@/components/personaje/EquipoPersonaje";
