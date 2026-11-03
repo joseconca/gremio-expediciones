@@ -112,3 +112,28 @@ test("la clave de iniciativa distingue versiones sin mutar el snapshot", () => {
   assert.equal(primera.expedicionId, segunda.expedicionId);
   assert.deepEqual(combate, { id: "c1", version: 3, fase: "activo", faseTurno: "enemigo" });
 });
+
+const fs = require("node:fs");
+const path = require("node:path");
+const leer = (ruta) => fs.readFileSync(path.join(__dirname, "..", ruta), "utf8");
+
+test("el panel delega los cinco automatismos a un único hook y conserva el sondeo separado", () => {
+  const panel = leer("src/components/base/PanelParty.tsx");
+  const hook = leer("src/components/base/party/useAutomatismosParty.ts");
+  assert.match(panel, /useAutomatismosParty\(\{/);
+  assert.match(panel, /intervaloConsultaParty\(estado, ahora\)/);
+  assert.doesNotMatch(panel, /procesandoAutomatico|siguienteIntentoTraslado/);
+  assert.equal((hook.match(/useEffect\(\(\) => \{/g) || []).length, 5);
+});
+
+test("el hook conserva la deduplicación, los reintentos y la pausa del turno enemigo", () => {
+  const hook = leer("src/components/base/party/useAutomatismosParty.ts");
+  assert.match(hook, /procesandoAutomatico\.current\.has\(clave\)/);
+  assert.match(hook, /procesandoAutomatico\.current\.delete\(clave\)/);
+  assert.match(hook, /siguienteIntentoTraslado\.current\.set\(clave, Date\.now\(\) \+ 5000\)/);
+  assert.match(hook, /const tiempoEsperaEnemigo = Math\.random\(\) \* 1200 \+ 300/);
+  assert.match(hook, /window\.setTimeout\(resolve, tiempoEsperaEnemigo\)/);
+  assert.match(hook, /guardarResultadoCombate\(turnoPendiente\.expedicionId, datosTurno\)/);
+  assert.match(hook, /enviarAccionParty\(/);
+  assert.match(hook, /enviarTurnoEnemigoParty\(/);
+});
