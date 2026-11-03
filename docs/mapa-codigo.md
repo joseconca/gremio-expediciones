@@ -20,7 +20,8 @@
 | Identificar objetos equipados en todas las ranuras | `src/lib/equipamiento/ranuras.ts` |
 | Tipo de respuesta de `/api/objetos` (tiendas, forja, mochila y Botica) | `src/lib/equipamiento/datos-objetos.ts` |
 | Carga y recarga del inventario en Armería y Herrería | `src/hooks/useDatosObjetosEdificio.ts` |
-| Reglas del mercado | [`src/lib/economia/mercado.ts`](../src/lib/economia/mercado.ts) |
+| Precios y solicitud de compra/venta de recursos | [`src/lib/economia/mercado.ts`](../src/lib/economia/mercado.ts); [guía](../src/lib/economia/README.md) |
+| Niveles, requisitos, costes y validación de construcción de edificios | [`src/lib/base/edificios.ts`](../src/lib/base/edificios.ts) |
 | Edificios de la base y sus mejoras | `src/lib/base/`; ver [su README](../src/lib/base/README.md) |
 
 Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable**. Los módulos de acceso `src/lib/habilidades.ts`, `src/lib/objetos.ts`, `src/lib/progresion/clases.ts` y los servicios actúan como APIs o transformaciones: no dupliques allí las definiciones. Más detalles: [README de catálogos](../src/lib/catalogos/README.md).

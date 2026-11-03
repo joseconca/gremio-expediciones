@@ -62,9 +62,16 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `tests/expedition-lifecycle.test.cjs` prueba las recompensas, capacidad de almacén y las transiciones. `tests/objetos-system.test.cjs` protege el límite del inventario.
 - La recepción final sigue borrando la expedición en una transacción serializable, por lo que los cambios de reparto se deben comprobar contra una PostgreSQL real antes de una modificación adicional. Las pruebas con dobles no bastan para certificar carreras de base de datos.
 
+### Mercado y construcción de edificios
+
+- `src/lib/economia/mercado.ts` conserva precios de compra, venta del 25 % (sin descuento) y las dos fórmulas diferentes de venta/recompra de objetos. `validarSolicitudMercado` elimina la duplicación del JSON, recurso y cantidad en las rutas de compra y venta. Las operaciones `updateMany` condicionadas permanecen en cada ruta para evitar gastos o ventas simultáneas sobre saldos obsoletos.
+- `src/lib/base/edificios.ts` conserva el catálogo único, la fórmula de costes y `prepararMejoraEdificio`, que reúne las comprobaciones de nivel máximo, prerrequisitos y saldo. `src/app/api/jugador/acciones/route.ts` sigue aplicando el descuento y la mejora del JSON de edificios dentro de su transacción serializable.
+- `tests/economy-balance.test.cjs` comprueba contratos puros y los costes auténticos de construcción; `tests/base-economic-routes.test.cjs` mantiene la protección de las rutas con dobles de Prisma. Los errores HTTP y el orden de comprobaciones no cambian.
+- No mezclar esta lógica de construcción con los descuentos del Mercado, los costes de forja o las bonificaciones de murallas solo por usar oro y materiales.
+
 ## Estado y siguiente orden de trabajo
 
-1. La regresión de `154cdfb` terminó correctamente, incluyendo las pruebas de motor y adaptador tácticos. Los catálogos y los contratos públicos ya tienen entradas reconocibles. Las nuevas pruebas de recursos deben superar también su propia CI.
+1. La regresión del bloque de expediciones corregido (`eaa8653`) y la del límite de inventario (`2deb8b9`) terminaron correctamente. Las nuevas pruebas de Mercado y construcción necesitan superar su propia CI antes de dar la fase por cerrada; el validador HD de sprites es independiente.
 2. `src/server/services/combate/` tiene mapa por funciones; la normalización y el decremento de cooldowns están en `src/lib/expediciones/cooldowns-habilidades.ts` con reexportaciones compatibles. El cobro de recursos conserva las ramas v2 y legacy y la escritura optimista.
-3. Seguir por los servicios de combate, expediciones y economía buscando **duplicaciones semánticas verificables**; no dividir funciones ni crear archivos sólo por su tamaño. Los servicios de recursos PvE y party no deben fusionarse sin comparar sus transacciones y contratos.
+3. Tras validar economía y edificios, continuar con rutas de compra, venta y forja y con la retirada de adaptadores antiguos sólo cuando se confirme qué consumidores los necesitan. No dividir funciones ni crear archivos sólo por su tamaño. No fusionar servicios PvE/party que tengan contratos o transacciones distintos.
 4. Auditar las dependencias reales y fachadas heredadas; eliminar recursos y código sólo tras comprobar uso en runtime y pruebas. No reunir las dos fórmulas de murallas sin revisar sus consumidores. Mantener commits pequeños, `main` intacta y las regresiones en verde antes de considerar finalizado un bloque.
