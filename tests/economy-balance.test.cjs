@@ -293,6 +293,34 @@ test("el catálogo añade botín exclusivo en todas las familias de equipo y una
   }
 });
 
+test("la validación de la solicitud del Mercado conserva sus respuestas en compra y venta", () => {
+  const { validarSolicitudMercado, MAX_CANTIDAD_MERCADO } =
+    require("../src/lib/economia/mercado.ts");
+  for (const entrada of [null, undefined, 0, "texto", [], false]) {
+    assert.deepEqual(validarSolicitudMercado(entrada), {
+      valida: false, error: "Petición no válida.",
+    });
+  }
+  for (const entrada of [{}, { recurso: "oro", cantidad: 1 }, { recurso: "", cantidad: "3" }]) {
+    assert.deepEqual(validarSolicitudMercado(entrada), {
+      valida: false, error: "Recurso no válido",
+    });
+  }
+  for (const cantidad of [0, 1.5, -1, "4", null, MAX_CANTIDAD_MERCADO + 1, Number.NaN]) {
+    assert.deepEqual(validarSolicitudMercado({ recurso: "madera", cantidad }), {
+      valida: false,
+      error: `La cantidad debe ser un entero entre 1 y ${MAX_CANTIDAD_MERCADO}.`,
+    });
+  }
+  for (const recurso of ["madera", "piedra", "metal"]) {
+    for (const cantidad of [1, 50, MAX_CANTIDAD_MERCADO]) {
+      assert.deepEqual(validarSolicitudMercado({ recurso, cantidad }), {
+        valida: true, recurso, cantidad,
+      });
+    }
+  }
+});
+
 test("las operaciones de mercado comparten el contrato de validación", () => {
   const {
     esRecursoValido, esCantidadMercadoValida, leerNivelMercado,
