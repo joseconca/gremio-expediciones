@@ -7,6 +7,11 @@ on:
     branches: [main]
     paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   workflow_dispatch:
+concurrency:
+  # El último commit del PR sustituye las ejecuciones obsoletas del mismo workflow.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 jobs:
