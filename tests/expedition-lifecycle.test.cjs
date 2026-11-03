@@ -152,7 +152,7 @@ function cargarServicioLlegada(prisma) {
       calcularModificadoresEquipo: () => ({}),
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
-    "@/lib/expediciones/dificultad": { esModoDificultad: (valor) => valor === "normal" },
+    "../../../lib/expediciones/dificultad": { esModoDificultad: (valor) => valor === "normal" },
     "@/lib/base/taberna": {
       calcularBonificacionesComida: () => ({}),
       aplicarEfectoComida: (estadisticas) => estadisticas,
