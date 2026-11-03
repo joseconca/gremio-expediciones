@@ -27,6 +27,6 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 - `equipo-habilidades.ts`: reglas para equipar habilidades.
 - `src/lib/habilidades.ts`: registro público utilizado por la aplicación y las APIs; no es un segundo catálogo.
 
-**Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para los consumidores externos, no el lugar para crear nuevas reglas.
+**Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para consumidores anteriores, pero los cambios nuevos deben importar directamente `src/lib/base/edificios.ts`, `src/lib/base/mejoras.ts`, `src/lib/progresion/` o `src/lib/sprites/`, según su responsabilidad. No se elimina la fachada sin comprobar todos los importadores.
 
 **Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas viven en `estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.

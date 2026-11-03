@@ -51,6 +51,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
 | Premios de expedición al volver y capacidad del almacén | `src/lib/expediciones/recompensas-regreso.ts` y `src/server/services/expediciones/completar-expedicion.ts` |
 | Recompensas de party y sus instancias individuales | `src/server/services/party/inventario-recompensas.ts` |
+| Cómo se reparte la curación de party según heridas reales | `src/lib/expediciones/presupuesto-curacion.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
 | Combates PvP y asedios entre jugadores | `src/server/services/combate/pvp.ts` |

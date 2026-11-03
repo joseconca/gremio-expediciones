@@ -13,6 +13,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
 - `cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
 - `recompensas-regreso.ts`: normaliza los premios enteros recibidos al finalizar y calcula los recursos aceptados/perdidos por el límite de almacén; el oro no está limitado. No toca Prisma.
+- `presupuesto-curacion.ts`: asigna el peso proporcional de curación solo a miembros con vida faltante. Lo usa el servicio de combate de party; los objetivos sanos no consumen reserva.
 - `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `tiempos.ts`: encuentros y expediciones.
   - `tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.

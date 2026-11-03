@@ -10,7 +10,7 @@ Esta carpeta concentra reglas puras de armas, armaduras, accesorios, instancias 
 | `tienda.ts` | Requisitos por rareza y disponibilidad de Armería |
 | `sufijos.ts` | Nombres y bonificaciones de objetos con sufijos |
 | `botin.ts` | Tiradas y características de drops |
-| `datos-objetos.ts` | Tipo de respuesta compartido de `GET /api/objetos` |
+| `datos-objetos.ts` | Tipo de respuesta compartido de `GET /api/objetos`; **única definición** de `ObjetoEnVenta` (desde `tienda.ts` sólo se reexporta el tipo) |
 
 **No fusionar contratos diferentes:** comprar genera una nueva instancia sin sufijo; vender guarda un único recibo con mejora y bonificaciones; recomprar restaura el ID, sufijo y la mejora y consume ese recibo una sola vez; la forja exige estar equipado y cobra oro/materiales dentro de una transacción; party puede apilar ciertos objetos. Conservar sus transacciones, actualizaciones condicionadas y errores HTTP.
 
