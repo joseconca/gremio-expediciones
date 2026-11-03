@@ -93,6 +93,55 @@ test("el adaptador conserva estados tácticos, límites y efectos ajenos sin dup
   assert.deepEqual(anteriores[1].datosTacticos.estados, [estado]);
 });
 
+test("una técnica adicional mantiene el contrato público y los límites de cooldown", () => {
+  const habilidad = {
+    id: "novato_tecnica_adicional",
+    nombre: "Evaluar el peligro",
+    claseId: "novato",
+    programaTactico: "tecnica_adicional",
+    costeEnergia: 7,
+    costeMana: 2,
+    cooldownTurnos: 5,
+  };
+  const contexto = {
+    actorId: "jugador",
+    objetivoId: "enemigo",
+    claseId: "novato",
+    ciclo: 3,
+    actorHp: 50,
+    actorHpMaximo: 100,
+    energia: 30,
+    energiaMaxima: 100,
+    mana: 20,
+    manaMaximo: 100,
+    ataque: 20,
+    ataqueMagico: 10,
+    defensaActor: 8,
+    defensaMagicaActor: 6,
+    efectosActor: [],
+    objetivoHp: 80,
+    objetivoHpMaximo: 80,
+    defensaObjetivo: 5,
+    defensaMagicaObjetivo: 2,
+    efectosObjetivo: [],
+    objetivoAliado: false,
+    filaActor: 1,
+    filaObjetivo: 1,
+  };
+  const original = JSON.parse(JSON.stringify(contexto));
+  const resultado = resolverTecnicaAdicional(habilidad, contexto);
+  assert.equal(resultado.accion.actor, "jugador");
+  assert.equal(resultado.accion.tipo, "habilidad");
+  assert.equal(resultado.accion.dano, 0);
+  assert.equal(resultado.actorHp, 50);
+  assert.equal(resultado.objetivoHp, 80);
+  assert.equal(resultado.filaActor, 1);
+  const persistidos = resultado.efectosActor.find((efecto) => efecto.tipo === "tactico");
+  assert.ok(persistidos);
+  assert.equal(persistidos.datosTacticos.limites["cd:novato_tecnica_adicional"], 8);
+  assert.deepEqual(contexto, original, "No mutar el contexto proporcionado por el servicio");
+});
+
 test("sin estados ni límites el adaptador no inventa efectos tácticos", () => {
   const ajeno = { habilidadId: "escudo", tipo: "bonus_defensa", valor: 2, turnosRestantes: 3 };
   assert.deepEqual(convertirEstadosTacticos([ajeno], "jugador", "actor"), []);
