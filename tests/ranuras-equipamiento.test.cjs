@@ -3,7 +3,24 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { obtenerIdsObjetosEquipados } = require("../src/lib/equipamiento/ranuras.ts");
+const { obtenerIdsObjetosEquipados, CAMPOS_EQUIPO_PERSISTIDO, estaInstanciaEquipadaPersistida } = require("../src/lib/equipamiento/ranuras.ts");
+
+test("la venta y la forja consultan todas las ranuras persistidas con una sola función", () => {
+  assert.equal(CAMPOS_EQUIPO_PERSISTIDO.length, 10);
+  assert.equal(new Set(CAMPOS_EQUIPO_PERSISTIDO).size, 10);
+  for (const campo of CAMPOS_EQUIPO_PERSISTIDO) {
+    const equipo = { [campo]: "instancia-1" };
+    assert.equal(estaInstanciaEquipadaPersistida(equipo, "instancia-1"), true, campo);
+    assert.equal(estaInstanciaEquipadaPersistida(equipo, "otra"), false, campo);
+  }
+  assert.equal(estaInstanciaEquipadaPersistida(null, "instancia-1"), false);
+  assert.equal(estaInstanciaEquipadaPersistida({}, "instancia-1"), false);
+  for (const ruta of ["src/app/api/objetos/vender/route.ts", "src/app/api/objetos/mejorar/route.ts"]) {
+    const fuente = fs.readFileSync(path.join(__dirname, "..", ruta), "utf8");
+    assert.match(fuente, /estaInstanciaEquipadaPersistida/);
+    assert.doesNotMatch(fuente, /const CAMPOS_EQUIPO = \[/);
+  }
+});
 
 test("el equipo nulo o vacío no produce identificadores", () => {
   assert.deepEqual([...obtenerIdsObjetosEquipados(null)], []);
