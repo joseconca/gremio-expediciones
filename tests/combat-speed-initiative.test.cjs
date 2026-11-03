@@ -6,7 +6,7 @@ const path = require("node:path");
 const {
   crearSecuenciaTurnosVelocidad,
   avanzarSecuenciaTurnosVelocidad,
-} = require("../src/lib/expediciones/iniciativa-combate.ts");
+} = require("../src/lib/expediciones/combate/iniciativa-combate.ts");
 const { resolverAtaqueEnemigo } = require("../src/lib/expediciones/combate.ts");
 
 test("la velocidad reparte acciones 10/15/30 en proporción 1/2/3 y por orden descendente", () => {

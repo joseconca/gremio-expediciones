@@ -32,7 +32,7 @@ import {
   resolverResultadoCombateParty,
   obtenerLogCombateParty,
 } from "@/lib/party/combate-reglas";
-import type { PasoTurnoVelocidad } from "@/lib/expediciones/iniciativa-combate";
+import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
 import { gastarRecursosHabilidad } from "@/server/services/combate/accion-combate";

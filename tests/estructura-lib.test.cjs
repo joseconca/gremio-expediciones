@@ -12,6 +12,7 @@ const trasladados = [
   ["expediciones", "combate/recursos-combate.ts"],
   ["expediciones", "combate/enemigos-combate.ts"],
   ["expediciones", "combate/presupuesto-curacion.ts"],
+  ["expediciones", "combate/iniciativa-combate.ts"],
   ["expediciones", "viajes/tiempos.ts"],
   ["expediciones", "viajes/recompensas-regreso.ts"],
   ["expediciones", "encuentros/normal.ts"],

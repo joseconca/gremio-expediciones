@@ -13,7 +13,7 @@ import {
   normalizarSecuenciaTurnosVelocidad,
   type ActorTurnoVelocidad,
   type PasoTurnoVelocidad,
-} from "@/lib/expediciones/iniciativa-combate";
+} from "@/lib/expediciones/combate/iniciativa-combate";
 
 import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";

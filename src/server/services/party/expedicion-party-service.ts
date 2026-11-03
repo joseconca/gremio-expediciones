@@ -15,7 +15,7 @@ import {
 } from "@/lib/party/expedicion-reglas";
 import { PartyServiceError } from "./errores";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
+import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/encuentros/dificultad";
 import type { DefinicionMision } from "@/lib/tiposJuego";

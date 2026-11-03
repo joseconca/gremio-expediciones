@@ -1,4 +1,4 @@
-import { avanzarSecuenciaTurnosVelocidad, crearSecuenciaTurnosVelocidad, normalizarSecuenciaTurnosVelocidad, type ActorTurnoVelocidad, type PasoTurnoVelocidad } from "@/lib/expediciones/iniciativa-combate";
+import { avanzarSecuenciaTurnosVelocidad, crearSecuenciaTurnosVelocidad, normalizarSecuenciaTurnosVelocidad, type ActorTurnoVelocidad, type PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import type { ParticipanteTurnoParty } from "./combate-reglas";
 import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 

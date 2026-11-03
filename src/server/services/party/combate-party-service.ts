@@ -10,7 +10,7 @@ import { seleccionarJefeElite } from "@/lib/expediciones/encuentros/elite";
 import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { esModoDificultad } from "@/lib/expediciones/encuentros/dificultad";
-import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
+import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { PartyServiceError } from "./errores";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
