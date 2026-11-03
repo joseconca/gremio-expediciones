@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
-import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
+import { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 import {
   puedeComprarObjeto,
   obtenerRequisitosRareza,
@@ -143,7 +143,7 @@ export async function POST(request: Request) {
       const espaciosOcupados = await tx.inventarioObjeto.count({
         where: { inventarioId },
       });
-      if (espaciosOcupados >= LIMITE_INVENTARIO_OBJETOS) {
+      if (!hayHuecoInventario(espaciosOcupados)) {
         throw new Error("INVENTARIO_LLENO");
       }
 

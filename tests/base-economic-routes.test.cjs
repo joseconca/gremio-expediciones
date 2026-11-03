@@ -490,7 +490,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
-    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
+    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS: 30, hayHuecoInventario: (n) => n < 30 },
     "@/lib/equipamiento/tienda": {
       puedeComprarObjeto: () => true,
       obtenerRequisitosRareza: () => ({ nivelArmeria: 1, nivelHeroe: 1 }),

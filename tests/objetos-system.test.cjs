@@ -404,7 +404,7 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
     "@/lib/objetos": { obtenerObjetoPorId },
     "@/lib/equipamiento/sufijos": suffixModule,
     "@/lib/economia/mercado": require("../src/lib/economia/mercado.ts"),
-    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS },
+    "@/lib/equipamiento/inventario": { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario: (n) => n < LIMITE_INVENTARIO_OBJETOS },
   };
   return { state, sell: loadApiRoute("src/app/api/objetos/vender/route.ts", dependencies).POST,
     buyback: loadApiRoute("src/app/api/objetos/recomprar/route.ts", dependencies).POST };

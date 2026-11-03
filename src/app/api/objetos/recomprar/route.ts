@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
-import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
+import { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 
 interface VentaGuardada {
   instanciaId: string;
@@ -72,7 +72,7 @@ export async function POST() {
       const ocupados = await tx.inventarioObjeto.count({
         where: { inventarioId: personaje.inventario!.id },
       });
-      if (ocupados >= LIMITE_INVENTARIO_OBJETOS) throw new Error("INVENTARIO_LLENO");
+      if (!hayHuecoInventario(ocupados)) throw new Error("INVENTARIO_LLENO");
 
       const cobro = await tx.usuario.updateMany({
         where: { id: sesion.id, oro: { gte: ventaActual.precioRecompra } },
