@@ -143,8 +143,63 @@ def estado_equipo(item_id: str) -> None:
     }, ensure_ascii=False, indent=2))
 
 
+def resumen_publicacion() -> dict:
+    """Lee qué atlas reales está sirviendo el juego, sin tocar fuentes de arte."""
+    heroes = cargar(ROOT / "src/lib/generated/sprites-hd.json")
+    enemigos = cargar(CATALOGO_ENEMIGOS)
+    ruta_heroes = ROOT / "public/sprites/hd-v1/heroes"
+    ruta_equipo = ROOT / "public/sprites/hd-v1/equipment"
+    clases = heroes.get("classes", [])
+    variantes = {
+        clase: [sexo for sexo in ("m", "f")
+                if (ruta_heroes / clase / f"{sexo}-sheet.png").is_file()]
+        for clase in clases
+    }
+    piezas = heroes.get("items", {})
+    piezas_completas = sum(
+        all((ruta_equipo / item / f"{sexo}-sheet.png").is_file()
+            for sexo in ("m", "f"))
+        for item in piezas
+    )
+    ids_enemigos = enemigos.get("enemies", {})
+    enemigos_publicados = sum(
+        (DESTINO_ENEMIGOS / f"{enemy_id}-sheet.png").is_file()
+        for enemy_id in ids_enemigos
+    )
+    return {
+        "ubicacionRuntime": "public/sprites/",
+        "fuentesEditables": "assets/spritesheets/ (no se cargan en el navegador)",
+        "indicesRuntime": "src/lib/generated/",
+        "heroes": {
+            "clasesEnCatalogoHd": len(clases),
+            "atlasPublicados": sum(map(len, variantes.values())),
+            "variantesPorClase": variantes,
+            "variantesPendientes": {
+                clase: [sexo for sexo in ("m", "f") if sexo not in disponibles]
+                for clase, disponibles in variantes.items()
+                if len(disponibles) != 2
+            },
+        },
+        "enemigos": {
+            "registrados": len(ids_enemigos),
+            "atlasPublicados": enemigos_publicados,
+        },
+        "equipo": {
+            "piezasRegistradas": len(piezas),
+            "piezasConAmbosAtlas": piezas_completas,
+        },
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
+    if argv == ["resumen"]:
+        try:
+            print(json.dumps(resumen_publicacion(), ensure_ascii=False, indent=2))
+            return 0
+        except (ValueError, OSError, KeyError, json.JSONDecodeError) as error:
+            print("ERROR: " + str(error), file=sys.stderr)
+            return 1
     if argv and argv[0] == "heroe":
         try:
             script("sprites.py", *argv[1:])
