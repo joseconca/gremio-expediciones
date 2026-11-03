@@ -77,3 +77,19 @@ export function obtenerPasoExpedicionParty(
   }
   return null;
 }
+
+/**
+ * Solo solicita turno enemigo cuando el combate está activo y le toca actuar.
+ * La clave incluye la versión para distinguir turnos sucesivos.
+ */
+export function obtenerTurnoEnemigoPendiente(
+  expedicion: EstadoParty["expedicionActiva"],
+): { clave: string; expedicionId: string } | null {
+  const combate = expedicion?.combate;
+  if (!expedicion || expedicion.fase !== "combatiendo" || !combate ||
+      combate.fase !== "activo" || combate.faseTurno !== "enemigo") return null;
+  return {
+    clave: `combate-party:${combate.id}:v${combate.version}:enemigo`,
+    expedicionId: expedicion.id,
+  };
+}

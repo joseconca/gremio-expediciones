@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { obtenerAccionAutomaticaTraslado, obtenerPasoExpedicionParty } = require("../src/components/base/party/automatismos.ts");
+const { obtenerAccionAutomaticaTraslado, obtenerPasoExpedicionParty, obtenerTurnoEnemigoPendiente } = require("../src/components/base/party/automatismos.ts");
 
 const ahora = Date.parse("2026-11-03T12:00:00Z");
 const traslado = { id: "traslado-1", estado: "en_viaje", fechaLlegada: "2026-11-03T12:00:00Z" };
@@ -85,4 +85,30 @@ test("estados sin automatismo no desencadenan peticiones, sin mutar el snapshot"
   const copia = { ...expedicionBase };
   obtenerPasoExpedicionParty(expedicionBase, ahora);
   assert.deepEqual(expedicionBase, copia);
+});
+
+test("solo solicita el turno del enemigo cuando el combate sigue activo y es su turno", () => {
+  const combate = { id: "combate-1", version: 7, fase: "activo", faseTurno: "enemigo" };
+  const activa = { ...expedicionBase, fase: "combatiendo", combate };
+  assert.deepEqual(obtenerTurnoEnemigoPendiente(activa), {
+    clave: "combate-party:combate-1:v7:enemigo",
+    expedicionId: "exp-1",
+  });
+  assert.equal(obtenerTurnoEnemigoPendiente(null), null);
+  assert.equal(obtenerTurnoEnemigoPendiente({ ...activa, combate: null }), null);
+  assert.equal(obtenerTurnoEnemigoPendiente({ ...activa, fase: "regresando" }), null);
+  assert.equal(obtenerTurnoEnemigoPendiente({ ...activa, combate: { ...combate, faseTurno: "jugador" } }), null);
+  for (const fase of ["victoria", "derrota", "huida"]) {
+    assert.equal(obtenerTurnoEnemigoPendiente({ ...activa, combate: { ...combate, fase } }), null);
+  }
+});
+
+test("la clave de iniciativa distingue versiones sin mutar el snapshot", () => {
+  const combate = { id: "c1", version: 3, fase: "activo", faseTurno: "enemigo" };
+  const activa = { ...expedicionBase, fase: "combatiendo", combate };
+  const primera = obtenerTurnoEnemigoPendiente(activa);
+  const segunda = obtenerTurnoEnemigoPendiente({ ...activa, combate: { ...combate, version: 4 } });
+  assert.notEqual(primera.clave, segunda.clave);
+  assert.equal(primera.expedicionId, segunda.expedicionId);
+  assert.deepEqual(combate, { id: "c1", version: 3, fase: "activo", faseTurno: "enemigo" });
 });

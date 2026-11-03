@@ -8,7 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
-import { obtenerAccionAutomaticaTraslado, obtenerPasoExpedicionParty } from "./party/automatismos";
+import { obtenerAccionAutomaticaTraslado, obtenerPasoExpedicionParty, obtenerTurnoEnemigoPendiente } from "./party/automatismos";
 import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, enviarTurnoEnemigoParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
@@ -288,12 +288,10 @@ export default function PanelParty() {
   }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
 
   useEffect(() => {
-    const expedicion = estado?.expedicionActiva;
-    const combate = expedicion?.combate;
-    if (!expedicion || expedicion.fase !== "combatiendo" || !combate ||
-        combate.fase !== "activo" || combate.faseTurno !== "enemigo") return;
+    const turnoPendiente = obtenerTurnoEnemigoPendiente(estado?.expedicionActiva ?? null);
+    if (!turnoPendiente) return;
 
-    const clave = `combate-party:${combate.id}:v${combate.version}:enemigo`;
+    const { clave } = turnoPendiente;
     if (procesandoAutomatico.current.has(clave)) return;
     procesandoAutomatico.current.add(clave);
 
@@ -303,8 +301,8 @@ export default function PanelParty() {
         // Aplicamos el mismo ritmo al turno compartido de party antes de resolverlo.
         const tiempoEsperaEnemigo = Math.random() * 1200 + 300;
         await new Promise<void>((resolve) => window.setTimeout(resolve, tiempoEsperaEnemigo));
-        const datosTurno = await enviarTurnoEnemigoParty(expedicion.id);
-        guardarResultadoCombate(expedicion.id, datosTurno);
+        const datosTurno = await enviarTurnoEnemigoParty(turnoPendiente.expedicionId);
+        guardarResultadoCombate(turnoPendiente.expedicionId, datosTurno);
         await actualizarEstado(true);
         await cargarJugador();
       } catch (err) {
