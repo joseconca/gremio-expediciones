@@ -9,11 +9,44 @@ const { nivelMaximoHabilidad } = require('../src/lib/progresion/niveles-habilida
 const { aplicarBarreraAccion, procesarEfectosTurno } = require('../src/lib/expediciones/estados-combate.ts');
 const { establecerCooldownHabilidad, obtenerCooldowns, reducirCooldowns } = require('../src/lib/expediciones/cooldowns-habilidades.ts');
 const { calcularPesosCuracion } = require('../src/lib/expediciones/presupuesto-curacion.ts');
+const { ESCUELAS, TECNICAS_AVANZADAS } = require("../src/lib/catalogos/habilidades.ts");
+const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidades.ts");
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/motor-tactico.ts');
 const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });
+
+test("el generador conserva cinco habilidades por escuela, su orden y costes", () => {
+  assert.equal(HABILIDADES_NUEVAS.length, ESCUELAS.length * 5);
+  for (const [indice, escuela] of ESCUELAS.entries()) {
+    const [ataque, tactica, pasiva, avanzada, maestria] =
+      HABILIDADES_NUEVAS.slice(indice * 5, (indice + 1) * 5);
+    assert.deepEqual(
+      [ataque.id, tactica.id, pasiva.id, avanzada.id, maestria.id],
+      ["ataque", "tactica", "pasiva", "avanzada", "maestria"].map(
+        (tipo) => `${escuela.claseId}_${tipo}`,
+      ),
+    );
+    assert.deepEqual(
+      [[ataque.costeEnergia, ataque.costeMana],
+        [tactica.costeEnergia, tactica.costeMana],
+        [avanzada.costeEnergia, avanzada.costeMana]],
+      escuela.costes.map((coste) => [...coste]),
+    );
+    assert.equal(ataque.nivelJobRequerido, 1);
+    assert.equal(tactica.nivelJobRequerido, 15);
+    assert.equal(pasiva.nivelJobRequerido, 25);
+    assert.equal(avanzada.nivelJobRequerido, 30);
+    assert.equal(maestria.nivelJobRequerido, 40);
+    const efecto = TECNICAS_AVANZADAS[escuela.claseId].efecto;
+    assert.equal(
+      avanzada.animacion,
+      efecto === "estado" ? "defensiva" :
+        efecto === "curacion_progresiva" ? "curacion" : "ofensiva_potenciada",
+    );
+  }
+});
 
 test('la preparación mantiene la API antigua y no modifica la definición original', () => {
   const antiguo = require('../src/lib/expediciones/mecanicas-habilidades.ts');
