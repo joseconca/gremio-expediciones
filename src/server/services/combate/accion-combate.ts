@@ -1,4 +1,6 @@
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
+import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
+export { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
 export { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
 import { NextResponse } from "next/server";
@@ -336,42 +338,6 @@ export function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     piedra: 0,
     metal: 0,
   };
-}
-
-export function obtenerCooldowns(valor: unknown): Record<string, number> {
-  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
-    return {};
-  }
-
-  const resultado: Record<string, number> = {};
-
-  for (const [habilidadId, cooldown] of Object.entries(valor)) {
-    if (
-      typeof cooldown === "number" &&
-      Number.isFinite(cooldown) &&
-      cooldown > 0
-    ) {
-      resultado[habilidadId] = Math.floor(cooldown);
-    }
-  }
-
-  return resultado;
-}
-
-export function reducirCooldowns(
-  cooldowns: Record<string, number>
-): Record<string, number> {
-  const resultado: Record<string, number> = {};
-
-  for (const [habilidadId, cooldown] of Object.entries(cooldowns)) {
-    const nuevoCooldown = cooldown - 1;
-
-    if (nuevoCooldown > 0) {
-      resultado[habilidadId] = nuevoCooldown;
-    }
-  }
-
-  return resultado;
 }
 
 export function obtenerEfectos(valor: unknown): EfectoCombate[] {
