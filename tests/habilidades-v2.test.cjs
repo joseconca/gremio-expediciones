@@ -7,7 +7,7 @@ const { HABILIDADES, obtenerHabilidadPorId, obtenerHabilidadesDisponiblesParaCla
 const { CLASES } = require('../src/lib/progresion/clases.ts');
 const { nivelMaximoHabilidad } = require('../src/lib/progresion/niveles-habilidad.ts');
 const { aplicarBarreraAccion, procesarEfectosTurno } = require('../src/lib/expediciones/estados-combate.ts');
-const { establecerCooldownHabilidad } = require('../src/lib/expediciones/cooldowns-habilidades.ts');
+const { establecerCooldownHabilidad, obtenerCooldowns, reducirCooldowns } = require('../src/lib/expediciones/cooldowns-habilidades.ts');
 const { calcularPesosCuracion } = require('../src/lib/expediciones/presupuesto-curacion.ts');
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/motor-tactico.ts');
@@ -118,6 +118,31 @@ test('toda preparación consumida por un kit se puede generar con habilidades de
       assert.ok(generadores.some(g => g.tipo === 'estado' && g.clave === op.clave), `${h.id}: ${op.clave}`);
     }
   }
+});
+
+test('los cooldowns persistidos conservan normalización y decremento sin mutación', () => {
+  for (const invalido of [undefined, null, false, 0, 'texto', []]) {
+    assert.deepEqual(obtenerCooldowns(invalido), {});
+  }
+  const origen = {
+    flecha: 3.9, cura: 1, fraccion: .5,
+    sinTurnos: 0, negativo: -2, infinito: Infinity, texto: '5',
+  };
+  const cargados = obtenerCooldowns(origen);
+  assert.deepEqual(cargados, { flecha: 3, cura: 1, fraccion: 0 });
+  const siguientes = reducirCooldowns(cargados);
+  assert.deepEqual(siguientes, { flecha: 2 });
+  assert.deepEqual(cargados, { flecha: 3, cura: 1, fraccion: 0 });
+  assert.equal(origen.flecha, 3.9);
+});
+
+test('las API de los servicios conservan la reexportación de cooldowns', () => {
+  const servicio = fs.readFileSync(
+    path.join(__dirname, '../src/server/services/combate/accion-combate.ts'),
+    'utf8',
+  );
+  assert.match(servicio, /export \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/cooldowns-habilidades["']/);
+  assert.match(servicio, /import \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/cooldowns-habilidades["']/);
 });
 
 test('las dos respiraciones heredadas comparten cooldown incluso con cinco huecos', () => {

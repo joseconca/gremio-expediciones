@@ -41,6 +41,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
 | Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
 | Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
+| Consultar, establecer y descontar cooldowns de habilidades | `src/lib/expediciones/cooldowns-habilidades.ts` |
 | Duración de expediciones, ida y regreso | `src/lib/expediciones/tiempos.ts` y `src/server/services/expediciones/` |
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
