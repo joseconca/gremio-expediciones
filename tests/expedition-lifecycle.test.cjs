@@ -31,6 +31,7 @@ function cargarServicioComercial(prisma, resolverComercio) {
     "@/lib/equipamiento/botin": { tirarBotinEnemigo: () => null },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
     "@/lib/expediciones/asedio": { calcularCapacidadAlmacen: () => 100 },
+    "@/lib/expediciones/recompensas-regreso": require("../src/lib/expediciones/recompensas-regreso.ts"),
   };
   const loaded = { exports: {} };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(

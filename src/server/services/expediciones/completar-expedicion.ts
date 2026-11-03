@@ -14,7 +14,8 @@ import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
-import type { RecompensaMision, TipoMision } from "@/lib/tiposJuego";
+import { leerRecompensaRegreso, calcularRecompensaAlmacen } from "@/lib/expediciones/recompensas-regreso";
+import type { TipoMision } from "@/lib/tiposJuego";
 
 function leerArrayStrings(valor: unknown): string[] {
   return Array.isArray(valor) ? valor.filter((entrada): entrada is string => typeof entrada === "string") : [];
@@ -47,35 +48,6 @@ function obtenerTipoMisionReporte(valor: string): TipoMision | undefined {
   return ["normal", "elite", "comercio", "boss", "asedio"].includes(valor)
     ? valor as TipoMision
     : undefined;
-}
-
-function obtenerRecompensaMision(valor: unknown): RecompensaMision {
-  if (
-    typeof valor === "object" &&
-    valor !== null &&
-    "oro" in valor &&
-    "madera" in valor &&
-    "piedra" in valor &&
-    "metal" in valor &&
-    typeof valor.oro === "number" &&
-    typeof valor.madera === "number" &&
-    typeof valor.piedra === "number" &&
-    typeof valor.metal === "number"
-  ) {
-    return {
-      oro: Math.max(0, Math.trunc(valor.oro)),
-      madera: Math.max(0, Math.trunc(valor.madera)),
-      piedra: Math.max(0, Math.trunc(valor.piedra)),
-      metal: Math.max(0, Math.trunc(valor.metal)),
-    };
-  }
-
-  return {
-    oro: 0,
-    madera: 0,
-    piedra: 0,
-    metal: 0,
-  };
 }
 
 export async function completarExpedicion() {
@@ -141,7 +113,7 @@ export async function completarExpedicion() {
     // RECIBIR AL AVENTURERO AL REGRESAR
     // ============================================================
     if (expedicion.fase === "regresando") {
-      const recompensa = obtenerRecompensaMision(expedicion.recompensa);
+      const recompensa = leerRecompensaRegreso(expedicion.recompensa);
       const resultadoFinal = expedicion.resultadoFinal;
 
       if (!resultadoFinal) {
@@ -172,40 +144,16 @@ export async function completarExpedicion() {
 
       const capacidadAlmacen = calcularCapacidadAlmacen(nivelAlmacen);
 
-      const maderaRecibida = Math.max(
-        0,
-        Math.min(
-          recompensa.madera,
-          Math.max(0, capacidadAlmacen - usuario.madera)
-        )
+      const { recompensaRecibida, recursosPerdidos } = calcularRecompensaAlmacen(
+        recompensa,
+        { madera: usuario.madera, piedra: usuario.piedra, metal: usuario.metal },
+        capacidadAlmacen
       );
-
-      const piedraRecibida = Math.max(
-        0,
-        Math.min(
-          recompensa.piedra,
-          Math.max(0, capacidadAlmacen - usuario.piedra)
-        )
-      );
-
-      const metalRecibido = Math.max(
-        0,
-        Math.min(
-          recompensa.metal,
-          Math.max(0, capacidadAlmacen - usuario.metal)
-        )
-      );
-
-      const maderaPerdida = recompensa.madera - maderaRecibida;
-      const piedraPerdida = recompensa.piedra - piedraRecibida;
-      const metalPerdido = recompensa.metal - metalRecibido;
-
-      const recompensaRecibida: RecompensaMision = {
-        oro: recompensa.oro,
-        madera: maderaRecibida,
-        piedra: piedraRecibida,
-        metal: metalRecibido,
-      };
+      const {
+        madera: maderaPerdida,
+        piedra: piedraPerdida,
+        metal: metalPerdido,
+      } = recursosPerdidos;
 
       let logRegreso: string[];
 
