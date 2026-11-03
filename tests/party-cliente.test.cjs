@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { consultarEstadoParty, enviarAccionParty, prepararPayloadAccionCombateParty, enviarAccionCombateParty } =
+const { consultarEstadoParty, enviarAccionParty, prepararPayloadAccionCombateParty, enviarAccionCombateParty, intervaloConsultaParty } =
   require("../src/components/base/party/cliente.ts");
 
 test("payload de ataque: conserva objetivo enemigo solo cuando llega JSON válido", () => {
@@ -98,4 +98,23 @@ test("combate party: petición, resultado y rechazo mantienen el contrato HTTP",
   await conFetchSimulado(async () => ({ ok: false, json: async () => ({ error: "Turno cambiado" }) }), async () => {
     await assert.rejects(enviarAccionCombateParty("exp-1", "atacar"), /Turno cambiado/);
   });
+});
+
+test("sondeo de party prioriza combate, expedición, traslados y visitas próximas", () => {
+  const ahora = Date.parse("2026-11-03T12:00:00Z");
+  const base = { party: null, expedicionActiva: null, trasladosPropios: [], visitasEntrantes: [] };
+  assert.equal(intervaloConsultaParty(null, ahora), 30000);
+  assert.equal(intervaloConsultaParty(base, ahora), 30000);
+  assert.equal(intervaloConsultaParty({ ...base, party: { id: "p1" } }, ahora), 15000);
+  const visita = (segundos, confirmada = false) => ({
+    fechaLlegada: new Date(ahora + segundos * 1000).toISOString(),
+    haLlegadoEnServidor: confirmada,
+  });
+  assert.equal(intervaloConsultaParty({ ...base, visitasEntrantes: [visita(16)] }, ahora), 5000);
+  assert.equal(intervaloConsultaParty({ ...base, visitasEntrantes: [visita(15)] }, ahora), 2000);
+  assert.equal(intervaloConsultaParty({ ...base, visitasEntrantes: [visita(-1)] }, ahora), 2000);
+  assert.equal(intervaloConsultaParty({ ...base, visitasEntrantes: [visita(4, true)] }, ahora), 5000);
+  assert.equal(intervaloConsultaParty({ ...base, trasladosPropios: [{ id: "t1" }], visitasEntrantes: [visita(2)] }, ahora), 5000);
+  assert.equal(intervaloConsultaParty({ ...base, expedicionActiva: { fase: "en_viaje" }, visitasEntrantes: [visita(2)] }, ahora), 5000);
+  assert.equal(intervaloConsultaParty({ ...base, expedicionActiva: { fase: "combatiendo" }, trasladosPropios: [{ id: "t1" }] }, ahora), 3000);
 });

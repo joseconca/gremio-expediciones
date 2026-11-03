@@ -87,3 +87,19 @@ export async function enviarAccionCombateParty(
   if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar la acción.");
   return datos;
 }
+
+/**
+ * Frecuencia del sondeo: prioriza combates y visitas que están a punto de llegar.
+ * El reloj de la interfaz sigue actualizándose aparte cada segundo.
+ */
+export function intervaloConsultaParty(estado: EstadoParty | null, ahora: number): number {
+  if (estado?.expedicionActiva?.fase === "combatiendo") return 3000;
+  if (estado?.expedicionActiva || (estado?.trasladosPropios.length ?? 0) > 0) return 5000;
+  if ((estado?.visitasEntrantes ?? []).some((traslado) =>
+    !traslado.haLlegadoEnServidor &&
+    new Date(traslado.fechaLlegada).getTime() - ahora <= 15_000
+  )) return 2000;
+  if ((estado?.visitasEntrantes.length ?? 0) > 0) return 5000;
+  if (estado?.party) return 15000;
+  return 30000;
+}

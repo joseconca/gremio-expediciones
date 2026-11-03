@@ -8,7 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
-import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty } from "./party/cliente";
+import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty, intervaloConsultaParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
 import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
@@ -124,21 +124,7 @@ export default function PanelParty() {
     };
   }, []);
 
-  const intervaloConsultaMs = estado?.expedicionActiva?.fase === "combatiendo"
-    ? 3000
-    : estado?.expedicionActiva || (estado?.trasladosPropios.length ?? 0) > 0
-      ? 5000
-      : (estado?.visitasEntrantes ?? []).some(
-          (traslado) =>
-            !traslado.haLlegadoEnServidor &&
-            new Date(traslado.fechaLlegada).getTime() - ahora <= 15_000,
-        )
-        ? 2000
-        : (estado?.visitasEntrantes.length ?? 0) > 0
-          ? 5000
-          : estado?.party
-          ? 15000
-          : 30000;
+  const intervaloConsultaMs = intervaloConsultaParty(estado, ahora);
 
   useEffect(() => {
     let activo = true;

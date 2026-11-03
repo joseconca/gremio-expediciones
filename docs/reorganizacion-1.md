@@ -152,6 +152,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 | `src/components/base/party/InformeHistoricoParty.tsx` | Informe histórico con cabecera y detalle plegables | `components/base/PanelParty.tsx` |
 | `src/components/base/party/RecompensasInformeParty.tsx` | Una sola presentación de recursos, experiencia y botín para ambos informes | `InformeProvisionalParty.tsx` e `InformeHistoricoParty.tsx` |
 | `src/components/base/party/resultado-informe.ts` | Adaptación pura del estado del servidor a informe visible; conserva recompensas y log al reconectar | `components/base/PanelParty.tsx` |
+| `src/components/base/party/cliente.ts` | Único cliente HTTP de consulta y acciones de party; serialización de objetivos y cadencia del sondeo | `components/base/PanelParty.tsx` |
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 
