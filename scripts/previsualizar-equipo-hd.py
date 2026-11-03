@@ -35,7 +35,13 @@ def render(sex,class_id="novato"):
         if sha(path)!=config['frames'][i]['bodySha256']:raise ValueError('Body changed: anchors require review')
         with Image.open(path) as im:body=im.convert('RGBA')
         x,y=frame['grip'];gx,gy=config['weaponGrip']
-        if body.getpixel((x,y))[3]<128:raise ValueError('Grip is outside visible body')
+        alpha=body.getpixel((x,y))[3]
+        if alpha<128:
+            raise ValueError(
+                f'Grip fuera del cuerpo visible: {class_id}/{sex}/attack_sword '
+                f'fotograma {i+1:02d}, punto ({x}, {y}), alfa {alpha}; '
+                f'origen={path.relative_to(ROOT).as_posix()}'
+            )
         # Rotate on a padded canvas about the grip, so the grip cannot drift.
         pad=Image.new('RGBA',(256,256));pad.alpha_composite(weapon,(128-gx,128-gy))
         rotated=pad.rotate(frame['angleDegrees'],Image.Resampling.BICUBIC,center=(128,128))
@@ -70,5 +76,10 @@ if __name__=='__main__':
                 base=ROOT/'assets/spritesheets/hd-128x256'
                 actual=base/variant['classId']/variant['sex']/f'previews/equipment-sword/weapon-{n:02d}.png'
                 canonical=base/'novato'/variant['sex']/f'previews/equipment-sword/weapon-{n:02d}.png'
-                if sha(actual)!=sha(canonical):raise ValueError('Weapon layer differs between classes; class-specific transform detected')
+                if sha(actual)!=sha(canonical):
+                    raise ValueError(
+                        f'Capa de arma distinta del modelo compartido: '
+                        f'{variant["classId"]}/{variant["sex"]}/attack_sword '
+                        f'fotograma {n:02d}; se detectó transformación por clase'
+                    )
     else:render(args.sex,args.class_id)
