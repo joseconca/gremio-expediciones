@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import {
   calcularBonificacionMuralla,
   determinarPrimerTurnoAsedio,
-} from "@/lib/expediciones/asedio";
+} from "@/lib/expediciones/asedios/asedio";
 
 import {
   calcularEstadisticasPersonaje,

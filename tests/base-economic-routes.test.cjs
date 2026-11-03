@@ -214,7 +214,7 @@ function makeCombatConsumableRoute({
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Te golpea." }),
       resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2, enemigoDefensa: 2, efectos: [] }),
     },
-    "@/lib/expediciones/asedio": {
+    "@/lib/expediciones/asedios/asedio": {
       determinarGanadorAsedio: () => null,
       determinarPrimerTurnoAsedio: () => "atacante",
       siguienteTurnoAsedio: () => "defensor",
@@ -850,7 +850,7 @@ function makeInvalidBodyRoute(relativePath) {
       resolverAtaqueEnemigo: () => ({}),
       resolverHabilidadJugador: () => ({}),
     },
-    "@/lib/expediciones/asedio": {
+    "@/lib/expediciones/asedios/asedio": {
       determinarGanadorAsedio: () => null,
       determinarPrimerTurnoAsedio: () => "atacante",
       siguienteTurnoAsedio: () => "defensor",
@@ -1399,8 +1399,8 @@ test("expediciones: rutas requieren sesión y las misiones manipuladas se rechaz
 
 
 test("asedios concurrentes: el botín se calcula con los recursos restantes y nunca los hace negativos", async () => {
-  const { finalizarAsedio } = loadSource("src/lib/expediciones/asedio.ts", {
-    "./viajes/tiempos": loadSource("src/lib/expediciones/viajes/tiempos.ts"),
+  const { finalizarAsedio } = loadSource("src/lib/expediciones/asedios/asedio.ts", {
+    "../viajes/tiempos": loadSource("src/lib/expediciones/viajes/tiempos.ts"),
   });
   const state = {
     users: {

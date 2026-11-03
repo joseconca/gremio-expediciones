@@ -23,7 +23,7 @@ import {
   determinarPrimerTurnoAsedio,
   siguienteTurnoAsedio,
   finalizarAsedio,
-} from "@/lib/expediciones/asedio";
+} from "@/lib/expediciones/asedios/asedio";
 import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,

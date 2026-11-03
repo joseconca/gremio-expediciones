@@ -27,7 +27,7 @@ const {
   normalizarActorHabilidadDefensor,
 } = require("../src/lib/expediciones/contrato-accion-combate.ts");
 const { actualizarCombateVersionado } = require("../src/server/services/combate/actualizar-combate-versionado.ts");
-const { TIEMPO_MAXIMO_TURNO_MS, haExpiradoTurnoPvp } = require("../src/lib/expediciones/turno-pvp.ts");
+const { TIEMPO_MAXIMO_TURNO_MS, haExpiradoTurnoPvp } = require("../src/lib/expediciones/asedios/turno-pvp.ts");
 
 test("la habilidad del defensor conserva actor y aplica efectos al participante real", () => {
   assert.deepEqual(
@@ -127,7 +127,7 @@ test("tras recargar, el endpoint recupera el mismo combate para atacante y defen
   assert.equal(defensor.body.rolUsuario, "defensor");
 });
 
-const { finalizarAsedio } = require("../src/lib/expediciones/asedio.ts");
+const { finalizarAsedio } = require("../src/lib/expediciones/asedios/asedio.ts");
 
 test("la recompensa PvP se liquida una sola vez aunque se repita la finalización", async () => {
   let state = {

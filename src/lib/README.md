@@ -12,7 +12,8 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Combate, enemigos durante la batalla, consumibles y curación | `expediciones/combate/` (mecánicas auxiliares y roster) y `expediciones/combate.ts` (API principal) |
 | Tiempo de expedición, regreso y límites del almacén | `expediciones/viajes/` |
 | Encuentros normales, élite, dificultad, jefes diarios y generación de misiones | `expediciones/encuentros/` |
-| Comercio, asedio y turnos PvP | `expediciones/` (agrupación interna **pendiente**) |
+| Asedios y límite de turno PvP | `expediciones/asedios/` |
+| Reglas de comercio | `expediciones/comercio.ts` (un módulo: sin subcarpeta innecesaria) |
 | Progresión de clases, experiencia y habilidades aprendidas | `progresion/` |
 | Cálculos base y contratos de estadísticas RPG | `progresion/estadisticas/` |
 | Compañías, iniciativa y recompensas de party | `party/` |

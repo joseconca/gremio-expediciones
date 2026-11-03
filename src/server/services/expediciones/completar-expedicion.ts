@@ -13,7 +13,7 @@ import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
-import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
+import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedios/asedio";
 import { leerRecompensaRegreso, calcularRecompensaAlmacen } from "@/lib/expediciones/viajes/recompensas-regreso";
 import type { TipoMision } from "@/lib/tiposJuego";
 

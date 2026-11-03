@@ -19,7 +19,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `encuentros/normal.ts`, `encuentros/elite.ts`, `combate/enemigos-combate.ts`, `encuentros/generador-misiones.ts`, `encuentros/dificultad.ts`, `viajes/tiempos.ts`: encuentros y expediciones.
   - Los pesos de dificultad mínima y rareza de `encuentros/normal.ts` son detalles privados del selector; las funciones de ponderación, composición y probabilidad del Mímico siguen públicas para sus consumidores y pruebas.
   - `viajes/tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
-- `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.
+- `asedios/asedio.ts`, `asedios/turno-pvp.ts`: reglas puras de asedio y turnos.
 - `ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.
 - `presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.
 - `destinos-animacion-combate.ts`, `descripciones-efectos.ts`: metadatos visuales y descripciones compartidas. No confundir con la representación React.

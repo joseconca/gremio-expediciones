@@ -111,7 +111,7 @@ Las carpetas generales ya estaban creadas, pero `expediciones/` y `progresion/` 
 - `expediciones/viajes/`: `tiempos.ts`, `recompensas-regreso.ts`.
 - `progresion/estadisticas/`: `modificadores-estadisticas.ts`, `estadisticas-base-personaje.ts`.
 
-**Siguientes agrupaciones pendientes** (no darlas por terminadas): mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
+**Siguientes agrupaciones pendientes** (no darlas por terminadas): módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
 
 El mapa navegable para quien mantiene el proyecto está en `src/lib/README.md`.
 
