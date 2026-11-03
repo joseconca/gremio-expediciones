@@ -56,6 +56,31 @@ test("reserva de maná y regeneración son independientes, con resto fraccionari
     { energiaActual: 120, manaActual: 100, manaRegeneracionPendiente: 0 });
 });
 
+test("el maná acumula regeneraciones de un cuarto de punto hasta completar una unidad", () => {
+  let mana = 0;
+  let pendiente = 0;
+  for (const restoEsperado of [0.25, 0.5, 0.75, 0]) {
+    const resultado = calcularRegeneracionRecursosTurno(
+      0, mana, 100, 100, 0.25, 0, pendiente,
+    );
+    mana = resultado.manaActual;
+    pendiente = resultado.manaRegeneracionPendiente;
+    assert.equal(pendiente, restoEsperado);
+  }
+  assert.equal(mana, 1);
+});
+
+test("la regeneración no supera máximos ni acepta valores no finitos", () => {
+  assert.deepEqual(
+    calcularRegeneracionRecursosTurno(90, 99, 100, 100, 1.5, 5, 0.25),
+    { energiaActual: 95, manaActual: 100, manaRegeneracionPendiente: 0 },
+  );
+  assert.deepEqual(
+    calcularRegeneracionRecursosTurno(NaN, Infinity, -20, 0, NaN, NaN, NaN),
+    { energiaActual: 0, manaActual: 0, manaRegeneracionPendiente: 0 },
+  );
+});
+
 test("los costes físicos requieren administrar la nueva reserva de energía", () => {
   assert.equal(obtenerHabilidadPorId("rompeguardia").costeEnergia, 40);
   let energia = 100;
