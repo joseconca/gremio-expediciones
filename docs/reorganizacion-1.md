@@ -7,6 +7,9 @@ Rama `reorganizacion-1` creada desde `main` (`84fd4db`). **No fusionar hasta pas
 **Punto de entrada recomendado:** `python scripts/recursos.py` (Python 3 + Pillow). Los scripts existentes son motores especializados internos; no se han borrado porque los usa CI y conservan políticas de manos, hashes y procedencia.
 
 ```bash
+# Vista global: atlas publicados por clase, enemigos y equipo.
+python scripts/recursos.py resumen
+
 # Héroes: consultar, actualizar una animación, validar o publicar.
 python scripts/recursos.py heroe estado --clase berserker --sexo m
 python scripts/recursos.py heroe actualizar --clase berserker --sexo m --accion idle --tira idle.png
@@ -32,6 +35,8 @@ Para añadir/actualizar fuentes de enemigos o equipo, usar `actualizar --metadat
 Hay atlas masculino publicado de Berserker, pero no retrato HD masculino ni atlas/retrato femenino publicados. El catálogo runtime `src/lib/generated/sprites-hd.json` ahora distingue `availableSexes` (atlas) y `availablePortraits` (retratos). La UI utiliza el atlas masculino donde existe y recurre a su ancestro legacy para lo que aún falta; evita rutas HD inexistentes. La publicación individual y la global recalculan esos campos.
 
 El publicador global de equipo ya no borra del catálogo las clases publicadas fuera del manifiesto de equipo. **Limitación actual:** la publicación de equipo permanece global, costosa y ligada a todos los agarres; no está implementado todavía un publicador individual verificable de equipo. El publicador individual de enemigos compara los 16 fotogramas y SHA del QA, exige confirmación y conserva las otras entradas del registro.
+
+El directorio histórico `assets/spritesheets/tier1/` se ha eliminado después de comprobar que no había consumidores de sus rutas. Los archivos permanecen recuperables en Git. Las fuentes HD **no** se han eliminado: el pipeline necesita fotogramas, QA y manifiestos para validar y regenerar las publicaciones. El runtime únicamente accede a `public/sprites/` y a los índices generados.
 
 ### Ubicaciones a conocer
 

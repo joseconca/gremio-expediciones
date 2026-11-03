@@ -114,7 +114,7 @@ Para combatientes y animaciones consulta [la guía específica de combate](../sr
 
 ## Sprites: cómo encontrar y cambiar el arte
 
-**No edites directamente manifests, hashes o atlas derivados**: el punto de entrada es `python scripts/recursos.py`.
+**No edites directamente manifests, hashes o atlas derivados**: el punto de entrada es `python scripts/recursos.py`. Ejecuta `python scripts/recursos.py resumen` para ver en una orden qué está publicado y qué variantes HD siguen pendientes. **Los spritesheets que carga el juego están en `public/sprites/`, no en `assets/`.** Esta última carpeta conserva fuentes editables para reconstruir las hojas.
 
 ```bash
 # Comprobar qué tiene publicado Berserker masculino:

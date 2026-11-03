@@ -102,6 +102,14 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - **Cobertura añadida a CI:** `tests/combat-scale.test.cjs`, antes solo en `test:combat-ui`, forma parte también de `test:progression`. Protege encaje, alturas y límites en tamaños de móvil y escritorio.
 - Se conservan el resolver de ataques, los adaptadores tácticos, la selección de proyectiles, los consumibles, la regeneración y las fachadas con consumidores identificados. Las limpiezas siguientes deben partir de una búsqueda exhaustiva de importaciones reales, no del tamaño del archivo.
 
+### Inventario real de sprites y simplificación del pipeline
+
+- Los atlas **que se usan en el navegador** están publicados en `public/sprites/`; los índices que los declaran están en `src/lib/generated/`. `assets/spritesheets/` contiene las fuentes de trabajo y QA, no las imágenes que solicita la UI. La carpeta de fuentes **sigue existiendo** y no debe confundirse con una segunda ruta de runtime.
+- La inspección de la rama detectó 6 clases HD publicadas (11 variantes de atlas), 54 enemigos HD y 28 piezas de equipo en el catálogo. Berserker dispone de atlas masculino pero aún no de atlas femenino ni de retratos HD. Las demás clases utilizan el fallback configurado.
+- Se retiraron los **105 archivos** de `assets/spritesheets/tier1/` (filas y anclajes históricos sin referencias detectadas), conservando las fuentes HD activas y su procedencia. El historial Git permite recuperar los históricos si fueran necesarios.
+- `python scripts/recursos.py resumen` permite comprobar publicaciones y variantes incompletas sin navegar por `assets/`. El validador HD ahora compara **conjuntos de variantes** en vez de exigir el orden `m,f` en el JSON; sigue rechazando ausencias y duplicados. Esto resuelve el error de orden observado en Novato sin tocar las imágenes.
+- Para eliminar por completo `assets/spritesheets/` sería necesaria una migración verificada de más de 22.000 archivos de origen y de todos los publicadores, validadores y hashes. Borrarla o moverla masivamente ahora rompería la capacidad de reconstrucción.
+
 ## Estado y siguiente orden de trabajo
 
 1. El bloque de auditoría de fachadas y habilidades (`7c58566`) superó la regresión. Los cambios de consumibles, regeneración y escala visual requieren la nueva CI de regresión. El validador HD de sprites sigue siendo independiente.
