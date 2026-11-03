@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client";
-import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
-import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
+import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { PartyServiceError } from "./errores";
 

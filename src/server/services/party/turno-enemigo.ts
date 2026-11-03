@@ -7,13 +7,13 @@ import {
   avanzarEfectosCombate,
   procesarEfectosTurno,
   aplicarBarreraAccion,
-} from "@/lib/expediciones/estados-combate";
+} from "@/lib/expediciones/combate/estados-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { resolverAtaqueEnemigo, type AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import type { EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import { resolverResultadoCombateParty, obtenerLogCombateParty } from "@/lib/party/combate-reglas";
-import type { PasoTurnoVelocidad } from "@/lib/expediciones/iniciativa-combate";
+import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
 import { reducirCooldowns } from "@/server/services/combate/accion-combate";
@@ -21,7 +21,7 @@ import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
 import { validarExpedicionId, obtenerEstadoParticipantes, cargarCombateParty } from "./contexto-combate";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 

@@ -4,20 +4,20 @@ import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { experienciaParaNivel } from "@/lib/configuracionJuego";
+import { experienciaParaNivel } from "@/lib/progresion/experiencia";
 import {
   aplicarMultiplicadorRecompensa,
   calcularExperienciaBaseGanada,
   calcularOroEnemigo,
   esModoDificultad,
   registrarVictoriaRangoNormal,
-} from "@/lib/expediciones/dificultad";
+} from "@/lib/expediciones/encuentros/dificultad";
 import { otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerLogCombateParty } from "@/lib/party/combate-reglas";
 import { leerRecompensaParty, repartirCantidadEntera, crearRngDeterminista, registrarObjetoRecompensa } from "@/lib/party/recompensas";
 import { agregarObjetoAlInventario, agregarInstanciaBotinAlInventario } from "./inventario-recompensas";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 const dependenciasInventarioRecompensas = {
   existeObjeto: (objetoId: string) => Boolean(obtenerObjetoPorId(objetoId)),

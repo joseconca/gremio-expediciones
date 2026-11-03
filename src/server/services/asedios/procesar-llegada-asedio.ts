@@ -8,11 +8,11 @@ import {
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/progresion/estadisticas-personaje";
+} from "@/lib/progresion/estadisticas/estadisticas-personaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
-import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {
   const expedicion = await prisma.expedicionActiva.findUnique({
