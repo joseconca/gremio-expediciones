@@ -33,7 +33,7 @@ const {
   generarComposicionDifMinEncuentro,
   seleccionarEnemigosNormales,
   PESOS_COMPOSICION_ENCUENTRO,
-} = require("../src/lib/expediciones/normal.ts");
+} = require("../src/lib/expediciones/encuentros/normal.ts");
 const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/expediciones/generador-misiones.ts");
 const {
   calcularCosteRecursosMejora,

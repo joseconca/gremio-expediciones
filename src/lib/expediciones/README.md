@@ -16,8 +16,8 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `combate/presupuesto-curacion.ts`: asigna el peso proporcional de curación solo a miembros con vida faltante. Lo usa el servicio de combate de party; los objetivos sanos no consumen reserva.
 - `combate/consumibles-combate.ts`: distingue pociones restauradoras y calcula la cantidad fija más porcentaje sobre el máximo del destinatario, respetando su vida/energía/maná faltante.
 - `combate/recursos-combate.ts`: regeneración de energía y maná por turno con topes y resto fraccionario persistente, compartida por PvE y party.
-- `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `viajes/tiempos.ts`: encuentros y expediciones.
-  - Los pesos de dificultad mínima y rareza de `normal.ts` son detalles privados del selector; las funciones de ponderación, composición y probabilidad del Mímico siguen públicas para sus consumidores y pruebas.
+- `encuentros/normal.ts`, `encuentros/elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `viajes/tiempos.ts`: encuentros y expediciones.
+  - Los pesos de dificultad mínima y rareza de `encuentros/normal.ts` son detalles privados del selector; las funciones de ponderación, composición y probabilidad del Mímico siguen públicas para sus consumidores y pruebas.
   - `viajes/tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.
 - `ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.

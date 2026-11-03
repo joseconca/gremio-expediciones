@@ -91,7 +91,7 @@ function loadService(prisma) {
       calcularModificadoresEquipo: () => ({}),
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
-    "@/lib/expediciones/normal": { seleccionarEnemigosNormales: () => [enemy] },
+    "@/lib/expediciones/encuentros/normal": { seleccionarEnemigosNormales: () => [enemy] },
     "@/lib/expediciones/enemigos-combate": {
       crearEnemigosEnCombate: (definiciones) => definiciones.map((enemigo, indice) => ({
         id: "enemigo-" + (indice + 1),
@@ -116,7 +116,7 @@ function loadService(prisma) {
         efectos: [],
       })),
     },
-    "@/lib/expediciones/elite": { seleccionarJefeElite: () => enemy },
+    "@/lib/expediciones/encuentros/elite": { seleccionarJefeElite: () => enemy },
     "@/lib/base/taberna": {
       aplicarEfectoComida: (stats) => stats,
       calcularBonificacionesComida: () => ({}),

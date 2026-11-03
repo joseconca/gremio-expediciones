@@ -2,7 +2,7 @@ import { JEFES_ELITE } from "../enemigos";
 import type { DefinicionMision } from "../tiposJuego";
 import { randomSeeded } from "../utils";
 import { obtenerNivelMaximoAmenazaDesbloqueada } from "./dificultad";
-import { bossDiarioDisponible } from "./boss-diario";
+import { bossDiarioDisponible } from "./encuentros/boss-diario";
 
 const PREFIJOS = [
   "El tesoro",

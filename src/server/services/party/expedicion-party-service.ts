@@ -5,7 +5,7 @@ import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/li
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
-import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
+import { bossDiarioDisponible } from "@/lib/expediciones/encuentros/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import { leerCoordenadasBase, ESTADOS_TRASLADO_ACTIVOS } from "@/lib/party/reglas";
 import {
