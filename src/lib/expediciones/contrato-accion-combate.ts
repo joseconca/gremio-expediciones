@@ -2,6 +2,50 @@ export type ObjetivoAccionCombate = "propio" | "oponente";
 export type TipoAccionContrato = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";
 export type TipoCombateContrato = "pve" | "pvp";
 
+/**
+ * Valida únicamente el contenido de la solicitud, sin sesión, Prisma ni HTTP.
+ * La acción resuelta conserva el objeto original para la validación posterior
+ * de objetivos y selección de enemigos.
+ */
+export function validarSolicitudAccionCombate(bodyJson: unknown):
+  | {
+      valido: true;
+      body: Record<string, unknown>;
+      accion: TipoAccionContrato;
+      habilidadId: string | null;
+      objetoInventarioId: string | null;
+    }
+  | { valido: false; error: string } {
+  if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
+    return { valido: false, error: "El cuerpo de la petición no es válido." };
+  }
+  const body = bodyJson as Record<string, unknown>;
+  const accion = body.accion;
+
+  if (accion !== "atacar" && accion !== "usar_habilidad" &&
+      accion !== "usar_objeto" && accion !== "escapar") {
+    return { valido: false, error: "Acción de combate no válida." };
+  }
+
+  let habilidadId: string | null = null;
+  let objetoInventarioId: string | null = null;
+
+  if (accion === "usar_objeto") {
+    if (typeof body.objetoInventarioId !== "string" || body.objetoInventarioId.trim() === "") {
+      return { valido: false, error: "Debes seleccionar un objeto del inventario." };
+    }
+    objetoInventarioId = body.objetoInventarioId;
+  }
+  if (accion === "usar_habilidad") {
+    if (typeof body.habilidadId !== "string" || body.habilidadId.trim() === "") {
+      return { valido: false, error: "Debes indicar una habilidad." };
+    }
+    habilidadId = body.habilidadId;
+  }
+
+  return { valido: true, body, accion, habilidadId, objetoInventarioId };
+}
+
 export function obtenerObjetivoEsperadoAccion(
   accion: TipoAccionContrato,
   efectoHabilidad?: string | null,

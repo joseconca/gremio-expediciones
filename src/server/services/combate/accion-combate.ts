@@ -30,6 +30,7 @@ import {
 import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
+  validarSolicitudAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 
@@ -527,64 +528,11 @@ export async function prepararAccionCombate(
       );
     }
 
-    if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
-      return NextResponse.json(
-        { error: "El cuerpo de la petición no es válido." },
-        { status: 400 }
-      );
+    const solicitud = validarSolicitudAccionCombate(bodyJson);
+    if (!solicitud.valido) {
+      return NextResponse.json({ error: solicitud.error }, { status: 400 });
     }
-
-    const body = bodyJson as Record<string, unknown>;
-
-    const accionValor = body.accion;
-
-    if (
-      accionValor !== "atacar" &&
-      accionValor !== "usar_habilidad" &&
-      accionValor !== "usar_objeto" &&
-      accionValor !== "escapar"
-    ) {
-      return NextResponse.json(
-        {
-          error: "Acción de combate no válida.",
-        },
-        { status: 400 }
-      );
-    }
-
-    const accion = accionValor as AccionCombate;
-
-    let habilidadId: string | null = null;
-    let objetoInventarioId: string | null = null;
-
-    if (accion === "usar_objeto") {
-      if (
-        typeof body.objetoInventarioId !== "string" ||
-        body.objetoInventarioId.trim() === ""
-      ) {
-        return NextResponse.json(
-          { error: "Debes seleccionar un objeto del inventario." },
-          { status: 400 }
-        );
-      }
-      objetoInventarioId = body.objetoInventarioId;
-    }
-
-    if (accion === "usar_habilidad") {
-      if (
-        typeof body.habilidadId !== "string" ||
-        body.habilidadId.trim() === ""
-      ) {
-        return NextResponse.json(
-          {
-            error: "Debes indicar una habilidad.",
-          },
-          { status: 400 }
-        );
-      }
-
-      habilidadId = body.habilidadId;
-    }
+    const { body, accion, habilidadId, objetoInventarioId } = solicitud;
 
     // ============================================================
     // BUSCAR USUARIO
