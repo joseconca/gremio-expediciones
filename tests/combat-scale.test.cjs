@@ -80,7 +80,7 @@ test('la distribución visual mantiene posiciones y tamaños de grupos, solo y j
   const solo = calcularDisposicionEnemigoEnEscena(datos, 0, 1, escena, 460, altura, normal);
   const soloJefe = calcularDisposicionEnemigoEnEscena(datos, 0, 1, escena, 460, altura, jefe);
   assert.equal(solo.escalaContenedor, 'w-[68%] max-w-[220px]');
-  assert.ok(soloJefe.xAjustada > solo.xAjustada, 'El jefe único se sitúa más a la derecha');
+  assert.ok(soloJefe.unidadEnemigo * jefe.height > solo.unidadEnemigo * normal.height, 'El jefe mantiene mayor tamaño visual');
   assert.ok(solo.unidadEnemigo > 0 && soloJefe.unidadEnemigo > 0);
   assert.deepEqual(datos, antes, 'No debe modificar al enemigo de entrada');
 

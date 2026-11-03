@@ -93,29 +93,29 @@ export function calcularDisposicionEnemigoEnEscena(
   tamanoHeroe: number,
   spriteHd: SpriteEnemigoHd | undefined,
 ) {
-    const escalaContenedor = cantidadEnemigos <= 1
-      ? "w-[68%] max-w-[220px]"
-      : cantidadEnemigos === 2
-        ? "w-[48%] max-w-[164px]"
-        : cantidadEnemigos === 3
-          ? "w-[36%] max-w-[120px]"
-          : "w-[30%] max-w-[98px]";
-    const jefeUnico = cantidadEnemigos === 1 && spriteHd?.boss;
-    const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
-      ? jefeUnico ? 65 : 50
-      : cantidadEnemigos === 2
-        ? (indiceEnemigo === 0 ? 28 : 72)
-        : (enemigo.posicion === "mele" ? 24 : enemigo.posicion === "centro" ? 50 : 76) + (enemigo.columna - 1) * 12));
-    const minimoY = Math.min(48, (tamanoHeroe / 2 + 86) / Math.max(1, escena.alto) * 100);
-    const maximoY = Math.max(minimoY, 100 - (tamanoHeroe / 2 + 18) / Math.max(1, escena.alto) * 100);
-    const y = cantidadEnemigos <= 1 ? Math.max(55, minimoY)
-      : enemigo.posicion === "mele" ? minimoY : enemigo.posicion === "retaguardia" ? maximoY : (minimoY + maximoY) / 2;
-    const anchoDisponible = escena.ancho;
-    const centroX = (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100;
-    const posicionAjustada = encajarEnemigo(spriteHd, anchoDisponible, escena.alto, centroX, y,
-      limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss), spriteHd?.height, escena.ancho < 768 ? 1.6 : 2.4), 16);
-    const xAjustada = (escena.ancho * posicionAjustada.x / 100 - (escena.ancho - anchoEnemigos)) / Math.max(1, anchoEnemigos) * 100;
-    const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto,
-      posicionAjustada.x, posicionAjustada.y, posicionAjustada.escala, 16);
+  const escalaContenedor = cantidadEnemigos <= 1
+    ? "w-[68%] max-w-[220px]"
+    : cantidadEnemigos === 2
+      ? "w-[48%] max-w-[164px]"
+      : cantidadEnemigos === 3
+        ? "w-[36%] max-w-[120px]"
+        : "w-[30%] max-w-[98px]";
+  const jefeUnico = cantidadEnemigos === 1 && spriteHd?.boss;
+  const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
+    ? jefeUnico ? 65 : 50
+    : cantidadEnemigos === 2
+      ? (indiceEnemigo === 0 ? 28 : 72)
+      : (enemigo.posicion === "mele" ? 24 : enemigo.posicion === "centro" ? 50 : 76) + (enemigo.columna - 1) * 12));
+  const minimoY = Math.min(48, (tamanoHeroe / 2 + 86) / Math.max(1, escena.alto) * 100);
+  const maximoY = Math.max(minimoY, 100 - (tamanoHeroe / 2 + 18) / Math.max(1, escena.alto) * 100);
+  const y = cantidadEnemigos <= 1 ? Math.max(55, minimoY)
+    : enemigo.posicion === "mele" ? minimoY : enemigo.posicion === "retaguardia" ? maximoY : (minimoY + maximoY) / 2;
+  const anchoDisponible = escena.ancho;
+  const centroX = (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100;
+  const posicionAjustada = encajarEnemigo(spriteHd, anchoDisponible, escena.alto, centroX, y,
+    limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss), spriteHd?.height, escena.ancho < 768 ? 1.6 : 2.4), 16);
+  const xAjustada = (escena.ancho * posicionAjustada.x / 100 - (escena.ancho - anchoEnemigos)) / Math.max(1, anchoEnemigos) * 100;
+  const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto,
+    posicionAjustada.x, posicionAjustada.y, posicionAjustada.escala, 16);
   return { escalaContenedor, posicionAjustada, xAjustada, unidadEnemigo };
 }
