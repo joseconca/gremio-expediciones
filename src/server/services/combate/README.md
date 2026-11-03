@@ -7,6 +7,9 @@ Este directorio orquesta **sesión, permisos, recursos, transacciones y persiste
 - `index.ts`: exportaciones públicas de los servicios de combate.
 - `dispatcher.ts`: entrada de **compatibilidad**. Prepara una acción y la dirige a PvE o PvP según el contexto del combate; no eliminar mientras haya clientes antiguos.
 - `accion-combate.ts`: preparación/autorización de acciones, obtención de personaje y combate, cobro de habilidades, regeneración de recursos y utilidades de compatibilidad. Sus operaciones con Prisma deben permanecer en servidor.
+  - `gastarRecursosHabilidad`: separa la versión 2 (cobro/recuperación verificados con `updateMany` y lectura de máximos) de la versión heredada (descuento condicional y posterior recuperación); no modificar orden ni errores.
+  - `regenerarRecursosPorTurno`: recarga del personaje después del turno del combate individual/PvP. La party usa `src/server/services/party/recursos-turno.ts` en su propia transacción; compartir la fórmula `src/lib/expediciones/recursos-combate.ts` no hace equivalentes ambas operaciones.
+  - `tests/recursos-habilidades.test.cjs` comprueba el pago v2, el control de concurrencia y el comportamiento legacy.
 - `pve.ts`: ejecución y persistencia de turnos PvE, enemigos y recompensas.
 - `pvp.ts`: ejecución y persistencia de turnos PvP/asedios; conserva sus reglas de quién actúa y el estado del defensor.
 - `contexto-tactico.ts`: convierte personaje, equipo, habilidades equipadas e instantáneas del combate al `ContextoTecnicaTactica` que necesita el motor. Se consume desde PvE, PvP y party.

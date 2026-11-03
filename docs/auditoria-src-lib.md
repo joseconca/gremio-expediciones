@@ -2,6 +2,20 @@
 
 Esta revisión es **estructural**: su objetivo es reducir duplicaciones, distinguir reglas de operaciones con base de datos y localizar responsabilidades. **No se eliminan funciones por parecer antiguas**, ni se cambian las mecánicas del juego.
 
+## Avance aproximado de la reorganización (3 de noviembre de 2026)
+
+El avance es **orientativo: ~65% (±10 puntos)**; mide objetivos del plan y no volumen de cambios, número de commits ni líneas. La aprobación de una CI no significa por sí sola que la auditoría global esté terminada.
+
+| Fase | Peso orientativo | Avance estimado | Evidencia / pendiente |
+| --- | ---: | ---: | --- |
+| Simplificar herramientas y publicación de sprites | 20% | 80% | Flujo y rutas más claros; quedan comprobaciones de recursos y el validador HD independiente |
+| Unificar catálogos (clases, habilidades, objetos, enemigos) | 20% | 90% | Fuentes editables en `catalogos/`; revisar consumidores de fachadas heredadas |
+| Organizar funcionalidades, componentes y servicios | 40% | 60% | Dominios y servicios localizados; auditar los orquestadores grandes sin dividirlos arbitrariamente |
+| Identificar y retirar obsoletos con evidencia | 20% | 35% | Auditoría iniciada; comprobar importaciones, runtime y regresiones antes de borrar |
+| **Total ponderado estimado** | **100%** | **65%** | **No equivale a calidad o funcionalidad medida automáticamente** |
+
+**Criterios de cierre:** rutas del código fáciles de localizar, fuentes editables únicas, interfaces y reglas de cada servicio claras, importadores actualizados, código obsoleto confirmado y retirado con pruebas, CI de regresión verde. El validador HD separado debe analizarse sin confundirlo con fallos de combate.
+
 ## Inventario revisado
 
 La rama contenía 86 archivos bajo `src/lib/` al comenzar esta etapa, incluidos tres generados. Las concentraciones principales eran `expediciones/` (33), `progresion/` (16), `equipamiento/` (6), `party/` (6), `catalogos/` (5) y `base/` (5).
@@ -36,7 +50,7 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 
 ## Estado y siguiente orden de trabajo
 
-1. La regresión completa de `cf2fb4a` terminó correctamente. Los archivos de progresión y sus contratos públicos se han separado por responsabilidad sin alterar fórmulas.
-2. La presentación visual de ataques y habilidades y las reglas numéricas de básicos ya tienen ubicaciones distintas. Esperar la CI de esta reorganización antes de darla por validada.
-3. Continuar revisando las dependencias y responsabilidades de `motor-tactico.ts`, `combate.ts` y los servicios. **No dividir más por el mero tamaño** ni reunir las dos fórmulas de murallas, cuyos resultados no coinciden: verificar antes sus consumidores y su uso contextual.
-4. Comprobar importadores contra la **rama actual** (la búsqueda GitHub puede indexar `main`). Eliminar código solo con evidencia de ausencia de consumidores y pruebas suficientes. Mantener commits pequeños y sin cambiar balance.
+1. La regresión de `154cdfb` terminó correctamente, incluyendo las pruebas de motor y adaptador tácticos. Los catálogos y los contratos públicos ya tienen entradas reconocibles. Las nuevas pruebas de recursos deben superar también su propia CI.
+2. `src/server/services/combate/` tiene mapa por funciones; la normalización y el decremento de cooldowns están en `src/lib/expediciones/cooldowns-habilidades.ts` con reexportaciones compatibles. El cobro de recursos conserva las ramas v2 y legacy y la escritura optimista.
+3. Seguir por los servicios de combate, expediciones y economía buscando **duplicaciones semánticas verificables**; no dividir funciones ni crear archivos sólo por su tamaño. Los servicios de recursos PvE y party no deben fusionarse sin comparar sus transacciones y contratos.
+4. Auditar las dependencias reales y fachadas heredadas; eliminar recursos y código sólo tras comprobar uso en runtime y pruebas. No reunir las dos fórmulas de murallas sin revisar sus consumidores. Mantener commits pequeños, `main` intacta y las regresiones en verde antes de considerar finalizado un bloque.
