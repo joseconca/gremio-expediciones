@@ -5,7 +5,17 @@ const { OBJETOS, obtenerObjetoPorId, obtenerRanuraObjeto, calcularEstadisticasOb
 const { generarSufijoObjeto, obtenerNombreObjetoConSufijo } = require("../src/lib/equipamiento/sufijos.ts");
 const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
 const { ENEMIGOS, JEFES_ELITE } = require("../src/lib/enemigos.ts");
-const { LIMITE_INVENTARIO_OBJETOS } = require("../src/lib/equipamiento/inventario.ts");
+const { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } = require("../src/lib/equipamiento/inventario.ts");
+
+test("el límite de inventario es compartido por regreso y party", () => {
+  assert.equal(LIMITE_INVENTARIO_OBJETOS, 30);
+  assert.equal(hayHuecoInventario(0), true);
+  assert.equal(hayHuecoInventario(29), true);
+  assert.equal(hayHuecoInventario(30), false);
+  assert.equal(hayHuecoInventario(31), false);
+  assert.equal(hayHuecoInventario(4, 5), true);
+  assert.equal(hayHuecoInventario(5, 5), false);
+});
 
 test("los objetos básicos y comunes no generan sufijo", () => {
   assert.deepEqual(generarSufijoObjeto({ rareza: "basico" }, false, () => 0), {

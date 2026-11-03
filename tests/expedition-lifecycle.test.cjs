@@ -60,7 +60,7 @@ function cargarServicioComercial(prisma, resolverComercio) {
       } }),
       calcularModificadoresEquipo: () => ({}),
     },
-    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}), LIMITE_INVENTARIO_OBJETOS: 30 },
+    "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}), LIMITE_INVENTARIO_OBJETOS: 30, hayHuecoInventario: (n) => n < 30 },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
     "@/lib/expediciones/enemigos-combate": { leerEnemigosEnCombate: () => [] },
     "@/lib/equipamiento/botin": { tirarBotinEnemigo: () => null },
