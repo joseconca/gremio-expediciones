@@ -1,6 +1,6 @@
 "use client";
 
-import { esConsumibleRestaurador } from "@/lib/expediciones/consumibles-combate";
+import { esConsumibleRestaurador } from "@/lib/expediciones/combate/consumibles-combate";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";

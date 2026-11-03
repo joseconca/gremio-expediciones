@@ -1,4 +1,4 @@
-import type { DefinicionObjeto } from "../tiposJuego";
+import type { DefinicionObjeto } from "../../tiposJuego";
 
 type Consumible = Pick<
   DefinicionObjeto,

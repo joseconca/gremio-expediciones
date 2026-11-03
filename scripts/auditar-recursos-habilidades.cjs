@@ -8,7 +8,7 @@ const { ajustarHabilidadPorNivel, nivelMaximoHabilidad } = require("../src/lib/p
 const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
-const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/recursos-combate.ts");
+const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/combate/recursos-combate.ts");
 
 function simularRotacion(habilidades, stats, turnos = 30) {
   let energia = stats.energiaMaxima, mana = stats.manaMaximo, pendiente = 0, siguiente = 0;

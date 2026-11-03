@@ -1,8 +1,8 @@
-import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
+import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
 import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
 export { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
-export { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/recursos-combate";
-import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/consumibles-combate";
+export { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
+import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
