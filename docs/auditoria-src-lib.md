@@ -94,9 +94,17 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - Se conservan las reglas activas que a primera vista podrían parecer obsoletas, como `crear-habilidad.ts` (el catálogo la utiliza), `presupuesto-curacion.ts` (el combate de party la usa), `configuracionJuego.ts` (fachada de compatibilidad), `enemigos.ts` (adaptación de botín y sprite), y `generar-habilidades.ts` (construcción de las definiciones).
 - Los tests unitarios/CI deben pasar antes de considerar esta auditoría cerrada. La búsqueda de referencias permite descartar candidatos; una futura limpieza completa debe revisar también importaciones dinámicas y herramientas fuera de `src/`.
 
+### Auditoría de expediciones: reglas activas y código visual desplazado
+
+- Se ha comprobado que `consumibles-combate.ts` y `recursos-combate.ts` tienen consumidores activos en combate individual, party y componentes. **No** son candidatos obsoletos. Su implementación se ha reformateado y documentado sin alterar el cálculo de porcentajes, topes, redondeo ni el resto fraccionario de maná.
+- Las pruebas `tests/correcciones-combate.test.cjs` cubren efectos restauradores inválidos (negativos, NaN, infinitos), restauraciones sin hueco, redondeo, acumulación de maná en cuartos y máximos de regeneración.
+- **Ubicación corregida sin fachada:** `escala-combate.ts` solo controla el tamaño y posicionamiento de sprites. Se ha movido de `src/lib/expediciones/` a `src/lib/sprites/`, actualizando `CombateModal.tsx` y `tests/combat-scale.test.cjs`; se eliminó el archivo anterior. No se cambiaron fórmulas de escala ni datos persistidos.
+- **Cobertura añadida a CI:** `tests/combat-scale.test.cjs`, antes solo en `test:combat-ui`, forma parte también de `test:progression`. Protege encaje, alturas y límites en tamaños de móvil y escritorio.
+- Se conservan el resolver de ataques, los adaptadores tácticos, la selección de proyectiles, los consumibles, la regeneración y las fachadas con consumidores identificados. Las limpiezas siguientes deben partir de una búsqueda exhaustiva de importaciones reales, no del tamaño del archivo.
+
 ## Estado y siguiente orden de trabajo
 
-1. El último bloque de objetos (`cb5795b`) ha superado la regresión completa. Los commits de auditoría de fachadas, tipos y curación deben superar también su CI propia. El validador HD de sprites sigue siendo independiente.
+1. El bloque de auditoría de fachadas y habilidades (`7c58566`) superó la regresión. Los cambios de consumibles, regeneración y escala visual requieren la nueva CI de regresión. El validador HD de sprites sigue siendo independiente.
 2. `src/server/services/combate/` tiene mapa por funciones; la normalización y el decremento de cooldowns están en `src/lib/expediciones/cooldowns-habilidades.ts` con reexportaciones compatibles. El cobro de recursos conserva las ramas v2 y legacy y la escritura optimista.
 3. Continuar con archivos de expediciones y progresión por función, incluyendo pruebas del comportamiento antes de mover reglas complejas. Buscar candidatos sin consumidores y retirar únicamente API interna demostrablemente sin uso; conservar las fachadas y los contratos funcionales. No dividir servicios ni fusionar PvE/party arbitrariamente.
 4. Auditar las dependencias reales y fachadas heredadas; eliminar recursos y código sólo tras comprobar uso en runtime y pruebas. No reunir las dos fórmulas de murallas sin revisar sus consumidores. Mantener commits pequeños, `main` intacta y las regresiones en verde antes de considerar finalizado un bloque.

@@ -44,6 +44,8 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Convertir efectos persistidos a estados tácticos, guardarlos y ejecutar técnicas adicionales | `src/lib/expediciones/adaptador-tactico.ts` |
 | Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/motor-tactico.ts` |
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
+| Efectos de pociones: restauración fija, porcentual y límites | `src/lib/expediciones/consumibles-combate.ts` |
+| Regeneración de energía y maná por turno y fracciones pendientes | `src/lib/expediciones/recursos-combate.ts` |
 | Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
 | Validación de la solicitud de combate, objetivos y turnos | `src/lib/expediciones/contrato-accion-combate.ts` |
 | Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
@@ -122,6 +124,8 @@ python scripts/recursos.py heroe estado --clase berserker --sexo m
 python scripts/recursos.py enemigo estado --id slime_acido
 python scripts/recursos.py equipo estado --id espada_hierro
 ```
+
+La escala y el encaje de enemigos en pantalla están en `src/lib/sprites/escala-combate.ts` (tanto móvil como PC). `tests/combat-scale.test.cjs` forma parte de `test:progression` en CI.
 
 El acceso a sprites en runtime está centralizado en `src/lib/sprites/heroes.ts` y `src/lib/sprites/enemigos.ts`. La visualización está en `src/components/combate/SpriteHeroeAnimado.tsx` y `SpriteEnemigoAnimado.tsx`. Los derivados JSON están en `src/lib/generated/`, no son catálogos.
 
