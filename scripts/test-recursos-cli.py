@@ -16,6 +16,12 @@ cli = importlib.util.module_from_spec(SPEC)
 assert SPEC and SPEC.loader
 SPEC.loader.exec_module(cli)
 
+VALIDATOR_SPEC = importlib.util.spec_from_file_location(
+    "validar_runtime", HERE / "validar-runtime-sprites-hd.py")
+validator = importlib.util.module_from_spec(VALIDATOR_SPEC)
+assert VALIDATOR_SPEC and VALIDATOR_SPEC.loader
+VALIDATOR_SPEC.loader.exec_module(validator)
+
 
 class ResourceCliTests(unittest.TestCase):
     def setUp(self):
@@ -59,6 +65,15 @@ class ResourceCliTests(unittest.TestCase):
             "enemies": {"otro": {"name": "Debe conservarse"}}
         }), encoding="utf-8")
         return enemy_id, sheet
+
+    def test_variantes_publicadas_comparan_sexos_sin_imponer_orden(self):
+        self.assertTrue(validator.coinciden_variantes(["m", "f"], ["f", "m"]))
+        self.assertTrue(validator.coinciden_variantes(["m"], ["m"]))
+        self.assertTrue(validator.coinciden_variantes([], []))
+        self.assertFalse(validator.coinciden_variantes(["m", "f"], ["f"]))
+        self.assertFalse(validator.coinciden_variantes(["m"], ["m", "m"]))
+        self.assertFalse(validator.coinciden_variantes(["m"], ["m", "otro"]))
+        self.assertFalse(validator.coinciden_variantes(["m"], None))
 
     def test_identificador_bloquea_rutas(self):
         for invalid in ("../x", "a/b", "Elfo", "123", ""):

@@ -11,6 +11,13 @@ def png(p):
 def visible_bytes(im):
     # RGB stored under alpha=0 is invisible and intentionally omitted by packing.
     im=im.copy();im.paste((0,0,0,0),(0,0),im.getchannel('A').point(lambda a:255 if a==0 else 0));return im.tobytes()
+def coinciden_variantes(publicadas, registradas):
+    """El catálogo describe el conjunto de variantes, sin imponer el orden JSON."""
+    return (isinstance(registradas, list)
+            and len(registradas) == len(set(registradas))
+            and all(sexo in ("m", "f") for sexo in registradas)
+            and set(publicadas) == set(registradas))
+
 def validate():
     m=json.loads((H/'equipment/manifest.json').read_text(encoding='utf-8'));d=json.loads((R/'src/lib/generated/sprites-hd.json').read_text(encoding='utf-8'))
     base_classes=m['classes']
@@ -23,9 +30,9 @@ def validate():
     for c in runtime_classes:
         published=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-sheet.png').is_file()]
         portraits=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-portrait.png').is_file()]
-        if not published or published!=d.get('availableSexes',{}).get(c):
+        if not published or not coinciden_variantes(published, d.get('availableSexes',{}).get(c)):
             raise ValueError('Published hero variants mismatch: '+c)
-        if portraits!=d.get('availablePortraits',{}).get(c):
+        if not coinciden_variantes(portraits, d.get('availablePortraits',{}).get(c)):
             raise ValueError('Published hero portraits mismatch: '+c)
         if c not in base_classes:
             for sexo in published:
