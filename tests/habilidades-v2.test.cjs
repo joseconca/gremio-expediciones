@@ -209,6 +209,12 @@ test('un acompañante manual tiene tres órdenes, no causa pulsos gratuitos ni d
 test('la curación de grupo reparte una reserva entre heridas reales sin pagar por aliados sanos', () => {
   assert.deepEqual(calcularPesosCuracion([{ id: 'a', hp: 100, hpMaximo: 100 }, { id: 'b', hp: 90, hpMaximo: 100 }, { id: 'c', hp: 70, hpMaximo: 100 }]), { a: 0, b: .25, c: .75 });
   assert.deepEqual(calcularPesosCuracion([{ id: 'a', hp: 100, hpMaximo: 100 }]), { a: 0 });
+  assert.deepEqual(calcularPesosCuracion([
+    { id: 'a', hp: 120, hpMaximo: 100 },
+    { id: 'b', hp: 95, hpMaximo: 100 },
+    { id: 'c', hp: 80, hpMaximo: 100 },
+  ]), { a: 0, b: 0.2, c: 0.8 });
+  assert.deepEqual(calcularPesosCuracion([]), {});
 });
 
 test('la migración contempla todos los propietarios y no borra compras ni ranuras', () => {
