@@ -48,39 +48,144 @@ export function describirDisenoActiva(d:DisenoActiva):string {
   return partes.join(" ");
 }
 
-export function crearCatalogoRedisenado(base: readonly DefinicionHabilidad[]):DefinicionHabilidad[]{
-  const vistos=new Map<string,{a:number;p:number}>();
-  return base.map(original=>{
-    const id=original.claseId ?? "novato",perfil=DISENO_HABILIDADES[id];
-    if(!perfil)throw new Error(`FALTA_DISENO_${id}`);
-    const indices=vistos.get(id) ?? {a:0,p:0};vistos.set(id,indices);
-    if(original.tipo==="pasiva"){
-      const regla=perfil.pasivas[indices.p++];
-      if(!regla)throw new Error(`FALTA_PASIVA_${original.id}`);
-      const h:DefinicionHabilidad={id:original.id,claseId:id,nombre:NOMBRES_REDISENIO[original.id]??original.nombre,descripcion:describirReglaPasiva(regla),tipo:"pasiva",rareza:original.rareza,precio:original.precio,costePuntosHabilidad:original.costePuntosHabilidad,nivelJobRequerido:original.nivelJobRequerido,versionReglas:2,reglaPasiva:regla};
-      if(h.id==="aguante_aprendiz"){delete h.reglaPasiva;h.bonusHpMaximo=8;h.descripcion="Aumenta la vida máxima en 8 puntos.";}
-      if(h.id==="reserva_arcana"){delete h.reglaPasiva;h.bonusManaMaximo=20;h.descripcion="Aumenta el maná máximo en 20 puntos.";}
-      if(h.id==="nucleo_arcano"){delete h.reglaPasiva;h.conversionReservaInteligencia=true;h.descripcion="Sacrifica el 10 % de maná máximo estable para convertirlo en inteligencia, limitada al 20 % de tu inteligencia previa y a 12 puntos. No realimenta maná.";}
+export function crearCatalogoRedisenado(
+  base: readonly DefinicionHabilidad[],
+): DefinicionHabilidad[] {
+  // Cada escuela consume sus técnicas en el orden del catálogo original.
+  const vistos = new Map<string, { a: number; p: number }>();
+
+  return base.map((original) => {
+    const id = original.claseId ?? "novato";
+    const perfil = DISENO_HABILIDADES[id];
+    if (!perfil) throw new Error(`FALTA_DISENO_${id}`);
+
+    const indices = vistos.get(id) ?? { a: 0, p: 0 };
+    vistos.set(id, indices);
+
+    if (original.tipo === "pasiva") {
+      const regla = perfil.pasivas[indices.p++];
+      if (!regla) throw new Error(`FALTA_PASIVA_${original.id}`);
+
+      const h: DefinicionHabilidad = {
+        id: original.id,
+        claseId: id,
+        nombre: NOMBRES_REDISENIO[original.id] ?? original.nombre,
+        descripcion: describirReglaPasiva(regla),
+        tipo: "pasiva",
+        rareza: original.rareza,
+        precio: original.precio,
+        costePuntosHabilidad: original.costePuntosHabilidad,
+        nivelJobRequerido: original.nivelJobRequerido,
+        versionReglas: 2,
+        reglaPasiva: regla,
+      };
+
+      // Estas tres pasivas conservan efectos propios fuera del motor táctico.
+      if (h.id === "aguante_aprendiz") {
+        delete h.reglaPasiva;
+        h.bonusHpMaximo = 8;
+        h.descripcion = "Aumenta la vida máxima en 8 puntos.";
+      }
+      if (h.id === "reserva_arcana") {
+        delete h.reglaPasiva;
+        h.bonusManaMaximo = 20;
+        h.descripcion = "Aumenta el maná máximo en 20 puntos.";
+      }
+      if (h.id === "nucleo_arcano") {
+        delete h.reglaPasiva;
+        h.conversionReservaInteligencia = true;
+        h.descripcion =
+          "Sacrifica el 10 % de maná máximo estable para convertirlo en inteligencia, limitada al 20 % de tu inteligencia previa y a 12 puntos. No realimenta maná.";
+      }
       return h;
     }
-    const d=perfil.activas[indices.a++];
-    if(!d)throw new Error(`FALTA_ACTIVA_${original.id}`);
-    const h:DefinicionHabilidad={...original,nombre:NOMBRES_REDISENIO[original.id]??original.nombre,descripcion:describirDisenoActiva(d),versionReglas:2,disenoActiva:d,efecto:d.efecto,objetivo:{equipo:d.propio?"propio":d.efecto==="dano"?"enemigo":"aliado",patron:d.area??"individual",...(d.efecto!=="dano"?{incluirPropio:true}:{})},animacion:d.efecto==="dano"?"ofensiva":d.efecto==="curacion"||d.efecto==="curacion_progresiva"?"curacion":"defensiva"};
-    for(const key of ["multiplicadorDano","curacion","curacionPorcentaje","curacionProgresivaPorcentaje","danoProgresivoPorcentaje","estadosSecundarios","bonusDefensaPorcentaje","limpiarEstadosNegativos","roboVida","recuperarEnergia","duracionTurnos"] as const)delete h[key];
-    if(d.potencia)h.multiplicadorDano=d.potencia;
-    if(id==="superNovato"&&d.efecto==="dano")h.escaladoDano="polivalente";
-    if(d.cura){if(d.efecto==="curacion_progresiva")h.curacionProgresivaPorcentaje=d.cura;else h.curacionPorcentaje=d.cura;}
-    if(d.herida)h.danoProgresivoPorcentaje=d.herida;
-    if(d.drenaje)h.roboVida=d.drenaje;
-    if(d.duracion)h.duracionTurnos=d.duracion;
-    if(d.vendaje)h.estadosSecundarios=[{tipo:"curacion_progresiva",valor:d.vendaje,duracionTurnos:d.duracion??3,objetivo:"jugador"}];
-    if(d.barrera)h.estadosSecundarios=[{tipo:"barrera",valor:1,duracionTurnos:2,objetivo:"jugador"}];
-    const recuperacion=d.operaciones.find(op=>op.tipo==="recurso"&&op.recurso==="energia");
-    if(recuperacion?.tipo==="recurso")h.recuperarEnergia=recuperacion.cantidad;
-    if(original.recuperarEnergia&&!original.costeEnergia&&!original.costeMana){h.costeEnergia=0;h.costeMana=0;h.cooldownTurnos=6;}
-    h.cooldownTurnos=Math.max(2,h.cooldownTurnos??3);
-    if(h.id==="esfera_invocada"){h.costeMana=16;h.cooldownTurnos=5;}
-    if(h.id==="sellos_paralelos"){h.costeMana=10;h.cooldownTurnos=2;}
+
+    const d = perfil.activas[indices.a++];
+    if (!d) throw new Error(`FALTA_ACTIVA_${original.id}`);
+
+    const h: DefinicionHabilidad = {
+      ...original,
+      nombre: NOMBRES_REDISENIO[original.id] ?? original.nombre,
+      descripcion: describirDisenoActiva(d),
+      versionReglas: 2,
+      disenoActiva: d,
+      efecto: d.efecto,
+      objetivo: {
+        equipo: d.propio ? "propio" : d.efecto === "dano" ? "enemigo" : "aliado",
+        patron: d.area ?? "individual",
+        ...(d.efecto !== "dano" ? { incluirPropio: true } : {}),
+      },
+      animacion:
+        d.efecto === "dano"
+          ? "ofensiva"
+          : d.efecto === "curacion" || d.efecto === "curacion_progresiva"
+            ? "curacion"
+            : "defensiva",
+    };
+
+    // El diseño v2 sustituye atributos heredados antes de reconstruir los
+    // compatibles con las APIs existentes; no deben convivir valores antiguos.
+    for (const key of [
+      "multiplicadorDano",
+      "curacion",
+      "curacionPorcentaje",
+      "curacionProgresivaPorcentaje",
+      "danoProgresivoPorcentaje",
+      "estadosSecundarios",
+      "bonusDefensaPorcentaje",
+      "limpiarEstadosNegativos",
+      "roboVida",
+      "recuperarEnergia",
+      "duracionTurnos",
+    ] as const) {
+      delete h[key];
+    }
+
+    if (d.potencia) h.multiplicadorDano = d.potencia;
+    if (id === "superNovato" && d.efecto === "dano") h.escaladoDano = "polivalente";
+    if (d.cura) {
+      if (d.efecto === "curacion_progresiva") h.curacionProgresivaPorcentaje = d.cura;
+      else h.curacionPorcentaje = d.cura;
+    }
+    if (d.herida) h.danoProgresivoPorcentaje = d.herida;
+    if (d.drenaje) h.roboVida = d.drenaje;
+    if (d.duracion) h.duracionTurnos = d.duracion;
+    if (d.vendaje) {
+      h.estadosSecundarios = [{
+        tipo: "curacion_progresiva",
+        valor: d.vendaje,
+        duracionTurnos: d.duracion ?? 3,
+        objetivo: "jugador",
+      }];
+    }
+    if (d.barrera) {
+      h.estadosSecundarios = [{
+        tipo: "barrera",
+        valor: 1,
+        duracionTurnos: 2,
+        objetivo: "jugador",
+      }];
+    }
+    const recuperacion = d.operaciones.find(
+      (op) => op.tipo === "recurso" && op.recurso === "energia",
+    );
+    if (recuperacion?.tipo === "recurso") h.recuperarEnergia = recuperacion.cantidad;
+
+    if (original.recuperarEnergia && !original.costeEnergia && !original.costeMana) {
+      h.costeEnergia = 0;
+      h.costeMana = 0;
+      h.cooldownTurnos = 6;
+    }
+    h.cooldownTurnos = Math.max(2, h.cooldownTurnos ?? 3);
+
+    if (h.id === "esfera_invocada") {
+      h.costeMana = 16;
+      h.cooldownTurnos = 5;
+    }
+    if (h.id === "sellos_paralelos") {
+      h.costeMana = 10;
+      h.cooldownTurnos = 2;
+    }
     return h;
   });
 }
