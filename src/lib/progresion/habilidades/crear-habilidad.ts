@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
+import type { DefinicionHabilidad } from "../../tiposJuego";
 
 type EntradaHabilidad = Omit<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad"> &
   Partial<Pick<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad">>;

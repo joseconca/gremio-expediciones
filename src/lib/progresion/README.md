@@ -24,7 +24,7 @@ Las reglas de diseño, transformación y técnicas adicionales del motor están 
 ## Registro y ejecución de habilidades
 
 - `habilidades/diseno-habilidades.ts`: **tipos/contratos tácticos**; reexporta los datos del catálogo, no los redefine.
-- `crear-habilidad.ts`, `generar-habilidades.ts`: construyen cinco técnicas por escuela desde `catalogos/habilidades.ts`. El orden de ataque, táctica, pasiva, avanzada y maestría es un contrato del catálogo y está protegido por tests.
+- `habilidades/crear-habilidad.ts`, `habilidades/generar-habilidades.ts`: construyen cinco técnicas por escuela desde `catalogos/habilidades.ts`. El orden de ataque, táctica, pasiva, avanzada y maestría es un contrato del catálogo y está protegido por tests.
 - `habilidades/catalogo-redisenado.ts`, `habilidades/tecnicas-adicionales.ts`: transforman las habilidades del catálogo en técnicas ejecutables. `habilidades/catalogo-redisenado.ts` adapta pasivas y activas al motor v2 y conserva explícitamente las excepciones de Aguante, Reserva Arcana, Núcleo Arcano, Esfera Invocada y Sellos Paralelos.
 - `equipo-habilidades.ts`: reglas para equipar habilidades.
 - `src/lib/habilidades.ts`: registro público utilizado por la aplicación y las APIs; no es un segundo catálogo.

@@ -1,5 +1,5 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
-import { ESCUELAS, TECNICAS_AVANZADAS } from "../catalogos/habilidades";
+import type { DefinicionHabilidad } from "../../tiposJuego";
+import { ESCUELAS, TECNICAS_AVANZADAS } from "../../catalogos/habilidades";
 
 /** Genera cinco técnicas por escuela a partir del único catálogo editable. */
 export const HABILIDADES_NUEVAS: DefinicionHabilidad[] = ESCUELAS.flatMap(

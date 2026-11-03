@@ -6,7 +6,7 @@ const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.
 
 const { CLASES_BASE, CLASES_NUEVAS } = require("../src/lib/catalogos/clases.ts");
 const { HABILIDADES, HABILIDADES_BASE } = require("../src/lib/habilidades.ts");
-const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidades.ts");
+const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/habilidades/generar-habilidades.ts");
 const { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES } = require("../src/lib/catalogos/habilidades.ts");
 
 test("las definiciones de clases solo tienen un propietario y una API publica", () => {
