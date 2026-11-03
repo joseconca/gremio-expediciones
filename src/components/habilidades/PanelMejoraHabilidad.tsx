@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad } from "@/lib/tiposJuego";
-import { compararMejoraHabilidad } from "@/lib/progresion/descripciones-habilidades";
+import { compararMejoraHabilidad } from "@/lib/progresion/habilidades/descripciones-habilidades";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 
 type PanelMejoraHabilidadProps = {

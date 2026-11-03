@@ -7,7 +7,7 @@ import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { SlotHabilidad } from "@/lib/tiposJuego";
 
 import { SLOTS_HABILIDADES_ACTIVAS as SLOTS_ACTIVAS } from "@/lib/tiposJuego";
-import { esSlotHabilidad } from "@/lib/progresion/equipo-habilidades";
+import { esSlotHabilidad } from "@/lib/progresion/habilidades/equipo-habilidades";
 
 export async function POST(request: Request) {
   try {

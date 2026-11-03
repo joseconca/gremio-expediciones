@@ -1,5 +1,5 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
-import { obtenerHabilidadesDisponiblesParaClase } from "../habilidades";
+import type { DefinicionHabilidad } from "../../tiposJuego";
+import { obtenerHabilidadesDisponiblesParaClase } from "../../habilidades";
 
 export interface ProgresoJobHabilidad {
   claseId: string;

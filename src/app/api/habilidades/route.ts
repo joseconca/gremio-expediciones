@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/progresion/aprendizaje";
+import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/progresion/habilidades/aprendizaje";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import { nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";

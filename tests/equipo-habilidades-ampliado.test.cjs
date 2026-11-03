@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 require('./load-typescript.cjs');
 const { SLOTS_HABILIDADES_ACTIVAS, SLOTS_HABILIDADES_PASIVAS } = require('../src/lib/tiposJuego.ts');
-const { esSlotHabilidad, esSlotActivo, esSlotPasivo } = require('../src/lib/progresion/equipo-habilidades.ts');
+const { esSlotHabilidad, esSlotActivo, esSlotPasivo } = require('../src/lib/progresion/habilidades/equipo-habilidades.ts');
 
 test('permite exactamente cinco activas y tres pasivas, conservando las ranuras anteriores', () => {
   assert.deepEqual(SLOTS_HABILIDADES_ACTIVAS, ['activa_1','activa_2','activa_3','activa_4','activa_5']);

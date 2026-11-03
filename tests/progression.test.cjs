@@ -23,7 +23,7 @@ const {
   registrarVictoriaRangoNormal,
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/encuentros/dificultad.ts");
-const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/progresion/aprendizaje.ts");
+const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/progresion/habilidades/aprendizaje.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const {
   seleccionarEnemigoNormal,
@@ -1089,7 +1089,7 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
 
 test("la ficha de habilidad compara valores actuales con la siguiente mejora", () => {
   const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
-  const { compararMejoraHabilidad } = require("../src/lib/progresion/descripciones-habilidades.ts");
+  const { compararMejoraHabilidad } = require("../src/lib/progresion/habilidades/descripciones-habilidades.ts");
   const definicion = obtenerHabilidadPorId("guardia_improvisada");
   const actual = ajustarHabilidadPorNivel(definicion, 2);
   const siguiente = ajustarHabilidadPorNivel(definicion, 3);

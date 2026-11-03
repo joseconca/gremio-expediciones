@@ -8,7 +8,7 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | --- | --- |
 | Definir una profesión, tier, requisitos o dominio de armas | `src/lib/catalogos/clases.ts` (datos) y `clases.ts` (reglas) |
 | Modificar una habilidad, su nivel o sus costes | `src/lib/catalogos/habilidades.ts` (datos), `niveles-habilidad.ts` (niveles y reseteo) |
-| Comprobar qué habilidades puede aprender una clase | `aprendizaje.ts` |
+| Comprobar qué habilidades puede aprender una clase | `habilidades/aprendizaje.ts` |
 | Cambiar las curvas de experiencia Base y Job | `experiencia.ts` |
 | Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas.ts` |
 | Cambiar cómo influyen clase y Job en los atributos | `atributos-clase.ts` |
@@ -17,7 +17,7 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | Cambiar los contratos y la suma de modificadores | `estadisticas/modificadores-estadisticas.ts` |
 | Aplicar dominio de armas, armaduras y escudos y adaptar el equipo al modelo RPG | `bonificaciones-equipo.ts` |
 | Calcular bonificaciones pasivas y conversión de maná a inteligencia (Núcleo arcano) | `bonificaciones-pasivas.ts` |
-| Modificar descripciones numéricas de habilidades | `descripciones-habilidades.ts` |
+| Modificar descripciones numéricas de habilidades | `habilidades/descripciones-habilidades.ts` |
 
 Las reglas de diseño, transformación y técnicas adicionales del motor están ahora en `habilidades/` (no es otro catálogo editable).
 
@@ -26,7 +26,7 @@ Las reglas de diseño, transformación y técnicas adicionales del motor están 
 - `habilidades/diseno-habilidades.ts`: **tipos/contratos tácticos**; reexporta los datos del catálogo, no los redefine.
 - `habilidades/crear-habilidad.ts`, `habilidades/generar-habilidades.ts`: construyen cinco técnicas por escuela desde `catalogos/habilidades.ts`. El orden de ataque, táctica, pasiva, avanzada y maestría es un contrato del catálogo y está protegido por tests.
 - `habilidades/catalogo-redisenado.ts`, `habilidades/tecnicas-adicionales.ts`: transforman las habilidades del catálogo en técnicas ejecutables. `habilidades/catalogo-redisenado.ts` adapta pasivas y activas al motor v2 y conserva explícitamente las excepciones de Aguante, Reserva Arcana, Núcleo Arcano, Esfera Invocada y Sellos Paralelos.
-- `equipo-habilidades.ts`: reglas para equipar habilidades.
+- `habilidades/equipo-habilidades.ts`: reglas para equipar habilidades.
 - `src/lib/habilidades.ts`: registro público utilizado por la aplicación y las APIs; no es un segundo catálogo.
 
 **Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para consumidores anteriores, pero los cambios nuevos deben importar directamente `src/lib/base/edificios.ts`, `src/lib/base/mejoras.ts`, `src/lib/progresion/` o `src/lib/sprites/`, según su responsabilidad. No se elimina la fachada sin comprobar todos los importadores.

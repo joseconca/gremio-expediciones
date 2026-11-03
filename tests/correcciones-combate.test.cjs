@@ -9,7 +9,7 @@ const { aplicarEfectoComida, calcularBonificacionesComida, COMIDAS_TABERNA } = r
 const { describirEstadoCombate, describirBonificacionesComida } = require("../src/lib/expediciones/presentacion/descripciones-efectos.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/niveles-habilidad.ts");
-const { detalleNumericoHabilidad } = require("../src/lib/progresion/descripciones-habilidades.ts");
+const { detalleNumericoHabilidad } = require("../src/lib/progresion/habilidades/descripciones-habilidades.ts");
 
 test("el detalle de una pasiva mejorada muestra su valor efectivo sin repetir la descripción base", () => {
   const aguante = ajustarHabilidadPorNivel(obtenerHabilidadPorId("aguante_aprendiz"), 3);

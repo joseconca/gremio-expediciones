@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/presentacion/descripciones-efectos";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
-import { detalleNumericoHabilidad } from "@/lib/progresion/descripciones-habilidades";
+import { detalleNumericoHabilidad } from "@/lib/progresion/habilidades/descripciones-habilidades";
 import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";

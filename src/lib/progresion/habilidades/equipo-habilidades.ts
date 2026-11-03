@@ -1,4 +1,4 @@
-import { SLOTS_HABILIDADES_ACTIVAS, SLOTS_HABILIDADES_PASIVAS, type SlotHabilidad } from "../tiposJuego";
+import { SLOTS_HABILIDADES_ACTIVAS, SLOTS_HABILIDADES_PASIVAS, type SlotHabilidad } from "../../tiposJuego";
 
 /** Contrato compartido por Escuela, API y todos los modos de combate. */
 export const LIMITE_ACTIVAS_EQUIPADAS = 5;
