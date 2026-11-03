@@ -108,3 +108,28 @@ test("las reglas tácticas movidas conservan sus exportaciones y se pueden impor
     assert.equal(typeof funcion, "function");
   }
 });
+
+
+test("todas las importaciones relativas de expediciones resuelven a módulos reales", () => {
+  const recorrer = (directorio) => fs.readdirSync(directorio, { withFileTypes: true }).flatMap((entrada) => {
+    const ruta = path.join(directorio, entrada.name);
+    return entrada.isDirectory()
+      ? recorrer(ruta)
+      : /\.(ts|tsx)$/.test(entrada.name) ? [ruta] : [];
+  });
+  const fuentes = recorrer(path.join(root, "src/lib/expediciones"));
+  const referencias = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)["'](\.{1,2}\/[^"']+)["']/g;
+  const extensiones = ["", ".ts", ".tsx", ".js", ".json", ".d.ts", "/index.ts", "/index.tsx"];
+
+  for (const fuente of fuentes) {
+    const contenido = fs.readFileSync(fuente, "utf8");
+    for (const coincidencia of contenido.matchAll(referencias)) {
+      const importado = coincidencia[1];
+      const destino = path.resolve(path.dirname(fuente), importado);
+      const encontrado = extensiones.some((ext) => fs.existsSync(destino + ext) && fs.statSync(destino + ext).isFile());
+      assert.ok(encontrado,
+        `Importación relativa sin archivo: \${path.relative(root, fuente)} → \${importado}`);
+    }
+  }
+});
+
