@@ -60,3 +60,46 @@ test("las reglas puras siguen importándose desde sus ubicaciones definitivas", 
   assert.equal(typeof calcularRecompensaAlmacen, "function");
   assert.equal(MODIFICADORES_VACIOS.hpMaximo, 0);
 });
+
+
+test("las rutas antiguas no permanecen en código, scripts ni tests", () => {
+  const extensiones = /\.(?:ts|tsx|js|cjs|mjs)$/;
+  const buscar = (carpeta) => fs.readdirSync(carpeta, { withFileTypes: true }).flatMap((entrada) => {
+    const ruta = path.join(carpeta, entrada.name);
+    return entrada.isDirectory()
+      ? buscar(ruta)
+      : extensiones.test(entrada.name) ? [ruta] : [];
+  });
+  const prohibidas = trasladados.map(([dominio, archivo]) =>
+    `/${dominio}/${path.basename(archivo, ".ts")}`
+  );
+  for (const archivo of ["src", "scripts", "tests"].flatMap((carpeta) => buscar(path.join(root, carpeta)))) {
+    const contenido = fs.readFileSync(archivo, "utf8");
+    for (const ruta of prohibidas) {
+      assert.equal(
+        contenido.includes(ruta),
+        false,
+        `La referencia antigua ${ruta} sigue presente en ${path.relative(root, archivo)}`,
+      );
+    }
+  }
+});
+
+test("las reglas tácticas movidas conservan sus exportaciones y se pueden importar juntas", () => {
+  const { crearSecuenciaTurnosVelocidad } = require("../src/lib/expediciones/combate/iniciativa-combate.ts");
+  const { aplicarModificadoresPosicion } = require("../src/lib/expediciones/combate/posicion-combate.ts");
+  const { resolverObjetivosHabilidad } = require("../src/lib/expediciones/combate/objetivos-combate.ts");
+  const { distribuirFormacionParty } = require("../src/lib/expediciones/combate/formacion-party.ts");
+  const { obtenerCooldowns } = require("../src/lib/expediciones/combate/cooldowns-habilidades.ts");
+  const { leerEfectosCombate } = require("../src/lib/expediciones/combate/estados-combate.ts");
+  for (const funcion of [
+    crearSecuenciaTurnosVelocidad,
+    aplicarModificadoresPosicion,
+    resolverObjetivosHabilidad,
+    distribuirFormacionParty,
+    obtenerCooldowns,
+    leerEfectosCombate,
+  ]) {
+    assert.equal(typeof funcion, "function");
+  }
+});
