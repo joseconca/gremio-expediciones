@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const { calcularAtributosClase, calcularEntrenamientoRama } = require("../src/lib/progresion/atributos-clase.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/recursos-combate.ts");
-const { calcularRestauracionConsumible } = require("../src/lib/expediciones/consumibles-combate.ts");
+const { calcularRestauracionConsumible, esConsumibleRestaurador } = require("../src/lib/expediciones/consumibles-combate.ts");
 const { aplicarEfectoComida, calcularBonificacionesComida, COMIDAS_TABERNA } = require("../src/lib/base/taberna.ts");
 const { describirEstadoCombate, describirBonificacionesComida } = require("../src/lib/expediciones/descripciones-efectos.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
@@ -75,6 +75,46 @@ test("pociones restauran fijo más porcentaje y nunca exceden el máximo", () =>
     { curacion: 0, energia: 0, mana: 100 });
   assert.deepEqual(calcularRestauracionConsumible({ restauracionEnergiaPorcentaje: 0.6 }, { ...recursos, energia: 80 }),
     { curacion: 0, energia: 20, mana: 0 });
+});
+
+test("las pociones ignoran cantidades inválidas y se limitan a los puntos faltantes", () => {
+  const recursos = {
+    hp: 97, hpMaximo: 100,
+    energia: 100, energiaMaxima: 100,
+    mana: 3, manaMaximo: 50,
+  };
+  assert.deepEqual(
+    calcularRestauracionConsumible(
+      { curacion: 15, curacionPorcentaje: 0.15, restauracionEnergia: 30,
+        restauracionMana: Number.POSITIVE_INFINITY, restauracionManaPorcentaje: 0.25 },
+      recursos,
+    ),
+    { curacion: 3, energia: 0, mana: 12 },
+  );
+  assert.deepEqual(
+    calcularRestauracionConsumible(
+      { curacion: -20, curacionPorcentaje: Number.NaN, restauracionMana: -10 },
+      { ...recursos, hp: 100 },
+    ),
+    { curacion: 0, energia: 0, mana: 0 },
+  );
+  assert.deepEqual(
+    calcularRestauracionConsumible(
+      { curacion: 0.7, restauracionMana: 0.9 },
+      recursos,
+    ),
+    { curacion: 0, energia: 0, mana: 0 },
+  );
+});
+
+test("solo son restauradores los consumibles con efectos positivos y finitos", () => {
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", curacion: 0 }), false);
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", curacion: -5 }), false);
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", curacion: Number.NaN }), false);
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", restauracionMana: Infinity }), false);
+  assert.equal(esConsumibleRestaurador({ tipo: "arma", curacion: 30 }), false);
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", curacionPorcentaje: 0.15 }), true);
+  assert.equal(esConsumibleRestaurador({ tipo: "consumible", restauracionEnergiaPorcentaje: 0.6 }), true);
 });
 
 test("las comidas mejoran estadísticas pequeñas y ninguna fuerza la iniciativa", () => {
