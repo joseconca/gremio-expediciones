@@ -140,3 +140,40 @@ export function calcularCosteEdificio(idEdificio: IdEdificio, nivelActual: numbe
   };
 }
 
+/**
+ * Reglas puras de construcción. Mantiene la precedencia de errores del
+ * servicio: máximo, prerrequisitos y por último saldo disponible.
+ * La transacción y el débito condicionado siguen en la ruta de servidor.
+ */
+export function prepararMejoraEdificio(
+  idEdificio: IdEdificio,
+  edificios: Record<string, unknown>,
+  recursos: CosteEdificio,
+): { nivelSiguiente: number; coste: CosteEdificio } {
+  const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
+  const nivel = typeof edificios[idEdificio] === "number" ? edificios[idEdificio] : 0;
+  if (nivel >= configuracion.nivelMax) throw new Error("EDIFICIO_NIVEL_MAXIMO");
+
+  const requisito = REQUISITOS_EDIFICIOS[idEdificio];
+  if (requisito) {
+    const nivelRequisitoValue = edificios[requisito.edificio];
+    const nivelRequisito = typeof nivelRequisitoValue === "number" ? nivelRequisitoValue : 0;
+    if (nivelRequisito < requisito.nivel) {
+      throw new Error(
+        `REQUISITO_EDIFICIO:${CONFIGURACION_EDIFICIOS[requisito.edificio].nombre}:${requisito.nivel}`
+      );
+    }
+  }
+
+  const coste = calcularCosteEdificio(idEdificio, nivel);
+  if (
+    recursos.oro < coste.oro ||
+    recursos.madera < coste.madera ||
+    recursos.piedra < coste.piedra ||
+    recursos.metal < coste.metal
+  ) {
+    throw new Error("RECURSOS_INSUFICIENTES");
+  }
+
+  return { nivelSiguiente: nivel + 1, coste };
+}
