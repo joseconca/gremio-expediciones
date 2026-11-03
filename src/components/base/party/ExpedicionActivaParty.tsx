@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import MissionMap from "@/components/MissionMap";
-import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/configuracionJuego";
+import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/sprites/heroes";
 import type { Dispatch, SetStateAction } from "react";
 import type { EstadoParty, ResultadoCombatePanelParty } from "./tipos";
 import InformeProvisionalParty from "./InformeProvisionalParty";

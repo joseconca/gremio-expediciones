@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { Personaje } from "@/store/useGameStore";
-import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/configuracionJuego";
+import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/sprites/heroes";
 import type { EstadoParty } from "./tipos";
 import VisitasEntrantesParty from "./VisitasEntrantesParty";
 import TrasladosPropiosParty from "./TrasladosPropiosParty";
