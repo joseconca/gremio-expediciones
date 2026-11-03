@@ -8,6 +8,7 @@ import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerResultadoInformeParty } from "./party/resultado-informe";
+import { consultarEstadoParty, enviarAccionParty, enviarAccionCombateParty } from "./party/cliente";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
 import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
@@ -31,22 +32,6 @@ function formatoCuentaAtras(total: number): string {
 
 function nombreObjetoRecompensa(objetoId: string): string {
   return obtenerObjetoPorId(objetoId)?.nombre ?? objetoId.replace(/[_-]+/g, " ");
-}
-
-async function enviarAccion(
-  url: string,
-  id?: string,
-  campoId = "trasladoId",
-): Promise<void> {
-  const respuesta = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(id ? { [campoId]: id } : {}),
-  });
-  const datos = await respuesta.json().catch(() => ({}));
-  if (!respuesta.ok) {
-    throw new Error(datos.error || "No se pudo completar la operación.");
-  }
 }
 
 export default function PanelParty() {
@@ -82,15 +67,9 @@ export default function PanelParty() {
 
     const revision = ++revisionEstado.current;
     const solicitud = (async () => {
-      const respuesta = await fetch("/api/party", { cache: "no-store" });
-      const datos = await respuesta.json().catch(() => ({}));
-      if (!respuesta.ok) {
-        throw new Error(datos.error || "No se pudo consultar la party.");
-      }
-
+      const estadoNuevo = await consultarEstadoParty();
       if (revision !== revisionEstado.current) return;
 
-      const estadoNuevo = datos as EstadoParty;
       setEstado(estadoNuevo);
       // El estado de la conexión y la composición del informe son responsabilidades distintas.
       setUltimoResultadoCombate((actual) => obtenerResultadoInformeParty(estadoNuevo, actual));
@@ -215,7 +194,7 @@ export default function PanelParty() {
 
       void (async () => {
         try {
-          await enviarAccion(ruta, traslado.id);
+          await enviarAccionParty(ruta, traslado.id);
           siguienteIntentoTraslado.current.delete(clave);
           await actualizarEstado(true);
           await cargarJugador();
@@ -250,7 +229,7 @@ export default function PanelParty() {
 
     void (async () => {
       try {
-        await enviarAccion(
+        await enviarAccionParty(
           "/api/expediciones/party/llegar",
           expedicion.id,
           "expedicionPartyId",
@@ -280,7 +259,7 @@ export default function PanelParty() {
 
     void (async () => {
       try {
-        await enviarAccion(
+        await enviarAccionParty(
           "/api/expediciones/party/combate/iniciar",
           expedicion.id,
           "expedicionPartyId",
@@ -310,7 +289,7 @@ export default function PanelParty() {
 
     void (async () => {
       try {
-        await enviarAccion(
+        await enviarAccionParty(
           "/api/expediciones/party/regreso",
           expedicion.id,
           "expedicionPartyId",
@@ -374,7 +353,7 @@ export default function PanelParty() {
     setAccion(clave);
     setError(null);
     try {
-      await enviarAccion(ruta, trasladoId);
+      await enviarAccionParty(ruta, trasladoId);
       await actualizarEstado(true);
       await cargarJugador();
     } catch (err) {
@@ -400,43 +379,8 @@ export default function PanelParty() {
     if (!expedicion || !expedicion.combate || accion) return null;
     setAccion(tipo === "atacar" ? "ataque-party" : `accion-party:${id ?? tipo}`);
     setError(null);
-    let payloadHabilidad: { habilidadId: string; objetivoId?: string; enemigoObjetivoId?: string } | null = null;
-    let objetivoEnemigoElegido: string | undefined;
-    if (id && (tipo === "usar_habilidad" || tipo === "atacar")) {
-      try {
-        const parseado: unknown = JSON.parse(id);
-        if (parseado && typeof parseado === "object" && !Array.isArray(parseado)) {
-          const objeto = parseado as Record<string, unknown>;
-          if (tipo === "usar_habilidad" && typeof objeto.habilidadId === "string") {
-            payloadHabilidad = {
-              habilidadId: objeto.habilidadId,
-              ...(typeof objeto.objetivoId === "string" ? { objetivoId: objeto.objetivoId } : {}),
-              ...(typeof objeto.enemigoObjetivoId === "string" ? { enemigoObjetivoId: objeto.enemigoObjetivoId } : {}),
-            };
-          }
-          if (typeof objeto.enemigoObjetivoId === "string") objetivoEnemigoElegido = objeto.enemigoObjetivoId;
-        } else if (tipo === "usar_habilidad") {
-          payloadHabilidad = { habilidadId: id };
-        }
-      } catch {
-        if (tipo === "usar_habilidad") payloadHabilidad = { habilidadId: id };
-      }
-    }
     try {
-      const respuesta = await fetch("/api/expediciones/party/combate/accion", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          expedicionPartyId: expedicion.id,
-          accion: tipo,
-          ...(tipo === "usar_habilidad" && payloadHabilidad ? payloadHabilidad : {}),
-          ...(tipo === "atacar" && objetivoEnemigoElegido ? { enemigoObjetivoId: objetivoEnemigoElegido } : {}),
-          ...(tipo === "usar_objeto" && id ? { objetoInventarioId: id } : {}),
-          ...(tipo === "cambiar_posicion" && id ? { posicion: id } : {}),
-        }),
-      });
-      const datos = await respuesta.json().catch(() => ({}));
-      if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar la acción.");
+      const datos = await enviarAccionCombateParty(expedicion.id, tipo, id);
       guardarResultadoCombate(expedicion.id, datos);
       await actualizarEstado(true);
       await cargarJugador();
