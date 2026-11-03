@@ -9,6 +9,7 @@ import {
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
+import { calcularFechaEncuentroProgramada, clasificarClimaExpedicion } from "@/lib/expediciones/tiempos";
 import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
 import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
@@ -344,18 +345,9 @@ export async function iniciarExpedicion(request: Request) {
         const weatherData = await weatherResponse.json();
         const weatherCode = weatherData?.current_weather?.weathercode;
 
-        if (typeof weatherCode === "number") {
-          if (weatherCode >= 51 && weatherCode <= 67) {
-            multiplicadorTiempo = 1.2;
-            climaReporte = "Lluvia y barro en los caminos";
-          } else if (weatherCode >= 71 && weatherCode <= 77) {
-            multiplicadorTiempo = 1.5;
-            climaReporte = "Fuertes nevadas";
-          } else if (weatherCode >= 95) {
-            multiplicadorTiempo = 1.8;
-            climaReporte = "Tormenta eléctrica peligrosa";
-          }
-        }
+        const condiciones = clasificarClimaExpedicion(weatherCode);
+        multiplicadorTiempo = condiciones.multiplicadorTiempo;
+        climaReporte = condiciones.climaReporte;
       } else {
         climaReporte = "No se pudo consultar el clima";
       }
@@ -366,9 +358,7 @@ export async function iniciarExpedicion(request: Request) {
 
     const horasReales = tiempoHoras * multiplicadorTiempo;
     const fechaSalida = new Date();
-    const fechaLlegada = new Date(
-      fechaSalida.getTime() + (horasReales * 60 * 60 * 1000) / 2
-    );
+    const fechaLlegada = calcularFechaEncuentroProgramada(fechaSalida, horasReales);
 
     await prisma.$transaction(async (tx) => {
       const expedicionExistente = await tx.expedicionActiva.findUnique({
