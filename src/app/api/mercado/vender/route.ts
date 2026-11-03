@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { PRECIOS_RECURSOS, calcularPrecioVentaRecurso, MAX_INT_POSTGRES, MAX_CANTIDAD_MERCADO, esRecursoValido, esCantidadMercadoValida, leerNivelMercado } from "@/lib/economia/mercado";
+import { PRECIOS_RECURSOS, calcularPrecioVentaRecurso, MAX_INT_POSTGRES, leerNivelMercado, validarSolicitudMercado } from "@/lib/economia/mercado";
 
 export async function POST(request: Request) {
   try {
@@ -12,26 +12,11 @@ export async function POST(request: Request) {
     }
 
     const body: unknown = await request.json().catch(() => null);
-    if (!body || typeof body !== "object" || Array.isArray(body)) {
-      return NextResponse.json({ error: "Petición no válida." }, { status: 400 });
+    const solicitud = validarSolicitudMercado(body);
+    if (!solicitud.valida) {
+      return NextResponse.json({ error: solicitud.error }, { status: 400 });
     }
-
-    const datos = body as Record<string, unknown>;
-    const recurso = datos.recurso;
-    const cantidad = datos.cantidad;
-
-    if (!esRecursoValido(recurso)) {
-      return NextResponse.json({ error: "Recurso no válido" }, { status: 400 });
-    }
-
-    if (
-      !esCantidadMercadoValida(cantidad)
-    ) {
-      return NextResponse.json(
-        { error: `La cantidad debe ser un entero entre 1 y ${MAX_CANTIDAD_MERCADO}.` },
-        { status: 400 }
-      );
-    }
+    const { recurso, cantidad } = solicitud;
 
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
