@@ -90,3 +90,104 @@ test("las técnicas sencillas avanzadas no pagan más por una potencia heredada 
   assert.ok(maestro.costeEnergia < monje.costeEnergia);
   assert.equal(maestro.cooldownTurnos, monje.cooldownTurnos);
 });
+
+const personajeRecursos = () => ({
+  id: "personaje-prueba",
+  clase: "Novato",
+  profesionActivaId: "novato",
+  nivel: 1,
+  fuerza: 0,
+  agilidad: 0,
+  vitalidad: 0,
+  inteligencia: 0,
+  destreza: 0,
+  suerte: 0,
+  velocidadMejoras: 0,
+  capacidadCarruajeMejoras: 0,
+  energiaActual: 45,
+  manaActual: 8,
+  progresosClase: [{ claseId: "novato", nivelJob: 1, desbloqueada: true }],
+  habilidades: [],
+  equipoEquipado: null,
+});
+
+test("habilidades v2 cobran y recuperan recursos en una actualización versionada por valores", async () => {
+  const { gastarRecursosHabilidad } = require("../src/server/services/combate/accion-combate.ts");
+  const consultas = [];
+  const escrituras = [];
+  const tx = {
+    personaje: {
+      findUnique: async (args) => {
+        consultas.push(args);
+        return personajeRecursos();
+      },
+      updateMany: async (args) => {
+        escrituras.push(args);
+        return { count: 1 };
+      },
+    },
+  };
+
+  await gastarRecursosHabilidad(
+    tx,
+    "personaje-prueba",
+    { id: "habilidad-prueba", versionReglas: 2, costeEnergia: 9, costeMana: 3, recuperarEnergia: 4 },
+    { energia: 0, mana: 2 }
+  );
+  assert.equal(consultas.length, 1);
+  assert.equal(escrituras.length, 1);
+  assert.deepEqual(escrituras[0].where, {
+    id: "personaje-prueba", energiaActual: 45, manaActual: 8,
+  });
+  assert.equal(escrituras[0].data.energiaActual, 40);
+  assert.equal(escrituras[0].data.manaActual, 7);
+});
+
+test("habilidades v2 rechazan recurso insuficiente y una escritura concurrente", async () => {
+  const { gastarRecursosHabilidad } = require("../src/server/services/combate/accion-combate.ts");
+  let escrituras = 0;
+  const tx = {
+    personaje: {
+      findUnique: async () => personajeRecursos(),
+      updateMany: async () => {
+        escrituras++;
+        return { count: 0 };
+      },
+    },
+  };
+  await assert.rejects(
+    gastarRecursosHabilidad(tx, "personaje-prueba", {
+      id: "habilidad-cara", versionReglas: 2, costeEnergia: 9999, costeMana: 0,
+    }),
+    /RECURSO_HABILIDAD_INSUFICIENTE/
+  );
+  assert.equal(escrituras, 0);
+  await assert.rejects(
+    gastarRecursosHabilidad(tx, "personaje-prueba", {
+      id: "habilidad-barata", versionReglas: 2, costeEnergia: 3, costeMana: 1,
+    }),
+    /RECURSO_COMBATE_MODIFICADO/
+  );
+  assert.equal(escrituras, 1);
+});
+
+test("habilidades antiguas conservan el descuento condicional sin consultar estadísticas", async () => {
+  const { gastarRecursosHabilidad } = require("../src/server/services/combate/accion-combate.ts");
+  const escrituras = [];
+  const tx = {
+    personaje: {
+      findUnique: async () => { throw new Error("No debe consultar estadísticas"); },
+      updateMany: async (args) => {
+        escrituras.push(args);
+        return { count: 1 };
+      },
+    },
+  };
+  await gastarRecursosHabilidad(tx, "personaje-prueba", {
+    id: "ataque-antiguo", costeEnergia: 6, costeMana: 0,
+  });
+  assert.deepEqual(escrituras, [{
+    where: { id: "personaje-prueba", energiaActual: { gte: 6 } },
+    data: { energiaActual: { decrement: 6 } },
+  }]);
+});
