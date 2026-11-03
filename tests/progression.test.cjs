@@ -657,7 +657,7 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
 });
 
 test("Tier 1 mantiene Job 40: Job 20 es intermedio y la maestría llega al máximo", () => {
-  const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
+  const { experienciaParaNivel } = require("../src/lib/progresion/experiencia.ts");
   assert.deepEqual([1, 2, 3, 4].map(experienciaParaNivel), [500, 1778, 3733, 6320]);
   assert.equal(experienciaJobParaNivel(1), 101);
   assert.equal(experienciaJobParaNivel(10), 134);
@@ -992,7 +992,7 @@ test("combate: la precisión baja puede provocar un fallo sin pifia natural", ()
 
 
 test("XP Base: los umbrales siguen la curva polinómica y la XP crece por nivel de enemigo", () => {
-  const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
+  const { experienciaParaNivel } = require("../src/lib/progresion/experiencia.ts");
   let nivel = 1;
   let experiencia = 0;
   let victoriasAcumuladas = 0;

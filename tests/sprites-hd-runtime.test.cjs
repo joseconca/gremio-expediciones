@@ -3,7 +3,7 @@ const test=require('node:test'); const assert=require('node:assert/strict');
 const fs=require('node:fs'); const path=require('node:path'); const crypto=require('node:crypto');
 const hd=require('../src/lib/sprites/heroes.ts');
 const {dibujarHeroeHd}=require('../src/lib/sprites/dibujar-heroe.ts');
-const config=require('../src/lib/configuracionJuego.ts');
+
 const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p));
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -28,11 +28,11 @@ test('promoted body bytes and packed equipment metadata match the reviewed sourc
 });
 test('only completed classes select HD; higher tiers and legacy avatars keep their fallback',()=>{
   for(const c of ['novato','mago','espadachin','acolito','arquero']) {
-    assert.ok(config.obtenerRutaSpritesheetHeroe(c,'chica',c).includes(`/hd-v1/heroes/${c}/f-sheet.png`));
-    assert.ok(config.obtenerSpriteHeroe(c,'chico',c).endsWith('/m-portrait.png'));
+    assert.ok(hd.obtenerRutaSpritesheetHeroe(c,'chica',c).includes(`/hd-v1/heroes/${c}/f-sheet.png`));
+    assert.ok(hd.obtenerSpriteHeroe(c,'chico',c).endsWith('/m-portrait.png'));
   }
-  assert.ok(!config.obtenerRutaSpritesheetHeroe('caballero','chico','caballero').includes('/hd-v1/'));
-  assert.ok(!config.obtenerRutaSpritesheetHeroe('Guerrero','chico','novato').includes('/hd-v1/'));
+  assert.ok(!hd.obtenerRutaSpritesheetHeroe('caballero','chico','caballero').includes('/hd-v1/'));
+  assert.ok(!hd.obtenerRutaSpritesheetHeroe('Guerrero','chico','novato').includes('/hd-v1/'));
 });
 test('actual equipment selects every weapon attack; misses, damage and potions take precedence',()=>{
   const expected={sword:'attack_sword',axe:'attack_axe',spear:'attack_spear',dagger:'attack_dagger',bow:'attack_bow',staff:'attack_staff',mace:'attack_mace',book:'attack_book',gloves:'attack_gloves'};
@@ -143,7 +143,7 @@ test('Berserker usa atlas HD masculino sin cargar recursos HD femeninos o retrat
   assert.equal(hd.esClaseHeroeHd('berserker','m'), true);
   assert.equal(hd.esClaseHeroeHd('berserker','f'), false);
   assert.equal(hd.esRetratoHeroeHd('berserker','m'), false);
-  assert.ok(config.obtenerRutaSpritesheetHeroe(null,'chico','berserker').endsWith('/hd-v1/heroes/berserker/m-sheet.png'));
-  assert.ok(!config.obtenerRutaSpritesheetHeroe(null,'chica','berserker').includes('/hd-v1/heroes/berserker/'));
-  assert.ok(!config.obtenerSpriteHeroe(null,'chico','berserker').includes('/hd-v1/heroes/berserker/'));
+  assert.ok(hd.obtenerRutaSpritesheetHeroe(null,'chico','berserker').endsWith('/hd-v1/heroes/berserker/m-sheet.png'));
+  assert.ok(!hd.obtenerRutaSpritesheetHeroe(null,'chica','berserker').includes('/hd-v1/heroes/berserker/'));
+  assert.ok(!hd.obtenerSpriteHeroe(null,'chico','berserker').includes('/hd-v1/heroes/berserker/'));
 });

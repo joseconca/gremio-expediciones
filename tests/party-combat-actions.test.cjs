@@ -150,7 +150,7 @@ function loadService(prisma, testOptions = {}) {
         botas: null, guantes: null, accesorio: null, anillo1: null, anillo2: null,
       }),
     },
-    "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
+    "@/lib/progresion/experiencia": { experienciaParaNivel: () => 500 },
     "@/lib/expediciones/encuentros/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
       calcularExperienciaBaseGanada: (_dificultad, nivel) => nivel * 10,

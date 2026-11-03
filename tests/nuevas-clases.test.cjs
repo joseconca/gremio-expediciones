@@ -11,7 +11,7 @@ const { aplicarBarreraAccion, calcularAtaqueModificado, calcularPrecisionModific
 const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
 const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
-const { obtenerSpriteHeroe, obtenerRutaSpritesheetHeroe, obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } = require("../src/lib/configuracionJuego.ts");
+const { obtenerSpriteHeroe, obtenerRutaSpritesheetHeroe, obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } = require("../src/lib/sprites/heroes.ts");
 
 const progreso = (claseId, nivelJob) => ({ claseId, nivelJob, desbloqueada: true });
 const combate = { jugadorAtaque: 100, jugadorAtaqueMagico: 5, jugadorDefensa: 50, jugadorDefensaMagica: 30, jugadorNivel: 10, jugadorHp: 50, jugadorHpMaximo: 100, jugadorProbCritico: 0, jugadorDanoCritico: 1.5, enemigoDefensa: 999, enemigoDefensaMagica: 0, enemigoNombre: "Objetivo", jugadorPrecision: 100, enemigoEvasion: 0 };

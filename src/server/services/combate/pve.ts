@@ -26,7 +26,7 @@ import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion/presentacion-combate";
 import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
-import { experienciaParaNivel } from "@/lib/configuracionJuego";
+import { experienciaParaNivel } from "@/lib/progresion/experiencia";
 import {
   aplicarMultiplicadorRecompensa,
   calcularExperienciaBaseGanada,

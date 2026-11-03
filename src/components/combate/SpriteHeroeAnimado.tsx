@@ -4,8 +4,9 @@ import {
   FILAS_ANIMACION_SPRITESHEET_HEROE,
   obtenerIdClaseParaSprite,
   obtenerIdVisualClase,
+  esClaseHeroeHd,
+  type AccionHeroeHd,
 } from "@/lib/sprites/heroes";
-import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites/heroes";
 import SpriteHeroeHd from "./SpriteHeroeHd";
 import { estiloSombraCombate } from "@/components/combate/estilo-sombra-combate";
 

@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
-import { experienciaParaNivel } from "@/lib/progresion/experiencia";
+import { experienciaParaNivel, experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 import HabilidadesFichaPersonaje from "@/components/personaje/HabilidadesFichaPersonaje";
-import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
+
 import EquipoFichaPersonaje from "@/components/personaje/EquipoFichaPersonaje";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas/estadisticas-personaje";
