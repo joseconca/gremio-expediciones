@@ -5,7 +5,51 @@ const {
   obtenerObjetivoEsperadoAccion,
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
+  validarSolicitudAccionCombate,
 } = require("../src/lib/expediciones/contrato-accion-combate.ts");
+
+test("el contrato de solicitud rechaza cuerpos y acciones inválidos con sus mensajes originales", () => {
+  for (const cuerpo of [null, undefined, [], "texto", 5]) {
+    assert.deepEqual(validarSolicitudAccionCombate(cuerpo), {
+      valido: false, error: "El cuerpo de la petición no es válido.",
+    });
+  }
+  assert.deepEqual(validarSolicitudAccionCombate({ accion: "correr" }), {
+    valido: false, error: "Acción de combate no válida.",
+  });
+  assert.deepEqual(validarSolicitudAccionCombate({ accion: "usar_objeto", objetoInventarioId: "  " }), {
+    valido: false, error: "Debes seleccionar un objeto del inventario.",
+  });
+  assert.deepEqual(validarSolicitudAccionCombate({ accion: "usar_habilidad" }), {
+    valido: false, error: "Debes indicar una habilidad.",
+  });
+});
+
+test("la solicitud conserva los identificadores y la referencia original para el objetivo", () => {
+  const body = {
+    accion: "usar_habilidad", habilidadId: "corte",
+    objetivo: "oponente", enemigoObjetivoId: "enemigo-a",
+  };
+  const resultado = validarSolicitudAccionCombate(body);
+  assert.equal(resultado.valido, true);
+  assert.strictEqual(resultado.body, body);
+  assert.equal(resultado.accion, "usar_habilidad");
+  assert.equal(resultado.habilidadId, "corte");
+  assert.equal(resultado.objetoInventarioId, null);
+  assert.deepEqual(validarSolicitudAccionCombate({
+    accion: "usar_objeto", objetoInventarioId: "inventario-1",
+  }), {
+    valido: true,
+    body: { accion: "usar_objeto", objetoInventarioId: "inventario-1" },
+    accion: "usar_objeto",
+    habilidadId: null,
+    objetoInventarioId: "inventario-1",
+  });
+  const escapar = validarSolicitudAccionCombate({ accion: "escapar" });
+  assert.equal(escapar.valido, true);
+  assert.equal(escapar.habilidadId, null);
+  assert.equal(escapar.objetoInventarioId, null);
+});
 
 test("el contexto táctico compartido conserva formación, recursos y pasivas legales", () => {
   const { crearContextoTecnicaTactica } = require("../src/server/services/combate/contexto-tactico.ts");
