@@ -379,6 +379,20 @@ export async function llegarExpedicion() {
     // ============================================================
 
     const combate = await prisma.$transaction(async (tx) => {
+      // La fase se reclama dentro de la misma transacción que crea el combate.
+      // Una segunda petición no puede crear otro encuentro sobre datos obsoletos.
+      const transicion = await tx.expedicionActiva.updateMany({
+        where: {
+          id: expedicion.id,
+          fase: "en_viaje",
+          fechaLlegada: { lte: ahora },
+        },
+        data: { fase: "combatiendo" },
+      });
+      if (transicion.count !== 1) {
+        throw new Error("EXPEDICION_FASE_MODIFICADA");
+      }
+
       const nuevoCombate = await tx.combateActivo.create({
         data: {
           expedicionId: expedicion.id,
@@ -431,16 +445,6 @@ export async function llegarExpedicion() {
           efectos: [],
 
           log: logInicial,
-        },
-      });
-
-      await tx.expedicionActiva.update({
-        where: {
-          id: expedicion.id,
-        },
-
-        data: {
-          fase: "combatiendo",
         },
       });
 
@@ -510,6 +514,12 @@ export async function llegarExpedicion() {
       usuario: datosUsuario,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "EXPEDICION_FASE_MODIFICADA") {
+      return NextResponse.json(
+        { error: "La expedición ha cambiado de fase mientras se preparaba el combate." },
+        { status: 409 }
+      );
+    }
     console.error("Error al iniciar el combate de la expedición:", error);
 
     return NextResponse.json(
