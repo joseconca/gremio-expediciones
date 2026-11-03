@@ -11,11 +11,40 @@ const { establecerCooldownHabilidad, obtenerCooldowns, reducirCooldowns } = requ
 const { calcularPesosCuracion } = require('../src/lib/expediciones/presupuesto-curacion.ts');
 const { ESCUELAS, TECNICAS_AVANZADAS } = require("../src/lib/catalogos/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidades.ts");
+const { describirReglaPasiva, describirDisenoActiva } = require("../src/lib/progresion/catalogo-redisenado.ts");
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/motor-tactico.ts');
 const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });
+
+test("la presentación v2 conserva las frecuencias y el texto de las preparaciones", () => {
+  assert.match(
+    describirReglaPasiva({ condicion: "vida_baja", ventaja: "guardia" }),
+    /Una vez por combate\. Las ventajas de la misma familia no se acumulan\./,
+  );
+  assert.match(
+    describirReglaPasiva({ condicion: "ataque", ventaja: "precision" }),
+    /Una vez por ciclo\. Las ventajas de la misma familia no se acumulan\./,
+  );
+
+  const exposicion = describirDisenoActiva({
+    efecto: "dano", potencia: 1.2,
+    operaciones: [{ tipo: "estado", familia: "exposicion", valor: 0.05, duracion: 2 }],
+  });
+  assert.equal(
+    exposicion,
+    "Ataque con potencia ×1.2. Expone un 5 % de defensa para un impacto, durante 2 turnos.",
+  );
+  const consumo = describirDisenoActiva({
+    efecto: "estado",
+    operaciones: [{ tipo: "consumir_preparacion", clave: "guardia_temporal", efecto: "guardia", factor: 0.04 }],
+  });
+  assert.equal(
+    consumo,
+    "Consume guardia temporal para proteger al lanzador un 4 % de su vida; sin ella conserva su efecto básico.",
+  );
+});
 
 test("el generador conserva cinco habilidades por escuela, su orden y costes", () => {
   assert.equal(HABILIDADES_NUEVAS.length, ESCUELAS.length * 5);
