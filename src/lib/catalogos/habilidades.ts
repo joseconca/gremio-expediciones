@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad } from "../tiposJuego";
-import type { ElementoTactico } from "../expediciones/motor-tactico";
+import type { ElementoTactico } from "../expediciones/combate/tacticas/tipos-tacticos";
 import type { CondicionPasiva, VentajaPasiva } from "../progresion/habilidades/diseno-habilidades";
 import { habilidad } from "../progresion/habilidades/crear-habilidad";
 import type { DisenoActiva, DisenoClase, OperacionHabilidad, ReglaPasiva } from "../progresion/habilidades/diseno-habilidades";

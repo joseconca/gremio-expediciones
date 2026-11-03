@@ -1,6 +1,6 @@
 import { avanzarSecuenciaTurnosVelocidad, crearSecuenciaTurnosVelocidad, normalizarSecuenciaTurnosVelocidad, type ActorTurnoVelocidad, type PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import type { ParticipanteTurnoParty } from "./combate-reglas";
-import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import type { EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 /** Iniciativa compartida y compatibilidad con colas antiguas, sin acceso a Prisma. */
 export type ParticipanteConVelocidadParty = {

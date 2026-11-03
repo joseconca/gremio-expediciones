@@ -42,7 +42,7 @@ export function calcularDanoMitigado(danoBase: number, defensa: number): number 
 }
 
 export function resolverAtaqueJugador(combate: {
-  efectosEnemigo?: import("../tiposJuego").EstadoEfectoHabilidad[];
+  efectosEnemigo?: import("../../tiposJuego").EstadoEfectoHabilidad[];
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
@@ -105,7 +105,7 @@ export function resolverAtaqueJugador(combate: {
 }
 
 export function resolverAtaqueEnemigo(combate: {
-  efectosJugador?: import("../tiposJuego").EstadoEfectoHabilidad[];
+  efectosJugador?: import("../../tiposJuego").EstadoEfectoHabilidad[];
   enemigoAtaque: number;
   enemigoAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
