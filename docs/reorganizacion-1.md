@@ -154,6 +154,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 | `src/components/base/party/resultado-informe.ts` | Adaptación pura del estado del servidor a informe visible; conserva recompensas y log al reconectar | `components/base/PanelParty.tsx` |
 | `src/components/base/party/cliente.ts` | Único cliente HTTP de consulta y acciones de party; serialización de objetivos y cadencia del sondeo | `components/base/PanelParty.tsx` |
 | `src/components/base/party/automatismos.ts` | Decide confirmaciones de traslados, etapas de expedición y la elegibilidad del turno enemigo sin efectuar peticiones | `components/base/PanelParty.tsx` |
+| `src/components/base/party/useAutomatismosParty.ts` | Cinco efectos de actualización automática, bloqueo de peticiones repetidas, reintento tras desfase de reloj y pausa visual de turnos | `components/base/PanelParty.tsx` |
 
 Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-formation.test.cjs`; el mock de `party-combat-actions.test.cjs` referencia el módulo real de recompensas.
 

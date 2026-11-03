@@ -10,7 +10,7 @@ interface AutomatismosPartyProps {
   estado: EstadoParty | null;
   ahora: number;
   actualizarEstado: (forzar?: boolean) => Promise<void>;
-  cargarJugador: () => Promise<unknown> | unknown;
+  cargarJugador: () => Promise<void>;
   setError: Dispatch<SetStateAction<string | null>>;
   guardarResultadoCombate: (
     expedicionPartyId: string,
@@ -67,7 +67,7 @@ export function useAutomatismosParty({
         }
       })();
     }
-  }, [estado?.trasladosPropios, ahora, actualizarEstado, cargarJugador]);
+  }, [estado?.trasladosPropios, ahora, actualizarEstado, cargarJugador, setError]);
 
   useEffect(() => {
     const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null, ahora);
@@ -97,7 +97,7 @@ export function useAutomatismosParty({
         procesandoAutomatico.current.delete(clave);
       }
     })();
-  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
+  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador, setError]);
 
   useEffect(() => {
     const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null);
@@ -127,7 +127,7 @@ export function useAutomatismosParty({
         procesandoAutomatico.current.delete(clave);
       }
     })();
-  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
+  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador, setError]);
 
   useEffect(() => {
     const paso = obtenerPasoExpedicionParty(estado?.expedicionActiva ?? null, ahora);
@@ -156,7 +156,7 @@ export function useAutomatismosParty({
         procesandoAutomatico.current.delete(clave);
       }
     })();
-  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
+  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador, setError]);
 
   useEffect(() => {
     const turnoPendiente = obtenerTurnoEnemigoPendiente(estado?.expedicionActiva ?? null);
@@ -188,5 +188,5 @@ export function useAutomatismosParty({
         procesandoAutomatico.current.delete(clave);
       }
     })();
-  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
+  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador, guardarResultadoCombate, setError]);
 }

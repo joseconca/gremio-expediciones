@@ -83,7 +83,7 @@ export default function PanelParty() {
     return solicitud;
   }, []);
 
-  const guardarResultadoCombate = (
+  const guardarResultadoCombate = useCallback((
     expedicionPartyId: string,
     datos: { fase?: string; recompensas?: ResultadoRecompensasParty | null },
   ) => {
@@ -93,7 +93,7 @@ export default function PanelParty() {
       fase: datos.fase,
       recompensas: datos.fase === "victoria" || datos.fase === "derrota" ? (datos.recompensas ?? null) : null,
     });
-  };
+  }, []);
 
   useEffect(() => {
     // PanelMisiones puede montarse después de cargar el personaje. Espera al
