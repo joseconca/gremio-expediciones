@@ -715,12 +715,11 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         "raices-vigorizantes": { id, nombre: "Guiso de raíces vigorizantes", coste: 16, nivelRequerido: 2 },
       })[id] ?? null,
     },
-    "@/lib/configuracionJuego": {
+    "@/lib/base/mejoras": {
       CONFIGURACION_ATRIBUTOS: {
         velocidad: { campo: "velocidadMejoras", edificio: "mercado", limitePorNivel: 5 },
       },
       calcularCosteAtributo: () => 10,
-      calcularEstadisticasBase: () => ({ hpMaximo: 40 }),
     },
     "@/lib/tiposJuego": { CONFIGURACION_EDIFICIOS: configEdificios },
     "@/lib/progresion/estadisticas-personaje": {

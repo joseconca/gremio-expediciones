@@ -6,9 +6,10 @@ import { prisma } from "@/lib/prisma";
 import {
   CONFIGURACION_ATRIBUTOS,
   calcularCosteAtributo,
-} from "@/lib/configuracionJuego";
+  type IdAtributo,
+} from "@/lib/base/mejoras";
 import { prepararMejoraEdificio } from "@/lib/base/edificios";
-import type { IdAtributo } from "@/lib/configuracionJuego";
+
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
