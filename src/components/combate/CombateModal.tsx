@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties }
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
-import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites/enemigos";
+import { ENEMIGOS_HD, propsSpriteEnemigoHd } from "@/lib/sprites/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
@@ -28,7 +28,7 @@ import PanelHabilidadesCombate from "./PanelHabilidadesCombate";
 import ComandosCombate from "./ComandosCombate";
 import styles from "./combate-rpg.module.css";
 import type { CombateModalProps, HabilidadCombate, HabilidadEquipable } from "./tipos";
-import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/sprites/escala-combate";
+import { alturaCombatiente, calcularDisposicionEnemigoEnEscena } from "@/lib/sprites/escala-combate";
 import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
 
 function esperar(milisegundos: number): Promise<void> {
@@ -940,33 +940,12 @@ export default function CombateModal({
                 : enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id || actoresAnimando.includes(enemigo.id);
               const impactado = actorImpactado === enemigo.id || objetivosMultiplesImpactados.includes(enemigo.id);
-              const cantidadEnemigos = cantidadEnemigosVisibles;
-              const escalaContenedor = cantidadEnemigos <= 1
-                ? "w-[68%] max-w-[220px]"
-                : cantidadEnemigos === 2
-                  ? "w-[48%] max-w-[164px]"
-                  : cantidadEnemigos === 3
-                    ? "w-[36%] max-w-[120px]"
-                    : "w-[30%] max-w-[98px]";
-              const escalaSprite = "w-full";
-              const jefeUnico = cantidadEnemigos === 1 && ENEMIGOS_HD[enemigo.enemigoId ?? ""]?.boss;
-              const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
-                ? jefeUnico ? 65 : 50
-                : cantidadEnemigos === 2
-                  ? (indiceEnemigo === 0 ? 28 : 72)
-                  : (enemigo.posicion === "mele" ? 24 : enemigo.posicion === "centro" ? 50 : 76) + (enemigo.columna - 1) * 12));
-              const minimoY = Math.min(48, (tamanoHeroe / 2 + 86) / Math.max(1, escena.alto) * 100);
-              const maximoY = Math.max(minimoY, 100 - (tamanoHeroe / 2 + 18) / Math.max(1, escena.alto) * 100);
-              const y = cantidadEnemigos <= 1 ? Math.max(55, minimoY)
-                : enemigo.posicion === "mele" ? minimoY : enemigo.posicion === "retaguardia" ? maximoY : (minimoY + maximoY) / 2;
               const spriteHd = ENEMIGOS_HD[enemigo.enemigoId ?? ""];
-              const anchoDisponible = escena.ancho;
-              const centroX = (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100;
-              const posicionAjustada = encajarEnemigo(spriteHd, anchoDisponible, escena.alto, centroX, y,
-                limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss), spriteHd?.height, escena.ancho < 768 ? 1.6 : 2.4), 16);
-              const xAjustada = (escena.ancho * posicionAjustada.x / 100 - (escena.ancho - anchoEnemigos)) / Math.max(1, anchoEnemigos) * 100;
-              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto,
-                posicionAjustada.x, posicionAjustada.y, posicionAjustada.escala, 16);
+              const { escalaContenedor, posicionAjustada, xAjustada, unidadEnemigo } =
+                calcularDisposicionEnemigoEnEscena(
+                  enemigo, indiceEnemigo, cantidadEnemigosVisibles, escena, anchoEnemigos, tamanoHeroe, spriteHd
+                );
+              const escalaSprite = "w-full";
               const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
               const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
                 pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };

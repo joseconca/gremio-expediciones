@@ -1,7 +1,7 @@
 require('./load-typescript.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } = require('../src/lib/sprites/escala-combate.ts');
+const { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo, calcularDisposicionEnemigoEnEscena } = require('../src/lib/sprites/escala-combate.ts');
 const { ENEMIGOS_HD, escalaEnemigoEnEscena } = require('../src/lib/sprites/enemigos.ts');
 const { distribuirFormacionParty } = require('../src/lib/expediciones/formacion-party.ts');
 
@@ -66,4 +66,31 @@ test('el líder aparece debajo de sus compañeros si comparten posición', () =>
     assert.deepEqual(formacion.map(x => x.participante.id), ['aliado', 'lider']);
     assert.ok(formacion[0].y < formacion[1].y);
   }
+});
+
+test('la distribución visual mantiene posiciones y tamaños de grupos, solo y jefes', () => {
+  const escena = { ancho: 1024, alto: 520 };
+  const altura = alturaCombatiente(escena.ancho, escena.alto, false);
+  const normal = ENEMIGOS_HD.bandido_camino;
+  const jefe = ENEMIGOS_HD.dragon_anciano;
+  assert.ok(jefe.boss);
+
+  const datos = { posicion: 'centro', columna: 1 };
+  const antes = { ...datos };
+  const solo = calcularDisposicionEnemigoEnEscena(datos, 0, 1, escena, 460, altura, normal);
+  const soloJefe = calcularDisposicionEnemigoEnEscena(datos, 0, 1, escena, 460, altura, jefe);
+  assert.equal(solo.escalaContenedor, 'w-[68%] max-w-[220px]');
+  assert.ok(soloJefe.xAjustada > solo.xAjustada, 'El jefe único se sitúa más a la derecha');
+  assert.ok(solo.unidadEnemigo > 0 && soloJefe.unidadEnemigo > 0);
+  assert.deepEqual(datos, antes, 'No debe modificar al enemigo de entrada');
+
+  const dos = [0, 1].map((indice) =>
+    calcularDisposicionEnemigoEnEscena(datos, indice, 2, escena, 460, altura, normal));
+  assert.ok(dos[0].xAjustada < dos[1].xAjustada);
+  assert.ok(dos.every(x => x.escalaContenedor === 'w-[48%] max-w-[164px]'));
+  const tres = calcularDisposicionEnemigoEnEscena({ posicion: 'retaguardia', columna: 2 }, 2, 3,
+    { ancho: 344, alto: 420 }, 160, alturaCombatiente(344, 420, true, 3), normal);
+  assert.equal(tres.escalaContenedor, 'w-[36%] max-w-[120px]');
+  assert.ok(Number.isFinite(tres.posicionAjustada.y));
+  assert.ok(Number.isFinite(tres.xAjustada));
 });
