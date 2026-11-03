@@ -83,7 +83,7 @@ test("el turno enemigo espera antes de atacar tanto en solitario como en party",
   const combate = read("src/components/combate/CombateModal.tsx");
   const party = read("src/components/base/party/useAutomatismosParty.ts");
   const panelParty = read("src/components/base/PanelParty.tsx");
-  assert.match(panelParty, /useAutomatismosParty\\(\\{/);
+  assert.ok(panelParty.includes("useAutomatismosParty({"), "el panel debe invocar el hook de party");
   const esperaMain = /Math\.random\(\) \* 1200 \+ 300/;
   assert.match(combate, esperaMain, "PvE debe conservar la pausa de main");
   assert.match(party, esperaMain, "party también debe pausar antes de resolver el turno enemigo");
