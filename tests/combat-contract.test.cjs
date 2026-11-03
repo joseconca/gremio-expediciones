@@ -7,6 +7,54 @@ const {
   validarTurnoAccionCombate,
 } = require("../src/lib/expediciones/contrato-accion-combate.ts");
 
+test("el contexto táctico compartido conserva formación, recursos y pasivas legales", () => {
+  const { crearContextoTecnicaTactica } = require("../src/server/services/combate/contexto-tactico.ts");
+  const personaje = {
+    clase: "Novato",
+    profesionActivaId: "novato",
+    nivel: 1,
+    nivelJob: 1,
+    velocidadMejoras: 0,
+    capacidadCarruajeMejoras: 0,
+    energiaActual: 999,
+    manaActual: 999,
+    equipoEquipado: null,
+    habilidades: [
+      { habilidadId: "aguante_aprendiz", nivel: 2, slot: "pasiva_1" },
+      { habilidadId: "reserva_arcana", nivel: 1, slot: "pasiva_2" },
+      { habilidadId: "aguante_aprendiz", nivel: 1, slot: null },
+    ],
+  };
+  const actor = {
+    id: "jugador", hp: 42, hpMaximo: 100,
+    ataque: 15, ataqueMagico: 5, defensa: 8, defensaMagica: 3,
+    posicion: "mele", efectos: [],
+  };
+  const objetivo = {
+    ...actor, id: "enemigo", hp: 27, posicion: "retaguardia", efectos: [],
+  };
+  const resultado = crearContextoTecnicaTactica(
+    personaje, 4, actor, objetivo, false,
+    { numeroObjetivos: 2, principal: false, pesoCuracion: 0.25 }
+  );
+  assert.equal(resultado.actorId, "jugador");
+  assert.equal(resultado.objetivoId, "enemigo");
+  assert.equal(resultado.ciclo, 4);
+  assert.equal(resultado.filaActor, 0);
+  assert.equal(resultado.filaObjetivo, 2);
+  assert.equal(resultado.ataque, 15);
+  assert.equal(resultado.objetivoHp, 27);
+  assert.strictEqual(resultado.efectosActor, actor.efectos);
+  assert.strictEqual(resultado.efectosObjetivo, objetivo.efectos);
+  assert.ok(resultado.energia <= resultado.energiaMaxima);
+  assert.ok(resultado.mana <= resultado.manaMaximo);
+  assert.deepEqual(resultado.pasivas.map((pasiva) => pasiva.id), ["aguante_aprendiz"]);
+  assert.equal(resultado.numeroObjetivos, 2);
+  assert.equal(resultado.principal, false);
+  assert.equal(resultado.pesoCuracion, 0.25);
+  assert.equal(personaje.habilidades.length, 3, "No alterar habilidades equipadas");
+});
+
 test("contrato de objetivo: ataques y habilidades ofensivas apuntan al oponente", () => {
   assert.equal(obtenerObjetivoEsperadoAccion("atacar"), "oponente");
   assert.equal(obtenerObjetivoEsperadoAccion("usar_habilidad", "dano"), "oponente");
