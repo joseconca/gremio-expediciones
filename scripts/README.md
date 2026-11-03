@@ -5,6 +5,7 @@
 Desde ahí se consultan, registran, validan y publican recursos de héroes, enemigos y equipo. `scripts/sprites.py` y los demás `.py` son tareas especializadas utilizadas por la herramienta, las pruebas o GitHub Actions. No son catálogos de juego; tampoco deben renombrarse o moverse sin actualizar primero los workflows y tests que los invocan.
 
 - `python scripts/recursos.py resumen` — muestra en una orden clases HD publicadas, variantes pendientes, enemigos y equipo, consultando los archivos del runtime.
+- `python scripts/recursos.py inventario` — cuenta archivos y bytes de fuentes HD, enemigos y originales, distinguiendo fotogramas, atlas intermedios y previsualizaciones; **no borra nada ni declara automáticamente seguro un archivo**.
 - `python scripts/recursos.py heroe estado --clase berserker --sexo m`
 - `python scripts/recursos.py enemigo estado --id slime_acido`
 - `python scripts/recursos.py equipo estado --id espada_hierro`

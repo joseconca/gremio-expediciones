@@ -191,8 +191,62 @@ def resumen_publicacion() -> dict:
     }
 
 
+
+def inventario_fuentes() -> dict:
+    """Mide las fuentes artísticas sin modificar ni clasificar archivos como borrables."""
+    base = ROOT / "assets/spritesheets"
+    grupos = {
+        "heroesEquipoHd": "hd-128x256",
+        "enemigosHd": "enemies-hd",
+        "originalesHistoricos": "originales",
+    }
+    categorias = {}
+    total = {"archivos": 0, "bytes": 0, "previsualizaciones": 0,
+             "bytesPrevisualizaciones": 0}
+    for nombre, carpeta in grupos.items():
+        ruta = base / carpeta
+        cuenta = {"archivos": 0, "bytes": 0, "fotogramas": 0,
+                  "atlasIntermedios": 0, "previsualizaciones": 0,
+                  "bytesPrevisualizaciones": 0}
+        if ruta.is_dir():
+            for archivo in ruta.rglob("*"):
+                if not archivo.is_file():
+                    continue
+                tamano = archivo.stat().st_size
+                partes = archivo.relative_to(ruta).parts
+                es_preview = "previews" in partes[:-1] or archivo.name.startswith("preview.")
+                cuenta["archivos"] += 1
+                cuenta["bytes"] += tamano
+                if "frames" in partes[:-1]:
+                    cuenta["fotogramas"] += 1
+                if archivo.name.endswith("-sheet.png"):
+                    cuenta["atlasIntermedios"] += 1
+                if es_preview:
+                    cuenta["previsualizaciones"] += 1
+                    cuenta["bytesPrevisualizaciones"] += tamano
+        categorias[nombre] = cuenta
+        for clave in total:
+            total[clave] += cuenta[clave]
+    return {
+        "directorio": "assets/spritesheets/",
+        "categorias": categorias,
+        "total": total,
+        "advertencia": ("Inventario de solo lectura. Las previsualizaciones son "
+                        "derivados potenciales, pero requieren comprobar sus "
+                        "consumidores y su regeneración antes de eliminarlas."),
+    }
+
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
+    if argv == ["inventario"]:
+        try:
+            print(json.dumps(inventario_fuentes(), ensure_ascii=False, indent=2))
+            return 0
+        except OSError as error:
+            print("ERROR: " + str(error), file=sys.stderr)
+            return 1
     if argv == ["resumen"]:
         try:
             print(json.dumps(resumen_publicacion(), ensure_ascii=False, indent=2))

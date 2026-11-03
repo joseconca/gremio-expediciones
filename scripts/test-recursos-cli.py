@@ -118,6 +118,33 @@ class ResourceCliTests(unittest.TestCase):
             self.assertEqual(cli.main(["resumen"]), 0)
         self.assertEqual(json.loads(salida.getvalue()), resultado)
 
+    def test_inventario_distingue_fuentes_y_previsualizaciones_sin_borrar(self):
+        rutas = {
+            "hd-128x256/novato/m/frames/idle/01.png": b"abc",
+            "hd-128x256/novato/m/preview.png": b"1234",
+            "hd-128x256/previews/novato-overview.gif": b"12345",
+            "enemies-hd/slime_acido/slime_acido-sheet.png": b"123456",
+            "originales/tier2/manifest.json": b"1234567",
+        }
+        for relativa, contenido in rutas.items():
+            destino = self.root / "assets/spritesheets" / relativa
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            destino.write_bytes(contenido)
+        resultado = cli.inventario_fuentes()
+        self.assertEqual(resultado["total"], {
+            "archivos": 5, "bytes": 25, "previsualizaciones": 2,
+            "bytesPrevisualizaciones": 9,
+        })
+        self.assertEqual(resultado["categorias"]["heroesEquipoHd"]["fotogramas"], 1)
+        self.assertEqual(resultado["categorias"]["enemigosHd"]["atlasIntermedios"], 1)
+        self.assertEqual(resultado["categorias"]["originalesHistoricos"]["archivos"], 1)
+        salida = io.StringIO()
+        with contextlib.redirect_stdout(salida):
+            self.assertEqual(cli.main(["inventario"]), 0)
+        self.assertEqual(json.loads(salida.getvalue()), resultado)
+        for relativa in rutas:
+            self.assertTrue((self.root / "assets/spritesheets" / relativa).is_file())
+
     def test_identificador_bloquea_rutas(self):
         for invalid in ("../x", "a/b", "Elfo", "123", ""):
             with self.assertRaises(ValueError, msg=invalid):
