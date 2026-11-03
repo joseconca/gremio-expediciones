@@ -7,7 +7,7 @@ import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { obtenerResultadoInformeParty } from "./party/resultado-informe";
 
 import type { EstadoParty, ResultadoRecompensasParty, ResultadoCombatePanelParty } from "./party/tipos";
 import { crearModoCombateParty, crearVistaCombate } from "./party/vista-combate";
@@ -92,66 +92,8 @@ export default function PanelParty() {
 
       const estadoNuevo = datos as EstadoParty;
       setEstado(estadoNuevo);
-      const expedicion = estadoNuevo.expedicionActiva;
-      const combate = expedicion?.combate;
-      if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
-        const logCombate = Array.isArray(combate.log)
-          ? combate.log.filter((linea): linea is string => typeof linea === "string")
-          : [];
-        const enemigosDerrotados = leerEnemigosEnCombate(combate.enemigos)
-          .filter((enemigo) => enemigo.hp <= 0)
-          .map((enemigo) => enemigo.nombre);
-        if (enemigosDerrotados.length === 0 && combate.fase === "victoria") enemigosDerrotados.push(combate.enemigoNombre);
-        const duracionSegundos = Math.max(0, Math.round((new Date(expedicion.fechaLlegada).getTime() - new Date(expedicion.fechaSalida).getTime()) * 2 / 1000));
-        setUltimoResultadoCombate((actual) => {
-          const resultadoNuevo = {
-            expedicionPartyId: expedicion.id,
-            fase: combate.fase as "victoria" | "derrota" | "huida",
-            recompensas: combate.fase === "victoria" || combate.fase === "derrota"
-              ? combate.recompensasResultado ?? null
-              : null,
-            tipo: expedicion.tipo,
-            nombre: expedicion.nombre,
-            dificultad: expedicion.dificultad,
-            modoDificultad: expedicion.modoDificultad,
-            duracionSegundos,
-            enemigosDerrotados,
-            logCombate,
-          };
-          if (actual?.expedicionPartyId !== expedicion.id) return resultadoNuevo;
-          return {
-            ...actual,
-            ...resultadoNuevo,
-            // El resultado persistido puede llegar por sondeo después de la acción terminal.
-            recompensas: actual.recompensas ?? resultadoNuevo.recompensas,
-            logCombate: actual.logCombate?.length ? actual.logCombate : logCombate,
-          };
-        });
-      } else if (expedicion) {
-        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
-      } else if (estadoNuevo.ultimoResultadoExpedicion && estadoNuevo.party) {
-        // El informe compartido solo se muestra mientras el usuario pertenece a una compañía.
-        const resultadoPersistido = estadoNuevo.ultimoResultadoExpedicion;
-        setUltimoResultadoCombate((actual) => {
-          const mismoResultado = actual?.expedicionPartyId === resultadoPersistido.expedicionPartyId;
-          return {
-            expedicionPartyId: resultadoPersistido.expedicionPartyId,
-            fase: resultadoPersistido.fase,
-            recompensas: (mismoResultado ? actual.recompensas : null) ?? resultadoPersistido.recompensas,
-            tipo: resultadoPersistido.tipo,
-            nombre: resultadoPersistido.nombre,
-            dificultad: resultadoPersistido.dificultad,
-            modoDificultad: resultadoPersistido.modoDificultad,
-            duracionSegundos: resultadoPersistido.duracionSegundos,
-            enemigosDerrotados: resultadoPersistido.enemigosDerrotados ?? (mismoResultado ? actual.enemigosDerrotados : []),
-            logCombate: (mismoResultado ? actual.logCombate : null)?.length
-              ? actual!.logCombate
-              : resultadoPersistido.logCombate ?? [],
-          };
-        });
-      } else {
-        setUltimoResultadoCombate(null);
-      }
+      // El estado de la conexión y la composición del informe son responsabilidades distintas.
+      setUltimoResultadoCombate((actual) => obtenerResultadoInformeParty(estadoNuevo, actual));
       setError(null);
     })();
 
