@@ -1,4 +1,4 @@
-import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "../tiposJuego";
+import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "../../tiposJuego";
 
 const TIPOS_VALIDOS: readonly TipoEfectoTemporalHabilidad[] = [
   "tactico",

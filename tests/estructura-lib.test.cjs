@@ -16,6 +16,8 @@ const trasladados = [
   ["expediciones", "combate/posicion-combate.ts"],
   ["expediciones", "combate/objetivos-combate.ts"],
   ["expediciones", "combate/formacion-party.ts"],
+  ["expediciones", "combate/estados-combate.ts"],
+  ["expediciones", "combate/cooldowns-habilidades.ts"],
   ["expediciones", "viajes/tiempos.ts"],
   ["expediciones", "viajes/recompensas-regreso.ts"],
   ["expediciones", "encuentros/normal.ts"],

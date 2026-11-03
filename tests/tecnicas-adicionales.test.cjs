@@ -3,7 +3,7 @@ require('./load-typescript.cjs');
 const {CLASES}=require('../src/lib/progresion/clases.ts');
 const {HABILIDADES_ADICIONALES,crearTecnicaAdicional}=require('../src/lib/progresion/tecnicas-adicionales.ts');
 const {resolverHabilidadJugador}=require('../src/lib/expediciones/combate.ts');
-const {procesarEfectosTurno,leerEfectosCombate}=require('../src/lib/expediciones/estados-combate.ts');
+const {procesarEfectosTurno,leerEfectosCombate}=require('../src/lib/expediciones/combate/estados-combate.ts');
 const actor={id:'a',equipo:'aliado',hp:80,hpMaximo:100,energia:100,energiaMaxima:100,mana:100,manaMaximo:100,ataque:20,ataqueMagico:20,defensa:10,defensaMagica:10,fila:1,columna:0,estados:[],limites:{}};
 const contexto=(claseId,extra={})=>({actorId:'a',objetivoId:'a',claseId,ciclo:1,actorHp:80,actorHpMaximo:100,energia:100,energiaMaxima:100,mana:100,manaMaximo:100,ataque:20,ataqueMagico:20,defensaActor:10,defensaMagicaActor:10,efectosActor:[],objetivoHp:80,objetivoHpMaximo:100,defensaObjetivo:10,defensaMagicaObjetivo:10,efectosObjetivo:[],objetivoAliado:true,filaActor:1,filaObjetivo:1,...extra});
 const combate=c=>({jugadorAtaque:20,jugadorAtaqueMagico:20,jugadorDefensa:10,jugadorDefensaMagica:10,jugadorNivel:20,jugadorHp:c.objetivoAliado?c.objetivoHp:c.actorHp,jugadorHpMaximo:c.objetivoAliado?c.objetivoHpMaximo:c.actorHpMaximo,jugadorProbCritico:0,jugadorDanoCritico:1.5,enemigoDefensa:10,enemigoNombre:'Objetivo',contextoTactico:c});

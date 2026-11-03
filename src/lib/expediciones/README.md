@@ -9,9 +9,9 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `adaptador-tactico.ts`: traduce efectos persistidos (incluidos DoT/HoT anteriores) a estados tácticos y de vuelta; adapta la ejecución de técnicas adicionales. No accede a Prisma.
 - `tipos-tacticos.ts`: contratos de estado, unidad, mundo y comando. `motor-tactico.ts` los sigue reexportando.
 - `motor-tactico.ts`: motor puro de comandos, estados, pulsos, recursos y ciclos.
-- `estados-combate.ts`, `combate/objetivos-combate.ts`, `combate/iniciativa-combate.ts`, `combate/posicion-combate.ts`, `combate/formacion-party.ts`: estado, objetivos, iniciativa, posiciones tácticas y formación de party.
+- `combate/estados-combate.ts`, `combate/objetivos-combate.ts`, `combate/iniciativa-combate.ts`, `combate/posicion-combate.ts`, `combate/formacion-party.ts`: estado, objetivos, iniciativa, posiciones tácticas y formación de party.
 - `contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
-- `cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
+- `combate/cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
 - `viajes/recompensas-regreso.ts`: normaliza los premios enteros recibidos al finalizar y calcula los recursos aceptados/perdidos por el límite de almacén; el oro no está limitado. No toca Prisma.
 - `combate/presupuesto-curacion.ts`: asigna el peso proporcional de curación solo a miembros con vida faltante. Lo usa el servicio de combate de party; los objetivos sanos no consumen reserva.
 - `combate/consumibles-combate.ts`: distingue pociones restauradoras y calcula la cantidad fija más porcentaje sobre el máximo del destinatario, respetando su vida/energía/maná faltante.

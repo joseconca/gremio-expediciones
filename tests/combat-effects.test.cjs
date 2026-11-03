@@ -10,7 +10,7 @@ const {
   calcularPrecisionModificada,
   calcularEvasionModificada,
   retirarEfectosHabilidad,
-} = require("../src/lib/expediciones/estados-combate.ts");
+} = require("../src/lib/expediciones/combate/estados-combate.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador, calcularDanoMitigado } = require("../src/lib/expediciones/combate.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 

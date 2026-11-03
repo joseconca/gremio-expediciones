@@ -1,6 +1,6 @@
-import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
+import { establecerCooldownHabilidad } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { calcularPesosCuracion } from "@/lib/expediciones/combate/presupuesto-curacion";
-import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
+import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
 import { Prisma } from "@prisma/client";
@@ -27,7 +27,7 @@ import {
   procesarEfectosTurno,
   aplicarBarreraAccion,
   retirarEfectosHabilidad,
-} from "@/lib/expediciones/estados-combate";
+} from "@/lib/expediciones/combate/estados-combate";
 import {
   resolverResultadoCombateParty,
   obtenerLogCombateParty,

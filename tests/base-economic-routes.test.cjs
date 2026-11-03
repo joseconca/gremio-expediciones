@@ -220,7 +220,7 @@ function makeCombatConsumableRoute({
       siguienteTurnoAsedio: () => "defensor",
       finalizarAsedio: async () => ({}),
     },
-    "../../../../lib/expediciones/estados-combate": {
+    "../../../../lib/expediciones/combate/estados-combate": {
       leerEfectosCombate: (valor) => Array.isArray(valor) ? valor : [],
       procesarEfectosTurno: (efectos, hp, _maxHp, defensa) => ({ efectos, hp, defensa, mensajes: [] }),
       procesarTicksPeriodicos: (_efectos, hp) => ({ hp, mensajes: [] }),
@@ -258,7 +258,7 @@ function makeCombatConsumableRoute({
     "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
     "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
     "../../../lib/expediciones/encuentros/dificultad": commonDependencies["../../../../lib/expediciones/encuentros/dificultad"],
-    "../../../lib/expediciones/estados-combate": commonDependencies["../../../../lib/expediciones/estados-combate"],
+    "../../../lib/expediciones/combate/estados-combate": commonDependencies["../../../../lib/expediciones/combate/estados-combate"],
     "./accion-combate": common,
     "./efectos-visualizacion": loadSource("src/server/services/combate/efectos-visualizacion.ts"),
   };
@@ -308,7 +308,7 @@ function loadSource(relativePath, dependencies = {}) {
     (name) => {
       if (Object.hasOwn(dependencies, name)) return dependencies[name];
       if (name === "../../../lib/expediciones/encuentros/dificultad" && Object.hasOwn(dependencies, "../../../../lib/expediciones/encuentros/dificultad")) return dependencies["../../../../lib/expediciones/encuentros/dificultad"];
-      if (name === "../../../lib/expediciones/estados-combate" && Object.hasOwn(dependencies, "../../../../lib/expediciones/estados-combate")) return dependencies["../../../../lib/expediciones/estados-combate"];
+      if (name === "../../../lib/expediciones/combate/estados-combate" && Object.hasOwn(dependencies, "../../../../lib/expediciones/combate/estados-combate")) return dependencies["../../../../lib/expediciones/combate/estados-combate"];
       if (name === "@/lib/progresion/atributos-clase") {
         return {
           calcularAtributosClase: () => ({
@@ -856,7 +856,7 @@ function makeInvalidBodyRoute(relativePath) {
       siguienteTurnoAsedio: () => "defensor",
       finalizarAsedio: async () => ({}),
     },
-    "../../../../lib/expediciones/estados-combate": {
+    "../../../../lib/expediciones/combate/estados-combate": {
       leerEfectosCombate: (valor) => Array.isArray(valor) ? valor : [],
       procesarEfectosTurno: (efectos, hp, _maxHp, defensa) => ({ efectos, hp, defensa, mensajes: [] }),
       procesarTicksPeriodicos: (_efectos, hp) => ({ hp, mensajes: [] }),

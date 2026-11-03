@@ -6,8 +6,8 @@ const path = require('node:path');
 const { HABILIDADES, obtenerHabilidadPorId, obtenerHabilidadesDisponiblesParaClase } = require('../src/lib/habilidades.ts');
 const { CLASES } = require('../src/lib/progresion/clases.ts');
 const { nivelMaximoHabilidad } = require('../src/lib/progresion/niveles-habilidad.ts');
-const { aplicarBarreraAccion, procesarEfectosTurno } = require('../src/lib/expediciones/estados-combate.ts');
-const { establecerCooldownHabilidad, obtenerCooldowns, reducirCooldowns } = require('../src/lib/expediciones/cooldowns-habilidades.ts');
+const { aplicarBarreraAccion, procesarEfectosTurno } = require('../src/lib/expediciones/combate/estados-combate.ts');
+const { establecerCooldownHabilidad, obtenerCooldowns, reducirCooldowns } = require('../src/lib/expediciones/combate/cooldowns-habilidades.ts');
 const { calcularPesosCuracion } = require('../src/lib/expediciones/combate/presupuesto-curacion.ts');
 const { ESCUELAS, TECNICAS_AVANZADAS } = require("../src/lib/catalogos/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidades.ts");
@@ -226,8 +226,8 @@ test('las API de los servicios conservan la reexportación de cooldowns', () => 
     path.join(__dirname, '../src/server/services/combate/accion-combate.ts'),
     'utf8',
   );
-  assert.match(servicio, /export \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/cooldowns-habilidades["']/);
-  assert.match(servicio, /import \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/cooldowns-habilidades["']/);
+  assert.match(servicio, /export \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
+  assert.match(servicio, /import \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
 });
 
 test('las dos respiraciones heredadas comparten cooldown incluso con cinco huecos', () => {

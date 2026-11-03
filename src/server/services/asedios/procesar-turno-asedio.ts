@@ -20,7 +20,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
-} from "@/lib/expediciones/estados-combate";
+} from "@/lib/expediciones/combate/estados-combate";
 
 function obtenerCooldowns(valor: unknown): Record<string, number> {
   if (!valor || typeof valor !== "object" || Array.isArray(valor)) {

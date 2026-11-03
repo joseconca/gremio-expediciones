@@ -6,10 +6,10 @@ const {CLASES,obtenerAncestrosClase}=require('../src/lib/progresion/clases.ts');
 const {calcularEstadisticasPersonaje}=require('../src/lib/progresion/estadisticas-personaje.ts');
 const {ajustarHabilidadPorNivel,nivelMaximoHabilidad}=require('../src/lib/progresion/niveles-habilidad.ts');
 const {resolverHabilidadJugador,resolverAtaqueJugador}=require('../src/lib/expediciones/combate.ts');
-const {procesarEfectosTurno,aplicarBarreraAccion,calcularAtaqueModificado,calcularPrecisionModificada,consumirPrecisionTactica}=require('../src/lib/expediciones/estados-combate.ts');
+const {procesarEfectosTurno,aplicarBarreraAccion,calcularAtaqueModificado,calcularPrecisionModificada,consumirPrecisionTactica}=require('../src/lib/expediciones/combate/estados-combate.ts');
 const {calcularPesosCuracion}=require('../src/lib/expediciones/combate/presupuesto-curacion.ts');
 const {calcularRegeneracionRecursosTurno}=require('../src/lib/expediciones/combate/recursos-combate.ts');
-const {establecerCooldownHabilidad}=require('../src/lib/expediciones/cooldowns-habilidades.ts');
+const {establecerCooldownHabilidad}=require('../src/lib/expediciones/combate/cooldowns-habilidades.ts');
 const max=h=>ajustarHabilidadPorNivel(h,nivelMaximoHabilidad(h.claseId,h));
 function configuraciones(claseId){
   const legales=obtenerHabilidadesDisponiblesParaClase(claseId);

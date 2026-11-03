@@ -51,10 +51,10 @@ function loadService(prisma, testOptions = {}) {
         };
       },
     },
-    "@/lib/expediciones/estados-combate": {
-      ...require("../src/lib/expediciones/estados-combate.ts"),
-      aplicarBarreraAccion: require("../src/lib/expediciones/estados-combate.ts").aplicarBarreraAccion,
-      retirarEfectosHabilidad: require("../src/lib/expediciones/estados-combate.ts").retirarEfectosHabilidad,
+    "@/lib/expediciones/combate/estados-combate": {
+      ...require("../src/lib/expediciones/combate/estados-combate.ts"),
+      aplicarBarreraAccion: require("../src/lib/expediciones/combate/estados-combate.ts").aplicarBarreraAccion,
+      retirarEfectosHabilidad: require("../src/lib/expediciones/combate/estados-combate.ts").retirarEfectosHabilidad,
       calcularAtaqueModificado: (value) => value,
       calcularEvasionModificada: (value) => value,
       calcularPrecisionModificada: (value) => value,
@@ -76,7 +76,7 @@ function loadService(prisma, testOptions = {}) {
       },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
       procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre, personajeId) => {
-        if (testOptions.efectosReales) return require("../src/lib/expediciones/estados-combate.ts").procesarEfectosTurno(effects,hp,hpMax,defensa,nombre);
+        if (testOptions.efectosReales) return require("../src/lib/expediciones/combate/estados-combate.ts").procesarEfectosTurno(effects,hp,hpMax,defensa,nombre);
         const lista = Array.isArray(effects) ? effects : [];
         const propios = lista.filter((efecto) =>
           efecto.objetivo === (personajeId === undefined ? "enemigo" : "jugador"));

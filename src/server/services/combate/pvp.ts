@@ -1,8 +1,8 @@
 import { adjuntarPulsosEstado } from "./efectos-visualizacion";
-import { establecerCooldownHabilidad } from "@/lib/expediciones/cooldowns-habilidades";
-import { consumirPrecisionTactica } from "@/lib/expediciones/estados-combate";
+import { establecerCooldownHabilidad } from "@/lib/expediciones/combate/cooldowns-habilidades";
+import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
-import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
+import { aplicarBarreraAccion } from "@/lib/expediciones/combate/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -28,7 +28,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
-} from "../../../lib/expediciones/estados-combate";
+} from "../../../lib/expediciones/combate/estados-combate";
 import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from "@/lib/expediciones/contrato-accion-combate";
 import {
   prepararAccionCombate,

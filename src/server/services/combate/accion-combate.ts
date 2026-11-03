@@ -1,6 +1,6 @@
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
-import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
-export { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/cooldowns-habilidades";
+import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
+export { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 export { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
 import { NextResponse } from "next/server";
@@ -22,7 +22,7 @@ import {
   leerEfectosCombate,
   procesarEfectosTurno,
   retirarEfectosHabilidad,
-} from "../../../lib/expediciones/estados-combate";
+} from "../../../lib/expediciones/combate/estados-combate";
 import {
   calcularExperienciaJobGanada,
   type ModoDificultad,

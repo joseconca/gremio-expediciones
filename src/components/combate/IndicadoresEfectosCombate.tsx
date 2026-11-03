@@ -7,7 +7,7 @@ import { detalleNumericoHabilidad } from "@/lib/progresion/descripciones-habilid
 import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
-import { leerEfectosCombate } from "@/lib/expediciones/estados-combate";
+import { leerEfectosCombate } from "@/lib/expediciones/combate/estados-combate";
 import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
 
 type Indicador = {

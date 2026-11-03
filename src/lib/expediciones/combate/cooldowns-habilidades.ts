@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
+import type { DefinicionHabilidad } from "../../tiposJuego";
 
 /** Los dos descansos heredables comparten el reloj: cinco huecos no lo duplican. */
 export function establecerCooldownHabilidad(cooldowns:Record<string,number>,habilidad:DefinicionHabilidad):void{

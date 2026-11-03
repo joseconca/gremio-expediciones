@@ -14,7 +14,7 @@ export {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
 } from "./ataques-basicos";
-import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./estados-combate";
+import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./combate/estados-combate";
 import { aplicarMecanicasHabilidad } from "./mecanicas-habilidades";
 import { actualizarRelojContexto, prepararHabilidadRedisenada } from "./preparacion-habilidades";
 import { resolverTecnicaAdicional, type ContextoTecnicaTactica } from "./adaptador-tactico";
