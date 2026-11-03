@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import { obtenerObjetoPorId } from "../objetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./sufijos";
 import type { EquipoPersonaje, ObjetoInventario } from "../tiposJuego";
 
 export const LIMITE_INVENTARIO_OBJETOS = 30;
@@ -8,7 +9,7 @@ export const LIMITE_INVENTARIO_OBJETOS = 30;
 export function hayHuecoInventario(espaciosOcupados: number, limite = LIMITE_INVENTARIO_OBJETOS): boolean {
   return espaciosOcupados < limite;
 }
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./sufijos";
+
 
 interface DatosObjetoInventario {
   id: string;

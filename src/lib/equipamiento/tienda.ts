@@ -41,10 +41,8 @@ export function obtenerRequisitosRareza(rareza: Rareza): {
   return REQUISITOS_RAREZA[rareza];
 }
 
-export interface ObjetoEnVenta extends DefinicionObjeto {
-  puedeComprar: boolean;
-  nivelHeroeNecesario: number;
-}
+/** El tipo de respuesta se define únicamente en datos-objetos.ts. */
+export type { ObjetoEnVenta } from "./datos-objetos";
 
 /**
  * Devuelve únicamente los objetos que la Armería ya puede mostrar.
