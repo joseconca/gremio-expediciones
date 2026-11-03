@@ -5,10 +5,9 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import {
   CONFIGURACION_ATRIBUTOS,
-  REQUISITOS_EDIFICIOS,
   calcularCosteAtributo,
-  calcularCosteEdificio,
 } from "@/lib/configuracionJuego";
+import { prepararMejoraEdificio } from "@/lib/base/edificios";
 import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
@@ -332,7 +331,6 @@ export async function POST(request: Request) {
       }
 
       const idEdificio = idEdificioValue as IdEdificio;
-      const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
 
       // La lectura, validación y actualización del JSON de edificios ocurren en
       // una transacción serializable para evitar sobrescribir mejoras concurrentes.
@@ -350,35 +348,15 @@ export async function POST(request: Request) {
             ? (usuario.edificios as Record<string, unknown>)
             : {};
 
-        const nivel =
-          typeof edificios[idEdificio] === "number" ? edificios[idEdificio] : 0;
-        if (nivel >= configuracion.nivelMax) throw new Error("EDIFICIO_NIVEL_MAXIMO");
-
-        const requisito = REQUISITOS_EDIFICIOS[idEdificio];
-        if (requisito) {
-          const nivelRequisitoValue = edificios[requisito.edificio];
-          const nivelRequisito =
-            typeof nivelRequisitoValue === "number" ? nivelRequisitoValue : 0;
-          if (nivelRequisito < requisito.nivel) {
-            throw new Error(
-              `REQUISITO_EDIFICIO:${CONFIGURACION_EDIFICIOS[requisito.edificio].nombre}:${requisito.nivel}`
-            );
-          }
-        }
-
-        const coste = calcularCosteEdificio(idEdificio, nivel);
-        if (
-          usuario.oro < coste.oro ||
-          usuario.madera < coste.madera ||
-          usuario.piedra < coste.piedra ||
-          usuario.metal < coste.metal
-        ) {
-          throw new Error("RECURSOS_INSUFICIENTES");
-        }
+        const { coste, nivelSiguiente } = prepararMejoraEdificio(
+          idEdificio,
+          edificios,
+          usuario
+        );
 
         const edificiosActualizados: Prisma.InputJsonObject = {
           ...(edificios as Prisma.InputJsonObject),
-          [idEdificio]: nivel + 1,
+          [idEdificio]: nivelSiguiente,
         };
 
         const debitado = await tx.usuario.updateMany({
