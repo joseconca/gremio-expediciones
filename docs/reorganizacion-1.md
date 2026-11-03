@@ -284,3 +284,13 @@ Los primeros jobs de CI localizaron dependencias de rutas internas en tests, un 
 - `npm run build`
 
 El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado una ejecución verde de CI ni una compilación local completa en esta intervención**. La publicación de enemigos y de equipo exige una comprobación visual posterior. Si falla un test existente, investigar el fallo antes de fusionar; no relajar aserciones para declarar éxito.
+
+
+### Agrupación de motor táctico y reglas de combate (3 de noviembre)
+
+- `0dc9483`: corrige un import relativo de estados en `ataques-basicos.ts` que permanecía apuntando a su ruta antigua.
+- `58e0b61`: `expediciones/combate/tacticas/` contiene el motor y los tipos tácticos, con consumidores y pruebas migrados.
+- `8729bfe`: reúne en ese directorio adaptador, preparación y ejecución de habilidades; conserva `expediciones/combate.ts` como API pública y sus reexportaciones.
+- `acab176`: añade una prueba de resolución de imports relativos para todo `src/lib/expediciones/` (incluidas subcarpetas).
+- `4b98c7b`: agrupa ataques básicos, selección de ataque por arma y contrato de acciones en `expediciones/combate/`. Las reglas, cifras y APIs no cambian: son traslados íntegros.
+- `src/lib/expediciones/combate/README.md` contiene el mapa navegable de funciones y responsabilidades. Próximos cortes: aislar el código de presentación visual y seguir con la progresión.

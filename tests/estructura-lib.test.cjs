@@ -131,7 +131,7 @@ test("todas las importaciones relativas de expediciones resuelven a módulos rea
       const destino = path.resolve(path.dirname(fuente), importado);
       const encontrado = extensiones.some((ext) => fs.existsSync(destino + ext) && fs.statSync(destino + ext).isFile());
       assert.ok(encontrado,
-        `Importación relativa sin archivo: \${path.relative(root, fuente)} → \${importado}`);
+        `Importación relativa sin archivo: ${path.relative(root, fuente)} → ${importado}`);
     }
   }
 });
