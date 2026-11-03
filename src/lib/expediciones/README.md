@@ -15,6 +15,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `recompensas-regreso.ts`: normaliza los premios enteros recibidos al finalizar y calcula los recursos aceptados/perdidos por el límite de almacén; el oro no está limitado. No toca Prisma.
 - `presupuesto-curacion.ts`: asigna el peso proporcional de curación solo a miembros con vida faltante. Lo usa el servicio de combate de party; los objetivos sanos no consumen reserva.
 - `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `tiempos.ts`: encuentros y expediciones.
+  - Los pesos de dificultad mínima y rareza de `normal.ts` son detalles privados del selector; las funciones de ponderación, composición y probabilidad del Mímico siguen públicas para sus consumidores y pruebas.
   - `tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.
 - `ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.

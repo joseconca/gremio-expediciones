@@ -8,6 +8,8 @@
 | --- | --- |
 | Añadir o ajustar una clase, tier, requisitos o maestrías | [`src/lib/catalogos/clases.ts`](../src/lib/catalogos/clases.ts) |
 | Crear una habilidad o cambiar sus valores y coste | [`src/lib/catalogos/habilidades.ts`](../src/lib/catalogos/habilidades.ts) |
+| Cambiar el orden/generación de cinco técnicas por escuela | `src/lib/progresion/generar-habilidades.ts` (transformación; los valores editables siguen en `catalogos/habilidades.ts`) |
+| Traducir habilidades al motor táctico v2 y explicar sus efectos | `src/lib/progresion/catalogo-redisenado.ts` |
 | Añadir armas, armaduras, consumibles o materiales | [`src/lib/catalogos/objetos.ts`](../src/lib/catalogos/objetos.ts) |
 | Añadir enemigos, ajustar estadísticas o definir botín | [`src/lib/catalogos/enemigos.ts`](../src/lib/catalogos/enemigos.ts) |
 | Cómo se calculan las estadísticas y el progreso JOB | `src/lib/progresion/`; ver [su README](../src/lib/progresion/README.md) |

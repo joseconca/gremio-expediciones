@@ -22,8 +22,8 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 ## Registro y ejecución de habilidades
 
 - `diseno-habilidades.ts`: **tipos/contratos tácticos**; reexporta los datos del catálogo, no los redefine.
-- `crear-habilidad.ts`, `generar-habilidades.ts`: construyen definiciones ejecutables a partir de los datos declarativos.
-- `catalogo-redisenado.ts`, `tecnicas-adicionales.ts`: transforman las habilidades del catálogo en técnicas ejecutables.
+- `crear-habilidad.ts`, `generar-habilidades.ts`: construyen cinco técnicas por escuela desde `catalogos/habilidades.ts`. El orden de ataque, táctica, pasiva, avanzada y maestría es un contrato del catálogo y está protegido por tests.
+- `catalogo-redisenado.ts`, `tecnicas-adicionales.ts`: transforman las habilidades del catálogo en técnicas ejecutables. `catalogo-redisenado.ts` adapta pasivas y activas al motor v2 y conserva explícitamente las excepciones de Aguante, Reserva Arcana, Núcleo Arcano, Esfera Invocada y Sellos Paralelos.
 - `equipo-habilidades.ts`: reglas para equipar habilidades.
 - `src/lib/habilidades.ts`: registro público utilizado por la aplicación y las APIs; no es un segundo catálogo.
 
