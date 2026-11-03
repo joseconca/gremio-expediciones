@@ -29,3 +29,53 @@ export function calcularFechasRegresoProgramadas(
     fechaLlegada: new Date(fechaLlegadaEncuentro.getTime() + duracionIdaMs),
   };
 }
+
+/** El encuentro ocurre a mitad del tiempo total, antes de cualquier combate. */
+export function calcularFechaEncuentroProgramada(
+  fechaSalida: Date,
+  duracionTotalHoras: number,
+): Date {
+  return new Date(
+    fechaSalida.getTime() + (duracionTotalHoras * 60 * 60 * 1000) / 2
+  );
+}
+
+/**
+ * El comercio conserva el mínimo histórico de un minuto por tramo.
+ * Su regreso parte de la fecha prevista del encuentro, no del momento
+ * en que el jugador confirma el resultado comercial.
+ */
+export function calcularRegresoComercioProgramado(
+  fechaSalidaIda: Date,
+  fechaLlegadaEncuentro: Date,
+): { duracionIda: number; fechaSalidaRegreso: Date; fechaLlegadaRegreso: Date } {
+  const duracionIda = Math.max(
+    60_000,
+    fechaLlegadaEncuentro.getTime() - fechaSalidaIda.getTime()
+  );
+  const fechaSalidaRegreso = fechaLlegadaEncuentro;
+  return {
+    duracionIda,
+    fechaSalidaRegreso,
+    fechaLlegadaRegreso: new Date(fechaSalidaRegreso.getTime() + duracionIda),
+  };
+}
+
+/** Penalizaciones meteorológicas históricas; la consulta al proveedor queda en servidor. */
+export function clasificarClimaExpedicion(codigo: unknown): {
+  multiplicadorTiempo: number;
+  climaReporte: string;
+} {
+  if (typeof codigo === "number") {
+    if (codigo >= 51 && codigo <= 67) {
+      return { multiplicadorTiempo: 1.2, climaReporte: "Lluvia y barro en los caminos" };
+    }
+    if (codigo >= 71 && codigo <= 77) {
+      return { multiplicadorTiempo: 1.5, climaReporte: "Fuertes nevadas" };
+    }
+    if (codigo >= 95) {
+      return { multiplicadorTiempo: 1.8, climaReporte: "Tormenta eléctrica peligrosa" };
+    }
+  }
+  return { multiplicadorTiempo: 1, climaReporte: "Despejado / Buen tiempo" };
+}
