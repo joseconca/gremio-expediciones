@@ -11,7 +11,7 @@ import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
-import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
+import { resolverDestinosVisualesAccion } from "@/lib/expediciones/presentacion/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/combate/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";

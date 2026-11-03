@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/descripciones-efectos";
+import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/presentacion/descripciones-efectos";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { detalleNumericoHabilidad } from "@/lib/progresion/descripciones-habilidades";
 import { useEffect, useRef, useState } from "react";

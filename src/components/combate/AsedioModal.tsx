@@ -6,7 +6,7 @@ import { propsSpriteHeroeHd } from "@/lib/sprites/heroes";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
-import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
+import { resolverDestinosVisualesAccion } from "@/lib/expediciones/presentacion/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";

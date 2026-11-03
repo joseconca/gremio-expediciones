@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
-import { obtenerPresentacionProyectilHabilidad } from "./presentacion-combate";
+import { obtenerPresentacionProyectilHabilidad } from "./presentacion/presentacion-combate";
 import {
   d20,
   falloPorPrecision,

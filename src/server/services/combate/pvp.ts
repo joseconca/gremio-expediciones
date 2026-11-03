@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
+import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion/presentacion-combate";
 import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
 
 import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";

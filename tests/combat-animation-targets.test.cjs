@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { resolverDestinosVisualesAccion } = require("../src/lib/expediciones/destinos-animacion-combate.ts");
+const { resolverDestinosVisualesAccion } = require("../src/lib/expediciones/presentacion/destinos-animacion-combate.ts");
 
 function accion(overrides = {}) {
   return { actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "Ataque de prueba", ...overrides };

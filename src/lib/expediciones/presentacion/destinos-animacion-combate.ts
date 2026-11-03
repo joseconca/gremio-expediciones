@@ -1,4 +1,4 @@
-import type { AccionAnimadaCombate } from "./combate";
+import type { AccionAnimadaCombate } from "../combate";
 
 export type ContextoDestinoVisualCombate =
   | { modo: "pve" }

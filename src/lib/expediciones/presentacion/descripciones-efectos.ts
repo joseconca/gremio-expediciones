@@ -1,5 +1,5 @@
-import type { EstadoEfectoHabilidad } from "../tiposJuego";
-import { obtenerHabilidadPorId } from "../habilidades";
+import type { EstadoEfectoHabilidad } from "../../tiposJuego";
+import { obtenerHabilidadPorId } from "../../habilidades";
 
 export function describirEstadoCombate(efecto: EstadoEfectoHabilidad): string {
   const numero = (n: number) => new Intl.NumberFormat("es", { maximumFractionDigits: 2 }).format(n);

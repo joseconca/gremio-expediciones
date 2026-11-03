@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad } = require("../src/lib/expediciones/presentacion-combate.ts");
+const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad } = require("../src/lib/expediciones/presentacion/presentacion-combate.ts");
 const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/combate/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");

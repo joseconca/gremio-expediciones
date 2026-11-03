@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
-import { normalizarSubtipoArma } from "./combate/ataque-basico-arma";
+import { normalizarSubtipoArma } from "../combate/ataque-basico-arma";
 
 /** Presentación visual del ataque básico; no decide el daño ni la defensa empleada. */
 export function obtenerPresentacionAtaqueBasico(

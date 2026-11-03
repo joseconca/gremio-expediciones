@@ -21,12 +21,12 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
   - `viajes/tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedios/asedio.ts`, `asedios/turno-pvp.ts`: reglas puras de asedio y turnos.
 - `combate/ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.
-- `presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.
-- `destinos-animacion-combate.ts`, `descripciones-efectos.ts`: metadatos visuales y descripciones compartidas. No confundir con la representación React.
+- `presentacion/presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.
+- `presentacion/destinos-animacion-combate.ts`, `presentacion/descripciones-efectos.ts`: metadatos visuales y descripciones compartidas. No confundir con la representación React.
 
 Los contratos de `combate/tacticas/tipos-tacticos.ts` se importan directamente desde adaptadores y catálogos, mientras `combate/tacticas/motor-tactico.ts` conserva sus reexportaciones públicas. No unificar por similitud las funciones que crean unidades en `combate/tacticas/adaptador-tactico.ts` y `combate/tacticas/mecanicas-habilidades.ts`: la primera carga estados persistidos para una técnica adicional y la segunda reconstruye unidades después de la resolución básica; sus reglas de HP, recursos y límites no son equivalentes. Las pruebas de esta frontera están en `tests/adaptador-tactico.test.cjs`.
 
-La presentación (`presentacion-combate.ts`), la selección física/mágica por subtipo (`combate/ataque-basico-arma.ts`) y la resolución real de los ataques (`combate/ataques-basicos.ts`) son responsabilidades distintas. `combate.ts` reexporta las funciones de ataque existentes para que los servicios PvE, PvP y party sigan funcionando sin cambios.
+La presentación (`presentacion/presentacion-combate.ts`), la selección física/mágica por subtipo (`combate/ataque-basico-arma.ts`) y la resolución real de los ataques (`combate/ataques-basicos.ts`) son responsabilidades distintas. `combate.ts` reexporta las funciones de ataque existentes para que los servicios PvE, PvP y party sigan funcionando sin cambios.
 
 Las **operaciones con Prisma** viven en `src/server/services/`:
 
