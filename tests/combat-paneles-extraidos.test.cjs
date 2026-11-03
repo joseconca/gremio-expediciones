@@ -21,6 +21,7 @@ const InformacionCombatientes = require("../src/components/combate/InformacionCo
 const PanelConsumiblesCombate = require("../src/components/combate/PanelConsumiblesCombate.tsx").default;
 const PanelHabilidadesCombate = require("../src/components/combate/PanelHabilidadesCombate.tsx").default;
 const ComandosCombate = require("../src/components/combate/ComandosCombate.tsx").default;
+const { default: HistorialCombate, HistorialCombateExpandido } = require("../src/components/combate/HistorialCombate.tsx");
 const ResultadoAsedio = require("../src/components/combate/ResultadoAsedio.tsx").default;
 const InformacionAsedio = require("../src/components/combate/InformacionAsedio.tsx").default;
 
@@ -175,6 +176,29 @@ test("el panel de habilidades respeta energía, cooldown y objetivo pendiente", 
   const objetivo = render({ habilidadEsperandoObjetivoId: habilidad.habilidadId });
   assert.match(objetivo, /Toca un objetivo en la escena/);
   assert.match(objetivo, /ELIGE OBJETIVO/);
+});
+
+
+test("el historial mantiene la vista compacta, la ampliada y la opción de reducir", () => {
+  const lineas = ["Primer ataque", "Segundo ataque", "Cura de prueba", "Cuarto ataque", "Quinto ataque"];
+  const compacto = renderToStaticMarkup(React.createElement(HistorialCombate, {
+    lineas, onAmpliar() {},
+  }));
+  assert.match(compacto, /Ampliar historial/);
+  assert.doesNotMatch(compacto, /Primer ataque/);
+  for (const linea of lineas.slice(-4)) assert.ok(compacto.includes(linea), linea);
+
+  const ampliado = renderToStaticMarkup(React.createElement(HistorialCombateExpandido, {
+    lineas, onReducir() {},
+  }));
+  assert.match(ampliado, /Historial del Combate/);
+  assert.match(ampliado, /aria-label="Reducir historial"/);
+  for (const linea of lineas) assert.ok(ampliado.includes(linea), linea);
+
+  const vacio = renderToStaticMarkup(React.createElement(HistorialCombateExpandido, {
+    lineas: [], onReducir() {},
+  }));
+  assert.match(vacio, /El combate comienza/);
 });
 
 test("los comandos son presentacionales y reflejan la disponibilidad de cada acción", () => {
