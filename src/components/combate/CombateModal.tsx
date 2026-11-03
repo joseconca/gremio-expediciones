@@ -28,7 +28,7 @@ import PanelHabilidadesCombate from "./PanelHabilidadesCombate";
 import ComandosCombate from "./ComandosCombate";
 import styles from "./combate-rpg.module.css";
 import type { CombateModalProps, HabilidadCombate, HabilidadEquipable } from "./tipos";
-import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
+import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/sprites/escala-combate";
 import { distribuirFormacionParty } from "@/lib/expediciones/formacion-party";
 
 function esperar(milisegundos: number): Promise<void> {

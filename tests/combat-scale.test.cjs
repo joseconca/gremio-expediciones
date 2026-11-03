@@ -1,7 +1,7 @@
 require('./load-typescript.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } = require('../src/lib/expediciones/escala-combate.ts');
+const { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } = require('../src/lib/sprites/escala-combate.ts');
 const { ENEMIGOS_HD, escalaEnemigoEnEscena } = require('../src/lib/sprites/enemigos.ts');
 const { distribuirFormacionParty } = require('../src/lib/expediciones/formacion-party.ts');
 
