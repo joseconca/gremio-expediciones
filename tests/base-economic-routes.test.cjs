@@ -230,7 +230,7 @@ function makeCombatConsumableRoute({
       calcularPrecisionModificada: (precision) => precision,
       calcularEvasionModificada: (evasion) => evasion,
     },
-    "../../../../lib/expediciones/dificultad": {
+    "../../../../lib/expediciones/encuentros/dificultad": {
       aplicarMultiplicadorRecompensa: (cantidad) => cantidad,
       calcularExperienciaBaseGanada: () => 0,
       calcularExperienciaJobGanada: () => 0,
@@ -257,7 +257,7 @@ function makeCombatConsumableRoute({
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
     "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
     "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
-    "../../../lib/expediciones/dificultad": commonDependencies["../../../../lib/expediciones/dificultad"],
+    "../../../lib/expediciones/encuentros/dificultad": commonDependencies["../../../../lib/expediciones/encuentros/dificultad"],
     "../../../lib/expediciones/estados-combate": commonDependencies["../../../../lib/expediciones/estados-combate"],
     "./accion-combate": common,
     "./efectos-visualizacion": loadSource("src/server/services/combate/efectos-visualizacion.ts"),
@@ -307,7 +307,7 @@ function loadSource(relativePath, dependencies = {}) {
   })(
     (name) => {
       if (Object.hasOwn(dependencies, name)) return dependencies[name];
-      if (name === "../../../lib/expediciones/dificultad" && Object.hasOwn(dependencies, "../../../../lib/expediciones/dificultad")) return dependencies["../../../../lib/expediciones/dificultad"];
+      if (name === "../../../lib/expediciones/encuentros/dificultad" && Object.hasOwn(dependencies, "../../../../lib/expediciones/encuentros/dificultad")) return dependencies["../../../../lib/expediciones/encuentros/dificultad"];
       if (name === "../../../lib/expediciones/estados-combate" && Object.hasOwn(dependencies, "../../../../lib/expediciones/estados-combate")) return dependencies["../../../../lib/expediciones/estados-combate"];
       if (name === "@/lib/progresion/atributos-clase") {
         return {
@@ -778,9 +778,9 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 1 },
     "@/lib/expediciones/comercio": { calcularOroBaseComercio: () => 20 },
-    "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [] },
+    "@/lib/expediciones/encuentros/generador-misiones": { generarMisionesDisponibles: () => [] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => undefined },
-    "../../../../lib/expediciones/dificultad": {
+    "../../../../lib/expediciones/encuentros/dificultad": {
       esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),
       obtenerRangoMaximoDesbloqueado: () => ({
         id: "I",
@@ -866,7 +866,7 @@ function makeInvalidBodyRoute(relativePath) {
       calcularPrecisionModificada: (precision) => precision,
       calcularEvasionModificada: (evasion) => evasion,
     },
-    "../../../../lib/expediciones/dificultad": {
+    "../../../../lib/expediciones/encuentros/dificultad": {
       aplicarMultiplicadorRecompensa: (cantidad) => cantidad,
       calcularExperienciaBaseGanada: () => 0,
       calcularExperienciaJobGanada: () => 0,

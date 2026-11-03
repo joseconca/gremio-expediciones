@@ -4,9 +4,9 @@ const assert = require("node:assert/strict");
 const { OBJETOS, obtenerObjetoPorId, calcularCosteRecursosMejora, calcularCosteMejoraObjeto } = require("../src/lib/objetos.ts");
 const { obtenerObjetosVisiblesEnArmeria, puedeComprarObjeto } = require("../src/lib/equipamiento/tienda.ts");
 const { COMIDAS_TABERNA } = require("../src/lib/base/taberna.ts");
-const { MISIONES_POR_DURACION } = require("../src/lib/expediciones/generador-misiones.ts");
+const { MISIONES_POR_DURACION } = require("../src/lib/expediciones/encuentros/generador-misiones.ts");
 const { calcularOroBaseComercio, calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
-const { CONFIGURACION_DIFICULTAD, calcularOroEnemigo } = require("../src/lib/expediciones/dificultad.ts");
+const { CONFIGURACION_DIFICULTAD, calcularOroEnemigo } = require("../src/lib/expediciones/encuentros/dificultad.ts");
 const { JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
 const {
   PRECIOS_RECURSOS,

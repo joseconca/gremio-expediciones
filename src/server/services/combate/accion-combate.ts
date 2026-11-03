@@ -26,7 +26,7 @@ import {
 import {
   calcularExperienciaJobGanada,
   type ModoDificultad,
-} from "../../../lib/expediciones/dificultad";
+} from "../../../lib/expediciones/encuentros/dificultad";
 import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,

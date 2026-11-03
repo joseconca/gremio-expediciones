@@ -16,6 +16,8 @@ const trasladados = [
   ["expediciones", "encuentros/normal.ts"],
   ["expediciones", "encuentros/elite.ts"],
   ["expediciones", "encuentros/boss-diario.ts"],
+  ["expediciones", "encuentros/dificultad.ts"],
+  ["expediciones", "encuentros/generador-misiones.ts"],
   ["progresion", "estadisticas/modificadores-estadisticas.ts"],
   ["progresion", "estadisticas/estadisticas-base-personaje.ts"],
 ];

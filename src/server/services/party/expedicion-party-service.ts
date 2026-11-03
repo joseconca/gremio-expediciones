@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
-import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
+import { generarMisionesDisponibles } from "@/lib/expediciones/encuentros/generador-misiones";
 import { bossDiarioDisponible } from "@/lib/expediciones/encuentros/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import { leerCoordenadasBase, ESTADOS_TRASLADO_ACTIVOS } from "@/lib/party/reglas";
@@ -17,7 +17,7 @@ import { PartyServiceError } from "./errores";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
-import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/dificultad";
+import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/encuentros/dificultad";
 import type { DefinicionMision } from "@/lib/tiposJuego";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;

@@ -11,7 +11,7 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Sprites de héroes/enemigos y su escala de combate | `sprites/` |
 | Combate, consumibles y curación durante expediciones | `expediciones/combate/` (mecánicas auxiliares) y `expediciones/combate.ts` (API principal) |
 | Tiempo de expedición, regreso y límites del almacén | `expediciones/viajes/` |
-| Encuentros normales, élite, dificultad, enemigos y jefes diarios | `expediciones/` (agrupación interna **pendiente**) |
+| Encuentros normales, élite, dificultad, jefes diarios y generación de misiones | `expediciones/encuentros/` |
 | Comercio, asedio y turnos PvP | `expediciones/` (agrupación interna **pendiente**) |
 | Progresión de clases, experiencia y habilidades aprendidas | `progresion/` |
 | Cálculos base y contratos de estadísticas RPG | `progresion/estadisticas/` |

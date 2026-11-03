@@ -1,6 +1,6 @@
 import type { DefinicionEnemigo } from "./tiposJuego";
 import { ENEMIGOS_BASE, JEFES_ELITE_BASE, TABLAS_LOOT } from "./catalogos/enemigos";
-import { obtenerRangoAmenaza } from "./expediciones/dificultad";
+import { obtenerRangoAmenaza } from "./expediciones/encuentros/dificultad";
 
 function prepararEnemigo(enemigo: DefinicionEnemigo, esJefe: boolean): DefinicionEnemigo {
   const rareza = enemigo.rareza ?? "comun";

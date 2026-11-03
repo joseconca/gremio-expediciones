@@ -9,7 +9,7 @@ import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { seleccionarJefeElite } from "@/lib/expediciones/encuentros/elite";
 import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import { esModoDificultad } from "@/lib/expediciones/dificultad";
+import { esModoDificultad } from "@/lib/expediciones/encuentros/dificultad";
 import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import { PartyServiceError } from "./errores";
 

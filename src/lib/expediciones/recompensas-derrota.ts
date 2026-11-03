@@ -5,7 +5,7 @@ import {
   calcularOroEnemigo,
   CONFIGURACION_DIFICULTAD,
   type ModoDificultad,
-} from "@/lib/expediciones/dificultad";
+} from "@/lib/expediciones/encuentros/dificultad";
 import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import type { DefinicionEnemigo, RecompensaMision } from "@/lib/tiposJuego";
 

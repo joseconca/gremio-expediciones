@@ -151,7 +151,7 @@ function loadService(prisma, testOptions = {}) {
       }),
     },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
-    "@/lib/expediciones/dificultad": {
+    "@/lib/expediciones/encuentros/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
       calcularExperienciaBaseGanada: (_dificultad, nivel) => nivel * 10,
       calcularOroEnemigo: () => 10,

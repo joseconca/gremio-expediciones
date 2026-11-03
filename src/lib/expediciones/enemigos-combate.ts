@@ -1,6 +1,6 @@
 import type { DefinicionEnemigo, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
-import type { ModoDificultad } from "@/lib/expediciones/dificultad";
-import { calcularMultiplicadoresEnemigo } from "@/lib/expediciones/dificultad";
+import type { ModoDificultad } from "@/lib/expediciones/encuentros/dificultad";
+import { calcularMultiplicadoresEnemigo } from "@/lib/expediciones/encuentros/dificultad";
 import { posicionDesdeIndiceCasilla } from "@/lib/expediciones/objetivos-combate";
 
 /** Snapshot persistido por enemigo: las acciones usan este estado como fuente de verdad. */

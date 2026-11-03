@@ -127,7 +127,7 @@ function loadService(prisma) {
       normalizarPosicionCombate: (value) => ["mele", "centro", "retaguardia"].includes(value) ? value : "centro",
       aplicarModificadoresPosicion: (stats) => stats,
     },
-    "@/lib/expediciones/dificultad": {
+    "@/lib/expediciones/encuentros/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
       calcularMultiplicadoresEnemigo: () => ({ vida: 1, ataque: 1, defensa: 1 }),
     },

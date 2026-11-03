@@ -9,7 +9,7 @@ const {
 const {
   calcularExperienciaBaseGanada,
   calcularOroEnemigo,
-} = require("../src/lib/expediciones/dificultad.ts");
+} = require("../src/lib/expediciones/encuentros/dificultad.ts");
 
 function rosterDePrueba() {
   const definiciones = ["slime_acido", "rata_gigante", "goblin_explorador"]

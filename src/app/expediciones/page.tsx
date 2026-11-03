@@ -15,7 +15,7 @@ import type {
 import AsedioModal from "@/components/combate/AsedioModal";
 import type { CombateActivo } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-import { RANGOS_AMENAZA, type ModoDificultad } from "@/lib/expediciones/dificultad";
+import { RANGOS_AMENAZA, type ModoDificultad } from "@/lib/expediciones/encuentros/dificultad";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,

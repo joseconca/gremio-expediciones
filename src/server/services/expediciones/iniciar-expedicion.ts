@@ -10,10 +10,10 @@ import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import { calcularFechaEncuentroProgramada, clasificarClimaExpedicion } from "@/lib/expediciones/viajes/tiempos";
-import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
+import { generarMisionesDisponibles } from "@/lib/expediciones/encuentros/generador-misiones";
 import { bossDiarioDisponible } from "@/lib/expediciones/encuentros/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
-import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/dificultad";
+import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/encuentros/dificultad";
 import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
 
 interface Coordenadas {

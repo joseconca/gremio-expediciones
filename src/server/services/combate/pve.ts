@@ -34,7 +34,7 @@ import {
   CONFIGURACION_DIFICULTAD,
   esModoDificultad,
   registrarVictoriaRangoNormal,
-} from "../../../lib/expediciones/dificultad";
+} from "../../../lib/expediciones/encuentros/dificultad";
 import {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,

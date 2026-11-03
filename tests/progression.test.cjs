@@ -22,7 +22,7 @@ const {
   calcularOroEnemigo,
   registrarVictoriaRangoNormal,
   obtenerRangoMaximoDesbloqueado,
-} = require("../src/lib/expediciones/dificultad.ts");
+} = require("../src/lib/expediciones/encuentros/dificultad.ts");
 const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/progresion/aprendizaje.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const {
@@ -34,7 +34,7 @@ const {
   seleccionarEnemigosNormales,
   PESOS_COMPOSICION_ENCUENTRO,
 } = require("../src/lib/expediciones/encuentros/normal.ts");
-const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/expediciones/generador-misiones.ts");
+const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/expediciones/encuentros/generador-misiones.ts");
 const {
   calcularCosteRecursosMejora,
   calcularCosteMejoraObjeto,

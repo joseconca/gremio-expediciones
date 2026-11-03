@@ -94,7 +94,7 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 | Expediciones – combate | `src/lib/expediciones/combate/`: curación, consumibles y regeneración. `combate.ts` continúa como API pública |
 | Expediciones – viajes | `src/lib/expediciones/viajes/`: tiempos de ida/vuelta y recompensas de regreso |
 | Progresión – base de estadísticas | `src/lib/progresion/estadisticas/`: modificadores y cálculo base; `estadisticas.ts` y `estadisticas-personaje.ts` conservan su API |
-| Generación de expediciones | `src/lib/expediciones/generador-misiones.ts` |
+| Generación de expediciones | `src/lib/expediciones/encuentros/generador-misiones.ts` |
 | Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts`; rutas y retrocompatibilidad del héroe centralizadas en `heroes.ts` |
 | Catálogos editables | `src/lib/catalogos/{clases,habilidades,objetos,enemigos}.ts` |
 | Rutas e interfaz de base | `src/app/base/` y `src/components/base/` (se conservan las URLs) |
@@ -111,9 +111,11 @@ Las carpetas generales ya estaban creadas, pero `expediciones/` y `progresion/` 
 - `expediciones/viajes/`: `tiempos.ts`, `recompensas-regreso.ts`.
 - `progresion/estadisticas/`: `modificadores-estadisticas.ts`, `estadisticas-base-personaje.ts`.
 
-**Siguientes agrupaciones pendientes** (no darlas por terminadas): selección de encuentros/enemigos (`normal`, `elite`, `dificultad`), mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
+**Siguientes agrupaciones pendientes** (no darlas por terminadas): snapshots de enemigos en combate y mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
 
 El mapa navegable para quien mantiene el proyecto está en `src/lib/README.md`.
+
+**Bloque de encuentros reagrupado:** `encuentros/{normal,elite,boss-diario,dificultad,generador-misiones}.ts`. Las reglas de combate y snapshots de enemigos siguen pendientes de la agrupación correspondiente. Los tests y los mocks que leen rutas se han migrado al propietario nuevo.
 
 ### Auditoría de los archivos en la raíz de `src/lib/`
 

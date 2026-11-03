@@ -53,7 +53,7 @@ function loadService(prisma, misionPrueba = mission) {
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
-    "@/lib/expediciones/generador-misiones": { generarMisionesDisponibles: () => [misionPrueba] },
+    "@/lib/expediciones/encuentros/generador-misiones": { generarMisionesDisponibles: () => [misionPrueba] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: (id) => id === "enemigo-test" ? {
@@ -83,7 +83,7 @@ function loadService(prisma, misionPrueba = mission) {
     },
     "@/lib/party/expedicion-reglas": expedicionRules,
     "./errores": { PartyServiceError: MockPartyError },
-    "../../../lib/expediciones/dificultad": {
+    "../../../lib/expediciones/encuentros/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
     },
   };

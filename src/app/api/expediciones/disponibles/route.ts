@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { generarMisionesDisponibles } from "@/lib/expediciones/generador-misiones";
-import { obtenerRangoMaximoDesbloqueado } from "../../../../lib/expediciones/dificultad";
+import { generarMisionesDisponibles } from "@/lib/expediciones/encuentros/generador-misiones";
+import { obtenerRangoMaximoDesbloqueado } from "../../../../lib/expediciones/encuentros/dificultad";
 
 export const dynamic = "force-dynamic";
 
