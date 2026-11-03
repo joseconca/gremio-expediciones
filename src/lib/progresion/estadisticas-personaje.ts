@@ -9,17 +9,17 @@ import {
   obtenerEstadisticasBase,
   calcularAportesPorAtributo,
   calcularBaseSinAtributos,
-} from "./estadisticas-base-personaje";
+} from "./estadisticas/estadisticas-base-personaje";
 
 import {
   MODIFICADORES_VACIOS,
   sumarModificadores,
-} from "./modificadores-estadisticas";
+} from "./estadisticas/modificadores-estadisticas";
 import type {
   DatosPersonajeEstadisticas,
   ModificadoresEstadisticas,
   DesgloseEstadisticasPersonaje,
-} from "./modificadores-estadisticas";
+} from "./estadisticas/modificadores-estadisticas";
 
 // Mantener el contrato público de estadísticas del personaje para sus consumidores actuales.
 export type {
@@ -27,7 +27,7 @@ export type {
   ModificadoresEstadisticas,
   DesgloseEstadisticasPersonaje,
   AportesPorAtributo,
-} from "./modificadores-estadisticas";
+} from "./estadisticas/modificadores-estadisticas";
 
 // API pública histórica: se mantiene para no modificar sus consumidores.
 export { calcularModificadoresEquipo } from "./bonificaciones-equipo";

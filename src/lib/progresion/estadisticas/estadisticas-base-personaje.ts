@@ -1,11 +1,11 @@
-import type { AtributosPrincipales } from "../tiposJuego";
-import { calcularAtributosClase } from "./atributos-clase";
-import { CLASES } from "./clases";
+import type { AtributosPrincipales } from "../../tiposJuego";
+import { calcularAtributosClase } from "../atributos-clase";
+import { CLASES } from "../clases";
 import {
   calcularEstadisticasBase,
   calcularEstadisticasDerivadasRpg,
   COEFICIENTES_ATRIBUTOS_RPG,
-} from "./estadisticas";
+} from "../estadisticas";
 import type {
   AportesPorAtributo,
   DatosPersonajeEstadisticas,

@@ -1,4 +1,4 @@
-import type { AtributosPrincipales } from "../tiposJuego";
+import type { AtributosPrincipales } from "../../tiposJuego";
 
 /** Contratos y operaciones aditivas para el desglose de estadísticas del personaje. */
 export interface DatosPersonajeEstadisticas {

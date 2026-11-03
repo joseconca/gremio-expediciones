@@ -44,7 +44,7 @@ const {
 test("los módulos de estadísticas mantienen el cálculo público y los modificadores originales", () => {
   const publico = require("../src/lib/progresion/estadisticas-personaje.ts");
   const equipo = require("../src/lib/progresion/bonificaciones-equipo.ts");
-  const { MODIFICADORES_VACIOS, sumarModificadores } = require("../src/lib/progresion/modificadores-estadisticas.ts");
+  const { MODIFICADORES_VACIOS, sumarModificadores } = require("../src/lib/progresion/estadisticas/modificadores-estadisticas.ts");
   const { obtenerModificadoresPasivas } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
 
   assert.strictEqual(publico.calcularModificadoresEquipo, equipo.calcularModificadoresEquipo);
@@ -90,7 +90,7 @@ test("las cuentas heredadas conservan sus fórmulas físicas hasta cambiar de pr
 
 test("Núcleo arcano conserva la conversión limitada y no puede aplicarse desde otra clase", () => {
   const { aplicarConversionReservaInteligencia } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
-  const { MODIFICADORES_VACIOS } = require("../src/lib/progresion/modificadores-estadisticas.ts");
+  const { MODIFICADORES_VACIOS } = require("../src/lib/progresion/estadisticas/modificadores-estadisticas.ts");
   const entrada = (claseActualId) => ({
     habilidadesAprendidas: ["nucleo_arcano"],
     claseActualId,
