@@ -1,7 +1,7 @@
-import { experienciaParaNivel } from "@/lib/configuracionJuego";
+import { experienciaParaNivel } from "@/lib/progresion/experiencia";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
-import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas-personaje";
+import type { ModificadoresEstadisticas } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import type { Personaje } from "@/store/useGameStore";
 
 // Esta ficha solo presenta estadísticas. No modifica el personaje ni consulta la API.

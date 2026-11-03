@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { Dispatch, SetStateAction } from "react";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 import { obtenerRanuraObjeto, obtenerSpriteObjeto } from "@/lib/objetos";
 import type { EquipoPersonaje, ObjetoInventario } from "@/lib/tiposJuego";
 import type { Personaje } from "@/store/useGameStore";

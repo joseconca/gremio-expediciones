@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { CLASES } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
-import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/progresion/descripciones-habilidades";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
+import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/progresion/habilidades/descripciones-habilidades";
 import type { DefinicionHabilidad, SlotHabilidad } from "@/lib/tiposJuego";
 import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
