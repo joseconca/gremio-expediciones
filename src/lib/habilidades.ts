@@ -27,11 +27,3 @@ export function obtenerHabilidadesDisponiblesParaClase(claseActualId: string): D
     puedeUsarHabilidadDeClase(claseActualId, habilidad.claseId)
   );
 }
-
-export function obtenerHabilidadesActivas(): DefinicionHabilidad[] {
-  return HABILIDADES.filter((habilidad) => habilidad.tipo === "activa");
-}
-
-export function obtenerHabilidadesPasivas(): DefinicionHabilidad[] {
-  return HABILIDADES.filter((habilidad) => habilidad.tipo === "pasiva");
-}
