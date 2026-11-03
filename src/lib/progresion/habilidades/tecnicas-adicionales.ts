@@ -1,7 +1,7 @@
-import { CLASES } from "./clases";
-import { CATALOGO_TECNICAS_ADICIONALES } from "../catalogos/habilidades";
-import type { ComandoTactico, FamiliaTactica, TecnicaTactica, UnidadTactica } from "../expediciones/combate/tacticas/tipos-tacticos";
-import type { DefinicionHabilidad } from "../tiposJuego";
+import { CLASES } from "../clases";
+import { CATALOGO_TECNICAS_ADICIONALES } from "../../catalogos/habilidades";
+import type { ComandoTactico, FamiliaTactica, TecnicaTactica, UnidadTactica } from "../../expediciones/combate/tacticas/tipos-tacticos";
+import type { DefinicionHabilidad } from "../../tiposJuego";
 import { describirDisenoActiva } from "./catalogo-redisenado";
 import type { DisenoActiva, OperacionHabilidad } from "./diseno-habilidades";
 

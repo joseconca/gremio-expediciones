@@ -1,6 +1,6 @@
-import type { DefinicionHabilidad } from "../tiposJuego";
+import type { DefinicionHabilidad } from "../../tiposJuego";
 import type { DisenoActiva, ReglaPasiva } from "./diseno-habilidades";
-import { DISENO_HABILIDADES, NOMBRES_REDISENIO } from "../catalogos/habilidades";
+import { DISENO_HABILIDADES, NOMBRES_REDISENIO } from "../../catalogos/habilidades";
 
 const condicion: Record<ReglaPasiva["condicion"],string> = {
   ataque: "Al acertar una técnica ofensiva",

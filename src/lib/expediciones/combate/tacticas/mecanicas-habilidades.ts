@@ -3,7 +3,7 @@ import type { ResultadoHabilidad } from "../../combate";
 import { convertirEstadosTacticos, exportarEstadosTacticos, type ContextoTecnicaTactica } from "./adaptador-tactico";
 import { aplicarEstadoTactico, curarTactico, devolverRecursoTactico, ejecutarComandosTacticos } from "./motor-tactico";
 import type { FamiliaTactica, MundoTactico, UnidadTactica } from "./tipos-tacticos";
-import type { OperacionHabilidad, ReglaPasiva } from "../../../progresion/diseno-habilidades";
+import type { OperacionHabilidad, ReglaPasiva } from "../../../progresion/habilidades/diseno-habilidades";
 import { obtenerEstadosTacticos as tacticos } from "./preparacion-habilidades";
 
 // Mantener la API de preparacion anterior para los importadores existentes.

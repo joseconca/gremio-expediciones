@@ -1,7 +1,7 @@
 const test=require('node:test');const assert=require('node:assert/strict');
 require('./load-typescript.cjs');
 const {CLASES}=require('../src/lib/progresion/clases.ts');
-const {HABILIDADES_ADICIONALES,crearTecnicaAdicional}=require('../src/lib/progresion/tecnicas-adicionales.ts');
+const {HABILIDADES_ADICIONALES,crearTecnicaAdicional}=require('../src/lib/progresion/habilidades/tecnicas-adicionales.ts');
 const {resolverHabilidadJugador}=require('../src/lib/expediciones/combate.ts');
 const {procesarEfectosTurno,leerEfectosCombate}=require('../src/lib/expediciones/combate/estados-combate.ts');
 const actor={id:'a',equipo:'aliado',hp:80,hpMaximo:100,energia:100,energiaMaxima:100,mana:100,manaMaximo:100,ataque:20,ataqueMagico:20,defensa:10,defensaMagica:10,fila:1,columna:0,estados:[],limites:{}};

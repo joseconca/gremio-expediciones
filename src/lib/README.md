@@ -17,6 +17,7 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Asedios y límite de turno PvP | `expediciones/asedios/` |
 | Reglas de comercio | `expediciones/comercio.ts` (un módulo: sin subcarpeta innecesaria) |
 | Progresión de clases, experiencia y habilidades aprendidas | `progresion/` |
+| Diseño, catálogo adaptado y técnicas adicionales | `progresion/habilidades/` (catálogo editable único en `catalogos/habilidades.ts`) |
 | Cálculos base y contratos de estadísticas RPG | `progresion/estadisticas/` |
 | Compañías, iniciativa y recompensas de party | `party/` |
 | Índices de sprites publicados (no editar a mano) | `generated/` |

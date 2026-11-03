@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../../../tiposJuego";
-import { crearTecnicaAdicional } from "../../../progresion/tecnicas-adicionales";
+import { crearTecnicaAdicional } from "../../../progresion/habilidades/tecnicas-adicionales";
 import { resolverTecnicaTactica } from "./motor-tactico";
 import type { EstadoTactico, UnidadTactica } from "./tipos-tacticos";
 

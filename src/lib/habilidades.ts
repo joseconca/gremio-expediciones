@@ -2,8 +2,8 @@ import type { DefinicionHabilidad } from "./tiposJuego";
 import { puedeUsarHabilidadDeClase } from "./progresion/clases";
 import { HABILIDADES_NUEVAS } from "./progresion/generar-habilidades";
 import { HABILIDADES_TRONCALES, HABILIDADES_EVOLUCIONES, HABILIDADES_SUPER_NOVATO } from "./catalogos/habilidades";
-import { crearCatalogoRedisenado } from "./progresion/catalogo-redisenado";
-import { HABILIDADES_ADICIONALES } from "./progresion/tecnicas-adicionales";
+import { crearCatalogoRedisenado } from "./progresion/habilidades/catalogo-redisenado";
+import { HABILIDADES_ADICIONALES } from "./progresion/habilidades/tecnicas-adicionales";
 
 /** Habilidades profesionales de Job. Las clases avanzadas heredan las de sus antecesoras. */
 /** Unico registro de datos de habilidades, conservando el orden de version anterior. */

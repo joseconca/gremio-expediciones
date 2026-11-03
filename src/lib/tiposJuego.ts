@@ -403,8 +403,8 @@ export interface ReglaObjetivoHabilidad {
 export interface DefinicionHabilidad {
   rupturaDefensaTemporal?: number;
   versionReglas?: 2;
-  disenoActiva?: import("./progresion/diseno-habilidades").DisenoActiva;
-  reglaPasiva?: import("./progresion/diseno-habilidades").ReglaPasiva;
+  disenoActiva?: import("./progresion/habilidades/diseno-habilidades").DisenoActiva;
+  reglaPasiva?: import("./progresion/habilidades/diseno-habilidades").ReglaPasiva;
   conversionReservaInteligencia?: boolean;
   programaTactico?: string;
   id: string;

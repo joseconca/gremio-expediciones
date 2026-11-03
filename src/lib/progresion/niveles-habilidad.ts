@@ -1,6 +1,6 @@
 import type { DefinicionHabilidad } from "../tiposJuego";
 import { CLASES } from "./clases";
-import { describirDisenoActiva } from "./catalogo-redisenado";
+import { describirDisenoActiva } from "./habilidades/catalogo-redisenado";
 
 export const COSTE_PUNTO_POR_NIVEL_HABILIDAD = 1;
 export const COSTE_REINICIO_POR_NIVEL_JOB = 100;

@@ -47,7 +47,7 @@ test("catálogos únicos y adaptadores sin definiciones duplicadas", () => {
   assert.equal(Object.keys(DEFINICIONES_CLASES).length, Object.keys(CLASES).length);
   assert.equal(catalogo.HABILIDADES_TRONCALES, HABILIDADES_TRONCALES);
   assert.equal(catalogo.HABILIDADES_EVOLUCIONES, HABILIDADES_EVOLUCIONES);
-  assert.equal(require("../src/lib/progresion/diseno-habilidades.ts").DISENO_HABILIDADES, catalogo.DISENO_HABILIDADES);
+  assert.equal(require("../src/lib/progresion/habilidades/diseno-habilidades.ts").DISENO_HABILIDADES, catalogo.DISENO_HABILIDADES);
   assert.ok(Object.keys(catalogo.NOMBRES_REDISENIO).length > 0);
   assert.ok(Object.keys(catalogo.CATALOGO_TECNICAS_ADICIONALES).length > 0);
   assert.equal(new Set(Object.keys(DEFINICIONES_CLASES)).size, Object.keys(CLASES).length);
