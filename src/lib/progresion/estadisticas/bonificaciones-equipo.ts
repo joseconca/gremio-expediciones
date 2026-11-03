@@ -1,10 +1,10 @@
-import type { EquipoPersonaje, ObjetoInventario } from "../tiposJuego";
-import type { ModificadoresEstadisticas } from "./estadisticas/modificadores-estadisticas";
-import { sumarModificadores } from "./estadisticas/modificadores-estadisticas";
-import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../objetos";
-import { calcularBonificacionesDominioEquipo } from "./clases";
+import type { EquipoPersonaje, ObjetoInventario } from "../../tiposJuego";
+import type { ModificadoresEstadisticas } from "./modificadores-estadisticas";
+import { sumarModificadores } from "./modificadores-estadisticas";
+import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../../objetos";
+import { calcularBonificacionesDominioEquipo } from "../clases";
 
-import type { BonificacionesDerivadasRpg } from "./estadisticas";
+import type { BonificacionesDerivadasRpg } from "../estadisticas";
 
 export interface ModificadoresEquipoParaRpg {
   hpMaximo?: number;

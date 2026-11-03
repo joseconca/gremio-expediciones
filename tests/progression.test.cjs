@@ -9,9 +9,9 @@ const {
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
-const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
+const { calcularAtributosClase } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
 const { ajustarHabilidadPorNivel, nivelMaximoHabilidad, costeReinicioHabilidades } = require("../src/lib/progresion/niveles-habilidad.ts");
-const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
+const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/estadisticas/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/progresion/experiencia.ts");
 const {
   RANGOS_AMENAZA,
@@ -43,9 +43,9 @@ const {
 
 test("los módulos de estadísticas mantienen el cálculo público y los modificadores originales", () => {
   const publico = require("../src/lib/progresion/estadisticas-personaje.ts");
-  const equipo = require("../src/lib/progresion/bonificaciones-equipo.ts");
+  const equipo = require("../src/lib/progresion/estadisticas/bonificaciones-equipo.ts");
   const { MODIFICADORES_VACIOS, sumarModificadores } = require("../src/lib/progresion/estadisticas/modificadores-estadisticas.ts");
-  const { obtenerModificadoresPasivas } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
+  const { obtenerModificadoresPasivas } = require("../src/lib/progresion/estadisticas/bonificaciones-pasivas.ts");
 
   assert.strictEqual(publico.calcularModificadoresEquipo, equipo.calcularModificadoresEquipo);
   assert.deepEqual(
@@ -89,7 +89,7 @@ test("las cuentas heredadas conservan sus fórmulas físicas hasta cambiar de pr
 });
 
 test("Núcleo arcano conserva la conversión limitada y no puede aplicarse desde otra clase", () => {
-  const { aplicarConversionReservaInteligencia } = require("../src/lib/progresion/bonificaciones-pasivas.ts");
+  const { aplicarConversionReservaInteligencia } = require("../src/lib/progresion/estadisticas/bonificaciones-pasivas.ts");
   const { MODIFICADORES_VACIOS } = require("../src/lib/progresion/estadisticas/modificadores-estadisticas.ts");
   const entrada = (claseActualId) => ({
     habilidadesAprendidas: ["nucleo_arcano"],

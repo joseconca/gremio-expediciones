@@ -1,10 +1,10 @@
-import type { AtributosPrincipales, DefinicionHabilidad } from "../tiposJuego";
-import { COEFICIENTES_ATRIBUTOS_RPG } from "./estadisticas";
+import type { AtributosPrincipales, DefinicionHabilidad } from "../../tiposJuego";
+import { COEFICIENTES_ATRIBUTOS_RPG } from "../estadisticas";
 
-import { obtenerHabilidadPorId } from "../habilidades";
-import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./niveles-habilidad";
-import { puedeUsarHabilidadDeClase } from "./clases";
-import type { ModificadoresEstadisticas } from "./estadisticas/modificadores-estadisticas";
+import { obtenerHabilidadPorId } from "../../habilidades";
+import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "../niveles-habilidad";
+import { puedeUsarHabilidadDeClase } from "../clases";
+import type { ModificadoresEstadisticas } from "./modificadores-estadisticas";
 
 /** Bonificaciones pasivas aprendidas, aplicando nivel y permisos de clase. */
 export function obtenerModificadoresPasivas(

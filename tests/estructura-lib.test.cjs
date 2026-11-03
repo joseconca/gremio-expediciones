@@ -48,6 +48,9 @@ const trasladados = [
   ["progresion", "habilidades/aprendizaje.ts"],
   ["progresion", "habilidades/equipo-habilidades.ts"],
   ["progresion", "habilidades/descripciones-habilidades.ts"],
+  ["progresion", "estadisticas/atributos-clase.ts"],
+  ["progresion", "estadisticas/bonificaciones-equipo.ts"],
+  ["progresion", "estadisticas/bonificaciones-pasivas.ts"],
 ];
 
 test("las reglas trasladadas tienen un solo propietario y no quedan duplicados en la raíz", () => {

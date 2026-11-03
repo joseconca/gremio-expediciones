@@ -190,8 +190,8 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
       energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
     }) },
-    "@/lib/progresion/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
-    "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
+    "@/lib/progresion/estadisticas/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
+    "@/lib/progresion/estadisticas/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
     "@/lib/progresion/estadisticas-personaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
@@ -309,7 +309,7 @@ function loadSource(relativePath, dependencies = {}) {
       if (Object.hasOwn(dependencies, name)) return dependencies[name];
       if (name === "../../../lib/expediciones/encuentros/dificultad" && Object.hasOwn(dependencies, "../../../../lib/expediciones/encuentros/dificultad")) return dependencies["../../../../lib/expediciones/encuentros/dificultad"];
       if (name === "../../../lib/expediciones/combate/estados-combate" && Object.hasOwn(dependencies, "../../../../lib/expediciones/combate/estados-combate")) return dependencies["../../../../lib/expediciones/combate/estados-combate"];
-      if (name === "@/lib/progresion/atributos-clase") {
+      if (name === "@/lib/progresion/estadisticas/atributos-clase") {
         return {
           calcularAtributosClase: () => ({
             fuerza: 1, agilidad: 1, vitalidad: 1,
@@ -832,7 +832,7 @@ function makeInvalidBodyRoute(relativePath) {
         regeneracionManaPorTurno: 1,
       }),
     },
-    "@/lib/progresion/bonificaciones-equipo": {
+    "@/lib/progresion/estadisticas/bonificaciones-equipo": {
       mapearBonificacionesEquipoRpg: () => ({}),
     },
     "@/lib/progresion/estadisticas-personaje": {

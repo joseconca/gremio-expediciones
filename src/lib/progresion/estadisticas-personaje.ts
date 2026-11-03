@@ -3,7 +3,7 @@ import type { HabilidadAprendidaConNivel } from "./niveles-habilidad";
 import {
   obtenerModificadoresPasivas,
   aplicarConversionReservaInteligencia,
-} from "./bonificaciones-pasivas";
+} from "./estadisticas/bonificaciones-pasivas";
 import {
   obtenerAtributosPrincipales,
   obtenerEstadisticasBase,
@@ -30,7 +30,7 @@ export type {
 } from "./estadisticas/modificadores-estadisticas";
 
 // API pública histórica: se mantiene para no modificar sus consumidores.
-export { calcularModificadoresEquipo } from "./bonificaciones-equipo";
+export { calcularModificadoresEquipo } from "./estadisticas/bonificaciones-equipo";
 
 export function calcularEstadisticasPersonaje(
   personaje: DatosPersonajeEstadisticas,

@@ -1,5 +1,5 @@
 import type { AtributosPrincipales } from "../../tiposJuego";
-import { calcularAtributosClase } from "../atributos-clase";
+import { calcularAtributosClase } from "./atributos-clase";
 import { CLASES } from "../clases";
 import {
   calcularEstadisticasBase,

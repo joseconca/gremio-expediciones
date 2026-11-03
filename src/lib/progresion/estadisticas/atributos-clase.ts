@@ -1,5 +1,5 @@
-import type { AtributosPrincipales } from "../tiposJuego";
-import { ARQUETIPOS_CLASE, CLASES } from "./clases";
+import type { AtributosPrincipales } from "../../tiposJuego";
+import { ARQUETIPOS_CLASE, CLASES } from "../clases";
 
 export interface ProgresoEntrenamiento {
   claseId: string;

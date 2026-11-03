@@ -11,12 +11,12 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | Comprobar qué habilidades puede aprender una clase | `habilidades/aprendizaje.ts` |
 | Cambiar las curvas de experiencia Base y Job | `experiencia.ts` |
 | Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas.ts` |
-| Cambiar cómo influyen clase y Job en los atributos | `atributos-clase.ts` |
+| Cambiar cómo influyen clase y Job en los atributos | `estadisticas/atributos-clase.ts` |
 | Calcular el total y el desglose de estadísticas del personaje | `estadisticas-personaje.ts` |
 | Revisar estadísticas heredadas, base RPG y aportes por atributo | `estadisticas/estadisticas-base-personaje.ts` |
 | Cambiar los contratos y la suma de modificadores | `estadisticas/modificadores-estadisticas.ts` |
-| Aplicar dominio de armas, armaduras y escudos y adaptar el equipo al modelo RPG | `bonificaciones-equipo.ts` |
-| Calcular bonificaciones pasivas y conversión de maná a inteligencia (Núcleo arcano) | `bonificaciones-pasivas.ts` |
+| Aplicar dominio de armas, armaduras y escudos y adaptar el equipo al modelo RPG | `estadisticas/bonificaciones-equipo.ts` |
+| Calcular bonificaciones pasivas y conversión de maná a inteligencia (Núcleo arcano) | `estadisticas/bonificaciones-pasivas.ts` |
 | Modificar descripciones numéricas de habilidades | `habilidades/descripciones-habilidades.ts` |
 
 Las reglas de diseño, transformación y técnicas adicionales del motor están ahora en `habilidades/` (no es otro catálogo editable).
@@ -31,4 +31,4 @@ Las reglas de diseño, transformación y técnicas adicionales del motor están 
 
 **Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para consumidores anteriores, pero los cambios nuevos deben importar directamente `src/lib/base/edificios.ts`, `src/lib/base/mejoras.ts`, `src/lib/progresion/` o `src/lib/sprites/`, según su responsabilidad. No se elimina la fachada sin comprobar todos los importadores.
 
-**Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas viven en `estadisticas/estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.
+**Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas viven en `estadisticas/estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `estadisticas/bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.

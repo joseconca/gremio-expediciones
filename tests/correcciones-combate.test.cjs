@@ -1,7 +1,7 @@
 require("./load-typescript.cjs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { calcularAtributosClase, calcularEntrenamientoRama } = require("../src/lib/progresion/atributos-clase.ts");
+const { calcularAtributosClase, calcularEntrenamientoRama } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/combate/recursos-combate.ts");
 const { calcularRestauracionConsumible, esConsumibleRestaurador } = require("../src/lib/expediciones/combate/consumibles-combate.ts");
