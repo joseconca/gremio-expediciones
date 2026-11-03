@@ -36,6 +36,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Preparación de técnicas, ajustes por área y reloj de efectos | `src/lib/expediciones/preparacion-habilidades.ts` |
 | Aplicar operaciones, disipaciones, pasivas e historial tras una habilidad | `src/lib/expediciones/mecanicas-habilidades.ts` |
 | Definiciones de unidad, estado, técnica y comandos tácticos | `src/lib/expediciones/tipos-tacticos.ts` |
+| Convertir efectos persistidos a estados tácticos, guardarlos y ejecutar técnicas adicionales | `src/lib/expediciones/adaptador-tactico.ts` |
 | Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/motor-tactico.ts` |
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
 | Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
