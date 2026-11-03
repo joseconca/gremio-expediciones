@@ -25,6 +25,7 @@ test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realm
   const accionesParty = leer("src/server/services/party/combate-party-actions.ts");
   const liquidacionParty = leer("src/server/services/party/liquidacion-recompensas.ts");
   const panelParty = leer("src/components/base/PanelParty.tsx");
+  const informeParty = leer("src/components/base/party/resultado-informe.ts");
   const base = leer("src/app/base/page.tsx");
   assert.match(modal, /<ResultadoCombate/);
   assert.match(resultado, /Informe de combate/);
@@ -43,6 +44,7 @@ test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realm
   assert.match(liquidacionParty, /faseResultado === "derrota"/);
   assert.match(liquidacionParty, /for \(const entradaEnemigo of definicionesRecompensables\)/);
   assert.match(liquidacionParty, /recompensasResultado: resultadoRecompensas/);
-  assert.match(panelParty, /recompensas: combate\.fase === "victoria" \|\| combate\.fase === "derrota"/);
+  assert.match(panelParty, /obtenerResultadoInformeParty\(estadoNuevo, actual\)/);
+  assert.match(informeParty, /recompensas: combate\.fase === "victoria" \|\| combate\.fase === "derrota"/);
   assert.match(panelParty, /recompensaInforme=\{recompensaInformeParty/);
 });
