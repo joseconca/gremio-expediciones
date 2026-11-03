@@ -3,6 +3,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { resolverComercio } from "@/lib/expediciones/comercio";
+import { calcularRegresoComercioProgramado } from "@/lib/expediciones/tiempos";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -673,16 +674,8 @@ export async function completarExpedicion() {
     // ============================================================
     // CALCULAR REGRESO
     // ============================================================
-    const duracionIda = Math.max(
-      60_000,
-      expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime()
-    );
-
-    const fechaSalidaRegreso = expedicion.fechaLlegada;
-
-    const fechaLlegadaRegreso = new Date(
-      fechaSalidaRegreso.getTime() + duracionIda
-    );
+    const { duracionIda, fechaSalidaRegreso, fechaLlegadaRegreso } =
+      calcularRegresoComercioProgramado(expedicion.fechaSalida, expedicion.fechaLlegada);
 
     // ============================================================
     // GUARDAR RESULTADO Y COMENZAR REGRESO
