@@ -92,7 +92,7 @@ function loadService(prisma) {
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/expediciones/encuentros/normal": { seleccionarEnemigosNormales: () => [enemy] },
-    "@/lib/expediciones/enemigos-combate": {
+    "@/lib/expediciones/combate/enemigos-combate": {
       crearEnemigosEnCombate: (definiciones) => definiciones.map((enemigo, indice) => ({
         id: "enemigo-" + (indice + 1),
         enemigoId: enemigo.id,

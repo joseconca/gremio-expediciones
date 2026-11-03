@@ -7,7 +7,7 @@ const {
   obtenerEnemigoVivoPorId,
   crearEnemigoLegacy,
   leerRosterEnemigosParty,
-} = require("../src/lib/expediciones/enemigos-combate.ts");
+} = require("../src/lib/expediciones/combate/enemigos-combate.ts");
 
 function enemigo(id, difMin, overrides = {}) {
   return {

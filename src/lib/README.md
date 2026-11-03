@@ -9,7 +9,7 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Inventario, equipo, botín, sufijos y tiendas | `equipamiento/` |
 | Mercado y precios | `economia/` |
 | Sprites de héroes/enemigos y su escala de combate | `sprites/` |
-| Combate, consumibles y curación durante expediciones | `expediciones/combate/` (mecánicas auxiliares) y `expediciones/combate.ts` (API principal) |
+| Combate, enemigos durante la batalla, consumibles y curación | `expediciones/combate/` (mecánicas auxiliares y roster) y `expediciones/combate.ts` (API principal) |
 | Tiempo de expedición, regreso y límites del almacén | `expediciones/viajes/` |
 | Encuentros normales, élite, dificultad, jefes diarios y generación de misiones | `expediciones/encuentros/` |
 | Comercio, asedio y turnos PvP | `expediciones/` (agrupación interna **pendiente**) |

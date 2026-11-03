@@ -102,7 +102,7 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/party/recompensas": require("../src/lib/party/recompensas.ts"),
     "./inventario-recompensas": require("../src/server/services/party/inventario-recompensas.ts"),
     "@/lib/expediciones/objetivos-combate": require("../src/lib/expediciones/objetivos-combate.ts"),
-    "@/lib/expediciones/enemigos-combate": require("../src/lib/expediciones/enemigos-combate.ts"),
+    "@/lib/expediciones/combate/enemigos-combate": require("../src/lib/expediciones/combate/enemigos-combate.ts"),
     "@/lib/habilidades": {
       obtenerHabilidadPorId: (id) => testOptions.habilidadesPorId?.[id] ?? (id === "golpe_arcano" ? {
         id: "golpe_arcano", claseId: "novato", nombre: "Golpe arcano", descripcion: "Habilidad de test.",

@@ -16,7 +16,7 @@ import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosComb
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
-import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate, { HistorialCombateExpandido } from "./HistorialCombate";

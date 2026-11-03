@@ -111,7 +111,7 @@ Las carpetas generales ya estaban creadas, pero `expediciones/` y `progresion/` 
 - `expediciones/viajes/`: `tiempos.ts`, `recompensas-regreso.ts`.
 - `progresion/estadisticas/`: `modificadores-estadisticas.ts`, `estadisticas-base-personaje.ts`.
 
-**Siguientes agrupaciones pendientes** (no darlas por terminadas): snapshots de enemigos en combate y mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
+**Siguientes agrupaciones pendientes** (no darlas por terminadas): mecánicas de asedio/PvP, módulos internos de habilidades y estadísticas restantes. Comercio cuenta hoy con un módulo de reglas y no requiere necesariamente una carpeta con un solo archivo. Se deben estudiar los consumidores de cada grupo antes del traslado, conservar los puntos de entrada de uso público y actualizar los tests que cargan archivos por ruta. No crear capas de compatibilidad innecesarias.
 
 El mapa navegable para quien mantiene el proyecto está en `src/lib/README.md`.
 
@@ -161,7 +161,7 @@ Se han hecho extracciones **acotadas**, sin cambiar contratos de turnos, endpoin
 | `src/lib/expediciones/formacion-party.ts` | Carriles, orden de líder y ajuste de una pareja de aliados | `components/combate/CombateModal.tsx` |
 | `src/lib/party/recompensas.ts` | Lectura defensiva de recompensa, reparto entero, RNG de botín determinista, agregación de objetos | `server/services/party/combate-party-actions.ts` |
 | `src/lib/party/iniciativa.ts` | Recuperación de colas y preparación del siguiente turno de party; reutiliza la iniciativa general | `server/services/party/combate-party-actions.ts` |
-| `src/lib/expediciones/enemigos-combate.ts` | Interpretación de rosters persistidos y adaptación de enemigos legacy | `server/services/party/combate-party-actions.ts` |
+| `src/lib/expediciones/combate/enemigos-combate.ts` | Interpretación de rosters persistidos y adaptación de enemigos legacy | `server/services/party/combate-party-actions.ts` |
 | `src/components/base/party/tipos.ts` | Contratos de vistas y respuestas de la compañía | `components/base/PanelParty.tsx` |
 | `src/components/base/party/vista-combate.ts` | Adaptación pura del combate grupal al contrato de `CombateModal` | `components/base/PanelParty.tsx` |
 | `src/components/base/party/VisitasEntrantesParty.tsx` | Visitas entrantes, confirmación de llegada y aceptar/rechazar | `components/base/PanelParty.tsx` |

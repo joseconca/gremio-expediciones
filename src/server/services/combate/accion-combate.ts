@@ -32,7 +32,7 @@ import {
   validarTurnoAccionCombate,
   validarSolicitudAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";
 type EfectoCombate = EstadoEfectoHabilidad;

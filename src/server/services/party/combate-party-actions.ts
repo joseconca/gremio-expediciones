@@ -42,7 +42,7 @@ import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
 import { validarExpedicionId, obtenerEstadoParticipantes, cargarCombateParty } from "./contexto-combate";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, leerRosterEnemigosParty, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, leerRosterEnemigosParty, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 

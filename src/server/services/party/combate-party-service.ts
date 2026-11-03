@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { seleccionarEnemigosNormales } from "@/lib/expediciones/encuentros/normal";
-import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { seleccionarJefeElite } from "@/lib/expediciones/encuentros/elite";
 import { aplicarEfectoComida, calcularBonificacionesComida, obtenerComidaTaberna } from "@/lib/base/taberna";

@@ -10,7 +10,7 @@ import {
 } from "@/lib/progresion/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";

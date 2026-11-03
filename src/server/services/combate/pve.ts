@@ -17,7 +17,7 @@ import {
 
 import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";

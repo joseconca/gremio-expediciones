@@ -6,7 +6,7 @@ import {
   CONFIGURACION_DIFICULTAD,
   type ModoDificultad,
 } from "@/lib/expediciones/encuentros/dificultad";
-import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import type { EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import type { DefinicionEnemigo, RecompensaMision } from "@/lib/tiposJuego";
 
 export interface EnemigoDerrotadoConDefinicion {

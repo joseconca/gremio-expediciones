@@ -1,4 +1,4 @@
-import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import type { EstadoParty, ResultadoCombatePanelParty } from "./tipos";
 
 /**

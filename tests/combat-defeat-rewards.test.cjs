@@ -2,7 +2,7 @@ require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
-const { crearEnemigosEnCombate } = require("../src/lib/expediciones/enemigos-combate.ts");
+const { crearEnemigosEnCombate } = require("../src/lib/expediciones/combate/enemigos-combate.ts");
 const {
   calcularRecompensasParcialesDerrota,
 } = require("../src/lib/expediciones/recompensas-derrota.ts");

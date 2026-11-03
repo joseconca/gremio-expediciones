@@ -10,6 +10,7 @@ const existen = (ruta) => fs.existsSync(path.join(root, ruta));
 const trasladados = [
   ["expediciones", "combate/consumibles-combate.ts"],
   ["expediciones", "combate/recursos-combate.ts"],
+  ["expediciones", "combate/enemigos-combate.ts"],
   ["expediciones", "combate/presupuesto-curacion.ts"],
   ["expediciones", "viajes/tiempos.ts"],
   ["expediciones", "viajes/recompensas-regreso.ts"],

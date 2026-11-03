@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import type { DefinicionEnemigo, TipoMision } from "@/lib/tiposJuego";
 
 import { seleccionarEnemigosNormales } from "@/lib/expediciones/encuentros/normal";
-import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { seleccionarJefeElite } from "@/lib/expediciones/encuentros/elite";
 
 import { procesarLlegadaAsedio } from "@/server/services/asedios/procesar-llegada-asedio";

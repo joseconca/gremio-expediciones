@@ -18,7 +18,7 @@ import {
 import { ESTADOS_EXPEDICION_PARTY_ACTIVOS } from "@/lib/party/expedicion-reglas";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,

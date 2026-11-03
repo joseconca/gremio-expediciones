@@ -4,7 +4,7 @@ import { useState, type ComponentProps } from "react";
 import CombateModal from "@/components/combate/CombateModal";
 import AsedioModal from "@/components/combate/AsedioModal";
 import type { Personaje, CombatePve, CombateActivo } from "@/store/useGameStore";
-import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 
