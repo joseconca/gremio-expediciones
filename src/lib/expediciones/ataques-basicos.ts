@@ -1,5 +1,5 @@
 import type { AccionAnimadaCombate } from "./combate";
-import { calcularDefensaTactica } from "./estados-combate";
+import { calcularDefensaTactica } from "./combate/estados-combate";
 
 /**
  * Reglas de los ataques básicos del jugador y de los enemigos.
