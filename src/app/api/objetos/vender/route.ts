@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia/mercado";
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
+import { crearUltimaVenta } from "@/lib/equipamiento/ultima-venta";
+
 import { estaInstanciaEquipadaPersistida } from "@/lib/equipamiento/ranuras";
 
 export async function POST(request: Request) {
@@ -52,26 +52,8 @@ export async function POST(request: Request) {
 
       const definicionActual = obtenerObjetoPorId(existente.objetoId);
       if (!definicionActual) throw new Error("DEFINICION_NO_EXISTE");
-      const cantidad = Math.max(1, existente.cantidad);
-      const precioVenta = calcularPrecioVentaObjeto(definicionActual.precio, cantidad);
-      const precioRecompra = calcularPrecioRecompraObjeto(
-        definicionActual.precio,
-        cantidad,
-        precioVenta
-      );
-      const sufijoId = existente.sufijoId ?? null;
-      const snapshot = {
-        instanciaId: existente.id,
-        objetoId: existente.objetoId,
-        cantidad: existente.cantidad,
-        nivelMejora: existente.nivelMejora,
-        sufijoId,
-        bonificaciones: sanitizarBonificacionesObjeto(existente.bonificaciones),
-        precioVenta,
-        precioRecompra,
-        nombreObjeto: obtenerNombreObjetoConSufijo(definicionActual.nombre, sufijoId),
-        vendidoEn: new Date().toISOString(),
-      };
+      const snapshot = crearUltimaVenta(existente, definicionActual, new Date());
+      const { precioVenta, precioRecompra } = snapshot;
 
       const borrado = await tx.inventarioObjeto.deleteMany({
         where: { id: existente.id, inventarioId: personaje.inventario!.id },
