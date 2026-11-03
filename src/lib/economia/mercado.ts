@@ -20,6 +20,26 @@ export function esCantidadMercadoValida(valor: unknown): valor is number {
     Number.isSafeInteger(valor) && valor > 0 && valor <= MAX_CANTIDAD_MERCADO;
 }
 
+/** Valida el mismo contrato JSON de compra y venta sin depender de HTTP ni Prisma. */
+export function validarSolicitudMercado(valor: unknown):
+  | { valida: true; recurso: RecursoMercado; cantidad: number }
+  | { valida: false; error: string } {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+    return { valida: false, error: "Petición no válida." };
+  }
+  const datos = valor as Record<string, unknown>;
+  if (!esRecursoValido(datos.recurso)) {
+    return { valida: false, error: "Recurso no válido" };
+  }
+  if (!esCantidadMercadoValida(datos.cantidad)) {
+    return {
+      valida: false,
+      error: `La cantidad debe ser un entero entre 1 y ${MAX_CANTIDAD_MERCADO}.`,
+    };
+  }
+  return { valida: true, recurso: datos.recurso, cantidad: datos.cantidad };
+}
+
 export function leerNivelMercado(edificios: unknown): number {
   if (!edificios || typeof edificios !== "object" || Array.isArray(edificios)) return 0;
   const nivel = (edificios as Record<string, unknown>).mercado;
