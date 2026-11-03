@@ -6,7 +6,7 @@ const {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
   validarSolicitudAccionCombate,
-} = require("../src/lib/expediciones/contrato-accion-combate.ts");
+} = require("../src/lib/expediciones/combate/contrato-accion-combate.ts");
 
 test("el contrato de solicitud rechaza cuerpos y acciones inválidos con sus mensajes originales", () => {
   for (const cuerpo of [null, undefined, [], "texto", 5]) {

@@ -31,7 +31,7 @@ import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
   validarSolicitudAccionCombate,
-} from "@/lib/expediciones/contrato-accion-combate";
+} from "@/lib/expediciones/combate/contrato-accion-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";

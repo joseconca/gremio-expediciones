@@ -2,10 +2,10 @@ require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad } = require("../src/lib/expediciones/presentacion-combate.ts");
-const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/ataque-basico-arma.ts");
+const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/combate/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
-const ataquesBasicos = require("../src/lib/expediciones/ataques-basicos.ts");
+const ataquesBasicos = require("../src/lib/expediciones/combate/ataques-basicos.ts");
 
 test("la API histórica de combate conserva exactamente los ataques básicos", () => {
   const publico = require("../src/lib/expediciones/combate.ts");

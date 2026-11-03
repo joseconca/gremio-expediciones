@@ -8,7 +8,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
-import { usaAtaqueMagicoBasico } from "@/lib/expediciones/ataque-basico-arma";
+import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
 
 import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
 import {
@@ -29,7 +29,7 @@ import {
   calcularPrecisionModificada,
   calcularEvasionModificada,
 } from "../../../lib/expediciones/combate/estados-combate";
-import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from "@/lib/expediciones/contrato-accion-combate";
+import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from "@/lib/expediciones/combate/contrato-accion-combate";
 import {
   prepararAccionCombate,
   manejarErrorAccionCombate,

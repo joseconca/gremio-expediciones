@@ -5,7 +5,7 @@ import {
   falloPorPrecision,
   calcularDanoMitigado,
   calcularProbabilidadImpacto,
-} from "./ataques-basicos";
+} from "./combate/ataques-basicos";
 
 /** API de compatibilidad para los servicios y pruebas existentes. */
 export {
@@ -13,7 +13,7 @@ export {
   calcularProbabilidadImpacto,
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
-} from "./ataques-basicos";
+} from "./combate/ataques-basicos";
 import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./combate/estados-combate";
 import { aplicarMecanicasHabilidad } from "./combate/tacticas/mecanicas-habilidades";
 import { actualizarRelojContexto, prepararHabilidadRedisenada } from "./combate/tacticas/preparacion-habilidades";

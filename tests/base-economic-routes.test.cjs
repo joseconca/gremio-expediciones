@@ -244,8 +244,8 @@ function makeCombatConsumableRoute({
       registrarVictoriaRangoNormal: () => ["I"],
     },
   };
-  commonDependencies["@/lib/expediciones/contrato-accion-combate"] = loadSource(
-    "src/lib/expediciones/contrato-accion-combate.ts",
+  commonDependencies["@/lib/expediciones/combate/contrato-accion-combate"] = loadSource(
+    "src/lib/expediciones/combate/contrato-accion-combate.ts",
   );
   const common = loadSource("src/server/services/combate/accion-combate.ts", commonDependencies);
   const pveDependencies = {

@@ -25,7 +25,7 @@ function loadSource(relativePath, dependencies = {}) {
 const {
   distribuirEfectosHabilidadPvp,
   normalizarActorHabilidadDefensor,
-} = require("../src/lib/expediciones/contrato-accion-combate.ts");
+} = require("../src/lib/expediciones/combate/contrato-accion-combate.ts");
 const { actualizarCombateVersionado } = require("../src/server/services/combate/actualizar-combate-versionado.ts");
 const { TIEMPO_MAXIMO_TURNO_MS, haExpiradoTurnoPvp } = require("../src/lib/expediciones/asedios/turno-pvp.ts");
 

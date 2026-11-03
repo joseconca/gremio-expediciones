@@ -25,7 +25,7 @@ import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
 import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
-import { usaAtaqueMagicoBasico } from "@/lib/expediciones/ataque-basico-arma";
+import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,
