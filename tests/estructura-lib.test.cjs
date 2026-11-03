@@ -153,28 +153,36 @@ test("las reglas tácticas movidas conservan sus exportaciones y se pueden impor
 });
 
 
-test("las importaciones relativas de expediciones, progresión y catálogos resuelven a módulos reales", () => {
+test("todos los imports locales de src/lib resuelven a archivos de la estructura actual", () => {
   const recorrer = (directorio) => fs.readdirSync(directorio, { withFileTypes: true }).flatMap((entrada) => {
     const ruta = path.join(directorio, entrada.name);
     return entrada.isDirectory()
       ? recorrer(ruta)
       : /\.(ts|tsx)$/.test(entrada.name) ? [ruta] : [];
   });
-  const fuentes = ["expediciones", "progresion", "catalogos"].flatMap((carpeta) =>
-    recorrer(path.join(root, "src/lib", carpeta))
-  );
-  const referencias = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)["'](\.{1,2}\/[^"']+)["']/g;
-  const extensiones = ["", ".ts", ".tsx", ".js", ".json", ".d.ts", "/index.ts", "/index.tsx"];
+  const fuentes = recorrer(path.join(root, "src/lib"));
+  // Cubre imports de valor/tipo, reexports, import("...") y require("...").
+  // La auditoría anterior solo revisaba rutas relativas en tres subdirectorios.
+  const referencias = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*|\bimport\s+)["']((?:\.{1,2}\/|@\/)[^"']+)["']/g;
+  const extensiones = ["", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".json", ".d.ts", "/index.ts", "/index.tsx"];
+  const faltantes = [];
 
   for (const fuente of fuentes) {
     const contenido = fs.readFileSync(fuente, "utf8");
     for (const coincidencia of contenido.matchAll(referencias)) {
       const importado = coincidencia[1];
-      const destino = path.resolve(path.dirname(fuente), importado);
-      const encontrado = extensiones.some((ext) => fs.existsSync(destino + ext) && fs.statSync(destino + ext).isFile());
-      assert.ok(encontrado,
-        `Importación relativa sin archivo: ${path.relative(root, fuente)} → ${importado}`);
+      const destino = importado.startsWith("@/")
+        ? path.join(root, "src", importado.slice(2))
+        : path.resolve(path.dirname(fuente), importado);
+      const encontrado = extensiones.some((ext) => {
+        const archivo = destino + ext;
+        return fs.existsSync(archivo) && fs.statSync(archivo).isFile();
+      });
+      if (!encontrado) {
+        faltantes.push(`${path.relative(root, fuente)} → ${importado}`);
+      }
     }
   }
-});
 
+  assert.deepEqual(faltantes, [], "Se han detectado imports obsoletos o rutas locales inexistentes");
+});
