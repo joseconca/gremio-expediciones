@@ -10,6 +10,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `tipos-tacticos.ts`: contratos de estado, unidad, mundo y comando. `motor-tactico.ts` los sigue reexportando.
 - `motor-tactico.ts`: motor puro de comandos, estados, pulsos, recursos y ciclos.
 - `estados-combate.ts`, `objetivos-combate.ts`, `iniciativa-combate.ts`: reglas de estado, selección de objetivos e iniciativa.
+- `contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
 - `cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
 - `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `tiempos.ts`: encuentros y expediciones.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.

@@ -40,6 +40,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/motor-tactico.ts` |
 | Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
 | Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
+| Validación de la solicitud de combate, objetivos y turnos | `src/lib/expediciones/contrato-accion-combate.ts` |
 | Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
 | Consultar, establecer y descontar cooldowns de habilidades | `src/lib/expediciones/cooldowns-habilidades.ts` |
 | Duración de expediciones, ida y regreso | `src/lib/expediciones/tiempos.ts` y `src/server/services/expediciones/` |
