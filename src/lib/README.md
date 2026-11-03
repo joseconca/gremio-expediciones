@@ -22,7 +22,7 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Compañías, iniciativa y recompensas de party | `party/` |
 | Índices de sprites publicados (no editar a mano) | `generated/` |
 
-`src/lib/habilidades.ts`, `objetos.ts`, `enemigos.ts` y `configuracionJuego.ts` son APIs o fachadas existentes: **no son segundos catálogos**. `tiposJuego.ts` reúne contratos entre sistemas.
+`src/lib/habilidades.ts`, `objetos.ts` y `enemigos.ts` son APIs de consulta de los catálogos canónicos. `configuracionJuego.ts` se retiró y los importadores utilizan directamente el propietario de cada regla. `tiposJuego.ts` reúne contratos entre sistemas.
 
 ## Criterio para seguir ordenando
 

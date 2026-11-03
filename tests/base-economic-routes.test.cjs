@@ -186,7 +186,7 @@ function makeCombatConsumableRoute({
     },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
-    "@/lib/progresion/experiencia": { aplicarExperienciaJob: (p) => p, PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3 },
+    "@/lib/progresion/experiencia": { aplicarExperienciaJob: (p) => p, PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3, experienciaParaNivel: () => 100 },
     "@/lib/progresion/estadisticas/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
       energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
     }) },
@@ -194,7 +194,6 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/estadisticas/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
     "@/lib/progresion/estadisticas/estadisticas-personaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
-    "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: () => ({ id: "slime_verde", nombre: "Slime", botin: 0, difMin: 0 }),
     },
@@ -255,7 +254,7 @@ function makeCombatConsumableRoute({
     "@/lib/expediciones/viajes/tiempos": loadSource("src/lib/expediciones/viajes/tiempos.ts"),
     "@/server/services/combate/actualizar-combate-versionado": loadSource("src/server/services/combate/actualizar-combate-versionado.ts"),
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
-    "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
+    "@/lib/progresion/experiencia": commonDependencies["@/lib/progresion/experiencia"],
     "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
     "../../../lib/expediciones/encuentros/dificultad": commonDependencies["../../../../lib/expediciones/encuentros/dificultad"],
     "../../../lib/expediciones/combate/estados-combate": commonDependencies["../../../../lib/expediciones/combate/estados-combate"],
@@ -841,7 +840,7 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/equipamiento/inventario": {
       obtenerEquipoDesdePersonaje: () => ({}),
     },
-    "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
+    "@/lib/base/escuela": { puedeAprenderHabilidad: () => true },
     "@/lib/progresion/habilidades/aprendizaje": { obtenerHabilidadesEnVenta: () => [] },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
     "@/lib/expediciones/combate": {

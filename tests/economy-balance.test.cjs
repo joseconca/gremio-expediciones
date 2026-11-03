@@ -15,21 +15,8 @@ const {
   calcularPrecioVentaObjeto,
   calcularPrecioRecompraObjeto,
 } = require("../src/lib/economia/mercado.ts");
-const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
+const { calcularCosteEdificio } = require("../src/lib/base/edificios.ts");
 const { prepararMejoraEdificio } = require("../src/lib/base/edificios.ts");
-
-test("la fachada de configuración mantiene las mismas reglas que su origen", () => {
-  const fachada = require("../src/lib/configuracionJuego.ts");
-  const edificios = require("../src/lib/base/edificios.ts");
-  const mejoras = require("../src/lib/base/mejoras.ts");
-  assert.strictEqual(fachada.calcularCosteEdificio, edificios.calcularCosteEdificio);
-  assert.strictEqual(fachada.REQUISITOS_EDIFICIOS, edificios.REQUISITOS_EDIFICIOS);
-  assert.strictEqual(fachada.CONFIGURACION_ATRIBUTOS, mejoras.CONFIGURACION_ATRIBUTOS);
-  assert.strictEqual(fachada.calcularCosteAtributo, mejoras.calcularCosteAtributo);
-  for (const id of ["taberna", "mercado", "herreria", "botica", "almacen"]) {
-    assert.deepEqual(fachada.calcularCosteEdificio(id, 1), edificios.calcularCosteEdificio(id, 1));
-  }
-});
 
 test("construcción: las reglas puras respetan máximo, prerrequisitos y recursos reales", () => {
   const saldo = { oro: 10000, madera: 100, piedra: 100, metal: 100 };

@@ -100,7 +100,7 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 | Rutas e interfaz de base | `src/app/base/` y `src/components/base/` (se conservan las URLs) |
 | Operaciones persistentes | `src/server/services/` |
 
-`src/lib/configuracionJuego.ts` se conserva como **fachada pública** de edificios, mejoras, estadísticas, experiencia, habilidades y sprites. Ya no contiene fórmulas propias. Las reglas de estadísticas y experiencia Base comparten módulos con la progresión Job (`progresion/estadisticas.ts` y `progresion/experiencia.ts`); el aprendizaje de habilidades está en `progresion/aprendizaje.ts`. El catálogo editable de edificios vive únicamente en `base/edificios.ts`, aunque `tiposJuego.ts` conserva sus antiguos exports para los consumidores.
+La antigua fachada `src/lib/configuracionJuego.ts` se ha **eliminado**. Edificios y mejoras se consultan en `src/lib/base/`, experiencia en `progresion/experiencia.ts`, estadísticas en `progresion/estadisticas/`, habilidades en `progresion/habilidades/` y sprites en `src/lib/sprites/`. Los consumidores y tests ya importan estos módulos directamente.
 
 
 ### Ordenación interna en curso (3 de noviembre de 2026)
@@ -123,7 +123,6 @@ Después de estos movimientos quedan solo **ocho archivos TypeScript** en la ra�
 
 | Archivo | Motivo de mantenerlo aquí |
 |---|---|
-| `configuracionJuego.ts` | Fachada temporal que conserva imports históricos durante la migración |
 | `habilidades.ts`, `objetos.ts`, `enemigos.ts` | APIs públicas de consulta por dominio (catálogos editables en `catalogos/`) |
 | `tiposJuego.ts` | Contratos compartidos por varios sistemas; dividirlo requiere estudiar ciclos y consumidores |
 | `auth.ts`, `prisma.ts` | Infraestructura y autenticación transversal; se mantienen estables para no cambiar dependencias del servidor |
@@ -137,7 +136,7 @@ La reorganización de scripts y tests se abordará por separado: `scripts/recurs
 
 Se ha eliminado la duplicación exacta del adaptador `adjuntarPulsosEstado` entre PvE y PvP. Su propietario es ahora `src/server/services/combate/efectos-visualizacion.ts`. Los demás servicios siguen con sus rutas y firmas originales.
 
-Objetivo siguiente: revisar rutas HTTP y extraer una fachada por funcionalidad para combate, expediciones, party, inventario, edificios y economía; migrar consumidores en grupos con pruebas de integración. **No está terminada esta fase.** No mover servicios voluminosos antes de un mapa de llamadas y pruebas de paridad.
+Objetivo siguiente: revisar rutas HTTP y dejar puntos de entrada claros por funcionalidad para combate, expediciones, party, inventario, edificios y economía, sin capas de compatibilidad. Mantener pruebas de integración antes de mover servicios.
 
 ## Auditoría de estructura general (2 de noviembre de 2026)
 
@@ -184,7 +183,7 @@ Pruebas añadidas a `combat-scale.test.cjs`, `party-rules.test.cjs` y `party-for
 2. `src/server/services/party/combate-party-actions.ts` (~94 KB): dividir acciones por responsabilidad (objetivos, resultados, efectos y persistencia) manteniendo **un solo motor de reglas**.
 3. `src/components/base/PanelParty.tsx` (~89 KB) y `src/app/base/personaje/page.tsx` (~69 KB): extraer secciones independientes, evitando estados duplicados.
 4. `src/lib/tiposJuego.ts` (ahora sin el catálogo de edificios): estudiar los tipos por dominio cuando sus dependencias lo permitan; evitar ciclos entre `src/lib` y `src/server`.
-5. Evitar reconstruir fachadas innecesarias para catálogos ya consolidados; la compatibilidad solo se conserva cuando existe un consumidor verificado.
+5. No conservar fachadas de compatibilidad con rutas anteriores; importar siempre los módulos definitivos y comprobar uso real antes de eliminar código.
 
 **No aplicar una fragmentación masiva sin pruebas de paridad.** Los módulos de operaciones PvP, PvE y party no son catálogos duplicados: su separación refleja flujos distintos. Los ~49 scripts Python/Node incluyen validadores y herramientas invocadas por la CI; `scripts/recursos.py` es la interfaz común, y los motores especializados se conservan mientras sean necesarios.
 
@@ -307,3 +306,5 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - Prueba recursiva de importaciones relativas ampliada a `expediciones/`, `progresion/` y `catalogos/`; revisiones de estructura sin duplicados en `tests/estructura-lib.test.cjs`.
 
 - **Nueva estructura única:** `estadisticas.ts` y `estadisticas-personaje.ts` se trasladaron también a `progresion/estadisticas/`, actualizando los importadores de servicios, rutas, auditorías y pruebas; no se conservan sus archivos anteriores ni reexports de compatibilidad de rutas.
+
+- **Retirada de código legado:** `configuracionJuego.ts` eliminada tras migrar servicios, interfaces, tests y scripts a `base/`, `progresion/` y `sprites/`. La prueba de estructura impide volver a depender de esa fachada.

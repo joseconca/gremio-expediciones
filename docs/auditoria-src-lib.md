@@ -39,7 +39,7 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 
 ## Candidatos que **no** deben borrarse sin comprobar consumidores
 
-- `src/lib/configuracionJuego.ts` actúa como **fachada de compatibilidad**. Redirige exports de edificios, progresión y sprites; su aspecto antiguo no implica que sea código muerto.
+- La antigua `src/lib/configuracionJuego.ts` ya no existe: los consumidores usan los módulos propietarios de edificios, progresión, escuela y sprites. No se necesita una capa de compatibilidad.
 - `src/lib/habilidades.ts` construye el registro que consumen las APIs y los combates. `progresion/generar-habilidades.ts`, `catalogo-redisenado.ts` y `tecnicas-adicionales.ts` son transformaciones del catálogo, no catálogos editables alternativos.
 - `src/lib/enemigos.ts` adapta los datos del catálogo de enemigos para dificultad, botín y selección; no sustituirlo por el JSON generado de sprites.
 - `src/lib/expediciones/presentacion-combate.ts` solo resuelve metadatos visuales: básicos y proyectiles de habilidades. `ataque-basico-arma.ts` decide la selección física/mágica del arma y `ataques-basicos.ts` contiene la resolución numérica, precisión y críticos. `combate.ts` conserva sus exportaciones previas. Las pruebas de `tests/combat-presentacion.test.cjs` protegen presentación, daño y API histórica.
@@ -80,8 +80,8 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 ### Auditoría de duplicados y fachadas públicas
 
 - **Duplicado confirmado y eliminado:** `ObjetoEnVenta` estaba declarado dos veces en `src/lib/equipamiento/tienda.ts` y `datos-objetos.ts`. Ahora solo se define en `datos-objetos.ts`; `tienda.ts` mantiene un reexport de tipos para no romper importadores. `inventario.ts` conserva sus funciones, pero sus importaciones han quedado reunidas en la cabecera.
-- **Importadores migrados sin cambiar cálculos:** `src/store/useGameStore.ts` usa `src/lib/base/edificios.ts` para el catálogo y los costes; `src/app/api/jugador/acciones/route.ts` usa `src/lib/base/mejoras.ts` para atributos. Su doble de pruebas se ha actualizado para interceptar el módulo real. La fachada `configuracionJuego.ts` sigue reexportando el contrato anterior.
-- **Compatibilidad comprobable:** `tests/economy-balance.test.cjs` valida que los exports de costes y mejoras de `configuracionJuego.ts` son las mismas funciones y valores que sus módulos de origen. No hay una segunda fuente de reglas.
+- **Importadores migrados sin cambiar cálculos:** `src/store/useGameStore.ts` usa `src/lib/base/edificios.ts` para el catálogo y los costes; `src/app/api/jugador/acciones/route.ts` usa `src/lib/base/mejoras.ts` para atributos. Su doble de pruebas se ha actualizado para interceptar el módulo real. Los consumidores restantes se han migrado a sus módulos de origen y la fachada se eliminó.
+- **Tests actualizados:** `tests/economy-balance.test.cjs` comprueba directamente las reglas de construcción de `src/lib/base/edificios.ts`, sin comprobar la igualdad de reexports de una fachada antigua.
 - **Legibilidad sin cambios de comportamiento:** `src/lib/expediciones/presupuesto-curacion.ts` deja de estar comprimido; `tests/habilidades-v2.test.cjs` caracteriza curación con miembros sanos, sobrecurados, heridos y grupos vacíos.
 - **No eliminar módulos completos sin prueba de consumidores:** `habilidades.ts` es el registro ejecutable, `enemigos.ts` resuelve loot y dificultad, `progresion/crear-habilidad.ts` normaliza definiciones y `presupuesto-curacion.ts` lo usa combate de party. Los archivos pequeños no son necesariamente obsoletos; la auditoría continúa.
 
@@ -91,7 +91,7 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `src/lib/progresion/catalogo-redisenado.ts`: separa visiblemente transformación de pasivas, adaptación de técnicas activas, limpieza de campos anteriores y excepciones históricas. También se han expandido las tablas de textos y las operaciones tácticas. Hay pruebas nuevas para excepciones y descripciones de preparaciones y estados.
 - `src/lib/habilidades.ts`: se han retirado `obtenerHabilidadesActivas` y `obtenerHabilidadesPasivas`, dos filtros públicos sin consumidores localizados en la búsqueda del repositorio. Se mantienen `HABILIDADES_BASE` (usado por herramientas de iconos), `HABILIDADES`, `obtenerHabilidadPorId` y `obtenerHabilidadesDisponiblesParaClase`. Los nombres eliminados no forman parte de los contratos HTTP.
 - `src/lib/expediciones/normal.ts`: los valores `MULTIPLICADOR_PESO_DIF_MIN` y `PESOS_RAREZA_ENEMIGOS` son ahora constantes privadas, porque no se localizaron importadores. El selector y las pruebas siguen usando sus valores mediante `calcularPesoDifMinEnemigo` y `calcularPesoRarezaEnemigo`; no se altera la probabilidad de Mímico ni la composición de enemigos.
-- Se conservan las reglas activas que a primera vista podrían parecer obsoletas, como `crear-habilidad.ts` (el catálogo la utiliza), `presupuesto-curacion.ts` (el combate de party la usa), `configuracionJuego.ts` (fachada de compatibilidad), `enemigos.ts` (adaptación de botín y sprite), y `generar-habilidades.ts` (construcción de las definiciones).
+- Se mantienen las reglas activas con consumidores: `progresion/habilidades/crear-habilidad.ts`, `expediciones/combate/presupuesto-curacion.ts`, `enemigos.ts` y `progresion/habilidades/generar-habilidades.ts`. La antigua fachada de configuración ya se retiró.
 - Los tests unitarios/CI deben pasar antes de considerar esta auditoría cerrada. La búsqueda de referencias permite descartar candidatos; una futura limpieza completa debe revisar también importaciones dinámicas y herramientas fuera de `src/`.
 
 ### Auditoría de expediciones: reglas activas y código visual desplazado

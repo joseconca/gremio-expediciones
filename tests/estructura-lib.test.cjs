@@ -102,6 +102,9 @@ test("las rutas antiguas no permanecen en código, scripts ni tests", () => {
       ? buscar(ruta)
       : extensiones.test(entrada.name) ? [ruta] : [];
   });
+  // Solo la estructura nueva: no conservar fachadas sin implementación propia.
+  const nombreFachada = ["configuracion", "Juego"].join("");
+  assert.equal(existen(`src/lib/${nombreFachada}.ts`), false);
   const prohibidas = trasladados.map(([dominio, archivo]) =>
     `/${dominio}/${path.basename(archivo, ".ts")}`
   );
@@ -118,6 +121,8 @@ test("las rutas antiguas no permanecen en código, scripts ni tests", () => {
   };
   for (const archivo of ["src", "scripts", "tests"].flatMap((carpeta) => buscar(path.join(root, carpeta)))) {
     const contenido = fs.readFileSync(archivo, "utf8");
+    assert.equal(contenido.includes(nombreFachada), false,
+      `Importación obsoleta en ${path.relative(root, archivo)}`);
     for (const ruta of prohibidas) {
       assert.equal(
         referenciaExacta(contenido, ruta),
