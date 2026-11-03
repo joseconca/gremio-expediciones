@@ -83,7 +83,7 @@ export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
   datosTacticos?: {
     version: 2;
     propietarioId: string;
-    estados: import("./expediciones/motor-tactico").EstadoTactico[];
+    estados: import("./expediciones/combate/tacticas/motor-tactico").EstadoTactico[];
     limites: Record<string, number>;
   };
 }

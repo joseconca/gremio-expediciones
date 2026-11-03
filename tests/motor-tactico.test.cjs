@@ -1,7 +1,7 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
 require('./load-typescript.cjs');
-const m=require('../src/lib/expediciones/motor-tactico.ts');
+const m=require('../src/lib/expediciones/combate/tacticas/motor-tactico.ts');
 const unidad=(id,equipo='aliado',extra={})=>({id,equipo,hp:100,hpMaximo:100,energia:20,energiaMaxima:100,mana:20,manaMaximo:100,ataque:20,ataqueMagico:20,defensa:10,defensaMagica:10,fila:0,columna:0,estados:[],limites:{},...extra});
 const mundo=(extras=[])=>({version:2,ciclo:1,unidades:[unidad('a'),unidad('e','enemigo'),...extras],eventos:[]});
 const estado=(familia,valor=10,extra={})=>({id:familia,fuenteId:'tecnica',creadorId:'a',familia,clave:familia,valor,restantes:3,reloj:'turno',cargas:1,...extra});

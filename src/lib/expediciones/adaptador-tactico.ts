@@ -1,7 +1,7 @@
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../tiposJuego";
 import { crearTecnicaAdicional } from "../progresion/tecnicas-adicionales";
-import { resolverTecnicaTactica } from "./motor-tactico";
-import type { EstadoTactico, UnidadTactica } from "./tipos-tacticos";
+import { resolverTecnicaTactica } from "./combate/tacticas/motor-tactico";
+import type { EstadoTactico, UnidadTactica } from "./combate/tacticas/tipos-tacticos";
 
 /**
  * Frontera entre los efectos persistidos del combate y el motor puro.

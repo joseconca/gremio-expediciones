@@ -13,7 +13,7 @@ const { ESCUELAS, TECNICAS_AVANZADAS } = require("../src/lib/catalogos/habilidad
 const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/generar-habilidades.ts");
 const { describirReglaPasiva, describirDisenoActiva } = require("../src/lib/progresion/catalogo-redisenado.ts");
 const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
-const m = require('../src/lib/expediciones/motor-tactico.ts');
+const m = require('../src/lib/expediciones/combate/tacticas/motor-tactico.ts');
 const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });
 const estado = (familia, valor, fuenteId, creadorId = 'a') => ({ id: fuenteId, fuenteId, creadorId, familia, clave: familia, valor, restantes: 3, reloj: 'turno', cargas: 1 });
