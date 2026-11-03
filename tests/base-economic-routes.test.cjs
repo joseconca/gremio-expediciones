@@ -1007,7 +1007,13 @@ test("regresión: la entrega de botín en expedición respeta el límite de inve
     path.resolve(__dirname, "../src/server/services/expediciones/completar-expedicion.ts"),
     "utf8",
   );
-  assert.match(source, /espaciosOcupados < LIMITE_INVENTARIO_OBJETOS/);
+  assert.match(source, /hayHuecoInventario\(espaciosOcupados\)/);
+  const inventarioSource = fs.readFileSync(
+    path.resolve(__dirname, "../src/lib/equipamiento/inventario.ts"),
+    "utf8",
+  );
+  assert.match(inventarioSource, /espaciosOcupados < limite/);
+  assert.match(inventarioSource, /limite = LIMITE_INVENTARIO_OBJETOS/);
   assert.match(source, /botinPerdidoPorInventarioLleno = true/);
   assert.match(source, /El inventario está lleno y el objeto encontrado se ha perdido\./);
   assert.ok(source.includes("objetosObtenidos: actualizado.botinEntregado ? [{ ...actualizado.botinEntregado, cantidad: 1 }] : []"));
