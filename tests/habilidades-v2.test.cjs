@@ -48,6 +48,29 @@ test("el generador conserva cinco habilidades por escuela, su orden y costes", (
   }
 });
 
+test("el rediseño conserva los casos especiales y los costes de técnicas", () => {
+  for (const [id, clave, valor] of [
+    ["aguante_aprendiz", "bonusHpMaximo", 8],
+    ["reserva_arcana", "bonusManaMaximo", 20],
+    ["nucleo_arcano", "conversionReservaInteligencia", true],
+  ]) {
+    const pasiva = obtenerHabilidadPorId(id);
+    assert.ok(pasiva, id);
+    assert.equal(pasiva.tipo, "pasiva");
+    assert.equal(pasiva.versionReglas, 2);
+    assert.equal(pasiva[clave], valor);
+    assert.equal(pasiva.reglaPasiva, undefined);
+  }
+  const esfera = obtenerHabilidadPorId("esfera_invocada");
+  assert.ok(esfera);
+  assert.equal(esfera.costeMana, 16);
+  assert.equal(esfera.cooldownTurnos, 5);
+  const sellos = obtenerHabilidadPorId("sellos_paralelos");
+  assert.ok(sellos);
+  assert.equal(sellos.costeMana, 10);
+  assert.equal(sellos.cooldownTurnos, 2);
+});
+
 test('la preparación mantiene la API antigua y no modifica la definición original', () => {
   const antiguo = require('../src/lib/expediciones/mecanicas-habilidades.ts');
   assert.strictEqual(antiguo.prepararHabilidadRedisenada, prepararHabilidadRedisenada);
