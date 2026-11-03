@@ -17,7 +17,9 @@
 | Bonificaciones pasivas y conversión de maná en inteligencia | `src/lib/progresion/bonificaciones-pasivas.ts` |
 | Tipos compartidos y suma de modificadores | `src/lib/progresion/modificadores-estadisticas.ts` |
 | Equipo, inventario, sufijos y drops | `src/lib/equipamiento/` |
-| Identificar objetos equipados en todas las ranuras | `src/lib/equipamiento/ranuras.ts` |
+| Comprobar si una pieza está equipada (venta/forja y todas las ranuras Prisma) | `src/lib/equipamiento/ranuras.ts` (`estaInstanciaEquipadaPersistida`) |
+| Contrato de última venta, bonificaciones y recompra | `src/lib/equipamiento/ultima-venta.ts` |
+| Límite de huecos en compra, recompra, botín y party | `src/lib/equipamiento/inventario.ts` (`hayHuecoInventario`) |
 | Tipo de respuesta de `/api/objetos` (tiendas, forja, mochila y Botica) | `src/lib/equipamiento/datos-objetos.ts` |
 | Carga y recarga del inventario en Armería y Herrería | `src/hooks/useDatosObjetosEdificio.ts` |
 | Precios y solicitud de compra/venta de recursos | [`src/lib/economia/mercado.ts`](../src/lib/economia/mercado.ts); [guía](../src/lib/economia/README.md) |
@@ -48,7 +50,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Iniciar, llegar y completar expediciones individuales (Prisma y fases) | `src/server/services/expediciones/`; ver [README](../src/server/services/expediciones/README.md) |
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
 | Premios de expedición al volver y capacidad del almacén | `src/lib/expediciones/recompensas-regreso.ts` y `src/server/services/expediciones/completar-expedicion.ts` |
-| Límite de huecos del inventario en regreso y party | `src/lib/equipamiento/inventario.ts` (`hayHuecoInventario`) |
+| Recompensas de party y sus instancias individuales | `src/server/services/party/inventario-recompensas.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
 | Combates PvP y asedios entre jugadores | `src/server/services/combate/pvp.ts` |

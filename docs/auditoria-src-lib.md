@@ -69,6 +69,14 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `tests/economy-balance.test.cjs` comprueba contratos puros y los costes auténticos de construcción; `tests/base-economic-routes.test.cjs` mantiene la protección de las rutas con dobles de Prisma. Los errores HTTP y el orden de comprobaciones no cambian.
 - No mezclar esta lógica de construcción con los descuentos del Mercado, los costes de forja o las bonificaciones de murallas solo por usar oro y materiales.
 
+### Consolidación de operaciones de objetos (Armería, Botica y Herrería)
+
+- `src/lib/equipamiento/ranuras.ts` declara las **diez ranuras persistidas** y `estaInstanciaEquipadaPersistida`. Venta y mejora usan la misma regla; la Herrería vuelve a comprobar dentro de su transacción que la instancia sigue equipada.
+- `src/lib/equipamiento/inventario.ts` contiene `hayHuecoInventario`, usado por **compra, recompra, expediciones y party**. No se cambia el límite de 30 instancias ni se convierten las compras en stacks.
+- `src/lib/equipamiento/ultima-venta.ts` contiene `crearUltimaVenta` y `leerUltimaVenta`, con el mismo recibo, sufijos, mejoras, bonificaciones y precios del 35 %/70 %. La venta lo persiste en `inventario.ultimaVenta`; la recompra relee el recibo dentro de una transacción serializable, restaura la instancia original y borra el recibo.
+- Las rutas `src/app/api/objetos/{comprar,vender,recomprar,mejorar}/route.ts` mantienen por separado sus controles de permisos, respuestas HTTP y cobros. En especial, los drops con sufijo, las copias compradas y los consumibles de Botica **no** se fusionan con el apilamiento de party.
+- Regresiones: `tests/objetos-system.test.cjs` prueba el ciclo de venta/recompra, carreras concurrentes y recibos; `tests/ranuras-equipamiento.test.cjs` protege las diez ranuras; `tests/base-economic-routes.test.cjs` comprueba compras, límites y mejora de forja.
+
 ## Estado y siguiente orden de trabajo
 
 1. La regresión del bloque de expediciones corregido (`eaa8653`) y la del límite de inventario (`2deb8b9`) terminaron correctamente. Las nuevas pruebas de Mercado y construcción necesitan superar su propia CI antes de dar la fase por cerrada; el validador HD de sprites es independiente.
