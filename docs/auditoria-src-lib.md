@@ -48,6 +48,13 @@ Las rutas externas y las reglas de juego no cambian. Los movimientos solo se dar
 - `src/lib/expediciones/adaptador-tactico.ts` es la frontera con los efectos persistidos, no un segundo motor: convierte los estados tácticos, los DoT/HoT históricos y los límites de ciclo. El código ahora explicita cada transformación sin cambiar las estructuras. `tests/adaptador-tactico.test.cjs` caracteriza la ida/vuelta y el contrato de una técnica adicional; `progresion/tecnicas-adicionales.ts` y las mecánicas importan contratos directamente de `tipos-tacticos.ts` (sin dependencia de tipos a través del motor).
 - `src/lib/progresion/diseno-habilidades.ts` define contratos tácticos, mientras `src/lib/catalogos/habilidades.ts` contiene sus datos. No confundir una declaración de tipo con duplicación de contenido.
 
+### Frontera transaccional de las expediciones individuales
+
+- En `llegar-expedicion.ts` la transición `en_viaje` → `combatiendo` usa `updateMany` con fase y fecha esperadas dentro de la misma transacción que crea el combate; se preserva la respuesta de un combate existente. La relación de combate ya tiene restricción única por expedición.
+- En `completar-expedicion.ts` el comercio reclama `en_viaje` → `regresando` antes de modificar al personaje; una solicitud desactualizada obtiene conflicto 409. No se alteran recompensa, afinidad, tiempo de viaje ni el orden transaccional de la recepción final.
+- `tests/expedition-lifecycle.test.cjs` prueba ambas carreras simuladas con la lógica real del servicio y dobles de Prisma, sin dependencia de base de datos; está incorporado a `test:progression`.
+- Siguiente revisión: casos de errores de transacción, límites de inventario y efectos de los servicios de economía. No asumir que las pruebas con dobles sustituyen una prueba de integración PostgreSQL.
+
 ## Estado y siguiente orden de trabajo
 
 1. La regresión de `154cdfb` terminó correctamente, incluyendo las pruebas de motor y adaptador tácticos. Los catálogos y los contratos públicos ya tienen entradas reconocibles. Las nuevas pruebas de recursos deben superar también su propia CI.

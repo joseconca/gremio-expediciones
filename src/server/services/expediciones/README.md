@@ -5,8 +5,8 @@ Orquestan **consultas y escrituras Prisma** de las expediciones individuales. Ma
 ## Dónde cambiar cada etapa
 
 - `iniciar-expedicion.ts`: valida la solicitud, selección de misión, disponibilidad de personaje y velocidad; consulta el clima; fija **la fecha prevista del encuentro a mitad del viaje** y crea la expedición dentro de una transacción.
-- `llegar-expedicion.ts`: comprueba fecha/fase; devuelve el combate existente si lo hay. Delega asedios en `../asedios/procesar-llegada-asedio.ts`, o selecciona y prepara enemigos y estadísticas PvE antes de crear el combate y actualizar la fase en una transacción.
-- `completar-expedicion.ts`: valida la fecha y la fase; registra el regreso comercial o la recepción final del personaje y sus recompensas, inventario, reportes y estado. Debe mantener la prevención de entregas duplicadas y los límites del almacén/inventario.
+- `llegar-expedicion.ts`: comprueba fecha/fase; devuelve el combate existente si lo hay. Delega asedios en `../asedios/procesar-llegada-asedio.ts`. En PvE **reclama condicionalmente** `en_viaje` → `combatiendo` y crea el combate en una sola transacción; otra petición sobre un estado antiguo devuelve 409 sin duplicar encuentros.
+- `completar-expedicion.ts`: valida fecha/fase; el comercio **reclama condicionalmente** `en_viaje` → `regresando` antes de actualizar al personaje, todo dentro de la misma transacción. La recepción final entrega recompensas, inventario y reportes bajo una transacción `Serializable` que elimina la expedición; no duplicar la liquidación.
 - `index.ts`: API pública compatible de las tres etapas.
 
 ## Fechas y reglas puras
@@ -21,4 +21,4 @@ En `src/lib/expediciones/tiempos.ts` viven tres cálculos distintos:
 
 No fusionar los lectores de recompensas de `../combate/accion-combate.ts` y `completar-expedicion.ts` por su nombre: el primero conserva valores numéricos decimales y el segundo aplica `Math.trunc` antes de la liquidación. Cambiarlo puede afectar al balance.
 
-**Pruebas:** `tests/expedition-times.test.cjs` cubre los plazos y límites y forma parte de `npm run test:progression`. También deben seguir pasando las pruebas de expediciones y reportes, party, lint y build. No alterar contratos HTTP, transacciones ni orden de escrituras durante la limpieza.
+**Pruebas:** `tests/expedition-times.test.cjs` cubre plazos y límites; `tests/expedition-lifecycle.test.cjs` comprueba dos solicitudes simultáneas en comercio y PvE, y el retorno de un combate existente. Ambas se ejecutan en `npm run test:progression`. También deben seguir pasando las pruebas de expediciones y reportes, party, lint y build. No alterar contratos HTTP, transacciones ni orden de escrituras durante la limpieza.
