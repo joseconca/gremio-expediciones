@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
-import { nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
+import { nivelMaximoHabilidad } from "@/lib/progresion/habilidades/niveles-habilidad";
 
 export async function POST(request: Request) {
   try {

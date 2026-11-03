@@ -2,7 +2,7 @@ import type { AtributosPrincipales, DefinicionHabilidad } from "../../tiposJuego
 import { COEFICIENTES_ATRIBUTOS_RPG } from "../estadisticas";
 
 import { obtenerHabilidadPorId } from "../../habilidades";
-import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "../niveles-habilidad";
+import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "../habilidades/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "../clases";
 import type { ModificadoresEstadisticas } from "./modificadores-estadisticas";
 

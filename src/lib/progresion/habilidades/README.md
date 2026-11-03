@@ -11,6 +11,7 @@ El único catálogo editable de habilidades está en `src/lib/catalogos/habilida
 | Construcción de habilidades desde el catálogo editable | `generar-habilidades.ts` |
 | Requisitos para aprender habilidades | `aprendizaje.ts` |
 | Ranuras de habilidades activas y pasivas | `equipo-habilidades.ts` |
+| Niveles máximos, escalado y coste de reinicio | `niveles-habilidad.ts` |
 | Descripciones y comparativas de mejoras | `descripciones-habilidades.ts` |
 
-**Punto de entrada público:** `src/lib/habilidades.ts`. El archivo `../niveles-habilidad.ts` todavía reside en la raíz de progresión porque el script de auditoría de recursos compara por Git versiones históricas de esa ruta. No moverlo sin adaptar primero ese mecanismo y sus pruebas. No introducir otro catálogo.
+**Punto de entrada público:** `src/lib/habilidades.ts`. Los niveles, costes de mejora y reinicio están en `niveles-habilidad.ts`. El auditor de recursos utiliza únicamente esta ruta nueva, también al consultar una referencia Git; no se mantienen rutas anteriores ni catálogos adicionales.

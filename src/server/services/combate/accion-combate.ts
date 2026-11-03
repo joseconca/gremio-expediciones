@@ -16,7 +16,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
-import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
 import type { DefinicionHabilidad, RecompensaMision, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import {
   leerEfectosCombate,

@@ -207,7 +207,7 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/clases": { CLASES: {}, puedeUsarHabilidadDeClase: () => true },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (name) => name },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
-    "@/lib/progresion/niveles-habilidad": { ajustarHabilidadPorNivel: (habilidad) => habilidad },
+    "@/lib/progresion/habilidades/niveles-habilidad": { ajustarHabilidadPorNivel: (habilidad) => habilidad },
     "@/lib/expediciones/combate": {
       calcularBonusDefensaMuralla: () => 0,
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Atacas." }),

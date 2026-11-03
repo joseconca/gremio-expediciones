@@ -48,6 +48,7 @@ const trasladados = [
   ["progresion", "habilidades/aprendizaje.ts"],
   ["progresion", "habilidades/equipo-habilidades.ts"],
   ["progresion", "habilidades/descripciones-habilidades.ts"],
+  ["progresion", "habilidades/niveles-habilidad.ts"],
   ["progresion", "estadisticas/atributos-clase.ts"],
   ["progresion", "estadisticas/bonificaciones-equipo.ts"],
   ["progresion", "estadisticas/bonificaciones-pasivas.ts"],
@@ -81,6 +82,9 @@ test("las reglas puras siguen importándose desde sus ubicaciones definitivas", 
   assert.equal(typeof calcularFechasRegresoProgramadas, "function");
   assert.equal(typeof calcularRecompensaAlmacen, "function");
   assert.equal(MODIFICADORES_VACIOS.hpMaximo, 0);
+  const niveles = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
+  assert.equal(niveles.costeReinicioHabilidades(7), 700);
+  assert.equal(niveles.nivelMaximoHabilidad("novato"), 3);
 });
 
 

@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/progresion/habilidades/aprendizaje";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
-import { nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
+import { nivelMaximoHabilidad } from "@/lib/progresion/habilidades/niveles-habilidad";
 
 export async function GET(request: Request) {
   try {

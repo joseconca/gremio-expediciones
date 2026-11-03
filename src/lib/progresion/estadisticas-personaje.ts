@@ -1,5 +1,5 @@
 import type { AtributosPrincipales } from "../tiposJuego";
-import type { HabilidadAprendidaConNivel } from "./niveles-habilidad";
+import type { HabilidadAprendidaConNivel } from "./habilidades/niveles-habilidad";
 import {
   obtenerModificadoresPasivas,
   aplicarConversionReservaInteligencia,

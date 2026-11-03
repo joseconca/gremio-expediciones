@@ -8,7 +8,7 @@ const { calcularRestauracionConsumible, esConsumibleRestaurador } = require("../
 const { aplicarEfectoComida, calcularBonificacionesComida, COMIDAS_TABERNA } = require("../src/lib/base/taberna.ts");
 const { describirEstadoCombate, describirBonificacionesComida } = require("../src/lib/expediciones/presentacion/descripciones-efectos.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
-const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/niveles-habilidad.ts");
+const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { detalleNumericoHabilidad } = require("../src/lib/progresion/habilidades/descripciones-habilidades.ts");
 
 test("el detalle de una pasiva mejorada muestra su valor efectivo sin repetir la descripción base", () => {

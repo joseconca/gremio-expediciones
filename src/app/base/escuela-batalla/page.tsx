@@ -10,7 +10,7 @@ import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/progresion/habilidades/descripciones-habilidades";
 import { CLASES, obtenerClasesHabilidadDisponibles } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/habilidades/niveles-habilidad";
 import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
 

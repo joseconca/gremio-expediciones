@@ -10,7 +10,7 @@ const {
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
-const { ajustarHabilidadPorNivel, nivelMaximoHabilidad, costeReinicioHabilidades } = require("../src/lib/progresion/niveles-habilidad.ts");
+const { ajustarHabilidadPorNivel, nivelMaximoHabilidad, costeReinicioHabilidades } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/estadisticas/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/progresion/experiencia.ts");
 const {

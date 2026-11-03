@@ -114,7 +114,7 @@ function loadService(prisma, testOptions = {}) {
         id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 30,
       } : undefined),
     },
-    "@/lib/progresion/niveles-habilidad": {
+    "@/lib/progresion/habilidades/niveles-habilidad": {
       ajustarHabilidadPorNivel: (habilidad, nivel) => ({ ...habilidad, nivel }),
     },
     "@/lib/progresion/clases": {

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { HABILIDADES } from "@/lib/habilidades";
 import { CLASES } from "@/lib/progresion/clases";
-import { costeReinicioHabilidades } from "@/lib/progresion/niveles-habilidad";
+import { costeReinicioHabilidades } from "@/lib/progresion/habilidades/niveles-habilidad";
 
 export async function POST() {
   try {

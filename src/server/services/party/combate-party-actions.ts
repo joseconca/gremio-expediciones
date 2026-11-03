@@ -16,7 +16,7 @@ import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/li
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion/presentacion-combate";
 import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
-import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import {

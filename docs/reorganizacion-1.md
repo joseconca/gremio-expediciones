@@ -303,5 +303,5 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - `62778fb`: constructores y generación de habilidades migrados a ese mismo directorio.
 - `899454e`: aprendizaje, equipamiento y descripciones de habilidades migrados al mismo directorio.
 - `b36ac4f`: atributos por clase y bonificaciones de equipo/pasivas migrados a `progresion/estadisticas/`. `estadisticas.ts` y `estadisticas-personaje.ts` permanecen como entradas estables.
-- `niveles-habilidad.ts` permanece de momento en `progresion/` porque `scripts/auditar-recursos-habilidades.cjs` carga una versión histórica de su ruta mediante `git show` al comparar balances. Requiere migración con compatibilidad de referencias antiguas; no moverlo solo por uniformidad.
+- `niveles-habilidad.ts` ya está en `progresion/habilidades/`. Se migraron las APIs, servicios, interfaz, scripts y pruebas. El auditor consulta exclusivamente `src/lib/progresion/habilidades/niveles-habilidad.ts`, incluso en `git show --referencia`. No existe fallback ni ruta anterior mantenida: las referencias de comparación deben utilizar la nueva estructura.
 - Prueba recursiva de importaciones relativas ampliada a `expediciones/`, `progresion/` y `catalogos/`; revisiones de estructura sin duplicados en `tests/estructura-lib.test.cjs`.

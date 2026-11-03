@@ -1,7 +1,7 @@
 import { incluirPersonajeParty as incluirPersonajeRecursosParty } from "./consultas";
 import { PartyServiceError } from "./errores";
 export { PartyServiceError } from "./errores";
-import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
 import { esConsumibleRestaurador } from "@/lib/expediciones/combate/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";

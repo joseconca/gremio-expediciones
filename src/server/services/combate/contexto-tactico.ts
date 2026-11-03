@@ -9,7 +9,7 @@ import type { ContextoTecnicaTactica } from "@/lib/expediciones/combate/tacticas
 import type { EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
 
 type PersonajeTactico = DatosPersonajeEstadisticas &
   Pick<Parameters<typeof obtenerEquipoDesdePersonaje>[0], "equipoEquipado"> & {

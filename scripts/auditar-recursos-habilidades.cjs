@@ -4,7 +4,7 @@ require("../tests/load-typescript.cjs");
 const fs = require("node:fs");
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 const { HABILIDADES } = require("../src/lib/habilidades.ts");
-const { ajustarHabilidadPorNivel, nivelMaximoHabilidad } = require("../src/lib/progresion/niveles-habilidad.ts");
+const { ajustarHabilidadPorNivel, nivelMaximoHabilidad } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
@@ -101,8 +101,8 @@ if (require.main === module) {
     if (indiceRef >= 0) {
       const { execFileSync } = require("node:child_process");
       const Module = require("node:module"), path = require("node:path"), ts = require("typescript");
-      const fuente = execFileSync("git", ["show", `${process.argv[indiceRef + 1]}:src/lib/progresion/niveles-habilidad.ts`], { encoding: "utf8" });
-      const anterior = new Module(path.resolve(__dirname, "../src/lib/progresion/niveles-habilidad.ts"), module);
+      const fuente = execFileSync("git", ["show", `${process.argv[indiceRef + 1]}:src/lib/progresion/habilidades/niveles-habilidad.ts`], { encoding: "utf8" });
+      const anterior = new Module(path.resolve(__dirname, "../src/lib/progresion/habilidades/niveles-habilidad.ts"), module);
       anterior.filename = anterior.id;
       anterior.paths = Module._nodeModulePaths(path.dirname(anterior.id));
       anterior._compile(ts.transpileModule(fuente, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText, anterior.id);

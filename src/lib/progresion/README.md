@@ -7,7 +7,7 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | Tarea | Archivo de referencia |
 | --- | --- |
 | Definir una profesión, tier, requisitos o dominio de armas | `src/lib/catalogos/clases.ts` (datos) y `clases.ts` (reglas) |
-| Modificar una habilidad, su nivel o sus costes | `src/lib/catalogos/habilidades.ts` (datos), `niveles-habilidad.ts` (niveles y reseteo) |
+| Modificar una habilidad, su nivel o sus costes | `src/lib/catalogos/habilidades.ts` (datos), `habilidades/niveles-habilidad.ts` (niveles y reseteo) |
 | Comprobar qué habilidades puede aprender una clase | `habilidades/aprendizaje.ts` |
 | Cambiar las curvas de experiencia Base y Job | `experiencia.ts` |
 | Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas.ts` |
