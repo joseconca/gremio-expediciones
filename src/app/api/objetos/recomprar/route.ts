@@ -3,42 +3,9 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/equipamiento/sufijos";
+import { leerUltimaVenta } from "@/lib/equipamiento/ultima-venta";
 import { LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
-
-interface VentaGuardada {
-  instanciaId: string;
-  objetoId: string;
-  cantidad: number;
-  nivelMejora: number;
-  sufijoId: string | null;
-  bonificaciones: Record<string, number>;
-  precioVenta: number;
-  precioRecompra: number;
-  nombreObjeto: string;
-  vendidoEn: string;
-}
-
-function leerUltimaVenta(value: unknown): VentaGuardada | null {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
-  const v = value as Record<string, unknown>;
-  if (typeof v.instanciaId !== "string" ||
-      typeof v.objetoId !== "string" ||
-      typeof v.precioRecompra !== "number" || !Number.isFinite(v.precioRecompra) ||
-      typeof v.cantidad !== "number" || typeof v.nivelMejora !== "number") return null;
-  return {
-    instanciaId: v.instanciaId,
-    objetoId: v.objetoId,
-    cantidad: Math.max(1, Math.trunc(v.cantidad)),
-    nivelMejora: Math.max(0, Math.trunc(v.nivelMejora)),
-    sufijoId: typeof v.sufijoId === "string" ? v.sufijoId : null,
-    bonificaciones: sanitizarBonificacionesObjeto(v.bonificaciones),
-    precioVenta: typeof v.precioVenta === "number" ? v.precioVenta : 0,
-    precioRecompra: Math.max(1, Math.trunc(v.precioRecompra)),
-    nombreObjeto: typeof v.nombreObjeto === "string" ? v.nombreObjeto : v.objetoId,
-    vendidoEn: typeof v.vendidoEn === "string" ? v.vendidoEn : "",
-  };
-}
 
 export async function POST() {
   try {
