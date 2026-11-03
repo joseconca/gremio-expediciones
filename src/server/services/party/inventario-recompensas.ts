@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import type { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
+import { hayHuecoInventario } from "@/lib/equipamiento/inventario";
 
 export type DependenciasInventarioRecompensaParty = {
   existeObjeto: (objetoId: string) => boolean;
@@ -36,7 +37,7 @@ export async function agregarObjetoAlInventario(
     return true;
   }
   const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
-  if (ocupados >= dependencias.limiteInventario) return false;
+  if (!hayHuecoInventario(ocupados, dependencias.limiteInventario)) return false;
   await tx.inventarioObjeto.create({
     data: {
       inventarioId: inventario.id,
@@ -65,7 +66,7 @@ export async function agregarInstanciaBotinAlInventario(
     select: { id: true },
   });
   const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
-  if (ocupados >= dependencias.limiteInventario) return false;
+  if (!hayHuecoInventario(ocupados, dependencias.limiteInventario)) return false;
   await tx.inventarioObjeto.create({
     data: {
       inventarioId: inventario.id,

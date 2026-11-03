@@ -3,6 +3,11 @@ import { obtenerObjetoPorId } from "../objetos";
 import type { EquipoPersonaje, ObjetoInventario } from "../tiposJuego";
 
 export const LIMITE_INVENTARIO_OBJETOS = 30;
+
+/** Comprueba si una nueva instancia de objeto cabe en un hueco del inventario. */
+export function hayHuecoInventario(espaciosOcupados: number, limite = LIMITE_INVENTARIO_OBJETOS): boolean {
+  return espaciosOcupados < limite;
+}
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./sufijos";
 
 interface DatosObjetoInventario {

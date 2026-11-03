@@ -8,7 +8,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/progresion/estadisticas-personaje";
-import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/equipamiento/inventario";
+import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
@@ -236,7 +236,7 @@ export async function completarExpedicion() {
             where: { inventarioId: inventario.id },
           });
 
-          if (espaciosOcupados < LIMITE_INVENTARIO_OBJETOS) {
+          if (hayHuecoInventario(espaciosOcupados)) {
             const objetoCreado = await tx.inventarioObjeto.create({
               data: {
                 inventarioId: inventario.id,
