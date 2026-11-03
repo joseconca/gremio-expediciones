@@ -16,6 +16,34 @@ const {
   calcularPrecioRecompraObjeto,
 } = require("../src/lib/economia/mercado.ts");
 const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
+const { prepararMejoraEdificio } = require("../src/lib/base/edificios.ts");
+
+test("construcción: las reglas puras respetan máximo, prerrequisitos y recursos reales", () => {
+  const saldo = { oro: 10000, madera: 100, piedra: 100, metal: 100 };
+  assert.throws(
+    () => prepararMejoraEdificio("taberna", { taberna: 3 }, saldo),
+    { message: "EDIFICIO_NIVEL_MAXIMO" },
+  );
+  assert.throws(
+    () => prepararMejoraEdificio("herreria", { armeria: 0, herreria: 0 }, saldo),
+    { message: "REQUISITO_EDIFICIO:Armería:1" },
+  );
+  assert.throws(
+    () => prepararMejoraEdificio(
+      "herreria",
+      { armeria: 1, herreria: 0 },
+      { ...saldo, metal: 0 },
+    ),
+    { message: "RECURSOS_INSUFICIENTES" },
+  );
+  const edificios = { armeria: 1, herreria: 0 };
+  const resultado = prepararMejoraEdificio("herreria", edificios, saldo);
+  assert.deepEqual(resultado, {
+    nivelSiguiente: 1,
+    coste: { oro: 1170, madera: 5, piedra: 5, metal: 10 },
+  });
+  assert.deepEqual(edificios, { armeria: 1, herreria: 0 });
+});
 
 test("el catálogo completo contiene precios positivos y progresión coherente entre equipo", () => {
   assert.ok(OBJETOS.every((item) => Number.isFinite(item.precio) && item.precio > 0));

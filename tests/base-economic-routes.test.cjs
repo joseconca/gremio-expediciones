@@ -700,6 +700,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
   };
   const configEdificios = {
     mercado: { nombre: "Mercado", nivelMax: 3 },
+    herreria: { nombre: "Herrería", nivelMax: 3 },
     botica: { nombre: "Botica", nivelMax: 3 },
     escuelaCombate: { nombre: "Escuela de combate", nivelMax: 3 },
   };
@@ -718,9 +719,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
       CONFIGURACION_ATRIBUTOS: {
         velocidad: { campo: "velocidadMejoras", edificio: "mercado", limitePorNivel: 5 },
       },
-      REQUISITOS_EDIFICIOS: {},
       calcularCosteAtributo: () => 10,
-      calcularCosteEdificio: () => ({ oro: 100, madera: 10, piedra: 10, metal: 5 }),
       calcularEstadisticasBase: () => ({ hpMaximo: 40 }),
     },
     "@/lib/tiposJuego": { CONFIGURACION_EDIFICIOS: configEdificios },
@@ -1303,24 +1302,24 @@ test("herrería: bloquea mejoras durante una expedición y revalida estado dentr
   assert.equal(race.getState().items[0].nivelMejora, 0);
 });
 
-test("mejoras de edificio: metal insuficiente no actualiza nivel ni gasta recursos", async () => {
+test("mejoras de edificio: metal insuficiente en Herrería no actualiza nivel ni gasta recursos", async () => {
   const route = makeActionsRoute({
     initialUser: {
-      oro: 500,
+      oro: 2000,
       madera: 100,
       piedra: 100,
       metal: 0,
-      edificios: { taberna: 1, mercado: 0 },
+      edificios: { taberna: 1, armeria: 1, herreria: 0 },
     },
   });
   const response = await route.POST(request({
     accion: "mejorarEdificio",
-    idEdificio: "mercado",
+    idEdificio: "herreria",
   }));
 
   assert.equal(response.status, 409);
-  assert.equal(route.getState().user.edificios.mercado, 0);
-  assert.equal(route.getState().user.oro, 500);
+  assert.equal(route.getState().user.edificios.herreria, 0);
+  assert.equal(route.getState().user.oro, 2000);
   assert.equal(route.getState().user.madera, 100);
   assert.equal(route.getState().user.piedra, 100);
   assert.equal(route.getState().user.metal, 0);
@@ -1329,7 +1328,7 @@ test("mejoras de edificio: metal insuficiente no actualiza nivel ni gasta recurs
 test("mejoras de edificio: Botica se construye y su nivel se guarda en el JSON de edificios", async () => {
   const route = makeActionsRoute({
     initialUser: {
-      oro: 500,
+      oro: 1500,
       madera: 100,
       piedra: 100,
       metal: 100,
@@ -1343,10 +1342,10 @@ test("mejoras de edificio: Botica se construye y su nivel se guarda en el JSON d
 
   assert.equal(response.status, 200);
   assert.equal(route.getState().user.edificios.botica, 1);
-  assert.equal(route.getState().user.oro, 400);
-  assert.equal(route.getState().user.madera, 90);
-  assert.equal(route.getState().user.piedra, 90);
-  assert.equal(route.getState().user.metal, 95);
+  assert.equal(route.getState().user.oro, 600);
+  assert.equal(route.getState().user.madera, 94);
+  assert.equal(route.getState().user.piedra, 95);
+  assert.equal(route.getState().user.metal, 99);
 });
 
 test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremento", async () => {
