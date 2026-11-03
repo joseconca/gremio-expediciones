@@ -64,12 +64,32 @@ export function describirDisenoActiva(d: DisenoActiva): string {
   if(d.area)partes.push(`Afecta a ${d.area}; el presupuesto se reparte entre sus objetivos.`);
   for (const op of d.operaciones) {
     switch (op.tipo) {
-      case "estado":
-        partes.push(op.familia==="exposicion"?`Expone un ${porc(op.valor)} % de defensa para un impacto, durante ${op.duracion} turnos.`:op.familia==="resistencia"?`Resiste un ${porc(op.valor)} % de la potencia del siguiente perjuicio, durante ${op.duracion} turnos.`:op.familia==="precision"?`Prepara ${op.valor} puntos de precisión para un intento de ataque, durante ${op.duracion} turnos.`:op.familia==="sello"?`Sello ${op.clave}: reserva un ${porc(op.valor)} % del mejor ataque durante ${op.duracion} turnos; se consume al cerrar un circuito.`:`Prepara ${op.clave.replaceAll("_"," ")} durante ${op.duracion} turnos para técnicas y pasivas compatibles.`);
+      case "estado": {
+        // Las descripciones no cambian el efecto: explican su familia táctica.
+        if (op.familia === "exposicion") {
+          partes.push(`Expone un ${porc(op.valor)} % de defensa para un impacto, durante ${op.duracion} turnos.`);
+        } else if (op.familia === "resistencia") {
+          partes.push(`Resiste un ${porc(op.valor)} % de la potencia del siguiente perjuicio, durante ${op.duracion} turnos.`);
+        } else if (op.familia === "precision") {
+          partes.push(`Prepara ${op.valor} puntos de precisión para un intento de ataque, durante ${op.duracion} turnos.`);
+        } else if (op.familia === "sello") {
+          partes.push(`Sello ${op.clave}: reserva un ${porc(op.valor)} % del mejor ataque durante ${op.duracion} turnos; se consume al cerrar un circuito.`);
+        } else {
+          partes.push(`Prepara ${op.clave.replaceAll("_", " ")} durante ${op.duracion} turnos para técnicas y pasivas compatibles.`);
+        }
         break;
-      case "consumir_preparacion":
-        partes.push(`Consume ${op.clave.replaceAll("_"," ")} para ${op.efecto==="potencia"?`aumentar hasta ${porc(op.factor)} % el daño`:op.efecto==="ruptura"?`ignorar hasta ${porc(op.factor)} % de defensa`:op.efecto==="guardia"?"proteger al lanzador un 4 % de su vida":"recuperar un 4 % de vida del lanzador"}; sin ella conserva su efecto básico.`);
+      }
+      case "consumir_preparacion": {
+        const efecto = op.efecto === "potencia"
+          ? `aumentar hasta ${porc(op.factor)} % el daño`
+          : op.efecto === "ruptura"
+            ? `ignorar hasta ${porc(op.factor)} % de defensa`
+            : op.efecto === "guardia"
+              ? "proteger al lanzador un 4 % de su vida"
+              : "recuperar un 4 % de vida del lanzador";
+        partes.push(`Consume ${op.clave.replaceAll("_", " ")} para ${efecto}; sin ella conserva su efecto básico.`);
         break;
+      }
       case "guardia_porcentaje":
         partes.push(`Protección del ${porc(op.porcentaje)} % de vida del lanzador durante ${op.duracion} turnos.`);
         break;
