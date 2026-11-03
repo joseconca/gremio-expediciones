@@ -13,6 +13,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
 - `cooldowns-habilidades.ts`: carga/normalización de cooldowns persistidos, decremento por turno y establecimiento de tiempos de espera (incluidas las dos respiraciones). Los servicios conservan reexportaciones para importadores antiguos.
 - `normal.ts`, `elite.ts`, `enemigos-combate.ts`, `generador-misiones.ts`, `dificultad.ts`, `tiempos.ts`: encuentros y expediciones.
+  - `tiempos.ts`: encuentro a mitad de viaje, vuelta programada del combate, mínimo de regreso comercial y multiplicadores de clima; reglas puras compartidas por los servicios.
 - `asedio.ts`, `turno-pvp.ts`: reglas puras de asedio y turnos.
 - `ataque-basico-arma.ts`: regla para elegir entre ataque físico y mágico según el subtipo del arma, sin metadatos visuales.
 - `presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.

@@ -43,7 +43,8 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Validación de la solicitud de combate, objetivos y turnos | `src/lib/expediciones/contrato-accion-combate.ts` |
 | Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
 | Consultar, establecer y descontar cooldowns de habilidades | `src/lib/expediciones/cooldowns-habilidades.ts` |
-| Duración de expediciones, ida y regreso | `src/lib/expediciones/tiempos.ts` y `src/server/services/expediciones/` |
+| Fecha del encuentro, regreso de combate/comercio y penalizaciones climáticas | `src/lib/expediciones/tiempos.ts` |
+| Iniciar, llegar y completar expediciones individuales (Prisma y fases) | `src/server/services/expediciones/`; ver [README](../src/server/services/expediciones/README.md) |
 | Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
