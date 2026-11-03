@@ -5,7 +5,7 @@ import {
   calcularEstadisticasBase,
   calcularEstadisticasDerivadasRpg,
   COEFICIENTES_ATRIBUTOS_RPG,
-} from "../estadisticas";
+} from "./estadisticas";
 import type {
   AportesPorAtributo,
   DatosPersonajeEstadisticas,

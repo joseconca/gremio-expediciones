@@ -1,7 +1,7 @@
 import { incluirPersonajeParty as incluirPersonaje } from "./consultas";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { seleccionarEnemigosNormales } from "@/lib/expediciones/encuentros/normal";
 import { crearEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";

@@ -12,7 +12,7 @@ const { calcularPesosCuracion } = require('../src/lib/expediciones/combate/presu
 const { ESCUELAS, TECNICAS_AVANZADAS } = require("../src/lib/catalogos/habilidades.ts");
 const { HABILIDADES_NUEVAS } = require("../src/lib/progresion/habilidades/generar-habilidades.ts");
 const { describirReglaPasiva, describirDisenoActiva } = require("../src/lib/progresion/habilidades/catalogo-redisenado.ts");
-const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas-personaje.ts');
+const { calcularEstadisticasPersonaje } = require('../src/lib/progresion/estadisticas/estadisticas-personaje.ts');
 const m = require('../src/lib/expediciones/combate/tacticas/motor-tactico.ts');
 const { prepararHabilidadRedisenada, actualizarRelojContexto } = require("../src/lib/expediciones/combate/tacticas/preparacion-habilidades.ts");
 const tactico = (estados, propietarioId = 'a') => ({ habilidadId: 'tactica:' + propietarioId, tipo: 'tactico', valor: 0, turnosRestantes: 1, duracionTurnos: 1, objetivo: 'jugador', datosTacticos: { version: 2, propietarioId, estados, limites: {} } });

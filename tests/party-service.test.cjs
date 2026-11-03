@@ -20,7 +20,7 @@ function loadService(prisma) {
     "@prisma/client": { Prisma: { TransactionIsolationLevel: { Serializable: "Serializable" } } },
     "./consultas": require("../src/server/services/party/consultas.ts"),
     "@/lib/prisma": { prisma },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 20, manaMaximo: 10 } }),
       calcularModificadoresEquipo: () => ({}),
     },

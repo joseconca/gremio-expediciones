@@ -2,7 +2,7 @@ require("./load-typescript.cjs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { calcularAtributosClase, calcularEntrenamientoRama } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
-const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas/estadisticas.ts");
 const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/combate/recursos-combate.ts");
 const { calcularRestauracionConsumible, esConsumibleRestaurador } = require("../src/lib/expediciones/combate/consumibles-combate.ts");
 const { aplicarEfectoComida, calcularBonificacionesComida, COMIDAS_TABERNA } = require("../src/lib/base/taberna.ts");

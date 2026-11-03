@@ -5,7 +5,7 @@ import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-h
 import { esConsumibleRestaurador } from "@/lib/expediciones/combate/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas-personaje";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import {

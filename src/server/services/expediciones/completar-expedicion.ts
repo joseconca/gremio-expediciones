@@ -7,7 +7,7 @@ import { calcularRegresoComercioProgramado } from "@/lib/expediciones/viajes/tie
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
-} from "@/lib/progresion/estadisticas-personaje";
+} from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";

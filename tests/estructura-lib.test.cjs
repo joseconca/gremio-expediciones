@@ -52,6 +52,8 @@ const trasladados = [
   ["progresion", "estadisticas/atributos-clase.ts"],
   ["progresion", "estadisticas/bonificaciones-equipo.ts"],
   ["progresion", "estadisticas/bonificaciones-pasivas.ts"],
+  ["progresion", "estadisticas/estadisticas.ts"],
+  ["progresion", "estadisticas/estadisticas-personaje.ts"],
 ];
 
 test("las reglas trasladadas tienen un solo propietario y no quedan duplicados en la raíz", () => {
@@ -85,6 +87,10 @@ test("las reglas puras siguen importándose desde sus ubicaciones definitivas", 
   const niveles = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
   assert.equal(niveles.costeReinicioHabilidades(7), 700);
   assert.equal(niveles.nivelMaximoHabilidad("novato"), 3);
+  const estadisticas = require("../src/lib/progresion/estadisticas/estadisticas.ts");
+  const personaje = require("../src/lib/progresion/estadisticas/estadisticas-personaje.ts");
+  assert.equal(typeof estadisticas.calcularEstadisticasDerivadasRpg, "function");
+  assert.equal(typeof personaje.calcularEstadisticasPersonaje, "function");
 });
 
 
@@ -99,11 +105,22 @@ test("las rutas antiguas no permanecen en código, scripts ni tests", () => {
   const prohibidas = trasladados.map(([dominio, archivo]) =>
     `/${dominio}/${path.basename(archivo, ".ts")}`
   );
+  // Un prefijo seguido de "/" pertenece a una subcarpeta y no a la ruta antigua.
+  // Esto importa especialmente cuando módulo y carpeta comparten nombre.
+  const referenciaExacta = (contenido, ruta) => {
+    let inicio = contenido.indexOf(ruta);
+    while (inicio !== -1) {
+      const siguiente = contenido[inicio + ruta.length];
+      if (siguiente === undefined || ["'", '"', "`", "."].includes(siguiente)) return true;
+      inicio = contenido.indexOf(ruta, inicio + 1);
+    }
+    return false;
+  };
   for (const archivo of ["src", "scripts", "tests"].flatMap((carpeta) => buscar(path.join(root, carpeta)))) {
     const contenido = fs.readFileSync(archivo, "utf8");
     for (const ruta of prohibidas) {
       assert.equal(
-        contenido.includes(ruta),
+        referenciaExacta(contenido, ruta),
         false,
         `La referencia antigua ${ruta} sigue presente en ${path.relative(root, archivo)}`,
       );

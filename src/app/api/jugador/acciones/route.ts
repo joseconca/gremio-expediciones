@@ -13,7 +13,7 @@ import { prepararMejoraEdificio } from "@/lib/base/edificios";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
-import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
+import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas/estadisticas";
 import { asegurarInventarioYEquipo } from "@/lib/equipamiento/inventario";
 
 const SEXOS = new Set(["chico", "chica"]);

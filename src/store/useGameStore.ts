@@ -20,7 +20,7 @@ import {
   calcularModificadoresEquipo,
   type DesgloseEstadisticasPersonaje,
   type ModificadoresEstadisticas,
-} from "@/lib/progresion/estadisticas-personaje";
+} from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { calcularAtributosClase } from "@/lib/progresion/estadisticas/atributos-clase";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";

@@ -7,7 +7,9 @@
 | Bonificaciones pasivas y conversiones de maná | `bonificaciones-pasivas.ts` |
 | Estadísticas base e interpretación de cuentas anteriores | `estadisticas-base-personaje.ts` |
 | Contratos y suma de modificadores | `modificadores-estadisticas.ts` |
+| Coeficientes y cálculos derivados RPG | `estadisticas.ts` |
+| Estadísticas completas y desglose del personaje | `estadisticas-personaje.ts` |
 
-**APIs existentes:** `../estadisticas.ts` (coeficientes y cálculos) y `../estadisticas-personaje.ts` (resultado y desglose total). Conservar sus exportaciones y no duplicar fórmulas.
+**Módulos principales de esta carpeta:** `estadisticas.ts` (coeficientes y cálculos RPG) y `estadisticas-personaje.ts` (resultado y desglose total). Los consumidores usan directamente estas rutas; no hay archivos puente en la raíz de `progresion/`.
 
 Estos módulos son cálculos sin persistencia; la base de datos y las transacciones se manejan desde `src/server/services/`.

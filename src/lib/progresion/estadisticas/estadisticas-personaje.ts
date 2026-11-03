@@ -1,25 +1,25 @@
-import type { AtributosPrincipales } from "../tiposJuego";
-import type { HabilidadAprendidaConNivel } from "./habilidades/niveles-habilidad";
+import type { AtributosPrincipales } from "../../tiposJuego";
+import type { HabilidadAprendidaConNivel } from "../habilidades/niveles-habilidad";
 import {
   obtenerModificadoresPasivas,
   aplicarConversionReservaInteligencia,
-} from "./estadisticas/bonificaciones-pasivas";
+} from "./bonificaciones-pasivas";
 import {
   obtenerAtributosPrincipales,
   obtenerEstadisticasBase,
   calcularAportesPorAtributo,
   calcularBaseSinAtributos,
-} from "./estadisticas/estadisticas-base-personaje";
+} from "./estadisticas-base-personaje";
 
 import {
   MODIFICADORES_VACIOS,
   sumarModificadores,
-} from "./estadisticas/modificadores-estadisticas";
+} from "./modificadores-estadisticas";
 import type {
   DatosPersonajeEstadisticas,
   ModificadoresEstadisticas,
   DesgloseEstadisticasPersonaje,
-} from "./estadisticas/modificadores-estadisticas";
+} from "./modificadores-estadisticas";
 
 // Mantener el contrato público de estadísticas del personaje para sus consumidores actuales.
 export type {
@@ -27,10 +27,10 @@ export type {
   ModificadoresEstadisticas,
   DesgloseEstadisticasPersonaje,
   AportesPorAtributo,
-} from "./estadisticas/modificadores-estadisticas";
+} from "./modificadores-estadisticas";
 
 // API pública histórica: se mantiene para no modificar sus consumidores.
-export { calcularModificadoresEquipo } from "./estadisticas/bonificaciones-equipo";
+export { calcularModificadoresEquipo } from "./bonificaciones-equipo";
 
 export function calcularEstadisticasPersonaje(
   personaje: DatosPersonajeEstadisticas,

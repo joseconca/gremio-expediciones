@@ -1,5 +1,5 @@
 import type { AtributosPrincipales, DefinicionHabilidad } from "../../tiposJuego";
-import { COEFICIENTES_ATRIBUTOS_RPG } from "../estadisticas";
+import { COEFICIENTES_ATRIBUTOS_RPG } from "./estadisticas";
 
 import { obtenerHabilidadPorId } from "../../habilidades";
 import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "../habilidades/niveles-habilidad";

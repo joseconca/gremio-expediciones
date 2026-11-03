@@ -1,6 +1,6 @@
 # Progresión y profesiones
 
-Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta implementa sus cálculos y transformaciones: no añadas aquí otra lista de clases ni de habilidades. Las bases y los contratos del desglose de atributos están agrupados en `estadisticas/`; `estadisticas.ts` y `estadisticas-personaje.ts` siguen siendo los puntos de entrada actuales.
+Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta implementa sus cálculos y transformaciones: no añadas aquí otra lista de clases ni de habilidades. Las fórmulas y el desglose de atributos están agrupados en `estadisticas/`, incluidos `estadisticas/estadisticas.ts` y `estadisticas/estadisticas-personaje.ts`. Todos los consumidores importan directamente su ubicación actual.
 
 ## Si quieres cambiar…
 
@@ -10,9 +10,9 @@ Los datos que puedes editar están en **`src/lib/catalogos/`**. Esta carpeta imp
 | Modificar una habilidad, su nivel o sus costes | `src/lib/catalogos/habilidades.ts` (datos), `habilidades/niveles-habilidad.ts` (niveles y reseteo) |
 | Comprobar qué habilidades puede aprender una clase | `habilidades/aprendizaje.ts` |
 | Cambiar las curvas de experiencia Base y Job | `experiencia.ts` |
-| Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas.ts` |
+| Cambiar coeficientes y fórmulas de atributos RPG | `estadisticas/estadisticas.ts` |
 | Cambiar cómo influyen clase y Job en los atributos | `estadisticas/atributos-clase.ts` |
-| Calcular el total y el desglose de estadísticas del personaje | `estadisticas-personaje.ts` |
+| Calcular el total y el desglose de estadísticas del personaje | `estadisticas/estadisticas-personaje.ts` |
 | Revisar estadísticas heredadas, base RPG y aportes por atributo | `estadisticas/estadisticas-base-personaje.ts` |
 | Cambiar los contratos y la suma de modificadores | `estadisticas/modificadores-estadisticas.ts` |
 | Aplicar dominio de armas, armaduras y escudos y adaptar el equipo al modelo RPG | `estadisticas/bonificaciones-equipo.ts` |
@@ -31,4 +31,4 @@ Las reglas de diseño, transformación y técnicas adicionales del motor están 
 
 **Regla de dependencias:** dentro de `progresion/` se importan otros módulos de progresión directamente. `src/lib/configuracionJuego.ts` es una fachada histórica que se conserva para consumidores anteriores, pero los cambios nuevos deben importar directamente `src/lib/base/edificios.ts`, `src/lib/base/mejoras.ts`, `src/lib/progresion/` o `src/lib/sprites/`, según su responsabilidad. No se elimina la fachada sin comprobar todos los importadores.
 
-**Compatibilidad:** `estadisticas-personaje.ts` sigue exportando `calcularModificadoresEquipo` y sus tipos para el código existente. Las fórmulas de cuentas antiguas viven en `estadisticas/estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `estadisticas/bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.
+**API actual:** `estadisticas/estadisticas-personaje.ts` exporta `calcularModificadoresEquipo` y sus tipos desde su ubicación definitiva. Las fórmulas de cuentas antiguas viven en `estadisticas/estadisticas-base-personaje.ts` y la conversión especial de maná a inteligencia en `estadisticas/bonificaciones-pasivas.ts`. El cálculo final las utiliza sin cambiar sus reglas; no eliminarlas por parecer heredadas.

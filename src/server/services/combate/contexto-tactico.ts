@@ -2,7 +2,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
   type DatosPersonajeEstadisticas,
-} from "@/lib/progresion/estadisticas-personaje";
+} from "@/lib/progresion/estadisticas/estadisticas-personaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/equipamiento/inventario";
 import { normalizarPosicionFormacion } from "@/lib/expediciones/combate/objetivos-combate";
 import type { ContextoTecnicaTactica } from "@/lib/expediciones/combate/tacticas/adaptador-tactico";

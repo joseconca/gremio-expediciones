@@ -1,4 +1,4 @@
-import type { AtributosPrincipales, ClasePersonaje } from "../tiposJuego";
+import type { AtributosPrincipales, ClasePersonaje } from "../../tiposJuego";
 
 /** Coeficientes iniciales de balance: se ajustan aquí, no en las rutas de API. */
 export const COEFICIENTES_ATRIBUTOS_RPG = {

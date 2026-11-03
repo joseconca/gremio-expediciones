@@ -4,7 +4,7 @@ import { sumarModificadores } from "./modificadores-estadisticas";
 import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "../../objetos";
 import { calcularBonificacionesDominioEquipo } from "../clases";
 
-import type { BonificacionesDerivadasRpg } from "../estadisticas";
+import type { BonificacionesDerivadasRpg } from "./estadisticas";
 
 export interface ModificadoresEquipoParaRpg {
   hpMaximo?: number;

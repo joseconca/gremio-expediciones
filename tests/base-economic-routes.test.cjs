@@ -187,12 +187,12 @@ function makeCombatConsumableRoute({
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/progresion/experiencia": { aplicarExperienciaJob: (p) => p, PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3 },
-    "@/lib/progresion/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
+    "@/lib/progresion/estadisticas/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
       energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
     }) },
     "@/lib/progresion/estadisticas/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
     "@/lib/progresion/estadisticas/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
-    "@/lib/progresion/estadisticas-personaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
+    "@/lib/progresion/estadisticas/estadisticas-personaje": { calcularModificadoresEquipo: () => ({}), calcularEstadisticasPersonaje: () => ({ total: { energiaMaxima: 100, manaMaximo: 100, regeneracionManaPorTurno: 2 } }) },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
     "@/lib/enemigos": {
@@ -722,10 +722,10 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
       calcularCosteAtributo: () => 10,
     },
     "@/lib/tiposJuego": { CONFIGURACION_EDIFICIOS: configEdificios },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40 } }),
     },
-    "@/lib/progresion/estadisticas": {
+    "@/lib/progresion/estadisticas/estadisticas": {
       calcularEstadisticasDerivadasRpg: () => ({
         hpMaximo: 40,
         energiaMaxima: 20,
@@ -771,7 +771,7 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/regeneracion": { sincronizarRegeneracion: async (personaje) => personaje },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40, ataque: 5, defensa: 2, velocidad: 5 } }),
       calcularModificadoresEquipo: () => ({}),
     },
@@ -824,7 +824,7 @@ function makeInvalidBodyRoute(relativePath) {
       aplicarExperienciaJob: (progreso) => progreso,
       PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3,
     },
-    "@/lib/progresion/estadisticas": {
+    "@/lib/progresion/estadisticas/estadisticas": {
       calcularEstadisticasDerivadasRpg: () => ({
         energiaMaxima: 20,
         manaMaximo: 10,
@@ -835,7 +835,7 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/progresion/estadisticas/bonificaciones-equipo": {
       mapearBonificacionesEquipoRpg: () => ({}),
     },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularModificadoresEquipo: () => ({}),
     },
     "@/lib/equipamiento/inventario": {

@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const { HABILIDADES, obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
-const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas/estadisticas.ts");
 const { ajustarHabilidadPorNivel, nivelMaximoHabilidad } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { simularRotacion } = require("../scripts/auditar-recursos-habilidades.cjs");
 

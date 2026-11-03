@@ -89,11 +89,11 @@ Se han trasladado **módulos completos**. Se conservan exports, IDs, cifras, sec
 |---|---|
 | Base y edificios | `src/lib/base/{edificios,mejoras,escuela,taberna}.ts`: catálogo de edificios, construcción, mejoras, escuela y comidas |
 | Equipamiento | `src/lib/equipamiento/{inventario,tienda,botin,sufijos}.ts` |
-| Progresión y estadísticas | `src/lib/progresion/{descripciones-habilidades,generar-habilidades,estadisticas-personaje}.ts` y reglas de clases, experiencia, atributos y niveles |
+| Progresión y estadísticas | `src/lib/progresion/habilidades/` y `src/lib/progresion/estadisticas/` para reglas y cálculos; clases y experiencia en `src/lib/progresion/` |
 | Economía | `src/lib/economia/mercado.ts` |
 | Expediciones – combate | `src/lib/expediciones/combate/`: curación, consumibles y regeneración. `combate.ts` continúa como API pública |
 | Expediciones – viajes | `src/lib/expediciones/viajes/`: tiempos de ida/vuelta y recompensas de regreso |
-| Progresión – base de estadísticas | `src/lib/progresion/estadisticas/`: modificadores y cálculo base; `estadisticas.ts` y `estadisticas-personaje.ts` conservan su API |
+| Progresión – base de estadísticas | `src/lib/progresion/estadisticas/`: coeficientes, estadísticas del personaje, modificadores y cálculo base, sin rutas duplicadas |
 | Generación de expediciones | `src/lib/expediciones/encuentros/generador-misiones.ts` |
 | Render y catálogos de sprites | `src/lib/sprites/{heroes,enemigos,dibujar-heroe}.ts`; rutas y retrocompatibilidad del héroe centralizadas en `heroes.ts` |
 | Catálogos editables | `src/lib/catalogos/{clases,habilidades,objetos,enemigos}.ts` |
@@ -302,6 +302,8 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - `4c84c95`: diseño de habilidades, adaptación del catálogo al motor y técnicas adicionales se agrupan en `progresion/habilidades/`, manteniendo el catálogo editable único en `src/lib/catalogos/habilidades.ts`.
 - `62778fb`: constructores y generación de habilidades migrados a ese mismo directorio.
 - `899454e`: aprendizaje, equipamiento y descripciones de habilidades migrados al mismo directorio.
-- `b36ac4f`: atributos por clase y bonificaciones de equipo/pasivas migrados a `progresion/estadisticas/`. `estadisticas.ts` y `estadisticas-personaje.ts` permanecen como entradas estables.
+- `b36ac4f`: atributos por clase y bonificaciones de equipo/pasivas migrados a `progresion/estadisticas/`.
 - `niveles-habilidad.ts` ya está en `progresion/habilidades/`. Se migraron las APIs, servicios, interfaz, scripts y pruebas. El auditor consulta exclusivamente `src/lib/progresion/habilidades/niveles-habilidad.ts`, incluso en `git show --referencia`. No existe fallback ni ruta anterior mantenida: las referencias de comparación deben utilizar la nueva estructura.
 - Prueba recursiva de importaciones relativas ampliada a `expediciones/`, `progresion/` y `catalogos/`; revisiones de estructura sin duplicados en `tests/estructura-lib.test.cjs`.
+
+- **Nueva estructura única:** `estadisticas.ts` y `estadisticas-personaje.ts` se trasladaron también a `progresion/estadisticas/`, actualizando los importadores de servicios, rutas, auditorías y pruebas; no se conservan sus archivos anteriores ni reexports de compatibilidad de rutas.

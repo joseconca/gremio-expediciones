@@ -5,9 +5,9 @@ const fs = require("node:fs");
 const { CLASES, obtenerAncestrosClase } = require("../src/lib/progresion/clases.ts");
 const { HABILIDADES } = require("../src/lib/habilidades.ts");
 const { ajustarHabilidadPorNivel, nivelMaximoHabilidad } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
-const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas-personaje.ts");
+const { calcularEstadisticasPersonaje } = require("../src/lib/progresion/estadisticas/estadisticas-personaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/estadisticas/atributos-clase.ts");
-const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas/estadisticas.ts");
 const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/combate/recursos-combate.ts");
 
 function simularRotacion(habilidades, stats, turnos = 30) {
