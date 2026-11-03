@@ -8,10 +8,7 @@ import {
   calcularCosteAtributo,
   type IdAtributo,
 } from "@/lib/base/mejoras";
-import { prepararMejoraEdificio } from "@/lib/base/edificios";
-
-import { type ClasePersonaje } from "@/lib/tiposJuego";
-import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
+import { prepararMejoraEdificio, CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/base/edificios";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas/estadisticas";
 import { asegurarInventarioYEquipo } from "@/lib/equipamiento/inventario";
@@ -128,7 +125,7 @@ export async function POST(request: Request) {
         );
       }
       // El servidor ignora la clase enviada por el cliente: todos empiezan como Novato.
-      const clasePersonaje: ClasePersonaje = "Novato";
+      const clasePersonaje = "Novato" as const;
       const estadisticasRpgIniciales = calcularEstadisticasDerivadasRpg({
         fuerza: 1,
         agilidad: 1,

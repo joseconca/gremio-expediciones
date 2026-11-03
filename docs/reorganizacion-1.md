@@ -324,3 +324,5 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - El combate real continúa utilizando `party/iniciativa.ts` y `expediciones/combate/iniciativa-combate.ts`, con acciones proporcionales a velocidad y cola persistida.
 - Las pruebas de party mantienen casos de participantes vivos, victoria, derrota, huida, límites de log y cola de velocidad; se retiraron las aserciones del algoritmo antiguo.
 - Sin cambios en Prisma, API, botín, temporizadores o el cálculo de ataques. Pendiente validar CI tras este commit.
+
+- Se retira `ClasePersonaje`, una unión de cuatro clases del sistema anterior sin relación con el catálogo actual. El alta sigue creando `"Novato"` (literal tipado); la ruta de acciones usa el catálogo de edificios desde `base/edificios.ts`, no desde `tiposJuego.ts`.

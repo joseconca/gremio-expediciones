@@ -1,9 +1,6 @@
 import type { IdEdificio } from "./base/edificios";
 export type TipoMision = "normal" | "elite" | "comercio" | "boss" | "asedio";
 
-/** Valores antiguos conservados durante la transición del sistema de clases. */
-export type ClasePersonaje = "Novato" | "Guerrero" | "Explorador" | "Comerciante";
-
 export type TipoArma =
   | "espada" | "hacha" | "lanza" | "daga" | "arco"
   | "baston" | "maza" | "libro" | "puños";
