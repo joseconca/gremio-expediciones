@@ -1,7 +1,12 @@
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "../tiposJuego";
 import { crearTecnicaAdicional } from "../progresion/tecnicas-adicionales";
-import { resolverTecnicaTactica, type EstadoTactico, type UnidadTactica } from "./motor-tactico";
+import { resolverTecnicaTactica } from "./motor-tactico";
+import type { EstadoTactico, UnidadTactica } from "./tipos-tacticos";
 
+/**
+ * Frontera entre los efectos persistidos del combate y el motor puro.
+ * La persistencia de datos y la actualización versionada corresponden a los servicios.
+ */
 export type ContextoTecnicaTactica = {
   numeroObjetivos?: number;
   principal?: boolean;
@@ -32,59 +37,160 @@ export type ContextoTecnicaTactica = {
   filaObjetivo: number;
 };
 
-export const convertirEstadosTacticos = (efectos: readonly EstadoEfectoHabilidad[], propietarioId: string, creadorPorDefecto: string): EstadoTactico[] => efectos.flatMap(e => {
-  if (e.tipo === "tactico") return e.datosTacticos?.estados.map(estado => ({ ...estado })) ?? [];
-  if (e.tipo !== "dano_progresivo" && e.tipo !== "curacion_progresiva") return [];
-  return [{ id: `legacy:${propietarioId}:${e.habilidadId}:${e.tipo}`, fuenteId: e.habilidadId, creadorId: e.creadorId ?? creadorPorDefecto, familia: e.tipo === "dano_progresivo" ? "herida" as const : "regeneracion" as const, clave: e.familia??e.tipo, valor: e.valor, restantes: e.turnosRestantes, reloj: "turno" as const, cargas: 1 }];
+/**
+ * Convierte tanto estados tácticos actuales como DoT/HoT anteriores.
+ * Cada estado táctico recibe una copia para evitar modificar los efectos de origen.
+ */
+export const convertirEstadosTacticos = (
+  efectos: readonly EstadoEfectoHabilidad[],
+  propietarioId: string,
+  creadorPorDefecto: string
+): EstadoTactico[] => efectos.flatMap((efecto) => {
+  if (efecto.tipo === "tactico") {
+    return efecto.datosTacticos?.estados.map((estado) => ({ ...estado })) ?? [];
+  }
+  if (efecto.tipo !== "dano_progresivo" && efecto.tipo !== "curacion_progresiva") {
+    return [];
+  }
+
+  return [{
+    id: `legacy:${propietarioId}:${efecto.habilidadId}:${efecto.tipo}`,
+    fuenteId: efecto.habilidadId,
+    creadorId: efecto.creadorId ?? creadorPorDefecto,
+    familia: efecto.tipo === "dano_progresivo" ? "herida" as const : "regeneracion" as const,
+    clave: efecto.familia ?? efecto.tipo,
+    valor: efecto.valor,
+    restantes: efecto.turnosRestantes,
+    reloj: "turno" as const,
+    cargas: 1,
+  }];
 });
 
-export function exportarEstadosTacticos(unidad: UnidadTactica, anteriores: readonly EstadoEfectoHabilidad[]): EstadoEfectoHabilidad[] {
-  const periodicos = anteriores.flatMap(e => {
-    if (e.tipo !== "dano_progresivo" && e.tipo !== "curacion_progresiva") return [];
-    const estado = unidad.estados.find(t => t.id === `legacy:${unidad.id}:${e.habilidadId}:${e.tipo}`);
-    return estado ? [{ ...e, valor: estado.valor, turnosRestantes: estado.restantes }] : [];
+/**
+ * Reconstruye los efectos persistibles: conserva los efectos no tácticos,
+ * recupera los pulsos legacy todavía vivos y guarda el estado del motor.
+ */
+export function exportarEstadosTacticos(
+  unidad: UnidadTactica,
+  anteriores: readonly EstadoEfectoHabilidad[]
+): EstadoEfectoHabilidad[] {
+  const periodicos = anteriores.flatMap((efecto) => {
+    if (efecto.tipo !== "dano_progresivo" && efecto.tipo !== "curacion_progresiva") {
+      return [];
+    }
+    const estado = unidad.estados.find(
+      (actual) => actual.id === `legacy:${unidad.id}:${efecto.habilidadId}:${efecto.tipo}`
+    );
+    return estado
+      ? [{ ...efecto, valor: estado.valor, turnosRestantes: estado.restantes }]
+      : [];
   });
-  const estados = unidad.estados.filter(e => !e.id.startsWith("legacy:"));
-  const resultado = [...anteriores.filter(e => !["tactico", "dano_progresivo", "curacion_progresiva"].includes(e.tipo)), ...periodicos];
-  if (estados.length || Object.keys(unidad.limites).length) resultado.push({ habilidadId: `tactica:${unidad.id}`, tipo: "tactico", valor: 0, duracionTurnos: 1, turnosRestantes: 1, objetivo: "jugador", datosTacticos: { version: 2, propietarioId: unidad.id, estados, limites: unidad.limites } });
+
+  const estados = unidad.estados.filter((estado) => !estado.id.startsWith("legacy:"));
+  const resultado = [
+    ...anteriores.filter((efecto) =>
+      !["tactico", "dano_progresivo", "curacion_progresiva"].includes(efecto.tipo)
+    ),
+    ...periodicos,
+  ];
+  if (estados.length || Object.keys(unidad.limites).length) {
+    resultado.push({
+      habilidadId: `tactica:${unidad.id}`,
+      tipo: "tactico",
+      valor: 0,
+      duracionTurnos: 1,
+      turnosRestantes: 1,
+      objetivo: "jugador",
+      datosTacticos: {
+        version: 2,
+        propietarioId: unidad.id,
+        estados,
+        limites: unidad.limites,
+      },
+    });
+  }
   return resultado;
 }
 
-export function resolverTecnicaAdicional(habilidad: DefinicionHabilidad, c: ContextoTecnicaTactica) {
-  if (!habilidad.claseId || habilidad.programaTactico !== "tecnica_adicional") throw new Error("PROGRAMA_TACTICO_DESCONOCIDO");
+/** Aplica una técnica adicional conservando el contrato previo del combate. */
+export function resolverTecnicaAdicional(
+  habilidad: DefinicionHabilidad,
+  contexto: ContextoTecnicaTactica
+) {
+  if (!habilidad.claseId || habilidad.programaTactico !== "tecnica_adicional") {
+    throw new Error("PROGRAMA_TACTICO_DESCONOCIDO");
+  }
+
   const crearUnidad = (propio: boolean): UnidadTactica => {
-    const id = propio ? c.actorId : c.objetivoId;
-    const efectos = propio ? c.efectosActor : c.efectosObjetivo;
+    const id = propio ? contexto.actorId : contexto.objetivoId;
+    const efectos = propio ? contexto.efectosActor : contexto.efectosObjetivo;
     return {
-      id, equipo: propio || c.objetivoAliado ? "aliado" : "enemigo", claseId: propio ? c.claseId : undefined,
-      hp: propio ? c.actorHp : c.objetivoHp, hpMaximo: propio ? c.actorHpMaximo : c.objetivoHpMaximo,
-      energia: propio ? c.energia : 0, energiaMaxima: propio ? c.energiaMaxima : 100,
-      mana: propio ? c.mana : 0, manaMaximo: propio ? c.manaMaximo : 10,
-      ataque: c.ataque, ataqueMagico: c.ataqueMagico,
-      defensa: propio ? c.defensaActor : c.defensaObjetivo,
-      defensaMagica: propio ? c.defensaMagicaActor : c.defensaMagicaObjetivo,
-      fila: propio ? c.filaActor : c.filaObjetivo, columna: 0,
-      estados: convertirEstadosTacticos(efectos, id, c.actorId),
-      limites: { ...efectos.find(e => e.tipo === "tactico")?.datosTacticos?.limites },
+      id,
+      equipo: propio || contexto.objetivoAliado ? "aliado" : "enemigo",
+      claseId: propio ? contexto.claseId : undefined,
+      hp: propio ? contexto.actorHp : contexto.objetivoHp,
+      hpMaximo: propio ? contexto.actorHpMaximo : contexto.objetivoHpMaximo,
+      energia: propio ? contexto.energia : 0,
+      energiaMaxima: propio ? contexto.energiaMaxima : 100,
+      mana: propio ? contexto.mana : 0,
+      manaMaximo: propio ? contexto.manaMaximo : 10,
+      ataque: contexto.ataque,
+      ataqueMagico: contexto.ataqueMagico,
+      defensa: propio ? contexto.defensaActor : contexto.defensaObjetivo,
+      defensaMagica: propio ? contexto.defensaMagicaActor : contexto.defensaMagicaObjetivo,
+      fila: propio ? contexto.filaActor : contexto.filaObjetivo,
+      columna: 0,
+      estados: convertirEstadosTacticos(efectos, id, contexto.actorId),
+      // Este adaptador toma los límites del efecto táctico persistido.
+      limites: { ...efectos.find((efecto) => efecto.tipo === "tactico")?.datosTacticos?.limites },
     };
   };
+
   const actor = crearUnidad(true);
   const tecnica = crearTecnicaAdicional(habilidad.claseId, actor);
-  // El catálogo y el pago transaccional usan estos mismos valores. Los rangos
-  // no reducen CD ni generan recuperaciones en una técnica de transformación.
+  // El catálogo y el pago transaccional usan los mismos costes.
+  // Los rangos no reducen CD ni generan recuperaciones por transformación.
   tecnica.costeEnergia = habilidad.costeEnergia ?? 0;
   tecnica.costeMana = habilidad.costeMana ?? 0;
   tecnica.cooldown = habilidad.cooldownTurnos ?? 4;
-  const mundo = resolverTecnicaTactica({ version: 2, ciclo: c.ciclo, unidades: c.actorId === c.objetivoId ? [actor] : [actor, crearUnidad(false)], eventos: [] }, c.actorId, c.objetivoId, tecnica);
-  const actorFinal = mundo.unidades.find(u => u.id === c.actorId)!;
-  const objetivoFinal = mundo.unidades.find(u => u.id === c.objetivoId)!;
-  const dano = mundo.eventos.filter(e => e.tipo === "dano" && e.objetivoId === c.objetivoId).reduce((s,e)=>s+e.cantidad,0);
-  const cura = mundo.eventos.filter(e => e.tipo === "cura").reduce((s,e)=>s+e.cantidad,0);
+
+  const mundo = resolverTecnicaTactica({
+    version: 2,
+    ciclo: contexto.ciclo,
+    unidades: contexto.actorId === contexto.objetivoId
+      ? [actor]
+      : [actor, crearUnidad(false)],
+    eventos: [],
+  }, contexto.actorId, contexto.objetivoId, tecnica);
+
+  const actorFinal = mundo.unidades.find((unidad) => unidad.id === contexto.actorId)!;
+  const objetivoFinal = mundo.unidades.find((unidad) => unidad.id === contexto.objetivoId)!;
+  const dano = mundo.eventos
+    .filter((evento) => evento.tipo === "dano" && evento.objetivoId === contexto.objetivoId)
+    .reduce((total, evento) => total + evento.cantidad, 0);
+  const cura = mundo.eventos
+    .filter((evento) => evento.tipo === "cura")
+    .reduce((total, evento) => total + evento.cantidad, 0);
+
   return {
-    accion: { actor: "jugador" as const, tipo: "habilidad" as const, animacion: "defensiva" as const, dano, critico: false, ...(cura > 0 ? { curacion: cura } : {}), texto: `Usas ${habilidad.nombre}.` },
-    actorHp: actorFinal.hp, objetivoHp: objetivoFinal.hp,
-    efectosActor: exportarEstadosTacticos(actorFinal,c.efectosActor),
-    efectosObjetivo: exportarEstadosTacticos(objetivoFinal,c.actorId === c.objetivoId ? c.efectosActor : c.efectosObjetivo),
+    accion: {
+      actor: "jugador" as const,
+      tipo: "habilidad" as const,
+      animacion: "defensiva" as const,
+      dano,
+      critico: false,
+      ...(cura > 0 ? { curacion: cura } : {}),
+      texto: `Usas ${habilidad.nombre}.`,
+    },
+    actorHp: actorFinal.hp,
+    objetivoHp: objetivoFinal.hp,
+    efectosActor: exportarEstadosTacticos(actorFinal, contexto.efectosActor),
+    efectosObjetivo: exportarEstadosTacticos(
+      objetivoFinal,
+      contexto.actorId === contexto.objetivoId
+        ? contexto.efectosActor
+        : contexto.efectosObjetivo
+    ),
     filaActor: actorFinal.fila,
   };
 }
