@@ -2,10 +2,10 @@ import { obtenerEnemigoPorId, obtenerEnemigosPorDificultad } from "@/lib/enemigo
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 
 export const PROBABILIDAD_ENCUENTRO_MIMICO = 0.01;
-export const MULTIPLICADOR_PESO_DIF_MIN = 3;
+const MULTIPLICADOR_PESO_DIF_MIN = 3;
 
 /** Los valores son pesos relativos, no porcentajes directos. */
-export const PESOS_RAREZA_ENEMIGOS: Record<string, number> = {
+const PESOS_RAREZA_ENEMIGOS: Record<string, number> = {
   comun: 70,
   poco_comun: 50,
   raro: 35,
