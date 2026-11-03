@@ -132,7 +132,10 @@ async function recuperarEnergiaLimitada(
       },
     },
   });
-  if (!personaje) {if(pago)throw new Error("PERSONAJE_NO_ENCONTRADO");return;}
+  if (!personaje) {
+    if (pago) throw new Error("PERSONAJE_NO_ENCONTRADO");
+    return;
+  }
 
   const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
   const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
@@ -154,19 +157,50 @@ async function recuperarEnergiaLimitada(
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
-  const energiaDisponible=Math.min(personaje.energiaActual,estadisticas.energiaMaxima??100);
-  const manaDisponible=Math.min(personaje.manaActual,estadisticas.manaMaximo??10);
-  const costeE=Math.max(0,Math.floor(pago?.costeEnergia??0)),costeM=Math.max(0,Math.floor(pago?.costeMana??0));
-  if(pago&&(energiaDisponible<costeE||manaDisponible<costeM))throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
+  const energiaDisponible = Math.min(
+    personaje.energiaActual,
+    estadisticas.energiaMaxima ?? 100
+  );
+  const manaDisponible = Math.min(
+    personaje.manaActual,
+    estadisticas.manaMaximo ?? 10
+  );
+  const costeE = Math.max(0, Math.floor(pago?.costeEnergia ?? 0));
+  const costeM = Math.max(0, Math.floor(pago?.costeMana ?? 0));
+
+  if (pago && (energiaDisponible < costeE || manaDisponible < costeM)) {
+    throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
+  }
+
   const energiaNueva = Math.min(
     estadisticas.energiaMaxima ?? 100,
     energiaDisponible - costeE + Math.floor(cantidad),
   );
+
+  // Mantener las mismas condiciones optimistas de actualización de recursos.
+  // Sólo se compara/escribe maná cuando hay recuperación o una habilidad de pago.
+  const actualizarMana = mana > 0 || Boolean(pago);
   const actualizado = await tx.personaje.updateMany({
-    where: { id: personaje.id, energiaActual: personaje.energiaActual, ...(mana>0||pago?{manaActual:personaje.manaActual}:{}) },
-    data: { energiaActual: energiaNueva, ...(mana>0||pago?{manaActual:Math.min(estadisticas.manaMaximo??10,manaDisponible-costeM+Math.floor(mana))}:{}) },
+    where: {
+      id: personaje.id,
+      energiaActual: personaje.energiaActual,
+      ...(actualizarMana ? { manaActual: personaje.manaActual } : {}),
+    },
+    data: {
+      energiaActual: energiaNueva,
+      ...(actualizarMana
+        ? {
+            manaActual: Math.min(
+              estadisticas.manaMaximo ?? 10,
+              manaDisponible - costeM + Math.floor(mana)
+            ),
+          }
+        : {}),
+    },
   });
-  if (actualizado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
+  if (actualizado.count !== 1) {
+    throw new Error("RECURSO_COMBATE_MODIFICADO");
+  }
 }
 
 export async function gastarRecursosHabilidad(
@@ -179,13 +213,25 @@ export async function gastarRecursosHabilidad(
 
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
-  const recuperacionEnergia = Math.max(0, Math.floor((habilidad.recuperarEnergia ?? 0)+recuperacion.energia));
-  if(habilidad.versionReglas===2){
-    await recuperarEnergiaLimitada(tx,personajeId,recuperacionEnergia,recuperacion.mana,habilidad);
+  const recuperacionEnergia = Math.max(
+    0,
+    Math.floor((habilidad.recuperarEnergia ?? 0) + recuperacion.energia)
+  );
+
+  // Versión 2: el pago y la recuperación se verifican juntos contra
+  // los límites reales del personaje dentro de la misma transacción.
+  if (habilidad.versionReglas === 2) {
+    await recuperarEnergiaLimitada(
+      tx, personajeId, recuperacionEnergia, recuperacion.mana, habilidad
+    );
     return;
   }
+
+  // Las habilidades antiguas sin coste únicamente regeneran.
   if (costeEnergia === 0 && costeMana === 0) {
-    await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia,recuperacion.mana);
+    await recuperarEnergiaLimitada(
+      tx, personajeId, recuperacionEnergia, recuperacion.mana
+    );
     return;
   }
 
@@ -204,7 +250,9 @@ export async function gastarRecursosHabilidad(
   if (resultado.count !== 1) {
     throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
   }
-  await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia,recuperacion.mana);
+  await recuperarEnergiaLimitada(
+    tx, personajeId, recuperacionEnergia, recuperacion.mana
+  );
 }
 
 export async function regenerarRecursosPorTurno(
