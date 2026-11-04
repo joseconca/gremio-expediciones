@@ -17,7 +17,7 @@ import { resolverResultadoCombateParty, obtenerLogCombateParty } from "@/lib/par
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
-import { reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
+import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
@@ -301,11 +301,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     // Los cooldowns avanzan una vez por ciclo completo, no por cada enemigo.
     if (nuevaRonda) {
       for (const miembro of combate.participantes) {
-        const valor = miembro.cooldowns;
-        const bruto = valor && typeof valor === "object" && !Array.isArray(valor)
-          ? Object.fromEntries(Object.entries(valor).filter(([, n]) => typeof n === "number" && Number.isFinite(n) && n > 0))
-          : {};
-        const cooldownsReducidos = reducirCooldowns(bruto as Record<string, number>);
+        const cooldownsReducidos = reducirCooldowns(obtenerCooldowns(miembro.cooldowns));
         const guardado = await tx.combatePartyParticipante.updateMany({
           where: { id: miembro.id, combatePartyId: combate.id },
           data: { cooldowns: cooldownsReducidos as unknown as Prisma.InputJsonValue },

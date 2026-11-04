@@ -184,12 +184,9 @@ export async function ejecutarAccionCombateParty(
           // Huir consume el turno actual; si con ello termina el ciclo,
           // los cooldowns avanzan igual que con cualquier otra acción.
           for (const miembro of combate.participantes) {
-            const bruto = miembro.cooldowns && typeof miembro.cooldowns === "object" && !Array.isArray(miembro.cooldowns)
-              ? Object.fromEntries(Object.entries(miembro.cooldowns).filter(([, valor]) => typeof valor === "number" && Number.isFinite(valor) && valor > 0))
-              : {};
             const guardado = await tx.combatePartyParticipante.updateMany({
               where: { id: miembro.id, combatePartyId: combate.id },
-              data: { cooldowns: reducirCooldowns(bruto as Record<string, number>) as unknown as Prisma.InputJsonValue },
+              data: { cooldowns: reducirCooldowns(obtenerCooldowns(miembro.cooldowns)) as unknown as Prisma.InputJsonValue },
             });
             if (guardado.count !== 1) {
               throw new PartyServiceError("No se pudieron actualizar los cooldowns al cerrar el ciclo de iniciativa.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
@@ -698,13 +695,9 @@ export async function ejecutarAccionCombateParty(
       cooldowns = reducirCooldowns(cooldowns);
       for (const miembro of combate.participantes) {
         if (miembro.usuarioId === usuarioId) continue;
-        const valor = miembro.cooldowns;
-        const bruto = valor && typeof valor === "object" && !Array.isArray(valor)
-          ? Object.fromEntries(Object.entries(valor).filter(([, n]) => typeof n === "number" && Number.isFinite(n) && n > 0))
-          : {};
         const guardado = await tx.combatePartyParticipante.updateMany({
           where: { id: miembro.id, combatePartyId: combate.id },
-          data: { cooldowns: reducirCooldowns(bruto as Record<string, number>) as unknown as Prisma.InputJsonValue },
+          data: { cooldowns: reducirCooldowns(obtenerCooldowns(miembro.cooldowns)) as unknown as Prisma.InputJsonValue },
         });
         if (guardado.count !== 1) {
           throw new PartyServiceError("No se pudieron actualizar los cooldowns de la party.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
