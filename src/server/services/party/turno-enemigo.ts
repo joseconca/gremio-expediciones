@@ -17,7 +17,7 @@ import { resolverResultadoCombateParty, obtenerLogCombateParty } from "@/lib/par
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
-import { reducirCooldowns } from "@/server/services/combate/accion-combate";
+import { reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";

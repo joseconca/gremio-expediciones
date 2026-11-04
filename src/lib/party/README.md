@@ -8,6 +8,8 @@ Este dominio reúne cálculos y decisiones puros, reutilizables por los servicio
 - `iniciativa.ts`: único planificador de party, con actores vivos, recuperación de la cola persistida y avance por velocidad; reutiliza `../expediciones/combate/iniciativa-combate.ts`.
 - `recompensas.ts`: saneamiento de recompensas, reparto exacto de unidades, RNG determinista y agregación del botín.
 
+**Cada endpoint usa su servicio concreto:** el ataque del jugador está en `src/server/services/party/combate-party-actions.ts` y el turno de enemigos en `src/server/services/party/turno-enemigo.ts`. La ruta de turno enemigo importa directamente este último; ninguno reexporta al otro.
+
 **No añadir aquí acceso a Prisma, rutas HTTP o estados React.** Las operaciones transaccionales permanecen en `src/server/services/party/`; la lectura de enemigos persistidos está en `src/lib/expediciones/combate/enemigos-combate.ts`.
 
 Las pruebas principales son `tests/party-combat-rules.test.cjs`, `tests/party-rules.test.cjs`, `tests/party-combat-actions.test.cjs` y `tests/enemigos-combate.test.cjs`.

@@ -1,5 +1,5 @@
 import { ejecutarRutaParty } from "@/server/services/party/http";
-import { ejecutarTurnoEnemigoParty } from "@/server/services/party/combate-party-actions";
+import { ejecutarTurnoEnemigoParty } from "@/server/services/party/turno-enemigo";
 
 export async function POST(request: Request) {
   return ejecutarRutaParty(

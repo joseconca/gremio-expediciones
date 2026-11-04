@@ -262,6 +262,7 @@ function makeCombatConsumableRoute({
     "../../../lib/expediciones/encuentros/dificultad": commonDependencies["../../../../lib/expediciones/encuentros/dificultad"],
     "../../../lib/expediciones/combate/estados-combate": commonDependencies["../../../../lib/expediciones/combate/estados-combate"],
     "./accion-combate": common,
+    "@/lib/expediciones/combate/cooldowns-habilidades": require("../src/lib/expediciones/combate/cooldowns-habilidades.ts"),
     "./efectos-visualizacion": loadSource("src/server/services/combate/efectos-visualizacion.ts"),
   };
   const { ejecutarAccionPve: POST } = loadSource(

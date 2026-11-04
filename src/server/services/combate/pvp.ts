@@ -1,5 +1,5 @@
 import { adjuntarPulsosEstado } from "./efectos-visualizacion";
-import { establecerCooldownHabilidad } from "@/lib/expediciones/combate/cooldowns-habilidades";
+import { establecerCooldownHabilidad, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
 import { aplicarBarreraAccion } from "@/lib/expediciones/combate/estados-combate";
@@ -32,7 +32,6 @@ import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from 
 import {
   prepararAccionCombate,
   manejarErrorAccionCombate,
-  reducirCooldowns,
   actualizarEfectosAlInicioTurnoJugador,
   gastarRecursosHabilidad,
   regenerarRecursosPorTurno,

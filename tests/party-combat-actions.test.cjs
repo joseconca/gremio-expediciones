@@ -122,9 +122,11 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/progresion/clases": {
       puedeUsarHabilidadDeClase: () => true,
     },
-    "@/server/services/combate/accion-combate": {
+    "@/lib/expediciones/combate/cooldowns-habilidades": {
       reducirCooldowns: (cooldowns) => cooldowns,
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
+    },
+    "@/server/services/combate/accion-combate": {
       gastarRecursosHabilidad: require("../src/server/services/combate/accion-combate.ts").gastarRecursosHabilidad,
       otorgarExperienciaJob: testOptions.otorgarExperienciaJob ?? (async () => null),
     },
@@ -198,7 +200,11 @@ function loadService(prisma, testOptions = {}) {
     loaded,
     loaded.exports,
   );
-  return loaded.exports;
+  // Las pruebas comparten un fixture Prisma; cada función procede de su servicio real.
+  return {
+    ...loaded.exports,
+    ejecutarTurnoEnemigoParty: dependencies["./turno-enemigo"].ejecutarTurnoEnemigoParty,
+  };
 }
 
 function mkParticipant(id, order, hp = 100, hpMax = 100, status = "activo") {
@@ -1349,9 +1355,13 @@ test("el regreso tras la victoria conserva la programación original aunque el c
 });
 
 
-test("las dos acciones de combate mantienen la API pública y los módulos separados", () => {
+test("las acciones de combate grupal se ejecutan desde sus respectivos servicios, sin reexportaciones", () => {
   const { prisma } = mockPrisma(mkCombat());
   const servicio = loadService(prisma);
   assert.equal(typeof servicio.ejecutarAccionCombateParty, "function");
   assert.equal(typeof servicio.ejecutarTurnoEnemigoParty, "function");
+  const ruta = fs.readFileSync(path.resolve(__dirname, "../src/app/api/expediciones/party/combate/turno-enemigo/route.ts"), "utf8");
+  const acciones = fs.readFileSync(path.resolve(__dirname, "../src/server/services/party/combate-party-actions.ts"), "utf8");
+  assert.match(ruta, /services\/party\/turno-enemigo/);
+  assert.doesNotMatch(acciones, /export \{ ejecutarTurnoEnemigoParty \}/);
 });

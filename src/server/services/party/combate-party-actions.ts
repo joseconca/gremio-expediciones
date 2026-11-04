@@ -1,4 +1,4 @@
-import { establecerCooldownHabilidad } from "@/lib/expediciones/combate/cooldowns-habilidades";
+import { establecerCooldownHabilidad, reducirCooldowns, obtenerCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { calcularPesosCuracion } from "@/lib/expediciones/combate/presupuesto-curacion";
 import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
 import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-tactico";
@@ -33,7 +33,6 @@ import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-c
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
 import { gastarRecursosHabilidad } from "@/server/services/combate/accion-combate";
-import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
@@ -859,5 +858,3 @@ export async function ejecutarAccionCombateParty(
   }, AISLAMIENTO);
 }
 
-/** API histórica mantenida para los endpoints de combate grupal. */
-export { ejecutarTurnoEnemigoParty } from "./turno-enemigo";
