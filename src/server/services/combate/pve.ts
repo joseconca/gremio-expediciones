@@ -44,6 +44,7 @@ import {
   calcularPrecisionModificada,
   calcularEvasionModificada,
   leerEfectosCombate,
+  procesarEfectosTurno,
 } from "../../../lib/expediciones/combate/estados-combate";
 import {
   prepararAccionCombate,
@@ -52,7 +53,6 @@ import {
   otorgarExperienciaJob,
   gastarRecursosHabilidad,
   regenerarRecursosPorTurno,
-  actualizarEfectosAlInicioTurnoJugador,
   type ContextoAccionCombate,
 } from "./accion-combate";
 
@@ -1008,7 +1008,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       }
 
       if (actor === "enemigo" && siguienteTurno === "jugador") {
-        const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+        const efectosActualizados = procesarEfectosTurno(
           efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, personaje.nombre
         );
 

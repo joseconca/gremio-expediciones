@@ -27,12 +27,12 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
+  procesarEfectosTurno,
 } from "../../../lib/expediciones/combate/estados-combate";
 import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from "@/lib/expediciones/combate/contrato-accion-combate";
 import {
   prepararAccionCombate,
   manejarErrorAccionCombate,
-  actualizarEfectosAlInicioTurnoJugador,
   gastarRecursosHabilidad,
   regenerarRecursosPorTurno,
   type ContextoAccionCombate,
@@ -400,7 +400,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     if (siguienteTurno === "atacante") {
       cooldowns = reducirCooldowns(cooldowns);
 
-      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+      const efectosActualizados = procesarEfectosTurno(
         efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, combate.atacanteNombre ?? personaje.nombre
       );
 
@@ -414,7 +414,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     if (siguienteTurno === "defensor") {
       cooldownsDefensor = reducirCooldowns(cooldownsDefensor);
 
-      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+      const efectosActualizados = procesarEfectosTurno(
         efectosDefensor, enemigoHp, combate.enemigoHpMaximo ?? enemigoHp, enemigoDefensa, combate.defensorNombre ?? combate.enemigoNombre ?? "Defensor"
       );
 

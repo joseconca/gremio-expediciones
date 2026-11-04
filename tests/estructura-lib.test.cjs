@@ -231,3 +231,18 @@ test("los servicios party usan la normalización central de cooldowns persistido
   assert.deepEqual(reducirCooldowns(obtenerCooldowns(guardados)), { bloqueo: 2, parcial: 1 });
   assert.equal(guardados.bloqueo, 3, "No mutar el estado persistido");
 });
+
+
+test("los orquestadores de combate consumen efectos desde su motor, sin envoltorios triviales", () => {
+  const ruta = "src/lib/expediciones/combate/estados-combate.ts";
+  const motor = require("../" + ruta);
+  assert.equal(typeof motor.leerEfectosCombate, "function");
+  assert.equal(typeof motor.procesarEfectosTurno, "function");
+  const accion = fs.readFileSync(path.join(root, "src/server/services/combate/accion-combate.ts"), "utf8");
+  const pve = fs.readFileSync(path.join(root, "src/server/services/combate/pve.ts"), "utf8");
+  const pvp = fs.readFileSync(path.join(root, "src/server/services/combate/pvp.ts"), "utf8");
+  assert.doesNotMatch(accion, /(?:export )?function (?:obtenerEfectos|actualizarEfectosAlInicioTurnoJugador)\(/);
+  assert.match(pve, /procesarEfectosTurno\(/);
+  assert.match(pvp, /procesarEfectosTurno\(/);
+  assert.doesNotMatch(pve + pvp, /actualizarEfectosAlInicioTurnoJugador/);
+});

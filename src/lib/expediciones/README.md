@@ -37,3 +37,5 @@ Las **operaciones con Prisma** viven en `src/server/services/`:
 El encaje visual y la escala de los sprites de combate pertenecen a `src/lib/sprites/escala-combate.ts` (no al motor de expediciones); el archivo antiguo `src/lib/expediciones/escala-combate.ts` se retiró al actualizar sus dos consumidores.
 
 Los estilos de sombra pertenecen a `src/components/combate/estilo-sombra-combate.ts`. La auditoría completa está en [`docs/auditoria-src-lib.md`](../../../docs/auditoria-src-lib.md). Los catálogos editables están en `src/lib/catalogos/`.
+
+Los orquestadores individuales PvE y PvP llaman directamente a `combate/estados-combate.ts` para leer y procesar efectos al comienzo del turno. `server/services/combate/accion-combate.ts` se ocupa de preparar la acción y efectuar operaciones transaccionales, sin reexportar reglas puras ni envolverlas con funciones idénticas.

@@ -18,7 +18,6 @@ import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-h
 import type { DefinicionHabilidad, RecompensaMision, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import {
   leerEfectosCombate,
-  procesarEfectosTurno,
   retirarEfectosHabilidad,
 } from "../../../lib/expediciones/combate/estados-combate";
 import {
@@ -384,20 +383,6 @@ export function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     piedra: 0,
     metal: 0,
   };
-}
-
-export function obtenerEfectos(valor: unknown): EfectoCombate[] {
-  return leerEfectosCombate(valor);
-}
-
-export function actualizarEfectosAlInicioTurnoJugador(
-  efectos: EfectoCombate[],
-  hpActual: number,
-  hpMaximo: number,
-  defensaActual: number,
-  nombreObjetivo: string,
-): ReturnType<typeof procesarEfectosTurno> {
-  return procesarEfectosTurno(efectos, hpActual, hpMaximo, defensaActual, nombreObjetivo);
 }
 
 export function manejarErrorAccionCombate(error: unknown) {
@@ -783,10 +768,10 @@ export async function prepararAccionCombate(
     let habilidad: DefinicionHabilidad | null = null;
 
     const cooldowns = obtenerCooldowns(combate.cooldowns);
-    let efectos = obtenerEfectos(combate.efectos);
+    let efectos = leerEfectosCombate(combate.efectos);
 
     const cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
-    let efectosDefensor = obtenerEfectos(combateParaResolver.efectosDefensor);
+    let efectosDefensor = leerEfectosCombate(combateParaResolver.efectosDefensor);
 
     if (accion === "usar_habilidad") {
       const slotsActivos = ["activa_1", "activa_2", "activa_3", "activa_4", "activa_5"];
