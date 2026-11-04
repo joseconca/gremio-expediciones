@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 114,
-  "contactChecks": 77748,
+  "variants": 116,
+  "contactChecks": 79112,
   "warnings": 0,
   "reports": [
     {
@@ -456,6 +456,18 @@
     },
     {
       "classId": "invocador",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "justiciero",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "justiciero",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

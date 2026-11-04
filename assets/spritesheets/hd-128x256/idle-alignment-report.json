@@ -5,7 +5,7 @@
   "verticalOffset": 0,
   "equipmentFrame": 0,
   "fingerMaskFrame": 0,
-  "equipmentContactChecks": 14848,
+  "equipmentContactChecks": 15616,
   "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
@@ -3022,6 +3022,162 @@
         66.5,
         66.5,
         66.5
+      ]
+    },
+    "hoja_velo-m": {
+      "frameHashes": [
+        "4e7b102ee0ede4243834912a495c1c8822e2faf765bd5927d0e149186fe82d15",
+        "f18d0a8eb830083788607b9f6c2a606a03bc99451408c9934186ea56688825ae",
+        "b4414d069798492cffbe7a022d20651a972566bca1f26e75a2cf63e6c7e07f30",
+        "cccec2fbf4de60f9f2892c9b294f4c2e0ed8440b635f6c0a5395cafa21732ad3"
+      ],
+      "supportCentersX": [
+        64.5,
+        64.5,
+        64.5,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        64.5,
+        64.5,
+        64.5,
+        64.5
+      ]
+    },
+    "hoja_velo-f": {
+      "frameHashes": [
+        "ee4035029cf52ba4d87aac76f412df75471fd698dab1aadf153fc2e463ddf408",
+        "977c5bb995e09bdb47538414eca9054d07dd9c8c08db061f2382beb99346b8a4",
+        "a575837420bbff8834c539002921a1186d6364f8691af1f990b64307ce8357f7",
+        "30a66930f8a962c9043c6e20fdd96fae06b5069ed944f78b73fa487790ee6159"
+      ],
+      "supportCentersX": [
+        65.0,
+        65.5,
+        65.0,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.0,
+        65.5,
+        65.0,
+        65.0
+      ]
+    },
+    "danzaespadas-m": {
+      "frameHashes": [
+        "f464066512ce86a99f9387d7c8128ffaf55ffb87bad0356f35a26dbaf79e8bff",
+        "f54f7e39bc9fd49243f939b72da775e51793af3d42a2bfbc34c8eb9a9867cc04",
+        "1fd20bb876d8e90fa1555b764af6859f24e8b52d616186244624bf45dc736ee6",
+        "257539772273a37bfb2508f59d1cee6be82c8222df2d677279a066725896b37a"
+      ],
+      "supportCentersX": [
+        63.5,
+        63.5,
+        63.5,
+        63.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        63.5,
+        63.5,
+        63.5,
+        63.5
+      ]
+    },
+    "danzaespadas-f": {
+      "frameHashes": [
+        "403b0fbf4bca140129be2c8a2f60e9e4bbd21e3105ad06d0ed2aa2e19f2c5c4b",
+        "ce5a47ed6d184b3cf021a9a667515e76908adc0c988dbf721e04d62d4a47f0e3",
+        "ea39ca660ebb11893f944f5eec75f5bf73bfb66441a407e1a7dadbcbe1715496",
+        "2d475e69c0ee230e9c248dcbea5ca78a6416cf604d27e783a033ce209060ff5d"
+      ],
+      "supportCentersX": [
+        66.5,
+        62.0,
+        58.0,
+        54.0
+      ],
+      "offsetsX": [
+        0,
+        5,
+        9,
+        13
+      ],
+      "correctedCentersX": [
+        66.5,
+        67.0,
+        67.0,
+        67.0
+      ]
+    },
+    "corsario-m": {
+      "frameHashes": [
+        "3743026b0c379897aae692c6f29f7d683bb2a4b3d4c29f2f9f30485889e994f3",
+        "5a72bb97b35690f9d80ceee49b2e79af070888a3f2610d35f1a3623551ca6102",
+        "8a433e09c3ed52e752b4943336642656f3945f3a60ea0ae38c90d3a0d8648474",
+        "352bf5d8fbbf432e5b5bdd4be4445759421c067be60d762db8432fa0ed693cef"
+      ],
+      "supportCentersX": [
+        65.0,
+        65.0,
+        64.5,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.0,
+        65.0,
+        64.5,
+        65.0
+      ]
+    },
+    "corsario-f": {
+      "frameHashes": [
+        "143c9331cc00ecf2a10060e16ec3240f7fb251c1baf12f039a0f14cf2ad7ec19",
+        "4bf88994a6ce58944fe38e571766f5b5881d13dc64a2401db759bfd3ab085283",
+        "7592e558a3e8c6337651074bd897f1ea0bc9f2a9e66d309e4e62a3e13281bbe8",
+        "5497cbfea495cbe5e80c635031014e381779e1b8baa8f63343ec94db342b90fc"
+      ],
+      "supportCentersX": [
+        61.0,
+        61.0,
+        61.0,
+        61.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        61.0,
+        61.0,
+        61.0,
+        61.0
       ]
     }
   }

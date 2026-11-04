@@ -2,101 +2,41 @@
   "status": "in-progress",
   "date": "2026-11-04",
   "branch": "nuevas-clases",
-  "completedClasses": 57,
-  "remainingClasses": 4,
-  "closedFrames": 6840,
-  "closedContactChecks": 77748,
-  "lastCompletedClass": "arconte",
+  "completedClasses": 58,
+  "remainingClasses": 3,
+  "closedFrames": 6960,
+  "closedContactChecks": 79112,
+  "lastCompletedClass": "justiciero",
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
     "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
     "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad"
   },
   "remainingIds": [
-    "justiciero",
     "hoja_velo",
     "danzaespadas",
     "corsario"
   ],
-  "nextClass": "justiciero",
+  "nextClass": "hoja_velo",
   "generationBlock": null,
   "inProgress": {
-    "justiciero": {
-      "m": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      },
-      "f": {
-        "registeredActions": [
-          "idle",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      }
-    },
     "hoja_velo": {
       "m": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
         "generatedActions": [
           "idle",
           "walk",
@@ -116,7 +56,23 @@
         ]
       },
       "f": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
         "generatedActions": [
           "idle",
           "walk",
@@ -138,7 +94,21 @@
     },
     "danzaespadas": {
       "m": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
         "generatedActions": [
           "idle",
           "walk",
@@ -158,7 +128,22 @@
         ]
       },
       "f": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
         "generatedActions": [
           "idle",
           "walk",
@@ -180,15 +165,74 @@
     },
     "corsario": {
       "m": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_gloves"
+        ],
         "generatedActions": [
-          "idle"
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ]
       },
       "f": {
-        "registeredActions": [],
+        "registeredActions": [
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
+        ],
         "generatedActions": [
-          "idle"
+          "idle",
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe",
+          "attack_spear",
+          "attack_dagger",
+          "attack_bow",
+          "attack_staff",
+          "attack_mace",
+          "attack_book",
+          "attack_gloves"
         ]
       }
     }
@@ -198,7 +242,8 @@
       "Senor de la guerra CLOSED, 30 actions / 120 frames, manual costume/palm/equipment review complete, 29 tests PASS, GitHub verified 27f623e1.",
       "avatar_tormenta CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "cazador_espectral CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
-      "arconte CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
+      "arconte CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
+      "justiciero CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
     ]
   },
   "methodology": [

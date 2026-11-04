@@ -1,0 +1,178 @@
+{
+  "status": "contact-review-required",
+  "classId": "hoja_velo",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_staff",
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "4e7b102ee0ede4243834912a495c1c8822e2faf765bd5927d0e149186fe82d15",
+      "f18d0a8eb830083788607b9f6c2a606a03bc99451408c9934186ea56688825ae",
+      "b4414d069798492cffbe7a022d20651a972566bca1f26e75a2cf63e6c7e07f30",
+      "cccec2fbf4de60f9f2892c9b294f4c2e0ed8440b635f6c0a5395cafa21732ad3"
+    ],
+    "walk": [
+      "15464fab879696dc07a011848fcfbb257d86e080cec4d6d673b127bee27ba67c",
+      "778e4bf91adbfa42152bcfdc478cc72266a330d3e10068b8f430e8461fb4720a",
+      "d3b7cdb4f53fccca573bf6ee6170dd08fc9456c45eb6fc54c3f98b907d9b4ddd",
+      "670d5dcdbdb6aaf3e1b547d20d1934e7e367b9eea530b9c3b09c58ae423dc52f"
+    ],
+    "hurt": [
+      "d43b6a2fbd353000afa652169452774eb7335d624f1691a011eccb38a7b139a4",
+      "ffc6702fa67dd5fd32b5a18a2a00a46fdc5f0e01075d78a8d76e8685c9a6e7ff",
+      "1762c64ea2fc6baed18eb7e60b6cbd74618d00050ced79efd8a7fade8c596fad",
+      "48019a7e5c5628b373b9f154a335af361a8601036e22b8291e3534faac05f4f1"
+    ],
+    "use_consumable": [
+      "8010a72fbd8659c4d09db3893b16b86884beab2f17a4cd60818b4ec7e1906e08",
+      "42982b2903428c797c50cf851c19e1bda18e22947953b3b48afc2f30a6b2e749",
+      "03fa536075b96eec9c7afa21bd8cdcc3db4fdc0c33a71080a7005063e8381877",
+      "13c1b56295d7dbe8e01b233c47ae9c752ea5b80f23d5500bc598e8b26dccfd71"
+    ],
+    "dodge": [
+      "7061960e2a7806f75a47afe5eed6c050ebf5f44693c3ca36ca139f7f2a97074a",
+      "6b4e59e7e8556bf2e2186004bc8fd6f041d98614888187f0d9dac1cdc04710de",
+      "02749e66dbcfb4735cb5022ccb8755697d1f7f36c113783c89b57641c7bd6cd8",
+      "05fd278303f4de4f286694021b5f54321926db545a618ac604c6258e2db2d3a9"
+    ],
+    "block_shield": [
+      "4cf9696b5a68a895022c28e0f732652ecba2200467e47d1f451d73ccde887d07",
+      "c19ff900583f8b21170dc0e637759ab4e48231ce490b2f94501d279b243c7cd3",
+      "0146f20edbc39ba936ad90f4fab74b6d9f787d49ab9ebdf29ae553afa3c69ba7",
+      "dc0412795b25706bb7016cd9f7a14d08a3539b7e46d8db29eaca320e37df9778"
+    ],
+    "attack_axe": [
+      "f18361e20bf46c96aa407014a4cabb7b08b63ea19a2d09b5ed15ed90063f2a5b",
+      "77d84cb8af8a567d9e3710398003b2d75b0996c7b0ef138cc473b7d66d129524",
+      "827f740a97aff0184002f0480a88869bc2caa22db2c768d41260d7ff9a68e249",
+      "92f644cc07744a49adef75a2192516451d4a33dc59064fc72a473ec58de4e49e"
+    ],
+    "attack_spear": [
+      "0b3eaeba9dab316723ec2720803fdca82f70a1d7e7e735b48b34ddfa4f06ce38",
+      "c65f18c9b2fe85ce22babdabe5c005aa2ad098004c0d4a6e1a25d595af159680",
+      "6619435b3300817d2b00bb70b5a0e3eb6506178917b0b4bb55d865532d1d0449",
+      "bd25c3e8fcf5b02ac2a4bc38c000e0e0f1746ef514ccb07be0cde24e0b2b80e4"
+    ],
+    "attack_dagger": [
+      "3422bf983143253a2e2e70404d094f960591eb0c1cbfe16af66aa30919223192",
+      "7031495f1735ca5ae8b7ef2f4b46ff3ce1d22947e31101b218cecf879c177344",
+      "f7091b1cce04031f22a2df052dbfdc6a034a39689c8da6a1afc558740b471dd0",
+      "70127c70405e1976f8114071dccc3f52f7bb0faa55935e1b948f8bde2eba21a0"
+    ],
+    "attack_staff": [
+      "d17d10d5db06704fc40377084ac7c77815d77b1c814c8f395c0bd622218014d0",
+      "f45f701cf06b8713c417fc6b87571fe9a962e8a30406f718d048cb536e486abd",
+      "b07845c5040c4bdb766056591aa2545234f67d882283505d17bf2e695e440c1c",
+      "27201379cf0aaf68ace13b90b4e024da9554dd08dc426605a54db6ef4ad1107e"
+    ],
+    "attack_mace": [
+      "b78d4ba33cc7fa6303b99437ff981be96c3c2e9fad66247070616653130492c2",
+      "3b461831b4896659a3ed36052367b46a9086d963870edd5c94c3356de59e397e",
+      "d5079a124a4680fbed76fc91eb065e1a2c886b968939023780f7653a1ec13e19",
+      "6a95357d2cacd7290c1c40d8f11271e47b59a674f49514036eb7802092ad7f82"
+    ],
+    "attack_book": [
+      "1985d2542a4769e7eff6cfca832d9acb8313fafb9fbb7dde23ca7e35924e7f8a",
+      "565c7277116170a449c3fc44d41bad4010708a652b80bd7a4523811eed422eb9",
+      "32293609d573b03e34bca328087c5b36c8bce503a52e1884a61ad5f135620ee8",
+      "aed613273ea337bc6918f062e2771324959dcbc1db74dc023e1bfa8cb9be6a42"
+    ],
+    "attack_gloves": [
+      "f8d88a1d40afa4cacb9df8a8d24480ffc5a0b00a6eb2c04722175b686fe767e9",
+      "d2350fe4709ac886b01825a7df8f46859e92c96ac1adf277486d7c0e055e9c0e",
+      "ec876153a477363eac7c7934a44af12fbe492edb82c662daadb2c514df13e674",
+      "259f4a872e76eb20a8d584e975bbc56d3168a979efb3da878a8b70646c14c235"
+    ]
+  },
+  "contactChecks": 634,
+  "warnings": [
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        83,
+        173
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        83,
+        173
+      ]
+    }
+  ],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}

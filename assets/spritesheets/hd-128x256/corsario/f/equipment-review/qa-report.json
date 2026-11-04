@@ -1,0 +1,318 @@
+{
+  "status": "contact-review-required",
+  "classId": "corsario",
+  "sex": "f",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield",
+    "attack_sword",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "143c9331cc00ecf2a10060e16ec3240f7fb251c1baf12f039a0f14cf2ad7ec19",
+      "4bf88994a6ce58944fe38e571766f5b5881d13dc64a2401db759bfd3ab085283",
+      "7592e558a3e8c6337651074bd897f1ea0bc9f2a9e66d309e4e62a3e13281bbe8",
+      "5497cbfea495cbe5e80c635031014e381779e1b8baa8f63343ec94db342b90fc"
+    ],
+    "walk": [
+      "bcaf7715564aa95fa8813aad3eb90cc9a3a22811f29cbab795d64b7347d5d8e3",
+      "1c1a283f5ae4e3c7793ee6156d3eab2dab3105a90c87ebc242dfece438647d1d",
+      "67216dc3de5c5f53b76027883226ba2b728e96d64d17df9079e1fbb7fc02d23d",
+      "211efe7a6c8be273bf0134d313b2e836fae95e4d8f43d59b79a7fad6c4f16dcf"
+    ],
+    "hurt": [
+      "54a8ba942f018d475c2d3b99b27ee812a5bcc881a4626874abfd6b63bdddf74a",
+      "cb1085950f575053b1db4486b48615c3e0a28f4c7932e231f8e77820a418a434",
+      "2584b983f49a59f5b2559f1fd870f1ee5008c5791088b38b482e30605088a4eb",
+      "a114d0ff4acb5fcf15c8dfe0f9d94ffba85d5e59eb38950eb6cb6e097eb22c4d"
+    ],
+    "use_consumable": [
+      "fa429def254fef59284ac07eab9cf42d2733b1119bfbf509cafb61d4e0a73a79",
+      "9b0926c5f8e55e96fb35a9a8ff06bb0e84594d67c0f22cb2dd19727086c58ed0",
+      "e114daa64efb0de4c64f1d95c18f5642ca1df58e1b6766ca134c4d22b88bbaaa",
+      "50b2dd942ff2ee2d08e2838d47a36a6d8af2f6689d7d18a4d1a6731024c66a4d"
+    ],
+    "dodge": [
+      "d754b83f53cb167acdf9a28ec836873dee1b2e9bbc717ad7657d8022cd230183",
+      "2a69c5dc5c61b1e73b7b9f8d91ae0636f3e71e2203e05ced2fc49b0157ddc55a",
+      "1aedac45f5c056133bc63427746afb68f077f709ab7daaa18c7016528bbf2bd1",
+      "373de677af4da7d1cfb7cb41dd79308799c4bca77b46f58886d757adeb208abd"
+    ],
+    "block_shield": [
+      "309dea256fc47335e494889e6cc8d87b98bd5814ff975a4b5c8dcb35e1e7bf48",
+      "e98405a3b0ced87fa1e6fd115f91c74d94f2e7bf30b730e247eef7bbc9b5a580",
+      "1d9a31b2836817b6a369ace751a1871dbb153c906aab214986a444d44e2cb45e",
+      "58e9be829886718a11ea592de3e85ba9de48564bcd10f525d4509c37c96dc8be"
+    ],
+    "attack_sword": [
+      "b65e236d5bb4c03f5510b34ca87946add48648ede5bbcbd4711d22bec9769966",
+      "8fc0ca3a65016b95e7e0f11dcc4f6ea160f8ca032b392afeabbd705d8bead9d3",
+      "33ec64793c28dac0b51644ebf3ff13207dff79f9aae98b9499e9e31417fb9b94",
+      "393b187122649b92f0b3a83602eb17481e877ced2d46cfd806e7b84b29ad0097"
+    ],
+    "attack_axe": [
+      "df9c64ed3f1aaf90dd4c76ab57ceea828382a75302df3829c08ebba3dd9574fb",
+      "1c19d280262ef0ab759f340539e39cf57426377946485f711f3091ab117b9e94",
+      "b1238cc4a53b94af8abc520c44530968fa48082515c8412895f9bdffe4a0df39",
+      "b78be7c2f9ea35ac29300d424d080b1652cfdc7c837ac945be71fdd4d2e84eb8"
+    ],
+    "attack_spear": [
+      "af167085c4a0828d198a809d391cbd5dc8645145e15f07a2e2051e75e51e823f",
+      "e0782915bf070b0ab2a73fd95b55b5ef884186868a226c18e7f3a1c7f9332f89",
+      "1ccfec632b6716c29878248dae665bb0b651235e730a6a3d8bc8e61a3d08dadb",
+      "ef49da300d88f2b3340b1e6682afe6f881a678a54d0369df10fbb53cab15fe7a"
+    ],
+    "attack_dagger": [
+      "dd9f2138f90c09b65ffa452061f7f8a8a5cbcd759719dcc6f0cf5d5d1dbd7c85",
+      "07d06e4c4cbbf01a737e5702bd67d6017bcfd6d64362d5a133fb077b62da5593",
+      "b4d7765604bd6ea7f444434a9b23584c382a3fd2590d2703a75f08b2e16e739c",
+      "e507e2bb88fb2df9cf304921da8b68cf90d1f1d97e5d6471957367b9b28d486e"
+    ],
+    "attack_bow": [
+      "c301020dec134d21fbe48afaf34f7569d45670413d321f35309f40cab664fb36",
+      "b39f1bb9d7ad8ca2994d81a89001c6652594e27cde71c6bf9054240cde677b89",
+      "daed61e52bab415d69a6501bd23c1960f051647d596e2e724ddceeebd0ff4cd9",
+      "ccb89adb35db7ce3f84c6f858267ee50abac07bfb6070e56f780095656eaf051"
+    ],
+    "attack_staff": [
+      "da645be055a754347c07e0b852b84630fcd8d0e39d07399a2603679069d30afd",
+      "0ea0864ebcd7a3ba85d30ec09fc0e1f7126513949bcaf546e55fbe623d0bff36",
+      "5f681295bb3db8267a421d25280143a6535bdc7b86561e4c7448ac999e3a8adb",
+      "3e660e46335870564414efd376412f86c7ad7e3447c762a3701a0289a6d6e4dc"
+    ],
+    "attack_mace": [
+      "31de4d5dcd5162652a00e6933f88ecae577d83698c4eff13c35770039a4e5f88",
+      "08be3c237b2bdc75da37ad3a922f46cb07602253d9d21113a573aab6bd831ced",
+      "b19647fdd3488361da099a44fe05f0e23180a44e80d5b9b1229ed1929f3c7a11",
+      "0a06e4fe161d710e4e1d7e72369b908dfbd4743118b458a9eee5641a3df6266a"
+    ],
+    "attack_book": [
+      "2d9757b2e1aba222d9a99f99e6ac7d9feca72257139a0b334d8d8bc76d563745",
+      "bdcfaba67c24b10d4db0b02881030e72bd885dfbb7e2816c1f2b4885caed96aa",
+      "5fbd193485c0ddcd48f874b1332ef026b5ba31d425621568e19f83c8aba1a781",
+      "11ea8ca98d5fdf7e19d4c0af10cd3823cfe62de452ac3a1b203e16216409156f"
+    ],
+    "attack_gloves": [
+      "615e4f93a43b1d78c151796d400027b83bc806fd0f87fa8f6e9fbe28cf9959d0",
+      "5e3d81c579a4b5d6ce36e5330d902fcea0f12b8f6573051bbcf9fac351113783",
+      "97f9b985e06f10fec76b01cfa6fa352b17598eb0e1e9ccd1a2adc72a4e5a6dd4",
+      "291e661273b4618b0d923275eda1479b4a9f762913ed564174104903a8ec1919"
+    ]
+  },
+  "contactChecks": 682,
+  "warnings": [
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "arco_cazador",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "arco_madera",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "grimorio_eclipse",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "guantes_lucha",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "libro_aprendiz",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "punos_lobo",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "escudo_guardian",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 2,
+      "item": "escudo_madera",
+      "point": [
+        89,
+        176
+      ]
+    },
+    {
+      "action": "attack_axe",
+      "frame": 4,
+      "item": "hacha_berserker",
+      "point": [
+        82,
+        157
+      ]
+    },
+    {
+      "action": "attack_axe",
+      "frame": 4,
+      "item": "hacha_orca",
+      "point": [
+        82,
+        157
+      ]
+    },
+    {
+      "action": "attack_spear",
+      "frame": 3,
+      "item": "lanza_escama",
+      "point": [
+        107,
+        146
+      ]
+    },
+    {
+      "action": "attack_spear",
+      "frame": 4,
+      "item": "lanza_escama",
+      "point": [
+        107,
+        145
+      ]
+    },
+    {
+      "action": "attack_spear",
+      "frame": 3,
+      "item": "lanza_madera",
+      "point": [
+        107,
+        146
+      ]
+    },
+    {
+      "action": "attack_spear",
+      "frame": 4,
+      "item": "lanza_madera",
+      "point": [
+        107,
+        145
+      ]
+    },
+    {
+      "action": "attack_dagger",
+      "frame": 3,
+      "item": "daga_hierro",
+      "point": [
+        86,
+        164
+      ]
+    },
+    {
+      "action": "attack_dagger",
+      "frame": 3,
+      "item": "daga_sombria",
+      "point": [
+        86,
+        164
+      ]
+    },
+    {
+      "action": "attack_dagger",
+      "frame": 4,
+      "item": "escudo_guardian",
+      "point": [
+        83,
+        139
+      ]
+    },
+    {
+      "action": "attack_dagger",
+      "frame": 4,
+      "item": "escudo_madera",
+      "point": [
+        83,
+        139
+      ]
+    },
+    {
+      "action": "attack_book",
+      "frame": 2,
+      "item": "grimorio_eclipse",
+      "point": [
+        89,
+        157
+      ]
+    },
+    {
+      "action": "attack_book",
+      "frame": 2,
+      "item": "libro_aprendiz",
+      "point": [
+        89,
+        157
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 2,
+      "item": "guantes_lucha",
+      "point": [
+        86,
+        144
+      ]
+    },
+    {
+      "action": "attack_gloves",
+      "frame": 2,
+      "item": "punos_lobo",
+      "point": [
+        86,
+        144
+      ]
+    }
+  ],
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 5,
+  "artisticApproval": "not-automatic"
+}

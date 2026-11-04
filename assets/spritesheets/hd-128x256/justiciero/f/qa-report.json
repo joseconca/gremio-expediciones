@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-11-04T17:36:15.486757+00:00",
+  "classId": "justiciero",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\justiciero-f-sheet.png",
+  "sheetSha256": "26a2f5c9e0077d6bcc65b85f75dfafd8f55212a0220ef85204f6ea2b1dbfd3b9",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\idle\\justiciero-f-idle-01.png",
+          "sha256": "89c8e6e282a5feb1daec9afe65419926e00f5f3d11da9c99210d06f3665de5c6",
+          "alpha_bbox": [
+            29,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\idle\\justiciero-f-idle-02.png",
+          "sha256": "b455d1a04deef1082f9aa6541e46e038269c10953d488e1cbbdb97b79d6b27ca",
+          "alpha_bbox": [
+            29,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\idle\\justiciero-f-idle-03.png",
+          "sha256": "9d8640ab6150e12e061684065ddfc5c997fac7f0d56689959bcafc2151be89cf",
+          "alpha_bbox": [
+            29,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\idle\\justiciero-f-idle-04.png",
+          "sha256": "86fdfa3a2b2d072d9dd4245bfb9f362e18d4b40c3488cc08260dc4e3b5772769",
+          "alpha_bbox": [
+            29,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\walk\\justiciero-f-walk-01.png",
+          "sha256": "d72f2fe64754374e86dbe2aba3a797a38de8218156a2e242f4b5050526689fd1",
+          "alpha_bbox": [
+            7,
+            88,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\walk\\justiciero-f-walk-02.png",
+          "sha256": "707903c9773b495ad1986590dca63a48fb26c424fb900c3db0f2e4fbd0357769",
+          "alpha_bbox": [
+            22,
+            88,
+            93,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\walk\\justiciero-f-walk-03.png",
+          "sha256": "dce232c3ec40172971b51d6330f4cc0ed375d0bfb0542e6c10fc49a0c8a318c5",
+          "alpha_bbox": [
+            5,
+            88,
+            97,
+            243
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\walk\\justiciero-f-walk-04.png",
+          "sha256": "acdf93d3630b23cca84baf54b397c9cd29a3f4d684ce2fadd245f2b513f7d5a1",
+          "alpha_bbox": [
+            16,
+            88,
+            92,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\hurt\\justiciero-f-hurt-01.png",
+          "sha256": "58c2fb692ca1d96187058b54e4c958b436f3d38edf3e295f6f6af528c0771138",
+          "alpha_bbox": [
+            27,
+            94,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\hurt\\justiciero-f-hurt-02.png",
+          "sha256": "8bad67ba6a2f46cd0fa7c7eeef68160768175cda87eb6913deb6cc14d2f856f1",
+          "alpha_bbox": [
+            27,
+            93,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\hurt\\justiciero-f-hurt-03.png",
+          "sha256": "ea05e167db358e93b7c39fb9c8b4cd3abfb11847608959633ad1c46688349d74",
+          "alpha_bbox": [
+            17,
+            112,
+            92,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\hurt\\justiciero-f-hurt-04.png",
+          "sha256": "112898aaf2ff74824ac132527a47bfc88306cd29ff20ca2de7524ffd6ef2e228",
+          "alpha_bbox": [
+            14,
+            92,
+            93,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\use_consumable\\justiciero-f-use_consumable-01.png",
+          "sha256": "43750643465b4563783eec7157ac9f859b0ccc6ff7e69eeead39c09900c81917",
+          "alpha_bbox": [
+            22,
+            89,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\use_consumable\\justiciero-f-use_consumable-02.png",
+          "sha256": "ebfe62ed4e24d43a149d8a8427ec89fba750b587774e91c3f6c618d70b0a775e",
+          "alpha_bbox": [
+            19,
+            88,
+            93,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\use_consumable\\justiciero-f-use_consumable-03.png",
+          "sha256": "45d10f379c34e540778c3889a5844360dbfe8eff4033b7b9d287fb9849579fde",
+          "alpha_bbox": [
+            21,
+            89,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\use_consumable\\justiciero-f-use_consumable-04.png",
+          "sha256": "93e68322aae96ee542d8178b6c1c1f7bcd8c8fb96fe7aa9c2327d9929341d04d",
+          "alpha_bbox": [
+            23,
+            89,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\dodge\\justiciero-f-dodge-01.png",
+          "sha256": "e01306cf7b1d66a2d0eecc3d1033fc63f7b10f33afa1ca93dc609a153af8636f",
+          "alpha_bbox": [
+            32,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\dodge\\justiciero-f-dodge-02.png",
+          "sha256": "55defb28a4649ed26df5d1267aefd5bbc0ec7331652d5041affbb4ea92c214db",
+          "alpha_bbox": [
+            28,
+            99,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\dodge\\justiciero-f-dodge-03.png",
+          "sha256": "9a9c41af6bd0bb5ae6712adfa74d2a95c12c44ec8da1fd03cde4237c836f36fb",
+          "alpha_bbox": [
+            20,
+            126,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\dodge\\justiciero-f-dodge-04.png",
+          "sha256": "cdb7ff63dabbcdd3cab26747e3621695109d6c4fd52cfef4ad10f932233971ea",
+          "alpha_bbox": [
+            20,
+            94,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\block_shield\\justiciero-f-block_shield-01.png",
+          "sha256": "12bb38d4d25437c803786805266f06350b85f404054f2d583f2b5bee64302fa8",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\block_shield\\justiciero-f-block_shield-02.png",
+          "sha256": "ef8bcc55e004915e1e3935e5832fe994753d9e58e8cd50d3dcd7220a16ced43f",
+          "alpha_bbox": [
+            20,
+            91,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\block_shield\\justiciero-f-block_shield-03.png",
+          "sha256": "4b944fa3fe7e25b97c42293c869f8daebc9df5d9969d9752f4c1700dbbf2df43",
+          "alpha_bbox": [
+            16,
+            99,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\block_shield\\justiciero-f-block_shield-04.png",
+          "sha256": "be4a05e789645affe60323399b228a773fdd6aa0851dacd26d8ea3694fbaa39a",
+          "alpha_bbox": [
+            17,
+            91,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_sword\\justiciero-f-attack_sword-01.png",
+          "sha256": "cd30a7187dfac5e0840f7259b3444dcaca767f6d3e55f8a14f4b3a20c88565d2",
+          "alpha_bbox": [
+            23,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_sword\\justiciero-f-attack_sword-02.png",
+          "sha256": "01a0e2ed040f58f32d4967e540bc43544866d82830b903e9a449b2f65993e19b",
+          "alpha_bbox": [
+            18,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_sword\\justiciero-f-attack_sword-03.png",
+          "sha256": "81e3f6071ae24e3313e8af9a846253b220bfa8da3ce05221197fc7e55871c840",
+          "alpha_bbox": [
+            14,
+            96,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_sword\\justiciero-f-attack_sword-04.png",
+          "sha256": "c9d8af1acd8d7e13bc15d2f8262e1491676f6110f01c43aa8f55f11e238ee571",
+          "alpha_bbox": [
+            13,
+            92,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_axe\\justiciero-f-attack_axe-01.png",
+          "sha256": "f647808fcc86a68727d35f771926e1b15fe7699b263afd5c7ab6ce92dff4ed2e",
+          "alpha_bbox": [
+            27,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_axe\\justiciero-f-attack_axe-02.png",
+          "sha256": "71a03b06e8019bc4ec04d49fcac5808bcfa95f516c3f296954b20ed266c51bb0",
+          "alpha_bbox": [
+            20,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_axe\\justiciero-f-attack_axe-03.png",
+          "sha256": "5a09e67defa9d161a621a4995dd79e17ad26e2d6a2ea98dfcc6fcd2bb868c536",
+          "alpha_bbox": [
+            15,
+            102,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_axe\\justiciero-f-attack_axe-04.png",
+          "sha256": "6e346afa1166e2f40daaa34a4e9b4d1d6a7ef44f61fb72c06da603a82f55854b",
+          "alpha_bbox": [
+            10,
+            92,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_spear\\justiciero-f-attack_spear-01.png",
+          "sha256": "30f1b7ed2df74419c8eb1338a44bb4724ee1d468d5b44db061ad39449cafd4de",
+          "alpha_bbox": [
+            15,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_spear\\justiciero-f-attack_spear-02.png",
+          "sha256": "986a5139531dc23c8779bbab8045923ee454d613165411511d5816857328b6b3",
+          "alpha_bbox": [
+            11,
+            92,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_spear\\justiciero-f-attack_spear-03.png",
+          "sha256": "f527e40de4d773b0978e8b1d8834c9b3c42cc9e5c9ab7cefc4c864eb7067c26f",
+          "alpha_bbox": [
+            12,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_spear\\justiciero-f-attack_spear-04.png",
+          "sha256": "7eb97210081fe72faf67e1e4b933245f8206a1296237b36079f652ea76b50d46",
+          "alpha_bbox": [
+            9,
+            93,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_dagger\\justiciero-f-attack_dagger-01.png",
+          "sha256": "bb9fd7912a399f923f2714b929004c2db8c9398f2eab79f1e14a57d332ea8279",
+          "alpha_bbox": [
+            19,
+            89,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_dagger\\justiciero-f-attack_dagger-02.png",
+          "sha256": "7c6cc8cec6572e3cb54d93d176e303d7c37112a45b567cfa64c4f8a5578e5f21",
+          "alpha_bbox": [
+            16,
+            90,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_dagger\\justiciero-f-attack_dagger-03.png",
+          "sha256": "f8226660cfb6abeda495e3c817219c6609d45689065750ec1529cacbf8083548",
+          "alpha_bbox": [
+            15,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_dagger\\justiciero-f-attack_dagger-04.png",
+          "sha256": "b44d8af7e891ad09443e4e4d2271746711ae9b4625908d00337f353e40cc917c",
+          "alpha_bbox": [
+            17,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_bow\\justiciero-f-attack_bow-01.png",
+          "sha256": "86fb0fbaf2aeb2edd65c5c86d648ae022e1f7f40bdaea04b9480587d0498f91d",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_bow\\justiciero-f-attack_bow-02.png",
+          "sha256": "5a423c41c9fc24a562b45b12b1d94b22ba2f540a27b431b00d3782bbdc01eeea",
+          "alpha_bbox": [
+            16,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_bow\\justiciero-f-attack_bow-03.png",
+          "sha256": "f60e5d87d07f06e018db47975a002e2e74c1c571dbb8de9fb640502cd5d8421e",
+          "alpha_bbox": [
+            16,
+            91,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_bow\\justiciero-f-attack_bow-04.png",
+          "sha256": "34fd2ad995defc55715da44aff92112ed6c05bd27796b41937e6aa98ddd4180e",
+          "alpha_bbox": [
+            16,
+            91,
+            113,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_staff\\justiciero-f-attack_staff-01.png",
+          "sha256": "cfaa55d9de6c3154d35d114e310c57048252a1b468d2a76bbda1cb3580448fb8",
+          "alpha_bbox": [
+            25,
+            90,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_staff\\justiciero-f-attack_staff-02.png",
+          "sha256": "b226fa1005edcf1a70bcf8d6dfae6603f3f01961da977678d4aa326dbb75d7ab",
+          "alpha_bbox": [
+            16,
+            90,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_staff\\justiciero-f-attack_staff-03.png",
+          "sha256": "e04b78e6c9482df23f63a0e7a69ebd4ae4aa5f0b0ddd19a389e50abcd9332d2b",
+          "alpha_bbox": [
+            17,
+            90,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_staff\\justiciero-f-attack_staff-04.png",
+          "sha256": "879db7cf866e7da5fff84eabaf383e2acd65769dcf46ef8e5c20831e842111a4",
+          "alpha_bbox": [
+            17,
+            89,
+            93,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_mace\\justiciero-f-attack_mace-01.png",
+          "sha256": "4433df5aaf253ae932208ef893c4213621c6380d1b6bb25ee1fa7b036f366cbb",
+          "alpha_bbox": [
+            27,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_mace\\justiciero-f-attack_mace-02.png",
+          "sha256": "fb8acf4041682728fa2a4221ed54797eb136a526dee60bc54e7fa36adbc15ebf",
+          "alpha_bbox": [
+            24,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_mace\\justiciero-f-attack_mace-03.png",
+          "sha256": "c968ded6b4ddb7bb4b905ec5519eee655e5bee003195e4d456632788902cb4e7",
+          "alpha_bbox": [
+            17,
+            93,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_mace\\justiciero-f-attack_mace-04.png",
+          "sha256": "d9d1dc25a7114f8bb972f0ed233822a2807adf234f0f883c6b0d5353ccbfeeac",
+          "alpha_bbox": [
+            18,
+            90,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_book\\justiciero-f-attack_book-01.png",
+          "sha256": "1f255278da234432a3fbe32920e75c6b01c17e524d5825267f1074750bce7456",
+          "alpha_bbox": [
+            34,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_book\\justiciero-f-attack_book-02.png",
+          "sha256": "9bc4d29948c44f9057d049a0199f9d2ae872931d6c0135e13eb7419bfc35ca04",
+          "alpha_bbox": [
+            25,
+            90,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_book\\justiciero-f-attack_book-03.png",
+          "sha256": "fb96418cdb45fd2cce2b933f6c7cf5e7a6a9f336c52c488dcf6f7995e0dc2d61",
+          "alpha_bbox": [
+            19,
+            90,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_book\\justiciero-f-attack_book-04.png",
+          "sha256": "ffe659c0aa1e1dd5382b22b0b9f14c347efe7cb6e1fcac50a795fec246af11e5",
+          "alpha_bbox": [
+            13,
+            89,
+            95,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_gloves\\justiciero-f-attack_gloves-01.png",
+          "sha256": "00e436c9d15b3f5864e3fd237b1e515029572cd1b9fad31105a6f49297105526",
+          "alpha_bbox": [
+            20,
+            89,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_gloves\\justiciero-f-attack_gloves-02.png",
+          "sha256": "52d57e0847a166bb85adb9c37e69fbc08324c38bd125c0fe575c12b202d844e0",
+          "alpha_bbox": [
+            14,
+            89,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_gloves\\justiciero-f-attack_gloves-03.png",
+          "sha256": "efb2e3645fdf298e487153f9718f0f592ec4ae943c42627d6996cbbc2aa0e772",
+          "alpha_bbox": [
+            7,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\justiciero\\f\\frames\\attack_gloves\\justiciero-f-attack_gloves-04.png",
+          "sha256": "c5746863c873aa7a5a4216b7584355c05bbf3e95d4dc8e8c4f1e4f3acab342d7",
+          "alpha_bbox": [
+            10,
+            89,
+            90,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
