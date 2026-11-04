@@ -264,3 +264,12 @@ test("el combate usa únicamente los endpoints específicos y no conserva el dis
     assert.match(contenido, new RegExp(`\\b${nombreServicio}\\b`), `${ruta} debe utilizar su orquestador`);
   }
 });
+
+test("el mapa práctico apunta a archivos existentes de la estructura final", () => {
+  const guia = fs.readFileSync(path.join(root, "docs/mapa-codigo.md"), "utf8");
+  const rutas = [...new Set(guia.match(/src\\/(?:lib|server|components|app|hooks|store)\\/[A-Za-z0-9_./-]+\\.tsx?/g) ?? [])];
+  assert.ok(rutas.length >= 75, "Se han perdido referencias del mapa de mantenimiento");
+  for (const ruta of rutas) {
+    assert.ok(existen(ruta), `La guía del código señala una ruta inexistente: ${ruta}`);
+  }
+});

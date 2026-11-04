@@ -8,16 +8,16 @@
 | --- | --- |
 | Añadir o ajustar una clase, tier, requisitos o maestrías | [`src/lib/catalogos/clases.ts`](../src/lib/catalogos/clases.ts) |
 | Crear una habilidad o cambiar sus valores y coste | [`src/lib/catalogos/habilidades.ts`](../src/lib/catalogos/habilidades.ts) |
-| Cambiar el orden/generación de cinco técnicas por escuela | `src/lib/progresion/generar-habilidades.ts` (transformación; los valores editables siguen en `catalogos/habilidades.ts`) |
-| Traducir habilidades al motor táctico v2 y explicar sus efectos | `src/lib/progresion/catalogo-redisenado.ts` |
+| Cambiar el orden/generación de cinco técnicas por escuela | `src/lib/progresion/habilidades/generar-habilidades.ts` (transformación; los valores editables siguen en `catalogos/habilidades.ts`) |
+| Traducir habilidades al motor táctico v2 y explicar sus efectos | `src/lib/progresion/habilidades/catalogo-redisenado.ts` |
 | Añadir armas, armaduras, consumibles o materiales | [`src/lib/catalogos/objetos.ts`](../src/lib/catalogos/objetos.ts) |
 | Añadir enemigos, ajustar estadísticas o definir botín | [`src/lib/catalogos/enemigos.ts`](../src/lib/catalogos/enemigos.ts) |
 | Cómo se calculan las estadísticas y el progreso JOB | `src/lib/progresion/`; ver [su README](../src/lib/progresion/README.md) |
-| Total de atributos, equipo y pasivas del personaje | `src/lib/progresion/estadisticas-personaje.ts` |
-| Fórmulas base, desglose y compatibilidad de cuentas antiguas | `src/lib/progresion/estadisticas-base-personaje.ts` |
-| Maestrías y bonificaciones del equipo | `src/lib/progresion/bonificaciones-equipo.ts` |
-| Bonificaciones pasivas y conversión de maná en inteligencia | `src/lib/progresion/bonificaciones-pasivas.ts` |
-| Tipos compartidos y suma de modificadores | `src/lib/progresion/modificadores-estadisticas.ts` |
+| Total de atributos, equipo y pasivas del personaje | `src/lib/progresion/estadisticas/estadisticas-personaje.ts` |
+| Fórmulas base, desglose y compatibilidad de cuentas antiguas | `src/lib/progresion/estadisticas/estadisticas-base-personaje.ts` |
+| Maestrías y bonificaciones del equipo | `src/lib/progresion/estadisticas/bonificaciones-equipo.ts` |
+| Bonificaciones pasivas y conversión de maná en inteligencia | `src/lib/progresion/estadisticas/bonificaciones-pasivas.ts` |
+| Tipos compartidos y suma de modificadores | `src/lib/progresion/estadisticas/modificadores-estadisticas.ts` |
 | Equipo, inventario, sufijos y drops | `src/lib/equipamiento/` |
 | Comprobar si una pieza está equipada (venta/forja y todas las ranuras Prisma) | `src/lib/equipamiento/ranuras.ts` (`estaInstanciaEquipadaPersistida`) |
 | Contrato de última venta, bonificaciones y recompra | `src/lib/equipamiento/ultima-venta.ts` |
@@ -34,32 +34,32 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 
 | Quiero modificar… | Dónde está |
 | --- | --- |
-| Daño físico/mágico, curación y habilidades durante combate | `src/lib/expediciones/combate.ts`, `mecanicas-habilidades.ts` |
-| Qué armas permiten comparar ataque físico y mágico en el básico | `src/lib/expediciones/ataque-basico-arma.ts` |
-| Cálculo de daño, crítico, acierto y fallo de ataques básicos | `src/lib/expediciones/ataques-basicos.ts` |
-| Cómo se representan proyectiles de básicos y habilidades | `src/lib/expediciones/presentacion-combate.ts` |
-| Preparación de técnicas, ajustes por área y reloj de efectos | `src/lib/expediciones/preparacion-habilidades.ts` |
-| Aplicar operaciones, disipaciones, pasivas e historial tras una habilidad | `src/lib/expediciones/mecanicas-habilidades.ts` |
-| Definiciones de unidad, estado, técnica y comandos tácticos | `src/lib/expediciones/tipos-tacticos.ts` |
-| Convertir efectos persistidos a estados tácticos, guardarlos y ejecutar técnicas adicionales | `src/lib/expediciones/adaptador-tactico.ts` |
-| Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/motor-tactico.ts` |
-| Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/estados-combate.ts` |
-| Efectos de pociones: restauración fija, porcentual y límites | `src/lib/expediciones/consumibles-combate.ts` |
-| Regeneración de energía y maná por turno y fracciones pendientes | `src/lib/expediciones/recursos-combate.ts` |
-| Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/objetivos-combate.ts` |
-| Validación de la solicitud de combate, objetivos y turnos | `src/lib/expediciones/contrato-accion-combate.ts` |
-| Cola de iniciativa y velocidad relativa | `src/lib/expediciones/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
-| Consultar, establecer y descontar cooldowns de habilidades | `src/lib/expediciones/cooldowns-habilidades.ts` |
-| Fecha del encuentro, regreso de combate/comercio y penalizaciones climáticas | `src/lib/expediciones/tiempos.ts` |
+| Daño físico/mágico, curación y habilidades durante combate | `src/lib/expediciones/combate.ts`, `src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts` |
+| Qué armas permiten comparar ataque físico y mágico en el básico | `src/lib/expediciones/combate/ataque-basico-arma.ts` |
+| Cálculo de daño, crítico, acierto y fallo de ataques básicos | `src/lib/expediciones/combate/ataques-basicos.ts` |
+| Cómo se representan proyectiles de básicos y habilidades | `src/lib/expediciones/presentacion/presentacion-combate.ts` |
+| Preparación de técnicas, ajustes por área y reloj de efectos | `src/lib/expediciones/combate/tacticas/preparacion-habilidades.ts` |
+| Aplicar operaciones, disipaciones, pasivas e historial tras una habilidad | `src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts` |
+| Definiciones de unidad, estado, técnica y comandos tácticos | `src/lib/expediciones/combate/tacticas/tipos-tacticos.ts` |
+| Convertir efectos persistidos a estados tácticos, guardarlos y ejecutar técnicas adicionales | `src/lib/expediciones/combate/tacticas/adaptador-tactico.ts` |
+| Motor de estados, pulsos, recursos y ciclos | `src/lib/expediciones/combate/tacticas/motor-tactico.ts` |
+| Estados temporales, DoT, barreras y buffs | `src/lib/expediciones/combate/estados-combate.ts` |
+| Efectos de pociones: restauración fija, porcentual y límites | `src/lib/expediciones/combate/consumibles-combate.ts` |
+| Regeneración de energía y maná por turno y fracciones pendientes | `src/lib/expediciones/combate/recursos-combate.ts` |
+| Objetivos únicos, propios, aliados y áreas | `src/lib/expediciones/combate/objetivos-combate.ts` |
+| Validación de la solicitud de combate, objetivos y turnos | `src/lib/expediciones/combate/contrato-accion-combate.ts` |
+| Cola de iniciativa y velocidad relativa | `src/lib/expediciones/combate/iniciativa-combate.ts`; parties: `src/lib/party/iniciativa.ts` |
+| Consultar, establecer y descontar cooldowns de habilidades | `src/lib/expediciones/combate/cooldowns-habilidades.ts` |
+| Fecha del encuentro, regreso de combate/comercio y penalizaciones climáticas | `src/lib/expediciones/viajes/tiempos.ts` |
 | Iniciar, llegar y completar expediciones individuales (Prisma y fases) | `src/server/services/expediciones/`; ver [README](../src/server/services/expediciones/README.md) |
-| Misiones, amenazas, enemigos de una expedición | `src/lib/expediciones/generador-misiones.ts`, `dificultad.ts`, `enemigos-combate.ts` |
-| Premios de expedición al volver y capacidad del almacén | `src/lib/expediciones/recompensas-regreso.ts` y `src/server/services/expediciones/completar-expedicion.ts` |
+| Misiones y amenazas de una expedición; enemigos activos del combate | `src/lib/expediciones/encuentros/generador-misiones.ts`, `src/lib/expediciones/encuentros/dificultad.ts`, `src/lib/expediciones/combate/enemigos-combate.ts` |
+| Premios de expedición al volver y capacidad del almacén | `src/lib/expediciones/viajes/recompensas-regreso.ts` y `src/server/services/expediciones/completar-expedicion.ts` |
 | Recompensas de party y sus instancias individuales | `src/server/services/party/inventario-recompensas.ts` |
-| Cómo se reparte la curación de party según heridas reales | `src/lib/expediciones/presupuesto-curacion.ts` |
+| Cómo se reparte la curación de party según heridas reales | `src/lib/expediciones/combate/presupuesto-curacion.ts` |
 | Recompensas y experiencia de party | `src/lib/party/recompensas.ts` y `src/server/services/party/liquidacion-recompensas.ts` |
 | Combates de un jugador | `src/server/services/combate/pve.ts` |
 | Combates PvP y asedios entre jugadores | `src/server/services/combate/pvp.ts` |
-| Autorización, recursos y entrada compatible de combate | `src/server/services/combate/accion-combate.ts`, `dispatcher.ts` |
+| Autorización y recursos de combate | `src/server/services/combate/accion-combate.ts`; rutas PvE y PvP en `src/app/api/combate/` |
 | Construcción del contexto táctico para PvE, PvP y party | `src/server/services/combate/contexto-tactico.ts` |
 | Escritura SQL versionada de combates (protección contra turnos concurrentes) | `src/server/services/combate/actualizar-combate-versionado.ts` |
 | Combates de party | `src/server/services/party/combate-party-actions.ts` (jugador), `turno-enemigo.ts` (enemigos) |
@@ -98,7 +98,7 @@ Los catálogos en `src/lib/catalogos/` son la **única fuente de datos editable*
 | Informe al terminar una batalla | `src/components/combate/ResultadoCombate.tsx` |
 | Ventana de estadísticas de los combatientes | `src/components/combate/InformacionCombatientes.tsx` |
 | Animaciones, impactos y proyectiles | `src/components/combate/animaciones/` |
-| Estado, acciones HTTP y sondeo de party | `src/components/base/PanelParty.tsx` |
+| Estado y sondeo de party; peticiones HTTP a la API | `src/components/base/PanelParty.tsx`, `src/components/base/party/cliente.ts` |
 | Adaptación de datos de combate party a UI | `src/components/base/party/vista-combate.ts` |
 | Aviso de compañía del tablón (miembros, visitas, traslados) | `src/components/base/party/AvisoCompaniaParty.tsx` |
 | Contrato de expedición de party, mapa y regreso | `src/components/base/party/ExpedicionActivaParty.tsx` |
