@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { Edificio, IdEdificio } from "@/lib/tiposJuego";
+import type { Edificio, IdEdificio } from "@/lib/base/edificios";
 import type { CosteEdificio } from "@/lib/base/edificios";
 
 interface PanelConstruccionProps {

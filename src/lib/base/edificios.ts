@@ -111,6 +111,15 @@ export const CONFIGURACION_EDIFICIOS = {
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
 
+/** Vista de un edificio construido; catálogo y contrato comparten propietario. */
+export interface Edificio {
+  id: IdEdificio;
+  nombre: string;
+  descripcion: string;
+  nivel: number;
+  nivelMax: number;
+}
+
 /** Requisitos y costes de construcción: valores originales sin modificar. */
 export const REQUISITOS_EDIFICIOS: Partial<
   Record<IdEdificio, { edificio: IdEdificio; nivel: number }>

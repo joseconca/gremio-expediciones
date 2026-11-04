@@ -2,7 +2,7 @@
 
 import ComplejoArmeria from "@/components/base/ComplejoArmeria";
 import EdificioCard from "@/components/base/EdificioCard";
-import type { Edificio, IdEdificio } from "@/lib/tiposJuego";
+import type { Edificio, IdEdificio } from "@/lib/base/edificios";
 
 interface PanelEdificiosProps {
   edificios: Edificio[];

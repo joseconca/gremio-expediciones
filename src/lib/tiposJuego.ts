@@ -1,4 +1,3 @@
-import type { IdEdificio } from "./base/edificios";
 export type TipoMision = "normal" | "elite" | "comercio" | "boss" | "asedio";
 
 export type TipoArma =
@@ -600,15 +599,4 @@ export interface EstadoCombate {
   enemigoId?: string;
 }
 
-/** EDIFICIOS */
-export interface Edificio {
-  id: IdEdificio;
-  nombre: string;
-  descripcion: string;
-  nivel: number;
-  nivelMax: number;
-}
 
-/** Compatibilidad: los datos y el tipo proceden del dominio de base. */
-export { CONFIGURACION_EDIFICIOS } from "./base/edificios";
-export type { IdEdificio } from "./base/edificios";

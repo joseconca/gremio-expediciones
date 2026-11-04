@@ -697,12 +697,6 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     expedicionActiva: tx.expedicionActiva,
     $transaction: transaction,
   };
-  const configEdificios = {
-    mercado: { nombre: "Mercado", nivelMax: 3 },
-    herreria: { nombre: "Herrería", nivelMax: 3 },
-    botica: { nombre: "Botica", nivelMax: 3 },
-    escuelaCombate: { nombre: "Escuela de combate", nivelMax: 3 },
-  };
   const route = loadSource("src/app/api/jugador/acciones/route.ts", {
     "next/server": { NextResponse },
     "@prisma/client": { Prisma: PrismaStub },
@@ -720,7 +714,6 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
       },
       calcularCosteAtributo: () => 10,
     },
-    "@/lib/tiposJuego": { CONFIGURACION_EDIFICIOS: configEdificios },
     "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40 } }),
     },

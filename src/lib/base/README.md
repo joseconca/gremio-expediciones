@@ -10,6 +10,6 @@ En esta carpeta están las **reglas de negocio**, no las pantallas de los edific
 
 Los componentes visuales permanecen en `src/components/base/`, las pantallas en `src/app/base/` y las operaciones de persistencia en sus rutas API o `src/server/services/`.
 
-**Compatibilidad:** `src/lib/configuracionJuego.ts` y `src/lib/tiposJuego.ts` conservan los exports utilizados por consumidores anteriores; los datos y las fórmulas reales deben modificarse aquí.
+**Ubicación definitiva:** `edificios.ts` es propietario tanto del catálogo `CONFIGURACION_EDIFICIOS` como de `IdEdificio` y `Edificio`. El store y las pantallas los importan directamente. No se mantienen reexports desde `tiposJuego.ts` ni `configuracionJuego.ts`.
 
 Cambiar de carpeta no debe modificar costes, nivel máximo, tiempos, efectos ni rutas públicas del juego.

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
-import type { Edificio } from "@/lib/tiposJuego";
+import { CONFIGURACION_EDIFICIOS, type Edificio } from "@/lib/base/edificios";
 
 interface ComplejoArmeriaProps {
   armeria: Edificio;

@@ -10,7 +10,7 @@ import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 import { experienciaJobParaNivel, experienciaParaNivel } from "@/lib/progresion/experiencia";
 import { CLASES } from "@/lib/progresion/clases";
-import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/tiposJuego";
+import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/base/edificios";
 
 // Componente reutilizable para los recursos
 const ICONOS_EDIFICIO: Record<IdEdificio, string> = {
