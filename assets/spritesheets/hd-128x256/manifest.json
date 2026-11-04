@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "danzaespadas-f",
+  "nextVariant": "danzaespadas-m",
   "classes": [
     {
       "id": "novato",
@@ -471,7 +471,7 @@
       "name": "Hoja del velo",
       "tier": 3.5,
       "order": 59,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "danzaespadas",
@@ -278906,7 +278906,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/hoja_velo/m/hoja_velo-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/hoja_velo/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -278921,7 +278921,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -278930,6 +278930,7 @@
           "use_consumable",
           "dodge",
           "block_shield",
+          "attack_sword",
           "attack_axe",
           "attack_spear",
           "attack_dagger",
@@ -279014,8 +279015,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "15464fab879696dc07a011848fcfbb257d86e080cec4d6d673b127bee27ba67c",
-                "bytes": 24846,
+                "sha256": "40838eb755afb953f6affd9ffa2cdd4cce65441b503d6abc0cfd50a868261348",
+                "bytes": 25248,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279023,15 +279024,15 @@
                 ],
                 "bbox": [
                   9,
-                  92,
+                  91,
                   106,
-                  251
+                  252
                 ],
-                "pixelSha256": "40c82ac6a6c0b1d88d80f6c3b2040d8eec34dc18468c4a2ead50533b61bf3970"
+                "pixelSha256": "24ba86263c3c0ebde9d9918d26c0a64e66b1c453cfb45ea59faab47208b9430e"
               },
               "02": {
-                "sha256": "778e4bf91adbfa42152bcfdc478cc72266a330d3e10068b8f430e8461fb4720a",
-                "bytes": 22180,
+                "sha256": "456a81dae1c28e27262b1c336b87063feb91d88b54145a6dba338aad250aaa5d",
+                "bytes": 22758,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279039,15 +279040,15 @@
                 ],
                 "bbox": [
                   7,
-                  92,
-                  102,
-                  251
+                  91,
+                  103,
+                  252
                 ],
-                "pixelSha256": "bd3c732b36c89ae6abf4aad452b288707026addf92f15e09a1390f5982580513"
+                "pixelSha256": "543a3a8356c2449db19203f57d31313e078ea630a0b83aab42e752ba0555a0f1"
               },
               "03": {
-                "sha256": "d3b7cdb4f53fccca573bf6ee6170dd08fc9456c45eb6fc54c3f98b907d9b4ddd",
-                "bytes": 22914,
+                "sha256": "95b8816e5da34a222c48a110ba3f8511df2a5cc2b9773b27a3a25ff8a5b3676e",
+                "bytes": 23563,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279055,15 +279056,15 @@
                 ],
                 "bbox": [
                   2,
-                  92,
+                  91,
                   109,
-                  251
+                  252
                 ],
-                "pixelSha256": "fce59b54e4a6b92b3415c53738e778154498b213fa4af6e0973ed7fedabe0aeb"
+                "pixelSha256": "3c86257ae3dd344f7522d5c67ca0fa429e8cab0c4d6ba9b1249eca178b370f54"
               },
               "04": {
-                "sha256": "670d5dcdbdb6aaf3e1b547d20d1934e7e367b9eea530b9c3b09c58ae423dc52f",
-                "bytes": 24089,
+                "sha256": "1391172daa58e3b08df0e69a0d4727f48e9d30cd22bdb1261382ce5347ba9d6f",
+                "bytes": 24270,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279071,11 +279072,11 @@
                 ],
                 "bbox": [
                   10,
-                  92,
-                  103,
+                  91,
+                  104,
                   251
                 ],
-                "pixelSha256": "51f019d46d91f3ae2ace65a456c18427a75be76b197fed444a38114bf125b5fd"
+                "pixelSha256": "d6d9691b1ed149a1ca857f8cfd12fe5a4d6a460dbc9084797c7b772e542971a6"
               }
             },
             "distinctFrames": 4
@@ -279361,7 +279362,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "12bef9a66927968c2e0dcd678b9a888b00d39d214effff77fc77cbd67680be8f",
+                "bytes": 24446,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  98,
+                  102,
+                  253
+                ],
+                "pixelSha256": "cbbe08cfb2fa1c92a4777bb0c9ebd168f8c395d9eda56eb90b6c872b23fe1cc1"
+              },
+              "02": {
+                "sha256": "57dc63583bb06a3659a9bd004ebf6f1479988d2b1cf09da326f243be32f9839d",
+                "bytes": 23081,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  98,
+                  103,
+                  253
+                ],
+                "pixelSha256": "99450f06ff0a8319054230b905a76c5bd9cd8b4525264d36cb92a50a545f9cf3"
+              },
+              "03": {
+                "sha256": "d805002217db6d1ed78e9fda3fad70e8f300bdf8cdf49c69ff07d92fde13b082",
+                "bytes": 24309,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  101,
+                  117,
+                  253
+                ],
+                "pixelSha256": "b85f9c2c041584106731cd355d5ec426ead77cb4f60e8bc77402e2b5b32f082a"
+              },
+              "04": {
+                "sha256": "411c1b7bd335ed5b52a52b1d1858fa70ab862e350ad91f2fdae9b89e574393ae",
+                "bytes": 24246,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  99,
+                  113,
+                  253
+                ],
+                "pixelSha256": "2b4bf9aa0b5a9bcec2e8c8a7c69c64802e4650e8e22f4f7603e51c349ba2e940"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "technical-passed",
@@ -279453,8 +279521,8 @@
                 "pixelSha256": "3863f7cf6deeba5b3083f117425826fbc9bc8ccb1a82af26ca254f230eab1780"
               },
               "02": {
-                "sha256": "c65f18c9b2fe85ce22babdabe5c005aa2ad098004c0d4a6e1a25d595af159680",
-                "bytes": 21907,
+                "sha256": "94c06634a8a860fef0651862eb745dd67e593c1d0080d4e3aa0dc0a16c465a16",
+                "bytes": 22426,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279462,11 +279530,11 @@
                 ],
                 "bbox": [
                   11,
-                  94,
-                  97,
+                  93,
+                  98,
                   248
                 ],
-                "pixelSha256": "2e3f2610359d1fea72bccb3ef2ae1cf216c8b2666ca891ff0316c33588ed8ebd"
+                "pixelSha256": "e7fb77c71cb9ec1edc00bf63b9956e528196abb8ad94f1406e2b551d66d560b0"
               },
               "03": {
                 "sha256": "0a4adaf6cec3d32fb84f705621c99edf67f8cadae4d1d486c72ccd3554a80c15",
@@ -279962,13 +280030,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "f36ee7458f3ad5590f894ccb9ae2513fd0437551102e79bc45f537099c0ed08e",
+          "sourceSha256": "ca2411ba841ca70bf07d366d10a6feb3c87e6added2d531447a2157978b8717b",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -279990,9 +280059,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Localized correction of ONLY the RIGHTMOST FRONT CROSSING fist and attached forearm. Its fist is currently too high at chest level. LOWER this fist DOWN to WAIST height until the CENTER of its BLACK GLOVE covers the magenta circle floating BELOW it. The circle is the exact final glove center (767,740) on this 1086x1448 canvas. Hand center must align at y740, NOT chest. Keep leftmost rear hanging fist and every other body part fixed. EXACTLY TWO arms/hands. Preserve face, full hair, silver/amethyst costume, both boots, head/body scale and canvas framing. Remove magenta circle entirely. Genuine transparent background.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -280000,7 +280069,140 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "fb1526dc1c10b43deeff39ac531eb671acc18dbf6a22241c0e83922f4ae8e5d4",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame01-reference-v5.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "1ff0e33325ccdf8dfbf211904e715c28b4593d31ee79d4dc733ee25c48c4b0d2",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame02-reference-v5.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "503c02785de056ca5d97df199bf8ea70939ac1275f535a722e559aab3f685ee3",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame04-reference-v5.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "f36ee7458f3ad5590f894ccb9ae2513fd0437551102e79bc45f537099c0ed08e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "3dc0991dce06562babedc5a48c9deb5e1957ade27b1b6b00b67196b1880bc29e",
@@ -280038,7 +280240,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "99710f6c2bbfd0b279531bf02eea904ffff2132cad5518a955dfe3295ae8cd28",
@@ -280076,7 +280279,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "02c9173baf2408e2e3e3b6d50d4fa4f97d43c28f20397dda7612dfec01a11515",
@@ -280120,7 +280324,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "1ed1a984f4ddc5930274777ad05a26e416bcfd6c6ea73da93c05ce46c21f2e0d",
@@ -280164,7 +280369,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "4440d6046aa4976a733fc4b4f756d4bd3488483dba1a264fad6ad6517d3a74e4",
@@ -280202,10 +280408,11 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "c0e9332dc36193e76c5b96fddaec9eefaa5c8aea41dfb720f397a8f489395fba",
+          "sourceSha256": "5eee40ce2c12eb9d696e453827857c10c767654334da20d5f72891752f504b87",
           "sourceDimensions": [
             4344,
             1448
@@ -280230,9 +280437,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside hand. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, hair, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
+          "prompt": "Minimal localized edit of this full body image. Raise the far viewer-right low fist UP to chest height and slightly RIGHT, until BLACK PALM centered on magenta ring currently above wrist/bracer. Bend elbow naturally. Keep fist at ring height, not waist; other fist unchanged. Preserve exact framing, head position and dimensions, silver-violet hair, MIDNIGHT IVORY SILVER AMETHYST costume, TWO amethyst chest diamonds, silver paired-blade emblem, diamond belt buckle, boots. Do not recenter/scale whole body. Remove magenta entirely. Transparent RGBA background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -280240,7 +280447,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
@@ -280268,15 +280475,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame01-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame01-reference-v3.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
-            "02": {
-              "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+            "03": {
+              "sourceSha256": "c0e9332dc36193e76c5b96fddaec9eefaa5c8aea41dfb720f397a8f489395fba",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -280298,8 +280505,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame02-reference-v2.png",
-              "selectedFrame": 2,
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame03-reference-v3.png",
+              "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "04": {
@@ -280328,7 +280535,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame04-reference-v3.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -280371,8 +280578,139 @@
                 "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "c0e9332dc36193e76c5b96fddaec9eefaa5c8aea41dfb720f397a8f489395fba",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside hand. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, hair, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    604,
+                    18,
+                    1064,
+                    695
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    604,
+                    18,
+                    1064,
+                    695
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "f0bd00b809dd8bba716761749524b282c277dbda442e55914618cf35fc3e717f",
+                  "sourceDimensions": [
+                    4344,
+                    1448
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    604,
+                    18,
+                    1064,
+                    695
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    92
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "a5f1faddd1e858bbf6966f6ef23b69298085dce6c834752ab85cc8c4694f80bd",
@@ -280410,7 +280748,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "a37057aee7b42afb84dbf93035b36cf9e0983480421e43ae8b38b8819516d8a4",
@@ -280448,7 +280787,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "f867d00600ca3c4a2a312bc12afdfa1af32369415d9ab99fa9539dbc98e152c8",
@@ -280486,7 +280826,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "8d64e267a9ffdbb2f76f47d9f34eac4de48fbf114f83bd765b2e39520f603d50",
@@ -280524,7 +280865,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "113a07df2329348cfdd9b83716e27afe7c4a142468dbc007a2176f712c1b7cec",
@@ -280562,7 +280904,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
@@ -280694,7 +281036,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "486596ef0f63fafc99eeffd56de10d8797524b8ee89b4765b12eedfdd8e527b0",
@@ -280732,7 +281075,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "7806a0543c1ad8a4a6eb1d0fdc0010b24cca8bb422e9a47de6cb3f6f4950bba1",
@@ -280824,7 +281167,139 @@
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
-          }
+          },
+          "artDirectionRevision": 1
+        },
+        "attack_sword": {
+          "sourceSha256": "a4fa20ccfbfb0d80e094120e513497ef4d6c915dcc36e11eb4433912c4894254",
+          "sourceDimensions": [
+            4344,
+            1448
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            592,
+            31,
+            1088,
+            680
+          ],
+          "scale": 0.23,
+          "origin": [
+            7,
+            99
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-reference-v3.png",
+          "generator": "built-in imagegen",
+          "prompt": "Minimal localized edit of this full body image. Make viewer-left BOOT toe shorter and bring outer left sole INWARD slightly with generous LEFT transparent margin. Keep head/body size and other boot fixed. Move extended fist very slightly RIGHT so black glove covers magenta ring at fingertips. Exact same lunge. Preserve exact framing, head position and dimensions, silver-violet hair, MIDNIGHT IVORY SILVER AMETHYST costume, TWO amethyst chest diamonds, silver paired-blade emblem, diamond belt buckle, boots. Do not recenter/scale whole body. Remove magenta entirely. Transparent RGBA background. No equipment or effects.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+            "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+            "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+            "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+          ],
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "de73c9d0e91b61239dd92f9c99dbfed7218170678350b30a5d017b1a59e7054d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "de73c9d0e91b61239dd92f9c99dbfed7218170678350b30a5d017b1a59e7054d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "6dca12e8303ded4d886d5fc97f5d26695eee1a5f0031a08c68ad67acad831e3d",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -280845,11 +281320,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -280857,7 +281332,7 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -280945,11 +281420,11 @@
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear.frameSourceOverrides.02",
+          "source": "sources.attack_spear",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
@@ -281051,7 +281526,169 @@
         "attack_bow/04": {
           "source": "sources.attack_bow.frameSourceOverrides.04",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword.frameSourceOverrides.04",
+          "frame": 4
         }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "12bef9a66927968c2e0dcd678b9a888b00d39d214effff77fc77cbd67680be8f"
+            },
+            {
+              "bodySha256": "57dc63583bb06a3659a9bd004ebf6f1479988d2b1cf09da326f243be32f9839d"
+            },
+            {
+              "bodySha256": "d805002217db6d1ed78e9fda3fad70e8f300bdf8cdf49c69ff07d92fde13b082"
+            },
+            {
+              "bodySha256": "411c1b7bd335ed5b52a52b1d1858fa70ab862e350ad91f2fdae9b89e574393ae"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "hoja_velo",
+        "name": "Hoja del velo",
+        "tier": 3.5,
+        "costume": "Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece.",
+        "maleIdentity": "Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Interlaced blade/rune silver armor, two amethyst cuirass tiles and lilac translucent waist inserts",
+        "advancement": "Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/hoja_velo/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "4e7b102ee0ede4243834912a495c1c8822e2faf765bd5927d0e149186fe82d15",
+            "f18d0a8eb830083788607b9f6c2a606a03bc99451408c9934186ea56688825ae",
+            "b4414d069798492cffbe7a022d20651a972566bca1f26e75a2cf63e6c7e07f30",
+            "cccec2fbf4de60f9f2892c9b294f4c2e0ed8440b635f6c0a5395cafa21732ad3"
+          ],
+          "walk": [
+            "40838eb755afb953f6affd9ffa2cdd4cce65441b503d6abc0cfd50a868261348",
+            "456a81dae1c28e27262b1c336b87063feb91d88b54145a6dba338aad250aaa5d",
+            "95b8816e5da34a222c48a110ba3f8511df2a5cc2b9773b27a3a25ff8a5b3676e",
+            "1391172daa58e3b08df0e69a0d4727f48e9d30cd22bdb1261382ce5347ba9d6f"
+          ],
+          "hurt": [
+            "d43b6a2fbd353000afa652169452774eb7335d624f1691a011eccb38a7b139a4",
+            "ffc6702fa67dd5fd32b5a18a2a00a46fdc5f0e01075d78a8d76e8685c9a6e7ff",
+            "1762c64ea2fc6baed18eb7e60b6cbd74618d00050ced79efd8a7fade8c596fad",
+            "48019a7e5c5628b373b9f154a335af361a8601036e22b8291e3534faac05f4f1"
+          ],
+          "use_consumable": [
+            "8010a72fbd8659c4d09db3893b16b86884beab2f17a4cd60818b4ec7e1906e08",
+            "42982b2903428c797c50cf851c19e1bda18e22947953b3b48afc2f30a6b2e749",
+            "03fa536075b96eec9c7afa21bd8cdcc3db4fdc0c33a71080a7005063e8381877",
+            "13c1b56295d7dbe8e01b233c47ae9c752ea5b80f23d5500bc598e8b26dccfd71"
+          ],
+          "dodge": [
+            "7061960e2a7806f75a47afe5eed6c050ebf5f44693c3ca36ca139f7f2a97074a",
+            "6b4e59e7e8556bf2e2186004bc8fd6f041d98614888187f0d9dac1cdc04710de",
+            "02749e66dbcfb4735cb5022ccb8755697d1f7f36c113783c89b57641c7bd6cd8",
+            "05fd278303f4de4f286694021b5f54321926db545a618ac604c6258e2db2d3a9"
+          ],
+          "block_shield": [
+            "4cf9696b5a68a895022c28e0f732652ecba2200467e47d1f451d73ccde887d07",
+            "c19ff900583f8b21170dc0e637759ab4e48231ce490b2f94501d279b243c7cd3",
+            "0146f20edbc39ba936ad90f4fab74b6d9f787d49ab9ebdf29ae553afa3c69ba7",
+            "dc0412795b25706bb7016cd9f7a14d08a3539b7e46d8db29eaca320e37df9778"
+          ],
+          "attack_sword": [
+            "12bef9a66927968c2e0dcd678b9a888b00d39d214effff77fc77cbd67680be8f",
+            "57dc63583bb06a3659a9bd004ebf6f1479988d2b1cf09da326f243be32f9839d",
+            "d805002217db6d1ed78e9fda3fad70e8f300bdf8cdf49c69ff07d92fde13b082",
+            "411c1b7bd335ed5b52a52b1d1858fa70ab862e350ad91f2fdae9b89e574393ae"
+          ],
+          "attack_axe": [
+            "f18361e20bf46c96aa407014a4cabb7b08b63ea19a2d09b5ed15ed90063f2a5b",
+            "77d84cb8af8a567d9e3710398003b2d75b0996c7b0ef138cc473b7d66d129524",
+            "827f740a97aff0184002f0480a88869bc2caa22db2c768d41260d7ff9a68e249",
+            "92f644cc07744a49adef75a2192516451d4a33dc59064fc72a473ec58de4e49e"
+          ],
+          "attack_spear": [
+            "0b3eaeba9dab316723ec2720803fdca82f70a1d7e7e735b48b34ddfa4f06ce38",
+            "94c06634a8a860fef0651862eb745dd67e593c1d0080d4e3aa0dc0a16c465a16",
+            "0a4adaf6cec3d32fb84f705621c99edf67f8cadae4d1d486c72ccd3554a80c15",
+            "14dca94b40b884d9e99c0867fa756ac351aaea513ac52fc50532cf9efe40fac2"
+          ],
+          "attack_dagger": [
+            "3422bf983143253a2e2e70404d094f960591eb0c1cbfe16af66aa30919223192",
+            "7031495f1735ca5ae8b7ef2f4b46ff3ce1d22947e31101b218cecf879c177344",
+            "f7091b1cce04031f22a2df052dbfdc6a034a39689c8da6a1afc558740b471dd0",
+            "70127c70405e1976f8114071dccc3f52f7bb0faa55935e1b948f8bde2eba21a0"
+          ],
+          "attack_bow": [
+            "f6d6e51b5c8036b728a9b952d0293db8a9bdc8828fe7e688c423111853b5d41c",
+            "effe825de34359428c8e8667756cf58669c17da4e94a9c3fe47eea708fd6f969",
+            "ecdc723b8e02807bdf6be9a5ca269b9722d583bc3ee395b32bc5b68523081841",
+            "0f3c5fbc1e5da843c9c811075e9b9ae0288a4dfdde040d8612da756099762031"
+          ],
+          "attack_staff": [
+            "d17d10d5db06704fc40377084ac7c77815d77b1c814c8f395c0bd622218014d0",
+            "f45f701cf06b8713c417fc6b87571fe9a962e8a30406f718d048cb536e486abd",
+            "b07845c5040c4bdb766056591aa2545234f67d882283505d17bf2e695e440c1c",
+            "27201379cf0aaf68ace13b90b4e024da9554dd08dc426605a54db6ef4ad1107e"
+          ],
+          "attack_mace": [
+            "b78d4ba33cc7fa6303b99437ff981be96c3c2e9fad66247070616653130492c2",
+            "3b461831b4896659a3ed36052367b46a9086d963870edd5c94c3356de59e397e",
+            "d5079a124a4680fbed76fc91eb065e1a2c886b968939023780f7653a1ec13e19",
+            "6a95357d2cacd7290c1c40d8f11271e47b59a674f49514036eb7802092ad7f82"
+          ],
+          "attack_book": [
+            "1985d2542a4769e7eff6cfca832d9acb8313fafb9fbb7dde23ca7e35924e7f8a",
+            "565c7277116170a449c3fc44d41bad4010708a652b80bd7a4523811eed422eb9",
+            "32293609d573b03e34bca328087c5b36c8bce503a52e1884a61ad5f135620ee8",
+            "aed613273ea337bc6918f062e2771324959dcbc1db74dc023e1bfa8cb9be6a42"
+          ],
+          "attack_gloves": [
+            "3521619292f1033a78453eb039a3668c330cb16f1e9f29c76a387bb39c656610",
+            "d2350fe4709ac886b01825a7df8f46859e92c96ac1adf277486d7c0e055e9c0e",
+            "ec876153a477363eac7c7934a44af12fbe492edb82c662daadb2c514df13e674",
+            "259f4a872e76eb20a8d584e975bbc56d3168a979efb3da878a8b70646c14c235"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -281064,7 +281701,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/hoja_velo/f/hoja_velo-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/hoja_velo/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -281679,8 +282316,8 @@
                 "pixelSha256": "068e698887ff667d688520c5f4291d001458bbe062b0ce4d56e241c693c05ab0"
               },
               "02": {
-                "sha256": "09039459486221242b747317a5792c2e11c8ed90ad19580caebadcfc46e3144f",
-                "bytes": 22939,
+                "sha256": "0b5039bf014d8239f9dbc684c808f3724550b5743832475597181f01070e109a",
+                "bytes": 23672,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -281689,10 +282326,10 @@
                 "bbox": [
                   10,
                   91,
-                  92,
-                  249
+                  94,
+                  250
                 ],
-                "pixelSha256": "8ca17aa2ac344ff0c93f54e4f496cdbb7f74c9acfa737806604d1c98145a6075"
+                "pixelSha256": "1e6d9820394134f0904652611d56aec87225e577729b5122cb990e7b781264e5"
               },
               "03": {
                 "sha256": "70515bceca4b511dfd65b7c70d693e27f8b8b6a97dcd1d0ba5987d2a42f77333",
@@ -282099,8 +282736,8 @@
                 "pixelSha256": "7069f3f2a246b24a7d08da44b7fc278b20836be0d7773bdf9c56b5895b3e38db"
               },
               "02": {
-                "sha256": "a64295bc5e4c3f697a6b48543c345201ce26daf1dc7709e9ff91b15848c34091",
-                "bytes": 24167,
+                "sha256": "370bb02d769dd6315ccdfd7fddd828e8e37035bf40050c996f121ab2870445c4",
+                "bytes": 25186,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -282109,10 +282746,10 @@
                 "bbox": [
                   14,
                   89,
-                  91,
-                  249
+                  94,
+                  252
                 ],
-                "pixelSha256": "5cb939099d2c7d4443bef7e347d1a6bc41f3c6d121bb3eb2a33611365497a2d5"
+                "pixelSha256": "55386e6ebfe8bb87880e9a3dd7e6734f8acc01771fb2c145841de2dc9ad57280"
               },
               "03": {
                 "sha256": "b1b03232d52afd6af7de2e3abab1e596bbfc1c4d912b44057747446240732efe",
@@ -282131,20 +282768,20 @@
                 "pixelSha256": "1d66fec1cf57e1e01cd721cc52e1382d57ccc12f6c713c5b7e234a949b221b03"
               },
               "04": {
-                "sha256": "a69127379c938f8a10174390f5f18011065ea26ced370f7029182b6987e8953b",
-                "bytes": 23208,
+                "sha256": "885be800a8330c8c03a124cbb7b6f813cbbfc10b80c26bd2f0409c3bde891dc3",
+                "bytes": 24269,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
-                  90,
-                  83,
+                  5,
+                  89,
+                  85,
                   249
                 ],
-                "pixelSha256": "aef58354c60a6b9764363872ec0730df186b19a832ec5b4005e09b155cb47f73"
+                "pixelSha256": "1a3e782778ffd07849ac81770e4900c01c08d790a13f003b573679870589404b"
               }
             },
             "distinctFrames": 4
@@ -282188,7 +282825,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "1f2bd6c4fa580076f36551e69f272a9f46df96dc41465aeb7342aa081ed13b32",
@@ -282226,7 +282864,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "a949c07a4144bece4b6b8541372a01aaea534e50cb3f0342609ef04effee84f4",
@@ -282358,7 +282996,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "6fcc4c42a634fc95a6b245eabbcac7b66836f8f83913825f9793ec111dff22de",
@@ -282396,7 +283035,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "5e2d2083ee292c78cf0ccc3a225973b958214ff1e7c6e7b453cd92d1bb93fc8c",
@@ -282434,7 +283074,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "41a300ce2c95761db1cbd7977e80b22773efc651dbec66d33147bd04e9c6e6bf",
@@ -282472,7 +283113,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
@@ -282604,7 +283245,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "4e40963761cd03b37d1bb920089cedc884c7a3fff67708a81858f05978fc9390",
@@ -282642,7 +283284,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "d19e1f1ba175cf2211731dcc8e6b65e6d76a7ac1697ef6f9d5fd4ed3b9d33935",
@@ -282680,7 +283323,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "65d6ec28278689c72b08081797d965382b5ce77d2fe5a4a4c0152174851931ec",
@@ -282718,10 +283362,11 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "4e162730d2c34801f0930cfd753357ca318e88a6c8b1841460ee7bf31824ef36",
+          "sourceSha256": "a19d80c0e7aac64bd26dcedab6479d35eb8e84ea34b1f89960e97cf6feaf90d5",
           "sourceDimensions": [
             4344,
             1448
@@ -282746,9 +283391,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside fingers. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, high braided silver-violet ponytail, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
+          "prompt": "Minimal localized edit of this full body image. Lower far viewer-right raised fist DOWN and RIGHT until BLACK PALM center covers magenta ring currently on silver wrist cuff. Keep it beside chest. Other fist unchanged. Preserve exact framing, head position and dimensions, silver-violet hair, MIDNIGHT IVORY SILVER AMETHYST costume, TWO amethyst chest diamonds, silver paired-blade emblem, diamond belt buckle, boots. Do not recenter/scale whole body. Remove magenta entirely. Transparent RGBA background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -282756,7 +283401,7 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
@@ -282784,15 +283429,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame01-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame01-reference-v3.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
-            "02": {
-              "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+            "03": {
+              "sourceSha256": "4e162730d2c34801f0930cfd753357ca318e88a6c8b1841460ee7bf31824ef36",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -282814,8 +283459,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame02-reference-v2.png",
-              "selectedFrame": 2,
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame03-reference-v3.png",
+              "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "04": {
@@ -282844,7 +283489,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame04-reference-v3.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -282887,8 +283532,139 @@
                 "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "4e162730d2c34801f0930cfd753357ca318e88a6c8b1841460ee7bf31824ef36",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside fingers. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, high braided silver-violet ponytail, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "0aa90ad24966dd0b2ed03de07618b10784b4ee660e8df8824c2bad76645845bc",
+                  "sourceDimensions": [
+                    4344,
+                    1448
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "4b8a8feff305f5e0d7c20b1ef70e8796f993e4516298090c2eb2e0ae06163e2a",
@@ -282926,7 +283702,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "63e5b4bb742f80271cfed24f8dee9a53f0cdedd3988bacc0bd95eb1ac8f3f021",
@@ -282964,7 +283741,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "26742ee21e55b7252e3ea4a0f213c4759352351343e5c93a4df4a2931742c918",
@@ -283002,7 +283780,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "45e8201143bc9ca91a52ad03cb37fdabb32fe2abc70f99575dc090c97a8d5822",
@@ -283040,7 +283819,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "1c58445565c1481a1f1080939ad40c0ff161c9c166a591f970bae38126c0fc1f",
@@ -283078,7 +283858,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
@@ -283210,13 +283990,14 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
-          "sourceSha256": "9e4c88b834bef60aebfdf9af6c94fdd9370600d2b161261fef4a785b5ad13ecd",
+          "sourceSha256": "6d5c06dc34a2d23d159e0dde1ae0e44d610b5b287ec6d9df087d37e64f5aaa0f",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -283238,9 +284019,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit of this full body image. Move far viewer-right guarding fist RIGHT and slightly UP until black PALM covers magenta ring in empty space beside fist. Keep near viewer-left waist fist exactly unchanged. Preserve exact framing, head position and dimensions, silver-violet hair, MIDNIGHT IVORY SILVER AMETHYST costume, TWO amethyst chest diamonds, silver paired-blade emblem, diamond belt buckle, boots. Do not recenter/scale whole body. Remove magenta entirely. Transparent RGBA background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -283248,7 +284029,140 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "9e4c88b834bef60aebfdf9af6c94fdd9370600d2b161261fef4a785b5ad13ecd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame01-reference-v4.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "9e4c88b834bef60aebfdf9af6c94fdd9370600d2b161261fef4a785b5ad13ecd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame03-reference-v4.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "2dfff45c19d4046865802641836be831061c76e7cab56037306fd13e52209d6e",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame04-reference-v4.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "9e4c88b834bef60aebfdf9af6c94fdd9370600d2b161261fef4a785b5ad13ecd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -283385,11 +284299,11 @@
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear.frameSourceOverrides.02",
+          "source": "sources.attack_spear",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
@@ -283477,7 +284391,7 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_gloves/02": {
@@ -283485,11 +284399,11 @@
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.04",
           "frame": 4
         }
       },
@@ -283523,6 +284437,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "hoja_velo",
+        "name": "Hoja del velo",
+        "tier": 3.5,
+        "costume": "Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece.",
+        "maleIdentity": "Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Interlaced blade/rune silver armor, two amethyst cuirass tiles and lilac translucent waist inserts",
+        "advancement": "Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/hoja_velo/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "ee4035029cf52ba4d87aac76f412df75471fd698dab1aadf153fc2e463ddf408",
+            "977c5bb995e09bdb47538414eca9054d07dd9c8c08db061f2382beb99346b8a4",
+            "a575837420bbff8834c539002921a1186d6364f8691af1f990b64307ce8357f7",
+            "30a66930f8a962c9043c6e20fdd96fae06b5069ed944f78b73fa487790ee6159"
+          ],
+          "walk": [
+            "edb61a5947d1fb041412f35f8ed88f5faf33bf1bc8331893cc5edfb278252554",
+            "80fe3f528200bc10d45d965fa238d291f89bae817bdaef37cd940b9627aff51b",
+            "31927f0f8f2646bf3e451cc85870aa79a74f214b2d01693e5070c9ae669298d8",
+            "823592b6a1f3cbabcba6a82eb31027c714f0c24e27d94ae24492c7157c2caa1a"
+          ],
+          "hurt": [
+            "9afb1482c79c9e31510d0d11a748c2df0179309ef67f2fee1ee46b1041a5b33a",
+            "27e8f84302e995772caff546e391f00929280b9cf4a22c61567144b1750fb0bb",
+            "30b1ec1ea4c0be045b3f694c7a4d39b6c16c0cd14e50a137a51735e12a6e2808",
+            "3a96df90ee088ff7d95d300c99ba0723282ead429fe12f9c6fda5ee6143073c8"
+          ],
+          "use_consumable": [
+            "e04fd4bbf61428fdd6b5581805b57ad2a52008f87ed5166759b40c14df6317bd",
+            "c71cac4ff89c5a2a4e23f54ff6d100cf4f08dff1e728dc6af8bac507c4c351ec",
+            "24d2e531b337b9d9ae7dd47167125b89ac45e871e1776456c7de6a84808775e9",
+            "44dd6251440f60a6ee22c1c4650e8be2d0dce8d99e80d63d625c1e36d0dd6145"
+          ],
+          "dodge": [
+            "10954072d696c5fb69d4a0f72f42228f380bfec8e73f9379c0b90c0c1d111237",
+            "9ccf976d529d2cc596d8f98705625456d87eb68466375fc91e2944324c6e5505",
+            "1efc57f985423f049326cb5fd0201159ba13777520ba1678a89f891503b2630e",
+            "2f9f87c766f37a40239920378a1006b0b8de967c04900376bbcc805aeba311f4"
+          ],
+          "block_shield": [
+            "9af056ee55e339f322e85407aa2bd72940cbd2ac3984d9e7b4ec2f3e9b67e0ba",
+            "485e72e5227fc4478fbc742d494d817392b3aa3cdc376ae3f1da0d45997e3264",
+            "8d57feb942689f16cf80824dcf3ac88a45667747f7d28668b63e599563b4f297",
+            "77683beb30712be971dfd28e1af0e36c0c3bf0ca6458b23e41b5a6ad06cb9632"
+          ],
+          "attack_sword": [
+            "3fe9b967002b8892cae2be64d02944f35f2c4c72cea144d161418a2fda68080c",
+            "15822114d2e0d690baa67909aa26670a74b9975e50ebe091a5c862f362f44935",
+            "3a036d4848fbd19bc90026aa5e67ebf4a51e6b5042c0011246170eb5681d4666",
+            "12669707f157d1387f2d7a878686f9ff4250d1834d34f66e45c89f75138401aa"
+          ],
+          "attack_axe": [
+            "1963e28f4b737373fd18a5c98acf6f01dca0d413e2735745180c6864b157e7ab",
+            "25616fba3b38a482564f01f2b4370efbde784ecbd692541e7fe996001d35fad0",
+            "cf39eab2c790f37db755d04bd6deea8f308ab17b0a839b02ec47a52bb86a83ea",
+            "b794352daa9c23e2ada266b05a45b663b1152a277cc744ce524231c988ad5ee2"
+          ],
+          "attack_spear": [
+            "88667d01ed4ddb173d28c59351d9c6d6658ca4dd74553048887fe97d5c33b7df",
+            "0b5039bf014d8239f9dbc684c808f3724550b5743832475597181f01070e109a",
+            "70515bceca4b511dfd65b7c70d693e27f8b8b6a97dcd1d0ba5987d2a42f77333",
+            "bb5f9d55169d66f1bac104a1817e93362497598e9d942e9b208b1155a5caebe0"
+          ],
+          "attack_dagger": [
+            "fc72d3c5de7100e8fb2ec707bf45381c84083ea59932a313bb800bff6f203167",
+            "2a0136dc15378cbf86d2c9dd326a8c129e989b1aa1c29473aa7e3f3de21f45b5",
+            "4191d6c4d1f46e02ee39f0d677cf7b3cf403e5cfe452faee4320e7688036a785",
+            "ecfb986229a1b7ef58ec2f6344fb282103176a4191dd771ad7859b5b44f5635a"
+          ],
+          "attack_bow": [
+            "8a8b8a8ddd74d3870d9ff579c1cc552e05e5e00177ecf92a0c20f4184d76c9ba",
+            "dff86ea105fe09433a4c1c3c585a3ed7d7422ba2743dbfac01fe3dd552aeaefd",
+            "2937556b2c1c382d17f10b614b15f75c95973ad60205a1dc1cd517cce85c2d33",
+            "cd9aaff2a99ac14c8741809d15f33e63f5bf240de70e23c5b3508c9e5c56fbcc"
+          ],
+          "attack_staff": [
+            "15186930bc104cf23929c24d54fe7ca68b567cc56cfbd6bbd169de03ab41fe69",
+            "9f56fa8c31fc80d39ab62154d1f7197ee430a76f4e07dcc63d9498de54514985",
+            "691c23908750c060705015a5c518c58bf8c32a4c9de41b955707a94000e10b7b",
+            "5a9fc16c55546bae33a87b08efd24898ee9d58340fba0e780424e53405800af0"
+          ],
+          "attack_mace": [
+            "03f79f1dd7117fd8483220f324bcce0043ce1177af0762ecb26ccd6947f065d6",
+            "5cde2fb559e7fbc70771b56b5498eaf19c9f7dbd22cdc86b85f16ea492aa53d5",
+            "48ada1b99a2317d709cadf62981a11eea310436098c2a9788b6a84cc12f64a5f",
+            "ead26fdbfb57396b563431b3dee7d5b2bc7c2cadcf5c63ff72edb42055a35f74"
+          ],
+          "attack_book": [
+            "26c6d410fcce7443fc8236a942c559ec856f3ab83607488a739e5ff1a1419062",
+            "d02d47039875792b141a54eaab055e01bdf04dff593b3a21e7a8d46c22534ecc",
+            "04a8f267ddffe998426c2df1f786a48255b99db7d8bc3fba1b0aae288d691e66",
+            "63b67f15a84ea0f5eb0243d520a5be626b815477fc3f017a0336b048001218be"
+          ],
+          "attack_gloves": [
+            "f1e85385796454bf2bd27b9265017e34c8a8962b38d0b86eceba9ef5692295cd",
+            "370bb02d769dd6315ccdfd7fddd828e8e37035bf40050c996f121ab2870445c4",
+            "b1b03232d52afd6af7de2e3abab1e596bbfc1c4d912b44057747446240732efe",
+            "885be800a8330c8c03a124cbb7b6f813cbbfc10b80c26bd2f0409c3bde891dc3"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -291126,7 +292155,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "hoja_velo",
   "sex": "f",
   "actions": [
@@ -27,8 +27,8 @@
       "30a66930f8a962c9043c6e20fdd96fae06b5069ed944f78b73fa487790ee6159"
     ],
     "walk": [
-      "86b571ea8189b7191000576acd0f090d66b50bf1919b0b11fb2e70a12a158764",
-      "2d9531679a7b92590631925404aa70b87608ad9f1ccfa7914d3151c96acef627",
+      "edb61a5947d1fb041412f35f8ed88f5faf33bf1bc8331893cc5edfb278252554",
+      "80fe3f528200bc10d45d965fa238d291f89bae817bdaef37cd940b9627aff51b",
       "31927f0f8f2646bf3e451cc85870aa79a74f214b2d01693e5070c9ae669298d8",
       "823592b6a1f3cbabcba6a82eb31027c714f0c24e27d94ae24492c7157c2caa1a"
     ],
@@ -47,7 +47,7 @@
     "dodge": [
       "10954072d696c5fb69d4a0f72f42228f380bfec8e73f9379c0b90c0c1d111237",
       "9ccf976d529d2cc596d8f98705625456d87eb68466375fc91e2944324c6e5505",
-      "5e60c87639519eac153a4d01d07699350f443fc7ece3e43c09f71d1d69f4efaf",
+      "1efc57f985423f049326cb5fd0201159ba13777520ba1678a89f891503b2630e",
       "2f9f87c766f37a40239920378a1006b0b8de967c04900376bbcc805aeba311f4"
     ],
     "block_shield": [
@@ -70,9 +70,9 @@
     ],
     "attack_spear": [
       "88667d01ed4ddb173d28c59351d9c6d6658ca4dd74553048887fe97d5c33b7df",
-      "09039459486221242b747317a5792c2e11c8ed90ad19580caebadcfc46e3144f",
-      "5fbcd04d2a914155c75a955dbdd79c37d89b95a301ed10079880cbcc77f090cb",
-      "a92442f29a839c4930789fbec10077389e91402ddd7b9d6d222beceb45a59f3b"
+      "0b5039bf014d8239f9dbc684c808f3724550b5743832475597181f01070e109a",
+      "70515bceca4b511dfd65b7c70d693e27f8b8b6a97dcd1d0ba5987d2a42f77333",
+      "bb5f9d55169d66f1bac104a1817e93362497598e9d942e9b208b1155a5caebe0"
     ],
     "attack_dagger": [
       "fc72d3c5de7100e8fb2ec707bf45381c84083ea59932a313bb800bff6f203167",
@@ -102,36 +102,17 @@
       "26c6d410fcce7443fc8236a942c559ec856f3ab83607488a739e5ff1a1419062",
       "d02d47039875792b141a54eaab055e01bdf04dff593b3a21e7a8d46c22534ecc",
       "04a8f267ddffe998426c2df1f786a48255b99db7d8bc3fba1b0aae288d691e66",
-      "79fa418122da3b27606364b4757b507e295a4ee386faf6ad97ce36a99d955917"
+      "63b67f15a84ea0f5eb0243d520a5be626b815477fc3f017a0336b048001218be"
     ],
     "attack_gloves": [
       "f1e85385796454bf2bd27b9265017e34c8a8962b38d0b86eceba9ef5692295cd",
-      "a64295bc5e4c3f697a6b48543c345201ce26daf1dc7709e9ff91b15848c34091",
+      "370bb02d769dd6315ccdfd7fddd828e8e37035bf40050c996f121ab2870445c4",
       "b1b03232d52afd6af7de2e3abab1e596bbfc1c4d912b44057747446240732efe",
-      "a69127379c938f8a10174390f5f18011065ea26ced370f7029182b6987e8953b"
+      "885be800a8330c8c03a124cbb7b6f813cbbfc10b80c26bd2f0409c3bde891dc3"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "guantes_lucha",
-      "point": [
-        78,
-        145
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "punos_lobo",
-      "point": [
-        78,
-        145
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

@@ -2,96 +2,23 @@
   "status": "in-progress",
   "date": "2026-11-04",
   "branch": "nuevas-clases",
-  "completedClasses": 58,
-  "remainingClasses": 3,
-  "closedFrames": 6960,
-  "closedContactChecks": 79112,
-  "lastCompletedClass": "justiciero",
+  "completedClasses": 59,
+  "remainingClasses": 2,
+  "closedFrames": 7080,
+  "closedContactChecks": 80476,
+  "lastCompletedClass": "hoja_velo",
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
     "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
     "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad"
   },
   "remainingIds": [
-    "hoja_velo",
     "danzaespadas",
     "corsario"
   ],
-  "nextClass": "hoja_velo",
+  "nextClass": "danzaespadas",
   "generationBlock": null,
   "inProgress": {
-    "hoja_velo": {
-      "m": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      },
-      "f": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      }
-    },
     "danzaespadas": {
       "m": {
         "registeredActions": [
@@ -179,7 +106,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_gloves"
+          "attack_gloves",
+          "attack_book"
         ],
         "generatedActions": [
           "idle",
@@ -243,7 +171,8 @@
       "avatar_tormenta CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "cazador_espectral CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "arconte CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
-      "justiciero CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
+      "justiciero CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
+      "hoja_velo CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
     ]
   },
   "methodology": [

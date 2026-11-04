@@ -1,0 +1,180 @@
+{
+  "classId": "hoja_velo",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-reference-v5.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame01-reference-v5.png",
+        "02": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame02-reference-v5.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/m/source/walk-frame04-reference-v5.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_sword-frame04-reference-v3.png"
+      }
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame04-reference-v2.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame04-reference-v2.png"
+      }
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame03-reference-v2.png"
+      }
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame01-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame03-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_gloves-frame04-reference-v4.png"
+      }
+    }
+  },
+  "notes": [
+    "Abrigo de duelista azul noche y marfil con plata grabada, dos amatistas en la hombrera asimetrica, emblema de hojas entrelazadas y hebilla de amatista; cabello violeta plateado corto masculino y coleta alta trenzada femenina. Silueta y acabados distinguen esta evolucion avanzada.",
+    "Revisadas las treinta acciones y los 120 fotogramas corporales, ambos atlas y las composiciones de un arma por tipo, incluidas hachas de una y dos manos. Corregidos los agarres con poses completas generadas y exportacion canonica fija; se conservan originales, instrucciones y revisiones.",
+    "Seleccion masculina: caminar revision 5 con poses 1/2 v3, pose 3 v5 y pose 4 v2; espada revision 3 con poses 2 v3 y 4 v2; lanza revision 3 con pose 2 v3 y 3/4 v2; arco revision 2 con poses 2/3/4 v2; punos revision 2 pose 1 v2. Resto original.",
+    "Seleccion femenina: caminar revision 2 poses 1/2 v2; lanza revision 3 pose 2 v3 y 3/4 v2; punos revision 4 pose 2 v3 y 4 v4; esquiva revision 2 pose 3 v2; libro revision 2 pose 4 v2. Resto original. Contactos secundarios de antebrazo y posiciones nativas de retorno se mantienen cuando no son agarres del arma.",
+    "Sin promocion al juego ni cambios en las posiciones compartidas de armas; equipo comun revision 5."
+  ]
+}
