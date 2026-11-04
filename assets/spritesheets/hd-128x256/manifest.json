@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "cazador_espectral-m",
+  "nextVariant": "arconte-m",
   "classes": [
     {
       "id": "novato",
@@ -450,7 +450,7 @@
       "name": "Cazador espectral",
       "tier": 3.5,
       "order": 56,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "arconte",
@@ -262118,7 +262118,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador_espectral/m/cazador_espectral-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/cazador_espectral/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -262259,8 +262259,8 @@
                 "pixelSha256": "f61cbb5324005aa95969c8f6657cb9f48c7a9de799d107ad9b6b583539be818b"
               },
               "03": {
-                "sha256": "6edfd3a24921a353c810c10dd418870bcd2a66485a3f583e68757767f25e7ee3",
-                "bytes": 23447,
+                "sha256": "216ce1f8a0f745dca87b56be82b60890860f7da260f31f93cce29f20578f469b",
+                "bytes": 24315,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -262269,26 +262269,26 @@
                 "bbox": [
                   13,
                   92,
-                  117,
-                  248
+                  118,
+                  251
                 ],
-                "pixelSha256": "82e725ef528eb817d226c10315251c92822b160b3c1b9c9eff542636ae92d8bf"
+                "pixelSha256": "567aad2d1f59f01ffe9ffc49215cac67ddf149897e8e367b9956d55d216b5e39"
               },
               "04": {
-                "sha256": "77d52fe31be4457cd31276014928538c64dd36c735f4ba3d962239f01fcc093e",
-                "bytes": 24389,
+                "sha256": "b7e695fe0f031bfed5e7549e4a6a48ad89a70ecb56c2426d219fd6a73c16e6dd",
+                "bytes": 24742,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
+                  10,
                   92,
-                  105,
-                  248
+                  107,
+                  251
                 ],
-                "pixelSha256": "76c41ca25956563bb9b94c87a7bdfefc0e47d4e966303f485b7e1587c24b9eeb"
+                "pixelSha256": "c2ff674a87b5d96f41421c609f0c3651e332713df9e23ce8d38378b5647e3f7c"
               }
             },
             "distinctFrames": 4
@@ -262313,36 +262313,36 @@
                 "pixelSha256": "73b14d37aaab49bae45f6ebbfc48cab21dc35325a91dfa849b74f7c71f331fcc"
               },
               "02": {
-                "sha256": "1c77306ae2696c32a388e64625166cad8a26158d8d072ea2159952a3f46f2a9d",
-                "bytes": 24483,
+                "sha256": "b00ae42ae49312e21b845424eee29026ab5baf8ec69ebdf2492660b83f3a7f2b",
+                "bytes": 24710,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  30,
-                  101,
+                  28,
+                  100,
                   117,
                   249
                 ],
-                "pixelSha256": "59ff461dfd00b85b397200db0aded865f933a17b75099929ac400d218de2418e"
+                "pixelSha256": "6e4175877cf29f4c8078779028fa27d8ddd227b86a66a697ed13acc98bedc17f"
               },
               "03": {
-                "sha256": "a181838bbe0f00977e3ccc9cd44ef7fcb8bc19de01eadefc64edb6d2348c86b3",
-                "bytes": 21636,
+                "sha256": "88a01a63f12a1efb5d9e1db57c0ef32c0dbd152c4229eb40a5311f69013caf67",
+                "bytes": 25716,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  121,
-                  111,
-                  249
+                  15,
+                  110,
+                  117,
+                  254
                 ],
-                "pixelSha256": "ab965d56868616be7ad932831984b980821cfa930284bfa6675b69cf26a52ac1"
+                "pixelSha256": "56ed340fdcdb17dfdd0b306acadcd024635ac99e88bd4db6539ab239ae1dad69"
               },
               "04": {
                 "sha256": "89bc06c185d8ae72464180f2adcf166e8698463805a783f4b781f55f5d43e483",
@@ -262765,20 +262765,20 @@
                 "pixelSha256": "3051adb56be7ddf0a0b9c29626f34b30a268a174f64d3a864f2eb47c07ad571b"
               },
               "04": {
-                "sha256": "dfb92ed8fa1b38296b73705a47e84bba56acbad7035777da2360d5be6c338823",
-                "bytes": 25256,
+                "sha256": "2e53662bc1226245918c5a9c3d4991ba86bc8d47e82da71412fb53c63f04a0f0",
+                "bytes": 25875,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  16,
                   92,
                   112,
-                  248
+                  249
                 ],
-                "pixelSha256": "9c079a47d858f44e303b2531890f01efda44e9e51e1f0f00ee7f404424355774"
+                "pixelSha256": "ef4dd62e9c810b4e64d2132f272a46c69437ea685f8441cfd3ef8d31ad29c9f7"
               }
             },
             "distinctFrames": 4
@@ -262905,8 +262905,8 @@
                 "pixelSha256": "141a97175e2b92fd5d1e50d7309322dffe105446790e62d9de5689b8daab9ba7"
               },
               "04": {
-                "sha256": "85c7958180843720f40627725009ed7451029115e8e2862cac7bb33aa279099d",
-                "bytes": 25319,
+                "sha256": "cee6f6fb19e661fcdb7ca71c4ebe9b0190ea03a55ddff5d9f0abb3bb6fd9ff04",
+                "bytes": 25275,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -262914,11 +262914,11 @@
                 ],
                 "bbox": [
                   14,
-                  96,
-                  119,
-                  250
+                  95,
+                  112,
+                  251
                 ],
-                "pixelSha256": "e977cc00f806de5c0b7f512860be05f7b8f6657e9e706717252188668005c620"
+                "pixelSha256": "001abf54b5d9a8e6d9a5a23e19a49f9d4f41664046c1d5b8d7ee90c4275a7b6c"
               }
             },
             "distinctFrames": 4
@@ -263242,13 +263242,14 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "cd5e7fe0eb08b3483c9a8d05ffd0a6905d5445c9c9318c2a027fbbfdb070a3f4",
+          "sourceSha256": "4478a870b73b75f62745eb93414128e9270763dcb412f79b39561037f3f9fde4",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -263270,9 +263271,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete RPG sprite on transparent background at EXACT same position scale and canvas. Move ONLY the near viewer-left fist LEFT and slightly DOWN until its BLACK PALM CENTER covers the magenta circle at its lower-left. Adjust attached wrist and elbow naturally, do not change any other body part or costume detail. Preserve far hand, hair face torso legs and boots exactly. Remove magenta guide. Full feet and hair inside canvas, no equipment or extra figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -263280,13 +263281,146 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "cd5e7fe0eb08b3483c9a8d05ffd0a6905d5445c9c9318c2a027fbbfdb070a3f4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "cd5e7fe0eb08b3483c9a8d05ffd0a6905d5445c9c9318c2a027fbbfdb070a3f4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "f92c64f06404cdf9c0c9bb71ccebc88783a128e1446888146bf6141ebea322c9",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "cd5e7fe0eb08b3483c9a8d05ffd0a6905d5445c9c9318c2a027fbbfdb070a3f4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "d1ba32066287c344caab886ac25a39a37ff47abac0a53884db8d0c1c52bb23bd",
+          "sourceSha256": "6e2b48f571b076e2ae184aa434728d3da80938b03028fd87221fdcfc725777e8",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -263308,9 +263442,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete RPG sprite on transparent background. Move ONLY the far viewer-right open fist LEFT and a tiny bit DOWN until its BLACK PALM CENTER covers the magenta ring on its wrist. Keep near chest fist EXACTLY unchanged. Restore class belt clasp to a ROUND PETROL-TEAL disk with a SILVER crescent along its LEFT rim, eclipsed-moon emblem; replace the current incorrect angular diamond clasp. Preserve all remaining costume details, face, hair, torso, legs, boots, body position and scale. Remove magenta annotation, no equipment or extra figures. Full hair and boots inside canvas.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -263318,7 +263452,140 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d1ba32066287c344caab886ac25a39a37ff47abac0a53884db8d0c1c52bb23bd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "5ab7ad0495b562380814b872c148b3a25a8a9905fe530fda9ebe07b5d549ec0b",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d1ba32066287c344caab886ac25a39a37ff47abac0a53884db8d0c1c52bb23bd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "d1ba32066287c344caab886ac25a39a37ff47abac0a53884db8d0c1c52bb23bd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "e92765027a8cf5f47caa2c345d613e87e35848d698abc7a0be2fcb778f367da2",
@@ -263356,7 +263623,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "f91485b97f23aed538522b87e0c7f148b1de971722aa799d7d6f15a32ec3bd4b",
@@ -263400,7 +263668,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "2da1b8b4259f38a0c45bec8c75cb65b630c96df0a9f90184ba06236998abe5bd",
@@ -263444,7 +263713,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "75d53e187ac14528af34dec472827962940a52a76a78e06a9e00c09ae7a4850c",
@@ -263482,7 +263752,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "6e74a39151dbdf98a9f169d458dd53737cd455cf81c92c37c2c3e40226f02357",
@@ -263520,13 +263791,14 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "26b78f673d94af53fe9e337b1ecb6c302de83152cbca557acfc5359ae8d6b4d1",
+          "sourceSha256": "bcc121315d02b7b9cacae8062617d084528c56c68c2fdd27e3495b25eea92c7e",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -263548,9 +263820,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. ONE complete full-body RPG sprite portrait on true transparent background. Image1 is the edit target with a magenta registration ring. Move only the near fist LEFT and slightly DOWN until the CENTER of its black palm covers the magenta circle. Very small local anatomical correction only. Keep the opposite hand, head, hair, face, torso, legs and boots in their exact current positions and scale. Preserve every costume detail and the canvas proportions. Remove the magenta guide and any stray neighboring figure fragments at canvas edges. Keep full boots and hair inside canvas with clear margins. Exactly one character, empty hands, no weapon, text, grid or ground shadow. Same crisp painted anime RPG rendering.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -263558,7 +263830,140 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "26b78f673d94af53fe9e337b1ecb6c302de83152cbca557acfc5359ae8d6b4d1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "26b78f673d94af53fe9e337b1ecb6c302de83152cbca557acfc5359ae8d6b4d1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "26b78f673d94af53fe9e337b1ecb6c302de83152cbca557acfc5359ae8d6b4d1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "26b78f673d94af53fe9e337b1ecb6c302de83152cbca557acfc5359ae8d6b4d1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "98a9103be4973821674c3ee1e24da74bece17de6586d392316e5eefbfd9b457e",
@@ -263596,13 +264001,14 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
-          "sourceSha256": "d147bdb166af057258456056cb725707c3b32154e17e8dc4fe031c676d8bf9c7",
+          "sourceSha256": "cfb0498c65603003da42f7da8eb3a813a5d1bfdbc950e024c4b5c8c36469149e",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -263624,9 +264030,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. ONE complete full-body RPG sprite portrait on true transparent background. Image1 is the edit target with a magenta registration ring. Move only the forward bow-holding fist slightly LEFT until its BLACK palm CENTER covers the magenta circle currently near its wrist. Very small local anatomical correction only. Keep the opposite hand, head, hair, face, torso, legs and boots in their exact current positions and scale. Preserve every costume detail and the canvas proportions. Remove the magenta guide and any stray neighboring figure fragments at canvas edges. Keep full boots and hair inside canvas with clear margins. Exactly one character, empty hands, no weapon, text, grid or ground shadow. Same crisp painted anime RPG rendering.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
@@ -263634,7 +264040,140 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d147bdb166af057258456056cb725707c3b32154e17e8dc4fe031c676d8bf9c7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "d147bdb166af057258456056cb725707c3b32154e17e8dc4fe031c676d8bf9c7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "d147bdb166af057258456056cb725707c3b32154e17e8dc4fe031c676d8bf9c7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "d147bdb166af057258456056cb725707c3b32154e17e8dc4fe031c676d8bf9c7",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral MALE, Tier 3.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced masculine spectral hunter with ASH WHITE short layered swept-back hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "95d2a1a6d7181498d2d71cce6c8f045a5dc4629efeb6b0664ac5a7933199ffd2",
@@ -263672,7 +264211,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "ada7b4d03126942518e3fddb648950d56a973d82c69eafa39b631241833575ec",
@@ -263710,7 +264250,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "9ce9dc96a4f55e475a390f7d6f33dc18522dc010e05dd3a41089d594b324f0bd",
@@ -263748,7 +264289,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "06b6b5a0b45321db87f8fea505c7b126b95b85bc7ec7b50db736f9122df7637c",
@@ -263786,7 +264328,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -263807,15 +264350,15 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
@@ -263823,11 +264366,11 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
@@ -263835,7 +264378,7 @@
           "frame": 3
         },
         "hurt/04": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.04",
           "frame": 4
         },
         "use_consumable/01": {
@@ -263919,15 +264462,15 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
@@ -263951,15 +264494,15 @@
           "frame": 4
         },
         "attack_bow/01": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
@@ -264061,6 +264604,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "cazador_espectral",
+        "name": "Cazador espectral",
+        "tier": 3.5,
+        "costume": "Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura.",
+        "maleIdentity": "Adult experienced masculine spectral hunter with ASH WHITE short tousled layered hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions.",
+        "femaleIdentity": "Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions.",
+        "armPolicy": "Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose.",
+        "unique": "Silver owl-mask shoulders, ash funerary owl brooch, teal eclipse buckle and feather greaves.",
+        "advancement": "Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/cazador_espectral/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "b80858038e2cb70a0698bdb8b4d27f78b43807199705ef953cf638108c9d42b6",
+            "1bba6b87044ba25c91ab88fd5ec4636be8ffb7e2fd14ce003708506deefe20c7",
+            "2fd1007bd815e5c673e91e00c2aef05557775742617e6e4fcd05fcf3a029f4e5",
+            "cf3c772bdec46c4a3fd17a5f35c9a71eefd78c77ad25e33955dec62cee5f25aa"
+          ],
+          "walk": [
+            "5dfac325910af2d0980a814f8d3a59f6f660ab8cd7ba4efe9c4d5706bc04bf05",
+            "a76413cc5672550a7e7b0ca725dfb3ac8c0b1b9bfc764fd54700744969fee999",
+            "216ce1f8a0f745dca87b56be82b60890860f7da260f31f93cce29f20578f469b",
+            "b7e695fe0f031bfed5e7549e4a6a48ad89a70ecb56c2426d219fd6a73c16e6dd"
+          ],
+          "hurt": [
+            "881f2e83ca400c80564794356a56a2b2288e9775d27f4577e755f2b06a52f37f",
+            "b00ae42ae49312e21b845424eee29026ab5baf8ec69ebdf2492660b83f3a7f2b",
+            "88a01a63f12a1efb5d9e1db57c0ef32c0dbd152c4229eb40a5311f69013caf67",
+            "89bc06c185d8ae72464180f2adcf166e8698463805a783f4b781f55f5d43e483"
+          ],
+          "use_consumable": [
+            "12801c1f6f12e114680a80b3c395b136d71051024a6f986745b0c2d7016378a9",
+            "3fcff8c8c5270f81d4cefd83c833ebae24c4c9337230947a49729ceef2d43caa",
+            "1e9a629ab6f2e8322eceeb57c77393b8a9a5f7cfe80c0d05644ce74d16a104b9",
+            "d4014e0e52066a0d1c385005780182cf3f1b6aa60f211486bf001e79c25fc7a2"
+          ],
+          "dodge": [
+            "a20e4a896c4d44b8ee7663dd7e3dcae531cb4435d431af3eaa0733c705dfa97c",
+            "0dbd4461e650c75c503b03a3830c4ae01456f7e6fe1d5bd5c1c71c636d1e23d7",
+            "7f73c33014f79cf2cefa83562ac553bf63d941aa7f6f047a3ef1c6b101c64eb6",
+            "b8012c305b62e891ee475a2bd34b6b30c84335f7026d40d62c1a8cb6f7fdeba5"
+          ],
+          "block_shield": [
+            "49a5d8e780a550640c923a96f2af5ebee811eb760c01eba460e58beaa8ce8215",
+            "f3e3f0b07548a7445567096d8d6c12bc46f793ecb53d757e3aaba1a842a50bcd",
+            "099418212654ae9b1b3927791314664f8ed5c3647dde987e4c2e742876181f46",
+            "08290005aedd78c0c8e3e15d80ce7a88edf4fc93a1700a46cdbd6decb4b076fd"
+          ],
+          "attack_sword": [
+            "aac7ebf387e41fec952f3d862e8728775ad744452c7f7c5653d9f3d36d53b137",
+            "37bb35f4065aaf3f3dee9e1e66ec72f86caedf446ed70fa00cf00e8c05df8bbe",
+            "152de46ed8aa379708889b5f6e75f5d59c8ff6a47b80b41a501a3bddc219c349",
+            "f8be4f649e17a2d102911420ec62b01b9b57dcff1f5fbad75d9aa5f455b6896f"
+          ],
+          "attack_axe": [
+            "18fb94468d2c7e297b456f44e511396be6bb57f971e00ba4f4d358a142f32cfd",
+            "c276dc478a9d0e348ea6d93dd4f1f89bb86d4847466fa1763b054dedbb31b6de",
+            "8e43996c5c1be3740259a0e6e831ccda7932d30c1f72b7049a86669087fa01a7",
+            "370d77f5c274453c94a1bed52046371c217b34ce79189343a5e0e7d0049a8538"
+          ],
+          "attack_spear": [
+            "3551518ff0a613e8f969af34ba97f36479bb7c7acc3d19d9773b23d66d0006e7",
+            "091147305299a3f9e2cf27068a2616cbcf84b8fb806760b4d1f21a241fd661da",
+            "2ed56aab47a25cad075136cd555a09f7c6807cb6796becd8b6d31da9e5deeebb",
+            "2e53662bc1226245918c5a9c3d4991ba86bc8d47e82da71412fb53c63f04a0f0"
+          ],
+          "attack_dagger": [
+            "047e047eec1804fca509dfca280234c17560dcdecc3581cb9ae6604f976a2c61",
+            "44f15d515a6eb98ed6307f5e5a5d8fbc0d44dbc0556bbbb1c3c124e8f3fd44a9",
+            "dcc537fc6f9ee448a6790344fb516930f543fb046dd26ab07bc392240dfa8c2a",
+            "51df3ec84be6bedf7ca481170d86b72db2563ff074056e75868be4e803ef9cf0"
+          ],
+          "attack_bow": [
+            "72ad1e70b250b3be2e117a082ab638a7065c8155c3c9f80a127dea26ca73df59",
+            "e2097393b82ff6251ac912c193b710c9e7e8a06d1abc670734d0146d450092fe",
+            "83e36e54099871194b316c6f65217c1c5c8b8bebb4affcc6bfbb7397676b4667",
+            "cee6f6fb19e661fcdb7ca71c4ebe9b0190ea03a55ddff5d9f0abb3bb6fd9ff04"
+          ],
+          "attack_staff": [
+            "dc8016d698c707bff52c47eb3a2f82b713edbafb76916cce6922a9fd7f6cf5a0",
+            "2fc3b9b4186cd05fa850ae44c81f0902fa6c06ac995db6f8eeeab5b33a95e0a4",
+            "c38dfe520e0dd1a078bf9d6ddfd82d4817a0ed849832e167ceb52a53aac75d8e",
+            "2a8bd02409a8c6c239d08e9bd5e8793637e2981171ca00c1ba2c0d9429c2fc0a"
+          ],
+          "attack_mace": [
+            "dbe86f4ef918e63373b60a5fc2e4043071028c80a71ca87cdc66051a39361478",
+            "e2e0460560ee9d36113e322a194c725a8a8a03ddd064133ae981ccac40fd9859",
+            "808f1c6c3890c601e9718992242b7e00049d66179e3a1cff483c2a0f7aa17abd",
+            "8bce9d5280dc9b8d9b928968e5a6b15db66b38b4cfe2670adbcc09b7283f8ed3"
+          ],
+          "attack_book": [
+            "a30ce5389258fa63b7791dc1717bd65393d92a5e111392a122409b523f8275bf",
+            "af6b61c1a5a74be315175db0bb577278be4f845b1990dcbd9233cb37aa56531f",
+            "95dc2b803dddc75e404065b5faf38c8d8a2e96e9a4fd3c87784c622567b983c0",
+            "fe90a5ba6afdd71eee1ec3871062efd4ecc2e0f520dbc8c5f0a1019b072a0a95"
+          ],
+          "attack_gloves": [
+            "a4cfb18ec44626d9517f239e33eede317ec2249dc8f5c2033eefe272a2311351",
+            "0574cb190dae11576181876beaa241b65fca9d784cdb6f6e79d424a095035282",
+            "57bac13d5cbcbb0aab8dd9c06ef40a2ca8abfe8ffc89bf0021f82f5962056789",
+            "8acdc15982227d25fd2e400f954d68348ad59a3fc9a10a1fb349f962742eb0da"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -264073,7 +264731,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador_espectral/f/cazador_espectral-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/cazador_espectral/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -264214,24 +264872,24 @@
                 "pixelSha256": "ab181d0c760449b06f1b49d4232389734932ac94397a12c5fe041ed296165c8f"
               },
               "03": {
-                "sha256": "cf2463983b323aa66ea58bb5a1e5f7e94bc64c0654ed2dd5d3b22a3fed0bc08d",
-                "bytes": 26167,
+                "sha256": "2d75784f4e34d609793ccd17d1c1614b322c8493a909257785015cd0cfadb267",
+                "bytes": 25569,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
+                  5,
                   89,
                   112,
-                  247
+                  245
                 ],
-                "pixelSha256": "1f147a2da5b9d7ed81ae9aa5a133b4387d121f3e1a511dfb3135b9fe05c3b033"
+                "pixelSha256": "d6d70150e6d8a56aabd11e453b4211ede6695ab6ba654de67d457b3ae7cfcf13"
               },
               "04": {
-                "sha256": "bf4f787a38fd6d2766de2574a11067880b6ec429118cb42a7e251e7d64c6050b",
-                "bytes": 24343,
+                "sha256": "b8c548d034c3014116b00b6ea7198f5a93d4c0ada834abef59ea83d29ce119e8",
+                "bytes": 24856,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -264243,7 +264901,7 @@
                   98,
                   249
                 ],
-                "pixelSha256": "d83fb357ef4e69b9604405cb37b486fed4c133d3b2ad738ba934d409edecacff"
+                "pixelSha256": "0fa2c3e208837200d694ea204ef9cf02074825edc0db40d2dd6c435ee4f81269"
               }
             },
             "distinctFrames": 4
@@ -264300,8 +264958,8 @@
                 "pixelSha256": "806a98ae3b8493fcd98ff275c23a5c473d59cfb240f135d054e8d34558a17cfe"
               },
               "04": {
-                "sha256": "6e668d43ee1145cca6d3f5e41f26321e80da2f7c63606dc7594eba4b41427fb0",
-                "bytes": 25425,
+                "sha256": "d16b3cb90013552e2467821b06e87ebf5924a5ca99eae89645292e9ef1dd249a",
+                "bytes": 26046,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -264310,10 +264968,10 @@
                 "bbox": [
                   20,
                   91,
-                  100,
-                  248
+                  103,
+                  252
                 ],
-                "pixelSha256": "af37fb150133da51d349b3b3101d652377e88b806f50daf6cc8fecef5ccf22c2"
+                "pixelSha256": "c8a5e4f9e6badda8be2460c7119f11fdd9a4484419e2cd81f63e6970e2e11098"
               }
             },
             "distinctFrames": 4
@@ -265140,8 +265798,8 @@
                 "pixelSha256": "7ea9bec0ae919a14606f4e60081d6a8bca34b5c75be33e8a5abe12c9b80422ba"
               },
               "04": {
-                "sha256": "fe4198f062c25574f7ca505d800472a378c2ac7c9d51597275b1957f5785778b",
-                "bytes": 25274,
+                "sha256": "e00dbc181fe95cc84460f4ddabea3a0f6dc9270231ec946877eafbdfa253588f",
+                "bytes": 26176,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -265150,10 +265808,10 @@
                 "bbox": [
                   14,
                   91,
-                  96,
-                  248
+                  99,
+                  252
                 ],
-                "pixelSha256": "2d910e07a28259edb16d87df31487155a985dc47e1dcf9a03b02f2bb0f18476b"
+                "pixelSha256": "1acae469c3e191f0d1c1679fe223361ca707f16a750ce92c5a5c4fb2128d6f0a"
               }
             },
             "distinctFrames": 4
@@ -265197,13 +265855,14 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
-          "sourceSha256": "c917434c4cdaf9e35ee58c8d36e9139fb4445a5faf4810474df231260415eef0",
+          "sourceSha256": "ad08dbaf9c5aad47ee35fa08a806bca86636bb5aedce564b99fd3be5e5313aab",
           "sourceDimensions": [
-            2169,
-            725
+            4340,
+            1450
           ],
           "registeredSourceDimensions": [
             2170,
@@ -265225,9 +265884,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise-object-edit. ONE complete full-body RPG sprite, transparent background, exact current position scale and canvas. Move ONLY the near viewer-left fist LEFT until its BLACK PALM CENTER covers the magenta ring directly to its left. Tiny downward adjustment only if needed. Adjust attached wrist/elbow naturally. Keep far forward hand, hair face torso legs boots and costume details precisely unchanged. Remove magenta guide. Full hair and boots inside canvas with margin, no equipment or extra figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -265235,13 +265894,146 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "c917434c4cdaf9e35ee58c8d36e9139fb4445a5faf4810474df231260415eef0",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "c917434c4cdaf9e35ee58c8d36e9139fb4445a5faf4810474df231260415eef0",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "d1b7197d515f1837e4b8f6098ba1f63adb98a098c6b832ab315c17a072ec42c1",
+              "sourceDimensions": [
+                4340,
+                1450
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "c917434c4cdaf9e35ee58c8d36e9139fb4445a5faf4810474df231260415eef0",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
-          "sourceSha256": "32c1a1a950c6d00d3865fee05ed22567dd1b2a60a8a65c848ca91bbe2cd0a1ad",
+          "sourceSha256": "1cc596d9ce756c78bb5775b4b39d8976bda8e03ea1994d92f41359ec320052d2",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -265263,9 +266055,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. ONE complete full-body RPG sprite portrait on true transparent background. Image1 is the edit target with a magenta registration ring. Move only the near fist RIGHT and slightly UP until its BLACK palm CENTER covers the magenta circle. Very small local anatomical correction only. Keep the opposite hand, head, hair, face, torso, legs and boots in their exact current positions and scale. Preserve every costume detail and the canvas proportions. Remove the magenta guide and any stray neighboring figure fragments at canvas edges. Keep full boots and hair inside canvas with clear margins. Exactly one character, empty hands, no weapon, text, grid or ground shadow. Same crisp painted anime RPG rendering.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -265273,7 +266065,140 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "32c1a1a950c6d00d3865fee05ed22567dd1b2a60a8a65c848ca91bbe2cd0a1ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "32c1a1a950c6d00d3865fee05ed22567dd1b2a60a8a65c848ca91bbe2cd0a1ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "32c1a1a950c6d00d3865fee05ed22567dd1b2a60a8a65c848ca91bbe2cd0a1ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "32c1a1a950c6d00d3865fee05ed22567dd1b2a60a8a65c848ca91bbe2cd0a1ad",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "55f9ea205d870741d12c7566833b798ac8622fbc977a358ef685e025a6675e19",
@@ -265311,7 +266236,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "5c489b261a033d17151c466f421610f74611cf0718384e865e973685ea351d0c",
@@ -265349,7 +266275,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "fd938ff60b8792f96d253dd8a44cdb7acfed703363b1ca1d99f97cc2e00279b4",
@@ -265387,7 +266314,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "61263ceb46eb4043bdb2476b756a1aa86c8bbbf823ce44868779c365b91b7b10",
@@ -265425,7 +266353,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "171b11f8af541fb952314edd2643c48c20d87a8e4b7d7c3646bcc3b0975f41d6",
@@ -265463,7 +266392,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "c4312f23cb18468e4522d632d92592d79f5321b5cb8bdcd4057006d973b51593",
@@ -265501,7 +266431,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "d5cf6112749c90c25a227388bbb4934361a32c1a914e02fa342cb970bab58fe0",
@@ -265539,7 +266470,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "cd8f3c400e0de3f108575024d75eb502186286df27f1380502160311769e76c6",
@@ -265577,7 +266509,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "dd7ed079d116d980283ea48e43ebc421acf0c922db8e828029594a0cad1157d3",
@@ -265615,7 +266548,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "83f43b2a15c08cd158db2dfa6c1ff83d67480ce8112e1ad5b424caa395d3c679",
@@ -265653,7 +266587,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "d3c47955b3a87276cc050bc89489b47d5fb3eaa579ebd8f40bfe4f1456253a4c",
@@ -265691,13 +266626,14 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
-          "sourceSha256": "8ace295f832b926f702da5d1a6f4928e46770f092afe05fc3c2ff4b5fee3bb8e",
+          "sourceSha256": "bb48e3bb995da612fea452267e506deac4889ba89720b7d0863ad2ead6640bf4",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -265719,9 +266655,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Use case: precise-object-edit. ONE complete full-body RPG sprite portrait on true transparent background. Image1 is the edit target with a magenta registration ring. Move only the near left-side fist RIGHT until its BLACK palm CENTER covers the magenta circle on the chest. Very small local anatomical correction only. Keep the opposite hand, head, hair, face, torso, legs and boots in their exact current positions and scale. Preserve every costume detail and the canvas proportions. Remove the magenta guide and any stray neighboring figure fragments at canvas edges. Keep full boots and hair inside canvas with clear margins. Exactly one character, empty hands, no weapon, text, grid or ground shadow. Same crisp painted anime RPG rendering.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -265729,7 +266665,140 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "8ace295f832b926f702da5d1a6f4928e46770f092afe05fc3c2ff4b5fee3bb8e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "8ace295f832b926f702da5d1a6f4928e46770f092afe05fc3c2ff4b5fee3bb8e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "8ace295f832b926f702da5d1a6f4928e46770f092afe05fc3c2ff4b5fee3bb8e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "8ace295f832b926f702da5d1a6f4928e46770f092afe05fc3c2ff4b5fee3bb8e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cazador espectral FEMALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose. Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions. Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura. Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -265750,11 +266819,11 @@
           "frame": 4
         },
         "walk/01": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.01",
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
@@ -265762,19 +266831,19 @@
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -265958,15 +267027,15 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
@@ -266004,6 +267073,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "cazador_espectral",
+        "name": "Cazador espectral",
+        "tier": 3.5,
+        "costume": "Tier3.5 spectral hunter light armor: fitted CHARCOAL BLACK full-sleeve hunter coat with deep PETROL TEAL lining and narrow ASH IVORY front chest strips, close split knee-length coat panels. Compact polished SILVER OWL-FACE shoulder caps with two tiny TEAL enamel eyes and swept angular feather engraving, same on both shoulders. A small ASH IVORY diamond-shaped funerary OWL MASK chest brooch with teal inset eyes. Black belt with flat SILVER ECLIPSED-MOON buckle, one dark teal enamel disk partly covered by silver crescent. Three small SILVER horizontal clasp bars on upper chest. Charcoal fitted trousers, black riding boots with SILVER FEATHER shin plates and teal rim bands. Compact black/silver forearm guards engraved with one silver feather and BLACK fingerless gloves. Low SILVER temple band with compact teal diamond at brow. No hood, cape, scarf, quiver, bow or sheathed weapon, no equipment, magic or aura.",
+        "maleIdentity": "Adult experienced masculine spectral hunter with ASH WHITE short tousled layered hair, single dark PETROL TEAL streak at near temple, pale teal eyes, clean-shaven. Canonical masculine head and proportions.",
+        "femaleIdentity": "Adult experienced feminine spectral hunter with ASH WHITE hair in a high thick LAYERED PONYTAIL and single dark PETROL TEAL streak near temple, pale teal eyes. Canonical feminine head and proportions.",
+        "armPolicy": "Exact canonical empty black fingerless palms and finger coordinates. Full charcoal sleeves and compact silver-black bracers in every pose, no exposed Novato sleeves or arms. Compact owl shoulders inside canonical silhouette. Keep same owl mask, eye color, feather engraving and eclipsed moon clasp across every pose.",
+        "unique": "Silver owl-mask shoulders, ash funerary owl brooch, teal eclipse buckle and feather greaves.",
+        "advancement": "Tier3.5 fusion of Francotirador precision and Nigromante funerary magic: superior silver feather armor and petrol-teal/charcoal tailored hunter coat. Owl-mask heraldry and eclipsed-moon clasp create an eerie precision hunter, distinct from Francotirador green hawk/chevrons and Nigromante ivory rib coat. Full body at exact canonical scale.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/cazador_espectral/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "57d067296c815d9eb964928bc3c82ff609cdf4c135421953e167daad317e6a1e",
+            "2d1e87fe68cec7d2c50106fae7aa4988874d4988a300524ba35a7a80fa82b262",
+            "fa221e9e42ebe2d009f3fb5517a9799d97a42f732a0a6b519ce2552348bda1d1",
+            "fe72d7bf5293cccc49d17f10989272ecc6bc58a39d48da79b6b0b6fbb52b650b"
+          ],
+          "walk": [
+            "16c61ff6e14a290234805978fa5c824c58f652d4a874d185a255267cdcf99b33",
+            "5cb6b793e8bd00576e46350982509c622305beb9caa0498588790f065b22a021",
+            "2d75784f4e34d609793ccd17d1c1614b322c8493a909257785015cd0cfadb267",
+            "b8c548d034c3014116b00b6ea7198f5a93d4c0ada834abef59ea83d29ce119e8"
+          ],
+          "hurt": [
+            "48f236873f1e109d9d648bc902e0d49f1570bc09278eebc84c4f34282b9ccf3c",
+            "a3426cdbb0bd092369b20e81f1b5a57dc0235a69ef16445cb29c56e0a1ccf68f",
+            "206d09378a3714624f953dde33d46b39039a5bc6ac55e22e29685c29c6c57730",
+            "d16b3cb90013552e2467821b06e87ebf5924a5ca99eae89645292e9ef1dd249a"
+          ],
+          "use_consumable": [
+            "ddd4fa388f8af77e154cdd7352232140920f64cce1a6fd0d3670e8ac99163a1e",
+            "121c325ce1ed09f59449b1215b406022f6a0840b6f967cc6ce30b45b3f65748c",
+            "a53e166cefd75f1bdfb224343f3bb31530dbec939baea2442496c0ab4150b91e",
+            "e96ed22584c8a90c498b9169142d2b53c28cef52e5bdbb760d25184c32460862"
+          ],
+          "dodge": [
+            "36f9892e1b869aa202699b5118f3ed2736cd5ce702d7cc1b36b061f487b75b48",
+            "c4e4852e2aa56d8f96795f692336ef737e7163c392e4b600c07abc9891f4e605",
+            "211f6601d8cd60df11e5bdefedef2ce8b64f1f8a2dc5e07e9fb6874524490c39",
+            "43faaa9ce64e5fbb2a9f5060e191244d138f3408e5d67bac9de054f52ad39dbb"
+          ],
+          "block_shield": [
+            "cf50925e92d785a28907f4d7b4b098ddd1e4d1839b0143945976d6363160c7a0",
+            "3e5ee2a7ff01134f453b1e0bb036dc1ca625e6b260ff8dc5b6bacff4f966e72e",
+            "10ecee45de0ccbde94bf73ff3d3d5ed63f52f9b6c1021cb2bc2410bdb108844c",
+            "68e6149a4fde090e99b660e17be4e87d7bdf89ddf1bd0af26e71a02341ee8e97"
+          ],
+          "attack_sword": [
+            "d040d96240c2a1f6f4a7c6374f1b3b93aa88a095ae13c763f7e666473f0682dd",
+            "9e65f2bf4211a58b07356d0d6e52cff5f6f1249a211fd5be7abe8ab854780517",
+            "75b146f550c79db480f58376a6a266fade802d37b357cd518c517df019238915",
+            "79e9fd3ce49e139620ebf54f35fa3195f1b52357573210925cac4de36e3e4ccc"
+          ],
+          "attack_axe": [
+            "6e3693126296a09df4ea5882dd90132e7fcb7fb1a4a41fd0955a5a0d2611a3b4",
+            "1f0b2abcc58fdd2e0e3bc4a18e1dc70eb02d7151f203c6c3c5101ee99f188763",
+            "1c1cefc2fdb70a2a0fa4680eb010789f5135edfa9d4324d4fcfe721e0338c13a",
+            "8d8aa65c446dc506599262019410e4b562eb40c59bb351c6519104aa26d023c1"
+          ],
+          "attack_spear": [
+            "6263f9c3d192857437fbdaeff24a5e8ab472b432d593601fbe31c37b9672c210",
+            "63d565981c820d87ec827d06320db1055be96922a6229936ed9bd12a2a52c1e9",
+            "e9afab98e160632e1fc071b65414162464fa5510463ed1027afdb70e3e08eeeb",
+            "607b93575ae86ee506536dc753132b43d301c5d8d09549df7a71e98a2dbb74bf"
+          ],
+          "attack_dagger": [
+            "909cf11b4f8af1a5648e98bfa1ff23885c720ad11d36d0db691f0ba2ca9d8ffb",
+            "53ca7e0ccc55d6e278546aff66d52ff72728b24c2e0b4f34096c1fd4f1f82ea1",
+            "e3f3b544e8564235f0cde66034e7d312ec2c75cd21ece5961ca6c9c284d595a1",
+            "057ee79f605facea651bea572c2eacf7c445c2054d6b9e7b2e40a9fe62d47af3"
+          ],
+          "attack_bow": [
+            "bca9b74cd6bd261718ae0aa5d8a80cb8531912f7bce3e862a99e60558710d2a6",
+            "774f4ba9401750df7a8430a7a417aab5d07e356ac2fbc67ba05f1add3c63d97b",
+            "e11e8ecc7bacd6a631303653a70119dfdedae6ba342374b45ffa3939ebee0b5e",
+            "9a1f1ae6acb99835fe98b8fbb6eedb7eb238b73c7916baa223c1bbc799c3d812"
+          ],
+          "attack_staff": [
+            "a6df8bcc3edaab1ab8f24a236bace622f689eec1d21562e54769ec91f2e1112b",
+            "5c916fef14477f679834975fa4d71e9a53b6d8d7c804554feb0467594d7e8e79",
+            "3117859f0c92bbf850368a46fd6166adc96421fb080ebcdfe734b0361ca30802",
+            "76bbb4de43265aaf67027972fc7cbd744729695876f99e074533b7a0b1f03fa9"
+          ],
+          "attack_mace": [
+            "a854ea555358c8720204dbf3e184f5bac13e051351ed7e66a20da7d129404cba",
+            "b5d8d8b92f7f5704e8eabb4244ae4c1b975f8f6ea6a52ed8ac4462839234225f",
+            "7a3b8c5f759dacdf304b04efa1b023d564de412db0843b5735b47431153cf55d",
+            "cbc2b4cafe6e3cdd6ab5648be581fede79810e3fce4811854760ae632402e6bf"
+          ],
+          "attack_book": [
+            "54927fd8baf0e584377ceaf74ab48578bbcc40a008a628d0501cf45e681f77b5",
+            "8650a07c730726c534f12dc91df8ad0a470abe62f9bebe286f0dd2e8a733abe5",
+            "0a05691c179da7bf82c01d4c811a44a29ddf17b0d2ea44c69b0ea0d6590c0683",
+            "dffb6d26b592847ebd8ca54e4d842b5966207e75d01207614d57edf6374f7d2a"
+          ],
+          "attack_gloves": [
+            "3444fbad453c3ef80052254850c94f8d49174de88283144364425b591b2e3460",
+            "86de4e6751a2e870849e7987a411f3a2cdbf84ffef966fd111b520ee932f2d1b",
+            "11be76cc091128b5a11e3344d5fd8ab1321a49d33e0e4be5373e89cbfeece2dc",
+            "e00dbc181fe95cc84460f4ddabea3a0f6dc9270231ec946877eafbdfa253588f"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -266012,12 +267196,12 @@
       "tier": 3.5,
       "sex": "m",
       "order": 113,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/arconte/m/arconte-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/arconte/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -266031,12 +267215,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d0825bef83c2499fe5af426c26ba5fe9f84b1ec51ed1f0a11059024aeeb909fc",
+                "bytes": 26096,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "8911e6f38b33007b0129073f86d2abc5b76549ca44f5e7936cbd92c438a85963"
+              },
+              "02": {
+                "sha256": "c5655f5de2610bfee21ec3c33d87d594c22a272c96b4cf2de9ab2099c0b6d251",
+                "bytes": 26063,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "267487751de1c0d35e2a7b9411a59bf86d18e47402ef9a1c6084b128faa40d94"
+              },
+              "03": {
+                "sha256": "79d3353af1cea89373a198531a16ee4368aef9a2e009da882342d33a720d1ffd",
+                "bytes": 26170,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "680b245822250281a148f88e474b0e354d21fbdd99d4140e8d29cfb927a89933"
+              },
+              "04": {
+                "sha256": "628ef0bfe12e22e431a8fbd9460a220f76a08e438b5a5f865d7750ea7ea93c9d",
+                "bytes": 26102,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  107,
+                  249
+                ],
+                "pixelSha256": "359e0b440af6319c7cda370d2fd19ea1f8ed5bedc4aaf7552133573d89bfe2b8"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -266081,6 +267334,64 @@
             "status": "missing"
           }
         }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "9f8592690f6bf51495b57b523594daa7128f5335948307c43c14295fdbd8e460",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/arconte/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Arconte MALE, Tier 3.5, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. No second reference yet: establish this NEW class identity and costume from the written design. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Arconte with platinum-gold neat swept-back short waves, confident focused eyes; canonical head size. Fitted PEARL-WHITE and DEEP COBALT ritual coat with twin GOLD sanctuary stoles, compact ivory-and-gold angular shoulder yoke, physical opal sun-and-star chest medallion, narrow four-color enamel gem plates at belt, short split robe tails close to thighs, midnight trousers and gold-rim ivory boots, navy fingerless gloves. Flat gold star-and-sanctuary diadem close to hair. No halo, wings, cape or magic effects. Full pearl-white sleeves with cobalt cuff insets, compact GOLD bracers with SUN-STAR engraving; FOUR small rectangular belt enamel tiles LEFT TO RIGHT RED BLUE AMBER GREEN. Twin GOLD stoles have narrow COBALT temple-gateway embroidery. Gold sun rays and central opal gemstone are physical medallion pieces, no glow. Ivory boots bear gold sun-star shin inlays. Tier3.5 superior fusion/evolution of Hierofante and Archimago. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
       }
     },
     {
@@ -266089,12 +267400,12 @@
       "tier": 3.5,
       "sex": "f",
       "order": 114,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/arconte/f/arconte-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/arconte/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -266108,12 +267419,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9649007b370accb4a663a4dfb7cc6cff27d1ee716713c49c7b8a3fa6a339da92",
+                "bytes": 25784,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "55258b8024b40976cbb52919201ce949eae67ddcdf6aef5158ff2a50ed7f47ea"
+              },
+              "02": {
+                "sha256": "95a95a5edd48c0d87345654a02a6be9d73c62ca37fa37ae424b5f1207dc88caf",
+                "bytes": 25831,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "f5f1ccbd1419fdcb001a5bc2392580c7cbed84d68b22cc741b29142227627883"
+              },
+              "03": {
+                "sha256": "0093068587d6f5b9e6adabe65cc79d0f1750162ab125d51ef16676ba4e783ce3",
+                "bytes": 25792,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "3e0966a34ce028c08ce4828bbeda1ae9dd62125df9fb1b4b02d6bdb38b319501"
+              },
+              "04": {
+                "sha256": "67aefebb6dfa92d7961352e3a36047835f1fc04e12e29e4e6580e5b7d34d2d5c",
+                "bytes": 25852,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "681d2dcd2140e91bf8d2231c42f5b95ae8075b8d27cc17253d12dd78bab475b9"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -266157,6 +267537,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "db4baea60db56d70b1b727932eab4dcb044716434f7b60a459c9252aaf2189ad",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/arconte/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Arconte FEMALE, Tier 3.5, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Arconte with platinum-gold hair in compact braided crown, confident focused eyes; canonical female head size, no facial hair. Fitted PEARL-WHITE and DEEP COBALT ritual coat with twin GOLD sanctuary stoles, compact ivory-and-gold angular shoulder yoke, physical opal sun-and-star chest medallion, narrow four-color enamel gem plates at belt, short split robe tails close to thighs, midnight trousers and gold-rim ivory boots, navy fingerless gloves. Flat gold star-and-sanctuary diadem close to hair. No halo, wings, cape or magic effects. Full pearl-white sleeves with cobalt cuff insets, compact GOLD bracers with SUN-STAR engraving; FOUR small rectangular belt enamel tiles LEFT TO RIGHT RED BLUE AMBER GREEN. Twin GOLD stoles have narrow COBALT temple-gateway embroidery. Gold sun rays and central opal gemstone are physical medallion pieces, no glow. Ivory boots bear gold sun-star shin inlays. Tier3.5 superior fusion/evolution of Hierofante and Archimago. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -267944,7 +269382,7 @@
       "id": "arconte",
       "name": "Arconte",
       "tier": 3.5,
-      "costume": "Fitted PEARL-WHITE and DEEP COBALT ritual coat with twin GOLD sanctuary stoles, compact ivory-and-gold angular shoulder yoke, physical opal sun-and-star chest medallion, narrow four-color enamel gem plates at belt, short split robe tails close to thighs, midnight trousers and gold-rim ivory boots, navy fingerless gloves. Flat gold star-and-sanctuary diadem close to hair. No halo, wings, cape or magic effects.",
+      "costume": "Fitted PEARL-WHITE and DEEP COBALT ritual coat with twin GOLD sanctuary stoles, compact ivory-and-gold angular shoulder yoke, physical opal sun-and-star chest medallion, narrow four-color enamel gem plates at belt, short split robe tails close to thighs, midnight trousers and gold-rim ivory boots, navy fingerless gloves. Flat gold star-and-sanctuary diadem close to hair. No halo, wings, cape or magic effects. Full pearl-white sleeves with cobalt cuff insets, compact GOLD bracers with SUN-STAR engraving; FOUR small rectangular belt enamel tiles LEFT TO RIGHT RED BLUE AMBER GREEN. Twin GOLD stoles have narrow COBALT temple-gateway embroidery. Gold sun rays and central opal gemstone are physical medallion pieces, no glow. Ivory boots bear gold sun-star shin inlays.",
       "maleIdentity": "Adult experienced masculine Arconte with platinum-gold neat swept-back short waves, confident focused eyes; canonical head size.",
       "femaleIdentity": "Adult experienced feminine Arconte with platinum-gold hair in compact braided crown, confident focused eyes; canonical female head size, no facial hair.",
       "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
