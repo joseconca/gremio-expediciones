@@ -241,8 +241,11 @@ test("los orquestadores de combate consumen efectos desde su motor, sin envoltor
   const accion = fs.readFileSync(path.join(root, "src/server/services/combate/accion-combate.ts"), "utf8");
   const pve = fs.readFileSync(path.join(root, "src/server/services/combate/pve.ts"), "utf8");
   const pvp = fs.readFileSync(path.join(root, "src/server/services/combate/pvp.ts"), "utf8");
+  const party = fs.readFileSync(path.join(root, "src/server/services/party/combate-party-actions.ts"), "utf8");
   assert.doesNotMatch(accion, /(?:export )?function (?:obtenerEfectos|actualizarEfectosAlInicioTurnoJugador)\(/);
   assert.match(pve, /procesarEfectosTurno\(/);
   assert.match(pvp, /procesarEfectosTurno\(/);
   assert.doesNotMatch(pve + pvp, /actualizarEfectosAlInicioTurnoJugador/);
+  assert.doesNotMatch(party, /function (?:obtenerEfectos|convertirEfectos)\(/);
+  assert.match(party, /leerEfectosCombate\(participante\.efectos\)/);
 });

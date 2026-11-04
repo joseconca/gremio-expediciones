@@ -15,7 +15,7 @@ import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion
 import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
-import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
+import type { DefinicionHabilidad } from "@/lib/tiposJuego";
 import {
   calcularAtaqueModificado,
   calcularEvasionModificada,
@@ -44,12 +44,6 @@ const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializa
 
 
 
-function obtenerEfectos(valor: unknown) {
-  return leerEfectosCombate(valor);
-}
-
-
-
 async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string) {
   const personaje = await tx.personaje.findUnique({
     where: { usuarioId },
@@ -71,10 +65,6 @@ async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioI
   return personaje;
 }
 
-
-function convertirEfectos(valor: unknown): EstadoEfectoHabilidad[] {
-  return obtenerEfectos(valor) as EstadoEfectoHabilidad[];
-}
 
 function validarCostesHabilidad(personaje: { energiaActual: number; manaActual: number }, habilidad: DefinicionHabilidad) {
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
@@ -260,7 +250,7 @@ export async function ejecutarAccionCombateParty(
       return h.slot?.startsWith("pasiva_") && definicion?.tipo === "pasiva" && puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)
         ? total + (ajustarHabilidadPorNivel(definicion, h.nivel).bonusCuracion ?? 0) : total;
     }, 0);
-    let efectosJugador = convertirEfectos(participante.efectos);
+    let efectosJugador = leerEfectosCombate(participante.efectos);
     let cooldowns = obtenerCooldowns(participante.cooldowns);
     const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
     const enemigoLegacy = crearEnemigoLegacy({
@@ -296,7 +286,7 @@ export async function ejecutarAccionCombateParty(
     if (!enemigoSeleccionado) {
       throw new PartyServiceError("El enemigo seleccionado ya no está disponible.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
     }
-    let efectosEnemigo = obtenerEfectos(enemigoSeleccionado.efectos);
+    let efectosEnemigo = leerEfectosCombate(enemigoSeleccionado.efectos);
     let enemigoHp = enemigoSeleccionado.hp;
     const estadoInicioTurno = procesarEfectosTurno(
       efectosJugador,
@@ -435,7 +425,7 @@ export async function ejecutarAccionCombateParty(
           }
           const esPropio = aliado.usuarioId === usuarioId;
           const hpAliado = esPropio ? jugadorHp : aliado.jugadorHp;
-          const previos = retirarEfectosHabilidad(esPropio ? efectosJugador : obtenerEfectos(aliado.efectos), habilidad.id, esPropio ? jugadorDefensa : aliado.jugadorDefensa);
+          const previos = retirarEfectosHabilidad(esPropio ? efectosJugador : leerEfectosCombate(aliado.efectos), habilidad.id, esPropio ? jugadorDefensa : aliado.jugadorDefensa);
           const efectosDelObjetivo = previos.efectos;
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
             contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: aliado.jugadorHpMaximo, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true,{numeroObjetivos:objetivosAliados.length,principal:indiceObjetivo===0,...(habilidad.versionReglas===2&&habilidad.efecto==="curacion"&&habilidad.objetivo?.patron!=="individual"?{pesoCuracion:pesos[objetivo.id]}:{})}) : undefined,
@@ -533,7 +523,7 @@ export async function ejecutarAccionCombateParty(
           if (!enemigo || enemigo.hp <= 0) {
             throw new PartyServiceError("Uno de los enemigos elegidos ya no está activo.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
           }
-          const efectosDelEnemigo = obtenerEfectos(enemigo.efectos);
+          const efectosDelEnemigo = leerEfectosCombate(enemigo.efectos);
           const resultado = resolverHabilidadJugador(habilidad!, {
             contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false,{numeroObjetivos:objetivosEnemigos.length,principal:indiceObjetivo===0}) : undefined,
             bonusCuracion,
@@ -650,7 +640,7 @@ export async function ejecutarAccionCombateParty(
     const enemigoPrincipalTrasAccion = enemigosVivosTrasAccion[0] ?? enemigosEnCombate[0];
     enemigoHp = enemigosVivosTrasAccion.length > 0 ? enemigoPrincipalTrasAccion.hp : 0;
     enemigoDefensa = enemigoPrincipalTrasAccion.defensa;
-    efectosEnemigo = obtenerEfectos(enemigoPrincipalTrasAccion.efectos);
+    efectosEnemigo = leerEfectosCombate(enemigoPrincipalTrasAccion.efectos);
     const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
       p.usuarioId === usuarioId ? { ...p, jugadorHp, estado: jugadorHp > 0 ? "activo" : "caido" } : p,
     );
