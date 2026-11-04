@@ -204,7 +204,7 @@ El paso al regreso se aisló también en `server/services/party/regreso-combate.
 
 ### Fase 3.4 — Acciones y turno enemigo con propietarios separados
 
-El servicio histórico `src/server/services/party/combate-party-actions.ts` conserva `ejecutarAccionCombateParty` y reexporta `ejecutarTurnoEnemigoParty` para mantener sin cambios las rutas HTTP y los consumidores externos. La implementación de la segunda está ahora en `server/services/party/turno-enemigo.ts`; su código de selección de objetivo, pulsos, barreras, ataque, cola de iniciativa, actualización de HP y guardado se trasladó sin alterar las secuencias.
+El servicio `src/server/services/party/combate-party-actions.ts` expone `ejecutarAccionCombateParty`, mientras `turno-enemigo.ts` expone `ejecutarTurnoEnemigoParty` directamente para la ruta HTTP, sin reexports entre servicios. La implementación de la segunda está ahora en `server/services/party/turno-enemigo.ts`; su código de selección de objetivo, pulsos, barreras, ataque, cola de iniciativa, actualización de HP y guardado se trasladó sin alterar las secuencias.
 
 - `server/services/party/recursos-turno.ts` contiene la regeneración que comparten ambos tipos de turno, incluidas las estadísticas, el equipo y el control optimista sobre energía/maná.
 - `server/services/party/contexto-combate.ts` es el propietario de la validación del identificador, carga del combate y normalización de participantes.
@@ -333,3 +333,13 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - El store obtiene nombres, descripciones y niveles máximos del catálogo mediante `Object.keys`, en lugar de nueve definiciones repetidas. Se conservan las inicializaciones de nivel y la presentación.
 - Los dobles de pruebas que aún simulaban el catálogo desde `tiposJuego.ts` se eliminaron. No se modificaron costes, niveles, tiempos ni endpoints.
 - La regresión y la compilación siguen pendientes de confirmar en el commit actual.
+
+
+### Cierre de fuentes únicas y servicios (4 de noviembre)
+
+- `f3c9201` y `7ff4cc0`: PvE, PvP, party y asedios importan ataques desde `expediciones/combate/ataques-basicos.ts`; `combate.ts` solo resuelve habilidades. La preparación táctica y `ObjetoEnVenta` se consumen desde sus propietarios, sin reexports antiguos. `6c62719` ajusta la prueba que aún esperaba una reexportación eliminada.
+- `b505940`: los asedios usan el cálculo canónico de cooldowns, no funciones duplicadas. `39ecc0d`: los servicios dejan de reexportar cooldowns y el turno enemigo de party, cuyo endpoint importa su servicio directamente.
+- `14a69df`: la acción, huida y turno enemigo de party utilizan `obtenerCooldowns` para leer el JSON persistido al finalizar un ciclo; mantienen el ámbito transaccional y las escrituras condicionadas. `2e8d98e` añade protección estructural y casos de datos persistidos inválidos.
+- `22abd6e`: `PartyServiceError` pertenece a `server/services/party/errores.ts`; el servicio no lo reexporta. La prueba valida el propietario definitivo.
+- **Validación:** `Regression` pasó en `b505940`; los commits posteriores requieren su propio resultado de GitHub Actions. `Validar sprites HD` continúa fallando por el agarre de espada del Super Novato femenino, fotograma 04. No relajar los validadores ni fusionar el PR #9 hasta revisar el resultado del HEAD.
+- **Pendiente real:** revisión de los orquestadores grandes PvE/party y su uso transaccional, localización de recursos obsoletos con consumidores comprobados, integración con PostgreSQL y comprobación visual del equipo superpuesto. No dividir los servicios por tamaño ni eliminar fórmulas persistidas que tienen usos distintos.
