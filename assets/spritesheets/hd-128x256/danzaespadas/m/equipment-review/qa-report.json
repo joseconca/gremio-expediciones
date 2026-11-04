@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "danzaespadas",
   "sex": "m",
   "actions": [
@@ -29,8 +29,8 @@
     "walk": [
       "6c4d6b1a9522e39851fb74886118c105160ac0854e8a83865b9824c1873943f8",
       "758c03095268ee380fe84bce4b8d71d6b8f00e05e6625d4b09339f6dda2178bd",
-      "3b0f6a655815f5734f97603a3e0f20df7f572fe0fb2f392cae7f9dd6c2949770",
-      "9ab051742e76780b726026c0dc82b2a42005d48e446aad0cd62ebf9e219059f2"
+      "79e867894fdb88e6f8a11107427d596e96c01a12b76c8667f9e79ae71580fede",
+      "0d62f3cdd969dc5614a5e4f225ea5759da46893c21e70cb8f2b20a01a7a2bc00"
     ],
     "hurt": [
       "a196009156b719e479a69c6b9e1f7edd507272d802b6a3bc61cf0eab11cfea57",
@@ -57,7 +57,7 @@
       "b2ac805473fd787d78971cb615239aec1e58cc09aab932d12b19568b798b9d7b"
     ],
     "attack_sword": [
-      "50da2a1d8eaeff1b4962e2e115071925544c97e8112f7b28c81c902598333aee",
+      "5854f975fb0ee28d04dac5cad6b198f348c16bbe2c4a41e5208157963b697768",
       "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c",
       "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe",
       "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845"
@@ -96,7 +96,7 @@
       "96e9b98db1116207262ed52213334a7f1b9cc8f0decc9770f2848fee88a5eff3",
       "6e6de419da068544754799cf6795b317dc46e9d0df3f08990a55e78cbff2591a",
       "c3c97f02b0406484430ded5db158448d635b6fa4ca38b98e588c0818111a9fc9",
-      "9b0b86f6c9ab9a63f0323fd98486d31aecb4d6a82dc9d65472353e174ae6ddb4"
+      "ee6baf5a8e406ab46181b822d0af6b733be184e73b173232374698b0e9986522"
     ],
     "attack_book": [
       "8d9da6219403a2bbcae4a5364661443ca741e659e63aac4046dca9052eb82732",
@@ -105,141 +105,14 @@
       "dbc727fb95b3d76c4fd16ad597dd21d6f7c5e30433bbaac9e3319afe8ee736e8"
     ],
     "attack_gloves": [
-      "888d06f740d87ea3ed13befa7a626a99d5aa10192d896ef33703844ce5f41f3f",
-      "1adcb8196eb67842721b696b6f1900be6bbdc15e417fe7c377e6a87d88c51da6",
-      "47dd948466cab3415094f4143b1e497b8db05c012fea886316218b2617ea1805",
-      "ac807856384e33d80b6176fb9d5525fabf77ad7dbebe997fb6b6208348a0a44c"
+      "b72a5ca2caf39a147b84854cccf693953fe1bb0f975db325a39ad61ae8d90bfa",
+      "a3264696069702d72e73c3ff9c987631131624ae2dfc06290dfd2f63ad8d9889",
+      "43f8e9c46100282318a727eb5da2c2d3d05290cc8b3ebc1fd026cc682acd056d",
+      "2cfaee153f32df799259e6e45fb9af8b4564cd7cfbbc847f9508b44affd4e83d"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "attack_sword",
-      "frame": 1,
-      "item": "escudo_guardian",
-      "point": [
-        103,
-        179
-      ]
-    },
-    {
-      "action": "attack_sword",
-      "frame": 1,
-      "item": "escudo_madera",
-      "point": [
-        103,
-        179
-      ]
-    },
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "maza_enana",
-      "point": [
-        41,
-        135
-      ]
-    },
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "maza_madera",
-      "point": [
-        41,
-        135
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        103,
-        141
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        103,
-        141
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

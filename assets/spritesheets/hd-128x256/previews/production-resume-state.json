@@ -1,5 +1,5 @@
 {
-  "status": "in-progress",
+  "status": "waiting-image-generation-quota",
   "date": "2026-11-04",
   "branch": "nuevas-clases",
   "completedClasses": 59,
@@ -10,14 +10,24 @@
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
     "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
-    "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad"
+    "senor_guerra": "27f623e101f4cebe1694350ad24f893e3221c6ad",
+    "avatar_tormenta": "b271b0453457009ac7d361aa5cd29f7fa54c1754",
+    "cazador_espectral": "29e395f2697dd4bf1b279f7653649942581de00f",
+    "arconte": "bd96cb6eba613866f498fb002bfcc2d28bdba7e6",
+    "justiciero": "0db03dd99c99e924e25ab404c19bc9357c6a89a9",
+    "hoja_velo": "a1ae1dd0da7c6a844412c5fb58021cad1731bf8a"
   },
   "remainingIds": [
     "danzaespadas",
     "corsario"
   ],
   "nextClass": "danzaespadas",
-  "generationBlock": null,
+  "generationBlock": {
+    "error": "usage_limit_reached",
+    "httpStatus": 429,
+    "resetsAt": "2026-11-05T12:01:19Z",
+    "timezone": "Atlantic/Canary"
+  },
   "inProgress": {
     "danzaespadas": {
       "m": {
@@ -34,7 +44,9 @@
           "attack_staff",
           "attack_mace",
           "attack_book",
-          "attack_gloves"
+          "attack_gloves",
+          "attack_bow",
+          "attack_sword"
         ],
         "generatedActions": [
           "idle",
@@ -69,7 +81,8 @@
           "attack_staff",
           "attack_mace",
           "attack_book",
-          "attack_gloves"
+          "attack_gloves",
+          "walk"
         ],
         "generatedActions": [
           "idle",
@@ -173,7 +186,9 @@
       "arconte CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "justiciero CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "hoja_velo CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
-    ]
+    ],
+    "danzaespadas": "Male complete and manually reviewed, 682 contacts / 0 warnings. Female pending gloves poses 1 and 4 and dodge pose 3; retry portraits v5. Do not use rejected v4 grips. Female gloves pose 2 v3 and dodge poses 2 v3 / 4 v2 already registered.",
+    "corsario": "Male complete and manually reviewed, 682 contacts / 0 warnings. Female pending spear pose 4 v4, gloves pose 2 v4, axe pose 4 v3 and dagger pose 3 v4. Spear pose 3 v4 approved and registered. Reject dagger v3 containing weapon, gloves pose 2 v3 missing near hand, axe pose 4 v2 with wrong primary grip, and walk pose 2 v3 chin stubble."
   },
   "methodology": [
     "Separate each class, sex and action; retain original sources and prompts and select only complete generated poses.",
@@ -182,5 +197,530 @@
     "One root manifest writer at a time; wait for completion before dependent writes or commits.",
     "Run work/qa-variant-equipment.py for both sexes after final selections; then work/finish-class-validated-assets.py and work/close-class-reviewed-documentation.py.",
     "Commit and push nuevas-clases after every completed class, verify remote HEAD. Do not promote runtime automatically."
-  ]
+  ],
+  "pendingCorrectionPlan": "assets/spritesheets/hd-128x256/previews/pending-class-corrections.json",
+  "technicalFrameAudit": {
+    "validFrames": 7320,
+    "invalidFrames": 0,
+    "visualApprovalAutomatic": false
+  },
+  "animationTests": {
+    "passed": 29,
+    "failed": 0
+  },
+  "pendingReviews": {
+    "danzaespadas-m": {
+      "registeredActions": 15,
+      "contactChecks": 682,
+      "automaticWarningCount": 0,
+      "warningPoints": [],
+      "manualReview": "All 15 actions, all representative equipment types, both axe structures and overview reviewed.",
+      "selectedSources": {
+        "idle": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/idle-reference.png",
+          "sourceSha256": "60b0478469542feeb5f85d21f50f191cd7ef7425cb1642f23c7f0c883274a310",
+          "overrides": {}
+        },
+        "walk": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/walk-reference-v5.png",
+          "sourceSha256": "9a047c8ffec60614e1c86fcdd3978226f4037125d065a202975cdf35ef73af0b",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/walk-frame01-reference-v5.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/walk-frame02-reference-v5.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/walk-frame04-reference-v5.png"
+          }
+        },
+        "hurt": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-reference-v3.png",
+          "sourceSha256": "aa1809950e4e89f3e0a007ac73dae98694417f53de0013d0810c7f975b9bc41d",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame01-reference-v3.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame02-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame04-reference-v3.png"
+          }
+        },
+        "use_consumable": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-reference-v3.png",
+          "sourceSha256": "cee0c95342f6d7d90269eeb5d9693a4ba1152c1fd5218dc2e7145271ffc646fd",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame04-reference-v3.png"
+          }
+        },
+        "dodge": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-reference-v3.png",
+          "sourceSha256": "241fe1550790a2821e5fc7058e103b6beb3ca15755e2fac5963e8a067c09ccda",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame01-reference-v3.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame02-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame03-reference-v3.png"
+          }
+        },
+        "block_shield": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/block_shield-reference.png",
+          "sourceSha256": "be43a81671e500e3fae01f64f832b03002b24d581e7f7b916ed1b344c4d6d7dc",
+          "overrides": {}
+        },
+        "attack_axe": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_axe-reference.png",
+          "sourceSha256": "6d1f7db8b82bbc7513d1187512754892be729d7a32807c25136ef90550df5c4a",
+          "overrides": {}
+        },
+        "attack_spear": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-reference-v3.png",
+          "sourceSha256": "d2597d05c6a0b25f88aa392795ad7c1274909e8f42b7abe0c706a4caf3aacf8d",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame04-reference-v3.png"
+          }
+        },
+        "attack_dagger": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_dagger-reference.png",
+          "sourceSha256": "add685bb1ad8c918e31f250aee3d6365152859672a0de9081a0a60fce1feef80",
+          "overrides": {}
+        },
+        "attack_staff": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_staff-reference.png",
+          "sourceSha256": "0ae8212900dbe175bab4a464c2cc3891c164395dce2f8945391ac03870fa0097",
+          "overrides": {}
+        },
+        "attack_mace": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_mace-reference-v3.png",
+          "sourceSha256": "911e6ad2d7a3c56ce1057e2d2e73369eb2ed4daad4b75d6e6a50153b28c2287b",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_mace-frame01-reference-v3.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_mace-frame02-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_mace-frame03-reference-v3.png"
+          }
+        },
+        "attack_book": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_book-reference.png",
+          "sourceSha256": "b972d2cb5657365dcded890e290789e70f1deaf233fec70a6c6055727c88887b",
+          "overrides": {}
+        },
+        "attack_gloves": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_gloves-reference-v4.png",
+          "sourceSha256": "33ad092edbcc08f912e55f03f7bc7f5e29afbc73a2ed21f7603f534ee7d85f9a",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_gloves-frame02-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_gloves-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_gloves-frame04-reference-v4.png"
+          }
+        },
+        "attack_bow": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-reference-v2.png",
+          "sourceSha256": "9f07698b8a263de95c88046869471f18fab070c6cc740d4d79a9e5b02794deeb",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame01-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame03-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame04-reference-v2.png"
+          }
+        },
+        "attack_sword": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-reference-v4.png",
+          "sourceSha256": "801852593ace9fa1a22f64472c4670d8e5392b0b0d12d4e3a97c76fbe28c0f6b",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame02-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame04-reference-v4.png"
+          }
+        }
+      }
+    },
+    "danzaespadas-f": {
+      "registeredActions": 15,
+      "contactChecks": 682,
+      "automaticWarningCount": 10,
+      "warningPoints": [
+        {
+          "action": "attack_gloves",
+          "pose": 4,
+          "point": [
+            78,
+            145
+          ]
+        },
+        {
+          "action": "dodge",
+          "pose": 3,
+          "point": [
+            91,
+            178
+          ]
+        }
+      ],
+      "manualReview": "Incomplete. Source costumes and current candidates reviewed; remaining grip poses and final full equipment review still required.",
+      "selectedSources": {
+        "idle": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/idle-reference-v3.png",
+          "sourceSha256": "989fabea2716f9bf80eb88b43e76089157ef7cf1785db71635e33273d71a35f5",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/idle-frame01-reference-v3.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/idle-frame02-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/idle-frame04-reference-v3.png"
+          }
+        },
+        "hurt": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-reference-v2.png",
+          "sourceSha256": "ff03b36834d0a3bcc3e012f3fc88233b6848417b05f5d4a822f3ce1f7ffe00a8",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame01-reference-v2.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame02-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame03-reference-v2.png"
+          }
+        },
+        "use_consumable": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/use_consumable-reference-v4.png",
+          "sourceSha256": "225a20192c97fa1cc5eb5aaff0335ffd816675d7101541959f5a33be81eb8212",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/use_consumable-frame02-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/use_consumable-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/use_consumable-frame04-reference-v4.png"
+          }
+        },
+        "dodge": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-reference-v3.png",
+          "sourceSha256": "7eb3352250ffa97b966af923d495d07f5b5e416add2e3d7689eee88b8bd665af",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame04-reference-v3.png"
+          }
+        },
+        "block_shield": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/block_shield-reference.png",
+          "sourceSha256": "ea6751f618ced952a53fa480949900acd82cd03fa508a725ca0a26615f98e81f",
+          "overrides": {}
+        },
+        "attack_sword": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_sword-reference.png",
+          "sourceSha256": "4507291c36f3a3da7c68bd4b9f171616c0f81a115303e037a16f7a54fa6dd461",
+          "overrides": {}
+        },
+        "attack_axe": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_axe-reference.png",
+          "sourceSha256": "0d2107d665b3efa38270ffaa1c46d27379fee623075910302a91ac61c3f8dd2f",
+          "overrides": {}
+        },
+        "attack_spear": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_spear-reference.png",
+          "sourceSha256": "e056a164d9efbbed3538033fd77d8ffc554700b17f92a7d24e8f2501d120db99",
+          "overrides": {}
+        },
+        "attack_dagger": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-reference-v2.png",
+          "sourceSha256": "fca63caacb4b2d963a4fc66647ff24e455b7cf1fc1a5d4938e5abdf94fe8fee5",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame01-reference-v2.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame02-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame04-reference-v2.png"
+          }
+        },
+        "attack_bow": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-reference-v2.png",
+          "sourceSha256": "24e998edf0cdef4216a2e90ea3b672d7b914402132f970b695dc2a552b795cd2",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame02-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame03-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame04-reference-v2.png"
+          }
+        },
+        "attack_staff": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-reference-v2.png",
+          "sourceSha256": "ea7762bf1c3abc95f492dbc82c5e1aa718a22307a1a7d69533ca77100bb71b19",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame01-reference-v2.png",
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame02-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame04-reference-v2.png"
+          }
+        },
+        "attack_mace": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_mace-reference.png",
+          "sourceSha256": "3cf463078a046802a4855446c4fb06766470fab913bd962cf08997e1127da5d2",
+          "overrides": {}
+        },
+        "attack_book": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference-v3.png",
+          "sourceSha256": "8736a15117073aaf122426d1bb849631af66eb087aca1b8e63ddeb308c94a438",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-frame02-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-frame04-reference-v3.png"
+          }
+        },
+        "attack_gloves": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-reference-v3.png",
+          "sourceSha256": "2340d374c6157d0a61d498478fe68ec46917efc3f933eeeeed23cba78e0c096f",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame04-reference-v3.png"
+          }
+        },
+        "walk": {
+          "source": "assets/spritesheets/hd-128x256/danzaespadas/f/source/walk-reference-v4.png",
+          "sourceSha256": "5ba6eb855be5d0ffbd3584f9b4c2d06da070501d09add2745c054d070657cb9b",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/danzaespadas/f/source/walk-frame02-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/danzaespadas/f/source/walk-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/danzaespadas/f/source/walk-frame04-reference-v4.png"
+          }
+        }
+      }
+    },
+    "corsario-m": {
+      "registeredActions": 15,
+      "contactChecks": 682,
+      "automaticWarningCount": 0,
+      "warningPoints": [],
+      "manualReview": "All 15 actions, all representative equipment types, both axe structures and overview reviewed.",
+      "selectedSources": {
+        "idle": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/idle-reference.png",
+          "sourceSha256": "db4bf5215aac574803855e0005c0a9832f9d76581b2bc0e69b8b4168db7f35ce",
+          "overrides": {}
+        },
+        "walk": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/walk-reference-v4.png",
+          "sourceSha256": "90690d8ed805da341caa7d5f7b3db1417636ac1acd0d76312869bac68a5318eb",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame01-reference-v4.png",
+            "02": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame02-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame04-reference-v4.png"
+          }
+        },
+        "hurt": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-reference-v2.png",
+          "sourceSha256": "42568849609b741b1cb2b21500a1b040abd4eef2b49749143cf489ceed2109ed",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame01-reference-v2.png",
+            "02": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame02-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame04-reference-v2.png"
+          }
+        },
+        "use_consumable": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/use_consumable-reference.png",
+          "sourceSha256": "d3151746fe31ed4d93b87432bef3861945e6d263c70cdb94358e2df30d8d8808",
+          "overrides": {}
+        },
+        "dodge": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/dodge-reference.png",
+          "sourceSha256": "05c4c599423e36a0765e9584ab2278e10ce9b790de76918c1c7b43f4d5ac46ed",
+          "overrides": {}
+        },
+        "block_shield": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/block_shield-reference.png",
+          "sourceSha256": "1074330dd75117f7d5db839e9bb4ff133257191245e6e2b8e977a16553bc0bf6",
+          "overrides": {}
+        },
+        "attack_sword": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-reference-v3.png",
+          "sourceSha256": "82b6ce2a43fa47feb5ad67ad1e953e48e4a5b5d6d9c70fd9360525444e557862",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame01-reference-v3.png",
+            "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame02-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame03-reference-v3.png"
+          }
+        },
+        "attack_axe": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_axe-reference.png",
+          "sourceSha256": "6c229bcaf4abe35fd7451c957784d5471a8cb7bed147539605e81ba050077d62",
+          "overrides": {}
+        },
+        "attack_spear": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-reference-v3.png",
+          "sourceSha256": "715d57bca4e5c4752773e26e4cd97b39ed4d965c5e35d20aa023b41a63e30113",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame04-reference-v3.png"
+          }
+        },
+        "attack_dagger": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_dagger-reference.png",
+          "sourceSha256": "0f2f6c9ea11364cbaa8955012a3387ae64780362cfd6196558d42fafc23f03c9",
+          "overrides": {}
+        },
+        "attack_bow": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-reference-v2.png",
+          "sourceSha256": "3b14e4d2dec5c0b6651df375cb78001012aa018c3b839f45adf00c621d34faf0",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame02-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame03-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame04-reference-v2.png"
+          }
+        },
+        "attack_staff": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_staff-reference.png",
+          "sourceSha256": "57f1caafc3ed0a220d09b1e85b0785277d4b12c6a4f218f42e9debfd69dfbaa5",
+          "overrides": {}
+        },
+        "attack_mace": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_mace-reference.png",
+          "sourceSha256": "9a1d6fd563a5a4fac4f92bb71464919d9ab0f27a050d28f7b02c5caa32d1f697",
+          "overrides": {}
+        },
+        "attack_gloves": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_gloves-reference.png",
+          "sourceSha256": "b8f1354e5983327c8aa6e4a06593d7eed95d729efe9aaadc912e9780d8bf2cc4",
+          "overrides": {}
+        },
+        "attack_book": {
+          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_book-reference-v2.png",
+          "sourceSha256": "d2ac70c2e23df973a7801c95a9e9e3dea66fb4c22e07a794f98c623ad3ec3735",
+          "overrides": {}
+        }
+      }
+    },
+    "corsario-f": {
+      "registeredActions": 15,
+      "contactChecks": 682,
+      "automaticWarningCount": 8,
+      "warningPoints": [
+        {
+          "action": "attack_axe",
+          "pose": 4,
+          "point": [
+            82,
+            157
+          ]
+        },
+        {
+          "action": "attack_dagger",
+          "pose": 3,
+          "point": [
+            86,
+            164
+          ]
+        },
+        {
+          "action": "attack_gloves",
+          "pose": 2,
+          "point": [
+            86,
+            144
+          ]
+        },
+        {
+          "action": "attack_spear",
+          "pose": 4,
+          "point": [
+            107,
+            145
+          ]
+        }
+      ],
+      "manualReview": "Incomplete. Source costumes and current candidates reviewed; remaining grip poses and final full equipment review still required.",
+      "selectedSources": {
+        "idle": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/idle-reference.png",
+          "sourceSha256": "23107999743979664765be6d274d2aa8a274b47b064623d459815edca87b40e3",
+          "overrides": {}
+        },
+        "walk": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/walk-reference-v4.png",
+          "sourceSha256": "e85a8563807209a64b9ae88c382d1aaea530de24557b372060125e0cee30ab79",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame02-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame04-reference-v4.png"
+          }
+        },
+        "hurt": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-reference-v3.png",
+          "sourceSha256": "f9cb1abdcafd488e61547d039e3f51300b4daf42a149a22578779aed7b3dede6",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame02-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame04-reference-v3.png"
+          }
+        },
+        "use_consumable": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/use_consumable-reference.png",
+          "sourceSha256": "dc7a9905cfa693459f32d81e0ac3e906ad4671d9f1764f84dbd941a0cb421989",
+          "overrides": {}
+        },
+        "dodge": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-reference-v3.png",
+          "sourceSha256": "a5c9f8f9f0cbe1e9600f0968119a927f532f7db1ee9f83ac85c6f3800878da72",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame04-reference-v3.png"
+          }
+        },
+        "block_shield": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/block_shield-reference.png",
+          "sourceSha256": "c23aaa0a7a5e192b0702a03b7e24219583b23b9950e83e788f4733a0c6de56a5",
+          "overrides": {}
+        },
+        "attack_sword": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_sword-reference.png",
+          "sourceSha256": "042034ba211740c7c4de77fff3cbe50bbce6beaaef24eb1297361a42de4919d6",
+          "overrides": {}
+        },
+        "attack_axe": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference.png",
+          "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+          "overrides": {}
+        },
+        "attack_spear": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v4.png",
+          "sourceSha256": "7e5aea9419aa628bde60d76c4215d358051e9492adc408cf9539772b52cb0a44",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v4.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v4.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame04-reference-v4.png"
+          }
+        },
+        "attack_dagger": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v2.png",
+          "sourceSha256": "4bff682d0226fe9438f77342065d8435dd96dc6a84f89695a8d28c2a1305288f",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v2.png",
+            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame03-reference-v2.png"
+          }
+        },
+        "attack_bow": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-reference-v3.png",
+          "sourceSha256": "d9e026e3be9515d96753729527a42eca6fbc0bfb741eb9e9b5b4ee9ad4d4a86e",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame02-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame04-reference-v3.png"
+          }
+        },
+        "attack_staff": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_staff-reference.png",
+          "sourceSha256": "c84a59ad6394cb5ddcee60322ac38f8eadfb43725e0ead277f1c5e968c24068d",
+          "overrides": {}
+        },
+        "attack_mace": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_mace-reference.png",
+          "sourceSha256": "4094007c510c89e8df9cd597b68f6ebe2068f3327b9aa5c669e5b9fc6a523cb7",
+          "overrides": {}
+        },
+        "attack_book": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-reference-v3.png",
+          "sourceSha256": "824c756a50e435285a84b85e371687ed78e85b635933f973f2eb0f6b931bc029",
+          "overrides": {
+            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame01-reference-v3.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame03-reference-v3.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame04-reference-v3.png"
+          }
+        },
+        "attack_gloves": {
+          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v2.png",
+          "sourceSha256": "93b13df9b9db959d083c66945b4c40bb8552963d8653d4972ffba08f1d781704",
+          "overrides": {
+            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame02-reference-v2.png",
+            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v2.png",
+            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v2.png"
+          }
+        }
+      }
+    }
+  }
 }
