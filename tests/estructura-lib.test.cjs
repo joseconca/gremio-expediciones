@@ -186,3 +186,17 @@ test("todos los imports locales de src resuelven a archivos de la estructura act
 
   assert.deepEqual(faltantes, [], "Se han detectado imports obsoletos o rutas locales inexistentes");
 });
+
+
+test("edificios y contratos tácticos mantienen un propietario único, sin reexports antiguos", () => {
+  const edificios = require("../src/lib/base/edificios.ts");
+  const fuenteEdificios = fs.readFileSync(path.join(root, "src/lib/base/edificios.ts"), "utf8");
+  const tipos = fs.readFileSync(path.join(root, "src/lib/tiposJuego.ts"), "utf8");
+  const motor = fs.readFileSync(path.join(root, "src/lib/expediciones/combate/tacticas/motor-tactico.ts"), "utf8");
+  assert.equal(edificios.CONFIGURACION_EDIFICIOS.taberna.nombre, "Taberna");
+  assert.match(fuenteEdificios, /export interface Edificio\s*\{/);
+  assert.match(fuenteEdificios, /export type IdEdificio\s*=/);
+  assert.doesNotMatch(tipos, /export interface Edificio\s*\{/);
+  assert.doesNotMatch(tipos, /export\s+(?:type\s+)?\{[^}]*\b(?:IdEdificio|CONFIGURACION_EDIFICIOS)\b[^}]*\}/);
+  assert.doesNotMatch(motor, /export type\s*\{[^}]+\}\s*from\s*["']\.\/tipos-tacticos["']/);
+});
