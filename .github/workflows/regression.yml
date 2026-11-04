@@ -71,6 +71,14 @@ jobs:
         if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run test:party
 
+      - name: Test combat UI components and controllers
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
+        run: npm run test:combat-ui
+
+      - name: Test daily boss encounter rules
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
+        run: npm run test:boss-diario
+
       - name: Test four-frame sprite alignment
         if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' }}
         run: npm run test:sprite-animation
