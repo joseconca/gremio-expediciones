@@ -3,7 +3,6 @@
  * El adaptador entrega todos los participantes y persiste el resultado de forma
  * atómica junto con la versión del combate. Un turno extra no crea otro ciclo.
  */
-// Los consumidores existentes siguen importando tipos desde motor-tactico.
 import type {
   FamiliaTactica,
   EstadoTactico,
@@ -13,17 +12,6 @@ import type {
   TecnicaTactica,
   ComandoTactico,
 } from "./tipos-tacticos";
-export type {
-  ElementoTactico,
-  FamiliaTactica,
-  EstadoTactico,
-  UnidadTactica,
-  EventoTactico,
-  MundoTactico,
-  TecnicaTactica,
-  ComandoTactico,
-} from "./tipos-tacticos";
-
 const finito = (n: number, minimo = 0, maximo = Number.MAX_SAFE_INTEGER) => Number.isFinite(n) ? Math.max(minimo, Math.min(maximo, n)) : minimo;
 const entero = (n: number, minimo = 0, maximo = Number.MAX_SAFE_INTEGER) => Math.floor(finito(n, minimo, maximo));
 

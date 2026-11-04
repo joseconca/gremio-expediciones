@@ -1,4 +1,4 @@
-import type { ComandoTactico, ElementoTactico } from "../../expediciones/combate/tacticas/motor-tactico";
+import type { ComandoTactico, ElementoTactico } from "../../expediciones/combate/tacticas/tipos-tacticos";
 
 /** Datos serializables: ninguna mecánica se deduce del nombre o descripción. */
 export type OperacionHabilidad =

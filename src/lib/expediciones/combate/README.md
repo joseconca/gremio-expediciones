@@ -15,6 +15,8 @@ Esta carpeta agrupa las **reglas puras de combate** de PvE, PvP y party. No debe
 | Enemigos presentes en el combate y su snapshot | `enemigos-combate.ts` |
 | Ejecutar técnicas, pasivas, recursos y efectos tácticos | `tacticas/`: `motor-tactico.ts`, `tipos-tacticos.ts`, `adaptador-tactico.ts`, `preparacion-habilidades.ts`, `mecanicas-habilidades.ts` |
 
+**Contratos tácticos:** `tacticas/tipos-tacticos.ts`. **Ejecución:** `tacticas/motor-tactico.ts` (sin reexports de tipos).
+
 **Punto de entrada público:** `src/lib/expediciones/combate.ts`. No modificar su API al ordenar los módulos internos. Los detalles de UI (proyectiles, descripciones y animaciones) todavía están en `src/lib/expediciones/` y en `src/components/combate/`, no dentro del motor.
 
 Las pruebas de rutas, imports y ausencia de duplicados están en `tests/estructura-lib.test.cjs`. Las fórmulas y casos de combate tienen pruebas específicas bajo `tests/`.

@@ -7,7 +7,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `combate/tacticas/preparacion-habilidades.ts`: actualiza el reloj de contexto y prepara una copia local de la habilidad para el número de objetivos; sin modificar el catálogo.
 - `combate/tacticas/mecanicas-habilidades.ts`: aplica el resultado básico en este orden: efectos y unidades, operaciones (incluidas disipaciones), ventajas pasivas, historial y resultado final. Conserva las exportaciones anteriores de preparación.
 - `combate/tacticas/adaptador-tactico.ts`: traduce efectos persistidos (incluidos DoT/HoT anteriores) a estados tácticos y de vuelta; adapta la ejecución de técnicas adicionales. No accede a Prisma.
-- `combate/tacticas/tipos-tacticos.ts`: contratos de estado, unidad, mundo y comando. `combate/tacticas/motor-tactico.ts` los sigue reexportando.
+- `combate/tacticas/tipos-tacticos.ts`: único propietario de los contratos de estado, unidad, mundo y comando. El motor importa esos tipos, pero no los reexporta.
 - `combate/tacticas/motor-tactico.ts`: motor puro de comandos, estados, pulsos, recursos y ciclos.
 - `combate/estados-combate.ts`, `combate/objetivos-combate.ts`, `combate/iniciativa-combate.ts`, `combate/posicion-combate.ts`, `combate/formacion-party.ts`: estado, objetivos, iniciativa, posiciones tácticas y formación de party.
 - `combate/contrato-accion-combate.ts`: valida acciones, identificadores de habilidad/objeto, objetivos y turnos sin dependencias de servidor. El servicio convierte los errores en respuestas HTTP.
@@ -24,7 +24,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 - `presentacion/presentacion-combate.ts`: selección de proyectiles para ataques básicos y habilidades sin presentación explícita. No calcula daño ni aplica efectos.
 - `presentacion/destinos-animacion-combate.ts`, `presentacion/descripciones-efectos.ts`: metadatos visuales y descripciones compartidas. No confundir con la representación React.
 
-Los contratos de `combate/tacticas/tipos-tacticos.ts` se importan directamente desde adaptadores y catálogos, mientras `combate/tacticas/motor-tactico.ts` conserva sus reexportaciones públicas. No unificar por similitud las funciones que crean unidades en `combate/tacticas/adaptador-tactico.ts` y `combate/tacticas/mecanicas-habilidades.ts`: la primera carga estados persistidos para una técnica adicional y la segunda reconstruye unidades después de la resolución básica; sus reglas de HP, recursos y límites no son equivalentes. Las pruebas de esta frontera están en `tests/adaptador-tactico.test.cjs`.
+Los contratos se importan directamente desde `combate/tacticas/tipos-tacticos.ts`, tanto en el catálogo como en adaptadores y consumidores. No unificar por similitud las funciones que crean unidades en `combate/tacticas/adaptador-tactico.ts` y `combate/tacticas/mecanicas-habilidades.ts`: la primera carga estados persistidos para una técnica adicional y la segunda reconstruye unidades después de la resolución básica; sus reglas de HP, recursos y límites no son equivalentes. Las pruebas de esta frontera están en `tests/adaptador-tactico.test.cjs`.
 
 La presentación (`presentacion/presentacion-combate.ts`), la selección física/mágica por subtipo (`combate/ataque-basico-arma.ts`) y la resolución real de los ataques (`combate/ataques-basicos.ts`) son responsabilidades distintas. `combate.ts` reexporta las funciones de ataque existentes para que los servicios PvE, PvP y party sigan funcionando sin cambios.
 
