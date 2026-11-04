@@ -111,8 +111,28 @@ jobs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/gremio_test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout only database test files (partial Git clone)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git init
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git config remote.origin.promisor true
+          git config remote.origin.partialclonefilter blob:none
+          git config core.sparseCheckout true
+          mkdir -p .git/info
+          printf '/package.json\n/package-lock.json\n/prisma/\n/tests/\n' > .git/info/sparse-checkout
+
+          # No guardar credenciales en el remoto ni imprimirlas en el log.
+          AUTH_HEADER="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          export GIT_CONFIG_COUNT=1
+          export GIT_CONFIG_KEY_0=http.https://github.com/.extraheader
+          export GIT_CONFIG_VALUE_0="AUTHORIZATION: basic ${AUTH_HEADER}"
+
+          git -c protocol.version=2 fetch --depth=1 --no-tags --filter=blob:none origin "$GITHUB_REF"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
