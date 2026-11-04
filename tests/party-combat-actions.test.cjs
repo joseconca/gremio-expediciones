@@ -123,6 +123,7 @@ function loadService(prisma, testOptions = {}) {
       puedeUsarHabilidadDeClase: () => true,
     },
     "@/lib/expediciones/combate/cooldowns-habilidades": {
+      establecerCooldownHabilidad: require("../src/lib/expediciones/combate/cooldowns-habilidades.ts").establecerCooldownHabilidad,
       reducirCooldowns: (cooldowns) => cooldowns,
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
     },

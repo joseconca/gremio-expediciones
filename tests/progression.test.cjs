@@ -573,7 +573,7 @@ test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
 });
 
 test("la regeneración de turno recupera el 20 % de energía y maná por su atributo, limitada al máximo", () => {
-  const { calcularRegeneracionRecursosTurno } = require("../src/server/services/combate/accion-combate.ts");
+  const { calcularRegeneracionRecursosTurno } = require("../src/lib/expediciones/combate/recursos-combate.ts");
   assert.deepEqual(calcularRegeneracionRecursosTurno(3, 2, 20, 100), { energiaActual: 7, manaActual: 4, manaRegeneracionPendiente: 0 });
   assert.deepEqual(calcularRegeneracionRecursosTurno(19, 98, 20, 100), { energiaActual: 20, manaActual: 100, manaRegeneracionPendiente: 0 });
   assert.deepEqual(calcularRegeneracionRecursosTurno(0, 0, 20, 10), { energiaActual: 4, manaActual: 2, manaRegeneracionPendiente: 0 });

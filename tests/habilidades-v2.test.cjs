@@ -223,13 +223,15 @@ test('los cooldowns persistidos conservan normalización y decremento sin mutaci
   assert.equal(origen.flecha, 3.9);
 });
 
-test('las API de los servicios conservan la reexportación de cooldowns', () => {
+test('el servicio usa cooldowns desde su propietario sin reexportarlos', () => {
   const servicio = fs.readFileSync(
     path.join(__dirname, '../src/server/services/combate/accion-combate.ts'),
     'utf8',
   );
-  assert.match(servicio, /export \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
-  assert.match(servicio, /import \{ obtenerCooldowns, reducirCooldowns \} from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
+  assert.match(servicio, /import \{ obtenerCooldowns \} from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
+  assert.doesNotMatch(servicio, /export \{[^}]*\b(?:obtenerCooldowns|reducirCooldowns)\b[^}]*\} from/);
+  assert.equal(typeof obtenerCooldowns, 'function');
+  assert.equal(typeof reducirCooldowns, 'function');
 });
 
 test('las dos respiraciones heredadas comparten cooldown incluso con cinco huecos', () => {
