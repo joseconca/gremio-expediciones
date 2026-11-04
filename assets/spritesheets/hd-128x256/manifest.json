@@ -284579,7 +284579,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -284588,9 +284588,11 @@
           "use_consumable",
           "dodge",
           "block_shield",
+          "attack_sword",
           "attack_axe",
           "attack_spear",
           "attack_dagger",
+          "attack_bow",
           "attack_staff",
           "attack_mace",
           "attack_book",
@@ -284773,8 +284775,8 @@
                 "pixelSha256": "0c4a69f7aeda97701b248b098cd24e6bdee936b76d5965295c7108aa84581429"
               },
               "03": {
-                "sha256": "64ed48a070f9ab649ba2c3f45799c691bfa1076c5b3e9a40327601b6b038eb8d",
-                "bytes": 20671,
+                "sha256": "df4a84345c2cd328969516bdde250342ac439ec8c6e8697c49f317edb16232c2",
+                "bytes": 21310,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -284782,11 +284784,11 @@
                 ],
                 "bbox": [
                   12,
-                  115,
-                  100,
-                  250
+                  114,
+                  101,
+                  251
                 ],
-                "pixelSha256": "564e171e173222178261eff967adccce37601b0b891e9f0e3939d6dad26af170"
+                "pixelSha256": "f787b6a31c1a481f2a27d2845d3b881e2447d548c21e15cc9180079c70052da7"
               },
               "04": {
                 "sha256": "133889001fd595265100ff99daeee2dbc7667b423b84d4f3f1123165c75969eb",
@@ -284827,8 +284829,8 @@
                 "pixelSha256": "50f7de4353e180efb69d6add548120cc0b238dec55b62a618a1c7f030817560c"
               },
               "02": {
-                "sha256": "63198cbbd6d1d16c2b5628ee2d5cc577d7f13d0700e34daec93ce0cbd425555c",
-                "bytes": 22338,
+                "sha256": "4919b6db41b66db58047de23ecad0a0d92bae0531c2cef091940d6f2b2a3157b",
+                "bytes": 23010,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -284836,15 +284838,15 @@
                 ],
                 "bbox": [
                   20,
-                  91,
+                  90,
                   99,
                   251
                 ],
-                "pixelSha256": "549f377ab2e7de78fac47ea97933d14c00b67bf8eafc95e36f77a8de0e9f580c"
+                "pixelSha256": "0701567eb01a4cf110a0b5b5d1cb12b9e470ddcb135dec63c746d5034fdf3f73"
               },
               "03": {
-                "sha256": "622de8fc9d0a61d6c938d9ea826ea1aa213c6931c87597c85ca8b8001da4966a",
-                "bytes": 23856,
+                "sha256": "7294171e2dd4da0f7ed92489164d5567123f67f7f3931c34b185b742d699824e",
+                "bytes": 24733,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -284852,11 +284854,11 @@
                 ],
                 "bbox": [
                   21,
-                  91,
-                  100,
-                  251
+                  90,
+                  101,
+                  252
                 ],
-                "pixelSha256": "78ac824734199d0a84a4c030cb567a3e4eb9055a593630df46d0b70eff899f87"
+                "pixelSha256": "734de9de11efb8a46b613b3937abbd7b3518c0b5a7d671380e7eeba328881f0b"
               },
               "04": {
                 "sha256": "5d7731eaf85398369cb431fdfec793afb5c2cc7d881da9f819267559544990c6",
@@ -284881,8 +284883,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "5bae10982803a8ec1d0508ed528cfa8c7183d0c91ddf9295ac5642b97b03ff49",
-                "bytes": 22867,
+                "sha256": "e6528539ccaab4033723d08d220a2b7f6a597ff7528827a72c88dc05743cbd5d",
+                "bytes": 23056,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -284891,10 +284893,10 @@
                 "bbox": [
                   18,
                   98,
-                  96,
+                  97,
                   250
                 ],
-                "pixelSha256": "15420d80df25755893fefc20cdb701b92b32557769204f59aae11b17f4fbed0c"
+                "pixelSha256": "b7b43346eab91cd1ba6ca0d0e13543f9ebc7da3fbaac2eb27d0f58e5c56b8f27"
               },
               "02": {
                 "sha256": "e0e7f1f605fca81d44e8481e2b6fd712f7ec0b2ad32465d412c263399ac77054",
@@ -284929,20 +284931,20 @@
                 "pixelSha256": "8e07419942fafa6b4baf5e7034defcf5a9026ad0a3fe970cb4c3c096c2ca9861"
               },
               "04": {
-                "sha256": "bb4438c2d269b12a14945ff58a8090316503fe509a493bb1095202316a8c9e58",
-                "bytes": 23431,
+                "sha256": "4d052cb55dd27c879c453a9c7425edf23df7668aaeddaff7d9e4ddcf949afafd",
+                "bytes": 23759,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  100,
-                  108,
+                  25,
+                  101,
+                  109,
                   250
                 ],
-                "pixelSha256": "1808bd4212e4e8d7709f8e9d1c18abaaa8d435fa7e9c79cd67ce7c20df40b0f9"
+                "pixelSha256": "b498fe3a4eac09cfcf6efc5c7a31bd981edda1b845f84bd98648572c0e1a21e3"
               }
             },
             "distinctFrames": 4
@@ -285018,7 +285020,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "50da2a1d8eaeff1b4962e2e115071925544c97e8112f7b28c81c902598333aee",
+                "bytes": 23847,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  96,
+                  100,
+                  251
+                ],
+                "pixelSha256": "a73e78ec04a547bb72634b9cfa9e7f621a32f6f79f07bf76f8ee7c78c763038c"
+              },
+              "02": {
+                "sha256": "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c",
+                "bytes": 22245,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  95,
+                  110,
+                  251
+                ],
+                "pixelSha256": "dc2efdbc2627ecca51da1d643935ff89bf72009aef0cd1007e58657d853976cc"
+              },
+              "03": {
+                "sha256": "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe",
+                "bytes": 23749,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  1,
+                  101,
+                  117,
+                  251
+                ],
+                "pixelSha256": "3cfbc2cc49745c7b567846af76c251b1b03706fa5d40ea7c5ba24800407efb89"
+              },
+              "04": {
+                "sha256": "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845",
+                "bytes": 22832,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  97,
+                  106,
+                  251
+                ],
+                "pixelSha256": "38c3ea59e672c572d16c1da69505b7499034f0b936ac16dc47ceaa952cd2ab72"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "technical-passed",
@@ -285110,8 +285179,24 @@
                 "pixelSha256": "ad03d32647d2619ef8a31df3665688c240c93f2a6a1ad6f2bb1f4d3f6a12065c"
               },
               "02": {
-                "sha256": "61a901527e36c585883df1e89e27f6f1cd7cf64dd658cfb32965749f74e0ea6c",
-                "bytes": 21571,
+                "sha256": "653e2de76172e5f6de7eaa65e8cc69320aff83268e34ed14cf7fdb7bb23f4b07",
+                "bytes": 22621,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  89,
+                  95,
+                  248
+                ],
+                "pixelSha256": "c2359d81ed0167af0a2379daf40899b36b92a0734904602873411224722723b8"
+              },
+              "03": {
+                "sha256": "ac02f7e5e33cd33c020d35cb9de4c105e1898841568d23083aed0698c07ea116",
+                "bytes": 23575,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285120,30 +285205,14 @@
                 "bbox": [
                   10,
                   90,
-                  94,
+                  115,
                   247
                 ],
-                "pixelSha256": "86fd167638f2b007ddfccdd0e80fe4982c1a6b6e75721f4e619f52ed78ce6230"
-              },
-              "03": {
-                "sha256": "996d1d780a3f3ad92a25649477a46dac59b24667a70fb4b64e3fbb5ba2579464",
-                "bytes": 22657,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  10,
-                  91,
-                  110,
-                  247
-                ],
-                "pixelSha256": "dac92b0f93f1299f4c8b239c134c94130b8ca3d7803ea1905dd7b19dcf68183a"
+                "pixelSha256": "dd9650fc755d4b6e9069b0b6e2a180c7ec47be2b6607d0a07a50129a7f38a8a1"
               },
               "04": {
-                "sha256": "a842726b8353cbfc7da892bbfc8d7734bad38187e294ae7b91de2d1770b13b37",
-                "bytes": 22494,
+                "sha256": "db4c39971f0e05f9d1bdebda517c3ee6c4db6fc2d4958287d817fe7c1459a1c0",
+                "bytes": 23163,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285151,11 +285220,11 @@
                 ],
                 "bbox": [
                   14,
-                  90,
-                  102,
+                  88,
+                  111,
                   247
                 ],
-                "pixelSha256": "7087914605f39bddb4713d2b1931b1626f7a7fba8d47498077af00b1aaf34cf6"
+                "pixelSha256": "2065effd1ebafd8263a4dff0126cce579355c9ce4edeeeda32acc9da00547855"
               }
             },
             "distinctFrames": 4
@@ -285231,7 +285300,74 @@
             "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "82f2cca9b5ea36f3e94d591ba4fdcbc1d20b2c69b8770482a202cacc8a7f2d77",
+                "bytes": 21544,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  94,
+                  114,
+                  250
+                ],
+                "pixelSha256": "e06c0c6f4d65842eb1e2ac732f726f2990312d1d1dda37e1f4cfda46b31ed8ba"
+              },
+              "02": {
+                "sha256": "190c0e0f5abf8cb44589315bd544857b3d26b9d19d652c80c5739f0c6f3cd2bb",
+                "bytes": 22595,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  94,
+                  116,
+                  250
+                ],
+                "pixelSha256": "94b4cccbff7de4ee5b4ec690b0fe3ae9873a3a06e8b4adbd65d9717c7787bdf0"
+              },
+              "03": {
+                "sha256": "ad15b255b05bcf369a75dc255ea5207b7c6df5f4551dcfed29f76b0588a66f4c",
+                "bytes": 22395,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  94,
+                  114,
+                  250
+                ],
+                "pixelSha256": "4aeb1b0bbf2f78fad17fdd51d92c270215e0b9e57825b39d773c75d3f59368a8"
+              },
+              "04": {
+                "sha256": "4bfd4e5ff5bb842e3afd6656e4905b75656dc911a8c6702bda746eea71c0972a",
+                "bytes": 22470,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  4,
+                  94,
+                  109,
+                  250
+                ],
+                "pixelSha256": "c79daeee3aff99bf41573f786e6f310a51e5e56529103b1acc8646cf1c2687b6"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
             "status": "technical-passed",
@@ -285593,10 +285729,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
+          "sourceSha256": "aa1809950e4e89f3e0a007ac73dae98694417f53de0013d0810c7f975b9bc41d",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -285618,9 +285754,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit of this RPG sprite. Restore the wide PLUM PURPLE fabric waist sash around the diamond buckle. It must be plum cloth, not a plain brown leather belt. Hands and all other costume unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -285628,13 +285764,145 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
-          "sourceSha256": "8e1d0fdc5d7867bf459110d46454bc69e600e453ace6629cb5bea701fe48eee8",
+          "sourceSha256": "cee0c95342f6d7d90269eeb5d9693a4ba1152c1fd5218dc2e7145271ffc646fd",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -285656,9 +285924,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit of this RPG sprite. Move raised consuming fist RIGHT and DOWN by about 60px so black palm covers magenta ring beside its fingertips. Keep near face. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
@@ -285666,10 +285934,142 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "8e1d0fdc5d7867bf459110d46454bc69e600e453ace6629cb5bea701fe48eee8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "698d8f6a2a365866e2dfc246644eec8c157d2333919f86ca3fe56412ab5adb2f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "8e1d0fdc5d7867bf459110d46454bc69e600e453ace6629cb5bea701fe48eee8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "8e1d0fdc5d7867bf459110d46454bc69e600e453ace6629cb5bea701fe48eee8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/use_consumable-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+                "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+                "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+                "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "dodge": {
-          "sourceSha256": "0a6d3ee38fa3d2af518e8019659efa080d5b4888a5888e00efd4396fe9f75923",
+          "sourceSha256": "241fe1550790a2821e5fc7058e103b6beb3ca15755e2fac5963e8a067c09ccda",
           "sourceDimensions": [
             2172,
             724
@@ -285692,7 +286092,7 @@
           ],
           "alphaThreshold": 128,
           "bodyRootCalibration": {
-            "uniformScale": 0.987012987012987,
+            "uniformScale": 0.9806451612903225,
             "pivotX": 64,
             "sourceBaseline": 247,
             "referenceBaseline": 250,
@@ -285700,9 +286100,9 @@
           },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal edit ONLY FOURTH of four full-body characters. Raise FOURTH character's near viewer-left guarding fist slightly UP and LEFT until BLACK PALM covers magenta ring above fist near shoulder. Preserve precise head/body position, dimensions, hat, boots, other hand and costume. Keep characters ONE TWO THREE unchanged. Exactly FOUR characters, same scale, original cell spacing and full transparent margins. Remove magenta completely. Genuine transparent RGBA background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
           "canonicalPoseHashes": [
             "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
@@ -285710,7 +286110,163 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "d0b2b3b51bdfcec288f7850f12bdbfde4a982b3c48e4cebf33ee77a5b51355fe",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 0.987012987012987,
+                "pivotX": 64,
+                "sourceBaseline": 247,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "0a6d3ee38fa3d2af518e8019659efa080d5b4888a5888e00efd4396fe9f75923",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 0.987012987012987,
+                "pivotX": 64,
+                "sourceBaseline": 247,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "0a6d3ee38fa3d2af518e8019659efa080d5b4888a5888e00efd4396fe9f75923",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 0.987012987012987,
+                "pivotX": 64,
+                "sourceBaseline": 247,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "0a6d3ee38fa3d2af518e8019659efa080d5b4888a5888e00efd4396fe9f75923",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                543,
+                0,
+                1086,
+                724
+              ],
+              "scale": 0.23,
+              "origin": [
+                1.5549999999999997,
+                84
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": {
+                "uniformScale": 0.987012987012987,
+                "pivotX": 64,
+                "sourceBaseline": 247,
+                "referenceBaseline": 250,
+                "method": "one body-root transform shared by all four poses; equipment unchanged"
+              },
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+              "canonicalPoseHashes": [
+                "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+                "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+                "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+                "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "block_shield": {
           "sourceSha256": "be43a81671e500e3fae01f64f832b03002b24d581e7f7b916ed1b344c4d6d7dc",
@@ -285795,10 +286351,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "3a6c4b0532062d37174e98ba10654475027a311c03fe6f13261e6c2c94dea31f",
+          "sourceSha256": "d2597d05c6a0b25f88aa392795ad7c1274909e8f42b7abe0c706a4caf3aacf8d",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -285820,9 +286376,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit of this RPG sprite. Move ONLY FAR viewer-right guarding fist RIGHT about 120px and slightly DOWN until black palm covers magenta ring at CHEST height. Keep chest-height guarding fist, never lower to waist. Other hand unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -285830,7 +286386,139 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "3a6c4b0532062d37174e98ba10654475027a311c03fe6f13261e6c2c94dea31f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "4e41f66b149483fdd8b63578371425ba308ec8d6234cb10630cd5dabeff7048c",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "f84bdb7981ca5dbc7500b44fd77faf95d2cdcba4508f31e5cb0baa8023185368",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "3a6c4b0532062d37174e98ba10654475027a311c03fe6f13261e6c2c94dea31f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "add685bb1ad8c918e31f250aee3d6365152859672a0de9081a0a60fce1feef80",
@@ -286021,6 +286709,266 @@
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "9f07698b8a263de95c88046869471f18fab070c6cc740d4d79a9e5b02794deeb",
+          "sourceDimensions": [
+            4344,
+            1448
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.23,
+          "origin": [
+            8,
+            96
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Minimal localized arm edit. Extend front viewer-right fist RIGHT until grip palm covers ring beside hand. Preserve all other anatomy, exact framing and scale, plum beret short ivory feather, golden copper wavy short hair, petrol teal ivory plum costume, rose-gold lyre with paired silver blade-wing chest brooch, diamond belt and diamond knee panels, boots. Remove all magenta. Genuine transparent background. No equipment or effects.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+            "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+            "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+            "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "440fe74873834edbeca9b5f0e16568015387f8188411fc1298528881f71e15e2",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "d64da19c36ff4fc6178054ec4c3863f541c9285593a21e2ff65760c7178cd194",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "2c63fdb4deb18250009cad35565bfc476b7e980ddaaead1b2fa11f55114464fd",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_bow-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          }
+        },
+        "attack_sword": {
+          "sourceSha256": "b4b916e6cfa5b4e88ebb0cce41b1132eeb31177bafb9572c765380f790761e27",
+          "sourceDimensions": [
+            4344,
+            1448
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            592,
+            31,
+            1088,
+            680
+          ],
+          "scale": 0.23,
+          "origin": [
+            7,
+            99
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-reference-v3.png",
+          "generator": "built-in imagegen",
+          "prompt": "Minimal localized edit of this RPG sprite. Shorten LEFT BOOT toe and tuck its sole inward with GENEROUS left transparent margin. Keep body/head size and other foot fixed. Black extended fist stays near circle. Move extended viewer-right fist DOWN and RIGHT slightly until black palm covers ring below/right of fingers. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+            "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+            "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+            "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "ead2d167adf53399fcd1f4ba3c96b097547759ff4142654ce7280c23e3781796",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "fc0a5fb6bfde54654b68f551091aff8a8b1fef9986f146098047be42e4058d3f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "ead2d167adf53399fcd1f4ba3c96b097547759ff4142654ce7280c23e3781796",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/m/source/attack_sword-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          }
         }
       },
       "frameProvenance": {
@@ -286057,11 +287005,11 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
@@ -286069,11 +287017,11 @@
           "frame": 3
         },
         "hurt/04": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.04",
           "frame": 4
         },
         "use_consumable/01": {
-          "source": "sources.use_consumable",
+          "source": "sources.use_consumable.frameSourceOverrides.01",
           "frame": 1
         },
         "use_consumable/02": {
@@ -286081,23 +287029,23 @@
           "frame": 2
         },
         "use_consumable/03": {
-          "source": "sources.use_consumable",
+          "source": "sources.use_consumable.frameSourceOverrides.03",
           "frame": 3
         },
         "use_consumable/04": {
-          "source": "sources.use_consumable",
+          "source": "sources.use_consumable.frameSourceOverrides.04",
           "frame": 4
         },
         "dodge/01": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.01",
           "frame": 1
         },
         "dodge/02": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.02",
           "frame": 2
         },
         "dodge/03": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.03",
           "frame": 3
         },
         "dodge/04": {
@@ -286137,7 +287085,7 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
@@ -286145,11 +287093,11 @@
           "frame": 2
         },
         "attack_spear/03": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -286231,6 +287179,69 @@
         "attack_gloves/04": {
           "source": "sources.attack_gloves",
           "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow.frameSourceOverrides.04",
+          "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword.frameSourceOverrides.04",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "50da2a1d8eaeff1b4962e2e115071925544c97e8112f7b28c81c902598333aee"
+            },
+            {
+              "bodySha256": "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c"
+            },
+            {
+              "bodySha256": "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe"
+            },
+            {
+              "bodySha256": "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
@@ -286403,8 +287414,8 @@
                 "pixelSha256": "e6d8f7059e891bac9ac4b3db98400311ad8098854556e4b9b69da9d688579fd0"
               },
               "04": {
-                "sha256": "9a6bf3ce4854093aaf2b1d601f7d70d17f460e510a7ee3b927b9c6f3f16fb059",
-                "bytes": 24613,
+                "sha256": "3fe939b82d0977b9dfe4b8b48e35b160a3d2ba96938865f5865dc5bb7ee72723",
+                "bytes": 24844,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -286412,11 +287423,11 @@
                 ],
                 "bbox": [
                   18,
-                  91,
+                  90,
                   96,
                   250
                 ],
-                "pixelSha256": "c491ccbf12fae3e94aa7ef525bf063295b026b896e66179f0ebd753c1db6579f"
+                "pixelSha256": "98dec4aa4de84151c7741fce9e618c9ce589be4787e56bb6b0d53be3d8e1ca21"
               }
             },
             "distinctFrames": 4
@@ -286877,8 +287888,8 @@
                 "pixelSha256": "4f86a05aa066337a31306d5e43a91fc0bca1fee5169b4185ef15c61b219c21e7"
               },
               "03": {
-                "sha256": "9196dd8fc44b3fde94caea99e74b1b7dc2ddbeb016bf264748def54da9637e67",
-                "bytes": 24729,
+                "sha256": "70c8e1fe2a5ea32e60d1b6e5529e03f0e94ef3df5ef1c6196edf0bd1473c0fa1",
+                "bytes": 25397,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -286887,10 +287898,10 @@
                 "bbox": [
                   14,
                   90,
-                  104,
+                  105,
                   249
                 ],
-                "pixelSha256": "e13b02846c05039a6152d5cd9e0079e6883fc643826c57097f290f101e043be8"
+                "pixelSha256": "8eac1055bae36dbdfe7e638bdbd47c9c732369ee5fb2a739cd8aadae5f92c79f"
               },
               "04": {
                 "sha256": "21959efbdf9b057ba083fd31afad972ab5150ac949d7aac133f2a226e2069117",
@@ -286915,56 +287926,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "5481c2d2ec2e83cad227d461c8eece968bc1fe779570a5e615f0edb5bc3fc687",
-                "bytes": 23942,
+                "sha256": "41afccee202a3e2a9deb66ff03f9fcf1f9f1ccdbb2a4517ac1bdd7130a89b294",
+                "bytes": 25631,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
-                  89,
-                  106,
-                  249
+                  24,
+                  88,
+                  113,
+                  253
                 ],
-                "pixelSha256": "964243cd00f3c85f35f4fe0137101302b40c0a09bf1f445c22241faaef533d77"
+                "pixelSha256": "d0c0d880634748f601b3ddc26013db4ade7eebbec37681368c0faed14fcbb1e0"
               },
               "02": {
-                "sha256": "af9a9612aaf41987724284c521aeda25663ab2899b1cee8e82e9724ca46bfe71",
-                "bytes": 24218,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  11,
-                  89,
-                  104,
-                  249
-                ],
-                "pixelSha256": "3e15bbd3cfe549e86d656c99c550e75ad326f2133d76cf6a50d181075c5efd53"
-              },
-              "03": {
-                "sha256": "c7e697130fd9316e67bab05416f3b736dc9eb192a941993649f4a19e0636f25c",
-                "bytes": 24265,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  6,
-                  89,
-                  105,
-                  249
-                ],
-                "pixelSha256": "f6e65e377551a72ffdf1e2079413990931466e4fc1485c032e79ee4c6aa7801e"
-              },
-              "04": {
-                "sha256": "3c968c05e42ea456a561611a48e97715c035164bbf7e4c492ec5f4b5b8ed7307",
-                "bytes": 24497,
+                "sha256": "70b40161fa8e83a6834f9a6dd008ecf249575a7ead8b435a173285a47f86b98f",
+                "bytes": 25326,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -286972,11 +287951,43 @@
                 ],
                 "bbox": [
                   13,
-                  89,
-                  104,
+                  88,
+                  115,
                   249
                 ],
-                "pixelSha256": "a96c59ac52c3eb8d20ded6c3d06c8a37a71f3defc9e3b82730e25723867e9999"
+                "pixelSha256": "2bc1b9c9cd431e4618dabd721ac9cab30e7f76e2b7ba855e66be5527e4a8e93e"
+              },
+              "03": {
+                "sha256": "4dce1cbc55fe5d6a051132c48315a37d516bc25b58649e7b53fcd71a8786bb2a",
+                "bytes": 25968,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  88,
+                  111,
+                  253
+                ],
+                "pixelSha256": "822eee561c8685b99aeb734e0d613b6d29f3d2a265124e1a08995e38d99477e8"
+              },
+              "04": {
+                "sha256": "8ca8ddf1ef635395499c929a460bce271a59e5a73b484a1a682e18c43978fdf6",
+                "bytes": 25769,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  88,
+                  112,
+                  249
+                ],
+                "pixelSha256": "59bb1efd3477cbf6d2dfcc458afd6ef71cc75ba7c7b346202a3ee30e80c98fd9"
               }
             },
             "distinctFrames": 4
@@ -287017,20 +288028,20 @@
                 "pixelSha256": "ae644ea9223db9bb957a90e05b1cfd918d86dc646041d4260f9b32f0240a5939"
               },
               "03": {
-                "sha256": "788a9c6ebab59abc2abfc7fee9499796392ce387a6c500746989d829a7f5e6f1",
-                "bytes": 22726,
+                "sha256": "5b7149fcde313e49886f5ce5bfae93f174d7f7c8f4c2abb49319bdbc07d507dd",
+                "bytes": 23320,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  91,
-                  93,
+                  16,
+                  89,
+                  95,
                   249
                 ],
-                "pixelSha256": "08454ccdf25704fd13cfec781b4fd9ebb2dca45f5928a8632262b8340c820e2b"
+                "pixelSha256": "b62ac9923dcd2b60d8bdd10c0e37100c8b0f7e39504292ab671045d65cc2ba74"
               },
               "04": {
                 "sha256": "3ed3f94b5c696a63ce906840b8565d656275e08445a064502abed3db133f0e4a",
@@ -287141,8 +288152,8 @@
                 "pixelSha256": "63fe50f502319849bb5209b48eb98d0ece7b68c435f1890be72d6b1827ef94fd"
               },
               "02": {
-                "sha256": "32c3de37c646fbc4ccebeb5f5e6d047eb269f1bbdd6e567b2980691b8b44099f",
-                "bytes": 22420,
+                "sha256": "d996dae314dbb7ec18689f170136a7b2af6a4714ce418affe5cb6b1f4e279158",
+                "bytes": 23234,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -287150,11 +288161,11 @@
                 ],
                 "bbox": [
                   22,
-                  89,
-                  98,
+                  88,
+                  100,
                   249
                 ],
-                "pixelSha256": "5cf5068eac225c6e28ff2c582fce34f00a71abf0ba9924c513402e84fbf9911c"
+                "pixelSha256": "2514fda16c46d2bf9cbc9bd438c02bc1ec5cdef47b69960b720f5a3a79acaf6a"
               },
               "03": {
                 "sha256": "ecb59b5179f6f7f3c109ddda4f1641af6c5486434f73f53a5ef15ceba251b722",
@@ -287173,20 +288184,20 @@
                 "pixelSha256": "67723cfab12c89291f0a8e4826fc2234d33807494afdb8dec6e4176d458364ce"
               },
               "04": {
-                "sha256": "f55936beac851c82ea1b0264c6afed7cb892e7465cb551ece763e121fb5a043c",
-                "bytes": 22570,
+                "sha256": "efd9d92c3f7f7c648daa84a7b923596d6d195bcd838c3ea6757c529b2d5ca3e2",
+                "bytes": 22765,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  21,
                   89,
-                  98,
+                  99,
                   249
                 ],
-                "pixelSha256": "c02feb82b81374d911cd8e38750dfc911f9fdc10c7cd47ce71aa70b0ff9e56dd"
+                "pixelSha256": "6328a2dc19382b0329c6f277454f1be1c803630eeff538b5369a5cfecdcb4558"
               }
             },
             "distinctFrames": 4
@@ -287303,10 +288314,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "hurt": {
-          "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
+          "sourceSha256": "ff03b36834d0a3bcc3e012f3fc88233b6848417b05f5d4a822f3ce1f7ffe00a8",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -287328,9 +288339,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized arm edit. Move near hanging fist RIGHT and UP until black palm covers ring beside tabard. Preserve all other anatomy, exact framing and scale, plum beret short ivory feather, golden copper high wavy ponytail, petrol teal ivory plum costume, rose-gold lyre with paired silver blade-wing chest brooch, diamond belt and diamond knee panels, boots. Remove all magenta. Genuine transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -287338,7 +288349,139 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "72f64428fcad797d4a7959990385b256548d5d2f8cdf04e29c93a93107f2e8fb",
@@ -287569,10 +288712,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_dagger": {
-          "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
+          "sourceSha256": "fca63caacb4b2d963a4fc66647ff24e455b7cf1fc1a5d4938e5abdf94fe8fee5",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -287594,9 +288737,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized arm edit. Move near attacking fist slightly RIGHT and UP until palm covers ring beside hand. Preserve all other anatomy, exact framing and scale, plum beret short ivory feather, golden copper high wavy ponytail, petrol teal ivory plum costume, rose-gold lyre with paired silver blade-wing chest brooch, diamond belt and diamond knee panels, boots. Remove all magenta. Genuine transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
@@ -287604,13 +288747,145 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+                "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+                "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+                "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_bow": {
-          "sourceSha256": "9c0bb987049991bed69218290368bfdbe75620e2ba04899e291044ac8235e14d",
+          "sourceSha256": "24e998edf0cdef4216a2e90ea3b672d7b914402132f970b695dc2a552b795cd2",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -287632,9 +288907,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized arm edit. Extend front viewer-right fist RIGHT until palm covers ring beside fist. Preserve all other anatomy, exact framing and scale, plum beret short ivory feather, golden copper high wavy ponytail, petrol teal ivory plum costume, rose-gold lyre with paired silver blade-wing chest brooch, diamond belt and diamond knee panels, boots. Remove all magenta. Genuine transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
           "canonicalPoseHashes": [
             "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
@@ -287642,13 +288917,145 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "bfb71fbf3f4b06168ebd9fc2db4c133b6a2c74c879071fe16f80a9af50d9d151",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "26e84b016e8a972fa669e0150338f7fee0d521aba8e6090d1ab7f670d34eb859",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "fbc6321b715b848e9968d81cfc75e2e481bb01114a65a11a9f0e1ac0f75c431f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "9c0bb987049991bed69218290368bfdbe75620e2ba04899e291044ac8235e14d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                602,
+                18,
+                1035,
+                701
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "65b8cd5d785d3f1b8a391f851f20e2c135eeed967c023f46d8d26d78dd69ab7f",
+                "1768fc0a9d00bb0c429bf9fbeb3d5555cbeb8629e01b0a297e72984d95880790",
+                "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
+                "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_staff": {
-          "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
+          "sourceSha256": "ea7762bf1c3abc95f492dbc82c5e1aa718a22307a1a7d69533ca77100bb71b19",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -287670,9 +289077,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized arm edit. Lower extended open viewer-right hand and wrist DOWN and slightly RIGHT so the wrist / lower black palm covers magenta ring BELOW hand. Keep upright open casting gesture and hidden other hand. Preserve other anatomy, precise framing and scale, plum beret ivory feather, golden copper high wavy ponytail, petrol teal ivory plum costume, rose-gold lyre silver blade wings, diamond belt and knee panels, boots. Remove all magenta. Clean genuine transparent RGBA background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
           "canonicalPoseHashes": [
             "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
@@ -287680,7 +289087,139 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                648,
+                14,
+                1028,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                20,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_staff-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+              "canonicalPoseHashes": [
+                "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+                "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+                "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+                "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_mace": {
           "sourceSha256": "3cf463078a046802a4855446c4fb06766470fab913bd962cf08997e1127da5d2",
@@ -287746,7 +289285,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference-v3.png",
           "generator": "built-in imagegen",
           "prompt": "Remove every trace of the cloudy gray colored background and every ground shadow. Genuine transparent RGBA alpha background, clean isolated characters. Preserve all FOUR complete characters exactly: precise poses/hand positions, head size, high golden copper wavy ponytail, plum beret with short ivory feather, rose-gold lyre paired silver blade wings chest emblem, petrol teal/ivory/plum costume, diamond buttons/buckle/knee panels, boots. Preserve original exact scale and cell spacing, full margins. No equipment or effects. No recentering or shrinking.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
@@ -287757,6 +289296,68 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "86956d4da4abb1879a3ea13fe44da4b413e42ef762ede80aa9fccdc1bca0a4f6",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "5a0f4d93e0ab09ea0e7d7fe15a8523daeec711fb480239726b37014a021cc3ca",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
           "previousRevisions": [
             {
               "sourceSha256": "68f7aa31d013e0e591e14bbb2de46fda457835bb909e91b0bec2170bcc2e4edb",
@@ -287787,6 +289388,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
+              "canonicalPoseHashes": [
+                "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
+                "cb11e7be47ed2129254255f575e0d9e4bf0c0ca90b6b924f8de224873061dfce",
+                "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
+                "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "8736a15117073aaf122426d1bb849631af66eb087aca1b8e63ddeb308c94a438",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Remove every trace of the cloudy gray colored background and every ground shadow. Genuine transparent RGBA alpha background, clean isolated characters. Preserve all FOUR complete characters exactly: precise poses/hand positions, head size, high golden copper wavy ponytail, plum beret with short ivory feather, rose-gold lyre paired silver blade wings chest emblem, petrol teal/ivory/plum costume, diamond buttons/buckle/knee panels, boots. Preserve original exact scale and cell spacing, full margins. No equipment or effects. No recentering or shrinking.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
               "canonicalPoseHashes": [
                 "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
@@ -287855,15 +289494,15 @@
           "frame": 4
         },
         "hurt/01": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.01",
           "frame": 1
         },
         "hurt/02": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.02",
           "frame": 2
         },
         "hurt/03": {
-          "source": "sources.hurt",
+          "source": "sources.hurt.frameSourceOverrides.03",
           "frame": 3
         },
         "hurt/04": {
@@ -287967,11 +289606,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -287979,7 +289618,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
@@ -287987,23 +289626,23 @@
           "frame": 1
         },
         "attack_bow/02": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_bow/03": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_bow/04": {
-          "source": "sources.attack_bow",
+          "source": "sources.attack_bow.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_staff/01": {
-          "source": "sources.attack_staff",
+          "source": "sources.attack_staff.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_staff/02": {
-          "source": "sources.attack_staff",
+          "source": "sources.attack_staff.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_staff/03": {
@@ -288011,7 +289650,7 @@
           "frame": 3
         },
         "attack_staff/04": {
-          "source": "sources.attack_staff",
+          "source": "sources.attack_staff.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_mace/01": {
@@ -288035,7 +289674,7 @@
           "frame": 1
         },
         "attack_book/02": {
-          "source": "sources.attack_book",
+          "source": "sources.attack_book.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_book/03": {
@@ -288043,7 +289682,7 @@
           "frame": 3
         },
         "attack_book/04": {
-          "source": "sources.attack_book",
+          "source": "sources.attack_book.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_gloves/01": {
@@ -292155,7 +293794,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

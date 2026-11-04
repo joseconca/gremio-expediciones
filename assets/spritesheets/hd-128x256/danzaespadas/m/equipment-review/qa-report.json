@@ -9,9 +9,11 @@
     "use_consumable",
     "dodge",
     "block_shield",
+    "attack_sword",
     "attack_axe",
     "attack_spear",
     "attack_dagger",
+    "attack_bow",
     "attack_staff",
     "attack_mace",
     "attack_book",
@@ -33,26 +35,32 @@
     "hurt": [
       "a196009156b719e479a69c6b9e1f7edd507272d802b6a3bc61cf0eab11cfea57",
       "3a6dba71623c6f46a66a3c4b120e5551cbdc0649379e337e7b397f2acc921ef1",
-      "64ed48a070f9ab649ba2c3f45799c691bfa1076c5b3e9a40327601b6b038eb8d",
+      "df4a84345c2cd328969516bdde250342ac439ec8c6e8697c49f317edb16232c2",
       "133889001fd595265100ff99daeee2dbc7667b423b84d4f3f1123165c75969eb"
     ],
     "use_consumable": [
       "210f2b00db0d3b210801b835adbd9535a346014d3c0b1d3523d918e2d3693c6b",
-      "63198cbbd6d1d16c2b5628ee2d5cc577d7f13d0700e34daec93ce0cbd425555c",
-      "622de8fc9d0a61d6c938d9ea826ea1aa213c6931c87597c85ca8b8001da4966a",
+      "4919b6db41b66db58047de23ecad0a0d92bae0531c2cef091940d6f2b2a3157b",
+      "7294171e2dd4da0f7ed92489164d5567123f67f7f3931c34b185b742d699824e",
       "5d7731eaf85398369cb431fdfec793afb5c2cc7d881da9f819267559544990c6"
     ],
     "dodge": [
-      "5bae10982803a8ec1d0508ed528cfa8c7183d0c91ddf9295ac5642b97b03ff49",
+      "e6528539ccaab4033723d08d220a2b7f6a597ff7528827a72c88dc05743cbd5d",
       "e0e7f1f605fca81d44e8481e2b6fd712f7ec0b2ad32465d412c263399ac77054",
       "fe88d6ead2a1987d7e37fd48f0395ff2608a6b67153f84f81e70c13ed7009b98",
-      "bb4438c2d269b12a14945ff58a8090316503fe509a493bb1095202316a8c9e58"
+      "4d052cb55dd27c879c453a9c7425edf23df7668aaeddaff7d9e4ddcf949afafd"
     ],
     "block_shield": [
       "eaafe10807e336083723bc12736b322aaa8f7c15775efeed706ec355c4317a28",
       "77b9f93db29228ff12bd13a695cb0077897db53cdb2adc677edb0127665d8cb5",
       "879e2bfd0af2f5c2c56774b03a69059555f2f28ac47c784b1c5c4be6b6fce268",
       "b2ac805473fd787d78971cb615239aec1e58cc09aab932d12b19568b798b9d7b"
+    ],
+    "attack_sword": [
+      "50da2a1d8eaeff1b4962e2e115071925544c97e8112f7b28c81c902598333aee",
+      "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c",
+      "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe",
+      "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845"
     ],
     "attack_axe": [
       "85f57d861e59af78c512f6d1f9ecca2099028c8b2ff7dd3422d344ff111f9474",
@@ -62,15 +70,21 @@
     ],
     "attack_spear": [
       "034e5c958d17a470468a71bd2546f8a1f8f40b4693978a3d6ea09548ea074fde",
-      "61a901527e36c585883df1e89e27f6f1cd7cf64dd658cfb32965749f74e0ea6c",
-      "996d1d780a3f3ad92a25649477a46dac59b24667a70fb4b64e3fbb5ba2579464",
-      "a842726b8353cbfc7da892bbfc8d7734bad38187e294ae7b91de2d1770b13b37"
+      "653e2de76172e5f6de7eaa65e8cc69320aff83268e34ed14cf7fdb7bb23f4b07",
+      "ac02f7e5e33cd33c020d35cb9de4c105e1898841568d23083aed0698c07ea116",
+      "db4c39971f0e05f9d1bdebda517c3ee6c4db6fc2d4958287d817fe7c1459a1c0"
     ],
     "attack_dagger": [
       "c3d1a600a3d0324966d76708714c707cae5d80926d63b5c94238d260de8935d5",
       "dab242d739dab4f56086fbfe772d000f6023472143d75652f5b56b0e32aa8ebc",
       "9036a4185767fa1d3af3827bd7548a95f0085f24b26604db1864c30f2febeb2e",
       "8a2c56aa7044f45a35ef1d015bfe8c77357be655334000d5d03865468c328ce1"
+    ],
+    "attack_bow": [
+      "82f2cca9b5ea36f3e94d591ba4fdcbc1d20b2c69b8770482a202cacc8a7f2d77",
+      "190c0e0f5abf8cb44589315bd544857b3d26b9d19d652c80c5739f0c6f3cd2bb",
+      "ad15b255b05bcf369a75dc255ea5207b7c6df5f4551dcfed29f76b0588a66f4c",
+      "4bfd4e5ff5bb842e3afd6656e4905b75656dc911a8c6702bda746eea71c0972a"
     ],
     "attack_staff": [
       "c9dbea38469f1d2a128cf91bed9a27a9916e6cc92b5e32629076599da63ca3ab",
@@ -97,7 +111,7 @@
       "ac807856384e33d80b6176fb9d5525fabf77ad7dbebe997fb6b6208348a0a44c"
     ]
   },
-  "contactChecks": 634,
+  "contactChecks": 682,
   "warnings": [
     {
       "action": "walk",
@@ -172,129 +186,21 @@
       ]
     },
     {
-      "action": "use_consumable",
-      "frame": 2,
-      "item": "pocion",
-      "point": [
-        79,
-        134
-      ]
-    },
-    {
-      "action": "use_consumable",
-      "frame": 3,
-      "item": "pocion",
-      "point": [
-        87,
-        120
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "arco_cazador",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "arco_madera",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "grimorio_eclipse",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "guantes_lucha",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "libro_aprendiz",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 1,
-      "item": "punos_lobo",
-      "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "dodge",
+      "action": "attack_sword",
       "frame": 1,
       "item": "escudo_guardian",
       "point": [
-        91,
-        150
+        103,
+        179
       ]
     },
     {
-      "action": "dodge",
+      "action": "attack_sword",
       "frame": 1,
       "item": "escudo_madera",
       "point": [
-        91,
-        150
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_escama",
-      "point": [
-        112,
-        142
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_escama",
-      "point": [
-        105,
-        148
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_madera",
-      "point": [
-        112,
-        142
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_madera",
-      "point": [
-        105,
-        148
+        103,
+        179
       ]
     },
     {
