@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-11-04T13:21:56.252408+00:00",
+  "classId": "arconte",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\arconte\\f\\arconte-f-sheet.png",
+  "sheetSha256": "db8bc1489607592e1df4b2b51f64930547767e4b254a42be5bb257f87ac971fc",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\idle\\arconte-f-idle-01.png",
+          "sha256": "9649007b370accb4a663a4dfb7cc6cff27d1ee716713c49c7b8a3fa6a339da92",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\idle\\arconte-f-idle-02.png",
+          "sha256": "95a95a5edd48c0d87345654a02a6be9d73c62ca37fa37ae424b5f1207dc88caf",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\idle\\arconte-f-idle-03.png",
+          "sha256": "0093068587d6f5b9e6adabe65cc79d0f1750162ab125d51ef16676ba4e783ce3",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\idle\\arconte-f-idle-04.png",
+          "sha256": "67aefebb6dfa92d7961352e3a36047835f1fc04e12e29e4e6580e5b7d34d2d5c",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\walk\\arconte-f-walk-01.png",
+          "sha256": "d1ebab38ad4e35f3f56dab84fc8d84ddcb299d542470b845eb267ab238526f97",
+          "alpha_bbox": [
+            10,
+            89,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\walk\\arconte-f-walk-02.png",
+          "sha256": "3ed1095108c3e9e36353cc7b272600fb949f3872b8d2c113722605020c90595c",
+          "alpha_bbox": [
+            26,
+            89,
+            93,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\walk\\arconte-f-walk-03.png",
+          "sha256": "4a09a7826591f3204550bb025ff45f1bedabe54c43eae1308343096aa0730a43",
+          "alpha_bbox": [
+            10,
+            89,
+            114,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\walk\\arconte-f-walk-04.png",
+          "sha256": "76410c8ba78a7fed3274a2f76b10a7326b23d626114b978a4d8e0845752f1ca1",
+          "alpha_bbox": [
+            22,
+            89,
+            94,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\hurt\\arconte-f-hurt-01.png",
+          "sha256": "07f7c5ed287793554701e8bd4b31e3dff56fa25133383dd862a4858f45c2aac6",
+          "alpha_bbox": [
+            23,
+            96,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\hurt\\arconte-f-hurt-02.png",
+          "sha256": "4addc5f00c1c21a6f5f6a135b42d6d8940aaa0ecbd54fb62b7cda040792f11a9",
+          "alpha_bbox": [
+            21,
+            96,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\hurt\\arconte-f-hurt-03.png",
+          "sha256": "92fc557e99d6c93e58bd271375270cb302e6d81784822aac4bb6a9ab747e36a6",
+          "alpha_bbox": [
+            14,
+            116,
+            91,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\hurt\\arconte-f-hurt-04.png",
+          "sha256": "e562dfb9014762361eb410b979ec65416262b1f80927b59bb14b5b679d725bab",
+          "alpha_bbox": [
+            14,
+            94,
+            95,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\use_consumable\\arconte-f-use_consumable-01.png",
+          "sha256": "7ac0849e19ee5165244bf6e5ab15f3dcd20b3217dd1287cca95994cd6e009086",
+          "alpha_bbox": [
+            18,
+            90,
+            98,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\use_consumable\\arconte-f-use_consumable-02.png",
+          "sha256": "67ce212e7a80f02ac55d67d219b6ea7aea86563b354bdb485a10f4c1c0a3be57",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\use_consumable\\arconte-f-use_consumable-03.png",
+          "sha256": "856aaa3aae6d9f4b1016d3573aa6233ee493a8cad4bee20643c788b1380783f0",
+          "alpha_bbox": [
+            20,
+            89,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\use_consumable\\arconte-f-use_consumable-04.png",
+          "sha256": "461cc8e275282d92c12e1dedebfcd1f766b4c3110a217fc0e3d17522436be760",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\dodge\\arconte-f-dodge-01.png",
+          "sha256": "474b850cb18b11a654009d903b67881bebc621acabc6284abc08381339fb7a98",
+          "alpha_bbox": [
+            29,
+            91,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\dodge\\arconte-f-dodge-02.png",
+          "sha256": "4bc2b0f48c1e48474f53c5be7d66711154c3eec8b2664f2ad989d600cd7c5e41",
+          "alpha_bbox": [
+            27,
+            95,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\dodge\\arconte-f-dodge-03.png",
+          "sha256": "f03bdcfe7bbd28b80a8b4e6b020628842180994b898fb7d68926fdf118ecf876",
+          "alpha_bbox": [
+            20,
+            124,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\dodge\\arconte-f-dodge-04.png",
+          "sha256": "bdb4f925188fef6b3f0c846aab43710f8fe39f7dabc894a03d6b5e2b68bc0c9f",
+          "alpha_bbox": [
+            14,
+            92,
+            99,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\block_shield\\arconte-f-block_shield-01.png",
+          "sha256": "decab50dd3372a9bbf431325028af167d5715d17a98349f874cfa70894729458",
+          "alpha_bbox": [
+            27,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\block_shield\\arconte-f-block_shield-02.png",
+          "sha256": "aa4f4175defa6d0c808ec0f208878ba8e9f403c795e8072150f5895ee31924c9",
+          "alpha_bbox": [
+            26,
+            94,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\block_shield\\arconte-f-block_shield-03.png",
+          "sha256": "23f1b716701a8903ae56115e9635e01d5b5f41135fc944a55ac314b463be8a6d",
+          "alpha_bbox": [
+            22,
+            103,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\block_shield\\arconte-f-block_shield-04.png",
+          "sha256": "f11987e70b8892924c065f8bacd77a3133d334c85f7f22965543c3f1bc00e050",
+          "alpha_bbox": [
+            15,
+            93,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_sword\\arconte-f-attack_sword-01.png",
+          "sha256": "6b98f511d096da23e57bce4054500b999749e2fe5145830d74199a46b4662714",
+          "alpha_bbox": [
+            18,
+            92,
+            108,
+            245
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_sword\\arconte-f-attack_sword-02.png",
+          "sha256": "014639fde4c1ce41926c28e45a267f5aa192a5d9e98b9e597b6ee09539efd601",
+          "alpha_bbox": [
+            20,
+            92,
+            110,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_sword\\arconte-f-attack_sword-03.png",
+          "sha256": "0aac360ada32e197a7e40210e4ab73d695f8c8cd48783c76a160e0bcb8401c3d",
+          "alpha_bbox": [
+            15,
+            99,
+            109,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_sword\\arconte-f-attack_sword-04.png",
+          "sha256": "f4008827bf901b037f554ed3812111d8e6e47f76ec29f2c5f0a2e155b6e56fa1",
+          "alpha_bbox": [
+            15,
+            92,
+            106,
+            245
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_axe\\arconte-f-attack_axe-01.png",
+          "sha256": "1e07e575b7925672de4731e89301fd322d4a102c2337e611e2f403573735de9a",
+          "alpha_bbox": [
+            29,
+            97,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_axe\\arconte-f-attack_axe-02.png",
+          "sha256": "52e32622946e130636327e21998edf4f64e7b394120f4052a543cfd67bfe2816",
+          "alpha_bbox": [
+            23,
+            90,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_axe\\arconte-f-attack_axe-03.png",
+          "sha256": "49d7926d884038f4b34bb8dfcb2fb0eb491861bd02921d9ed56e4010ad5bd4e2",
+          "alpha_bbox": [
+            15,
+            107,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_axe\\arconte-f-attack_axe-04.png",
+          "sha256": "d0b29ceb7b9ec6cb95e759bbf4dfc47d74a1c7deb734090838b833402a023e26",
+          "alpha_bbox": [
+            13,
+            97,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_spear\\arconte-f-attack_spear-01.png",
+          "sha256": "d931745a85bad78cd91fc9fe0869ec442baf444de742c6d11e85d6f4b1d5b00b",
+          "alpha_bbox": [
+            9,
+            94,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_spear\\arconte-f-attack_spear-02.png",
+          "sha256": "1939d610c3a8509d147ac968b0696fe96e01f5dbe5241d7eaaef239049426bf8",
+          "alpha_bbox": [
+            6,
+            93,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_spear\\arconte-f-attack_spear-03.png",
+          "sha256": "fa0bae3a429e3abfdceef7c562cb70223832260969ab27f3643b1c1ebb773b8a",
+          "alpha_bbox": [
+            8,
+            94,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_spear\\arconte-f-attack_spear-04.png",
+          "sha256": "68e5b07526ab3dcd4b8885ed3b6a7cadfdf4bba0cf382d62d77a7f727666e3d3",
+          "alpha_bbox": [
+            6,
+            93,
+            108,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_dagger\\arconte-f-attack_dagger-01.png",
+          "sha256": "56a9566bdcd1d7fd90f37c1ebc784f59fea13e0622084f23c0b4e5c5c94dc5da",
+          "alpha_bbox": [
+            16,
+            91,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_dagger\\arconte-f-attack_dagger-02.png",
+          "sha256": "789edf884cfd2776ac914620e5c16843cd4b2f073d22198a6b29014a96c556c8",
+          "alpha_bbox": [
+            16,
+            92,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_dagger\\arconte-f-attack_dagger-03.png",
+          "sha256": "4424e124e836d0c2af1854ef4cef05127749cd94a14ebd52a3b2cc2d66fa7914",
+          "alpha_bbox": [
+            20,
+            92,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_dagger\\arconte-f-attack_dagger-04.png",
+          "sha256": "48a496c3cae92e040549b3abd2c91dd8214e49c6962cbc6fba848992c470af2c",
+          "alpha_bbox": [
+            24,
+            91,
+            112,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_bow\\arconte-f-attack_bow-01.png",
+          "sha256": "e03a05f87564ea568cb3b46d3d7fa0dcb62ea466535cab55682e50d4cd341626",
+          "alpha_bbox": [
+            22,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_bow\\arconte-f-attack_bow-02.png",
+          "sha256": "6fefe85764a9c7a5b8fe2623cc5b6c9b5a98807506717c72ad69d90d159208b4",
+          "alpha_bbox": [
+            15,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_bow\\arconte-f-attack_bow-03.png",
+          "sha256": "fa26e390c365ebd564176aa4bed4ae18a90ba2dc5f78d646c876421935f8977c",
+          "alpha_bbox": [
+            14,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_bow\\arconte-f-attack_bow-04.png",
+          "sha256": "f21fc2d3fe95ea6e505899f3a252c4ac301cf343184afab33ff069ef8cb30bb9",
+          "alpha_bbox": [
+            15,
+            92,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_staff\\arconte-f-attack_staff-01.png",
+          "sha256": "7ccd96ce789a73b2c77cd544351af86f3a9c05fcc0e1fe0cbe8805e6c77b6c84",
+          "alpha_bbox": [
+            21,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_staff\\arconte-f-attack_staff-02.png",
+          "sha256": "fc1e53ee900acc602a5fdb9b9a6a69730cac76ff54c3929f915fabe199e8ffee",
+          "alpha_bbox": [
+            19,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_staff\\arconte-f-attack_staff-03.png",
+          "sha256": "bd427065c5a9f658f62fd72e2bdeafed9716872d1f8c8ed54c8a620774211a67",
+          "alpha_bbox": [
+            19,
+            94,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_staff\\arconte-f-attack_staff-04.png",
+          "sha256": "ae5e850cc8b3eba7e08c6e0b2018b27b6ba79460958485fdcaf3b56ab45b5d6e",
+          "alpha_bbox": [
+            13,
+            93,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_mace\\arconte-f-attack_mace-01.png",
+          "sha256": "c9ed225a7fbdc94a75ddc4d3bc6d07d48604469faf12d15fe8060e970a7c970a",
+          "alpha_bbox": [
+            26,
+            93,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_mace\\arconte-f-attack_mace-02.png",
+          "sha256": "ea676959c6db088a8dcfd1c6f09b73e71320a0af4614138c021639b6409cbdd7",
+          "alpha_bbox": [
+            25,
+            93,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_mace\\arconte-f-attack_mace-03.png",
+          "sha256": "c9b5520ca7e0e3e0bfe3cbdd91cd82b8ff6b9cc38ccd65520c82ff79328e36ba",
+          "alpha_bbox": [
+            21,
+            98,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_mace\\arconte-f-attack_mace-04.png",
+          "sha256": "f75dbe528a7808bb2d44f372585581dc84c71c5df0bc5d268a459815feca7487",
+          "alpha_bbox": [
+            19,
+            93,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_book\\arconte-f-attack_book-01.png",
+          "sha256": "123ae9bdc1f5695a01ee7981c42395695211e9d11e0baeda0ecf00c6ba2eae06",
+          "alpha_bbox": [
+            29,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_book\\arconte-f-attack_book-02.png",
+          "sha256": "013177ba82062ae1803966141d880cbd281896bb715f602d198331eca156a573",
+          "alpha_bbox": [
+            22,
+            93,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_book\\arconte-f-attack_book-03.png",
+          "sha256": "b8b77e2ba8431485d251fd47201364f128fd3a18c917061832a03cbc6653af0e",
+          "alpha_bbox": [
+            16,
+            93,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_book\\arconte-f-attack_book-04.png",
+          "sha256": "25892ffe16015135a69272373be67c7e79cfea0aa164325ba6cc9866beffcbf9",
+          "alpha_bbox": [
+            18,
+            93,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_gloves\\arconte-f-attack_gloves-01.png",
+          "sha256": "3b72528c73c384a149b026b126ac69e440e5d376a19d55f16df73e6fd2a5cf12",
+          "alpha_bbox": [
+            18,
+            92,
+            100,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_gloves\\arconte-f-attack_gloves-02.png",
+          "sha256": "d96b6d52f94438424cf862ef550359a706ead80e5f522bbb82a158f69cfb0393",
+          "alpha_bbox": [
+            20,
+            92,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_gloves\\arconte-f-attack_gloves-03.png",
+          "sha256": "61f8455cf844d9e53b9500d201d11a17a79592978bb7d3c9b8460dc8f0be22ae",
+          "alpha_bbox": [
+            11,
+            92,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arconte\\f\\frames\\attack_gloves\\arconte-f-attack_gloves-04.png",
+          "sha256": "297d5104d7aad7458011b9713c0adf66fd83f6385e34ca60b68b39130b89e947",
+          "alpha_bbox": [
+            9,
+            91,
+            93,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

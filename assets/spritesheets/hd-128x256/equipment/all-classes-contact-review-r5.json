@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 112,
-  "contactChecks": 76384,
+  "variants": 114,
+  "contactChecks": 77748,
   "warnings": 0,
   "reports": [
     {
@@ -48,6 +48,18 @@
     },
     {
       "classId": "archimago",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "arconte",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "arconte",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []
