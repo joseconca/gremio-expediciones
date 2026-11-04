@@ -5,7 +5,7 @@ Este directorio orquesta **sesión, permisos, recursos, transacciones y persiste
 ## Dónde encontrar cada responsabilidad
 
 - `index.ts`: exportaciones públicas de los servicios de combate.
-- `dispatcher.ts`: encamina el endpoint genérico existente `/api/combate/accion` hacia PvE o PvP según el contexto. Auditar los consumidores antes de decidir su eliminación; el endpoint sigue presente.
+- Las rutas vigentes son `/api/combate/pve/accion` y `/api/combate/pvp/accion`; cada una utiliza su servicio correspondiente. El endpoint genérico y su dispatcher se eliminaron tras verificar que el cliente actual envía el modo de combate explícitamente.
 - `accion-combate.ts`: preparación/autorización de acciones, obtención de personaje y combate, cobro de habilidades y regeneración de recursos. Sus operaciones con Prisma deben permanecer en servidor.
   - La petición JSON se lee aquí, pero `validarSolicitudAccionCombate` (`src/lib/expediciones/combate/contrato-accion-combate.ts`) valida acción e identificadores sin importar Prisma ni HTTP.
   - `calcularEstadisticasRecursosPersonaje` es un auxiliar interno compartido por pago y regeneración. **No** cambia el momento del cobro, la selección de columnas o las comprobaciones de concurrencia.

@@ -802,17 +802,6 @@ function makeInvalidBodyRoute(relativePath) {
     "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
     "@/lib/prisma": { prisma: {} },
-    "@/server/services/combate/dispatcher": {
-      adaptarAccionCombate: async (request) => {
-        let body;
-        try { body = await request.json(); }
-        catch { return NextResponse.json({ error: "JSON inválido" }, { status: 400 }); }
-        if (!body || typeof body !== "object" || Array.isArray(body)) {
-          return NextResponse.json({ error: "Cuerpo inválido" }, { status: 400 });
-        }
-        return NextResponse.json({ exito: true });
-      },
-    },
     "@/lib/objetos": { obtenerObjetoPorId: () => null },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/progresion/clases": { puedeUsarHabilidadDeClase: () => true },
@@ -1056,7 +1045,6 @@ test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son 
     "src/app/api/habilidades/aprender/route.ts",
     "src/app/api/habilidades/equipar/route.ts",
     "src/app/api/habilidades/desequipar/route.ts",
-    "src/app/api/combate/accion/route.ts",
   ];
   const invalidRequests = [
     {

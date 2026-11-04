@@ -249,3 +249,18 @@ test("los orquestadores de combate consumen efectos desde su motor, sin envoltor
   assert.doesNotMatch(party, /function (?:obtenerEfectos|convertirEfectos)\(/);
   assert.match(party, /leerEfectosCombate\(participante\.efectos\)/);
 });
+
+test("el combate usa únicamente los endpoints específicos y no conserva el dispatcher antiguo", () => {
+  assert.equal(existen("src/app/api/combate/accion/route.ts"), false);
+  assert.equal(existen("src/server/services/combate/dispatcher.ts"), false);
+  const indice = fs.readFileSync(path.join(root, "src/server/services/combate/index.ts"), "utf8");
+  assert.doesNotMatch(indice, /adaptarAccionCombate|dispatcher/);
+  const store = fs.readFileSync(path.join(root, "src/store/useGameStore.ts"), "utf8");
+  assert.match(store, /modo:\s*"pve"\s*\|\s*"pvp"/);
+  assert.ok(store.includes("fetch(\`/api/combate/\${modo}/accion\`"), "El cliente debe apuntar a la ruta del modo elegido");
+  for (const [modo, nombreServicio] of [["pve", "ejecutarAccionPve"], ["pvp", "ejecutarAccionPvp"]]) {
+    const ruta = `src/app/api/combate/\${modo}/accion/route.ts`;
+    const contenido = fs.readFileSync(path.join(root, ruta), "utf8");
+    assert.match(contenido, new RegExp(`\\b\${nombreServicio}\\b`), `${ruta} debe utilizar su orquestador`);
+  }
+});
