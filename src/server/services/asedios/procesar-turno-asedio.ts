@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import { haExpiradoTurnoPvp } from "@/lib/expediciones/asedios/turno-pvp";
-export { TIEMPO_MAXIMO_TURNO_MS } from "@/lib/expediciones/asedios/turno-pvp";
+import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { prisma } from "@/lib/prisma";
 import { resolverAtaqueJugador, resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
@@ -18,32 +18,6 @@ import {
   calcularPrecisionModificada,
   calcularEvasionModificada,
 } from "@/lib/expediciones/combate/estados-combate";
-
-function obtenerCooldowns(valor: unknown): Record<string, number> {
-  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
-    return {};
-  }
-
-  return Object.fromEntries(
-    Object.entries(valor).filter(
-      ([, value]) => typeof value === "number" && value > 0
-    )
-  ) as Record<string, number>;
-}
-
-function disminuirCooldowns(
-  cooldowns: Record<string, number>
-): Record<string, number> {
-  const resultado: Record<string, number> = {};
-
-  for (const [id, valor] of Object.entries(cooldowns)) {
-    if (valor > 1) {
-      resultado[id] = valor - 1;
-    }
-  }
-
-  return resultado;
-}
 
 function obtenerEfectos(valor: unknown): EfectoCombateAsedio[] {
   return leerEfectosCombate(valor);
@@ -233,7 +207,7 @@ export async function procesarTurnoAutomaticoAsedio(
   // ============================================================
 
   if (siguienteTurno === "atacante") {
-    cooldowns = disminuirCooldowns(cooldowns);
+    cooldowns = reducirCooldowns(cooldowns);
 
     const efectosActualizados = actualizarEfectosAlInicioTurno(
       efectos,
@@ -251,7 +225,7 @@ export async function procesarTurnoAutomaticoAsedio(
 
   if (siguienteTurno === "defensor") {
     cooldownsDefensor =
-      disminuirCooldowns(cooldownsDefensor);
+      reducirCooldowns(cooldownsDefensor);
 
     const efectosActualizados = actualizarEfectosAlInicioTurno(
       efectosDefensor,

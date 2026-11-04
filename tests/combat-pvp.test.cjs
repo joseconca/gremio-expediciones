@@ -313,3 +313,17 @@ test("asedios entrantes devuelve expediciones en viaje y no combates activos", a
   assert.equal(Object.hasOwn(respuesta.body, "combates"), false);
   assert.equal(respuesta.headers["Cache-Control"], "no-store");
 });
+
+test("el asedio comparte la normalización y el avance de cooldowns con PvE y party", () => {
+  const { obtenerCooldowns, reducirCooldowns } = require("../src/lib/expediciones/combate/cooldowns-habilidades.ts");
+  const estadoPersistido = { guardia: 3, ataque: 1, decimales: 2.9, imposible: Infinity, ausente: -2 };
+  const normalizado = obtenerCooldowns(estadoPersistido);
+  assert.deepEqual(normalizado, { guardia: 3, ataque: 1, decimales: 2 });
+  assert.deepEqual(reducirCooldowns(normalizado), { guardia: 2, decimales: 1 });
+  assert.equal(estadoPersistido.guardia, 3, "No se muta el estado persistido");
+  const servicio = require("node:fs").readFileSync(
+    require("node:path").resolve(__dirname, "../src/server/services/asedios/procesar-turno-asedio.ts"), "utf8"
+  );
+  assert.match(servicio, /import \{ obtenerCooldowns, reducirCooldowns \} from "@\/lib\/expediciones\/combate\/cooldowns-habilidades"/);
+  assert.doesNotMatch(servicio, /function (?:obtenerCooldowns|disminuirCooldowns)\(/);
+});
