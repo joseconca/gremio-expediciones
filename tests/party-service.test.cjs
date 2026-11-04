@@ -575,7 +575,7 @@ test("abandonar party se bloquea durante una expedici처n aunque el miembro haya 
 });
 
 
-test("el error de party conserva identidad, estado, c처digo y exportaci처n hist처rica", () => {
+test("el error de party pertenece a errores.ts y no se reexporta desde el servicio", () => {
   const { PartyServiceError } = require("../src/server/services/party/errores.ts");
   const error = new PartyServiceError("Conflicto");
   assert.equal(error.name, "PartyServiceError");
@@ -583,7 +583,7 @@ test("el error de party conserva identidad, estado, c처digo y exportaci처n hist�
   assert.equal(error.status, 409);
   assert.equal(error.code, "PARTY_CONFLICT");
   assert.equal(new PartyServiceError("Falta", 404, "NO_ENCONTRADO").status, 404);
-  assert.equal(loadService({}).PartyServiceError, PartyServiceError);
+  assert.equal(Object.hasOwn(loadService({}), "PartyServiceError"), false);
 });
 
 
