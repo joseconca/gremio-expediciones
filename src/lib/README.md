@@ -22,6 +22,8 @@ Este directorio contiene **reglas compartidas y cálculos del juego**. Las llama
 | Compañías, iniciativa y recompensas de party | `party/` |
 | Índices de sprites publicados (no editar a mano) | `generated/` |
 
+El contrato `Edificio` y el identificador `IdEdificio` pertenecen a `base/edificios.ts` junto con `CONFIGURACION_EDIFICIOS`. El store deriva los metadatos de esa definición, sin copiar nombres ni niveles máximos.
+
 `src/lib/habilidades.ts`, `objetos.ts` y `enemigos.ts` son APIs de consulta de los catálogos canónicos. `configuracionJuego.ts` se retiró y los importadores utilizan directamente el propietario de cada regla. `tiposJuego.ts` reúne contratos entre sistemas.
 
 ## Criterio para seguir ordenando

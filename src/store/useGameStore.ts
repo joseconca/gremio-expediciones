@@ -24,62 +24,14 @@ import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/equipamiento/sufijos";
 
-const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
-  taberna: {
-    id: "taberna",
-    nombre: CONFIGURACION_EDIFICIOS.taberna.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.taberna.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.taberna.nivelMax,
-  },
-  armeria: {
-    id: "armeria",
-    nombre: CONFIGURACION_EDIFICIOS.armeria.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.armeria.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.armeria.nivelMax,
-  },
-  herreria: {
-    id: "herreria",
-    nombre: CONFIGURACION_EDIFICIOS.herreria.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.herreria.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.herreria.nivelMax,
-  },
-  mercado: {
-    id: "mercado",
-    nombre: CONFIGURACION_EDIFICIOS.mercado.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.mercado.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.mercado.nivelMax,
-  },
-  botica: {
-    id: "botica",
-    nombre: CONFIGURACION_EDIFICIOS.botica.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.botica.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.botica.nivelMax,
-  },
-  embajada: {
-    id: "embajada",
-    nombre: CONFIGURACION_EDIFICIOS.embajada.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.embajada.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.embajada.nivelMax,
-  },
-  escuelaCombate: {
-    id: "escuelaCombate",
-    nombre: CONFIGURACION_EDIFICIOS.escuelaCombate.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.escuelaCombate.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.escuelaCombate.nivelMax,
-  },
-  muralla: {
-    id: "muralla",
-    nombre: CONFIGURACION_EDIFICIOS.muralla.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.muralla.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.muralla.nivelMax,
-  },
-  almacen: {
-    id: "almacen",
-    nombre: CONFIGURACION_EDIFICIOS.almacen.nombre,
-    descripcion: CONFIGURACION_EDIFICIOS.almacen.descripcion,
-    nivelMax: CONFIGURACION_EDIFICIOS.almacen.nivelMax,
-  },
-};
+// Metadatos derivados del catálogo; aquí no se vuelven a definir edificios.
+const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> =
+  Object.fromEntries(
+    (Object.keys(CONFIGURACION_EDIFICIOS) as IdEdificio[]).map((id) => {
+      const { nombre, descripcion, nivelMax } = CONFIGURACION_EDIFICIOS[id];
+      return [id, { id, nombre, descripcion, nivelMax }];
+    }),
+  ) as Record<IdEdificio, Omit<Edificio, "nivel">>;
 
 function construirEdificios(
   datosEdificios: unknown

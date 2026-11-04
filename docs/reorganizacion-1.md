@@ -326,3 +326,10 @@ El workflow de sprites ejecuta las pruebas Python, pero **no se ha verificado un
 - Sin cambios en Prisma, API, botín, temporizadores o el cálculo de ataques. Pendiente validar CI tras este commit.
 
 - Se retira `ClasePersonaje`, una unión de cuatro clases del sistema anterior sin relación con el catálogo actual. El alta sigue creando `"Novato"` (literal tipado); la ruta de acciones usa el catálogo de edificios desde `base/edificios.ts`, no desde `tiposJuego.ts`.
+
+### Catálogo y contratos de edificios en un solo módulo (4 de noviembre)
+
+- `base/edificios.ts` es el propietario de `CONFIGURACION_EDIFICIOS`, `IdEdificio` y `Edificio`. Se retiraron el reexport y el contrato trasladado desde `tiposJuego.ts`; consumidores en la interfaz y el store importan directamente de `base/edificios.ts`.
+- El store obtiene nombres, descripciones y niveles máximos del catálogo mediante `Object.keys`, en lugar de nueve definiciones repetidas. Se conservan las inicializaciones de nivel y la presentación.
+- Los dobles de pruebas que aún simulaban el catálogo desde `tiposJuego.ts` se eliminaron. No se modificaron costes, niveles, tiempos ni endpoints.
+- La regresión y la compilación siguen pendientes de confirmar en el commit actual.
