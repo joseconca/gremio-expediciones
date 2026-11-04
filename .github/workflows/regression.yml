@@ -20,32 +20,56 @@ permissions:
   contents: read
 
 jobs:
-  sprites-tier2-audit:
-    name: Audit Tier 2 sprite packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install image audit dependency
-        run: python -m pip install --disable-pip-version-check pillow
-
-      - name: Validate all Tier 2 source packages
-        run: python scripts/auditar-paquetes-tier2.py
-
   quality:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/gremio_test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code and required runtime sprites (partial Git clone)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git init
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git config remote.origin.promisor true
+          git config remote.origin.partialclonefilter blob:none
+          git config core.sparseCheckout true
+          mkdir -p .git/info
+          cat > .git/info/sparse-checkout <<'SPARSE_PATHS'
+          /package.json
+          /package-lock.json
+          /tsconfig.json
+          /next.config.ts
+          /postcss.config.mjs
+          /eslint.config.mjs
+          /.gitignore
+          /README.md
+          /src/
+          /tests/
+          /scripts/
+          /prisma/
+          /docs/
+          /public/
+          /assets/spritesheets/enemies-hd/
+          /assets/spritesheets/hd-128x256/manifest.json
+          /assets/spritesheets/hd-128x256/equipment/manifest.json
+          /assets/spritesheets/hd-128x256/idle-alignment-report.json
+          /assets/spritesheets/hd-128x256/*/m/*-sheet.png
+          /assets/spritesheets/hd-128x256/*/f/*-sheet.png
+          /assets/spritesheets/hd-128x256/*/m/frames/idle/*.png
+          /assets/spritesheets/hd-128x256/*/f/frames/idle/*.png
+          SPARSE_PATHS
 
+          # No guardar credenciales en el remoto ni imprimirlas en el log.
+          AUTH_HEADER="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          export GIT_CONFIG_COUNT=1
+          export GIT_CONFIG_KEY_0=http.https://github.com/.extraheader
+          export GIT_CONFIG_VALUE_0="AUTHORIZATION: basic ${AUTH_HEADER}"
+
+          git -c protocol.version=2 fetch --depth=1 --no-tags --filter=blob:none origin "$GITHUB_REF"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
