@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "hoja_velo-m",
+  "nextVariant": "danzaespadas-f",
   "classes": [
     {
       "id": "novato",
@@ -278921,7 +278921,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 56,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -278933,6 +278933,7 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
+          "attack_bow",
           "attack_staff",
           "attack_mace",
           "attack_book",
@@ -279468,8 +279469,8 @@
                 "pixelSha256": "2e3f2610359d1fea72bccb3ef2ae1cf216c8b2666ca891ff0316c33588ed8ebd"
               },
               "03": {
-                "sha256": "6619435b3300817d2b00bb70b5a0e3eb6506178917b0b4bb55d865532d1d0449",
-                "bytes": 22790,
+                "sha256": "0a4adaf6cec3d32fb84f705621c99edf67f8cadae4d1d486c72ccd3554a80c15",
+                "bytes": 23643,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279477,15 +279478,15 @@
                 ],
                 "bbox": [
                   11,
-                  94,
-                  113,
+                  93,
+                  117,
                   248
                 ],
-                "pixelSha256": "b50d3e14dcfeaba7cc1c561f44bc63f127745f1b463c3811e2fb0d5cd0c01d74"
+                "pixelSha256": "f48c1b08893ff6d14e1838c6240c8bbac0d43e2f36fec1f93304ee71cd313a05"
               },
               "04": {
-                "sha256": "bd25c3e8fcf5b02ac2a4bc38c000e0e0f1746ef514ccb07be0cde24e0b2b80e4",
-                "bytes": 22603,
+                "sha256": "14dca94b40b884d9e99c0867fa756ac351aaea513ac52fc50532cf9efe40fac2",
+                "bytes": 22969,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279494,10 +279495,10 @@
                 "bbox": [
                   11,
                   94,
-                  105,
+                  107,
                   248
                 ],
-                "pixelSha256": "bdb247bdd7502672764bf12778634625d673b17dcc9c0de3b76eccf0eb6e2e34"
+                "pixelSha256": "8033d1c0d2be42a8750b556a815fd78b7991b60902fdfb36bb0b1c703b98031c"
               }
             },
             "distinctFrames": 4
@@ -279573,7 +279574,74 @@
             "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "f6d6e51b5c8036b728a9b952d0293db8a9bdc8828fe7e688c423111853b5d41c",
+                "bytes": 21477,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  97,
+                  114,
+                  249
+                ],
+                "pixelSha256": "4ab4391dfaea4ec3ff06904c8b6e9de5ad1f2c9c64523734502d970e695dc91c"
+              },
+              "02": {
+                "sha256": "effe825de34359428c8e8667756cf58669c17da4e94a9c3fe47eea708fd6f969",
+                "bytes": 22261,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  96,
+                  117,
+                  249
+                ],
+                "pixelSha256": "7df615c377f30cf4dd9549805eb2c70a73f6dc05ad1e6a1030b7f9b0b6c4592f"
+              },
+              "03": {
+                "sha256": "ecdc723b8e02807bdf6be9a5ca269b9722d583bc3ee395b32bc5b68523081841",
+                "bytes": 22515,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  2,
+                  96,
+                  113,
+                  249
+                ],
+                "pixelSha256": "cfeabea82ae9f6a3abbe6870fd8d6dbeabf13be2ce9ec12e3b1212db19c89107"
+              },
+              "04": {
+                "sha256": "0f3c5fbc1e5da843c9c811075e9b9ae0288a4dfdde040d8612da756099762031",
+                "bytes": 21771,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  96,
+                  109,
+                  249
+                ],
+                "pixelSha256": "4393a0c532ff01fa0297cf3133807c77852d629b61baf244cb724bdb35b20908"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
             "status": "technical-passed",
@@ -279789,8 +279857,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "f8d88a1d40afa4cacb9df8a8d24480ffc5a0b00a6eb2c04722175b686fe767e9",
-                "bytes": 22147,
+                "sha256": "3521619292f1033a78453eb039a3668c330cb16f1e9f29c76a387bb39c656610",
+                "bytes": 22988,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -279799,10 +279867,10 @@
                 "bbox": [
                   20,
                   91,
-                  101,
+                  103,
                   249
                 ],
-                "pixelSha256": "b046732b8afe143be752be0573ba2e83db823c11d1bfdf1c1c36bbb6ef682da9"
+                "pixelSha256": "1dbad469e9f79e85cb80c09a1c90f57fddd5f0e0daa5c4979337b9a7d2d137c0"
               },
               "02": {
                 "sha256": "d2350fe4709ac886b01825a7df8f46859e92c96ac1adf277486d7c0e055e9c0e",
@@ -280137,10 +280205,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+          "sourceSha256": "c0e9332dc36193e76c5b96fddaec9eefaa5c8aea41dfb720f397a8f489395fba",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -280162,9 +280230,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside hand. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, hair, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -280172,7 +280240,139 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "f0bd00b809dd8bba716761749524b282c277dbda442e55914618cf35fc3e717f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "f8a6930063b491e11b9ff7ddadc4794d7e2d1e7bc77bc12b4c96c9d9dc2b325e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "a5f1faddd1e858bbf6966f6ef23b69298085dce6c834752ab85cc8c4694f80bd",
@@ -280327,10 +280527,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
+          "sourceSha256": "113a07df2329348cfdd9b83716e27afe7c4a142468dbc007a2176f712c1b7cec",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -280352,9 +280552,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit to this full body portrait. Move near guarding fist RIGHT until black palm covers ring currently on chest. Far fist unchanged. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, hair, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
@@ -280362,7 +280562,269 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "76c6554065535d8d11ed358a1ea7a6ba837b53bc442fccba1c40ec78b8742b95",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo MALE, Tier 3.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced masculine Hoja del velo with silver-violet short sharp side part, confident focused eyes; canonical head size. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+                "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+                "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+                "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
+        },
+        "attack_bow": {
+          "sourceSha256": "486596ef0f63fafc99eeffd56de10d8797524b8ee89b4765b12eedfdd8e527b0",
+          "sourceDimensions": [
+            4344,
+            1448
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.23,
+          "origin": [
+            8,
+            96
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Minimal localized edit to this full body portrait. Extend front viewer-right arm and fist RIGHT until grip palm covers ring. Keep drawing hand by cheek unchanged. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, hair, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "canonicalPoseHashes": [
+            "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+            "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+            "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+            "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "7806a0543c1ad8a4a6eb1d0fdc0010b24cca8bb422e9a47de6cb3f6f4950bba1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "a1faafc61a0cf90b0186adcc0a260bbe69b4157e97728d3d4cefdfc2ede517d2",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "28c3bd18b02bf178f53ec8c83599e9357484e9870adb99ae9ef1a01a4a3f12dd",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/m/source/attack_bow-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          }
         }
       },
       "frameProvenance": {
@@ -280479,11 +280941,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -280491,7 +280953,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -280563,15 +281025,31 @@
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_gloves/04": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.04",
+          "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow.frameSourceOverrides.01",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow.frameSourceOverrides.03",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow.frameSourceOverrides.04",
           "frame": 4
         }
       }
@@ -280695,36 +281173,36 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "86b571ea8189b7191000576acd0f090d66b50bf1919b0b11fb2e70a12a158764",
-                "bytes": 25315,
+                "sha256": "edb61a5947d1fb041412f35f8ed88f5faf33bf1bc8331893cc5edfb278252554",
+                "bytes": 25638,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
+                  13,
                   89,
-                  103,
+                  106,
                   249
                 ],
-                "pixelSha256": "6e2a14a21371cc4606af04f1aa7871d2c366a9e4a511dbd323561666f5264096"
+                "pixelSha256": "3562605c5361b8a26eaa004b1b9c8227f0af3cf5dae85add2508a6cc142a9f42"
               },
               "02": {
-                "sha256": "2d9531679a7b92590631925404aa70b87608ad9f1ccfa7914d3151c96acef627",
-                "bytes": 22815,
+                "sha256": "80fe3f528200bc10d45d965fa238d291f89bae817bdaef37cd940b9627aff51b",
+                "bytes": 22939,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  21,
                   89,
                   90,
                   250
                 ],
-                "pixelSha256": "9f26f3a06901be642666180a526c8fb93cd25e494f2efd143ab863a6efc9c782"
+                "pixelSha256": "42cd3de6a16293ce84bb68238f9bed2611387c735f550d5e6581cc95a863375c"
               },
               "03": {
                 "sha256": "31927f0f8f2646bf3e451cc85870aa79a74f214b2d01693e5070c9ae669298d8",
@@ -280937,8 +281415,8 @@
                 "pixelSha256": "ed415bd7a96ab7a622ab4d4581a8a0a953a5089e31afc2428d5d1e689503fcf7"
               },
               "03": {
-                "sha256": "5e60c87639519eac153a4d01d07699350f443fc7ece3e43c09f71d1d69f4efaf",
-                "bytes": 19625,
+                "sha256": "1efc57f985423f049326cb5fd0201159ba13777520ba1678a89f891503b2630e",
+                "bytes": 20198,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -280947,10 +281425,10 @@
                 "bbox": [
                   24,
                   125,
-                  103,
+                  104,
                   249
                 ],
-                "pixelSha256": "535cba6a99ffbff2b309d959278d5464e5d8b22c4ed22827181b2be2d26c4a35"
+                "pixelSha256": "a291804c3106f3a699b84cda1c9516302b2074eb9bf98d0b8a7680890d420d7b"
               },
               "04": {
                 "sha256": "2f9f87c766f37a40239920378a1006b0b8de967c04900376bbcc805aeba311f4",
@@ -281217,8 +281695,8 @@
                 "pixelSha256": "8ca17aa2ac344ff0c93f54e4f496cdbb7f74c9acfa737806604d1c98145a6075"
               },
               "03": {
-                "sha256": "5fbcd04d2a914155c75a955dbdd79c37d89b95a301ed10079880cbcc77f090cb",
-                "bytes": 22969,
+                "sha256": "70515bceca4b511dfd65b7c70d693e27f8b8b6a97dcd1d0ba5987d2a42f77333",
+                "bytes": 23427,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -281228,13 +281706,13 @@
                   9,
                   91,
                   108,
-                  249
+                  250
                 ],
-                "pixelSha256": "e4d68c863ed10c8bac05d8fbed9b90056e5811a796f2ff0da7c854a0d50835d4"
+                "pixelSha256": "f17a4411727a9457ffa0e1d8cf3b30089c87aaf57657b90a22db1e7aaaa0fa1e"
               },
               "04": {
-                "sha256": "a92442f29a839c4930789fbec10077389e91402ddd7b9d6d222beceb45a59f3b",
-                "bytes": 24036,
+                "sha256": "bb5f9d55169d66f1bac104a1817e93362497598e9d942e9b208b1155a5caebe0",
+                "bytes": 25380,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -281242,11 +281720,11 @@
                 ],
                 "bbox": [
                   11,
-                  91,
-                  108,
-                  249
+                  90,
+                  110,
+                  253
                 ],
-                "pixelSha256": "a694bab63aac207c8a040f939d6ea3c1003e28d71f1908d9cae233cd44ea4d00"
+                "pixelSha256": "e312d3075a4b2bdc469260a3b3ac308513e34e2d5cc3d6dfc86e24c584989029"
               }
             },
             "distinctFrames": 4
@@ -281583,20 +282061,20 @@
                 "pixelSha256": "c81cb96f2b2c0dbef68eccd74dbf3311d2fbb2574f29ebb40a3acbb751c07887"
               },
               "04": {
-                "sha256": "79fa418122da3b27606364b4757b507e295a4ee386faf6ad97ce36a99d955917",
-                "bytes": 22832,
+                "sha256": "63b67f15a84ea0f5eb0243d520a5be626b815477fc3f017a0336b048001218be",
+                "bytes": 23245,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
+                  21,
                   90,
-                  99,
+                  100,
                   248
                 ],
-                "pixelSha256": "5eb1ae2117a2a3b4b94ea7d49ac6e24f0a83cf42c7781dfebb1e617a202664fe"
+                "pixelSha256": "21b5b0594e39102964fbf2a2f73d5e84e84120f830281d88d643cae656f8ad0c"
               }
             },
             "distinctFrames": 4
@@ -281713,10 +282191,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "83c38135bc9c318f07680676cb389cc6f053512c9329b3bccf7edece0ace0830",
+          "sourceSha256": "1f2bd6c4fa580076f36551e69f272a9f46df96dc41465aeb7342aa081ed13b32",
           "sourceDimensions": [
-            2169,
-            725
+            4340,
+            1450
           ],
           "registeredSourceDimensions": [
             2170,
@@ -281738,9 +282216,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit to this full body portrait. Move near viewer-left hanging fist RIGHT and slightly UP until black palm covers ring. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, high braided silver-violet ponytail, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -281748,7 +282226,139 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "02": {
+              "sourceSha256": "a949c07a4144bece4b6b8541372a01aaea534e50cb3f0342609ef04effee84f4",
+              "sourceDimensions": [
+                4340,
+                1450
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "83c38135bc9c318f07680676cb389cc6f053512c9329b3bccf7edece0ace0830",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "83c38135bc9c318f07680676cb389cc6f053512c9329b3bccf7edece0ace0830",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "83c38135bc9c318f07680676cb389cc6f053512c9329b3bccf7edece0ace0830",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action walk. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "6fcc4c42a634fc95a6b245eabbcac7b66836f8f83913825f9793ec111dff22de",
@@ -281827,10 +282437,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "dodge": {
-          "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
+          "sourceSha256": "41a300ce2c95761db1cbd7977e80b22773efc651dbec66d33147bd04e9c6e6bf",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -281852,9 +282462,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit. Move far viewer-right forearm slightly RIGHT so the silver forearm bracer covers ring beside its edge. Keep wrist and fist raised, do not move fist down to ring. This anchor is forearm support. Preserve all other anatomy, outfit, silver double-blade emblem, TWO amethyst chest diamonds, belt buckle, high braided silver-violet ponytail, boots and exact canvas framing/scale. Remove all magenta. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -281862,7 +282472,139 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "54d075c8b416c40a911402b4d2bac58789bb8209d22607f1311a2401eb4afb2f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/dodge-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action dodge. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "block_shield": {
           "sourceSha256": "4e40963761cd03b37d1bb920089cedc884c7a3fff67708a81858f05978fc9390",
@@ -281979,10 +282721,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+          "sourceSha256": "4e162730d2c34801f0930cfd753357ca318e88a6c8b1841460ee7bf31824ef36",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -282004,9 +282746,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit to this full body portrait. Move extended far fist slightly RIGHT until fingers/palm cover ring beside fingers. Preserve all other anatomy, midnight ivory silver amethyst costume, silver double-blade chest emblem, TWO amethyst chest diamonds, diamond buckle, high braided silver-violet ponytail, head size, boots, canvas framing and scale. Do not recenter or resize body. Remove magenta rings completely. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -282014,7 +282756,139 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "0aa90ad24966dd0b2ed03de07618b10784b4ee660e8df8824c2bad76645845bc",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "cf098096e72889094569bfa9fb04a737f313754ff4a7856d2fe74a62c3f35ee1",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "4b8a8feff305f5e0d7c20b1ef70e8796f993e4516298090c2eb2e0ae06163e2a",
@@ -282169,10 +283043,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_book": {
-          "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
+          "sourceSha256": "1c58445565c1481a1f1080939ad40c0ff161c9c166a591f970bae38126c0fc1f",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -282194,9 +283068,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit. Raise upper viewer-right open hand UP so its black palm covers magenta ring currently on collar above hand. Preserve lower open supporting hand exactly. Preserve all other anatomy, outfit, silver double-blade emblem, TWO amethyst chest diamonds, belt buckle, high braided silver-violet ponytail, boots and exact canvas framing/scale. Remove all magenta. Transparent background. No equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
           "canonicalPoseHashes": [
             "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
@@ -282204,7 +283078,139 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-frame03-reference-v2.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "cbf49b6abcad2dbbc09ba2ee77552818ee101ac079d83a773799496a009d059a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/hoja_velo/f/source/attack_book-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Hoja del velo FEMALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Hoja del velo with silver-violet hair in compact high braided ponytail, confident focused eyes; canonical female head size, no facial hair. Fitted MIDNIGHT and IVORY duel coat with AMETHYST inset panels, fine SILVER interlaced rune-and-paired-blade embroidery, compact asymmetrical silver rune-engraved half-cuirass, narrow translucent pale-lilac fabric inserts confined INSIDE short split coat tails at waist (physical cloth, not effects), diamond crystal buckle, navy fitted trousers and silver calf-guard dark boots, black fingerless gloves with silver bracers. Face exposed, no head veil, scarf, cape, weapon or aura. Full IVORY fitted sleeves with MIDNIGHT cuffs under SILVER rune bracers. Rear shoulder silver compact angular plate, front shoulder cloth. TWO AMETHYST rune diamond tiles on SILVER half-cuirass, one silver INTERLACED DOUBLE BLADE chest emblem, large DIAMOND AMETHYST crystal belt clasp. Midnight short split tails have narrow silver blade/rune embroidery and pale lilac sheer cloth inserts fully contained inside tails. Silver calf guards have AMETHYST narrow diamond inlays. Flat silver diamond temple band, no tall headpiece. Tier3.5 superior fusion/evolution of Espadachin runico and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
+              "canonicalPoseHashes": [
+                "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
+                "cb11e7be47ed2129254255f575e0d9e4bf0c0ca90b6b924f8de224873061dfce",
+                "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
+                "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_gloves": {
           "sourceSha256": "9e4c88b834bef60aebfdf9af6c94fdd9370600d2b161261fef4a785b5ad13ecd",
@@ -282267,15 +283273,15 @@
           "frame": 1
         },
         "walk/02": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.02",
           "frame": 2
         },
         "walk/03": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.03",
           "frame": 3
         },
         "walk/04": {
-          "source": "sources.walk",
+          "source": "sources.walk.frameSourceOverrides.04",
           "frame": 4
         },
         "hurt/01": {
@@ -282311,11 +283317,11 @@
           "frame": 4
         },
         "dodge/01": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.01",
           "frame": 1
         },
         "dodge/02": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.02",
           "frame": 2
         },
         "dodge/03": {
@@ -282323,7 +283329,7 @@
           "frame": 3
         },
         "dodge/04": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.04",
           "frame": 4
         },
         "block_shield/01": {
@@ -282375,11 +283381,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -282387,7 +283393,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -282455,15 +283461,15 @@
           "frame": 4
         },
         "attack_book/01": {
-          "source": "sources.attack_book",
+          "source": "sources.attack_book.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_book/02": {
-          "source": "sources.attack_book",
+          "source": "sources.attack_book.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_book/03": {
-          "source": "sources.attack_book",
+          "source": "sources.attack_book.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_book/04": {
@@ -285090,8 +286096,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "8438167a30d6304351ea96a6f9402618e3a989e7502c1d467400ab6390af3d61",
-                "bytes": 23304,
+                "sha256": "63392d7aae902478a80794c3f04dae2cb0d6e281fbf706c4f044093f4de7ed3a",
+                "bytes": 23206,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285103,11 +286109,11 @@
                   100,
                   249
                 ],
-                "pixelSha256": "2d9bf943dd2faaea09019e191c78de3530dae0acddc58e6275f7f7f760cc05fe"
+                "pixelSha256": "63fe50f502319849bb5209b48eb98d0ece7b68c435f1890be72d6b1827ef94fd"
               },
               "02": {
-                "sha256": "bee2423def359bc8c4d1e0c133cbe262cd8d5ec13634cd274bcb36c7bde5a8d3",
-                "bytes": 22414,
+                "sha256": "32c3de37c646fbc4ccebeb5f5e6d047eb269f1bbdd6e567b2980691b8b44099f",
+                "bytes": 22420,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285119,11 +286125,11 @@
                   98,
                   249
                 ],
-                "pixelSha256": "89f07577564d30dd06b0b78428f898616f39f9ba938a563d8ab08f97f2e3bdf8"
+                "pixelSha256": "5cf5068eac225c6e28ff2c582fce34f00a71abf0ba9924c513402e84fbf9911c"
               },
               "03": {
-                "sha256": "cdd206786bc8c40c142a6471e23bbcfb75398715b3674e6c226ff3d1a2c1a04e",
-                "bytes": 23593,
+                "sha256": "ecb59b5179f6f7f3c109ddda4f1641af6c5486434f73f53a5ef15ceba251b722",
+                "bytes": 23496,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285133,13 +286139,13 @@
                   22,
                   89,
                   101,
-                  249
+                  248
                 ],
-                "pixelSha256": "ba565e2e62343ba49fad0a80ac35bb47fbb4e8a989214ea0341b0d0515bc717a"
+                "pixelSha256": "67723cfab12c89291f0a8e4826fc2234d33807494afdb8dec6e4176d458364ce"
               },
               "04": {
-                "sha256": "0196ed90f53f6dcd27da0cddcea4601446d2f7dbcbef31815a7c04df8aefa46a",
-                "bytes": 22573,
+                "sha256": "f55936beac851c82ea1b0264c6afed7cb892e7465cb551ece763e121fb5a043c",
+                "bytes": 22570,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -285148,10 +286154,10 @@
                 "bbox": [
                   22,
                   89,
-                  97,
+                  98,
                   249
                 ],
-                "pixelSha256": "1a5a3444a960102575abbca8a955fcc604205dbd6db4a831b42374344fde8b70"
+                "pixelSha256": "c02feb82b81374d911cd8e38750dfc911f9fdc10c7cd47ce71aa70b0ff9e56dd"
               }
             },
             "distinctFrames": 4
@@ -285686,7 +286692,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_book": {
-          "sourceSha256": "68f7aa31d013e0e591e14bbb2de46fda457835bb909e91b0bec2170bcc2e4edb",
+          "sourceSha256": "8736a15117073aaf122426d1bb849631af66eb087aca1b8e63ddeb308c94a438",
           "sourceDimensions": [
             2172,
             724
@@ -285711,9 +286717,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Remove every trace of the cloudy gray colored background and every ground shadow. Genuine transparent RGBA alpha background, clean isolated characters. Preserve all FOUR complete characters exactly: precise poses/hand positions, head size, high golden copper wavy ponytail, plum beret with short ivory feather, rose-gold lyre paired silver blade wings chest emblem, petrol teal/ivory/plum costume, diamond buttons/buckle/knee panels, boots. Preserve original exact scale and cell spacing, full margins. No equipment or effects. No recentering or shrinking.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
           "canonicalPoseHashes": [
             "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
@@ -285721,7 +286727,47 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "68f7aa31d013e0e591e14bbb2de46fda457835bb909e91b0bec2170bcc2e4edb",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                628,
+                15,
+                1036,
+                703
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_book-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Danzaespadas FEMALE, Tier 3.5, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair. Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps. Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_book-reference.png",
+              "canonicalPoseHashes": [
+                "3933ee7cb5f631bf7a6360c3e7f61ee9f0e7a4e947f19c704d7a8d1a1b57ec02",
+                "cb11e7be47ed2129254255f575e0d9e4bf0c0ca90b6b924f8de224873061dfce",
+                "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
+                "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_gloves": {
           "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
@@ -286045,7 +287091,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -286061,6 +287107,7 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
+          "attack_book",
           "attack_gloves"
         ],
         "actions": {
@@ -286975,7 +288022,74 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5cca0118c47edf6d3d6b1837c9d41d5f8aa64649ee07314fa8511a79aa8aceb1",
+                "bytes": 21721,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  96,
+                  248
+                ],
+                "pixelSha256": "a78f7b1041f26a01dbe73326488eb150721e3b2fc792a6007d928c449b771857"
+              },
+              "02": {
+                "sha256": "6a5cd7a2f300a846a6ad8d88365f36dbfa1d52316d4003f5de42955c3b364eba",
+                "bytes": 21338,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  95,
+                  248
+                ],
+                "pixelSha256": "fb27ef32ce2fb63a9d562cd0a527f1dea23455761675f133a21d3efc7e691bfe"
+              },
+              "03": {
+                "sha256": "a83c5f8f214afb812839f1079fca185bd5355a145d13965ec7b50c71eb263083",
+                "bytes": 22319,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  101,
+                  248
+                ],
+                "pixelSha256": "ded184996ee015821486be39d8401cf390f398fabcebd4b5c790ee4b114696e6"
+              },
+              "04": {
+                "sha256": "e8f07533d8245807dfcaf80540daaabe6f2fd8acba0c31469844a35a0b77c229",
+                "bytes": 21259,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  93,
+                  94,
+                  248
+                ],
+                "pixelSha256": "897150b86a509132f2479a559a4a9ccd3fa20b79302e38c90f323b7e606ba609"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
             "status": "technical-passed",
@@ -287593,6 +288707,44 @@
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "d2ac70c2e23df973a7801c95a9e9e3dea66fb4c22e07a794f98c623ad3ec3735",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/corsario/m/source/attack_book-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Remove the entire opaque white background and all shadows. Output genuine transparent RGBA alpha around all FOUR characters. Preserve the four complete characters, precise poses, hand positions, scale, cell spacing, hat, auburn hair and goatee, navy coral gold captain costume, anchor belt buckle and all boots exactly as the input. No repainting or recentering. No equipment. Four separate complete characters side by side, full margins.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -287818,6 +288970,22 @@
         },
         "attack_gloves/04": {
           "source": "sources.attack_gloves",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
           "frame": 4
         }
       },
@@ -289958,7 +291126,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

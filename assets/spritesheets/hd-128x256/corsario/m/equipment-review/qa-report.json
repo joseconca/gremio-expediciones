@@ -16,6 +16,7 @@
     "attack_bow",
     "attack_staff",
     "attack_mace",
+    "attack_book",
     "attack_gloves"
   ],
   "bodyHashes": {
@@ -97,6 +98,12 @@
       "74032b456608c7c88783f915508913fc30ca3244b71b840dd7bed77833c302d0",
       "91b1fa96036d0e9475ff5f46b219f7d84d39506dc0373caf98ea7a24d5bfd6ca"
     ],
+    "attack_book": [
+      "5cca0118c47edf6d3d6b1837c9d41d5f8aa64649ee07314fa8511a79aa8aceb1",
+      "6a5cd7a2f300a846a6ad8d88365f36dbfa1d52316d4003f5de42955c3b364eba",
+      "a83c5f8f214afb812839f1079fca185bd5355a145d13965ec7b50c71eb263083",
+      "e8f07533d8245807dfcaf80540daaabe6f2fd8acba0c31469844a35a0b77c229"
+    ],
     "attack_gloves": [
       "1d974c2465f68dbc7c6a57ac30289d0411f5d481b7f769933d962f91860978c9",
       "854338a37dc5ceb1346c28caf115c958ff8b9a3a8a5abad9e45eff8e313adc7b",
@@ -104,7 +111,7 @@
       "a430706a079987dec5b8ec31daf23a1e82f6a9906d476ec5e720836722a22675"
     ]
   },
-  "contactChecks": 668,
+  "contactChecks": 682,
   "warnings": [
     {
       "action": "walk",
