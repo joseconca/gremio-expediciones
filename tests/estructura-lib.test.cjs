@@ -213,3 +213,21 @@ test("las APIs de ataques, preparación y contratos de venta no mantienen reexpo
   assert.equal(typeof require("../src/lib/expediciones/combate/ataques-basicos.ts").resolverAtaqueJugador, "function");
   assert.equal(typeof require("../src/lib/expediciones/combate/tacticas/preparacion-habilidades.ts").prepararHabilidadRedisenada, "function");
 });
+
+
+test("los servicios party usan la normalización central de cooldowns persistidos", () => {
+  const modulos = [
+    "src/server/services/party/combate-party-actions.ts",
+    "src/server/services/party/turno-enemigo.ts",
+  ];
+  for (const modulo of modulos) {
+    const codigo = fs.readFileSync(path.join(root, modulo), "utf8");
+    assert.match(codigo, /from ["']@\/lib\/expediciones\/combate\/cooldowns-habilidades["']/);
+    assert.doesNotMatch(codigo, /Object\.fromEntries\(Object\.entries\([^)]*cooldowns/);
+  }
+
+  const { obtenerCooldowns, reducirCooldowns } = require("../src/lib/expediciones/combate/cooldowns-habilidades.ts");
+  const guardados = { bloqueo: 3, lanzamiento: 1, parcial: 2.9, texto: "2", invalido: Infinity, negativo: -4 };
+  assert.deepEqual(reducirCooldowns(obtenerCooldowns(guardados)), { bloqueo: 2, parcial: 1 });
+  assert.equal(guardados.bloqueo, 3, "No mutar el estado persistido");
+});

@@ -13,3 +13,5 @@ Este dominio reúne cálculos y decisiones puros, reutilizables por los servicio
 **No añadir aquí acceso a Prisma, rutas HTTP o estados React.** Las operaciones transaccionales permanecen en `src/server/services/party/`; la lectura de enemigos persistidos está en `src/lib/expediciones/combate/enemigos-combate.ts`.
 
 Las pruebas principales son `tests/party-combat-rules.test.cjs`, `tests/party-rules.test.cjs`, `tests/party-combat-actions.test.cjs` y `tests/enemigos-combate.test.cjs`.
+
+**Cooldowns de party:** la acción, la huida y el turno enemigo normalizan siempre el JSON persistido mediante `expediciones/combate/cooldowns-habilidades.ts`. Se actualizan dentro de la transacción al terminar el ciclo completo, no por cada ataque.
