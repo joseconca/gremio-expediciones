@@ -1,7 +1,7 @@
 name: Validar sprites HD
 on:
   push:
-    branches: [creacion-sprite-sheets, main, reorganizacion-1]
+    branches: [creacion-sprite-sheets, main]
     paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'scripts/sprites.py', 'scripts/recursos.py', 'scripts/test-recursos-cli.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml', 'scripts/auditar-paquetes-tier2.py', 'assets/spritesheets/originales/**']
   pull_request:
     branches: [main]
