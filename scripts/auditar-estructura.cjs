@@ -28,7 +28,6 @@ for (const root of SCAN) {
 const incoming = new Map(candidates.map(f => [f, new Set()]));
 const missing = [];
 const edges = [];
-const normalized = x => path.resolve(x);
 const resolvePath = (from, imported) => {
   let base;
   if (imported.startsWith("@/")) base = path.join(ROOT, "src", imported.slice(2));

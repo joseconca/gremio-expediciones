@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports -- Herramienta CommonJS ejecutada directamente con Node. */
 // Auditoría reproducible de recursos; no accede a la base de datos ni modifica partidas.
 require("../tests/load-typescript.cjs");
 const fs = require("node:fs");
