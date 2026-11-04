@@ -36,7 +36,7 @@ export function obtenerEstadisticasBase(
   // Las cuentas antiguas conservan sus estadísticas físicas hasta que cambien de profesión.
   if (usaEstadisticasLegadas(personaje, claseActualId)) {
     const baseLegada = calcularEstadisticasBase(
-      personaje.clase as "Guerrero" | "Explorador" | "Comerciante" | "Novato",
+      personaje.clase as Parameters<typeof calcularEstadisticasBase>[0],
       personaje.nivel
     );
     return {

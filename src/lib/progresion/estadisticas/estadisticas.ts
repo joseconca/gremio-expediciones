@@ -1,4 +1,4 @@
-import type { AtributosPrincipales, ClasePersonaje } from "../../tiposJuego";
+import type { AtributosPrincipales } from "../../tiposJuego";
 
 /** Coeficientes iniciales de balance: se ajustan aquí, no en las rutas de API. */
 export const COEFICIENTES_ATRIBUTOS_RPG = {
@@ -84,7 +84,9 @@ export function calcularEstadisticasDerivadasRpg(
 }
 
 
-// Estadísticas iniciales del personaje (compatibilidad con clases históricas).
+// Fórmulas de estadísticas físicas almacenadas en personajes de las cuatro clases iniciales.
+// Contrato interno: no define las profesiones disponibles en el catálogo actual.
+type ClaseFormulaInicial = "Novato" | "Guerrero" | "Explorador" | "Comerciante";
 export interface EstadisticasBasePersonaje {
   hpMaximo: number;
   ataque: number;
@@ -96,7 +98,7 @@ export interface EstadisticasBasePersonaje {
 }
 
 export function calcularEstadisticasBase(
-  clase: ClasePersonaje,
+  clase: ClaseFormulaInicial,
   nivel: number
 ): EstadisticasBasePersonaje {
   const nivelSeguro = Math.max(1, nivel);
