@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
-import type { SlotHabilidad } from "@/lib/tiposJuego";
 
 import { SLOTS_HABILIDADES_ACTIVAS as SLOTS_ACTIVAS } from "@/lib/tiposJuego";
 import { esSlotHabilidad } from "@/lib/progresion/habilidades/equipo-habilidades";

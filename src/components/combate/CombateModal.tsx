@@ -17,7 +17,6 @@ import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/exp
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
-import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate, { HistorialCombateExpandido } from "./HistorialCombate";
 import { useBloquearScrollFondo } from "./useBloquearScrollFondo";

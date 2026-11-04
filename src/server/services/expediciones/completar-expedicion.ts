@@ -8,7 +8,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/progresion/estadisticas/estadisticas-personaje";
-import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS, hayHuecoInventario } from "@/lib/equipamiento/inventario";
+import { obtenerEquipoDesdePersonaje, hayHuecoInventario } from "@/lib/equipamiento/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/combate/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/equipamiento/botin";
