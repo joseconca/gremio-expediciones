@@ -26,9 +26,11 @@ function loadService(prisma, testOptions = {}) {
   const dependencies = {
     "@prisma/client": { Prisma: { TransactionIsolationLevel: { Serializable: "Serializable" } } },
     "@/lib/prisma": { prisma },
-    "@/lib/expediciones/combate": {
+    "@/lib/expediciones/combate/ataques-basicos": {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "El aventurero inflige 12 de daño." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "El enemigo inflige 10 de daño." }),
+    },
+    "@/lib/expediciones/combate": {
       resolverHabilidadJugador: (habilidad, combate) => {
         if (testOptions.resolverHabilidadesReales) return require("../src/lib/expediciones/combate.ts").resolverHabilidadJugador(habilidad, combate);
         const curacion = habilidad.efecto === "curacion"

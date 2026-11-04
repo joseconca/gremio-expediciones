@@ -209,9 +209,11 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/habilidades/niveles-habilidad": { ajustarHabilidadPorNivel: (habilidad) => habilidad },
     "@/lib/expediciones/combate": {
       calcularBonusDefensaMuralla: () => 0,
+      resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2, enemigoDefensa: 2, efectos: [] }),
+    },
+    "@/lib/expediciones/combate/ataques-basicos": {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Atacas." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Te golpea." }),
-      resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2, enemigoDefensa: 2, efectos: [] }),
     },
     "@/lib/expediciones/asedios/asedio": {
       determinarGanadorAsedio: () => null,
@@ -256,6 +258,7 @@ function makeCombatConsumableRoute({
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
     "@/lib/progresion/experiencia": commonDependencies["@/lib/progresion/experiencia"],
     "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
+    "@/lib/expediciones/combate/ataques-basicos": commonDependencies["@/lib/expediciones/combate/ataques-basicos"],
     "../../../lib/expediciones/encuentros/dificultad": commonDependencies["../../../../lib/expediciones/encuentros/dificultad"],
     "../../../lib/expediciones/combate/estados-combate": commonDependencies["../../../../lib/expediciones/combate/estados-combate"],
     "./accion-combate": common,
@@ -838,9 +841,11 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
     "@/lib/expediciones/combate": {
       calcularBonusDefensaMuralla: () => 0,
+      resolverHabilidadJugador: () => ({}),
+    },
+    "@/lib/expediciones/combate/ataques-basicos": {
       resolverAtaqueJugador: () => ({}),
       resolverAtaqueEnemigo: () => ({}),
-      resolverHabilidadJugador: () => ({}),
     },
     "@/lib/expediciones/asedios/asedio": {
       determinarGanadorAsedio: () => null,

@@ -11,10 +11,9 @@ import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion
 import { usaAtaqueMagicoBasico } from "@/lib/expediciones/combate/ataque-basico-arma";
 
 import { actualizarCombateVersionado } from "@/server/services/combate/actualizar-combate-versionado";
+import { resolverAtaqueJugador, resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
 import {
   calcularBonusDefensaMuralla,
-  resolverAtaqueJugador,
-  resolverAtaqueEnemigo,
   type AccionAnimadaCombate,
   resolverHabilidadJugador,
 } from "@/lib/expediciones/combate";

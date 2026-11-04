@@ -955,7 +955,7 @@ test("los atributos crecen por nivel Base y reciben bonificaciones Job según el
 });
 
 
-const { calcularProbabilidadImpacto, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
+const { calcularProbabilidadImpacto, resolverAtaqueJugador } = require("../src/lib/expediciones/combate/ataques-basicos.ts");
 
 test("combate: precisión y evasión afectan a la probabilidad de impacto", () => {
   const base = calcularProbabilidadImpacto(75, 0);

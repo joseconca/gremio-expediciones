@@ -11,7 +11,8 @@ const {
   calcularEvasionModificada,
   retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/combate/estados-combate.ts");
-const { resolverHabilidadJugador, resolverAtaqueJugador, calcularDanoMitigado } = require("../src/lib/expediciones/combate.ts");
+const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
+const { resolverAtaqueJugador, calcularDanoMitigado } = require("../src/lib/expediciones/combate/ataques-basicos.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {

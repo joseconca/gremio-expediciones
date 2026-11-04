@@ -10,7 +10,8 @@ import {
 } from "@/lib/expediciones/combate/estados-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { resolverAtaqueEnemigo, type AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
+import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import type { EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import { resolverResultadoCombateParty, obtenerLogCombateParty } from "@/lib/party/combate-reglas";
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";

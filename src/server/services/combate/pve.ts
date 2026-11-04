@@ -35,12 +35,8 @@ import {
   esModoDificultad,
   registrarVictoriaRangoNormal,
 } from "../../../lib/expediciones/encuentros/dificultad";
-import {
-  resolverAtaqueJugador,
-  resolverAtaqueEnemigo,
-  type AccionAnimadaCombate,
-  resolverHabilidadJugador,
-} from "@/lib/expediciones/combate";
+import { resolverAtaqueJugador, resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
+import { type AccionAnimadaCombate, resolverHabilidadJugador } from "@/lib/expediciones/combate";
 import {
   procesarTicksPeriodicos,
   avanzarEfectosCombate,

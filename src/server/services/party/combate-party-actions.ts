@@ -5,11 +5,8 @@ import { crearContextoTecnicaTactica } from "@/server/services/combate/contexto-
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import {
-  resolverAtaqueJugador,
-  resolverHabilidadJugador,
-  type AccionAnimadaCombate,
-} from "@/lib/expediciones/combate";
+import { resolverAtaqueJugador } from "@/lib/expediciones/combate/ataques-basicos";
+import { resolverHabilidadJugador, type AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas/estadisticas-personaje";

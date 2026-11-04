@@ -2,11 +2,8 @@ import type { Prisma } from "@prisma/client";
 import { haExpiradoTurnoPvp } from "@/lib/expediciones/asedios/turno-pvp";
 export { TIEMPO_MAXIMO_TURNO_MS } from "@/lib/expediciones/asedios/turno-pvp";
 import { prisma } from "@/lib/prisma";
-import {
-  resolverAtaqueJugador,
-  resolverAtaqueEnemigo,
-  calcularBonusDefensaMuralla,
-} from "@/lib/expediciones/combate";
+import { resolverAtaqueJugador, resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
+import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import {
   siguienteTurnoAsedio,
   determinarGanadorAsedio,
