@@ -200,3 +200,16 @@ test("edificios y contratos tácticos mantienen un propietario único, sin reexp
   assert.doesNotMatch(tipos, /export\s+(?:type\s+)?\{[^}]*\b(?:IdEdificio|CONFIGURACION_EDIFICIOS)\b[^}]*\}/);
   assert.doesNotMatch(motor, /export type\s*\{[^}]+\}\s*from\s*["']\.\/tipos-tacticos["']/);
 });
+
+
+test("las APIs de ataques, preparación y contratos de venta no mantienen reexports de transición", () => {
+  const leer = (archivo) => fs.readFileSync(path.join(root, archivo), "utf8");
+  const combate = leer("src/lib/expediciones/combate.ts");
+  const mecanicas = leer("src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts");
+  const tienda = leer("src/lib/equipamiento/tienda.ts");
+  assert.doesNotMatch(combate, /export\s*\{[^}]*resolverAtaqueJugador[^}]*\}\s*from/);
+  assert.doesNotMatch(mecanicas, /export\s*\{[^}]*prepararHabilidadRedisenada[^}]*\}\s*from/);
+  assert.doesNotMatch(tienda, /export\s+type\s*\{\s*ObjetoEnVenta\s*\}/);
+  assert.equal(typeof require("../src/lib/expediciones/combate/ataques-basicos.ts").resolverAtaqueJugador, "function");
+  assert.equal(typeof require("../src/lib/expediciones/combate/tacticas/preparacion-habilidades.ts").prepararHabilidadRedisenada, "function");
+});

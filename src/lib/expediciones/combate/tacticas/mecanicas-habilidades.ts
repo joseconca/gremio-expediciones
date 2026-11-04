@@ -6,9 +6,6 @@ import type { FamiliaTactica, MundoTactico, UnidadTactica } from "./tipos-tactic
 import type { OperacionHabilidad, ReglaPasiva } from "../../../progresion/habilidades/diseno-habilidades";
 import { obtenerEstadosTacticos as tacticos } from "./preparacion-habilidades";
 
-// Mantener la API de preparacion anterior para los importadores existentes.
-export { actualizarRelojContexto, prepararHabilidadRedisenada } from "./preparacion-habilidades";
-
 /** Verifica las condiciones tácticas de las pasivas; no modifica el mundo. */
 function esCondicion(
   regla: ReglaPasiva,

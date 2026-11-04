@@ -7,13 +7,6 @@ import {
   calcularProbabilidadImpacto,
 } from "./combate/ataques-basicos";
 
-/** API de compatibilidad para los servicios y pruebas existentes. */
-export {
-  calcularDanoMitigado,
-  calcularProbabilidadImpacto,
-  resolverAtaqueJugador,
-  resolverAtaqueEnemigo,
-} from "./combate/ataques-basicos";
 import { aplicarBarreraAccion, aplicarResistenciaPerjuicio, calcularDefensaTactica } from "./combate/estados-combate";
 import { aplicarMecanicasHabilidad } from "./combate/tacticas/mecanicas-habilidades";
 import { actualizarRelojContexto, prepararHabilidadRedisenada } from "./combate/tacticas/preparacion-habilidades";

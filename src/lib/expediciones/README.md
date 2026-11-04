@@ -2,10 +2,10 @@
 
 Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, encuentros, asedios y viajes. Los cálculos auxiliares de restauración, regeneración y reparto de curas están agrupados en `combate/`; las reglas de duración y liquidación de regreso viven en `viajes/`, evitando mezclar consumibles con la selección de destinos. No debe recibir nuevas consultas Prisma ni operaciones de persistencia.
 
-- `combate.ts`: API pública del combate y resolución de habilidades; mantiene las exportaciones históricas de ataques básicos.
+- `combate.ts`: resolución de habilidades y acciones que la necesitan. Los ataques básicos se importan desde `combate/ataques-basicos.ts` sin reexportaciones.
 - `combate/ataques-basicos.ts`: tiradas, precisión, daño mitigado y resolución de ataques básicos de héroes y enemigos.
 - `combate/tacticas/preparacion-habilidades.ts`: actualiza el reloj de contexto y prepara una copia local de la habilidad para el número de objetivos; sin modificar el catálogo.
-- `combate/tacticas/mecanicas-habilidades.ts`: aplica el resultado básico en este orden: efectos y unidades, operaciones (incluidas disipaciones), ventajas pasivas, historial y resultado final. Conserva las exportaciones anteriores de preparación.
+- `combate/tacticas/mecanicas-habilidades.ts`: aplica el resultado básico en este orden: efectos y unidades, operaciones (incluidas disipaciones), ventajas pasivas, historial y resultado final. La preparación se importa de `preparacion-habilidades.ts`.
 - `combate/tacticas/adaptador-tactico.ts`: traduce efectos persistidos (incluidos DoT/HoT anteriores) a estados tácticos y de vuelta; adapta la ejecución de técnicas adicionales. No accede a Prisma.
 - `combate/tacticas/tipos-tacticos.ts`: único propietario de los contratos de estado, unidad, mundo y comando. El motor importa esos tipos, pero no los reexporta.
 - `combate/tacticas/motor-tactico.ts`: motor puro de comandos, estados, pulsos, recursos y ciclos.
@@ -26,7 +26,7 @@ Esta carpeta contiene **reglas y transformaciones reutilizables** de combate, en
 
 Los contratos se importan directamente desde `combate/tacticas/tipos-tacticos.ts`, tanto en el catálogo como en adaptadores y consumidores. No unificar por similitud las funciones que crean unidades en `combate/tacticas/adaptador-tactico.ts` y `combate/tacticas/mecanicas-habilidades.ts`: la primera carga estados persistidos para una técnica adicional y la segunda reconstruye unidades después de la resolución básica; sus reglas de HP, recursos y límites no son equivalentes. Las pruebas de esta frontera están en `tests/adaptador-tactico.test.cjs`.
 
-La presentación (`presentacion/presentacion-combate.ts`), la selección física/mágica por subtipo (`combate/ataque-basico-arma.ts`) y la resolución real de los ataques (`combate/ataques-basicos.ts`) son responsabilidades distintas. `combate.ts` reexporta las funciones de ataque existentes para que los servicios PvE, PvP y party sigan funcionando sin cambios.
+La presentación (`presentacion/presentacion-combate.ts`), la selección física/mágica por subtipo (`combate/ataque-basico-arma.ts`) y la resolución real de los ataques (`combate/ataques-basicos.ts`) son responsabilidades distintas. Los servicios PvE, PvP, asedios y party importan las operaciones de ataque directamente desde su único propietario.
 
 Las **operaciones con Prisma** viven en `src/server/services/`:
 

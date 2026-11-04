@@ -4,15 +4,17 @@ const assert = require("node:assert/strict");
 const { obtenerPresentacionAtaqueBasico, obtenerPresentacionProyectilHabilidad } = require("../src/lib/expediciones/presentacion/presentacion-combate.ts");
 const { usaAtaqueMagicoBasico } = require("../src/lib/expediciones/combate/ataque-basico-arma.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
-const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
+const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
 const ataquesBasicos = require("../src/lib/expediciones/combate/ataques-basicos.ts");
+const { resolverAtaqueJugador } = ataquesBasicos;
 
-test("la API histórica de combate conserva exactamente los ataques básicos", () => {
-  const publico = require("../src/lib/expediciones/combate.ts");
-  assert.strictEqual(publico.resolverAtaqueJugador, ataquesBasicos.resolverAtaqueJugador);
-  assert.strictEqual(publico.resolverAtaqueEnemigo, ataquesBasicos.resolverAtaqueEnemigo);
-  assert.strictEqual(publico.calcularDanoMitigado, ataquesBasicos.calcularDanoMitigado);
-  assert.strictEqual(publico.calcularProbabilidadImpacto, ataquesBasicos.calcularProbabilidadImpacto);
+test("el módulo de ataques básicos es el único propietario de sus operaciones", () => {
+  const habilidades = require("../src/lib/expediciones/combate.ts");
+  assert.equal(typeof habilidades.resolverHabilidadJugador, "function");
+  for (const nombre of ["resolverAtaqueJugador", "resolverAtaqueEnemigo", "calcularDanoMitigado", "calcularProbabilidadImpacto"]) {
+    assert.equal(Object.hasOwn(habilidades, nombre), false, nombre);
+    assert.equal(typeof ataquesBasicos[nombre], "function", nombre);
+  }
   assert.equal(ataquesBasicos.calcularDanoMitigado(50, 100), 25);
 });
 
