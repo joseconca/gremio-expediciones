@@ -309,7 +309,7 @@ export async function ejecutarAccionCombateParty(
     let recursosHabilidad = { energia:0,mana:0 };
     const instantaneaActorTactico = () => ({ id: usuarioId, hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo, ataque: participante.jugadorAtaque, ataqueMagico: participante.jugadorAtaqueMagico, defensa: jugadorDefensa, defensaMagica: participante.jugadorDefensaMagica, posicion: participante.jugadorPosicion, efectos: efectosJugador });
     const danoEnemigoPorId = new Map<string, number>();
-    const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof obtenerEfectos> }>();
+    const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof leerEfectosCombate> }>();
     const objetivosAliadosModificados = new Map<string, {
       usuarioId: string;
       participanteId: string;
@@ -317,7 +317,7 @@ export async function ejecutarAccionCombateParty(
       hpOriginal: number;
       hp: number;
       defensa: number;
-      efectos: ReturnType<typeof obtenerEfectos>;
+      efectos: ReturnType<typeof leerEfectosCombate>;
     }>();
 
     if (accionDesconocida === "atacar") {
