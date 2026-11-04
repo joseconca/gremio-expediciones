@@ -100,10 +100,12 @@ test("el rediseño conserva los casos especiales y los costes de técnicas", () 
   assert.equal(sellos.cooldownTurnos, 2);
 });
 
-test('la preparación mantiene la API antigua y no modifica la definición original', () => {
-  const antiguo = require('../src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts');
-  assert.strictEqual(antiguo.prepararHabilidadRedisenada, prepararHabilidadRedisenada);
-  assert.strictEqual(antiguo.actualizarRelojContexto, actualizarRelojContexto);
+test('la preparación se importa desde su propietario y no modifica la definición original', () => {
+  const mecanicas = require('../src/lib/expediciones/combate/tacticas/mecanicas-habilidades.ts');
+  assert.equal(Object.hasOwn(mecanicas, 'prepararHabilidadRedisenada'), false);
+  assert.equal(Object.hasOwn(mecanicas, 'actualizarRelojContexto'), false);
+  assert.equal(typeof prepararHabilidadRedisenada, 'function');
+  assert.equal(typeof actualizarRelojContexto, 'function');
   const habilidad = {
     id: 'test_preparacion', claseId: 'espadachin',
     multiplicadorDano: 2, danoProgresivoPorcentaje: .3,
