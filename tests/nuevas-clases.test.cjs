@@ -7,7 +7,7 @@ const { CLASES, obtenerAncestrosClase, evaluarDesbloqueoClase, esClaseDescubiert
 const { CLASES_NUEVAS } = require("../src/lib/catalogos/clases.ts");
 const { HABILIDADES, obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
-const { aplicarBarreraAccion, calcularAtaqueModificado, calcularPrecisionModificada, procesarEfectosTurno, retirarEfectosHabilidad, leerEfectosCombate } = require("../src/lib/expediciones/combate/estados-combate.ts");
+const { aplicarBarreraAccion, procesarEfectosTurno, leerEfectosCombate } = require("../src/lib/expediciones/combate/estados-combate.ts");
 const { ajustarHabilidadPorNivel } = require("../src/lib/progresion/habilidades/niveles-habilidad.ts");
 const { calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
 const { tirarBotinEnemigo } = require("../src/lib/equipamiento/botin.ts");
