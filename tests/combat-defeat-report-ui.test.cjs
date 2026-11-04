@@ -46,5 +46,5 @@ test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realm
   assert.match(liquidacionParty, /recompensasResultado: resultadoRecompensas/);
   assert.match(panelParty, /obtenerResultadoInformeParty\(estadoNuevo, actual\)/);
   assert.match(informeParty, /recompensas: combate\.fase === "victoria" \|\| combate\.fase === "derrota"/);
-  assert.match(panelParty, /recompensaInforme=\{recompensaInformeParty/);
+  assert.match(panelParty, /recompensaInforme=\{recompensaInforme\}/);
 });

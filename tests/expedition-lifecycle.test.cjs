@@ -54,7 +54,7 @@ function cargarServicioComercial(prisma, resolverComercio) {
     "@/lib/prisma": { prisma },
     "@/lib/utils": { calcularDistanciaKm: () => 3 },
     "@/lib/expediciones/comercio": { resolverComercio },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: {
         hpMaximo: 100, ataque: 12, defensa: 5, capacidadCarruaje: 20,
       } }),
@@ -62,10 +62,10 @@ function cargarServicioComercial(prisma, resolverComercio) {
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}), LIMITE_INVENTARIO_OBJETOS: 30, hayHuecoInventario: (n) => n < 30 },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
-    "@/lib/expediciones/enemigos-combate": { leerEnemigosEnCombate: () => [] },
+    "@/lib/expediciones/combate/enemigos-combate": { leerEnemigosEnCombate: () => [] },
     "@/lib/equipamiento/botin": { tirarBotinEnemigo: () => null },
     "@/lib/equipamiento/sufijos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
-    "@/lib/expediciones/asedio": { calcularCapacidadAlmacen: () => 100 },
+    "@/lib/expediciones/asedios/asedio": { calcularCapacidadAlmacen: () => 100 },
     "@/lib/expediciones/viajes/recompensas-regreso": require("../src/lib/expediciones/viajes/recompensas-regreso.ts"),
   };
   const loaded = { exports: {} };
@@ -173,13 +173,13 @@ function cargarServicioLlegada(prisma) {
     "next/server": { NextResponse: { json: (body, init = {}) => ({ body, status: init.status ?? 200 }) } },
     "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "emisor" }) },
     "@/lib/prisma": { prisma },
-    "@/lib/expediciones/normal": { seleccionarEnemigosNormales: () => [{ id: "slime", nombre: "Slime" }] },
-    "@/lib/expediciones/enemigos-combate": { crearEnemigosEnCombate: () => [enemigo] },
-    "@/lib/expediciones/elite": { seleccionarJefeElite: () => { throw new Error("No es élite"); } },
+    "@/lib/expediciones/encuentros/normal": { seleccionarEnemigosNormales: () => [{ id: "slime", nombre: "Slime" }] },
+    "@/lib/expediciones/combate/enemigos-combate": { crearEnemigosEnCombate: () => [enemigo] },
+    "@/lib/expediciones/encuentros/elite": { seleccionarJefeElite: () => { throw new Error("No es élite"); } },
     "@/server/services/asedios/procesar-llegada-asedio": {
       procesarLlegadaAsedio: () => { throw new Error("No es asedio"); },
     },
-    "@/lib/progresion/estadisticas-personaje": {
+    "@/lib/progresion/estadisticas/estadisticas-personaje": {
       calcularEstadisticasPersonaje: () => ({ total: {
         hpMaximo: 100, ataque: 12, ataqueMagico: 8,
         defensa: 5, defensaMagica: 4, velocidad: 10,
@@ -188,17 +188,17 @@ function cargarServicioLlegada(prisma) {
       calcularModificadoresEquipo: () => ({}),
     },
     "@/lib/equipamiento/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
-    "../../../lib/expediciones/dificultad": { esModoDificultad: (valor) => valor === "normal" },
+    "@/lib/expediciones/encuentros/dificultad": { esModoDificultad: (valor) => valor === "normal" },
     "@/lib/base/taberna": {
       calcularBonificacionesComida: () => ({}),
       aplicarEfectoComida: (estadisticas) => estadisticas,
       obtenerComidaTaberna: () => null,
     },
-    "@/lib/expediciones/posicion-combate": {
+    "@/lib/expediciones/combate/posicion-combate": {
       normalizarPosicionCombate: () => "centro",
       aplicarModificadoresPosicion: (estadisticas) => estadisticas,
     },
-    "@/lib/expediciones/iniciativa-combate": {
+    "@/lib/expediciones/combate/iniciativa-combate": {
       crearSecuenciaTurnosVelocidad: () => [{ equipo: "jugador", actorId: "jugador" }],
     },
   };
