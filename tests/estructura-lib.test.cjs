@@ -257,10 +257,10 @@ test("el combate usa únicamente los endpoints específicos y no conserva el dis
   assert.doesNotMatch(indice, /adaptarAccionCombate|dispatcher/);
   const store = fs.readFileSync(path.join(root, "src/store/useGameStore.ts"), "utf8");
   assert.match(store, /modo:\s*"pve"\s*\|\s*"pvp"/);
-  assert.ok(store.includes("fetch(\`/api/combate/\${modo}/accion\`"), "El cliente debe apuntar a la ruta del modo elegido");
+  assert.ok(store.includes("fetch(`/api/combate/${modo}/accion`"), "El cliente debe apuntar a la ruta del modo elegido");
   for (const [modo, nombreServicio] of [["pve", "ejecutarAccionPve"], ["pvp", "ejecutarAccionPvp"]]) {
-    const ruta = `src/app/api/combate/\${modo}/accion/route.ts`;
+    const ruta = `src/app/api/combate/${modo}/accion/route.ts`;
     const contenido = fs.readFileSync(path.join(root, ruta), "utf8");
-    assert.match(contenido, new RegExp(`\\b\${nombreServicio}\\b`), `${ruta} debe utilizar su orquestador`);
+    assert.match(contenido, new RegExp(`\\b${nombreServicio}\\b`), `${ruta} debe utilizar su orquestador`);
   }
 });
