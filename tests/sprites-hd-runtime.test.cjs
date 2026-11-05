@@ -26,12 +26,23 @@ test('promoted body bytes and packed equipment metadata match the reviewed sourc
         frames.map(f=>Object.fromEntries(['depth','contacts','restoreHands','handMaskRadius'].map(k=>[k,f.config[k]]))));
   }
 });
-test('only completed classes select HD; higher tiers and legacy avatars keep their fallback',()=>{
-  for(const c of ['novato','mago','espadachin','acolito','arquero']) {
-    assert.ok(hd.obtenerRutaSpritesheetHeroe(c,'chica',c).includes(`/hd-v1/heroes/${c}/f-sheet.png`));
-    assert.ok(hd.obtenerSpriteHeroe(c,'chico',c).endsWith('/m-portrait.png'));
+test('every production variant uses its own HD atlas and portrait; legacy avatars keep their fallback',()=>{
+  const manifest=JSON.parse(read('assets/spritesheets/hd-128x256/manifest.json'));
+  assert.deepEqual(new Set(hd.BIBLIOTECA_SPRITES_HD.classes),new Set(manifest.variants.map(v=>v.classId)));
+  for(const {classId,sex} of manifest.variants) {
+    const genero=sex==='f'?'chica':'chico';
+    const origen=`assets/spritesheets/hd-128x256/${classId}/${sex}`;
+    const destino=`public/sprites/hd-v1/heroes/${classId}`;
+    const hoja=hd.obtenerRutaSpritesheetHeroe('Novato',genero,classId);
+    const retrato=hd.obtenerSpriteHeroe('Novato',genero,classId);
+    assert.equal(hoja,`/sprites/hd-v1/heroes/${classId}/${sex}-sheet.png`);
+    assert.equal(retrato,`/sprites/hd-v1/heroes/${classId}/${sex}-portrait.png`);
+    assert.equal(sha(read(`public${hoja}`)),sha(read(`${origen}/${classId}-${sex}-sheet.png`)));
+    assert.equal(sha(read(`${destino}/${sex}-idle.png`)),sha(read(`${origen}/frames/idle/${classId}-${sex}-idle-01.png`)));
+    const imagen=read(`public${retrato}`);
+    assert.equal(imagen.readUInt32BE(16),128);
+    assert.equal(imagen.readUInt32BE(20),256);
   }
-  assert.ok(!hd.obtenerRutaSpritesheetHeroe('caballero','chico','caballero').includes('/hd-v1/'));
   assert.ok(!hd.obtenerRutaSpritesheetHeroe('Guerrero','chico','novato').includes('/hd-v1/'));
 });
 test('actual equipment selects every weapon attack; misses, damage and potions take precedence',()=>{
@@ -136,14 +147,4 @@ test('both shields reflect around their grip and stay below the weapon in every 
     const sword=draws.findIndex(c=>c[1]==='SWORD'),shield=draws.findIndex(c=>c[1]==='SHIELD');
     assert.ok(shield>=0);if(sword>=0)assert.ok(sword>shield);
   }
-});
-
-
-test('Berserker usa atlas HD masculino sin cargar recursos HD femeninos o retratos ausentes', () => {
-  assert.equal(hd.esClaseHeroeHd('berserker','m'), true);
-  assert.equal(hd.esClaseHeroeHd('berserker','f'), false);
-  assert.equal(hd.esRetratoHeroeHd('berserker','m'), false);
-  assert.ok(hd.obtenerRutaSpritesheetHeroe(null,'chico','berserker').endsWith('/hd-v1/heroes/berserker/m-sheet.png'));
-  assert.ok(!hd.obtenerRutaSpritesheetHeroe(null,'chica','berserker').includes('/hd-v1/heroes/berserker/'));
-  assert.ok(!hd.obtenerSpriteHeroe(null,'chico','berserker').includes('/hd-v1/heroes/berserker/'));
 });

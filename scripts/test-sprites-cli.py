@@ -48,6 +48,9 @@ class SpriteCliTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     sprite.identificador(invalid)
 
+    def test_identificador_conserva_mayusculas_del_id_canonico(self):
+        self.assertEqual(sprite.identificador("superNovato"), "superNovato")
+
 
 if __name__ == "__main__":
     unittest.main()

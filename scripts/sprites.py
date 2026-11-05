@@ -34,8 +34,8 @@ TAMANO_CELDA = (128, 256)
 
 
 def identificador(valor: str) -> str:
-    if not re.fullmatch(r"[a-z][a-z0-9_]*", valor):
-        raise ValueError("ID de clase no valido; usa letras minusculas, numeros y guion bajo")
+    if not re.fullmatch(r"[a-z][a-zA-Z0-9_]*", valor):
+        raise ValueError("ID de clase no valido; usa letras ASCII, numeros y guion bajo")
     return valor
 
 
