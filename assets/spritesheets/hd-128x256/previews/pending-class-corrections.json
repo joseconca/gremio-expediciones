@@ -1,55 +1,14 @@
 {
-  "status": "waiting-image-generation-quota",
-  "date": "2026-11-04",
+  "status": "in-progress",
+  "date": "2026-11-05",
   "branch": "nuevas-clases",
   "generationTool": "built-in image_gen",
-  "quota": {
-    "error": "usage_limit_reached",
-    "httpStatus": 429,
-    "resetsAt": "2026-11-05T12:01:19Z",
-    "timezone": "Atlantic/Canary"
-  },
-  "completedClasses": 59,
+  "completedClasses": 60,
   "remainingClasses": [
-    "danzaespadas",
     "corsario"
   ],
-  "lastCompletedClass": "hoja_velo",
-  "lastCompletedCommit": "a1ae1dd0da7c6a844412c5fb58021cad1731bf8a",
+  "lastCompletedClass": "danzaespadas",
   "pendingPoses": [
-    {
-      "classId": "danzaespadas",
-      "sex": "f",
-      "action": "attack_gloves",
-      "pose": 1,
-      "revision": 5,
-      "inputGuide": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-pose1-correction-guide-v5.png",
-      "promptPath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-pose1-portrait-v5-prompt.txt",
-      "reason": "Manual grip correction remains; last generation was rejected with usage_limit_reached.",
-      "prompt": "Precisely localized grip correction on this 1086x1448 FEMALE full-body sprite. Move LEFT near fist RIGHT and slightly UP so its BLACK GLOVE CENTER is exactly (634,530), covering LEFT magenta circle on lyre. Move RIGHT far fist RIGHT and UP so BLACK GLOVE CENTER exactly (790,504), covering RIGHT circle. Both fists should be shifted toward viewer RIGHT, not brought together. TWO hands with attached naturally bent forearms. Also remove gray haze behind hair/hat: background must be alpha zero everywhere outside character. Preserve all other anatomy and exact framing, head/body scale, boots/margins, teal/ivory/plum/rosegold costume, beret and copper ponytail. Exactly TWO arms/hands. No new emblems on sleeves. Remove all magenta marks. Genuine transparent background, no haze, shadow, equipment or effects."
-    },
-    {
-      "classId": "danzaespadas",
-      "sex": "f",
-      "action": "attack_gloves",
-      "pose": 4,
-      "revision": 5,
-      "inputGuide": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-pose4-correction-guide-v5.png",
-      "promptPath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-pose4-portrait-v5-prompt.txt",
-      "reason": "Manual grip correction remains; last generation was rejected with usage_limit_reached.",
-      "prompt": "Precisely localized grip correction on this 1086x1448 FEMALE full-body sprite. Move ONLY LEFT near fist RIGHT about 110px and UP about 30px until BLACK GLOVE CENTER exactly (590,538) covers magenta circle on lyre. It should cross in front of chest emblem, partly hiding it. Other raised RIGHT fist completely unchanged. Preserve all other anatomy and exact framing, head/body scale, boots/margins, teal/ivory/plum/rosegold costume, beret and copper ponytail. Exactly TWO arms/hands. No new emblems on sleeves. Remove all magenta marks. Genuine transparent background, no haze, shadow, equipment or effects."
-    },
-    {
-      "classId": "danzaespadas",
-      "sex": "f",
-      "action": "dodge",
-      "pose": 3,
-      "revision": 5,
-      "inputGuide": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-pose3-correction-guide-v5.png",
-      "promptPath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-pose3-portrait-v5-prompt.txt",
-      "reason": "Manual grip correction remains; last generation was rejected with usage_limit_reached.",
-      "prompt": "Precisely localized grip correction on this 1086x1448 FEMALE full-body sprite. Move ONLY LEFT near fist RIGHT about 115px and UP 30px until BLACK GLOVE CENTER exactly (618,820) covers magenta circle over chest emblem. It should cross over chest toward viewer RIGHT and partly hide lyre. Other raised RIGHT arm and hand completely unchanged. Keep crouch fixed. Preserve all other anatomy and exact framing, head/body scale, boots/margins, teal/ivory/plum/rosegold costume, beret and copper ponytail. Exactly TWO arms/hands. No new emblems on sleeves. Remove all magenta marks. Genuine transparent background, no haze, shadow, equipment or effects."
-    },
     {
       "classId": "corsario",
       "sex": "f",

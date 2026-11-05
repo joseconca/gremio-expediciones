@@ -478,7 +478,7 @@
       "name": "Danzaespadas",
       "tier": 3.5,
       "order": 60,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "corsario",
@@ -284564,7 +284564,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/danzaespadas/m/danzaespadas-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/danzaespadas/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -285688,7 +285688,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "9a047c8ffec60614e1c86fcdd3978226f4037125d065a202975cdf35ef73af0b",
@@ -285726,7 +285727,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "12456d774874e59489749c127195be4d934d9103a839908e7f68f2b9e0db7809",
@@ -285858,7 +285859,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "aa1809950e4e89f3e0a007ac73dae98694417f53de0013d0810c7f975b9bc41d",
@@ -285896,7 +285898,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "091d81488f19933d3ca3fc61879e8b3790e2f7c7db5aa731c351e6099fdf0616",
@@ -286028,7 +286030,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "cee0c95342f6d7d90269eeb5d9693a4ba1152c1fd5218dc2e7145271ffc646fd",
@@ -286066,7 +286069,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8e1d0fdc5d7867bf459110d46454bc69e600e453ace6629cb5bea701fe48eee8",
@@ -286198,7 +286201,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "241fe1550790a2821e5fc7058e103b6beb3ca15755e2fac5963e8a067c09ccda",
@@ -286242,7 +286246,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "d0b2b3b51bdfcec288f7850f12bdbfde4a982b3c48e4cebf33ee77a5b51355fe",
@@ -286398,7 +286402,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "be43a81671e500e3fae01f64f832b03002b24d581e7f7b916ed1b344c4d6d7dc",
@@ -286442,7 +286447,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "6d1f7db8b82bbc7513d1187512754892be729d7a32807c25136ef90550df5c4a",
@@ -286480,7 +286486,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "d2597d05c6a0b25f88aa392795ad7c1274909e8f42b7abe0c706a4caf3aacf8d",
@@ -286518,7 +286525,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "3a6c4b0532062d37174e98ba10654475027a311c03fe6f13261e6c2c94dea31f",
@@ -286650,7 +286657,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "add685bb1ad8c918e31f250aee3d6365152859672a0de9081a0a60fce1feef80",
@@ -286688,7 +286696,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "0ae8212900dbe175bab4a464c2cc3891c164395dce2f8945391ac03870fa0097",
@@ -286726,7 +286735,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "911e6ad2d7a3c56ce1057e2d2e73369eb2ed4daad4b75d6e6a50153b28c2287b",
@@ -286764,7 +286774,7 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "84a587c06e3873135b982129705178bfe2eaa5bab24c8155fd8d7ce4f7fb1c85",
@@ -286896,7 +286906,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "b972d2cb5657365dcded890e290789e70f1deaf233fec70a6c6055727c88887b",
@@ -286934,7 +286945,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "33ad092edbcc08f912e55f03f7bc7f5e29afbc73a2ed21f7603f534ee7d85f9a",
@@ -286972,7 +286984,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "303d8ddbc7d9e84f7bea2c6b2e5d014f5d0d6613ceaa31856f6eb44fa2cddc7e",
@@ -287104,7 +287116,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "9f07698b8a263de95c88046869471f18fab070c6cc740d4d79a9e5b02794deeb",
@@ -287142,7 +287155,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "440fe74873834edbeca9b5f0e16568015387f8188411fc1298528881f71e15e2",
@@ -287234,7 +287247,8 @@
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
-          }
+          },
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "801852593ace9fa1a22f64472c4670d8e5392b0b0d12d4e3a97c76fbe28c0f6b",
@@ -287272,7 +287286,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "b4b916e6cfa5b4e88ebb0cce41b1132eeb31177bafb9572c765380f790761e27",
@@ -287496,7 +287510,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -287771,6 +287786,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "danzaespadas",
+        "name": "Danzaespadas",
+        "tier": 3.5,
+        "costume": "Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps.",
+        "maleIdentity": "Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Paired-blades/lyre brooch, plum dance panels and rose-gold rhythm diamonds",
+        "advancement": "Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/danzaespadas/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "f464066512ce86a99f9387d7c8128ffaf55ffb87bad0356f35a26dbaf79e8bff",
+            "f54f7e39bc9fd49243f939b72da775e51793af3d42a2bfbc34c8eb9a9867cc04",
+            "1fd20bb876d8e90fa1555b764af6859f24e8b52d616186244624bf45dc736ee6",
+            "257539772273a37bfb2508f59d1cee6be82c8222df2d677279a066725896b37a"
+          ],
+          "walk": [
+            "6c4d6b1a9522e39851fb74886118c105160ac0854e8a83865b9824c1873943f8",
+            "758c03095268ee380fe84bce4b8d71d6b8f00e05e6625d4b09339f6dda2178bd",
+            "79e867894fdb88e6f8a11107427d596e96c01a12b76c8667f9e79ae71580fede",
+            "0d62f3cdd969dc5614a5e4f225ea5759da46893c21e70cb8f2b20a01a7a2bc00"
+          ],
+          "hurt": [
+            "a196009156b719e479a69c6b9e1f7edd507272d802b6a3bc61cf0eab11cfea57",
+            "3a6dba71623c6f46a66a3c4b120e5551cbdc0649379e337e7b397f2acc921ef1",
+            "df4a84345c2cd328969516bdde250342ac439ec8c6e8697c49f317edb16232c2",
+            "133889001fd595265100ff99daeee2dbc7667b423b84d4f3f1123165c75969eb"
+          ],
+          "use_consumable": [
+            "210f2b00db0d3b210801b835adbd9535a346014d3c0b1d3523d918e2d3693c6b",
+            "4919b6db41b66db58047de23ecad0a0d92bae0531c2cef091940d6f2b2a3157b",
+            "7294171e2dd4da0f7ed92489164d5567123f67f7f3931c34b185b742d699824e",
+            "5d7731eaf85398369cb431fdfec793afb5c2cc7d881da9f819267559544990c6"
+          ],
+          "dodge": [
+            "e6528539ccaab4033723d08d220a2b7f6a597ff7528827a72c88dc05743cbd5d",
+            "e0e7f1f605fca81d44e8481e2b6fd712f7ec0b2ad32465d412c263399ac77054",
+            "fe88d6ead2a1987d7e37fd48f0395ff2608a6b67153f84f81e70c13ed7009b98",
+            "4d052cb55dd27c879c453a9c7425edf23df7668aaeddaff7d9e4ddcf949afafd"
+          ],
+          "block_shield": [
+            "eaafe10807e336083723bc12736b322aaa8f7c15775efeed706ec355c4317a28",
+            "77b9f93db29228ff12bd13a695cb0077897db53cdb2adc677edb0127665d8cb5",
+            "879e2bfd0af2f5c2c56774b03a69059555f2f28ac47c784b1c5c4be6b6fce268",
+            "b2ac805473fd787d78971cb615239aec1e58cc09aab932d12b19568b798b9d7b"
+          ],
+          "attack_sword": [
+            "5854f975fb0ee28d04dac5cad6b198f348c16bbe2c4a41e5208157963b697768",
+            "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c",
+            "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe",
+            "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845"
+          ],
+          "attack_axe": [
+            "85f57d861e59af78c512f6d1f9ecca2099028c8b2ff7dd3422d344ff111f9474",
+            "b41211e20e694186e6b0e2b49cba6b1f9709124317f7aa20fbea1d2d940b446a",
+            "1c5a919e103ca03eb085ba24ea07d8316ca19c4480be5a4668deec2de30c8fee",
+            "8df80517bae1a4aca2a6d90035ccbccdea6b146c854a8c32e3c782a5831daa2c"
+          ],
+          "attack_spear": [
+            "034e5c958d17a470468a71bd2546f8a1f8f40b4693978a3d6ea09548ea074fde",
+            "653e2de76172e5f6de7eaa65e8cc69320aff83268e34ed14cf7fdb7bb23f4b07",
+            "ac02f7e5e33cd33c020d35cb9de4c105e1898841568d23083aed0698c07ea116",
+            "db4c39971f0e05f9d1bdebda517c3ee6c4db6fc2d4958287d817fe7c1459a1c0"
+          ],
+          "attack_dagger": [
+            "c3d1a600a3d0324966d76708714c707cae5d80926d63b5c94238d260de8935d5",
+            "dab242d739dab4f56086fbfe772d000f6023472143d75652f5b56b0e32aa8ebc",
+            "9036a4185767fa1d3af3827bd7548a95f0085f24b26604db1864c30f2febeb2e",
+            "8a2c56aa7044f45a35ef1d015bfe8c77357be655334000d5d03865468c328ce1"
+          ],
+          "attack_bow": [
+            "82f2cca9b5ea36f3e94d591ba4fdcbc1d20b2c69b8770482a202cacc8a7f2d77",
+            "190c0e0f5abf8cb44589315bd544857b3d26b9d19d652c80c5739f0c6f3cd2bb",
+            "ad15b255b05bcf369a75dc255ea5207b7c6df5f4551dcfed29f76b0588a66f4c",
+            "4bfd4e5ff5bb842e3afd6656e4905b75656dc911a8c6702bda746eea71c0972a"
+          ],
+          "attack_staff": [
+            "c9dbea38469f1d2a128cf91bed9a27a9916e6cc92b5e32629076599da63ca3ab",
+            "bd08b0888370aa069414b211a59111d7b4d94e647f4d8f687893cd71a1ea1288",
+            "8307558cafeb16c40e90d0d81740bc15112c6c902f17c4da325822c1c7504ec9",
+            "a69fcee72508e9aa801919f6c9c48816d41ca3fb7fd048a8b503deeee8aa48cf"
+          ],
+          "attack_mace": [
+            "96e9b98db1116207262ed52213334a7f1b9cc8f0decc9770f2848fee88a5eff3",
+            "6e6de419da068544754799cf6795b317dc46e9d0df3f08990a55e78cbff2591a",
+            "c3c97f02b0406484430ded5db158448d635b6fa4ca38b98e588c0818111a9fc9",
+            "ee6baf5a8e406ab46181b822d0af6b733be184e73b173232374698b0e9986522"
+          ],
+          "attack_book": [
+            "8d9da6219403a2bbcae4a5364661443ca741e659e63aac4046dca9052eb82732",
+            "62060ec687d89baa9a78c44f307233aaf87ffd3ea0d5bf256319e03cd14e320e",
+            "26bfec10e22eb28d04b4023c269561fafa96e202a437e77455bd3ee5c612830a",
+            "dbc727fb95b3d76c4fd16ad597dd21d6f7c5e30433bbaac9e3319afe8ee736e8"
+          ],
+          "attack_gloves": [
+            "b72a5ca2caf39a147b84854cccf693953fe1bb0f975db325a39ad61ae8d90bfa",
+            "a3264696069702d72e73c3ff9c987631131624ae2dfc06290dfd2f63ad8d9889",
+            "43f8e9c46100282318a727eb5da2c2d3d05290cc8b3ebc1fd026cc682acd056d",
+            "2cfaee153f32df799259e6e45fb9af8b4564cd7cfbbc847f9508b44affd4e83d"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -287783,7 +287913,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/danzaespadas/f/danzaespadas-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/danzaespadas/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -288134,8 +288264,8 @@
                 "pixelSha256": "95bfa3558f63bbe36da1f2e1b67fd5bc1e3a96d0465be67cae391145a7b0b914"
               },
               "03": {
-                "sha256": "e001823d0b21e7f7fd381759cbf919ab2a2a508d36f9ffeeda26a486207a0d69",
-                "bytes": 20382,
+                "sha256": "c246b1a8751f44aefe79b89f0f33f436a63b0319bfb05de8631b0df499bd958c",
+                "bytes": 21567,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -288143,11 +288273,11 @@
                 ],
                 "bbox": [
                   16,
-                  121,
-                  96,
-                  250
+                  120,
+                  97,
+                  251
                 ],
-                "pixelSha256": "5cccdceb62f22fbf6bb4568bc56aec851fb4bc9ac2fb7afb7047e40e688d1557"
+                "pixelSha256": "b3a7336fc17c1031c31b0b716fa530659ae9d95a86d2f4e01574a1a0419974cc"
               },
               "04": {
                 "sha256": "a14af6b407653e189f364054c2f79c5393ce1b5c65def76d079347acb16df617",
@@ -288802,20 +288932,20 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "5cb95a109639f10e90f9259921fde820708f14766a3679d75b4c2803b3bd0481",
-                "bytes": 22241,
+                "sha256": "f57f25a052cefe6f5be5e8855b52bd9b53970cc93c43311edb715944e9cc5169",
+                "bytes": 23717,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
-                  88,
-                  99,
-                  247
+                  22,
+                  86,
+                  100,
+                  248
                 ],
-                "pixelSha256": "df80dce5335b485546b4bd0aa6d53d8f4619bb4b4b8163f9bebe125c7da40f6c"
+                "pixelSha256": "800f723ca723581431e049058f718c814b6b680e22009cebd58dacb6dc3415f3"
               },
               "02": {
                 "sha256": "44daf51ef000828462d3859dad232daa30278c567b667a6422bf9448e756a260",
@@ -288850,8 +288980,8 @@
                 "pixelSha256": "bf1f53dca4fb4de91f07ac214a4f2c851f6027064a795f64cdd132c5654569fe"
               },
               "04": {
-                "sha256": "3bb4767382915fba6c9bc17b77cad7d46b55d47334df24eb46a97a897fa1e096",
-                "bytes": 22086,
+                "sha256": "6ccc90e6ebbd59d84a4d9848cc5d9acdf29ce47398b6062366b2c59494fca6d4",
+                "bytes": 23728,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -288859,11 +288989,11 @@
                 ],
                 "bbox": [
                   13,
-                  89,
-                  90,
-                  247
+                  88,
+                  92,
+                  248
                 ],
-                "pixelSha256": "eab18f584cd2d203237e6fa9faf0d862c53d6228b3180601b89d9805ca5f89f9"
+                "pixelSha256": "7b406bd275a4d9fda86abfb9bd6946cad00becd012a99a487e2def85992e6b52"
               }
             },
             "distinctFrames": 4
@@ -288907,7 +289037,7 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "41498487ff86135119c90f952dc2566315a4a7ee89bdb5c881584ef7c23260a2",
@@ -289039,7 +289169,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "ff03b36834d0a3bcc3e012f3fc88233b6848417b05f5d4a822f3ce1f7ffe00a8",
@@ -289077,7 +289208,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "9fc3602e3ff6d16976581db25d4231a08b7c2d45f13bf5610e3818c094273236",
@@ -289209,7 +289340,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "225a20192c97fa1cc5eb5aaff0335ffd816675d7101541959f5a33be81eb8212",
@@ -289247,7 +289379,7 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "1f4eba8e30d6c64539e9d9dfd3e7b368c8604f4514b61ec9170a63230cc59a8b",
@@ -289379,10 +289511,11 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
-          "sourceSha256": "7eb3352250ffa97b966af923d495d07f5b5e416add2e3d7689eee88b8bd665af",
+          "sourceSha256": "c595000ef2b842418c3acb0e185fb714560eb0f3c2d79f216c20404d8461bc57",
           "sourceDimensions": [
             4344,
             1448
@@ -289407,9 +289540,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit of this RPG sprite. Move far RIGHT guarding fist RIGHT to ring in empty space. Other fist unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
+          "prompt": "Precisely localized grip correction on this 1086x1448 FEMALE full-body sprite. Move ONLY LEFT near fist RIGHT about 115px and UP 30px until BLACK GLOVE CENTER exactly (618,820) covers magenta circle over chest emblem. It should cross over chest toward viewer RIGHT and partly hide lyre. Other raised RIGHT arm and hand completely unchanged. Keep crouch fixed. Preserve all other anatomy and exact framing, head/body scale, boots/margins, teal/ivory/plum/rosegold costume, beret and copper ponytail. Exactly TWO arms/hands. No new emblems on sleeves. Remove all magenta marks. Genuine transparent background, no haze, shadow, equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
           "canonicalPoseHashes": [
             "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
@@ -289417,7 +289550,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8691ff0013d9cee98ba3a943d03c6119dfbb700b4eeba1390f49cf8587e8920d",
@@ -289445,15 +289578,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame01-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame01-reference-v5.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
-            "03": {
-              "sourceSha256": "8691ff0013d9cee98ba3a943d03c6119dfbb700b4eeba1390f49cf8587e8920d",
+            "02": {
+              "sourceSha256": "7eb3352250ffa97b966af923d495d07f5b5e416add2e3d7689eee88b8bd665af",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -289475,8 +289608,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame03-reference-v3.png",
-              "selectedFrame": 3,
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame02-reference-v5.png",
+              "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "04": {
@@ -289505,7 +289638,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame04-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame04-reference-v5.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -289548,8 +289681,139 @@
                 "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "7eb3352250ffa97b966af923d495d07f5b5e416add2e3d7689eee88b8bd665af",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                591,
+                23,
+                1035,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                13,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit of this RPG sprite. Move far RIGHT guarding fist RIGHT to ring in empty space. Other fist unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+              "canonicalPoseHashes": [
+                "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+                "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+                "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+                "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "8691ff0013d9cee98ba3a943d03c6119dfbb700b4eeba1390f49cf8587e8920d",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    591,
+                    23,
+                    1035,
+                    697
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    13,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame01-reference-v3.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "8691ff0013d9cee98ba3a943d03c6119dfbb700b4eeba1390f49cf8587e8920d",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    591,
+                    23,
+                    1035,
+                    697
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    13,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame03-reference-v3.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "f18ae35722c7b9b4b69bd90547efdbc699ec60dd3851f8e1192682fc741a83f5",
+                  "sourceDimensions": [
+                    4344,
+                    1448
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    591,
+                    23,
+                    1035,
+                    697
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    13,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/dodge-frame04-reference-v3.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "ea6751f618ced952a53fa480949900acd82cd03fa508a725ca0a26615f98e81f",
@@ -289587,7 +289851,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "4507291c36f3a3da7c68bd4b9f171616c0f81a115303e037a16f7a54fa6dd461",
@@ -289625,7 +289890,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "0d2107d665b3efa38270ffaa1c46d27379fee623075910302a91ac61c3f8dd2f",
@@ -289663,7 +289929,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "e056a164d9efbbed3538033fd77d8ffc554700b17f92a7d24e8f2501d120db99",
@@ -289701,7 +289968,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "fca63caacb4b2d963a4fc66647ff24e455b7cf1fc1a5d4938e5abdf94fe8fee5",
@@ -289739,7 +290007,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c0901b715dd020284f1faef0951306fc8ff3a78b87c19309962c9e8346365cbd",
@@ -289871,7 +290139,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "24e998edf0cdef4216a2e90ea3b672d7b914402132f970b695dc2a552b795cd2",
@@ -289909,7 +290178,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "bfb71fbf3f4b06168ebd9fc2db4c133b6a2c74c879071fe16f80a9af50d9d151",
@@ -290041,7 +290310,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "ea7762bf1c3abc95f492dbc82c5e1aa718a22307a1a7d69533ca77100bb71b19",
@@ -290079,7 +290349,7 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "aae6ee212a0dc860bbc4e7541e72cad441a3c56346a919218dd748d7333f1b02",
@@ -290211,7 +290481,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "3cf463078a046802a4855446c4fb06766470fab913bd962cf08997e1127da5d2",
@@ -290249,7 +290520,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "8736a15117073aaf122426d1bb849631af66eb087aca1b8e63ddeb308c94a438",
@@ -290287,7 +290559,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "86956d4da4abb1879a3ea13fe44da4b413e42ef762ede80aa9fccdc1bca0a4f6",
@@ -290427,10 +290699,11 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
-          "sourceSha256": "2340d374c6157d0a61d498478fe68ec46917efc3f933eeeeed23cba78e0c096f",
+          "sourceSha256": "4b77710b9e05178ee1e2082f3ae92e92a6483aa76279f2ff9640f6d73ae7d46a",
           "sourceDimensions": [
             4344,
             1448
@@ -290455,9 +290728,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit of this RPG sprite. Lower LEFT near raised fist DOWN and LEFT to magenta circle on lower ivory chest, at waist height. Other hand unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
+          "prompt": "Precisely localized grip correction on this 1086x1448 FEMALE full-body sprite. Move LEFT near fist RIGHT and slightly UP so its BLACK GLOVE CENTER is exactly (634,530), covering LEFT magenta circle on lyre. Move RIGHT far fist RIGHT and UP so BLACK GLOVE CENTER exactly (790,504), covering RIGHT circle. Both fists should be shifted toward viewer RIGHT, not brought together. TWO hands with attached naturally bent forearms. Also remove gray haze behind hair/hat: background must be alpha zero everywhere outside character. Preserve all other anatomy and exact framing, head/body scale, boots/margins, teal/ivory/plum/rosegold costume, beret and copper ponytail. Exactly TWO arms/hands. No new emblems on sleeves. Remove all magenta marks. Genuine transparent background, no haze, shadow, equipment or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -290465,13 +290738,13 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
-            "01": {
-              "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
+            "02": {
+              "sourceSha256": "2340d374c6157d0a61d498478fe68ec46917efc3f933eeeeed23cba78e0c096f",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -290493,8 +290766,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame01-reference-v3.png",
-              "selectedFrame": 1,
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame02-reference-v5.png",
+              "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "03": {
@@ -290523,15 +290796,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame03-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame03-reference-v5.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "04": {
-              "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
+              "sourceSha256": "520f28f725b8be199257f82c07dbda5cbbe531419342bd31fb817ebe72f65f2b",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -290553,7 +290826,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame04-reference-v3.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame04-reference-v5.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -290596,8 +290869,139 @@
                 "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "2340d374c6157d0a61d498478fe68ec46917efc3f933eeeeed23cba78e0c096f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit of this RPG sprite. Lower LEFT near raised fist DOWN and LEFT to magenta circle on lower ivory chest, at waist height. Other hand unchanged. Preserve all other body anatomy, costume, head scale and position, feet, complete framing and transparent margins. Preserve teal/ivory doublet, plum sash and panels, rosegold diamond braid, chest lyre with paired blade wings, plum beret and copper hair. No extra symbols or ornaments. Remove all magenta guides. True transparent background, no shadow, weapons or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame01-reference-v3.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame03-reference-v3.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "8a0ddf5b4dcbedc426c1e0d690c63e7b332cf8951c49c629fe3446c3fb31a8a9",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/danzaespadas/f/source/attack_gloves-frame04-reference-v3.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "5ba6eb855be5d0ffbd3584f9b4c2d06da070501d09add2745c054d070657cb9b",
@@ -290635,7 +291039,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "6aafd2805294be83a1936353d47b4e6762fbc352e1daaf41867d88488c490bce",
@@ -290727,7 +291131,8 @@
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
-          }
+          },
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -290784,11 +291189,11 @@
           "frame": 1
         },
         "dodge/02": {
-          "source": "sources.dodge",
+          "source": "sources.dodge.frameSourceOverrides.02",
           "frame": 2
         },
         "dodge/03": {
-          "source": "sources.dodge.frameSourceOverrides.03",
+          "source": "sources.dodge",
           "frame": 3
         },
         "dodge/04": {
@@ -290940,11 +291345,11 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves.frameSourceOverrides.01",
+          "source": "sources.attack_gloves",
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_gloves/03": {
@@ -291002,6 +291407,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "danzaespadas",
+        "name": "Danzaespadas",
+        "tier": 3.5,
+        "costume": "Fitted PETROL-TEAL and IVORY dancer-duelist doublet with PLUM shoulder panels and elaborate ROSE-GOLD rhythmic diamond braid, compact plum beret with one short ivory feather, rose-gold paired-blades-and-lyre chest brooch, wide plum waist sash with two narrow knee-length split dance panels kept close to legs, dark aubergine trousers, elegant dark brown boots with rose-gold ankle cuffs, dark fingerless gloves and snug ivory sleeves. No instruments, held swords, cape or neck scarf. Full fitted IVORY sleeves with PLUM cuffs, ROSE GOLD engraved diamond bracers and BLACK fingerless gloves. Compact PLUM shoulder caps outlined in rose gold. Three small ROSE GOLD diamond buttons below the distinctive paired-blades-and-lyre chest emblem; plum waist sash with ROSE GOLD diamond buckle. Two plum dance panels with paired rose gold DIAMOND vertical embroidery, kept within legs silhouette, no floating fabric. Dark brown boots have ROSE GOLD diamond shin plates and ankle straps.",
+        "maleIdentity": "Adult experienced masculine Danzaespadas with golden copper short wavy swept hair under beret, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Danzaespadas with golden copper hair in compact wavy side ponytail under beret, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Paired-blades/lyre brooch, plum dance panels and rose-gold rhythm diamonds",
+        "advancement": "Tier3.5 superior fusion/evolution of Bardo and Maestro de espadas. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/danzaespadas/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "403b0fbf4bca140129be2c8a2f60e9e4bbd21e3105ad06d0ed2aa2e19f2c5c4b",
+            "ce5a47ed6d184b3cf021a9a667515e76908adc0c988dbf721e04d62d4a47f0e3",
+            "e97208dd8a795c31a7fcbee3dd87131486f616cc647b645e6ae548ecccdef827",
+            "c56aabb8e533135d8fae6aff82383165555e3a54bc555c8c2c6c1b168a53d37f"
+          ],
+          "walk": [
+            "f181e0c2ab515cc85fc031d68bc72a0a57060dd7a2d3537bccab77202c725b48",
+            "eb931080d85e3c75d9982a7578842fcc3ce89332bb66878386bc3b0bd07283fb",
+            "4cae9b514ee3501d6804372d6f14eb522ac9a6d6ae1b84e241aa0c9476386212",
+            "3f9e0818a191447a24b7072458d00999517edbdce76a673bef1bc1eb11766220"
+          ],
+          "hurt": [
+            "f547f94880609d45fe0454ca14f2afa68e30c96639a9678ca6b3539529e749a1",
+            "72438a1668ed1f05b568b3cee3ffcb8f566ddf5b57df9d0bf6c057e54ebc65ca",
+            "f86ff2fe0e650f00639870cfeeda8220efffb652bd7386949aa6f535777e6678",
+            "3fe939b82d0977b9dfe4b8b48e35b160a3d2ba96938865f5865dc5bb7ee72723"
+          ],
+          "use_consumable": [
+            "53d172994c3f3ce55e2b0ae23b1e98dba2e02fa108ba4c0ad9ebbb0e86f9ff62",
+            "dcece1ac4b33f85088539dd9112e0733c97d38bb775974b646938bdea52d7bd3",
+            "a3a70aa95b082097572d62756be63a42276e8b25b5f1f9c1d6271020002d4bd0",
+            "df3267250b28b3efc75d184419bff69e243d9e572d1d174b41b170dd47269984"
+          ],
+          "dodge": [
+            "cf5c09dfd3e505d487aa6d5c0fd979adab72c10dc1b3b7e68d28495d403fb00a",
+            "773b6406c49fd6d76ed766d726278354a2430e423477ab183385e43247e00f38",
+            "c246b1a8751f44aefe79b89f0f33f436a63b0319bfb05de8631b0df499bd958c",
+            "a14af6b407653e189f364054c2f79c5393ce1b5c65def76d079347acb16df617"
+          ],
+          "block_shield": [
+            "2036def261b818bf079ea65f29d0b311cdd6ae5d6b01627a4da7d90e3a01f60e",
+            "d22c60af457b179b59b9162086ade611bd25eabb6466f709cefc77a21a111f03",
+            "2dfca5b19c453ddab21da7c5752c1f4a6f87d8eec06dc402b93b5ddbcdffb06b",
+            "c4274a0ac2ca8e3607ffcc35be9677914f0337ee3044f6e4b7f8791b2e3892ff"
+          ],
+          "attack_sword": [
+            "d6f0d4760dcce0c9bd36d6429936c9d9899579a2e523d3018ca60bab95cac855",
+            "1289a8e4394fa20be207be898596d0c459003fdb0f8c3fd15914d865d2e72917",
+            "b3c8c14661725b7e7839efbcc41a3073d66974d448dd4cd9c132ded5825f6263",
+            "6474b5b5a4c11f25aa79c4a2051a78bcbcbec6e4d4b374729549e9c618249452"
+          ],
+          "attack_axe": [
+            "e5c471eaa74a31ae211b260aa742893a08cdda02db184a4167f3f43321cab866",
+            "a2ac9e57696150aa8162be2806d0c1cc649959b226ed7de82d1ccc38177dd149",
+            "0d8a7da4f7df1d7f167e14167d44a19f8e3c6fb8f8a013bd899ead547d7a9162",
+            "310071ad93a6b237f45fed0fc38e6368e59eee26502bbbe4f58e81bf7d530683"
+          ],
+          "attack_spear": [
+            "4f58b665d6b652c0a768c057334877bc56f6c756cce26df634c610f3646d9a5e",
+            "6545d27b608d87e8d0f1fdede40924a1268e604fa7e2fcde035d1b20d6c7cfb0",
+            "e6abec7fae316af5f41ad2aef8597709401e3da362ca6af640757ed94ec1cccd",
+            "2d61f6022409bbb31d88752ce69b08f1adfcea509867e4524b5d9225704bd870"
+          ],
+          "attack_dagger": [
+            "f580c63cd6f08529a7b33023010a74e79d240328a99769bd197f397a07620fa8",
+            "192c9bba98d4a0d8d9ca071454ec4fa958425110d6fb6e22718cf6135a09c5ac",
+            "70c8e1fe2a5ea32e60d1b6e5529e03f0e94ef3df5ef1c6196edf0bd1473c0fa1",
+            "21959efbdf9b057ba083fd31afad972ab5150ac949d7aac133f2a226e2069117"
+          ],
+          "attack_bow": [
+            "41afccee202a3e2a9deb66ff03f9fcf1f9f1ccdbb2a4517ac1bdd7130a89b294",
+            "70b40161fa8e83a6834f9a6dd008ecf249575a7ead8b435a173285a47f86b98f",
+            "4dce1cbc55fe5d6a051132c48315a37d516bc25b58649e7b53fcd71a8786bb2a",
+            "8ca8ddf1ef635395499c929a460bce271a59e5a73b484a1a682e18c43978fdf6"
+          ],
+          "attack_staff": [
+            "987125809f3b87f638ac15f1ba875e57aa839befb3b7fb44236cb6f042d424ac",
+            "b970c918e79038f2c2dd97fc97ea15a2c0d01898a7735ece53c5e37c7545d56a",
+            "5b7149fcde313e49886f5ce5bfae93f174d7f7c8f4c2abb49319bdbc07d507dd",
+            "3ed3f94b5c696a63ce906840b8565d656275e08445a064502abed3db133f0e4a"
+          ],
+          "attack_mace": [
+            "7f71141209478c9e222a624764534b8c4dd5f82673278ebe6864f5eb33cb7285",
+            "4904426713d727d968251b1585e438ce031ea230fba3b9d573432542e99e85f8",
+            "3e6c5361f120af58373a60216d08545be9d1402e87d2f0c8b837607d944bbfd8",
+            "13b3801ebfcd0a53624d659a412d7dbf8e7b1d055605a4d8d4e700cecc9c8b5e"
+          ],
+          "attack_book": [
+            "63392d7aae902478a80794c3f04dae2cb0d6e281fbf706c4f044093f4de7ed3a",
+            "d996dae314dbb7ec18689f170136a7b2af6a4714ce418affe5cb6b1f4e279158",
+            "ecb59b5179f6f7f3c109ddda4f1641af6c5486434f73f53a5ef15ceba251b722",
+            "efd9d92c3f7f7c648daa84a7b923596d6d195bcd838c3ea6757c529b2d5ca3e2"
+          ],
+          "attack_gloves": [
+            "f57f25a052cefe6f5be5e8855b52bd9b53970cc93c43311edb715944e9cc5169",
+            "44daf51ef000828462d3859dad232daa30278c567b667a6422bf9448e756a260",
+            "2817f73f51d070691618e8e591dca85905279eb74f9fa8f5d7be6779cb3e18e1",
+            "6ccc90e6ebbd59d84a4d9848cc5d9acdf29ce47398b6062366b2c59494fca6d4"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -297040,7 +297560,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 3.5 in class order: Señor de la guerra, Avatar de la tormenta, Cazador espectral, Arconte, Justiciero, Hoja del velo, Danzaespadas, Corsario; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

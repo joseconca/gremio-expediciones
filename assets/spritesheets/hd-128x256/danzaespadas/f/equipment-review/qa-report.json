@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "danzaespadas",
   "sex": "f",
   "actions": [
@@ -47,7 +47,7 @@
     "dodge": [
       "cf5c09dfd3e505d487aa6d5c0fd979adab72c10dc1b3b7e68d28495d403fb00a",
       "773b6406c49fd6d76ed766d726278354a2430e423477ab183385e43247e00f38",
-      "e001823d0b21e7f7fd381759cbf919ab2a2a508d36f9ffeeda26a486207a0d69",
+      "c246b1a8751f44aefe79b89f0f33f436a63b0319bfb05de8631b0df499bd958c",
       "a14af6b407653e189f364054c2f79c5393ce1b5c65def76d079347acb16df617"
     ],
     "block_shield": [
@@ -105,105 +105,14 @@
       "efd9d92c3f7f7c648daa84a7b923596d6d195bcd838c3ea6757c529b2d5ca3e2"
     ],
     "attack_gloves": [
-      "5cb95a109639f10e90f9259921fde820708f14766a3679d75b4c2803b3bd0481",
+      "f57f25a052cefe6f5be5e8855b52bd9b53970cc93c43311edb715944e9cc5169",
       "44daf51ef000828462d3859dad232daa30278c567b667a6422bf9448e756a260",
       "2817f73f51d070691618e8e591dca85905279eb74f9fa8f5d7be6779cb3e18e1",
-      "3bb4767382915fba6c9bc17b77cad7d46b55d47334df24eb46a97a897fa1e096"
+      "6ccc90e6ebbd59d84a4d9848cc5d9acdf29ce47398b6062366b2c59494fca6d4"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "dodge",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        91,
-        178
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "guantes_lucha",
-      "point": [
-        78,
-        145
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 4,
-      "item": "punos_lobo",
-      "point": [
-        78,
-        145
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"
