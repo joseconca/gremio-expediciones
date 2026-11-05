@@ -27,6 +27,7 @@ def validate():
             or d['actions']!=m['actions']
             or set(d['items'])!=set(m['items'])):
         raise ValueError('Runtime catalog mismatch')
+    counts={'bodyAtlases':0,'staticImages':0,'equipmentAtlases':0,'equipmentFrames':0,'unchangedBodyFrames':0};pixels=0
     for c in runtime_classes:
         published=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-sheet.png').is_file()]
         portraits=[sexo for sexo in ('m','f') if (P/'heroes'/c/f'{sexo}-portrait.png').is_file()]
@@ -40,7 +41,16 @@ def validate():
                 reporte=H/c/sexo/'qa-report.json'
                 if png(actual).size!=(512,3840) or sha(actual)!=json.loads(reporte.read_text(encoding='utf-8'))['sheetSha256']:
                     raise ValueError('Unapproved extra hero atlas: '+c+'/'+sexo)
-    counts={'bodyAtlases':0,'staticImages':0,'equipmentAtlases':0,'equipmentFrames':0,'unchangedBodyFrames':0};pixels=0
+                counts['bodyAtlases']+=1
+                idle=P/'heroes'/c/f'{sexo}-idle.png'
+                if idle.is_file():
+                    if sha(idle)!=sha(H/c/sexo/'frames/idle'/f'{c}-{sexo}-idle-01.png'):
+                        raise ValueError('Extra hero idle changed: '+c+'/'+sexo)
+                    counts['staticImages']+=1
+            for sexo in portraits:
+                if png(P/'heroes'/c/f'{sexo}-portrait.png').size!=(128,256):
+                    raise ValueError('Extra hero portrait invalid: '+c+'/'+sexo)
+                counts['staticImages']+=1
     for c in m['classes']:
         for s in ('m','f'):
             q=json.loads((H/c/s/'qa-report.json').read_text(encoding='utf-8'));file=P/'heroes'/c/f'{s}-sheet.png'
