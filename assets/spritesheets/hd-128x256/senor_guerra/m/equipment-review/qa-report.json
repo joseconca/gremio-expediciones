@@ -7,6 +7,8 @@
     "walk",
     "hurt",
     "use_consumable",
+    "dodge",
+    "block_shield",
     "attack_sword",
     "attack_axe",
     "attack_spear",
@@ -27,8 +29,8 @@
     "walk": [
       "f5d68e39af3e0066ef66140c3db47339dff29826bdf7b77d1ecb885782fdf3e1",
       "9d7bc59c461e7cb04716d6fbb15fb9a02ff34e7c51b28c09899e1929e391963f",
-      "5d91971d885ac12b1458ba81347d84b2e7e8fb8788c5071a9ab7a5ee67dcb61f",
-      "02f8ae7350c85af48faebcdb471647bef5f8bd649614642c144a08baa1366c92"
+      "0bd1626f8f8d5ebf4b39109681cad56b791812dc55199b8f0ad3b4e34ef6b4ae",
+      "bfc740728e26a2fb35f609aebd3fba2c0ac92dea822253c31f35458735c424cc"
     ],
     "hurt": [
       "593b53dba5a731051677b5b11c102815ce84f3178aaa26ffc7748a613a82f220",
@@ -42,11 +44,23 @@
       "9bdb87b9ec36a337f08d53c415ee6c874d6f1bda122583e869311ff291e9899c",
       "089c0842a71f8442c159f4668ddeb91df17da24a68de5a0794323257312ccdc2"
     ],
+    "dodge": [
+      "935b7cba1aad8f2ec35bb1677bab0ee83d58bef2dfe6adb92ac3446a6fb3d9e7",
+      "07f7a84777ccc409907f26474a3a639b062b3d8df7e7318f0ad36ceab19225a8",
+      "58a13cdb2d89be5dbc09cc1371372dfc694f68cdefbde36c2cb15a4f7396a014",
+      "e972d81f451b131535e0abdb6ba459000f5fa187e07922e22ac2820fdc908c25"
+    ],
+    "block_shield": [
+      "0e96c9fa13dd3c16b06cf40d19d3df71ee6589ee380e5360fda914f79fcfcadd",
+      "6f227599f9b441076f2f5fc8c76b2d9373759ceeec2d940c43e251dbf281e219",
+      "fecf15938feb00395dd2f9d8e4973a337e185a13f16fcaca324cc791724e8c7e",
+      "7c707f2763ae3a6e1312cd42928c3009037e11cfc451a5516bd5e6633488d67e"
+    ],
     "attack_sword": [
       "845257b053dd0e4879308c0b04d381cee75688316292eaac91cc513bf7648fc3",
       "2bd55d0fa8cb7b8f417d786a823290c03713edf26d6287bcaf63ca78a7ce4201",
       "1e66f0500c3e021159257c4499f5d32d7507b1c124af089218d3d194280ee192",
-      "0353f205b404825f72b95393b4b52b3cfa5f59a086de86f0ddb42bc91dc13299"
+      "38f2db5d065c20c1dfe0579b1360568c8152534e377ac5b556571069c78e84f0"
     ],
     "attack_axe": [
       "049bfbdb9296c4a7c539ccab0b469244c21244d46a42c996a0dece3eb29a257b",
@@ -97,7 +111,7 @@
       "2912ea9a2382418ca81f169a6a332437bad46e0461224812f58da9870f47dec1"
     ]
   },
-  "contactChecks": 546,
+  "contactChecks": 682,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,

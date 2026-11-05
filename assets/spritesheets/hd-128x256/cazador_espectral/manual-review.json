@@ -1,0 +1,167 @@
+{
+  "classId": "cazador_espectral",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/walk-frame03-reference-v3.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/hurt-frame04-reference-v3.png"
+      }
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_spear-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_bow-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/hurt-frame03-reference-v2.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/cazador_espectral/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Abrigo de cazador carbon y petroleo con solapas marfil, hombreras de buho en plata, broche funerario de buho y hebilla de luna eclipsada. Identidades de pelo blanco ceniza con mecha petroleo, masculina corta y femenina en coleta alta, revisadas en las treinta acciones.",
+    "Selecciones de poses completas: M caminar3 v2 y4 v3; M dano2 v2 y3 v3 (incluye restauracion de hebilla lunar); M lanza4/arco4 v2; F caminar3/4 v3; F dano4/guantes4 v2. El resto conserva las fuentes originales.",
+    "Revisadas las treinta acciones, dieciocho laminas de palmas, diez paneles de composicion y las dos estructuras de hacha. Los puntos heredados de muneca o tela se cotejaron con las capas reales del equipo, sin alterar los agarres compartidos.",
+    "Exportacion canonica fija y fuentes/prompts de imagegen conservados junto con las versiones descartadas. No se hicieron retoques corporales, trasplantes de extremidades ni offsets de equipo por clase."
+  ]
+}

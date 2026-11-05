@@ -1,0 +1,163 @@
+{
+  "classId": "senor_guerra",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/senor_guerra/m/source/walk-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/senor_guerra/m/source/walk-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/senor_guerra/m/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_sword-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_sword-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_sword-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_sword-frame03-reference-v2.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/senor_guerra/f/source/walk-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/senor_guerra/f/source/walk-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/senor_guerra/f/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/senor_guerra/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/senor_guerra/f/source/hurt-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/senor_guerra/f/source/hurt-frame04-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_spear-reference.png",
+      "overrides": {}
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_book-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_book-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_book-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_book-frame03-reference-v2.png"
+      }
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/senor_guerra/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Senor de la guerra combina el mando de Mariscal y la fuerza de Verdugo con coraza negra y oro, tabardo burdeos con tres franjas, hombreras y hebilla de carnero, gorjal de piel marfil y diadema almenada. Cabello gris masculino corto y recogido femenino trenzado mantienen identidades diferenciadas.",
+    "All thirty costume sources, eighteen source palm boards plus the additional book proof, complete generated repairs, representative equipment of every type and both axe structures were visually reviewed for both sexes. Fifteen actions and 682 contacts per sex pass without warnings.",
+    "Male walk revision3 selects portrait3v3 and portrait4v2, keeping original1/2. Male sword revision2 only portrait4v2. Female walk revision3 only portrait2v3. Female hurt revision3 selects portrait1v3 and portrait4v2, keeping original2/3. Female book revision2 only portrait4v2. Female gloves revision2 selects portrait1v2 and portrait4v2, keeping original2/3. All other actions retain originals.",
+    "Rejected grip candidates remain archived and unselected. Whole generated poses retain fixed canonical export; no body painting, limb transplants, class equipment offsets or pose-specific scaling. Legacy unused secondary wrist, fingertip and consumable waist-return points were inspected against actual equipment. No runtime promotion."
+  ]
+}

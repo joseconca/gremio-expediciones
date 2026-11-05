@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "date": "2026-11-05",
+  "branch": "nuevas-clases",
+  "generationTool": "built-in image_gen",
+  "completedClasses": 61,
+  "remainingClasses": [],
+  "lastCompletedClass": "corsario",
+  "pendingPoses": [],
+  "resumePolicy": [
+    "Read imagegen skill. View each local input before built-in editing; retain original sources and prompts. Retry only after generation becomes available.",
+    "Generate separate class/sex/action portraits with versioned names. Package complete generated poses and inspect bounds, palms and outfit before registration.",
+    "One root manifest writer at a time. Both male variants have all 15 actions and 682 contacts without warnings, manually reviewed with all weapon types and both axe structures; do not reopen male assets.",
+    "Fresh QA and manual weapon review for female variants after repairs. Only then close class, run 29 tests, update documentation, commit, push and verify GitHub after each finished class.",
+    "Do not promote runtime or alter shared equipment offsets. Preserve unrelated docs/revision-clases-equilibrio-2026-10-29.md."
+  ]
+}

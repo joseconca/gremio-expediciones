@@ -1,0 +1,192 @@
+{
+  "classId": "corsario",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/walk-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame02-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame04-reference-v4.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame04-reference-v2.png"
+      }
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame03-reference-v3.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_book-reference-v2.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/walk-reference-v4.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame03-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame04-reference-v4.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame04-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame04-reference-v3.png"
+      }
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame03-reference-v3.png"
+      }
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v5.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v5.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame02-reference-v5.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v5.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame04-reference-v4.png"
+      }
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-reference-v3.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame04-reference-v3.png"
+      }
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame04-reference-v3.png"
+      }
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame01-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v4.png",
+        "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v4.png"
+      }
+    }
+  },
+  "notes": [
+    "Casaca naval con solapas coral, cordon dorado, tricornio y emblemas de ancla. Ambas variantes revisadas con armas representativas y las dos estructuras de hacha. Seleccion femenina final de lanza 4 v4, punos 2 v4, hacha 4 v3 y daga 3 v4."
+  ]
+}

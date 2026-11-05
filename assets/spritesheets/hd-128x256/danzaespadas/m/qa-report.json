@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-11-05T12:14:54.433399+00:00",
+  "classId": "danzaespadas",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\danzaespadas-m-sheet.png",
+  "sheetSha256": "7fb2c26f7604609cfbe5274bf7702852c71fe7a497c2cb053c0cdc5c33d44567",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\idle\\danzaespadas-m-idle-01.png",
+          "sha256": "f464066512ce86a99f9387d7c8128ffaf55ffb87bad0356f35a26dbaf79e8bff",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\idle\\danzaespadas-m-idle-02.png",
+          "sha256": "f54f7e39bc9fd49243f939b72da775e51793af3d42a2bfbc34c8eb9a9867cc04",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\idle\\danzaespadas-m-idle-03.png",
+          "sha256": "1fd20bb876d8e90fa1555b764af6859f24e8b52d616186244624bf45dc736ee6",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\idle\\danzaespadas-m-idle-04.png",
+          "sha256": "257539772273a37bfb2508f59d1cee6be82c8222df2d677279a066725896b37a",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\walk\\danzaespadas-m-walk-01.png",
+          "sha256": "6c4d6b1a9522e39851fb74886118c105160ac0854e8a83865b9824c1873943f8",
+          "alpha_bbox": [
+            10,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\walk\\danzaespadas-m-walk-02.png",
+          "sha256": "758c03095268ee380fe84bce4b8d71d6b8f00e05e6625d4b09339f6dda2178bd",
+          "alpha_bbox": [
+            9,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\walk\\danzaespadas-m-walk-03.png",
+          "sha256": "79e867894fdb88e6f8a11107427d596e96c01a12b76c8667f9e79ae71580fede",
+          "alpha_bbox": [
+            6,
+            88,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\walk\\danzaespadas-m-walk-04.png",
+          "sha256": "0d62f3cdd969dc5614a5e4f225ea5759da46893c21e70cb8f2b20a01a7a2bc00",
+          "alpha_bbox": [
+            12,
+            89,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\hurt\\danzaespadas-m-hurt-01.png",
+          "sha256": "a196009156b719e479a69c6b9e1f7edd507272d802b6a3bc61cf0eab11cfea57",
+          "alpha_bbox": [
+            21,
+            90,
+            99,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\hurt\\danzaespadas-m-hurt-02.png",
+          "sha256": "3a6dba71623c6f46a66a3c4b120e5551cbdc0649379e337e7b397f2acc921ef1",
+          "alpha_bbox": [
+            22,
+            96,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\hurt\\danzaespadas-m-hurt-03.png",
+          "sha256": "df4a84345c2cd328969516bdde250342ac439ec8c6e8697c49f317edb16232c2",
+          "alpha_bbox": [
+            12,
+            114,
+            101,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\hurt\\danzaespadas-m-hurt-04.png",
+          "sha256": "133889001fd595265100ff99daeee2dbc7667b423b84d4f3f1123165c75969eb",
+          "alpha_bbox": [
+            27,
+            90,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\use_consumable\\danzaespadas-m-use_consumable-01.png",
+          "sha256": "210f2b00db0d3b210801b835adbd9535a346014d3c0b1d3523d918e2d3693c6b",
+          "alpha_bbox": [
+            25,
+            90,
+            102,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\use_consumable\\danzaespadas-m-use_consumable-02.png",
+          "sha256": "4919b6db41b66db58047de23ecad0a0d92bae0531c2cef091940d6f2b2a3157b",
+          "alpha_bbox": [
+            20,
+            90,
+            99,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\use_consumable\\danzaespadas-m-use_consumable-03.png",
+          "sha256": "7294171e2dd4da0f7ed92489164d5567123f67f7f3931c34b185b742d699824e",
+          "alpha_bbox": [
+            21,
+            90,
+            101,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\use_consumable\\danzaespadas-m-use_consumable-04.png",
+          "sha256": "5d7731eaf85398369cb431fdfec793afb5c2cc7d881da9f819267559544990c6",
+          "alpha_bbox": [
+            25,
+            91,
+            103,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\dodge\\danzaespadas-m-dodge-01.png",
+          "sha256": "e6528539ccaab4033723d08d220a2b7f6a597ff7528827a72c88dc05743cbd5d",
+          "alpha_bbox": [
+            18,
+            98,
+            97,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\dodge\\danzaespadas-m-dodge-02.png",
+          "sha256": "e0e7f1f605fca81d44e8481e2b6fd712f7ec0b2ad32465d412c263399ac77054",
+          "alpha_bbox": [
+            17,
+            99,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\dodge\\danzaespadas-m-dodge-03.png",
+          "sha256": "fe88d6ead2a1987d7e37fd48f0395ff2608a6b67153f84f81e70c13ed7009b98",
+          "alpha_bbox": [
+            28,
+            102,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\dodge\\danzaespadas-m-dodge-04.png",
+          "sha256": "4d052cb55dd27c879c453a9c7425edf23df7668aaeddaff7d9e4ddcf949afafd",
+          "alpha_bbox": [
+            25,
+            101,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\block_shield\\danzaespadas-m-block_shield-01.png",
+          "sha256": "eaafe10807e336083723bc12736b322aaa8f7c15775efeed706ec355c4317a28",
+          "alpha_bbox": [
+            20,
+            98,
+            102,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\block_shield\\danzaespadas-m-block_shield-02.png",
+          "sha256": "77b9f93db29228ff12bd13a695cb0077897db53cdb2adc677edb0127665d8cb5",
+          "alpha_bbox": [
+            19,
+            98,
+            102,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\block_shield\\danzaespadas-m-block_shield-03.png",
+          "sha256": "879e2bfd0af2f5c2c56774b03a69059555f2f28ac47c784b1c5c4be6b6fce268",
+          "alpha_bbox": [
+            19,
+            112,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\block_shield\\danzaespadas-m-block_shield-04.png",
+          "sha256": "b2ac805473fd787d78971cb615239aec1e58cc09aab932d12b19568b798b9d7b",
+          "alpha_bbox": [
+            19,
+            98,
+            102,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_sword\\danzaespadas-m-attack_sword-01.png",
+          "sha256": "5854f975fb0ee28d04dac5cad6b198f348c16bbe2c4a41e5208157963b697768",
+          "alpha_bbox": [
+            5,
+            95,
+            108,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_sword\\danzaespadas-m-attack_sword-02.png",
+          "sha256": "43302f308afca64345399e3f983566d9ef208ea17e7d8e0db10726fbed6b631c",
+          "alpha_bbox": [
+            11,
+            95,
+            110,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_sword\\danzaespadas-m-attack_sword-03.png",
+          "sha256": "23acd8870d781c5d2eecb43c7119b3fb274dbaa182dd16996caf8221dfa2a1fe",
+          "alpha_bbox": [
+            1,
+            101,
+            117,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_sword\\danzaespadas-m-attack_sword-04.png",
+          "sha256": "d970f25461fe199975423559e319fd573f5ebf772615a81adf1ba952aeafd845",
+          "alpha_bbox": [
+            14,
+            97,
+            106,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_axe\\danzaespadas-m-attack_axe-01.png",
+          "sha256": "85f57d861e59af78c512f6d1f9ecca2099028c8b2ff7dd3422d344ff111f9474",
+          "alpha_bbox": [
+            8,
+            97,
+            106,
+            252
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_axe\\danzaespadas-m-attack_axe-02.png",
+          "sha256": "b41211e20e694186e6b0e2b49cba6b1f9709124317f7aa20fbea1d2d940b446a",
+          "alpha_bbox": [
+            10,
+            105,
+            110,
+            253
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_axe\\danzaespadas-m-attack_axe-03.png",
+          "sha256": "1c5a919e103ca03eb085ba24ea07d8316ca19c4480be5a4668deec2de30c8fee",
+          "alpha_bbox": [
+            6,
+            117,
+            113,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_axe\\danzaespadas-m-attack_axe-04.png",
+          "sha256": "8df80517bae1a4aca2a6d90035ccbccdea6b146c854a8c32e3c782a5831daa2c",
+          "alpha_bbox": [
+            21,
+            102,
+            121,
+            253
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_spear\\danzaespadas-m-attack_spear-01.png",
+          "sha256": "034e5c958d17a470468a71bd2546f8a1f8f40b4693978a3d6ea09548ea074fde",
+          "alpha_bbox": [
+            10,
+            89,
+            101,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_spear\\danzaespadas-m-attack_spear-02.png",
+          "sha256": "653e2de76172e5f6de7eaa65e8cc69320aff83268e34ed14cf7fdb7bb23f4b07",
+          "alpha_bbox": [
+            10,
+            89,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_spear\\danzaespadas-m-attack_spear-03.png",
+          "sha256": "ac02f7e5e33cd33c020d35cb9de4c105e1898841568d23083aed0698c07ea116",
+          "alpha_bbox": [
+            10,
+            90,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_spear\\danzaespadas-m-attack_spear-04.png",
+          "sha256": "db4c39971f0e05f9d1bdebda517c3ee6c4db6fc2d4958287d817fe7c1459a1c0",
+          "alpha_bbox": [
+            14,
+            88,
+            111,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_dagger\\danzaespadas-m-attack_dagger-01.png",
+          "sha256": "c3d1a600a3d0324966d76708714c707cae5d80926d63b5c94238d260de8935d5",
+          "alpha_bbox": [
+            21,
+            91,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_dagger\\danzaespadas-m-attack_dagger-02.png",
+          "sha256": "dab242d739dab4f56086fbfe772d000f6023472143d75652f5b56b0e32aa8ebc",
+          "alpha_bbox": [
+            17,
+            91,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_dagger\\danzaespadas-m-attack_dagger-03.png",
+          "sha256": "9036a4185767fa1d3af3827bd7548a95f0085f24b26604db1864c30f2febeb2e",
+          "alpha_bbox": [
+            17,
+            92,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_dagger\\danzaespadas-m-attack_dagger-04.png",
+          "sha256": "8a2c56aa7044f45a35ef1d015bfe8c77357be655334000d5d03865468c328ce1",
+          "alpha_bbox": [
+            21,
+            92,
+            95,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_bow\\danzaespadas-m-attack_bow-01.png",
+          "sha256": "82f2cca9b5ea36f3e94d591ba4fdcbc1d20b2c69b8770482a202cacc8a7f2d77",
+          "alpha_bbox": [
+            25,
+            94,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_bow\\danzaespadas-m-attack_bow-02.png",
+          "sha256": "190c0e0f5abf8cb44589315bd544857b3d26b9d19d652c80c5739f0c6f3cd2bb",
+          "alpha_bbox": [
+            13,
+            94,
+            116,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_bow\\danzaespadas-m-attack_bow-03.png",
+          "sha256": "ad15b255b05bcf369a75dc255ea5207b7c6df5f4551dcfed29f76b0588a66f4c",
+          "alpha_bbox": [
+            7,
+            94,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_bow\\danzaespadas-m-attack_bow-04.png",
+          "sha256": "4bfd4e5ff5bb842e3afd6656e4905b75656dc911a8c6702bda746eea71c0972a",
+          "alpha_bbox": [
+            4,
+            94,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_staff\\danzaespadas-m-attack_staff-01.png",
+          "sha256": "c9dbea38469f1d2a128cf91bed9a27a9916e6cc92b5e32629076599da63ca3ab",
+          "alpha_bbox": [
+            24,
+            91,
+            99,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_staff\\danzaespadas-m-attack_staff-02.png",
+          "sha256": "bd08b0888370aa069414b211a59111d7b4d94e647f4d8f687893cd71a1ea1288",
+          "alpha_bbox": [
+            19,
+            91,
+            99,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_staff\\danzaespadas-m-attack_staff-03.png",
+          "sha256": "8307558cafeb16c40e90d0d81740bc15112c6c902f17c4da325822c1c7504ec9",
+          "alpha_bbox": [
+            24,
+            91,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_staff\\danzaespadas-m-attack_staff-04.png",
+          "sha256": "a69fcee72508e9aa801919f6c9c48816d41ca3fb7fd048a8b503deeee8aa48cf",
+          "alpha_bbox": [
+            24,
+            91,
+            99,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_mace\\danzaespadas-m-attack_mace-01.png",
+          "sha256": "96e9b98db1116207262ed52213334a7f1b9cc8f0decc9770f2848fee88a5eff3",
+          "alpha_bbox": [
+            22,
+            90,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_mace\\danzaespadas-m-attack_mace-02.png",
+          "sha256": "6e6de419da068544754799cf6795b317dc46e9d0df3f08990a55e78cbff2591a",
+          "alpha_bbox": [
+            26,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_mace\\danzaespadas-m-attack_mace-03.png",
+          "sha256": "c3c97f02b0406484430ded5db158448d635b6fa4ca38b98e588c0818111a9fc9",
+          "alpha_bbox": [
+            23,
+            101,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_mace\\danzaespadas-m-attack_mace-04.png",
+          "sha256": "ee6baf5a8e406ab46181b822d0af6b733be184e73b173232374698b0e9986522",
+          "alpha_bbox": [
+            32,
+            89,
+            112,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_book\\danzaespadas-m-attack_book-01.png",
+          "sha256": "8d9da6219403a2bbcae4a5364661443ca741e659e63aac4046dca9052eb82732",
+          "alpha_bbox": [
+            22,
+            89,
+            95,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_book\\danzaespadas-m-attack_book-02.png",
+          "sha256": "62060ec687d89baa9a78c44f307233aaf87ffd3ea0d5bf256319e03cd14e320e",
+          "alpha_bbox": [
+            22,
+            90,
+            94,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_book\\danzaespadas-m-attack_book-03.png",
+          "sha256": "26bfec10e22eb28d04b4023c269561fafa96e202a437e77455bd3ee5c612830a",
+          "alpha_bbox": [
+            22,
+            90,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_book\\danzaespadas-m-attack_book-04.png",
+          "sha256": "dbc727fb95b3d76c4fd16ad597dd21d6f7c5e30433bbaac9e3319afe8ee736e8",
+          "alpha_bbox": [
+            23,
+            90,
+            97,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_gloves\\danzaespadas-m-attack_gloves-01.png",
+          "sha256": "b72a5ca2caf39a147b84854cccf693953fe1bb0f975db325a39ad61ae8d90bfa",
+          "alpha_bbox": [
+            19,
+            88,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_gloves\\danzaespadas-m-attack_gloves-02.png",
+          "sha256": "a3264696069702d72e73c3ff9c987631131624ae2dfc06290dfd2f63ad8d9889",
+          "alpha_bbox": [
+            19,
+            88,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_gloves\\danzaespadas-m-attack_gloves-03.png",
+          "sha256": "43f8e9c46100282318a727eb5da2c2d3d05290cc8b3ebc1fd026cc682acd056d",
+          "alpha_bbox": [
+            20,
+            88,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\danzaespadas\\m\\frames\\attack_gloves\\danzaespadas-m-attack_gloves-04.png",
+          "sha256": "2cfaee153f32df799259e6e45fb9af8b4564cd7cfbbc847f9508b44affd4e83d",
+          "alpha_bbox": [
+            19,
+            87,
+            102,
+            249
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

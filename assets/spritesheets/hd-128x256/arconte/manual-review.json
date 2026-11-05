@@ -1,0 +1,179 @@
+{
+  "classId": "arconte",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/walk-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/m/source/walk-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/m/source/walk-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/m/source/walk-frame04-reference-v3.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/hurt-reference.png",
+      "overrides": {}
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/m/source/attack_spear-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/m/source/attack_spear-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/m/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/arconte/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/walk-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/walk-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/walk-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/f/source/walk-frame04-reference-v2.png"
+      }
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/hurt-reference-v5.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/hurt-frame01-reference-v5.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/hurt-frame02-reference-v5.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/hurt-frame03-reference-v5.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/dodge-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/dodge-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/dodge-frame02-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/f/source/dodge-frame04-reference-v3.png"
+      }
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_sword-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/attack_sword-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/attack_sword-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/f/source/attack_sword-frame04-reference-v2.png"
+      }
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_spear-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/attack_spear-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/attack_spear-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/f/source/attack_spear-frame04-reference-v2.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/attack_bow-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/attack_bow-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/arconte/f/source/attack_bow-frame04-reference-v2.png"
+      }
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_book-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/attack_book-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/attack_book-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/attack_book-frame03-reference-v3.png"
+      }
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/arconte/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/arconte/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/arconte/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/arconte/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Identidad avanzada de marfil, cobalto y oro, estolas con portales bordados, medallones de estrella solar y opalo, cuatro esmaltes rojo/azul/ambar/verde en el cinturon y botas ceremoniales; cabello masculino ondulado y femenino con corona trenzada.",
+    "Se revisaron las treinta acciones y los contactos manuales. Caminata masculina selecciona poses 2 v2 y 3 v3; lanza masculina pose 2 v2. Caminata femenina selecciona poses 1/2/3 v2; dolor femenino poses 2 v2 y 4 v5, sin la marca magenta de los candidatos anteriores.",
+    "Espada femenina pose 3 v2, lanza femenina pose 2 v2, arco femenino poses 1/2/4 v2, guantes femeninos pose 4 v2, esquiva femenina pose 3 v3 y libro femenino pose 4 v3. Las demas poses conservan las fuentes originales completas.",
+    "Revisados los montajes finales con un arma por tipo y ambas estructuras de hacha. Se respetan los apoyos historicos de antebrazo y los anclajes secundarios no usados; ninguna correccion de equipo por clase. Ambos sexos completan 15 acciones, 682 contactos sin avisos y las 29 pruebas de animacion."
+  ]
+}

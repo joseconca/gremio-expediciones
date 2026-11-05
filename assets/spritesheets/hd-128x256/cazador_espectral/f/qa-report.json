@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-30T09:02:00.946697+00:00",
+  "classId": "cazador_espectral",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\cazador_espectral-f-sheet.png",
+  "sheetSha256": "b3ddd6cbee0f873a8542d762680edfb5ff194620add0595fcf15182226db12e8",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\idle\\cazador_espectral-f-idle-01.png",
+          "sha256": "57d067296c815d9eb964928bc3c82ff609cdf4c135421953e167daad317e6a1e",
+          "alpha_bbox": [
+            26,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\idle\\cazador_espectral-f-idle-02.png",
+          "sha256": "2d1e87fe68cec7d2c50106fae7aa4988874d4988a300524ba35a7a80fa82b262",
+          "alpha_bbox": [
+            27,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\idle\\cazador_espectral-f-idle-03.png",
+          "sha256": "fa221e9e42ebe2d009f3fb5517a9799d97a42f732a0a6b519ce2552348bda1d1",
+          "alpha_bbox": [
+            25,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\idle\\cazador_espectral-f-idle-04.png",
+          "sha256": "fe72d7bf5293cccc49d17f10989272ecc6bc58a39d48da79b6b0b6fbb52b650b",
+          "alpha_bbox": [
+            25,
+            90,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\walk\\cazador_espectral-f-walk-01.png",
+          "sha256": "16c61ff6e14a290234805978fa5c824c58f652d4a874d185a255267cdcf99b33",
+          "alpha_bbox": [
+            15,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\walk\\cazador_espectral-f-walk-02.png",
+          "sha256": "5cb6b793e8bd00576e46350982509c622305beb9caa0498588790f065b22a021",
+          "alpha_bbox": [
+            25,
+            89,
+            95,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\walk\\cazador_espectral-f-walk-03.png",
+          "sha256": "2d75784f4e34d609793ccd17d1c1614b322c8493a909257785015cd0cfadb267",
+          "alpha_bbox": [
+            5,
+            89,
+            112,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\walk\\cazador_espectral-f-walk-04.png",
+          "sha256": "b8c548d034c3014116b00b6ea7198f5a93d4c0ada834abef59ea83d29ce119e8",
+          "alpha_bbox": [
+            17,
+            89,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\hurt\\cazador_espectral-f-hurt-01.png",
+          "sha256": "48f236873f1e109d9d648bc902e0d49f1570bc09278eebc84c4f34282b9ccf3c",
+          "alpha_bbox": [
+            20,
+            94,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\hurt\\cazador_espectral-f-hurt-02.png",
+          "sha256": "a3426cdbb0bd092369b20e81f1b5a57dc0235a69ef16445cb29c56e0a1ccf68f",
+          "alpha_bbox": [
+            25,
+            94,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\hurt\\cazador_espectral-f-hurt-03.png",
+          "sha256": "206d09378a3714624f953dde33d46b39039a5bc6ac55e22e29685c29c6c57730",
+          "alpha_bbox": [
+            21,
+            114,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\hurt\\cazador_espectral-f-hurt-04.png",
+          "sha256": "d16b3cb90013552e2467821b06e87ebf5924a5ca99eae89645292e9ef1dd249a",
+          "alpha_bbox": [
+            20,
+            91,
+            103,
+            252
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\use_consumable\\cazador_espectral-f-use_consumable-01.png",
+          "sha256": "ddd4fa388f8af77e154cdd7352232140920f64cce1a6fd0d3670e8ac99163a1e",
+          "alpha_bbox": [
+            22,
+            89,
+            104,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\use_consumable\\cazador_espectral-f-use_consumable-02.png",
+          "sha256": "121c325ce1ed09f59449b1215b406022f6a0840b6f967cc6ce30b45b3f65748c",
+          "alpha_bbox": [
+            22,
+            89,
+            105,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\use_consumable\\cazador_espectral-f-use_consumable-03.png",
+          "sha256": "a53e166cefd75f1bdfb224343f3bb31530dbec939baea2442496c0ab4150b91e",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\use_consumable\\cazador_espectral-f-use_consumable-04.png",
+          "sha256": "e96ed22584c8a90c498b9169142d2b53c28cef52e5bdbb760d25184c32460862",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\dodge\\cazador_espectral-f-dodge-01.png",
+          "sha256": "36f9892e1b869aa202699b5118f3ed2736cd5ce702d7cc1b36b061f487b75b48",
+          "alpha_bbox": [
+            30,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\dodge\\cazador_espectral-f-dodge-02.png",
+          "sha256": "c4e4852e2aa56d8f96795f692336ef737e7163c392e4b600c07abc9891f4e605",
+          "alpha_bbox": [
+            31,
+            99,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\dodge\\cazador_espectral-f-dodge-03.png",
+          "sha256": "211f6601d8cd60df11e5bdefedef2ce8b64f1f8a2dc5e07e9fb6874524490c39",
+          "alpha_bbox": [
+            21,
+            125,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\dodge\\cazador_espectral-f-dodge-04.png",
+          "sha256": "43faaa9ce64e5fbb2a9f5060e191244d138f3408e5d67bac9de054f52ad39dbb",
+          "alpha_bbox": [
+            17,
+            98,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\block_shield\\cazador_espectral-f-block_shield-01.png",
+          "sha256": "cf50925e92d785a28907f4d7b4b098ddd1e4d1839b0143945976d6363160c7a0",
+          "alpha_bbox": [
+            29,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\block_shield\\cazador_espectral-f-block_shield-02.png",
+          "sha256": "3e5ee2a7ff01134f453b1e0bb036dc1ca625e6b260ff8dc5b6bacff4f966e72e",
+          "alpha_bbox": [
+            29,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\block_shield\\cazador_espectral-f-block_shield-03.png",
+          "sha256": "10ecee45de0ccbde94bf73ff3d3d5ed63f52f9b6c1021cb2bc2410bdb108844c",
+          "alpha_bbox": [
+            21,
+            104,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\block_shield\\cazador_espectral-f-block_shield-04.png",
+          "sha256": "68e6149a4fde090e99b660e17be4e87d7bdf89ddf1bd0af26e71a02341ee8e97",
+          "alpha_bbox": [
+            18,
+            92,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_sword\\cazador_espectral-f-attack_sword-01.png",
+          "sha256": "d040d96240c2a1f6f4a7c6374f1b3b93aa88a095ae13c763f7e666473f0682dd",
+          "alpha_bbox": [
+            22,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_sword\\cazador_espectral-f-attack_sword-02.png",
+          "sha256": "9e65f2bf4211a58b07356d0d6e52cff5f6f1249a211fd5be7abe8ab854780517",
+          "alpha_bbox": [
+            21,
+            89,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_sword\\cazador_espectral-f-attack_sword-03.png",
+          "sha256": "75b146f550c79db480f58376a6a266fade802d37b357cd518c517df019238915",
+          "alpha_bbox": [
+            16,
+            95,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_sword\\cazador_espectral-f-attack_sword-04.png",
+          "sha256": "79e9fd3ce49e139620ebf54f35fa3195f1b52357573210925cac4de36e3e4ccc",
+          "alpha_bbox": [
+            16,
+            90,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_axe\\cazador_espectral-f-attack_axe-01.png",
+          "sha256": "6e3693126296a09df4ea5882dd90132e7fcb7fb1a4a41fd0955a5a0d2611a3b4",
+          "alpha_bbox": [
+            30,
+            94,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_axe\\cazador_espectral-f-attack_axe-02.png",
+          "sha256": "1f0b2abcc58fdd2e0e3bc4a18e1dc70eb02d7151f203c6c3c5101ee99f188763",
+          "alpha_bbox": [
+            21,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_axe\\cazador_espectral-f-attack_axe-03.png",
+          "sha256": "1c1cefc2fdb70a2a0fa4680eb010789f5135edfa9d4324d4fcfe721e0338c13a",
+          "alpha_bbox": [
+            16,
+            103,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_axe\\cazador_espectral-f-attack_axe-04.png",
+          "sha256": "8d8aa65c446dc506599262019410e4b562eb40c59bb351c6519104aa26d023c1",
+          "alpha_bbox": [
+            11,
+            95,
+            99,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_spear\\cazador_espectral-f-attack_spear-01.png",
+          "sha256": "6263f9c3d192857437fbdaeff24a5e8ab472b432d593601fbe31c37b9672c210",
+          "alpha_bbox": [
+            12,
+            92,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_spear\\cazador_espectral-f-attack_spear-02.png",
+          "sha256": "63d565981c820d87ec827d06320db1055be96922a6229936ed9bd12a2a52c1e9",
+          "alpha_bbox": [
+            14,
+            92,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_spear\\cazador_espectral-f-attack_spear-03.png",
+          "sha256": "e9afab98e160632e1fc071b65414162464fa5510463ed1027afdb70e3e08eeeb",
+          "alpha_bbox": [
+            14,
+            92,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_spear\\cazador_espectral-f-attack_spear-04.png",
+          "sha256": "607b93575ae86ee506536dc753132b43d301c5d8d09549df7a71e98a2dbb74bf",
+          "alpha_bbox": [
+            14,
+            92,
+            114,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_dagger\\cazador_espectral-f-attack_dagger-01.png",
+          "sha256": "909cf11b4f8af1a5648e98bfa1ff23885c720ad11d36d0db691f0ba2ca9d8ffb",
+          "alpha_bbox": [
+            19,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_dagger\\cazador_espectral-f-attack_dagger-02.png",
+          "sha256": "53ca7e0ccc55d6e278546aff66d52ff72728b24c2e0b4f34096c1fd4f1f82ea1",
+          "alpha_bbox": [
+            17,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_dagger\\cazador_espectral-f-attack_dagger-03.png",
+          "sha256": "e3f3b544e8564235f0cde66034e7d312ec2c75cd21ece5961ca6c9c284d595a1",
+          "alpha_bbox": [
+            16,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_dagger\\cazador_espectral-f-attack_dagger-04.png",
+          "sha256": "057ee79f605facea651bea572c2eacf7c445c2054d6b9e7b2e40a9fe62d47af3",
+          "alpha_bbox": [
+            20,
+            90,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_bow\\cazador_espectral-f-attack_bow-01.png",
+          "sha256": "bca9b74cd6bd261718ae0aa5d8a80cb8531912f7bce3e862a99e60558710d2a6",
+          "alpha_bbox": [
+            23,
+            90,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_bow\\cazador_espectral-f-attack_bow-02.png",
+          "sha256": "774f4ba9401750df7a8430a7a417aab5d07e356ac2fbc67ba05f1add3c63d97b",
+          "alpha_bbox": [
+            16,
+            90,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_bow\\cazador_espectral-f-attack_bow-03.png",
+          "sha256": "e11e8ecc7bacd6a631303653a70119dfdedae6ba342374b45ffa3939ebee0b5e",
+          "alpha_bbox": [
+            17,
+            90,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_bow\\cazador_espectral-f-attack_bow-04.png",
+          "sha256": "9a1f1ae6acb99835fe98b8fbb6eedb7eb238b73c7916baa223c1bbc799c3d812",
+          "alpha_bbox": [
+            17,
+            90,
+            118,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_staff\\cazador_espectral-f-attack_staff-01.png",
+          "sha256": "a6df8bcc3edaab1ab8f24a236bace622f689eec1d21562e54769ec91f2e1112b",
+          "alpha_bbox": [
+            26,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_staff\\cazador_espectral-f-attack_staff-02.png",
+          "sha256": "5c916fef14477f679834975fa4d71e9a53b6d8d7c804554feb0467594d7e8e79",
+          "alpha_bbox": [
+            23,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_staff\\cazador_espectral-f-attack_staff-03.png",
+          "sha256": "3117859f0c92bbf850368a46fd6166adc96421fb080ebcdfe734b0361ca30802",
+          "alpha_bbox": [
+            24,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_staff\\cazador_espectral-f-attack_staff-04.png",
+          "sha256": "76bbb4de43265aaf67027972fc7cbd744729695876f99e074533b7a0b1f03fa9",
+          "alpha_bbox": [
+            22,
+            90,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_mace\\cazador_espectral-f-attack_mace-01.png",
+          "sha256": "a854ea555358c8720204dbf3e184f5bac13e051351ed7e66a20da7d129404cba",
+          "alpha_bbox": [
+            26,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_mace\\cazador_espectral-f-attack_mace-02.png",
+          "sha256": "b5d8d8b92f7f5704e8eabb4244ae4c1b975f8f6ea6a52ed8ac4462839234225f",
+          "alpha_bbox": [
+            24,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_mace\\cazador_espectral-f-attack_mace-03.png",
+          "sha256": "7a3b8c5f759dacdf304b04efa1b023d564de412db0843b5735b47431153cf55d",
+          "alpha_bbox": [
+            18,
+            96,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_mace\\cazador_espectral-f-attack_mace-04.png",
+          "sha256": "cbc2b4cafe6e3cdd6ab5648be581fede79810e3fce4811854760ae632402e6bf",
+          "alpha_bbox": [
+            16,
+            89,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_book\\cazador_espectral-f-attack_book-01.png",
+          "sha256": "54927fd8baf0e584377ceaf74ab48578bbcc40a008a628d0501cf45e681f77b5",
+          "alpha_bbox": [
+            28,
+            90,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_book\\cazador_espectral-f-attack_book-02.png",
+          "sha256": "8650a07c730726c534f12dc91df8ad0a470abe62f9bebe286f0dd2e8a733abe5",
+          "alpha_bbox": [
+            20,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_book\\cazador_espectral-f-attack_book-03.png",
+          "sha256": "0a05691c179da7bf82c01d4c811a44a29ddf17b0d2ea44c69b0ea0d6590c0683",
+          "alpha_bbox": [
+            17,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_book\\cazador_espectral-f-attack_book-04.png",
+          "sha256": "dffb6d26b592847ebd8ca54e4d842b5966207e75d01207614d57edf6374f7d2a",
+          "alpha_bbox": [
+            20,
+            89,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_gloves\\cazador_espectral-f-attack_gloves-01.png",
+          "sha256": "3444fbad453c3ef80052254850c94f8d49174de88283144364425b591b2e3460",
+          "alpha_bbox": [
+            24,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_gloves\\cazador_espectral-f-attack_gloves-02.png",
+          "sha256": "86de4e6751a2e870849e7987a411f3a2cdbf84ffef966fd111b520ee932f2d1b",
+          "alpha_bbox": [
+            21,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_gloves\\cazador_espectral-f-attack_gloves-03.png",
+          "sha256": "11be76cc091128b5a11e3344d5fd8ab1321a49d33e0e4be5373e89cbfeece2dc",
+          "alpha_bbox": [
+            9,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador_espectral\\f\\frames\\attack_gloves\\cazador_espectral-f-attack_gloves-04.png",
+          "sha256": "e00dbc181fe95cc84460f4ddabea3a0f6dc9270231ec946877eafbdfa253588f",
+          "alpha_bbox": [
+            14,
+            91,
+            99,
+            252
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

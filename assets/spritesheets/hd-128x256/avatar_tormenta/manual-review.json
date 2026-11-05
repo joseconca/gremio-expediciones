@@ -1,0 +1,179 @@
+{
+  "classId": "avatar_tormenta",
+  "status": "candidate-body-and-equipment-reviewed",
+  "actionsPerSex": 15,
+  "frames": 120,
+  "contactChecks": 1364,
+  "warnings": 0,
+  "equipmentRigRevision": 5,
+  "runtimePromoted": false,
+  "selectionPolicy": "Complete generated poses; fixed canonical export. No class equipment offsets, body painting or limb transplants. Originals and revisions retained.",
+  "selectedSources": {
+    "m/idle": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/idle-reference.png",
+      "overrides": {}
+    },
+    "m/walk": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/walk-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/walk-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/walk-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/walk-frame04-reference-v2.png"
+      }
+    },
+    "m/hurt": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/hurt-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/hurt-frame01-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/hurt-frame03-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/hurt-frame04-reference-v2.png"
+      }
+    },
+    "m/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "m/dodge": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/dodge-reference.png",
+      "overrides": {}
+    },
+    "m/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "m/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_sword-reference-v4.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_sword-frame01-reference-v4.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_sword-frame02-reference-v4.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_sword-frame03-reference-v4.png"
+      }
+    },
+    "m/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "m/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_spear-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_spear-frame01-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_spear-frame03-reference-v3.png",
+        "04": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_spear-frame04-reference-v3.png"
+      }
+    },
+    "m/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_dagger-reference.png",
+      "overrides": {}
+    },
+    "m/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_bow-reference.png",
+      "overrides": {}
+    },
+    "m/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "m/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "m/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "m/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/m/source/attack_gloves-reference.png",
+      "overrides": {}
+    },
+    "f/idle": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/idle-reference.png",
+      "overrides": {}
+    },
+    "f/walk": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/walk-reference.png",
+      "overrides": {}
+    },
+    "f/hurt": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/hurt-reference-v3.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/hurt-frame01-reference-v3.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/hurt-frame02-reference-v3.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/hurt-frame03-reference-v3.png"
+      }
+    },
+    "f/use_consumable": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/use_consumable-reference.png",
+      "overrides": {}
+    },
+    "f/dodge": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/dodge-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/dodge-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/dodge-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/dodge-frame04-reference-v2.png"
+      }
+    },
+    "f/block_shield": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/block_shield-reference.png",
+      "overrides": {}
+    },
+    "f/attack_sword": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_sword-reference.png",
+      "overrides": {}
+    },
+    "f/attack_axe": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_axe-reference.png",
+      "overrides": {}
+    },
+    "f/attack_spear": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-reference-v6.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame01-reference-v6.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame02-reference-v6.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_spear-frame03-reference-v6.png"
+      }
+    },
+    "f/attack_dagger": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_dagger-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_dagger-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_dagger-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_dagger-frame03-reference-v2.png"
+      }
+    },
+    "f/attack_bow": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_bow-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_bow-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_bow-frame02-reference-v2.png",
+        "04": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_bow-frame04-reference-v2.png"
+      }
+    },
+    "f/attack_staff": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_staff-reference.png",
+      "overrides": {}
+    },
+    "f/attack_mace": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_mace-reference.png",
+      "overrides": {}
+    },
+    "f/attack_book": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_book-reference.png",
+      "overrides": {}
+    },
+    "f/attack_gloves": {
+      "source": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_gloves-reference-v2.png",
+      "overrides": {
+        "01": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_gloves-frame01-reference-v2.png",
+        "02": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_gloves-frame02-reference-v2.png",
+        "03": "assets/spritesheets/hd-128x256/avatar_tormenta/f/source/attack_gloves-frame03-reference-v2.png"
+      }
+    }
+  },
+  "notes": [
+    "Armadura marcial de indigo y plata con hombreras de nubes dobles, relampagos cian, tres chevrones dorados y sello hexagonal del trueno. Rasgos y vestuario de ambos sexos revisados en las treinta acciones.",
+    "Correcciones seleccionadas como poses completas: M caminar3 v2; M espada4 v4; M lanza2 v3; M dano2/3 v2; F dano4 v3; F esquiva3 v2 (anclaje heredado de antebrazo); F daga4/arco3/guantes4 v2; F lanza1 v5, 2/3 v2 y 4 v6. Se conservaron las demas poses originales.",
+    "Revisadas dieciocho laminas de palmas, los diez paneles de equipo, ambas estructuras de hacha y las vistas generales. Los puntos heredados que caen sobre punos, dedos o munecas se comprobaron con las capas reales del equipo; no se movieron los agarres compartidos.",
+    "Fuentes y prompts de imagegen integrados en el repositorio, con revisiones descartadas conservadas. Exportacion canonica fija, sin retoques corporales, trasplantes de extremidades ni offsets por clase."
+  ]
+}

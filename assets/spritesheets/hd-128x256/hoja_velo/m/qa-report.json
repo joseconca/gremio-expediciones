@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-11-04T19:08:08.954116+00:00",
+  "classId": "hoja_velo",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\hoja_velo-m-sheet.png",
+  "sheetSha256": "970f86dbe6b1d902f58e3cf13790b6b4f7cba235b7f6c0a67d78ca4e0588a436",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\idle\\hoja_velo-m-idle-01.png",
+          "sha256": "4e7b102ee0ede4243834912a495c1c8822e2faf765bd5927d0e149186fe82d15",
+          "alpha_bbox": [
+            26,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\idle\\hoja_velo-m-idle-02.png",
+          "sha256": "f18d0a8eb830083788607b9f6c2a606a03bc99451408c9934186ea56688825ae",
+          "alpha_bbox": [
+            26,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\idle\\hoja_velo-m-idle-03.png",
+          "sha256": "b4414d069798492cffbe7a022d20651a972566bca1f26e75a2cf63e6c7e07f30",
+          "alpha_bbox": [
+            26,
+            94,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\idle\\hoja_velo-m-idle-04.png",
+          "sha256": "cccec2fbf4de60f9f2892c9b294f4c2e0ed8440b635f6c0a5395cafa21732ad3",
+          "alpha_bbox": [
+            26,
+            94,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\walk\\hoja_velo-m-walk-01.png",
+          "sha256": "40838eb755afb953f6affd9ffa2cdd4cce65441b503d6abc0cfd50a868261348",
+          "alpha_bbox": [
+            9,
+            91,
+            106,
+            252
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\walk\\hoja_velo-m-walk-02.png",
+          "sha256": "456a81dae1c28e27262b1c336b87063feb91d88b54145a6dba338aad250aaa5d",
+          "alpha_bbox": [
+            7,
+            91,
+            103,
+            252
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\walk\\hoja_velo-m-walk-03.png",
+          "sha256": "95b8816e5da34a222c48a110ba3f8511df2a5cc2b9773b27a3a25ff8a5b3676e",
+          "alpha_bbox": [
+            2,
+            91,
+            109,
+            252
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\walk\\hoja_velo-m-walk-04.png",
+          "sha256": "1391172daa58e3b08df0e69a0d4727f48e9d30cd22bdb1261382ce5347ba9d6f",
+          "alpha_bbox": [
+            10,
+            91,
+            104,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\hurt\\hoja_velo-m-hurt-01.png",
+          "sha256": "d43b6a2fbd353000afa652169452774eb7335d624f1691a011eccb38a7b139a4",
+          "alpha_bbox": [
+            21,
+            92,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\hurt\\hoja_velo-m-hurt-02.png",
+          "sha256": "ffc6702fa67dd5fd32b5a18a2a00a46fdc5f0e01075d78a8d76e8685c9a6e7ff",
+          "alpha_bbox": [
+            19,
+            99,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\hurt\\hoja_velo-m-hurt-03.png",
+          "sha256": "1762c64ea2fc6baed18eb7e60b6cbd74618d00050ced79efd8a7fade8c596fad",
+          "alpha_bbox": [
+            12,
+            120,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\hurt\\hoja_velo-m-hurt-04.png",
+          "sha256": "48019a7e5c5628b373b9f154a335af361a8601036e22b8291e3534faac05f4f1",
+          "alpha_bbox": [
+            21,
+            92,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\use_consumable\\hoja_velo-m-use_consumable-01.png",
+          "sha256": "8010a72fbd8659c4d09db3893b16b86884beab2f17a4cd60818b4ec7e1906e08",
+          "alpha_bbox": [
+            25,
+            94,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\use_consumable\\hoja_velo-m-use_consumable-02.png",
+          "sha256": "42982b2903428c797c50cf851c19e1bda18e22947953b3b48afc2f30a6b2e749",
+          "alpha_bbox": [
+            25,
+            94,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\use_consumable\\hoja_velo-m-use_consumable-03.png",
+          "sha256": "03fa536075b96eec9c7afa21bd8cdcc3db4fdc0c33a71080a7005063e8381877",
+          "alpha_bbox": [
+            25,
+            94,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\use_consumable\\hoja_velo-m-use_consumable-04.png",
+          "sha256": "13c1b56295d7dbe8e01b233c47ae9c752ea5b80f23d5500bc598e8b26dccfd71",
+          "alpha_bbox": [
+            25,
+            94,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\dodge\\hoja_velo-m-dodge-01.png",
+          "sha256": "7061960e2a7806f75a47afe5eed6c050ebf5f44693c3ca36ca139f7f2a97074a",
+          "alpha_bbox": [
+            18,
+            98,
+            102,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\dodge\\hoja_velo-m-dodge-02.png",
+          "sha256": "6b4e59e7e8556bf2e2186004bc8fd6f041d98614888187f0d9dac1cdc04710de",
+          "alpha_bbox": [
+            15,
+            100,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\dodge\\hoja_velo-m-dodge-03.png",
+          "sha256": "02749e66dbcfb4735cb5022ccb8755697d1f7f36c113783c89b57641c7bd6cd8",
+          "alpha_bbox": [
+            24,
+            102,
+            104,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\dodge\\hoja_velo-m-dodge-04.png",
+          "sha256": "05fd278303f4de4f286694021b5f54321926db545a618ac604c6258e2db2d3a9",
+          "alpha_bbox": [
+            19,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\block_shield\\hoja_velo-m-block_shield-01.png",
+          "sha256": "4cf9696b5a68a895022c28e0f732652ecba2200467e47d1f451d73ccde887d07",
+          "alpha_bbox": [
+            19,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\block_shield\\hoja_velo-m-block_shield-02.png",
+          "sha256": "c19ff900583f8b21170dc0e637759ab4e48231ce490b2f94501d279b243c7cd3",
+          "alpha_bbox": [
+            18,
+            98,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\block_shield\\hoja_velo-m-block_shield-03.png",
+          "sha256": "0146f20edbc39ba936ad90f4fab74b6d9f787d49ab9ebdf29ae553afa3c69ba7",
+          "alpha_bbox": [
+            19,
+            113,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\block_shield\\hoja_velo-m-block_shield-04.png",
+          "sha256": "dc0412795b25706bb7016cd9f7a14d08a3539b7e46d8db29eaca320e37df9778",
+          "alpha_bbox": [
+            19,
+            98,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_sword\\hoja_velo-m-attack_sword-01.png",
+          "sha256": "12bef9a66927968c2e0dcd678b9a888b00d39d214effff77fc77cbd67680be8f",
+          "alpha_bbox": [
+            7,
+            98,
+            102,
+            253
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_sword\\hoja_velo-m-attack_sword-02.png",
+          "sha256": "57dc63583bb06a3659a9bd004ebf6f1479988d2b1cf09da326f243be32f9839d",
+          "alpha_bbox": [
+            6,
+            98,
+            103,
+            253
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_sword\\hoja_velo-m-attack_sword-03.png",
+          "sha256": "d805002217db6d1ed78e9fda3fad70e8f300bdf8cdf49c69ff07d92fde13b082",
+          "alpha_bbox": [
+            6,
+            101,
+            117,
+            253
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_sword\\hoja_velo-m-attack_sword-04.png",
+          "sha256": "411c1b7bd335ed5b52a52b1d1858fa70ab862e350ad91f2fdae9b89e574393ae",
+          "alpha_bbox": [
+            16,
+            99,
+            113,
+            253
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_axe\\hoja_velo-m-attack_axe-01.png",
+          "sha256": "f18361e20bf46c96aa407014a4cabb7b08b63ea19a2d09b5ed15ed90063f2a5b",
+          "alpha_bbox": [
+            9,
+            99,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_axe\\hoja_velo-m-attack_axe-02.png",
+          "sha256": "77d84cb8af8a567d9e3710398003b2d75b0996c7b0ef138cc473b7d66d129524",
+          "alpha_bbox": [
+            15,
+            113,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_axe\\hoja_velo-m-attack_axe-03.png",
+          "sha256": "827f740a97aff0184002f0480a88869bc2caa22db2c768d41260d7ff9a68e249",
+          "alpha_bbox": [
+            9,
+            121,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_axe\\hoja_velo-m-attack_axe-04.png",
+          "sha256": "92f644cc07744a49adef75a2192516451d4a33dc59064fc72a473ec58de4e49e",
+          "alpha_bbox": [
+            21,
+            106,
+            117,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_spear\\hoja_velo-m-attack_spear-01.png",
+          "sha256": "0b3eaeba9dab316723ec2720803fdca82f70a1d7e7e735b48b34ddfa4f06ce38",
+          "alpha_bbox": [
+            11,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_spear\\hoja_velo-m-attack_spear-02.png",
+          "sha256": "94c06634a8a860fef0651862eb745dd67e593c1d0080d4e3aa0dc0a16c465a16",
+          "alpha_bbox": [
+            11,
+            93,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_spear\\hoja_velo-m-attack_spear-03.png",
+          "sha256": "0a4adaf6cec3d32fb84f705621c99edf67f8cadae4d1d486c72ccd3554a80c15",
+          "alpha_bbox": [
+            11,
+            93,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_spear\\hoja_velo-m-attack_spear-04.png",
+          "sha256": "14dca94b40b884d9e99c0867fa756ac351aaea513ac52fc50532cf9efe40fac2",
+          "alpha_bbox": [
+            11,
+            94,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_dagger\\hoja_velo-m-attack_dagger-01.png",
+          "sha256": "3422bf983143253a2e2e70404d094f960591eb0c1cbfe16af66aa30919223192",
+          "alpha_bbox": [
+            24,
+            93,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_dagger\\hoja_velo-m-attack_dagger-02.png",
+          "sha256": "7031495f1735ca5ae8b7ef2f4b46ff3ce1d22947e31101b218cecf879c177344",
+          "alpha_bbox": [
+            20,
+            94,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_dagger\\hoja_velo-m-attack_dagger-03.png",
+          "sha256": "f7091b1cce04031f22a2df052dbfdc6a034a39689c8da6a1afc558740b471dd0",
+          "alpha_bbox": [
+            19,
+            97,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_dagger\\hoja_velo-m-attack_dagger-04.png",
+          "sha256": "70127c70405e1976f8114071dccc3f52f7bb0faa55935e1b948f8bde2eba21a0",
+          "alpha_bbox": [
+            26,
+            95,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_bow\\hoja_velo-m-attack_bow-01.png",
+          "sha256": "f6d6e51b5c8036b728a9b952d0293db8a9bdc8828fe7e688c423111853b5d41c",
+          "alpha_bbox": [
+            21,
+            97,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_bow\\hoja_velo-m-attack_bow-02.png",
+          "sha256": "effe825de34359428c8e8667756cf58669c17da4e94a9c3fe47eea708fd6f969",
+          "alpha_bbox": [
+            11,
+            96,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_bow\\hoja_velo-m-attack_bow-03.png",
+          "sha256": "ecdc723b8e02807bdf6be9a5ca269b9722d583bc3ee395b32bc5b68523081841",
+          "alpha_bbox": [
+            2,
+            96,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_bow\\hoja_velo-m-attack_bow-04.png",
+          "sha256": "0f3c5fbc1e5da843c9c811075e9b9ae0288a4dfdde040d8612da756099762031",
+          "alpha_bbox": [
+            7,
+            96,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_staff\\hoja_velo-m-attack_staff-01.png",
+          "sha256": "d17d10d5db06704fc40377084ac7c77815d77b1c814c8f395c0bd622218014d0",
+          "alpha_bbox": [
+            23,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_staff\\hoja_velo-m-attack_staff-02.png",
+          "sha256": "f45f701cf06b8713c417fc6b87571fe9a962e8a30406f718d048cb536e486abd",
+          "alpha_bbox": [
+            17,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_staff\\hoja_velo-m-attack_staff-03.png",
+          "sha256": "b07845c5040c4bdb766056591aa2545234f67d882283505d17bf2e695e440c1c",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_staff\\hoja_velo-m-attack_staff-04.png",
+          "sha256": "27201379cf0aaf68ace13b90b4e024da9554dd08dc426605a54db6ef4ad1107e",
+          "alpha_bbox": [
+            23,
+            92,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_mace\\hoja_velo-m-attack_mace-01.png",
+          "sha256": "b78d4ba33cc7fa6303b99437ff981be96c3c2e9fad66247070616653130492c2",
+          "alpha_bbox": [
+            25,
+            95,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_mace\\hoja_velo-m-attack_mace-02.png",
+          "sha256": "3b461831b4896659a3ed36052367b46a9086d963870edd5c94c3356de59e397e",
+          "alpha_bbox": [
+            29,
+            95,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_mace\\hoja_velo-m-attack_mace-03.png",
+          "sha256": "d5079a124a4680fbed76fc91eb065e1a2c886b968939023780f7653a1ec13e19",
+          "alpha_bbox": [
+            25,
+            106,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_mace\\hoja_velo-m-attack_mace-04.png",
+          "sha256": "6a95357d2cacd7290c1c40d8f11271e47b59a674f49514036eb7802092ad7f82",
+          "alpha_bbox": [
+            25,
+            95,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_book\\hoja_velo-m-attack_book-01.png",
+          "sha256": "1985d2542a4769e7eff6cfca832d9acb8313fafb9fbb7dde23ca7e35924e7f8a",
+          "alpha_bbox": [
+            26,
+            92,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_book\\hoja_velo-m-attack_book-02.png",
+          "sha256": "565c7277116170a449c3fc44d41bad4010708a652b80bd7a4523811eed422eb9",
+          "alpha_bbox": [
+            22,
+            92,
+            93,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_book\\hoja_velo-m-attack_book-03.png",
+          "sha256": "32293609d573b03e34bca328087c5b36c8bce503a52e1884a61ad5f135620ee8",
+          "alpha_bbox": [
+            20,
+            92,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_book\\hoja_velo-m-attack_book-04.png",
+          "sha256": "aed613273ea337bc6918f062e2771324959dcbc1db74dc023e1bfa8cb9be6a42",
+          "alpha_bbox": [
+            20,
+            93,
+            92,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_gloves\\hoja_velo-m-attack_gloves-01.png",
+          "sha256": "3521619292f1033a78453eb039a3668c330cb16f1e9f29c76a387bb39c656610",
+          "alpha_bbox": [
+            20,
+            91,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_gloves\\hoja_velo-m-attack_gloves-02.png",
+          "sha256": "d2350fe4709ac886b01825a7df8f46859e92c96ac1adf277486d7c0e055e9c0e",
+          "alpha_bbox": [
+            15,
+            91,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_gloves\\hoja_velo-m-attack_gloves-03.png",
+          "sha256": "ec876153a477363eac7c7934a44af12fbe492edb82c662daadb2c514df13e674",
+          "alpha_bbox": [
+            22,
+            92,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\hoja_velo\\m\\frames\\attack_gloves\\hoja_velo-m-attack_gloves-04.png",
+          "sha256": "259f4a872e76eb20a8d584e975bbc56d3168a979efb3da878a8b70646c14c235",
+          "alpha_bbox": [
+            22,
+            91,
+            103,
+            249
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
