@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "corsario",
   "sex": "f",
   "actions": [
@@ -66,18 +66,18 @@
       "df9c64ed3f1aaf90dd4c76ab57ceea828382a75302df3829c08ebba3dd9574fb",
       "1c19d280262ef0ab759f340539e39cf57426377946485f711f3091ab117b9e94",
       "b1238cc4a53b94af8abc520c44530968fa48082515c8412895f9bdffe4a0df39",
-      "b78be7c2f9ea35ac29300d424d080b1652cfdc7c837ac945be71fdd4d2e84eb8"
+      "29bc9dea3c08a758268b3baa9f78489cfdbbaf274c1f2a8bfdea567dd5a19af9"
     ],
     "attack_spear": [
       "af167085c4a0828d198a809d391cbd5dc8645145e15f07a2e2051e75e51e823f",
       "beec0ce343b165e30cb80570bd929e5f51b724cbe9835b2b071449cf350c654e",
       "65cdac6c6e7012645fd3d3ede23e6d43dff90116bab7ba3918da89b650009d43",
-      "ef49da300d88f2b3340b1e6682afe6f881a678a54d0369df10fbb53cab15fe7a"
+      "fa81ab9b0e379d0fc26ce92b3cd8c1164ebe2d59f2c3a346bc94772acaeca1fe"
     ],
     "attack_dagger": [
       "dd9f2138f90c09b65ffa452061f7f8a8a5cbcd759719dcc6f0cf5d5d1dbd7c85",
       "07d06e4c4cbbf01a737e5702bd67d6017bcfd6d64362d5a133fb077b62da5593",
-      "b4d7765604bd6ea7f444434a9b23584c382a3fd2590d2703a75f08b2e16e739c",
+      "69ab645ebe1c934006dd6d99c054ed4234562da1463cdfb2e04deb7454ebc5ab",
       "20cdf72daabd6d565647eb1d941a73b235775799fa7803ef77529ecaadeafced"
     ],
     "attack_bow": [
@@ -106,86 +106,13 @@
     ],
     "attack_gloves": [
       "145c6ae15dad65f490066b1e87ff94e4212fe4ac45a5cfbcc779f31100592e40",
-      "5e3d81c579a4b5d6ce36e5330d902fcea0f12b8f6573051bbcf9fac351113783",
+      "6fda9010410632168e5236bc91b0325b0a4ae829e4761d3dd9231f74d5137b42",
       "97f9b985e06f10fec76b01cfa6fa352b17598eb0e1e9ccd1a2adc72a4e5a6dd4",
       "fec0dc3f1eccbf5e54102a8ec5ef981a2f4efcc54d189eb688aa46f5945e1067"
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_axe",
-      "frame": 4,
-      "item": "hacha_berserker",
-      "point": [
-        82,
-        157
-      ]
-    },
-    {
-      "action": "attack_axe",
-      "frame": 4,
-      "item": "hacha_orca",
-      "point": [
-        82,
-        157
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_escama",
-      "point": [
-        107,
-        145
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_madera",
-      "point": [
-        107,
-        145
-      ]
-    },
-    {
-      "action": "attack_dagger",
-      "frame": 3,
-      "item": "daga_hierro",
-      "point": [
-        86,
-        164
-      ]
-    },
-    {
-      "action": "attack_dagger",
-      "frame": 3,
-      "item": "daga_sombria",
-      "point": [
-        86,
-        164
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 2,
-      "item": "guantes_lucha",
-      "point": [
-        86,
-        144
-      ]
-    },
-    {
-      "action": "attack_gloves",
-      "frame": 2,
-      "item": "punos_lobo",
-      "point": [
-        86,
-        144
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 5,
   "artisticApproval": "not-automatic"

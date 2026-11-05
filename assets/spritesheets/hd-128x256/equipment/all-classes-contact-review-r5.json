@@ -1,7 +1,7 @@
 {
   "equipmentRigRevision": 5,
-  "variants": 120,
-  "contactChecks": 81840,
+  "variants": 122,
+  "contactChecks": 83204,
   "warnings": 0,
   "reports": [
     {
@@ -228,6 +228,18 @@
     },
     {
       "classId": "comerciante",
+      "sex": "m",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "corsario",
+      "sex": "f",
+      "contactChecks": 682,
+      "warnings": []
+    },
+    {
+      "classId": "corsario",
       "sex": "m",
       "contactChecks": 682,
       "warnings": []

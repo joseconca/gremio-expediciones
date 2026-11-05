@@ -1,12 +1,12 @@
 {
-  "status": "in-progress",
+  "status": "complete",
   "date": "2026-11-05",
   "branch": "nuevas-clases",
-  "completedClasses": 60,
-  "remainingClasses": 1,
-  "closedFrames": 7200,
-  "closedContactChecks": 81840,
-  "lastCompletedClass": "danzaespadas",
+  "completedClasses": 61,
+  "remainingClasses": 0,
+  "closedFrames": 7320,
+  "closedContactChecks": 83204,
+  "lastCompletedClass": "corsario",
   "completedCommits": {
     "runista": "f5193044fc4e91f667a71d42b76160e39db68119",
     "abjurador": "e36bc0d18bc3f06b23d0d1753fd810fa1d5294a2",
@@ -15,89 +15,13 @@
     "cazador_espectral": "29e395f2697dd4bf1b279f7653649942581de00f",
     "arconte": "bd96cb6eba613866f498fb002bfcc2d28bdba7e6",
     "justiciero": "0db03dd99c99e924e25ab404c19bc9357c6a89a9",
-    "hoja_velo": "a1ae1dd0da7c6a844412c5fb58021cad1731bf8a"
+    "hoja_velo": "a1ae1dd0da7c6a844412c5fb58021cad1731bf8a",
+    "danzaespadas": "10740ed59195069f0dabe3e9ee4f0043eb65c10c"
   },
-  "remainingIds": [
-    "corsario"
-  ],
-  "nextClass": "corsario",
+  "remainingIds": [],
+  "nextClass": null,
   "generationBlock": null,
-  "inProgress": {
-    "corsario": {
-      "m": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_gloves",
-          "attack_book"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      },
-      "f": {
-        "registeredActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ],
-        "generatedActions": [
-          "idle",
-          "walk",
-          "hurt",
-          "use_consumable",
-          "dodge",
-          "block_shield",
-          "attack_sword",
-          "attack_axe",
-          "attack_spear",
-          "attack_dagger",
-          "attack_bow",
-          "attack_staff",
-          "attack_mace",
-          "attack_book",
-          "attack_gloves"
-        ]
-      }
-    }
-  },
+  "inProgress": {},
   "reviewNotes": {
     "completed": [
       "Senor de la guerra CLOSED, 30 actions / 120 frames, manual costume/palm/equipment review complete, 29 tests PASS, GitHub verified 27f623e1.",
@@ -106,9 +30,9 @@
       "arconte CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "justiciero CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
       "hoja_velo CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
-      "danzaespadas CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
-    ],
-    "corsario": "Male complete and manually reviewed, 682 contacts / 0 warnings. Female pending spear pose 4 v4, gloves pose 2 v4, axe pose 4 v3 and dagger pose 3 v4. Spear pose 3 v4 approved and registered. Reject dagger v3 containing weapon, gloves pose 2 v3 missing near hand, axe pose 4 v2 with wrong primary grip, and walk pose 2 v3 chin stubble."
+      "danzaespadas CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json.",
+      "corsario CLOSED: final manual review and 29 animation tests PASS. See class manual-review.json."
+    ]
   },
   "methodology": [
     "Separate each class, sex and action; retain original sources and prompts and select only complete generated poses.",
@@ -118,7 +42,6 @@
     "Run work/qa-variant-equipment.py for both sexes after final selections; then work/finish-class-validated-assets.py and work/close-class-reviewed-documentation.py.",
     "Commit and push nuevas-clases after every completed class, verify remote HEAD. Do not promote runtime automatically."
   ],
-  "pendingCorrectionPlan": "assets/spritesheets/hd-128x256/previews/pending-class-corrections.json",
   "technicalFrameAudit": {
     "validFrames": 7320,
     "invalidFrames": 0,
@@ -128,259 +51,5 @@
     "passed": 29,
     "failed": 0
   },
-  "pendingReviews": {
-    "corsario-m": {
-      "registeredActions": 15,
-      "contactChecks": 682,
-      "automaticWarningCount": 0,
-      "warningPoints": [],
-      "manualReview": "All 15 actions, all representative equipment types, both axe structures and overview reviewed.",
-      "selectedSources": {
-        "idle": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/idle-reference.png",
-          "sourceSha256": "db4bf5215aac574803855e0005c0a9832f9d76581b2bc0e69b8b4168db7f35ce",
-          "overrides": {}
-        },
-        "walk": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/walk-reference-v4.png",
-          "sourceSha256": "90690d8ed805da341caa7d5f7b3db1417636ac1acd0d76312869bac68a5318eb",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame01-reference-v4.png",
-            "02": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame02-reference-v4.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/m/source/walk-frame04-reference-v4.png"
-          }
-        },
-        "hurt": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-reference-v2.png",
-          "sourceSha256": "42568849609b741b1cb2b21500a1b040abd4eef2b49749143cf489ceed2109ed",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame01-reference-v2.png",
-            "02": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame02-reference-v2.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/m/source/hurt-frame04-reference-v2.png"
-          }
-        },
-        "use_consumable": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/use_consumable-reference.png",
-          "sourceSha256": "d3151746fe31ed4d93b87432bef3861945e6d263c70cdb94358e2df30d8d8808",
-          "overrides": {}
-        },
-        "dodge": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/dodge-reference.png",
-          "sourceSha256": "05c4c599423e36a0765e9584ab2278e10ce9b790de76918c1c7b43f4d5ac46ed",
-          "overrides": {}
-        },
-        "block_shield": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/block_shield-reference.png",
-          "sourceSha256": "1074330dd75117f7d5db839e9bb4ff133257191245e6e2b8e977a16553bc0bf6",
-          "overrides": {}
-        },
-        "attack_sword": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-reference-v3.png",
-          "sourceSha256": "82b6ce2a43fa47feb5ad67ad1e953e48e4a5b5d6d9c70fd9360525444e557862",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame01-reference-v3.png",
-            "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame02-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_sword-frame03-reference-v3.png"
-          }
-        },
-        "attack_axe": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_axe-reference.png",
-          "sourceSha256": "6c229bcaf4abe35fd7451c957784d5471a8cb7bed147539605e81ba050077d62",
-          "overrides": {}
-        },
-        "attack_spear": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-reference-v3.png",
-          "sourceSha256": "715d57bca4e5c4752773e26e4cd97b39ed4d965c5e35d20aa023b41a63e30113",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame01-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame03-reference-v3.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_spear-frame04-reference-v3.png"
-          }
-        },
-        "attack_dagger": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_dagger-reference.png",
-          "sourceSha256": "0f2f6c9ea11364cbaa8955012a3387ae64780362cfd6196558d42fafc23f03c9",
-          "overrides": {}
-        },
-        "attack_bow": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-reference-v2.png",
-          "sourceSha256": "3b14e4d2dec5c0b6651df375cb78001012aa018c3b839f45adf00c621d34faf0",
-          "overrides": {
-            "02": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame02-reference-v2.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame03-reference-v2.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/m/source/attack_bow-frame04-reference-v2.png"
-          }
-        },
-        "attack_staff": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_staff-reference.png",
-          "sourceSha256": "57f1caafc3ed0a220d09b1e85b0785277d4b12c6a4f218f42e9debfd69dfbaa5",
-          "overrides": {}
-        },
-        "attack_mace": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_mace-reference.png",
-          "sourceSha256": "9a1d6fd563a5a4fac4f92bb71464919d9ab0f27a050d28f7b02c5caa32d1f697",
-          "overrides": {}
-        },
-        "attack_gloves": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_gloves-reference.png",
-          "sourceSha256": "b8f1354e5983327c8aa6e4a06593d7eed95d729efe9aaadc912e9780d8bf2cc4",
-          "overrides": {}
-        },
-        "attack_book": {
-          "source": "assets/spritesheets/hd-128x256/corsario/m/source/attack_book-reference-v2.png",
-          "sourceSha256": "d2ac70c2e23df973a7801c95a9e9e3dea66fb4c22e07a794f98c623ad3ec3735",
-          "overrides": {}
-        }
-      }
-    },
-    "corsario-f": {
-      "registeredActions": 15,
-      "contactChecks": 682,
-      "automaticWarningCount": 8,
-      "warningPoints": [
-        {
-          "action": "attack_axe",
-          "pose": 4,
-          "point": [
-            82,
-            157
-          ]
-        },
-        {
-          "action": "attack_dagger",
-          "pose": 3,
-          "point": [
-            86,
-            164
-          ]
-        },
-        {
-          "action": "attack_gloves",
-          "pose": 2,
-          "point": [
-            86,
-            144
-          ]
-        },
-        {
-          "action": "attack_spear",
-          "pose": 4,
-          "point": [
-            107,
-            145
-          ]
-        }
-      ],
-      "manualReview": "Incomplete. Source costumes and current candidates reviewed; remaining grip poses and final full equipment review still required.",
-      "selectedSources": {
-        "idle": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/idle-reference.png",
-          "sourceSha256": "23107999743979664765be6d274d2aa8a274b47b064623d459815edca87b40e3",
-          "overrides": {}
-        },
-        "walk": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/walk-reference-v4.png",
-          "sourceSha256": "e85a8563807209a64b9ae88c382d1aaea530de24557b372060125e0cee30ab79",
-          "overrides": {
-            "02": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame02-reference-v4.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame03-reference-v4.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/walk-frame04-reference-v4.png"
-          }
-        },
-        "hurt": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-reference-v3.png",
-          "sourceSha256": "f9cb1abdcafd488e61547d039e3f51300b4daf42a149a22578779aed7b3dede6",
-          "overrides": {
-            "02": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame02-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame03-reference-v3.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/hurt-frame04-reference-v3.png"
-          }
-        },
-        "use_consumable": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/use_consumable-reference.png",
-          "sourceSha256": "dc7a9905cfa693459f32d81e0ac3e906ad4671d9f1764f84dbd941a0cb421989",
-          "overrides": {}
-        },
-        "dodge": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-reference-v3.png",
-          "sourceSha256": "a5c9f8f9f0cbe1e9600f0968119a927f532f7db1ee9f83ac85c6f3800878da72",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame01-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame03-reference-v3.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/dodge-frame04-reference-v3.png"
-          }
-        },
-        "block_shield": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/block_shield-reference.png",
-          "sourceSha256": "c23aaa0a7a5e192b0702a03b7e24219583b23b9950e83e788f4733a0c6de56a5",
-          "overrides": {}
-        },
-        "attack_sword": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_sword-reference.png",
-          "sourceSha256": "042034ba211740c7c4de77fff3cbe50bbce6beaaef24eb1297361a42de4919d6",
-          "overrides": {}
-        },
-        "attack_axe": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference.png",
-          "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
-          "overrides": {}
-        },
-        "attack_spear": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v4.png",
-          "sourceSha256": "7e5aea9419aa628bde60d76c4215d358051e9492adc408cf9539772b52cb0a44",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v4.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v4.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame04-reference-v4.png"
-          }
-        },
-        "attack_dagger": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v2.png",
-          "sourceSha256": "4bff682d0226fe9438f77342065d8435dd96dc6a84f89695a8d28c2a1305288f",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v2.png",
-            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v2.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame03-reference-v2.png"
-          }
-        },
-        "attack_bow": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-reference-v3.png",
-          "sourceSha256": "d9e026e3be9515d96753729527a42eca6fbc0bfb741eb9e9b5b4ee9ad4d4a86e",
-          "overrides": {
-            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame02-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame03-reference-v3.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_bow-frame04-reference-v3.png"
-          }
-        },
-        "attack_staff": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_staff-reference.png",
-          "sourceSha256": "c84a59ad6394cb5ddcee60322ac38f8eadfb43725e0ead277f1c5e968c24068d",
-          "overrides": {}
-        },
-        "attack_mace": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_mace-reference.png",
-          "sourceSha256": "4094007c510c89e8df9cd597b68f6ebe2068f3327b9aa5c669e5b9fc6a523cb7",
-          "overrides": {}
-        },
-        "attack_book": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-reference-v3.png",
-          "sourceSha256": "824c756a50e435285a84b85e371687ed78e85b635933f973f2eb0f6b931bc029",
-          "overrides": {
-            "01": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame01-reference-v3.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame03-reference-v3.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_book-frame04-reference-v3.png"
-          }
-        },
-        "attack_gloves": {
-          "source": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v2.png",
-          "sourceSha256": "93b13df9b9db959d083c66945b4c40bb8552963d8653d4972ffba08f1d781704",
-          "overrides": {
-            "02": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame02-reference-v2.png",
-            "03": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v2.png",
-            "04": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v2.png"
-          }
-        }
-      }
-    }
-  }
+  "pendingReviews": {}
 }

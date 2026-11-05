@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "corsario-f",
+  "nextVariant": null,
   "classes": [
     {
       "id": "novato",
@@ -485,7 +485,7 @@
       "name": "Corsario",
       "tier": 3.5,
       "order": 61,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     }
   ],
   "variants": [
@@ -291534,7 +291534,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/corsario/m/corsario-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/corsario/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -292658,7 +292658,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "90690d8ed805da341caa7d5f7b3db1417636ac1acd0d76312869bac68a5318eb",
@@ -292696,7 +292697,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "a8ba4190fffdd42e702c68794c0951c945ef766106b8933508b2acfd345caeb9",
@@ -292828,7 +292829,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "42568849609b741b1cb2b21500a1b040abd4eef2b49749143cf489ceed2109ed",
@@ -292866,7 +292868,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "9bb707a40f6aef5f53fa9173cd42999bd07a7931e66cf7f191ecc71b284cf677",
@@ -292998,7 +293000,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "d3151746fe31ed4d93b87432bef3861945e6d263c70cdb94358e2df30d8d8808",
@@ -293036,7 +293039,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "05c4c599423e36a0765e9584ab2278e10ce9b790de76918c1c7b43f4d5ac46ed",
@@ -293080,7 +293084,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "1074330dd75117f7d5db839e9bb4ff133257191245e6e2b8e977a16553bc0bf6",
@@ -293124,7 +293129,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "82b6ce2a43fa47feb5ad67ad1e953e48e4a5b5d6d9c70fd9360525444e557862",
@@ -293162,7 +293168,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "0952887bf345ccdc90ed691f3a1bcee2ac29554375736d28b80b1bed68f702ce",
@@ -293294,7 +293300,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "6c229bcaf4abe35fd7451c957784d5471a8cb7bed147539605e81ba050077d62",
@@ -293332,7 +293339,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "715d57bca4e5c4752773e26e4cd97b39ed4d965c5e35d20aa023b41a63e30113",
@@ -293370,7 +293378,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "2cdc7cb98e2f9abfb0fdd8b5e29a9faae3694ad73a902087164c8627da402c2d",
@@ -293502,7 +293510,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "0f2f6c9ea11364cbaa8955012a3387ae64780362cfd6196558d42fafc23f03c9",
@@ -293540,7 +293549,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "3b14e4d2dec5c0b6651df375cb78001012aa018c3b839f45adf00c621d34faf0",
@@ -293578,7 +293588,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "1870cf188246bee5671629e9f6ff404f2173f86c609278128b45c56edfb87ece",
@@ -293710,7 +293720,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "57f1caafc3ed0a220d09b1e85b0785277d4b12c6a4f218f42e9debfd69dfbaa5",
@@ -293748,7 +293759,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "9a1d6fd563a5a4fac4f92bb71464919d9ab0f27a050d28f7b02c5caa32d1f697",
@@ -293786,7 +293798,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "b8f1354e5983327c8aa6e4a06593d7eed95d729efe9aaadc912e9780d8bf2cc4",
@@ -293824,7 +293837,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "d2ac70c2e23df973a7801c95a9e9e3dea66fb4c22e07a794f98c623ad3ec3735",
@@ -293862,7 +293876,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -294137,6 +294152,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "corsario",
+        "name": "Corsario",
+        "tier": 3.5,
+        "costume": "Tailored DEEP NAVY captain short coat with CORAL-red interior and elaborate ANTIQUE GOLD rope-and-knot braid, compact dark navy tricorn with one SHORT ivory feather folded close to hat, ivory fitted shirt and rust-red waist sash with short tails, gold knot-and-anchor chest medallion, broad dark leather belt with two flat square pouches, dark gray fitted trousers and brown sea boots with gold calf buckles, dark fingerless gloves with snug navy cuffs. One small gold hoop earring. No cape, long coat tails, neck scarf, weapons, hooks or telescope. Compact ANTIQUE GOLD epaulettes with short engraved rope-knot plates, no hanging fringe. Three small gold KNOT chest buttons below gold KNOT-ANCHOR medallion. Coral lining confined to LAPELS, no floating shoulder tails. FULL NAVY fitted sleeves, narrow IVORY wrist cuffs under GOLD rope-engraved bracers and BLACK fingerless gloves. Broad leather belt RECTANGULAR GOLD clasp engraved with an ANCHOR. Gold rope embroidery on compact boot calf guards. Hat feather tiny and folded sideways along brim; narrow tricorn stays fully inside original hair width.",
+        "maleIdentity": "Adult experienced masculine Corsario with deep auburn short windswept hair and small chin goatee, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Corsario with deep auburn hair in compact tucked bob and short side braid, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Captain tricorn, gold rope braid and knot-anchor insignia",
+        "advancement": "Tier3.5 superior fusion/evolution of Pirata. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/corsario/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "3743026b0c379897aae692c6f29f7d683bb2a4b3d4c29f2f9f30485889e994f3",
+            "5a72bb97b35690f9d80ceee49b2e79af070888a3f2610d35f1a3623551ca6102",
+            "8a433e09c3ed52e752b4943336642656f3945f3a60ea0ae38c90d3a0d8648474",
+            "352bf5d8fbbf432e5b5bdd4be4445759421c067be60d762db8432fa0ed693cef"
+          ],
+          "walk": [
+            "896fc089b62c2493f3fe4f697450383c4f9daae3a8ecebc3b387b2410ca55165",
+            "2c40e563ae016bd9a0c408b72d0bc240614973ea0530163effb58569f274f144",
+            "15c29fc613aca07e14bc2e4a6e00971154345028faf9ffa68ce487b5c074a7d5",
+            "7ea2116bdc04c93749ac1aca278dc0cef705a23fe487745041c6b47f2f298e26"
+          ],
+          "hurt": [
+            "fb6258495e9c5031b748a1ae6f64747805f9e36f7b631f81f0c59c9489597c4b",
+            "3162571836b7d9f4cf99921ec71bfd68634899cef2ddfee258b296bcade7b714",
+            "ddfbc7cdfb33bc9b310b6ee05448cd9d99b63b4dff390b7a551a7bf08ac8fbe3",
+            "0e774481abe8d777f939cba0dd1213ce9c4317fb5b75e11278dc43475866ef38"
+          ],
+          "use_consumable": [
+            "57d7b6c534e191ba97a9a95292e89d49b6c6ff82f3e3f0f74fe7f494d10c473c",
+            "4f7d282a30a79f491eb58c5778703b7782804d23b6ad234f95f3d99676709ac6",
+            "e84d4309da4540917d95da11de7c4b64e06ab982dc468e317cfbb7d187821a2f",
+            "b4d9b1a38b7c96e4538216c2187119a309d5bd43e511dadc09dd04d7d4dc801f"
+          ],
+          "dodge": [
+            "80e6b55368b0e47e2fb20ef92636b2169de67c9666a3455d7281e2b7dc935be1",
+            "3cdfdf7d01142ffe498177658def63b50e4e4f191b4a945b2882f6b52b50bf41",
+            "a19e1d5776109e4168e4ea7cbba2e366e3dba327ad51a06a00c10eb947db914a",
+            "cce675bfcf48b92b8351d1e90fc7117af304d136c87686c448e00498a1b8cb04"
+          ],
+          "block_shield": [
+            "33e9e99322960fd849d7aa0494a0cec61001b4d747322cc8b462fb33a4cc3d01",
+            "d36e7ded33b134101dca9da7ed69c39b3269a4e0da59205e92b2cce16a1e3f43",
+            "c808c3a1d38749b2874f8874c8ceb194fa427774b917a10c153d2cba072ad68b",
+            "b70d73ba6ad4611f84959deaad63736daf28e894a65e054b6637f1b2802edc38"
+          ],
+          "attack_sword": [
+            "6e5c622ec014d0f957e7665354ec3f10685e5b2d857118bf320edd72de4f1067",
+            "d7659c2f80bef54f31645fbace58de4c5e9bea0c4e2f4da058175cc65d87dbc4",
+            "c4030147910b38c45bd58103bd44f2e20bd52561ba37f72552533fd503b1ab27",
+            "648850a4bcad3bbd288cc29b4b35991c82906d84a69e8e25ad1c7a9765ac12f3"
+          ],
+          "attack_axe": [
+            "2ea95c7418cd2d4e4b88148d9037149dd6aa8b7df15bb4b6643f0e775e713e08",
+            "2b7252f70a07048f58c62f1be04106e25b552b361fd2e88a60d6f9c0abea3119",
+            "d8504043237ce8aa62bd7c14fecd39885f0ed3806340fd62c9be235a7904a5fb",
+            "0760687629ede9cdbf82f68e5a8561cec6f7407bda4de48a7c5d6a1733622ca7"
+          ],
+          "attack_spear": [
+            "c1c54355faaa10773e0e13587d9b9439169586681aedb46fd10ee874ee9aeee3",
+            "686b9bd994c98b87792a461b331f066e0de876f002ece85f2d3d33b10911bfc1",
+            "959e7dca49477de7e3f3d6c1291d746d9211a3d30e1e254cbd9908ca9bf4535a",
+            "51e8d71cb084c997e1766a750de4c9303d9711ceb0c69c89fb4183805e6682b4"
+          ],
+          "attack_dagger": [
+            "f90a81706289c43c21fff493be21102c4846dc7e62cea396d612142015b5b1da",
+            "defe7bb9477e650982ac1a052fd7dcb551ac5faff0c3649b7b486d0a7edec6f8",
+            "c44bfaecaa6abb5cf9179e2c9f8bf6dc855c50ea32f205f16fb2aeb09102563f",
+            "41f811cacbe9bb4efeaeb4dbce7cc1bad974e7c85c4b097b39d4a135863c65cd"
+          ],
+          "attack_bow": [
+            "005e8ebfdae97b93f033754063f42c7b6ed2dccd276ece23c462973e85f73919",
+            "7d00d8e40ef88dbeb96db44d1a26c3d6465a87f303e02e2976bc4d290c58282b",
+            "f079b15d184e866596d22f1f3a122d119ee371a588efb16d9d6eee87f19f2787",
+            "3b378db916852955fc28c78de421373a53ae77b96a9092ec65cc1b51ba5d81e5"
+          ],
+          "attack_staff": [
+            "e48b47dc7b5e8bd56898f7cbce4f853f15154e1aadcbdf5b78cd5e5127ea1221",
+            "1c1f1f0dda494aa939e45664d5a6eedbaf502de5291d07a520b495494767ce28",
+            "581b513f9d9e784071e723c9300475e3bfb98866a18dc9f47fbc1a2b10a56799",
+            "9639dc74a5e154a012db188f670150753b2a4cb769e5544dff71e77f52df20f3"
+          ],
+          "attack_mace": [
+            "a69d745593df776470a5d2af0b001aeaf06a7103b5079a717147a25bb738a5b8",
+            "42b27ef1222fd55b08212dc58b9c876bf51b1b20cd95d4d6f0459438b139b3cd",
+            "74032b456608c7c88783f915508913fc30ca3244b71b840dd7bed77833c302d0",
+            "91b1fa96036d0e9475ff5f46b219f7d84d39506dc0373caf98ea7a24d5bfd6ca"
+          ],
+          "attack_book": [
+            "5cca0118c47edf6d3d6b1837c9d41d5f8aa64649ee07314fa8511a79aa8aceb1",
+            "6a5cd7a2f300a846a6ad8d88365f36dbfa1d52316d4003f5de42955c3b364eba",
+            "a83c5f8f214afb812839f1079fca185bd5355a145d13965ec7b50c71eb263083",
+            "e8f07533d8245807dfcaf80540daaabe6f2fd8acba0c31469844a35a0b77c229"
+          ],
+          "attack_gloves": [
+            "1d974c2465f68dbc7c6a57ac30289d0411f5d481b7f769933d962f91860978c9",
+            "854338a37dc5ceb1346c28caf115c958ff8b9a3a8a5abad9e45eff8e313adc7b",
+            "fcbc33eacacb16e898e8f3a0b4dca48745c6cbd05145c689351ddb4c0f196d5b",
+            "a430706a079987dec5b8ec31daf23a1e82f6a9906d476ec5e720836722a22675"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     },
     {
@@ -294149,7 +294279,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/corsario/f/corsario-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/corsario/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -294726,8 +294856,8 @@
                 "pixelSha256": "22b02eaeeb8b2e468591f1a22846493e96a14757bd6dc803f9f5c37aca06dc2e"
               },
               "04": {
-                "sha256": "b78be7c2f9ea35ac29300d424d080b1652cfdc7c837ac945be71fdd4d2e84eb8",
-                "bytes": 22991,
+                "sha256": "29bc9dea3c08a758268b3baa9f78489cfdbbaf274c1f2a8bfdea567dd5a19af9",
+                "bytes": 23819,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -294735,11 +294865,11 @@
                 ],
                 "bbox": [
                   8,
-                  94,
-                  96,
+                  93,
+                  97,
                   251
                 ],
-                "pixelSha256": "9671bd211feb5a0577ca94d3afa6c1889ca5aaa42b6f5e60fd0fae5126d7d6b5"
+                "pixelSha256": "9246bdf60898e4592bc24f4148b8e9276579da8905bbe64414a7bcc9ca915faf"
               }
             },
             "distinctFrames": 4
@@ -294796,8 +294926,8 @@
                 "pixelSha256": "ca970864fc6c5ad66b1fda8638152be862c58e31571874260db259dc5f5917ec"
               },
               "04": {
-                "sha256": "ef49da300d88f2b3340b1e6682afe6f881a678a54d0369df10fbb53cab15fe7a",
-                "bytes": 23378,
+                "sha256": "fa81ab9b0e379d0fc26ce92b3cd8c1164ebe2d59f2c3a346bc94772acaeca1fe",
+                "bytes": 24919,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -294805,11 +294935,11 @@
                 ],
                 "bbox": [
                   10,
-                  93,
-                  103,
+                  92,
+                  112,
                   249
                 ],
-                "pixelSha256": "c0c73c948cf11c21044f39d977e30f92f482f742e5990a1229db7de09f52cf36"
+                "pixelSha256": "b6fbf247036b2b111e99a4a2e1a4002edc21c1f6056d52df03a5adf6df471f98"
               }
             },
             "distinctFrames": 4
@@ -294850,8 +294980,8 @@
                 "pixelSha256": "cfc12aab98139fba30f33a29ade4fa22c0e5fd1b0555727576acca5c8410f906"
               },
               "03": {
-                "sha256": "b4d7765604bd6ea7f444434a9b23584c382a3fd2590d2703a75f08b2e16e739c",
-                "bytes": 22597,
+                "sha256": "69ab645ebe1c934006dd6d99c054ed4234562da1463cdfb2e04deb7454ebc5ab",
+                "bytes": 23421,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -294860,10 +294990,10 @@
                 "bbox": [
                   5,
                   92,
-                  96,
-                  248
+                  97,
+                  249
                 ],
-                "pixelSha256": "6fad467635a8ae15ebadc087dd846670c9a2cec24967bf30aa72943cf88e0cf4"
+                "pixelSha256": "404e96ad02737053656a28791f0027e7364512dce25aedf9f6551c2e3a005dba"
               },
               "04": {
                 "sha256": "20cdf72daabd6d565647eb1d941a73b235775799fa7803ef77529ecaadeafced",
@@ -295184,8 +295314,8 @@
                 "pixelSha256": "f39ea8ea09fa24562816d05062f92918106ac0ff36d855ea658767fbd71edc16"
               },
               "02": {
-                "sha256": "5e3d81c579a4b5d6ce36e5330d902fcea0f12b8f6573051bbcf9fac351113783",
-                "bytes": 23358,
+                "sha256": "6fda9010410632168e5236bc91b0325b0a4ae829e4761d3dd9231f74d5137b42",
+                "bytes": 24409,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -295194,10 +295324,10 @@
                 "bbox": [
                   7,
                   91,
-                  87,
+                  91,
                   248
                 ],
-                "pixelSha256": "797973f5c9f4fbc4807ff995c33f4c5feb5d6b90326d85a8175bbf1988448d1a"
+                "pixelSha256": "57699a46f19f17da3480600ad79afc53c068207136586f35affe439c170185e8"
               },
               "03": {
                 "sha256": "97f9b985e06f10fec76b01cfa6fa352b17598eb0e1e9ccd1a2adc72a4e5a6dd4",
@@ -295273,7 +295403,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "e85a8563807209a64b9ae88c382d1aaea530de24557b372060125e0cee30ab79",
@@ -295311,7 +295442,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "bc621faa39f17c4294004818a8e74afaa2d4ddba11cdb7e18a4d59a30e4875e7",
@@ -295443,7 +295574,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "f9cb1abdcafd488e61547d039e3f51300b4daf42a149a22578779aed7b3dede6",
@@ -295481,7 +295613,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "feeab14e8f0d19169a437ead32f0830c4c3e0371fd17aa54dcdec9cec05c210c",
@@ -295613,7 +295745,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "dc7a9905cfa693459f32d81e0ac3e906ad4671d9f1764f84dbd941a0cb421989",
@@ -295651,7 +295784,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "a5c9f8f9f0cbe1e9600f0968119a927f532f7db1ee9f83ac85c6f3800878da72",
@@ -295689,7 +295823,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "aafb9a330995f1864762b6228874b536ea3adf3f4ca5087c6506c9e01baee4e9",
@@ -295951,7 +296085,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "c23aaa0a7a5e192b0702a03b7e24219583b23b9950e83e788f4733a0c6de56a5",
@@ -295989,7 +296124,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "042034ba211740c7c4de77fff3cbe50bbce6beaaef24eb1297361a42de4919d6",
@@ -296027,13 +296163,14 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
-          "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+          "sourceSha256": "09644952ca09eda1206a957346de8533f356efbc53b4e668cc80e5f5db134955",
           "sourceDimensions": [
-            2172,
-            724
+            4344,
+            1448
           ],
           "registeredSourceDimensions": [
             2172,
@@ -296055,9 +296192,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Corsario FEMALE, Tier 3.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Corsario with deep auburn hair in compact tucked bob and short side braid, confident focused eyes; canonical female head size, no facial hair. Tailored DEEP NAVY captain short coat with CORAL-red interior and elaborate ANTIQUE GOLD rope-and-knot braid, compact dark navy tricorn with one SHORT ivory feather folded close to hat, ivory fitted shirt and rust-red waist sash with short tails, gold knot-and-anchor chest medallion, broad dark leather belt with two flat square pouches, dark gray fitted trousers and brown sea boots with gold calf buckles, dark fingerless gloves with snug navy cuffs. One small gold hoop earring. No cape, long coat tails, neck scarf, weapons, hooks or telescope. Compact ANTIQUE GOLD epaulettes with short engraved rope-knot plates, no hanging fringe. Three small gold KNOT chest buttons below gold KNOT-ANCHOR medallion. Coral lining confined to LAPELS, no floating shoulder tails. FULL NAVY fitted sleeves, narrow IVORY wrist cuffs under GOLD rope-engraved bracers and BLACK fingerless gloves. Broad leather belt RECTANGULAR GOLD clasp engraved with an ANCHOR. Gold rope embroidery on compact boot calf guards. Hat feather tiny and folded sideways along brim; narrow tricorn stays fully inside original hair width. Tier3.5 superior fusion/evolution of Pirata. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LEFT upper raised fist DOWN and RIGHT to magenta circle currently on neck/collar at (442,425). Its black glove palm must cover this circle beside face at collar height. Keep FAR RIGHT guarding fist EXACTLY unchanged. Exactly two hands. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
           "canonicalPoseHashes": [
             "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
@@ -296065,10 +296202,143 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                8,
+                1074,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                8,
+                1074,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "03": {
+              "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                8,
+                1074,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-frame03-reference-v3.png",
+              "selectedFrame": 3,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "584400d4730591076c432a9539786099d1ffdbb8f9809997375b3ba95ef3c60b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                612,
+                8,
+                1074,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Corsario FEMALE, Tier 3.5, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem. Adult experienced feminine Corsario with deep auburn hair in compact tucked bob and short side braid, confident focused eyes; canonical female head size, no facial hair. Tailored DEEP NAVY captain short coat with CORAL-red interior and elaborate ANTIQUE GOLD rope-and-knot braid, compact dark navy tricorn with one SHORT ivory feather folded close to hat, ivory fitted shirt and rust-red waist sash with short tails, gold knot-and-anchor chest medallion, broad dark leather belt with two flat square pouches, dark gray fitted trousers and brown sea boots with gold calf buckles, dark fingerless gloves with snug navy cuffs. One small gold hoop earring. No cape, long coat tails, neck scarf, weapons, hooks or telescope. Compact ANTIQUE GOLD epaulettes with short engraved rope-knot plates, no hanging fringe. Three small gold KNOT chest buttons below gold KNOT-ANCHOR medallion. Coral lining confined to LAPELS, no floating shoulder tails. FULL NAVY fitted sleeves, narrow IVORY wrist cuffs under GOLD rope-engraved bracers and BLACK fingerless gloves. Broad leather belt RECTANGULAR GOLD clasp engraved with an ANCHOR. Gold rope embroidery on compact boot calf guards. Hat feather tiny and folded sideways along brim; narrow tricorn stays fully inside original hair width. Tier3.5 superior fusion/evolution of Pirata. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+              "canonicalPoseHashes": [
+                "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+                "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+                "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+                "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "7e5aea9419aa628bde60d76c4215d358051e9492adc408cf9539772b52cb0a44",
+          "sourceSha256": "7fe9731011bf181de3739d395184c5854c125bfa2e2d7d4c6d15592f8a69e8da",
           "sourceDimensions": [
             4344,
             1448
@@ -296093,9 +296363,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v4.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Localized hand correction on this FEMALE Corsario sprite. Lower LEFTMOST near fist DOWN and LEFT to LEFT magenta ring on lower chest. Move RIGHT far fist DOWN and RIGHT slightly to RIGHT ring at glove base. Center black palms on rings. Preserve all other anatomy and head/body framing and scale, feet and margins, navy/coral/gold rope captain coat with anchor medallion and belt buckle, three knot buttons, tricorn and auburn bob and side braid. Smooth clean female chin, NO beard or stubble. Exactly TWO arms/hands. Center indicated black palms on rings, not cuffs. Remove magenta guides. True transparent background, no equipment/effects.\n",
+          "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LEFT near waist fist RIGHT by about 70px and UP 20px until black palm covers magenta circle at (515,640). Far extended right hand fixed. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -296103,7 +296373,7 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "ec1a95dcad440cef97e8a854d8fcd00d19cfe7d36fb717b4da66ae34041c476f",
@@ -296131,8 +296401,38 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v5.png",
               "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "7e5aea9419aa628bde60d76c4215d358051e9492adc408cf9539772b52cb0a44",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame02-reference-v5.png",
+              "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "03": {
@@ -296161,38 +296461,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v4.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v5.png",
               "selectedFrame": 3,
-              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
-            },
-            "04": {
-              "sourceSha256": "ec1a95dcad440cef97e8a854d8fcd00d19cfe7d36fb717b4da66ae34041c476f",
-              "sourceDimensions": [
-                2172,
-                724
-              ],
-              "registeredSourceDimensions": [
-                2172,
-                724
-              ],
-              "sourceCellStep": 543,
-              "commonCrop": [
-                644,
-                20,
-                1069,
-                693
-              ],
-              "scale": 0.23,
-              "origin": [
-                15,
-                93
-              ],
-              "alphaThreshold": 128,
-              "bodyRootCalibration": null,
-              "scalePolicy": "canonical-pose-registration",
-              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame04-reference-v4.png",
-              "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -296234,11 +296504,142 @@
                 "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "7e5aea9419aa628bde60d76c4215d358051e9492adc408cf9539772b52cb0a44",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-reference-v4.png",
+              "generator": "built-in imagegen",
+              "prompt": "Localized hand correction on this FEMALE Corsario sprite. Lower LEFTMOST near fist DOWN and LEFT to LEFT magenta ring on lower chest. Move RIGHT far fist DOWN and RIGHT slightly to RIGHT ring at glove base. Center black palms on rings. Preserve all other anatomy and head/body framing and scale, feet and margins, navy/coral/gold rope captain coat with anchor medallion and belt buckle, three knot buttons, tricorn and auburn bob and side braid. Smooth clean female chin, NO beard or stubble. Exactly TWO arms/hands. Center indicated black palms on rings, not cuffs. Remove magenta guides. True transparent background, no equipment/effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "ec1a95dcad440cef97e8a854d8fcd00d19cfe7d36fb717b4da66ae34041c476f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame01-reference-v4.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "f2ffd7e8a53d5b01fd8402174d683dc76cace58c4a2e84186a20613adb0e5d92",
+                  "sourceDimensions": [
+                    4344,
+                    1448
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame03-reference-v4.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "ec1a95dcad440cef97e8a854d8fcd00d19cfe7d36fb717b4da66ae34041c476f",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    644,
+                    20,
+                    1069,
+                    693
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    15,
+                    93
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-frame04-reference-v4.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
-          "sourceSha256": "4bff682d0226fe9438f77342065d8435dd96dc6a84f89695a8d28c2a1305288f",
+          "sourceSha256": "400e366acf29a4a31b1eefbbef5874af994d0c8827081b24b795fb646a982ff5",
           "sourceDimensions": [
             4344,
             1448
@@ -296263,9 +296664,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit of this full-body RPG sprite. Raise far guarding fist UP and RIGHT until black palm covers ring above hand near collar. Move only the indicated hands and attached wrists naturally. Keep exactly TWO arms/hands. Preserve framing, head and body scale, full boots and transparent margins. Preserve exact Corsario navy/coral/gold rope costume, anchor belt and knot buttons, hat and hair and male chin goatee where applicable. No change to any other anatomy or accessories. Remove all magenta guide marks completely. Genuine transparent background. No equipment or effects.\n",
+          "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LOWER/RIGHT front black fist slightly RIGHT and UP until black palm covers nearby magenta circle above/right beside it. KEEP BOTH HANDS EMPTY and exactly two fists. Upper guarding fist by face remains exactly fixed. Do not add, hold or draw ANY weapon, knife, blade, dagger or object. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
@@ -296273,7 +296674,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "8ca30c16085ccf123765f0b8360bcbf7bd6a26076951e6ff68b43b436b8c3b4d",
@@ -296301,7 +296702,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v4.png",
               "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -296331,15 +296732,15 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v4.png",
               "selectedFrame": 2,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
-            "03": {
-              "sourceSha256": "8ca30c16085ccf123765f0b8360bcbf7bd6a26076951e6ff68b43b436b8c3b4d",
+            "04": {
+              "sourceSha256": "4bff682d0226fe9438f77342065d8435dd96dc6a84f89695a8d28c2a1305288f",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -296361,8 +296762,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame03-reference-v2.png",
-              "selectedFrame": 3,
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame04-reference-v4.png",
+              "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
           },
@@ -296404,8 +296805,139 @@
                 "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "4bff682d0226fe9438f77342065d8435dd96dc6a84f89695a8d28c2a1305288f",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                635,
+                14,
+                1036,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                18,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit of this full-body RPG sprite. Raise far guarding fist UP and RIGHT until black palm covers ring above hand near collar. Move only the indicated hands and attached wrists naturally. Keep exactly TWO arms/hands. Preserve framing, head and body scale, full boots and transparent margins. Preserve exact Corsario navy/coral/gold rope costume, anchor belt and knot buttons, hat and hair and male chin goatee where applicable. No change to any other anatomy or accessories. Remove all magenta guide marks completely. Genuine transparent background. No equipment or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+                "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+                "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+                "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "01": {
+                  "sourceSha256": "8ca30c16085ccf123765f0b8360bcbf7bd6a26076951e6ff68b43b436b8c3b4d",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    635,
+                    14,
+                    1036,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    18,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame01-reference-v2.png",
+                  "selectedFrame": 1,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "02": {
+                  "sourceSha256": "8ca30c16085ccf123765f0b8360bcbf7bd6a26076951e6ff68b43b436b8c3b4d",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    635,
+                    14,
+                    1036,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    18,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "8ca30c16085ccf123765f0b8360bcbf7bd6a26076951e6ff68b43b436b8c3b4d",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    635,
+                    14,
+                    1036,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    18,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-frame03-reference-v2.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "d9e026e3be9515d96753729527a42eca6fbc0bfb741eb9e9b5b4ee9ad4d4a86e",
@@ -296443,7 +296975,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "e3e5ccfc1ea8e3c65b75e172fa710529036d1892f2cc361e50e7d5313ebb8ee4",
@@ -296705,7 +297237,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "c84a59ad6394cb5ddcee60322ac38f8eadfb43725e0ead277f1c5e968c24068d",
@@ -296743,7 +297276,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "4094007c510c89e8df9cd597b68f6ebe2068f3327b9aa5c669e5b9fc6a523cb7",
@@ -296781,7 +297315,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "824c756a50e435285a84b85e371687ed78e85b635933f973f2eb0f6b931bc029",
@@ -296819,7 +297354,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c2e722102704a7a1fbbf1cadb73f7e32f49d699b88998f1cd8ce2f4368a316ff",
@@ -296951,10 +297486,11 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
-          "sourceSha256": "93b13df9b9db959d083c66945b4c40bb8552963d8653d4972ffba08f1d781704",
+          "sourceSha256": "3cac977a1186136f727c9ae3a77d02a9d1b6e09ead94f340247a79bfc6f7ca43",
           "sourceDimensions": [
             4344,
             1448
@@ -296979,9 +297515,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Minimal localized edit of this full-body RPG sprite. Move near guarding fist RIGHT until black palm covers ring on medallion. Move only the indicated hands and attached wrists naturally. Keep exactly TWO arms/hands. Preserve framing, head and body scale, full boots and transparent margins. Preserve exact Corsario navy/coral/gold rope costume, anchor belt and knot buttons, hat and hair and male chin goatee where applicable. No change to any other anatomy or accessories. Remove all magenta guide marks completely. Genuine transparent background. No equipment or effects.\n",
+          "prompt": "Minimal localized edit on FEMALE Corsario sprite. Lower ONLY LEFT near guarding fist DOWN about 120px and RIGHT 35px until black palm covers magenta circle at (555,643), waist height. FAR RIGHT raised fist MUST remain exactly fixed at chest height. Exactly TWO VISIBLE fists and two arms. Do not hide either hand behind torso. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
@@ -296989,13 +297525,13 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
-            "02": {
-              "sourceSha256": "5971998d9f49084d023068b7bafb4e326b9008e976b2aeb59344c0b70b3985d2",
+            "01": {
+              "sourceSha256": "93b13df9b9db959d083c66945b4c40bb8552963d8653d4972ffba08f1d781704",
               "sourceDimensions": [
-                2172,
-                724
+                4344,
+                1448
               ],
               "registeredSourceDimensions": [
                 2172,
@@ -297017,8 +297553,8 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame02-reference-v2.png",
-              "selectedFrame": 2,
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame01-reference-v4.png",
+              "selectedFrame": 1,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
             "03": {
@@ -297047,7 +297583,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v4.png",
               "selectedFrame": 3,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             },
@@ -297077,7 +297613,7 @@
               "bodyRootCalibration": null,
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v2.png",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v4.png",
               "selectedFrame": 4,
               "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
             }
@@ -297120,8 +297656,139 @@
                 "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "93b13df9b9db959d083c66945b4c40bb8552963d8653d4972ffba08f1d781704",
+              "sourceDimensions": [
+                4344,
+                1448
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                625,
+                17,
+                1080,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Minimal localized edit of this full-body RPG sprite. Move near guarding fist RIGHT until black palm covers ring on medallion. Move only the indicated hands and attached wrists naturally. Keep exactly TWO arms/hands. Preserve framing, head and body scale, full boots and transparent margins. Preserve exact Corsario navy/coral/gold rope costume, anchor belt and knot buttons, hat and hair and male chin goatee where applicable. No change to any other anatomy or accessories. Remove all magenta guide marks completely. Genuine transparent background. No equipment or effects.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "frameSourceOverrides": {
+                "02": {
+                  "sourceSha256": "5971998d9f49084d023068b7bafb4e326b9008e976b2aeb59344c0b70b3985d2",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame02-reference-v2.png",
+                  "selectedFrame": 2,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "03": {
+                  "sourceSha256": "5971998d9f49084d023068b7bafb4e326b9008e976b2aeb59344c0b70b3985d2",
+                  "sourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame03-reference-v2.png",
+                  "selectedFrame": 3,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                },
+                "04": {
+                  "sourceSha256": "0e1c25c46791fded480c5b38e9cfb034ecce6e4ba3c33a19f35ec41faf8b25e7",
+                  "sourceDimensions": [
+                    4344,
+                    1448
+                  ],
+                  "registeredSourceDimensions": [
+                    2172,
+                    724
+                  ],
+                  "sourceCellStep": 543,
+                  "commonCrop": [
+                    625,
+                    17,
+                    1080,
+                    702
+                  ],
+                  "scale": 0.23,
+                  "origin": [
+                    11,
+                    90
+                  ],
+                  "alphaThreshold": 128,
+                  "bodyRootCalibration": null,
+                  "scalePolicy": "canonical-pose-registration",
+                  "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+                  "sourcePath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-frame04-reference-v2.png",
+                  "selectedFrame": 4,
+                  "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+                }
+              }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -297238,15 +297905,15 @@
           "frame": 4
         },
         "attack_axe/01": {
-          "source": "sources.attack_axe",
+          "source": "sources.attack_axe.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_axe/02": {
-          "source": "sources.attack_axe",
+          "source": "sources.attack_axe.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_axe/03": {
-          "source": "sources.attack_axe",
+          "source": "sources.attack_axe.frameSourceOverrides.03",
           "frame": 3
         },
         "attack_axe/04": {
@@ -297258,7 +297925,7 @@
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -297266,7 +297933,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear.frameSourceOverrides.04",
+          "source": "sources.attack_spear",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -297278,11 +297945,11 @@
           "frame": 2
         },
         "attack_dagger/03": {
-          "source": "sources.attack_dagger.frameSourceOverrides.03",
+          "source": "sources.attack_dagger",
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
@@ -297350,11 +298017,11 @@
           "frame": 4
         },
         "attack_gloves/01": {
-          "source": "sources.attack_gloves",
+          "source": "sources.attack_gloves.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_gloves/02": {
-          "source": "sources.attack_gloves.frameSourceOverrides.02",
+          "source": "sources.attack_gloves",
           "frame": 2
         },
         "attack_gloves/03": {
@@ -297396,6 +298063,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "corsario",
+        "name": "Corsario",
+        "tier": 3.5,
+        "costume": "Tailored DEEP NAVY captain short coat with CORAL-red interior and elaborate ANTIQUE GOLD rope-and-knot braid, compact dark navy tricorn with one SHORT ivory feather folded close to hat, ivory fitted shirt and rust-red waist sash with short tails, gold knot-and-anchor chest medallion, broad dark leather belt with two flat square pouches, dark gray fitted trousers and brown sea boots with gold calf buckles, dark fingerless gloves with snug navy cuffs. One small gold hoop earring. No cape, long coat tails, neck scarf, weapons, hooks or telescope. Compact ANTIQUE GOLD epaulettes with short engraved rope-knot plates, no hanging fringe. Three small gold KNOT chest buttons below gold KNOT-ANCHOR medallion. Coral lining confined to LAPELS, no floating shoulder tails. FULL NAVY fitted sleeves, narrow IVORY wrist cuffs under GOLD rope-engraved bracers and BLACK fingerless gloves. Broad leather belt RECTANGULAR GOLD clasp engraved with an ANCHOR. Gold rope embroidery on compact boot calf guards. Hat feather tiny and folded sideways along brim; narrow tricorn stays fully inside original hair width.",
+        "maleIdentity": "Adult experienced masculine Corsario with deep auburn short windswept hair and small chin goatee, confident focused eyes; canonical head size.",
+        "femaleIdentity": "Adult experienced feminine Corsario with deep auburn hair in compact tucked bob and short side braid, confident focused eyes; canonical female head size, no facial hair.",
+        "armPolicy": "Precise canonical hand/finger coordinates, head size and complete body placement unchanged. All ornamentation compact within cell. Keep every insignia, shoulder arrangement and material identical in ALL four poses. No Novato scarf or floating shoulder cloth, cream sleeve remnants or old belt emblem.",
+        "unique": "Captain tricorn, gold rope braid and knot-anchor insignia",
+        "advancement": "Tier3.5 superior fusion/evolution of Pirata. Craftsmanship and insignia combine BOTH lineages and surpass prior classes in layered detailing, while retaining identical body scale and shared equipment grips. All motifs are physical costume details, no painted-in effects.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/corsario/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "143c9331cc00ecf2a10060e16ec3240f7fb251c1baf12f039a0f14cf2ad7ec19",
+            "4bf88994a6ce58944fe38e571766f5b5881d13dc64a2401db759bfd3ab085283",
+            "7592e558a3e8c6337651074bd897f1ea0bc9f2a9e66d309e4e62a3e13281bbe8",
+            "5497cbfea495cbe5e80c635031014e381779e1b8baa8f63343ec94db342b90fc"
+          ],
+          "walk": [
+            "9db2c4fc86d966a4573586446e7d15de55756ebffcfab1e73182360279e09ee2",
+            "c6d5e233d277b79a1143640a2274df89cee4de7f385f906ddfd830a393c2975d",
+            "c177564807beb9e6913219f4ae416f44b51c51f1d4a92b613071f8ceeb4d1509",
+            "211efe7a6c8be273bf0134d313b2e836fae95e4d8f43d59b79a7fad6c4f16dcf"
+          ],
+          "hurt": [
+            "5dea5f4b5a2918815456687da94b52beb94df16d8d97d80d5eb394fad9106334",
+            "d9f65649d276187125511ef13438bff28e723ede7efc488c499324eb4bca1c42",
+            "2584b983f49a59f5b2559f1fd870f1ee5008c5791088b38b482e30605088a4eb",
+            "255e25ea5bcb850d475f76129e0920362a4fcdc0c8028e6170df2505df2f5ba6"
+          ],
+          "use_consumable": [
+            "fa429def254fef59284ac07eab9cf42d2733b1119bfbf509cafb61d4e0a73a79",
+            "9b0926c5f8e55e96fb35a9a8ff06bb0e84594d67c0f22cb2dd19727086c58ed0",
+            "e114daa64efb0de4c64f1d95c18f5642ca1df58e1b6766ca134c4d22b88bbaaa",
+            "50b2dd942ff2ee2d08e2838d47a36a6d8af2f6689d7d18a4d1a6731024c66a4d"
+          ],
+          "dodge": [
+            "d754b83f53cb167acdf9a28ec836873dee1b2e9bbc717ad7657d8022cd230183",
+            "7e4f09ddc68e5c51105dc2c56f808819f47f8f2390d4f93cced12a7363525d67",
+            "f525903387fde3c5406ed9949c376856f649a44000130bb120b461e3d8e6525b",
+            "db5e4f885bf374ea602b556fbbd6e7abf43c29b0930dc79d439350b711441ad5"
+          ],
+          "block_shield": [
+            "309dea256fc47335e494889e6cc8d87b98bd5814ff975a4b5c8dcb35e1e7bf48",
+            "e98405a3b0ced87fa1e6fd115f91c74d94f2e7bf30b730e247eef7bbc9b5a580",
+            "1d9a31b2836817b6a369ace751a1871dbb153c906aab214986a444d44e2cb45e",
+            "58e9be829886718a11ea592de3e85ba9de48564bcd10f525d4509c37c96dc8be"
+          ],
+          "attack_sword": [
+            "b65e236d5bb4c03f5510b34ca87946add48648ede5bbcbd4711d22bec9769966",
+            "8fc0ca3a65016b95e7e0f11dcc4f6ea160f8ca032b392afeabbd705d8bead9d3",
+            "33ec64793c28dac0b51644ebf3ff13207dff79f9aae98b9499e9e31417fb9b94",
+            "393b187122649b92f0b3a83602eb17481e877ced2d46cfd806e7b84b29ad0097"
+          ],
+          "attack_axe": [
+            "df9c64ed3f1aaf90dd4c76ab57ceea828382a75302df3829c08ebba3dd9574fb",
+            "1c19d280262ef0ab759f340539e39cf57426377946485f711f3091ab117b9e94",
+            "b1238cc4a53b94af8abc520c44530968fa48082515c8412895f9bdffe4a0df39",
+            "29bc9dea3c08a758268b3baa9f78489cfdbbaf274c1f2a8bfdea567dd5a19af9"
+          ],
+          "attack_spear": [
+            "af167085c4a0828d198a809d391cbd5dc8645145e15f07a2e2051e75e51e823f",
+            "beec0ce343b165e30cb80570bd929e5f51b724cbe9835b2b071449cf350c654e",
+            "65cdac6c6e7012645fd3d3ede23e6d43dff90116bab7ba3918da89b650009d43",
+            "fa81ab9b0e379d0fc26ce92b3cd8c1164ebe2d59f2c3a346bc94772acaeca1fe"
+          ],
+          "attack_dagger": [
+            "dd9f2138f90c09b65ffa452061f7f8a8a5cbcd759719dcc6f0cf5d5d1dbd7c85",
+            "07d06e4c4cbbf01a737e5702bd67d6017bcfd6d64362d5a133fb077b62da5593",
+            "69ab645ebe1c934006dd6d99c054ed4234562da1463cdfb2e04deb7454ebc5ab",
+            "20cdf72daabd6d565647eb1d941a73b235775799fa7803ef77529ecaadeafced"
+          ],
+          "attack_bow": [
+            "3f637f2a31a4992d478f1a0e330b51763f8d592ddd1cc9b352469abcfe1fcd12",
+            "d26067f9b43329f1ebbea2a0166df72f278f3a3b3e73454f51d40c03a443b80d",
+            "0c6958f42dd1c854b3dd74b5da9f9719379fe48ea7595630a8917b729024779c",
+            "9a4227c477b3a91cffc952a069c452278063bb7b12ab701aaa98717ac474f7e4"
+          ],
+          "attack_staff": [
+            "da645be055a754347c07e0b852b84630fcd8d0e39d07399a2603679069d30afd",
+            "0ea0864ebcd7a3ba85d30ec09fc0e1f7126513949bcaf546e55fbe623d0bff36",
+            "5f681295bb3db8267a421d25280143a6535bdc7b86561e4c7448ac999e3a8adb",
+            "3e660e46335870564414efd376412f86c7ad7e3447c762a3701a0289a6d6e4dc"
+          ],
+          "attack_mace": [
+            "31de4d5dcd5162652a00e6933f88ecae577d83698c4eff13c35770039a4e5f88",
+            "08be3c237b2bdc75da37ad3a922f46cb07602253d9d21113a573aab6bd831ced",
+            "b19647fdd3488361da099a44fe05f0e23180a44e80d5b9b1229ed1929f3c7a11",
+            "0a06e4fe161d710e4e1d7e72369b908dfbd4743118b458a9eee5641a3df6266a"
+          ],
+          "attack_book": [
+            "2d9757b2e1aba222d9a99f99e6ac7d9feca72257139a0b334d8d8bc76d563745",
+            "1c06146e9c30fa69df39d25e2bcc7ee3f1dc51033d48ba609f99ef7576895bff",
+            "5fbd193485c0ddcd48f874b1332ef026b5ba31d425621568e19f83c8aba1a781",
+            "40b6590a451e3f0fba133da5c9ca1cdd4698537472dc5677567b64f9e7f4cac8"
+          ],
+          "attack_gloves": [
+            "145c6ae15dad65f490066b1e87ff94e4212fe4ac45a5cfbcc779f31100592e40",
+            "6fda9010410632168e5236bc91b0325b0a4ae829e4761d3dd9231f74d5137b42",
+            "97f9b985e06f10fec76b01cfa6fa352b17598eb0e1e9ccd1a2adc72a4e5a6dd4",
+            "fec0dc3f1eccbf5e54102a8ec5ef981a2f4efcc54d189eb688aa46f5945e1067"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 5
       }
     }
   ],
@@ -297560,7 +298342,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "All 61 classes have completed HD sprite production and equipment review.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

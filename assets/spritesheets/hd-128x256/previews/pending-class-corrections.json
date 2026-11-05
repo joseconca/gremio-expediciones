@@ -1,59 +1,12 @@
 {
-  "status": "in-progress",
+  "status": "complete",
   "date": "2026-11-05",
   "branch": "nuevas-clases",
   "generationTool": "built-in image_gen",
-  "completedClasses": 60,
-  "remainingClasses": [
-    "corsario"
-  ],
-  "lastCompletedClass": "danzaespadas",
-  "pendingPoses": [
-    {
-      "classId": "corsario",
-      "sex": "f",
-      "action": "attack_spear",
-      "pose": 4,
-      "revision": 4,
-      "inputGuide": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-pose4-correction-guide-v4.png",
-      "promptPath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_spear-pose4-portrait-v4-prompt.txt",
-      "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LEFT near waist fist RIGHT by about 70px and UP 20px until black palm covers magenta circle at (515,640). Far extended right hand fixed. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.",
-      "reason": "Near hand in v3 still left/below target; v4 generation hit quota."
-    },
-    {
-      "classId": "corsario",
-      "sex": "f",
-      "action": "attack_gloves",
-      "pose": 2,
-      "revision": 4,
-      "inputGuide": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-pose2-correction-guide-v4.png",
-      "promptPath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_gloves-pose2-portrait-v4-prompt.txt",
-      "prompt": "Minimal localized edit on FEMALE Corsario sprite. Lower ONLY LEFT near guarding fist DOWN about 120px and RIGHT 35px until black palm covers magenta circle at (555,643), waist height. FAR RIGHT raised fist MUST remain exactly fixed at chest height. Exactly TWO VISIBLE fists and two arms. Do not hide either hand behind torso. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.",
-      "reason": "Use guided portrait v2. Reject v3 because it hides near hand and moves far hand."
-    },
-    {
-      "classId": "corsario",
-      "sex": "f",
-      "action": "attack_axe",
-      "pose": 4,
-      "revision": 3,
-      "inputGuide": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-pose4-correction-guide-v3.png",
-      "promptPath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_axe-pose4-portrait-v3-prompt.txt",
-      "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LEFT upper raised fist DOWN and RIGHT to magenta circle currently on neck/collar at (442,425). Its black glove palm must cover this circle beside face at collar height. Keep FAR RIGHT guarding fist EXACTLY unchanged. Exactly two hands. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.",
-      "reason": "Correct primary hand on v2 while preserving corrected secondary hand. Do not register v2 alone; primary grip is wrong."
-    },
-    {
-      "classId": "corsario",
-      "sex": "f",
-      "action": "attack_dagger",
-      "pose": 3,
-      "revision": 4,
-      "inputGuide": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-pose3-input-grip-guide-v2.png",
-      "promptPath": "assets/spritesheets/hd-128x256/corsario/f/source/attack_dagger-pose3-portrait-v4-prompt.txt",
-      "prompt": "Minimal localized edit on FEMALE Corsario sprite. Move ONLY LOWER/RIGHT front black fist slightly RIGHT and UP until black palm covers nearby magenta circle above/right beside it. KEEP BOTH HANDS EMPTY and exactly two fists. Upper guarding fist by face remains exactly fixed. Do not add, hold or draw ANY weapon, knife, blade, dagger or object. Preserve all other anatomy, exact head/body/framing and feet, transparent margins, navy/coral/gold rope costume, anchor chest medallion and anchor belt, three knot buttons, tricorn and auburn bob/side braid. Smooth clean female chin, no beard/stubble. Keep both hands empty. Remove magenta guides. Genuine transparent background; no held equipment, objects, shadows or effects.",
-      "reason": "Use the ORIGINAL guided empty-hand pose. Reject portrait v3 because it added a dagger and moved the wrong arm."
-    }
-  ],
+  "completedClasses": 61,
+  "remainingClasses": [],
+  "lastCompletedClass": "corsario",
+  "pendingPoses": [],
   "resumePolicy": [
     "Read imagegen skill. View each local input before built-in editing; retain original sources and prompts. Retry only after generation becomes available.",
     "Generate separate class/sex/action portraits with versioned names. Package complete generated poses and inspect bounds, palms and outfit before registration.",

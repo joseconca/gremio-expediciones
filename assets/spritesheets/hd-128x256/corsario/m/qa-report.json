@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-11-05T12:21:27.140016+00:00",
+  "classId": "corsario",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\corsario\\m\\corsario-m-sheet.png",
+  "sheetSha256": "6d5767a0553828d0f86b3d74d75bde063a8764e033c3fd89ff8b454ffbfc28df",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\idle\\corsario-m-idle-01.png",
+          "sha256": "3743026b0c379897aae692c6f29f7d683bb2a4b3d4c29f2f9f30485889e994f3",
+          "alpha_bbox": [
+            26,
+            94,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\idle\\corsario-m-idle-02.png",
+          "sha256": "5a72bb97b35690f9d80ceee49b2e79af070888a3f2610d35f1a3623551ca6102",
+          "alpha_bbox": [
+            26,
+            94,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\idle\\corsario-m-idle-03.png",
+          "sha256": "8a433e09c3ed52e752b4943336642656f3945f3a60ea0ae38c90d3a0d8648474",
+          "alpha_bbox": [
+            26,
+            94,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\idle\\corsario-m-idle-04.png",
+          "sha256": "352bf5d8fbbf432e5b5bdd4be4445759421c067be60d762db8432fa0ed693cef",
+          "alpha_bbox": [
+            26,
+            94,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\walk\\corsario-m-walk-01.png",
+          "sha256": "896fc089b62c2493f3fe4f697450383c4f9daae3a8ecebc3b387b2410ca55165",
+          "alpha_bbox": [
+            10,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\walk\\corsario-m-walk-02.png",
+          "sha256": "2c40e563ae016bd9a0c408b72d0bc240614973ea0530163effb58569f274f144",
+          "alpha_bbox": [
+            10,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\walk\\corsario-m-walk-03.png",
+          "sha256": "15c29fc613aca07e14bc2e4a6e00971154345028faf9ffa68ce487b5c074a7d5",
+          "alpha_bbox": [
+            7,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\walk\\corsario-m-walk-04.png",
+          "sha256": "7ea2116bdc04c93749ac1aca278dc0cef705a23fe487745041c6b47f2f298e26",
+          "alpha_bbox": [
+            10,
+            91,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\hurt\\corsario-m-hurt-01.png",
+          "sha256": "fb6258495e9c5031b748a1ae6f64747805f9e36f7b631f81f0c59c9489597c4b",
+          "alpha_bbox": [
+            21,
+            91,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\hurt\\corsario-m-hurt-02.png",
+          "sha256": "3162571836b7d9f4cf99921ec71bfd68634899cef2ddfee258b296bcade7b714",
+          "alpha_bbox": [
+            20,
+            102,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\hurt\\corsario-m-hurt-03.png",
+          "sha256": "ddfbc7cdfb33bc9b310b6ee05448cd9d99b63b4dff390b7a551a7bf08ac8fbe3",
+          "alpha_bbox": [
+            8,
+            120,
+            99,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\hurt\\corsario-m-hurt-04.png",
+          "sha256": "0e774481abe8d777f939cba0dd1213ce9c4317fb5b75e11278dc43475866ef38",
+          "alpha_bbox": [
+            21,
+            91,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\use_consumable\\corsario-m-use_consumable-01.png",
+          "sha256": "57d7b6c534e191ba97a9a95292e89d49b6c6ff82f3e3f0f74fe7f494d10c473c",
+          "alpha_bbox": [
+            24,
+            93,
+            104,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\use_consumable\\corsario-m-use_consumable-02.png",
+          "sha256": "4f7d282a30a79f491eb58c5778703b7782804d23b6ad234f95f3d99676709ac6",
+          "alpha_bbox": [
+            23,
+            93,
+            103,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\use_consumable\\corsario-m-use_consumable-03.png",
+          "sha256": "e84d4309da4540917d95da11de7c4b64e06ab982dc468e317cfbb7d187821a2f",
+          "alpha_bbox": [
+            24,
+            92,
+            104,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\use_consumable\\corsario-m-use_consumable-04.png",
+          "sha256": "b4d9b1a38b7c96e4538216c2187119a309d5bd43e511dadc09dd04d7d4dc801f",
+          "alpha_bbox": [
+            23,
+            93,
+            104,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\dodge\\corsario-m-dodge-01.png",
+          "sha256": "80e6b55368b0e47e2fb20ef92636b2169de67c9666a3455d7281e2b7dc935be1",
+          "alpha_bbox": [
+            20,
+            98,
+            100,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\dodge\\corsario-m-dodge-02.png",
+          "sha256": "3cdfdf7d01142ffe498177658def63b50e4e4f191b4a945b2882f6b52b50bf41",
+          "alpha_bbox": [
+            18,
+            98,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\dodge\\corsario-m-dodge-03.png",
+          "sha256": "a19e1d5776109e4168e4ea7cbba2e366e3dba327ad51a06a00c10eb947db914a",
+          "alpha_bbox": [
+            29,
+            105,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\dodge\\corsario-m-dodge-04.png",
+          "sha256": "cce675bfcf48b92b8351d1e90fc7117af304d136c87686c448e00498a1b8cb04",
+          "alpha_bbox": [
+            24,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\block_shield\\corsario-m-block_shield-01.png",
+          "sha256": "33e9e99322960fd849d7aa0494a0cec61001b4d747322cc8b462fb33a4cc3d01",
+          "alpha_bbox": [
+            20,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\block_shield\\corsario-m-block_shield-02.png",
+          "sha256": "d36e7ded33b134101dca9da7ed69c39b3269a4e0da59205e92b2cce16a1e3f43",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\block_shield\\corsario-m-block_shield-03.png",
+          "sha256": "c808c3a1d38749b2874f8874c8ceb194fa427774b917a10c153d2cba072ad68b",
+          "alpha_bbox": [
+            20,
+            111,
+            112,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\block_shield\\corsario-m-block_shield-04.png",
+          "sha256": "b70d73ba6ad4611f84959deaad63736daf28e894a65e054b6637f1b2802edc38",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_sword\\corsario-m-attack_sword-01.png",
+          "sha256": "6e5c622ec014d0f957e7665354ec3f10685e5b2d857118bf320edd72de4f1067",
+          "alpha_bbox": [
+            11,
+            97,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_sword\\corsario-m-attack_sword-02.png",
+          "sha256": "d7659c2f80bef54f31645fbace58de4c5e9bea0c4e2f4da058175cc65d87dbc4",
+          "alpha_bbox": [
+            2,
+            98,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_sword\\corsario-m-attack_sword-03.png",
+          "sha256": "c4030147910b38c45bd58103bd44f2e20bd52561ba37f72552533fd503b1ab27",
+          "alpha_bbox": [
+            4,
+            101,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_sword\\corsario-m-attack_sword-04.png",
+          "sha256": "648850a4bcad3bbd288cc29b4b35991c82906d84a69e8e25ad1c7a9765ac12f3",
+          "alpha_bbox": [
+            13,
+            99,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_axe\\corsario-m-attack_axe-01.png",
+          "sha256": "2ea95c7418cd2d4e4b88148d9037149dd6aa8b7df15bb4b6643f0e775e713e08",
+          "alpha_bbox": [
+            9,
+            99,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_axe\\corsario-m-attack_axe-02.png",
+          "sha256": "2b7252f70a07048f58c62f1be04106e25b552b361fd2e88a60d6f9c0abea3119",
+          "alpha_bbox": [
+            11,
+            109,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_axe\\corsario-m-attack_axe-03.png",
+          "sha256": "d8504043237ce8aa62bd7c14fecd39885f0ed3806340fd62c9be235a7904a5fb",
+          "alpha_bbox": [
+            6,
+            120,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_axe\\corsario-m-attack_axe-04.png",
+          "sha256": "0760687629ede9cdbf82f68e5a8561cec6f7407bda4de48a7c5d6a1733622ca7",
+          "alpha_bbox": [
+            18,
+            106,
+            115,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_spear\\corsario-m-attack_spear-01.png",
+          "sha256": "c1c54355faaa10773e0e13587d9b9439169586681aedb46fd10ee874ee9aeee3",
+          "alpha_bbox": [
+            8,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_spear\\corsario-m-attack_spear-02.png",
+          "sha256": "686b9bd994c98b87792a461b331f066e0de876f002ece85f2d3d33b10911bfc1",
+          "alpha_bbox": [
+            12,
+            91,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_spear\\corsario-m-attack_spear-03.png",
+          "sha256": "959e7dca49477de7e3f3d6c1291d746d9211a3d30e1e254cbd9908ca9bf4535a",
+          "alpha_bbox": [
+            7,
+            91,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_spear\\corsario-m-attack_spear-04.png",
+          "sha256": "51e8d71cb084c997e1766a750de4c9303d9711ceb0c69c89fb4183805e6682b4",
+          "alpha_bbox": [
+            15,
+            92,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_dagger\\corsario-m-attack_dagger-01.png",
+          "sha256": "f90a81706289c43c21fff493be21102c4846dc7e62cea396d612142015b5b1da",
+          "alpha_bbox": [
+            21,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_dagger\\corsario-m-attack_dagger-02.png",
+          "sha256": "defe7bb9477e650982ac1a052fd7dcb551ac5faff0c3649b7b486d0a7edec6f8",
+          "alpha_bbox": [
+            18,
+            92,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_dagger\\corsario-m-attack_dagger-03.png",
+          "sha256": "c44bfaecaa6abb5cf9179e2c9f8bf6dc855c50ea32f205f16fb2aeb09102563f",
+          "alpha_bbox": [
+            17,
+            94,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_dagger\\corsario-m-attack_dagger-04.png",
+          "sha256": "41f811cacbe9bb4efeaeb4dbce7cc1bad974e7c85c4b097b39d4a135863c65cd",
+          "alpha_bbox": [
+            21,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_bow\\corsario-m-attack_bow-01.png",
+          "sha256": "005e8ebfdae97b93f033754063f42c7b6ed2dccd276ece23c462973e85f73919",
+          "alpha_bbox": [
+            16,
+            94,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_bow\\corsario-m-attack_bow-02.png",
+          "sha256": "7d00d8e40ef88dbeb96db44d1a26c3d6465a87f303e02e2976bc4d290c58282b",
+          "alpha_bbox": [
+            10,
+            94,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_bow\\corsario-m-attack_bow-03.png",
+          "sha256": "f079b15d184e866596d22f1f3a122d119ee371a588efb16d9d6eee87f19f2787",
+          "alpha_bbox": [
+            8,
+            94,
+            117,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_bow\\corsario-m-attack_bow-04.png",
+          "sha256": "3b378db916852955fc28c78de421373a53ae77b96a9092ec65cc1b51ba5d81e5",
+          "alpha_bbox": [
+            7,
+            94,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_staff\\corsario-m-attack_staff-01.png",
+          "sha256": "e48b47dc7b5e8bd56898f7cbce4f853f15154e1aadcbdf5b78cd5e5127ea1221",
+          "alpha_bbox": [
+            25,
+            93,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_staff\\corsario-m-attack_staff-02.png",
+          "sha256": "1c1f1f0dda494aa939e45664d5a6eedbaf502de5291d07a520b495494767ce28",
+          "alpha_bbox": [
+            20,
+            93,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_staff\\corsario-m-attack_staff-03.png",
+          "sha256": "581b513f9d9e784071e723c9300475e3bfb98866a18dc9f47fbc1a2b10a56799",
+          "alpha_bbox": [
+            25,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_staff\\corsario-m-attack_staff-04.png",
+          "sha256": "9639dc74a5e154a012db188f670150753b2a4cb769e5544dff71e77f52df20f3",
+          "alpha_bbox": [
+            25,
+            93,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_mace\\corsario-m-attack_mace-01.png",
+          "sha256": "a69d745593df776470a5d2af0b001aeaf06a7103b5079a717147a25bb738a5b8",
+          "alpha_bbox": [
+            23,
+            93,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_mace\\corsario-m-attack_mace-02.png",
+          "sha256": "42b27ef1222fd55b08212dc58b9c876bf51b1b20cd95d4d6f0459438b139b3cd",
+          "alpha_bbox": [
+            27,
+            94,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_mace\\corsario-m-attack_mace-03.png",
+          "sha256": "74032b456608c7c88783f915508913fc30ca3244b71b840dd7bed77833c302d0",
+          "alpha_bbox": [
+            27,
+            103,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_mace\\corsario-m-attack_mace-04.png",
+          "sha256": "91b1fa96036d0e9475ff5f46b219f7d84d39506dc0373caf98ea7a24d5bfd6ca",
+          "alpha_bbox": [
+            32,
+            93,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_book\\corsario-m-attack_book-01.png",
+          "sha256": "5cca0118c47edf6d3d6b1837c9d41d5f8aa64649ee07314fa8511a79aa8aceb1",
+          "alpha_bbox": [
+            22,
+            93,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_book\\corsario-m-attack_book-02.png",
+          "sha256": "6a5cd7a2f300a846a6ad8d88365f36dbfa1d52316d4003f5de42955c3b364eba",
+          "alpha_bbox": [
+            22,
+            93,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_book\\corsario-m-attack_book-03.png",
+          "sha256": "a83c5f8f214afb812839f1079fca185bd5355a145d13965ec7b50c71eb263083",
+          "alpha_bbox": [
+            22,
+            93,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_book\\corsario-m-attack_book-04.png",
+          "sha256": "e8f07533d8245807dfcaf80540daaabe6f2fd8acba0c31469844a35a0b77c229",
+          "alpha_bbox": [
+            22,
+            93,
+            94,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_gloves\\corsario-m-attack_gloves-01.png",
+          "sha256": "1d974c2465f68dbc7c6a57ac30289d0411f5d481b7f769933d962f91860978c9",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_gloves\\corsario-m-attack_gloves-02.png",
+          "sha256": "854338a37dc5ceb1346c28caf115c958ff8b9a3a8a5abad9e45eff8e313adc7b",
+          "alpha_bbox": [
+            19,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_gloves\\corsario-m-attack_gloves-03.png",
+          "sha256": "fcbc33eacacb16e898e8f3a0b4dca48745c6cbd05145c689351ddb4c0f196d5b",
+          "alpha_bbox": [
+            24,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\corsario\\m\\frames\\attack_gloves\\corsario-m-attack_gloves-04.png",
+          "sha256": "a430706a079987dec5b8ec31daf23a1e82f6a9906d476ec5e720836722a22675",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
