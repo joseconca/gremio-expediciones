@@ -281,10 +281,17 @@ export default function EscuelaCombatePage() {
               <div className="min-w-0">
                 <h2 className="mt-1 text-xl font-black text-[#f0dfbd] sm:text-2xl">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
                 {rasgoActivo && (
-                  <div className="mt-2">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#ad9877]">Rasgo de clase</p>
-                    <h3 className="mt-1 text-sm font-bold text-amber-200">{rasgoActivo.nombre}</h3>
-                    <p className="mt-0.5 text-sm leading-5 text-[#d4c3a6]">{rasgoActivo.descripcion}</p>
+                  <div className="mt-2 flex items-start gap-3">
+                    <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] shadow-[inset_0_1px_0_rgba(255,230,170,0.12)]">
+                      <svg className="h-8 w-8" viewBox="0 0 24 24" focusable="false">
+                        <use href={`/sprites/rasgos.svg#${profesionId}`} />
+                      </svg>
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#ad9877]">Rasgo de clase</p>
+                      <h3 className="mt-1 text-sm font-bold text-amber-200">{rasgoActivo.nombre}</h3>
+                      <p className="mt-0.5 text-sm leading-5 text-[#d4c3a6]">{rasgoActivo.descripcion}</p>
+                    </div>
                   </div>
                 )}
               </div>
