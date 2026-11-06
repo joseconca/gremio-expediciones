@@ -1,5 +1,6 @@
 "use client";
 
+import IconoRasgo from "@/components/progresion/IconoRasgo";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
@@ -283,9 +284,7 @@ export default function EscuelaCombatePage() {
                 {rasgoActivo && (
                   <div className="mt-2 flex items-start gap-3">
                     <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] shadow-[inset_0_1px_0_rgba(255,230,170,0.12)]">
-                      <svg className="h-8 w-8" viewBox="0 0 24 24" focusable="false">
-                        <use href={`/sprites/rasgos.svg#${profesionId}`} />
-                      </svg>
+                      <IconoRasgo claseId={profesionId} />
                     </span>
                     <div className="min-w-0">
                       <p className="text-[11px] font-bold uppercase tracking-wider text-[#ad9877]">Rasgo de clase</p>

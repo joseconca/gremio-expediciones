@@ -1,5 +1,6 @@
 "use client";
 
+import IconoRasgo from "@/components/progresion/IconoRasgo";
 import { RASGOS_CLASE } from "@/lib/catalogos/rasgos-clase";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -241,9 +242,12 @@ export default function PanelProfesiones({
                 </span>
               </p>
               {rasgoActivo && (
-                <p className="mt-1 text-xs text-[#b6a183]">
-                  <strong className="text-[#e8d4ab]">{rasgoActivo.nombre}</strong> · {rasgoActivo.descripcion}
-                </p>
+                <div className="mt-1 flex items-start gap-2">
+                  <IconoRasgo claseId={datos.profesionActivaId ?? "novato"} className="h-8 w-8 rounded border border-amber-800/80 bg-[#191612] p-1" />
+                  <p className="text-xs text-[#b6a183]">
+                    <strong className="text-[#e8d4ab]">{rasgoActivo.nombre}</strong> · {rasgoActivo.descripcion}
+                  </p>
+                </div>
               )}
             </div>
             <div className="shrink-0 border-l border-[#4d3927] pl-3 text-right">
@@ -311,7 +315,10 @@ export default function PanelProfesiones({
                     }`} style={{ left: x, top: y, width: ANCHO_NODO, height: ALTO_NODO }}>
                       <div className="min-w-0">
                         <div className="flex items-start justify-between gap-1">
-                          <h3 className={`line-clamp-2 text-[11px] font-black leading-4 ${clase.esMisterio ? "text-[#a9957b] tracking-wider" : "text-[#f1dfba]"}`}>
+                          {!clase.esMisterio && RASGOS_CLASE[clase.id] && (
+                            <IconoRasgo claseId={clase.id} className="h-5 w-5 rounded border border-amber-800/80 bg-[#191612] p-0.5" />
+                          )}
+                          <h3 className={`mr-auto line-clamp-2 text-[11px] font-black leading-4 ${clase.esMisterio ? "text-[#a9957b] tracking-wider" : "text-[#f1dfba]"}`}>
                             {clase.esMisterio ? "???" : clase.nombre}
                           </h3>
                           <span className={`shrink-0 text-[9px] font-black ${

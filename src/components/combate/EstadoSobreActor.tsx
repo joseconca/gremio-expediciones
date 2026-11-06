@@ -23,7 +23,7 @@ export default function EstadoSobreActor({ ficha, enemigo = false, efectos = [],
       {(ficha.estado === "huyo" || ficha.hp <= 0) && <small>{ficha.estado === "huyo" ? "Retirado" : "Caído"}</small>}
     </button>
     <div className={styles.effects} data-fila-efectos>
-      <IndicadoresEfectosCombate efectos={efectos} comidaPreparada={comida} habilidades={habilidades} bonificacionesComida={bonificacionesComida} />
+      <IndicadoresEfectosCombate claseId={ficha.claseId} efectos={efectos} comidaPreparada={comida} habilidades={habilidades} bonificacionesComida={bonificacionesComida} />
     </div>
   </div>;
 }

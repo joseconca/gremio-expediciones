@@ -1,6 +1,8 @@
 "use client";
 
+import IconoRasgo from "@/components/progresion/IconoRasgo";
 import { MARCA_REACTIVO } from "@/lib/expediciones/combate/rasgos-hibridos";
+import { RASGOS_CLASE } from "@/lib/catalogos/rasgos-clase";
 import Image from "next/image";
 import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/presentacion/descripciones-efectos";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
@@ -8,14 +10,16 @@ import { detalleNumericoHabilidad } from "@/lib/progresion/habilidades/descripci
 import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
-import { leerEfectosCombate } from "@/lib/expediciones/combate/estados-combate";
+import { leerEfectosCombate, obtenerTurnoPersonal } from "@/lib/expediciones/combate/estados-combate";
 import type { TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
 
 type Indicador = {
   id: string;
   nombre: string;
   descripcion: string;
-  src: string;
+  src?: string;
+  rasgoId?: string;
+  sinContador?: boolean;
   emoji: string;
   turnosRestantes: number | null;
 };
@@ -34,6 +38,19 @@ const CONFIGURACION_ESTADO: Record<Exclude<TipoEfectoTemporalHabilidad, "interno
   bonus_evasion: { nombre: "Evasión aumentada", emoji: "💨", sprite: "bonus_evasion.svg" },
   bonus_precision: { nombre: "Precisión aumentada", emoji: "🎯", sprite: "bonus_ataque.svg" },
   barrera: { nombre: "Barrera de negación", emoji: "🔰", sprite: "bonus_defensa.svg" },
+};
+
+const RASGOS_PERMANENTES = new Set(["mago", "elementalista", "berserker", "gran_maestro", "francotirador"]);
+const RASGOS_DE_ESTADO: Readonly<Record<string, string>> = {
+  Amparo: "acolito", "Nota al margen": "escriba_arcano", Sentencia: "justiciero",
+  Contraofensiva: "senor_guerra", [MARCA_REACTIVO]: "alquimista",
+  _ascension: "superNovato", _respiracion: "monje", _pasoVelado: "ninja",
+  _estribillo: "bardo", _aMiSenal: "heraldo_guerra", _votoAuxilio: "cruzado",
+  _absolucion: "inquisidor", _semillaSilvestre: "druida", _presa: "cazador",
+  _presagio: "oraculo", _lineaLanzas: "mariscal", _luzGuardia: "paladin",
+  _cosechaAlmas: "nigromante", _cicloLuz: "arconte", _sentencia: "justiciero",
+  _contraofensiva: "senor_guerra", _mantenerLinea: "centinela", _templeCampana: "herrero",
+  _porLaEspalda: "asesino", _banderaAbordaje: "corsario", _leerHuellas: "rastreador",
 };
 
 function IconoIndicador({
@@ -61,7 +78,9 @@ function IconoIndicador({
       onContextMenu={(evento) => evento.preventDefault()}
       className={`relative flex h-7 w-7 shrink-0 touch-manipulation items-center justify-center rounded border bg-stone-950/95 shadow-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 ${seleccionado ? "border-amber-300 ring-1 ring-amber-300/60" : "border-stone-500/80 hover:border-stone-300"}`}
     >
-      {spriteFallido ? (
+      {indicador.rasgoId ? (
+        <IconoRasgo claseId={indicador.rasgoId} className="h-[18px] w-[18px]" />
+      ) : spriteFallido || !indicador.src ? (
         <span aria-hidden="true" className="text-[17px] leading-none">{indicador.emoji}</span>
       ) : (
         <Image
@@ -75,38 +94,62 @@ function IconoIndicador({
           onError={() => setSpriteFallido(true)}
         />
       )}
-      <span className="absolute right-0 top-0 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
+      {!indicador.sinContador && <span className="absolute right-0 top-0 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
         {duracion}
-      </span>
+      </span>}
     </button>
   );
 }
 
 export default function IndicadoresEfectosCombate({
   efectos,
+  claseId,
   comidaPreparada,
   habilidades = [],
   bonificacionesComida,
 }: {
   efectos: unknown;
+  claseId?: string | null;
   comidaPreparada?: string | null;
   bonificacionesComida?: unknown;
   habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[];
 }) {
-  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e => e.habilidadId === MARCA_REACTIVO || (e.tipo !== "interno" && (e.tipo !== "tactico" || e.datosTacticos?.estados.some(s => !s.clave.startsWith("_"))))).map((efecto) => {
-    const reactivo = efecto.tipo === "interno" && efecto.habilidadId === MARCA_REACTIVO;
+  const estados = leerEfectosCombate(efectos);
+  const turno = obtenerTurnoPersonal(estados);
+  const indicadores: Indicador[] = estados.flatMap((efecto) => {
+    const { habilidadId } = efecto;
+    const rasgoId = efecto.tipo === "danza" ? "danzaespadas" : RASGOS_DE_ESTADO[habilidadId];
+    if (efecto.tipo === "interno") {
+      if (!rasgoId) return [];
+      if (["_ascension", "_respiracion", "_luzGuardia"].includes(habilidadId) && efecto.valor <= 0) return [];
+      if (habilidadId === "_presa" && !efecto.familia) return [];
+      if (["_mantenerLinea", "_templeCampana"].includes(habilidadId) && efecto.valor !== turno) return [];
+      if (["_porLaEspalda", "_banderaAbordaje"].includes(habilidadId) && efecto.valor < turno) return [];
+    }
+    if (efecto.tipo === "tactico" && !efecto.datosTacticos?.estados.some(s => !s.clave.startsWith("_"))) return [];
+    const rasgo = rasgoId ? RASGOS_CLASE[rasgoId] : undefined;
+    const reactivo = habilidadId === MARCA_REACTIVO;
     const configuracion = CONFIGURACION_ESTADO[efecto.tipo === "interno" ? "tactico" : efecto.tipo];
     const habilidad = obtenerHabilidadPorId(efecto.habilidadId);
     const turnos = Math.max(1, Math.floor(efecto.turnosRestantes));
     return {
       id: `estado:${efecto.habilidadId}:${efecto.tipo}:${efecto.objetivo ?? "enemigo"}`,
-      nombre: reactivo ? "Reactivo" : habilidad?.nombre ?? configuracion.nombre,
-      descripcion: reactivo ? "Otra aplicación de Reactivo detona la marca." : describirEstadoCombate(efecto),
+      nombre: reactivo ? "Reactivo" : habilidad?.nombre ?? rasgo?.nombre ?? configuracion.nombre,
+      descripcion: reactivo ? "Otra aplicación de Reactivo detona la marca."
+        : habilidadId === "_ascension" ? `${efecto.valor} cargas · +${efecto.valor * 20} % a las estadísticas de combate.`
+        : efecto.tipo === "interno" ? rasgo?.descripcion ?? "" : describirEstadoCombate(efecto),
+      rasgoId,
+      sinContador: efecto.tipo === "interno",
       src: `/sprites/effects/state/${configuracion.sprite}`,
       emoji: configuracion.emoji,
       turnosRestantes: reactivo ? null : turnos,
     };
   });
+
+  if (claseId && RASGOS_PERMANENTES.has(claseId)) {
+    const rasgo = RASGOS_CLASE[claseId];
+    if (rasgo) indicadores.push({ ...rasgo, id: `rasgo:${claseId}`, rasgoId: claseId, emoji: "✦", turnosRestantes: null });
+  }
 
   const comida = obtenerComidaTaberna(comidaPreparada);
   if (comida) {
