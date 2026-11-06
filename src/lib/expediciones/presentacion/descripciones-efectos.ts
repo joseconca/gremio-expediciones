@@ -2,10 +2,12 @@ import type { EstadoEfectoHabilidad } from "../../tiposJuego";
 import { obtenerHabilidadPorId } from "../../habilidades";
 
 export function describirEstadoCombate(efecto: EstadoEfectoHabilidad): string {
+  if (efecto.familia === "amparo") return `Absorbe hasta ${efecto.valor} de daño directo.`;
   const numero = (n: number) => new Intl.NumberFormat("es", { maximumFractionDigits: 2 }).format(n);
   const valor = numero(efecto.valor);
   const porcentaje = numero(efecto.valor * 100);
   const textos: Record<EstadoEfectoHabilidad["tipo"], string> = {
+    interno: "",
     tactico: efecto.datosTacticos?.estados.filter(e=>!e.clave.startsWith("_")).map(e => {
       const nombre = obtenerHabilidadPorId(e.fuenteId)?.nombre??e.clave.replaceAll("_"," ");
       const descripcion = e.familia === "guardia" ? `absorbe hasta ${numero(e.valor)} de daño directo`
@@ -16,8 +18,12 @@ export function describirEstadoCombate(efecto: EstadoEfectoHabilidad): string {
                 : e.familia === "resistencia" ? `reduce un ${numero(e.valor*100)} % la potencia del siguiente perjuicio`
                   : e.familia === "acompanante" ? `${numero(e.valor)} de daño o protección por orden; ${e.cargas} órdenes restantes`
                     : `${e.cargas} ${e.cargas === 1 ? "carga preparada" : "cargas preparadas"}, consumible por una técnica compatible`;
-      return `${nombre}: ${descripcion}. ${e.restantes} ${e.reloj === "ciclo" ? "ciclos" : "turnos propios"} restantes`;
+      return `${nombre}: ${descripcion}. ${e.restantes} turnos propios restantes`;
     }).join("; ") || "Sin preparaciones activas",
+    danza: efecto.familia === "gran_compas" ? "Duplica la potencia de las danzas de este lanzador"
+      : efecto.familia === "victoria" ? `+${porcentaje} % de ataque físico y mágico`
+      : efecto.familia === "viento" ? `+${porcentaje} % de velocidad y +${numero(efecto.valor * 200 / 3)} puntos porcentuales de esquiva`
+      : `Reduce un ${porcentaje} % el daño recibido. Escudo restante de ${numero(efecto.escudoDanza ?? 0)} PV`,
     dano_progresivo: `${valor} de daño por turno`,
     curacion_progresiva: `${valor} de cura por turno`,
     bonus_defensa: `+${valor} de defensa física`,

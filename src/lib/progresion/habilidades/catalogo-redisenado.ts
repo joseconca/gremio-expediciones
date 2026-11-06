@@ -52,16 +52,20 @@ export function describirReglaPasiva(regla: ReglaPasiva): string {
     : "Una vez por ciclo";
   return `${condicion[regla.condicion]}, ${ventaja[regla.ventaja]}. ${frecuencia}. Las ventajas de la misma familia no se acumulan.`;
 }
-export function describirDisenoActiva(d: DisenoActiva): string {
+export function describirDisenoActiva(d: DisenoActiva, habilidadId?: string): string {
   const porc = (n: number) => Math.round(n * 10000) / 100;
   const partes: string[] = [];
+  if (habilidadId === "danzaespadas_ataque") return "Da un 15 % de velocidad y 10 puntos de esquiva a una fila aliada durante sus dos próximos turnos.";
+  if (habilidadId === "danzaespadas_tactica") return "Da un 10–20 % de ataque físico y mágico según el Job a una fila aliada durante sus dos próximos turnos.";
+  if (habilidadId === "danzaespadas_tecnica_adicional") return "Cada aliado de la fila recibe un escudo del 20 % de sus propios PV máximos y un 20 % menos de daño durante sus dos próximos turnos.";
+  if (habilidadId === "danzaespadas_avanzada") return "Duplica la potencia de tus danzas activas hasta el final del próximo turno de cada receptor.";
   if(d.efecto==="dano")partes.push(`Ataque con potencia ×${d.potencia}.`);
   if(d.cura)partes.push(d.efecto==="curacion_progresiva"?`Cura un ${porc(d.cura)} % por turno durante tres turnos.`:`Cura un ${porc(d.cura)} % de vida máxima.`);
   if(d.herida)partes.push(`Herida: ${porc(d.herida)} % del ataque por pulso durante ${d.duracion} turnos.`);
   if(d.vendaje)partes.push(`Vendaje: ${porc(d.vendaje)} % de vida por turno durante ${d.duracion??3} turnos.`);
   if(d.barrera)partes.push("Bloquea el siguiente impacto directo durante dos turnos; los pulsos no la consumen.");
   if(d.drenaje)partes.push(`Drena un ${Math.round(d.drenaje*100)} % del daño efectivo, con límite del 8 % de vida del lanzador.`);
-  if(d.area)partes.push(`Afecta a ${d.area}; el presupuesto se reparte entre sus objetivos.`);
+  if (d.area) partes.push(`Afecta a ${d.area}; el presupuesto se reparte entre sus objetivos.`);
   for (const op of d.operaciones) {
     switch (op.tipo) {
       case "estado": {
@@ -207,7 +211,7 @@ export function crearCatalogoRedisenado(
     const h: DefinicionHabilidad = {
       ...original,
       nombre: NOMBRES_REDISENIO[original.id] ?? original.nombre,
-      descripcion: describirDisenoActiva(d),
+      descripcion: describirDisenoActiva(d, original.id),
       versionReglas: 2,
       disenoActiva: d,
       efecto: d.efecto,
@@ -278,6 +282,9 @@ export function crearCatalogoRedisenado(
       h.cooldownTurnos = 6;
     }
     h.cooldownTurnos = Math.max(2, h.cooldownTurnos ?? 3);
+
+    if (h.id === "danzaespadas_ataque") h.cooldownTurnos = 2;
+    if (h.id === "danzaespadas_avanzada") h.cooldownTurnos = 4;
 
     if (h.id === "esfera_invocada") {
       h.costeMana = 16;

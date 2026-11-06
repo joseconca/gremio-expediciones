@@ -286,6 +286,7 @@ export function aplicarMecanicasHabilidad(
       ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [{
         ...operacion,
         potencia: Math.max(1, Math.floor(Math.max(actor.ataque, actor.ataqueMagico) * operacion.potencia)),
+        ...(contexto.claseId === "invocador" ? { elemento: habilidad.disenoActiva?.elemento ?? "arcano" } : {}),
       }]);
     } else if (operacion.tipo === "estado" && operacion.familia === "sello") {
       ejecutarComandosTacticos(mundo, actor.id, objetivo.id, habilidad.id, [{

@@ -5,7 +5,7 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const page = fs.readFileSync(path.join(root, "src/app/base/escuela-batalla/page.tsx"), "utf8");
-const personaje = fs.readFileSync(path.join(root,"src/app/base/personaje/page.tsx"),"utf8");
+const personaje = fs.readFileSync(path.join(root,"src/components/personaje/HabilidadesPersonaje.tsx"),"utf8");
 
 test("la redistribución de puntos se gestiona desde la Escuela de Batalla", () => {
   const claseActual = page.indexOf('aria-label="Profesión activa"');
@@ -36,6 +36,6 @@ test("el selector filtra por clase de origen y permite mostrar habilidades apren
   assert.ok(page.includes('claseCatalogoSeleccionada !== "todas" && clasePropietariaId !== claseCatalogoSeleccionada'));
   assert.ok(personaje.includes("const habilidadesFiltradas = useMemo"));
   assert.ok(personaje.includes("clasesConHabilidadesAprendidas"));
-  assert.ok(personaje.includes('claseHabilidadSeleccionada!=="todas"&&claseId!==claseHabilidadSeleccionada'));
+  assert.ok(personaje.includes('claseSeleccionada!=="todas"&&claseId!==claseSeleccionada'));
   assert.ok(page.includes("cambiarClaseCatalogo"));
 });

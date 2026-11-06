@@ -64,26 +64,27 @@ export function calcularEstadisticasPersonaje(
     pasivas,
   });
 
+  const amplificar = (valor: number) => claseActualId === "gran_maestro" ? valor * 115 / 100 : valor;
   const precision = totalSinRedondear.precision ?? 75;
   const evasion = totalSinRedondear.evasion ?? 0;
 
   const total: ModificadoresEstadisticas = {
-    hpMaximo: Math.max(1, Math.floor(totalSinRedondear.hpMaximo)),
-    ataque: Math.max(1, Math.floor(totalSinRedondear.ataque)),
-    defensa: Math.max(0, Math.floor(totalSinRedondear.defensa)),
-    velocidad: Math.max(1, Math.floor(totalSinRedondear.velocidad)),
+    hpMaximo: Math.max(1, Math.floor(amplificar(totalSinRedondear.hpMaximo))),
+    ataque: Math.max(1, Math.floor(amplificar(totalSinRedondear.ataque))),
+    defensa: Math.max(0, Math.floor(amplificar(totalSinRedondear.defensa))),
+    velocidad: Math.max(1, Math.floor(amplificar(totalSinRedondear.velocidad))),
     capacidadCarruaje: Math.max(0, Math.floor(totalSinRedondear.capacidadCarruaje)),
-    probCritico: Math.max(0, Math.min(0.75, totalSinRedondear.probCritico)),
-    danoCritico: Math.max(1, totalSinRedondear.danoCritico),
-    ataqueMagico: Math.max(1, Math.floor(totalSinRedondear.ataqueMagico ?? 1)),
-    defensaMagica: Math.max(0, Math.floor(totalSinRedondear.defensaMagica ?? 0)),
-    precision: Math.max(1, Math.min(100, precision)),
-    evasion: Math.max(0, Math.min(0.6, evasion)),
-    energiaMaxima: Math.max(1, Math.floor(totalSinRedondear.energiaMaxima ?? 1)),
-    manaMaximo: Math.max(1, Math.floor(totalSinRedondear.manaMaximo ?? 1)),
-    regeneracionVidaPorTurno: Math.max(0, totalSinRedondear.regeneracionVidaPorTurno ?? 0),
-    regeneracionEnergiaPorTurno: Math.max(0, totalSinRedondear.regeneracionEnergiaPorTurno ?? 0),
-    regeneracionManaPorTurno: Math.max(0, totalSinRedondear.regeneracionManaPorTurno ?? 0),
+    probCritico: Math.max(0, Math.min(0.75, amplificar(totalSinRedondear.probCritico))),
+    danoCritico: Math.max(1, amplificar(totalSinRedondear.danoCritico)),
+    ataqueMagico: Math.max(1, Math.floor(amplificar(totalSinRedondear.ataqueMagico ?? 1))),
+    defensaMagica: Math.max(0, Math.floor(amplificar(totalSinRedondear.defensaMagica ?? 0))),
+    precision: Math.max(1, Math.min(100, amplificar(precision))),
+    evasion: Math.max(0, Math.min(0.6, amplificar(evasion))),
+    energiaMaxima: Math.max(1, Math.floor(amplificar(totalSinRedondear.energiaMaxima ?? 1))),
+    manaMaximo: Math.max(1, Math.floor(amplificar(totalSinRedondear.manaMaximo ?? 1))),
+    regeneracionVidaPorTurno: Math.max(0, amplificar(totalSinRedondear.regeneracionVidaPorTurno ?? 0)),
+    regeneracionEnergiaPorTurno: Math.max(0, amplificar(totalSinRedondear.regeneracionEnergiaPorTurno ?? 0)),
+    regeneracionManaPorTurno: Math.max(0, amplificar(totalSinRedondear.regeneracionManaPorTurno ?? 0)),
   };
 
   const atributos = calcularAportesPorAtributo(personaje, claseActualId);

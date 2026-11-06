@@ -46,6 +46,8 @@ export function resolverAtaqueJugador(combate: {
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
+  danoMagicoDesdeAtaqueFisico?: boolean;
+  multiplicadorDano?: number;
   jugadorNivel: number;
   jugadorProbCritico: number;
   jugadorDanoCritico: number;
@@ -68,21 +70,22 @@ export function resolverAtaqueJugador(combate: {
     };
   }
 
-  if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
-    return falloPorPrecision("jugador", combate.enemigoNombre);
+  const tiradaImpacto = dado === 20 ? 0 : Math.random();
+  if (tiradaImpacto > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
+    return { ...falloPorPrecision("jugador", combate.enemigoNombre), esquivado: tiradaImpacto <= calcularProbabilidadImpacto(combate.jugadorPrecision) };
   }
 
   const variacion = 0.8 + Math.random() * 0.4;
 
   const ataqueMagico = combate.jugadorAtaqueMagico ?? 0;
   const usarAtaqueMagico =
-    combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.jugadorAtaque;
+    !combate.danoMagicoDesdeAtaqueFisico && combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.jugadorAtaque;
   const ataqueEfectivo = usarAtaqueMagico ? ataqueMagico : combate.jugadorAtaque;
-  const defensaEfectiva = usarAtaqueMagico
+  const defensaEfectiva = usarAtaqueMagico || combate.danoMagicoDesdeAtaqueFisico
     ? (combate.enemigoDefensaMagica ?? combate.enemigoDefensa)
     : combate.enemigoDefensa;
   const danoBase =
-    Math.floor(ataqueEfectivo * variacion) + combate.jugadorNivel;
+    Math.floor(ataqueEfectivo * variacion * (combate.multiplicadorDano ?? 1)) + combate.jugadorNivel;
 
   const esCritico = Math.random() < combate.jugadorProbCritico || dado === 20;
 
@@ -95,6 +98,7 @@ export function resolverAtaqueJugador(combate: {
   return {
     actor: "jugador",
     tipo: "ataque",
+    tipoDanoBasico: usarAtaqueMagico || combate.danoMagicoDesdeAtaqueFisico ? "magico" : "fisico",
     animacion: esCritico ? "ofensiva_potenciada" : "ofensiva",
     dano,
     critico: esCritico,
@@ -109,6 +113,8 @@ export function resolverAtaqueEnemigo(combate: {
   enemigoAtaque: number;
   enemigoAtaqueMagico?: number;
   usarMejorAtaqueMagico?: boolean;
+  danoMagicoDesdeAtaqueFisico?: boolean;
+  multiplicadorDano?: number;
   enemigoProbCritico?: number;
   enemigoDanoCritico?: number;
   jugadorDefensa: number;
@@ -130,20 +136,21 @@ export function resolverAtaqueEnemigo(combate: {
     };
   }
 
-  if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.enemigoPrecision, combate.jugadorEvasion)) {
-    return falloPorPrecision("enemigo", combate.enemigoNombre);
+  const tiradaImpacto = dado === 20 ? 0 : Math.random();
+  if (tiradaImpacto > calcularProbabilidadImpacto(combate.enemigoPrecision, combate.jugadorEvasion)) {
+    return { ...falloPorPrecision("enemigo", combate.enemigoNombre), esquivado: tiradaImpacto <= calcularProbabilidadImpacto(combate.enemigoPrecision) };
   }
 
   const variacion = 0.8 + Math.random() * 0.4;
 
   const ataqueMagico = combate.enemigoAtaqueMagico ?? 0;
   const usarAtaqueMagico =
-    combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.enemigoAtaque;
+    !combate.danoMagicoDesdeAtaqueFisico && combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.enemigoAtaque;
   const ataqueEfectivo = usarAtaqueMagico ? ataqueMagico : combate.enemigoAtaque;
-  const defensaEfectiva = usarAtaqueMagico
+  const defensaEfectiva = usarAtaqueMagico || combate.danoMagicoDesdeAtaqueFisico
     ? (combate.jugadorDefensaMagica ?? combate.jugadorDefensa)
     : combate.jugadorDefensa;
-  const danoBase = Math.floor(ataqueEfectivo * variacion) + 1;
+  const danoBase = Math.floor(ataqueEfectivo * variacion * (combate.multiplicadorDano ?? 1)) + 1;
 
   const probCritico = combate.enemigoProbCritico ?? 0.1;
   const danoCritico = combate.enemigoDanoCritico ?? 1.5;
@@ -160,6 +167,7 @@ export function resolverAtaqueEnemigo(combate: {
     actor: "enemigo",
     dano,
     tipo: "ataque",
+    tipoDanoBasico: usarAtaqueMagico || combate.danoMagicoDesdeAtaqueFisico ? "magico" : "fisico",
     animacion: esCritico ? "ofensiva_potenciada" : "ofensiva",
     critico: esCritico,
     texto: esCritico

@@ -635,7 +635,7 @@ export default function CombateModal({
               </span>
             )}
             <span className="shrink-0 rounded bg-stone-900 px-3 py-1 font-mono text-[10px] sm:text-xs tracking-widest text-stone-500 border border-stone-800 shadow-inner">
-              RONDA {combate.ronda}
+              TURNO {combate.ronda}
             </span>
             {partyMode && onCerrar && (
               <button type="button" onClick={onCerrar} aria-label="Cerrar ventana de combate"

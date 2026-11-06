@@ -1,3 +1,5 @@
+import { obtenerJobRasgo } from "@/lib/expediciones/combate/rasgos-clase";
+import { bonusEnergiaArena } from "@/lib/expediciones/combate/rasgos-tier3";
 import type { Prisma } from "@prisma/client";
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/progresion/estadisticas/estadisticas-personaje";
@@ -9,6 +11,7 @@ export async function regenerarRecursosTurnoParty(
   tx: Prisma.TransactionClient,
   personajeId: string,
   usuarioId: string,
+  factor = 1,
 ) {
   const personaje = await tx.personaje.findUnique({
     where: { id: personajeId, usuarioId },
@@ -61,10 +64,11 @@ export async function regenerarRecursosTurnoParty(
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
   }, personaje.habilidades, modificadores).total;
-  const energiaMaxima = stats.energiaMaxima ?? 100;
-  const manaMaximo = stats.manaMaximo ?? 10;
+  const energiaMaxima = Math.floor((stats.energiaMaxima ?? 100) * factor);
+  const manaMaximo = Math.floor((stats.manaMaximo ?? 10) * factor);
   const recursos = calcularRegeneracionRecursosTurno(personaje.energiaActual, personaje.manaActual, energiaMaxima, manaMaximo,
-    stats.regeneracionManaPorTurno ?? 2, stats.regeneracionEnergiaPorTurno ?? energiaMaxima * 0.2, personaje.manaRegeneracionPendiente ?? 0);
+    (stats.regeneracionManaPorTurno ?? 2) * factor, (stats.regeneracionEnergiaPorTurno ?? (stats.energiaMaxima ?? 100) * 0.2) * factor +
+      bonusEnergiaArena(personaje.profesionActivaId, personaje.energiaActual, energiaMaxima, obtenerJobRasgo(personaje)), personaje.manaRegeneracionPendiente ?? 0);
   const { energiaActual, manaActual, manaRegeneracionPendiente } = recursos;
   if (energiaActual === personaje.energiaActual && manaActual === personaje.manaActual && manaRegeneracionPendiente === (personaje.manaRegeneracionPendiente ?? 0)) return;
   const actualizado = await tx.personaje.updateMany({

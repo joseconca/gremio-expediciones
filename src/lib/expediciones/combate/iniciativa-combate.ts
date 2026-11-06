@@ -1,11 +1,6 @@
 /**
- * Secuencia reproducible de iniciativa para combates PvE en solitario y party.
- *
- * Cada combatiente obtiene acciones en proporción a su velocidad respecto
- * a la más baja: 10/15/30 produce 1/2/3, y 10/100 produce 1/10. Se intercala una
- * acción de cada combatiente elegible por pasada, empezando por el más rápido.
- * Los empates se resuelven con un hash de semilla, actor y ronda, nunca con
- * aleatoriedad de servidor no reproducible.
+ * Cada participante tiene una próxima acción programada. Al actuar, espera
+ * 1 / velocidad unidades de tiempo antes de volver a actuar.
  */
 export type EquipoTurnoVelocidad = "jugador" | "enemigo";
 
@@ -18,13 +13,14 @@ export interface ActorTurnoVelocidad {
 export interface PasoTurnoVelocidad {
   actorId: string;
   equipo: EquipoTurnoVelocidad;
+  instante?: number;
+  velocidad?: number;
 }
 
 export interface AvanceTurnosVelocidad {
   turnoActual: PasoTurnoVelocidad | null;
   turnosPendientes: PasoTurnoVelocidad[];
   ronda: number;
-  nuevaRonda: boolean;
 }
 
 function hashDeterminista(valor: string): number {
@@ -63,7 +59,12 @@ export function normalizarSecuenciaTurnosVelocidad(valor: unknown): PasoTurnoVel
       !paso.actorId.trim() ||
       (paso.equipo !== "jugador" && paso.equipo !== "enemigo")
     ) return [];
-    return [{ actorId: paso.actorId, equipo: paso.equipo }];
+    return [{
+      actorId: paso.actorId,
+      equipo: paso.equipo,
+      ...(typeof paso.velocidad === "number" && Number.isFinite(paso.velocidad) && paso.velocidad > 0 ? { velocidad: paso.velocidad } : {}),
+      ...(typeof paso.instante === "number" && Number.isFinite(paso.instante) ? { instante: paso.instante } : {}),
+    }];
   });
 }
 
@@ -75,46 +76,23 @@ export function crearSecuenciaTurnosVelocidad(
   const actores = normalizarActores(actoresEntrada);
   if (actores.length === 0) return [];
 
-  const velocidadBase = Math.min(...actores.map((actor) => actor.velocidad));
-  const conAcciones = actores.map((actor) => ({
-    ...actor,
-    acciones: Math.max(1, Math.round(actor.velocidad / velocidadBase)),
-    desempate: hashDeterminista(`${semilla}:${actor.actorId}`),
-  })).sort((a, b) =>
+  const ordenados = actores.sort((a, b) =>
     b.velocidad - a.velocidad ||
-    a.desempate - b.desempate ||
+    hashDeterminista(`${semilla}:${a.actorId}`) - hashDeterminista(`${semilla}:${b.actorId}`) ||
     a.actorId.localeCompare(b.actorId),
   );
-
-  // Repartimos las acciones a lo largo del ciclo, en vez de agruparlas
-  // por pasadas. Así 3/2/1 queda C, B, C, A, C, B y no provoca que el actor
-  // más rápido actúe dos veces seguidas al cruzar el límite entre rondas.
-  const eventos = conAcciones.flatMap((actor, rango) => {
-    const desfase = rango / (conAcciones.length + 1);
-    return Array.from({ length: actor.acciones }, (_, indice) => ({
-      paso: { actorId: actor.actorId, equipo: actor.equipo },
-      instante: (indice / actor.acciones + desfase) % 1,
-      rango,
-      indice,
-    }));
-  }).sort((a, b) =>
-    a.instante - b.instante ||
-    a.rango - b.rango ||
-    a.indice - b.indice,
-  );
-  const secuencia: PasoTurnoVelocidad[] = eventos.map((evento) => evento.paso);
-
-  // Al reconstruir una cola faltante, mantener el actor elegido para el turno actual.
-  if (actorPreferido) {
-    const indice = secuencia.findIndex((p) => p.actorId === actorPreferido);
-    if (indice > 0) return [...secuencia.slice(indice), ...secuencia.slice(0, indice)];
-  }
-  return secuencia;
+  return ordenados.map((actor, indice) => ({
+    actorId: actor.actorId,
+    equipo: actor.equipo,
+    velocidad: actor.velocidad,
+    instante: actor.actorId === actorPreferido ? 0 : (indice + 1) * 1e-9,
+  })).sort((a, b) => a.instante - b.instante);
 }
 
 /**
  * Consume el actor actual, descarta los turnos restantes de combatientes caídos
- * y prepara el siguiente ciclo solo cuando ya no queda ninguna acción elegible.
+ * y vuelve a programar su turno. Los cambios de velocidad reajustan la
+ * espera que todavía no se ha consumido.
  */
 export function avanzarSecuenciaTurnosVelocidad(entrada: {
   turnosPendientes: unknown;
@@ -123,26 +101,43 @@ export function avanzarSecuenciaTurnosVelocidad(entrada: {
   semilla: string;
 }): AvanceTurnosVelocidad {
   const vivos = normalizarActores(entrada.actoresVivos);
-  const idsVivos = new Set(vivos.map((actor) => actor.actorId));
-  const restantes = normalizarSecuenciaTurnosVelocidad(entrada.turnosPendientes)
-    .slice(1)
-    .filter((paso) => idsVivos.has(paso.actorId));
-
-  if (restantes.length > 0) {
-    return {
-      turnoActual: restantes[0],
-      turnosPendientes: restantes,
-      ronda: entrada.ronda,
-      nuevaRonda: false,
-    };
+  const porId = new Map(vivos.map(actor => [actor.actorId, actor]));
+  const guardada = normalizarSecuenciaTurnosVelocidad(entrada.turnosPendientes);
+  let cola = guardada;
+  if (guardada.some(paso => paso.instante === undefined)) {
+    const reconstruida = crearSecuenciaTurnosVelocidad(vivos, entrada.semilla);
+    const unicos = new Map<string, PasoTurnoVelocidad>();
+    for (const paso of [...guardada, ...reconstruida]) {
+      if (!unicos.has(paso.actorId)) unicos.set(paso.actorId, paso);
+    }
+    cola = [...unicos.values()].map((paso, indice) => ({ ...paso, instante: indice * 1e-9 }));
   }
-
-  const ronda = entrada.ronda + 1;
-  const secuenciaNueva = crearSecuenciaTurnosVelocidad(vivos, `${entrada.semilla}:${ronda}`);
+  const actual = cola[0];
+  const ahora = actual?.instante ?? 0;
+  const pendientes = cola.slice(1).flatMap(paso => {
+    const vivo = porId.get(paso.actorId);
+    if (!vivo) return [];
+    const espera = Math.max(0, (paso.instante ?? ahora) - ahora);
+    return [{
+      ...paso,
+      instante: ahora + espera * (paso.velocidad ?? vivo.velocidad) / vivo.velocidad,
+      velocidad: vivo.velocidad,
+    }];
+  });
+  const actor = actual && porId.get(actual.actorId);
+  if (actor) {
+    pendientes.push({ actorId: actor.actorId, equipo: actor.equipo, velocidad: actor.velocidad, instante: ahora + 1 / actor.velocidad });
+  }
+  const programados = new Set(pendientes.map(paso => paso.actorId));
+  for (const vivo of vivos) {
+    if (!programados.has(vivo.actorId)) {
+      pendientes.push({ actorId: vivo.actorId, equipo: vivo.equipo, velocidad: vivo.velocidad, instante: ahora + 1 / vivo.velocidad });
+    }
+  }
+  pendientes.sort((a, b) => (a.instante ?? 0) - (b.instante ?? 0) || a.actorId.localeCompare(b.actorId));
   return {
-    turnoActual: secuenciaNueva[0] ?? null,
-    turnosPendientes: secuenciaNueva,
-    ronda,
-    nuevaRonda: true,
+    turnoActual: pendientes[0] ?? null,
+    turnosPendientes: pendientes,
+    ronda: entrada.ronda + 1,
   };
 }

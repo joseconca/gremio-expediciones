@@ -62,7 +62,8 @@ test("las pasivas condicionales tienen rango único y solo Mago conserva una res
 
 test("el Archimago debe reducir la frecuencia de sus técnicas caras cuando agota su reserva", () => {
   const rama = ["archimago", ...obtenerAncestrosClase("archimago")];
-  const progresos = rama.map((claseId) => ({ claseId, nivelJob: CLASES[claseId].nivelJobMaximo }));
+  const nivelesDePrueba = { novato: 20, mago: 40, elementalista: 60, archimago: 80 };
+  const progresos = rama.map((claseId) => ({ claseId, nivelJob: nivelesDePrueba[claseId] }));
   const stats = calcularEstadisticasDerivadasRpg(calcularAtributosClase("archimago", 50, 80, progresos), 50);
   const habilidades = ["lanza_arcana", "explosion_elemental", "cataclismo"].map(maxima);
   const primeros = simularRotacion(habilidades, stats, 30);

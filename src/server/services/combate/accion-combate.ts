@@ -1,3 +1,5 @@
+import { bonusEnergiaArena, prepararCostesTier3 } from "@/lib/expediciones/combate/rasgos-tier3";
+import { obtenerJobRasgo, prepararRasgoHabilidad } from "@/lib/expediciones/combate/rasgos-clase";
 import { calcularRegeneracionRecursosTurno } from "@/lib/expediciones/combate/recursos-combate";
 import { obtenerCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { esConsumibleRestaurador, calcularRestauracionConsumible } from "@/lib/expediciones/combate/consumibles-combate";
@@ -87,7 +89,7 @@ export async function otorgarExperienciaJob(
     nivelJob: actualizado.nivelJob,
     nivelesSubidos: actualizado.nivelesSubidos,
     experienciaJobGanada,
-    maestriaCompletada: actualizado.maestriaCompletada && !progreso.maestriaCompletada,
+    maestriaCompletada: actualizado.maestriaCompletada && progreso.nivelJob < definicion.nivelJobMaximo,
   };
 }
 
@@ -140,8 +142,10 @@ async function recuperarEnergiaLimitada(
   cantidad: number,
   mana = 0,
   pago?: DefinicionHabilidad,
+  factor = 1,
+  fraccionEnergiaFaltante = 0,
 ) {
-  if (!pago && cantidad <= 0 && mana <= 0) return;
+  if (!pago && cantidad <= 0 && mana <= 0 && fraccionEnergiaFaltante <= 0) return;
   const personaje = await tx.personaje.findUnique({
     where: { id: personajeId },
     select: {
@@ -178,13 +182,15 @@ async function recuperarEnergiaLimitada(
   }
 
   const estadisticas = calcularEstadisticasRecursosPersonaje(personaje);
+  const energiaMaxima = Math.floor((estadisticas.energiaMaxima ?? 100) * factor);
+  const manaMaximo = Math.floor((estadisticas.manaMaximo ?? 10) * factor);
   const energiaDisponible = Math.min(
     personaje.energiaActual,
-    estadisticas.energiaMaxima ?? 100
+    energiaMaxima
   );
   const manaDisponible = Math.min(
     personaje.manaActual,
-    estadisticas.manaMaximo ?? 10
+    manaMaximo
   );
   const costeE = Math.max(0, Math.floor(pago?.costeEnergia ?? 0));
   const costeM = Math.max(0, Math.floor(pago?.costeMana ?? 0));
@@ -194,8 +200,8 @@ async function recuperarEnergiaLimitada(
   }
 
   const energiaNueva = Math.min(
-    estadisticas.energiaMaxima ?? 100,
-    energiaDisponible - costeE + Math.floor(cantidad),
+    energiaMaxima,
+    energiaDisponible - costeE + Math.floor(cantidad + (energiaMaxima - energiaDisponible) * fraccionEnergiaFaltante),
   );
 
   // Mantener las mismas condiciones optimistas de actualización de recursos.
@@ -212,7 +218,7 @@ async function recuperarEnergiaLimitada(
       ...(actualizarMana
         ? {
             manaActual: Math.min(
-              estadisticas.manaMaximo ?? 10,
+              manaMaximo,
               manaDisponible - costeM + Math.floor(mana)
             ),
           }
@@ -228,9 +234,15 @@ export async function gastarRecursosHabilidad(
   tx: Prisma.TransactionClient,
   personajeId: string,
   habilidad: DefinicionHabilidad | null,
-  recuperacion: { energia: number; mana: number } = { energia:0,mana:0 },
+  recuperacion: { energia: number; mana: number; fraccionEnergiaFaltante?: number } = { energia:0,mana:0 },
+  factor = 1,
 ) {
-  if (!habilidad) return;
+  if (!habilidad) {
+    if (recuperacion.energia > 0 || recuperacion.mana > 0 || recuperacion.fraccionEnergiaFaltante) {
+      await recuperarEnergiaLimitada(tx, personajeId, recuperacion.energia, recuperacion.mana, undefined, factor, recuperacion.fraccionEnergiaFaltante);
+    }
+    return;
+  }
 
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
@@ -243,7 +255,7 @@ export async function gastarRecursosHabilidad(
   // los límites reales del personaje dentro de la misma transacción.
   if (habilidad.versionReglas === 2) {
     await recuperarEnergiaLimitada(
-      tx, personajeId, recuperacionEnergia, recuperacion.mana, habilidad
+      tx, personajeId, recuperacionEnergia, recuperacion.mana, habilidad, factor
     );
     return;
   }
@@ -251,7 +263,7 @@ export async function gastarRecursosHabilidad(
   // Las habilidades antiguas sin coste únicamente regeneran.
   if (costeEnergia === 0 && costeMana === 0) {
     await recuperarEnergiaLimitada(
-      tx, personajeId, recuperacionEnergia, recuperacion.mana
+      tx, personajeId, recuperacionEnergia, recuperacion.mana, undefined, factor
     );
     return;
   }
@@ -272,13 +284,15 @@ export async function gastarRecursosHabilidad(
     throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
   }
   await recuperarEnergiaLimitada(
-    tx, personajeId, recuperacionEnergia, recuperacion.mana
+    tx, personajeId, recuperacionEnergia, recuperacion.mana, undefined, factor
   );
 }
 
 export async function regenerarRecursosPorTurno(
   tx: Prisma.TransactionClient,
-  usuarioId: string
+  usuarioId: string,
+  factor = 1,
+  soloRasgoDeApertura = false,
 ) {
   const personaje = await tx.personaje.findUnique({
     where: { usuarioId },
@@ -323,15 +337,17 @@ export async function regenerarRecursosPorTurno(
 
   const estadisticas = calcularEstadisticasRecursosPersonaje(personaje);
 
-  const energiaMaxima = estadisticas.energiaMaxima ?? 100;
-  const manaMaximo = estadisticas.manaMaximo ?? 10;
+  const energiaMaxima = Math.floor((estadisticas.energiaMaxima ?? 100) * factor);
+  const manaMaximo = Math.floor((estadisticas.manaMaximo ?? 10) * factor);
+  const bonusArena = bonusEnergiaArena(personaje.profesionActivaId, personaje.energiaActual, energiaMaxima, obtenerJobRasgo(personaje));
+  if (soloRasgoDeApertura && bonusArena === 0) return;
   const recursosNuevos = calcularRegeneracionRecursosTurno(
     personaje.energiaActual,
     personaje.manaActual,
     energiaMaxima,
     manaMaximo,
-    estadisticas.regeneracionManaPorTurno ?? 2,
-    estadisticas.regeneracionEnergiaPorTurno ?? energiaMaxima * 0.2,
+    soloRasgoDeApertura ? 0 : (estadisticas.regeneracionManaPorTurno ?? 2) * factor,
+    bonusArena + (soloRasgoDeApertura ? 0 : (estadisticas.regeneracionEnergiaPorTurno ?? (estadisticas.energiaMaxima ?? 100) * 0.2) * factor),
     personaje.manaRegeneracionPendiente ?? 0,
   );
   const energiaNueva = recursosNuevos.energiaActual;
@@ -803,7 +819,14 @@ export async function prepararAccionCombate(
         );
       }
 
-      habilidad = ajustarHabilidadPorNivel(habilidadEncontrada, habilidadAprendida.nivel);
+      habilidad = prepararRasgoHabilidad(
+        personaje, ajustarHabilidadPorNivel(habilidadEncontrada, habilidadAprendida.nivel),
+        esPvp && actor === "defensor" ? efectosDefensor : efectos, obtenerHabilidadPorId,
+      );
+
+      habilidad = prepararCostesTier3(personaje.profesionActivaId ?? "novato", habilidad,
+        esPvp && actor === "defensor" ? efectosDefensor : efectos, personaje.manaActual,
+        esPvp && actor === "defensor" ? combate.enemigoHp : combate.jugadorHp);
 
       if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", habilidad.claseId)) {
         return NextResponse.json(

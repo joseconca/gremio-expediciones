@@ -1,3 +1,47 @@
+import { velocidadConDanza } from "@/lib/expediciones/combate/danzas-combate";
+import {
+  cerrarAccionTier35, corteEntrePlanos, prepararCompas, resolverImpactosTier35Roster,
+  registrarContraofensiva, registrarEsquivaTier35,
+} from "@/lib/expediciones/combate/rasgos-tier35";
+import {
+  multiplicadorCriticoTier3, potenciaRetaguardia, cerrarAccionTier3, consumirHuellas, criticoTier3, defensaReducida, esDisparoTier3,
+  marcarHuellas, potenciaVigia, precisionHuellas, resolverImpactosTier3Roster,
+  marcarPresagio, golpeConLanza, ponerLineaLanzas,
+  acortarPerjuicioAsceta, cargarLuzGuardia, cobrarAlma, expiraPresagio, registrarEsquivaTier3,
+} from "@/lib/expediciones/combate/rasgos-tier3";
+import { anotarProteccionTier3, crearRepresaliaRuptura, curaConsagracion } from "@/lib/expediciones/combate/protecciones-rasgos";
+import {
+  cerrarAccionHibrida, oroAbordaje, consumirSemillaSilvestre, curacionSemilla, instantaneaHostilHibrida,
+  multiplicadorOrden, registrarEsquivaHibrida, resolverApoyoHibrido, resolverImpactosHibridosRoster,
+} from "@/lib/expediciones/combate/rasgos-hibridos";
+import {
+  activarContraataque,
+  activarDeudaOscura,
+  activarSegundoAire,
+  actualizarRachaSuperNovato,
+  ajustarVidaAscension,
+  aplicarAmparo,
+  bonosContraObjetivo,
+  cerrarRasgoAccion,
+  consumirAbsolucion,
+  consumirEstribillo,
+  consumirNotaAlMargen,
+  contarPerjuicios,
+  hayMaldicionBrujo,
+  limitarGolpeLetal,
+  limitarVidaFueraCombate,
+  marcarNotaAlMargen,
+  multiplicadorAscension,
+  multiplicadorAtaqueRasgo,
+  multiplicadorDefensaRasgo,
+  obtenerClaseRasgo,
+  obtenerJobRasgo,
+  penetrarResistenciaMagica,
+  prepararEstribillo,
+  purificarConCura,
+  registrarObjetivoRasgo,
+  resolverFlechasRasgo,
+} from "@/lib/expediciones/combate/rasgos-clase";
 import { adjuntarPulsosEstado } from "./efectos-visualizacion";
 import { establecerCooldownHabilidad, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
@@ -38,13 +82,11 @@ import {
 import { resolverAtaqueJugador, resolverAtaqueEnemigo } from "@/lib/expediciones/combate/ataques-basicos";
 import { type AccionAnimadaCombate, resolverHabilidadJugador } from "@/lib/expediciones/combate";
 import {
-  procesarTicksPeriodicos,
-  avanzarEfectosCombate,
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
   leerEfectosCombate,
-  procesarEfectosTurno,
+  comenzarTurnoCombatiente,
 } from "../../../lib/expediciones/combate/estados-combate";
 import {
   prepararAccionCombate,
@@ -164,11 +206,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
     enemigoHp,
     enemigoDefensa,
   } = contexto;
+  let maximoJugador = combate.jugadorHpMaximo;
   const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
   let filaActorTactica: number | undefined;
-  let recursosHabilidad = { energia:0,mana:0 };
-  const instantaneaActorTactico = () => ({ id: usuario.id, hp: jugadorHp, hpMaximo: combate.jugadorHpMaximo, ataque: combate.jugadorAtaque, ataqueMagico: combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, defensa: jugadorDefensa, defensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa, posicion: combate.jugadorPosicion, efectos });
+  let premioAbordaje = 0;
+  let recursosHabilidad: { energia: number; mana: number; fraccionEnergiaFaltante?: number } = { energia: 0, mana: 0 };
+  const instantaneaActorTactico = () => ({ id: usuario.id, hp: jugadorHp, hpMaximo: maximoJugador, ataque: combate.jugadorAtaque, ataqueMagico: combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, defensa: jugadorDefensa, defensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa, posicion: combate.jugadorPosicion, efectos });
   const enemigosLegados = leerEnemigosEnCombate(enemigosContexto);
   let enemigosEnCombate: EnemigoEnCombate[] = enemigosLegados.length > 0
     ? enemigosLegados
@@ -246,13 +290,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
               recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
               resultadoFinal: "huida",
-              hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+              hpPerdido: Math.max(0, maximoJugador - jugadorHp),
               experienciaGanada: 0,
             },
           });
           await tx.personaje.update({
             where: { id: personaje.id },
-            data: { hpActual: Math.max(1, jugadorHp), estado: "de_viaje" },
+            data: { hpActual: Math.max(1, limitarVidaFueraCombate(jugadorHp, efectos)), estado: "de_viaje" },
           });
           const usuarioActualizado = await tx.usuario.findUnique({
             where: { id: usuario.id },
@@ -276,29 +320,49 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         ? expedicion.modoDificultad
         : "normal";
 
+      const claseRasgo = obtenerClaseRasgo(personaje);
+      if (claseRasgo === "rastreador") marcarHuellas(enemigosEnCombate);
+      const previosHibridos = instantaneaHostilHibrida(claseRasgo, enemigosEnCombate);
+      const jobRasgo = obtenerJobRasgo(personaje);
+      const ataqueRasgo = (ataque: number) => ataque * multiplicadorAtaqueRasgo(claseRasgo, jugadorHp, maximoJugador, efectos, jobRasgo);
+      const resistenciaRasgo = (defensa: number) => claseRasgo === "mago" ? penetrarResistenciaMagica(defensa, jobRasgo) : defensa;
+
+      const bonoContra = (enemigo: EnemigoEnCombate) => {
+        const bono = bonosContraObjetivo(claseRasgo, enemigo.id, enemigo.hp, enemigo.hpMaximo, efectos, jobRasgo);
+        return { ...bono, precision: bono.precision + precisionHuellas(efectos, enemigo.efectos) };
+      };
+      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+      const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
+      const resolverBasico = (objetivo: EnemigoEnCombate, efectosObjetivo: ReturnType<typeof leerEfectosCombate>) => {
+        const bono = bonoContra(objetivo);
+        return resolverAtaqueJugador({
+          efectosEnemigo: efectosObjetivo,
+          jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaque, efectos)) * bono.dano,
+          jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true)) * bono.dano,
+          usarMejorAtaqueMagico: usarAtaqueMagico,
+        danoMagicoDesdeAtaqueFisico: corteEntrePlanos(claseRasgo, efectos, objetivo.defensa, objetivo.defensaMagica),
+          multiplicadorDano: multiplicadorOrden(efectos) * potenciaVigia(claseRasgo, efectos, esDisparoTier3(null, subtipoArma)) * potenciaRetaguardia(claseRasgo, objetivo.posicion === "retaguardia"),
+          jugadorNivel: combate.jugadorNivel,
+          jugadorProbCritico: combate.jugadorProbCritico * multiplicadorAscension(efectos) + bono.critico + criticoTier3(claseRasgo, efectos, objetivo.id, esDisparoTier3(null, subtipoArma)),
+          jugadorDanoCritico: combate.jugadorDanoCritico * multiplicadorAscension(efectos) * multiplicadorCriticoTier3(claseRasgo, efectos, objetivo.id),
+          jugadorPrecision: calcularPrecisionModificada((combate.jugadorPrecision ?? 75) * multiplicadorAscension(efectos), efectos) + bono.precision,
+          enemigoEvasion: calcularEvasionModificada(objetivo.evasion, efectosObjetivo),
+          enemigoDefensa: claseRasgo === "verdugo" && defensaReducida(efectosObjetivo) ? objetivo.defensa * 0.5 : objetivo.defensa,
+          enemigoDefensaMagica: resistenciaRasgo(objetivo.defensaMagica),
+          enemigoNombre: objetivo.nombre,
+        });
+      };
+      const perjuiciosAntes = contarPerjuicios(efectos);
+      const estribilloPendiente = actor === "jugador" && consumirEstribillo(efectos);
       if (actor === "jugador") {
+        jugadorHp -= habilidad?.costeVidaRasgo ?? 0;
         if (accion === "atacar") {
           const objetivo = enemigosEnCombate.find((enemigo) => enemigo.id === enemigoObjetivoId && enemigo.hp > 0)
             ?? enemigosEnCombate.find((enemigo) => enemigo.hp > 0);
           if (!objetivo) return NextResponse.json({ error: "No quedan enemigos vivos a los que atacar." }, { status: 409 });
           const efectosObjetivo = leerEfectosCombate(objetivo.efectos);
-          const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
-          const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
-          const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
-          accionAnimada = resolverAtaqueJugador({
-            efectosEnemigo: efectosObjetivo,
-            jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
-            jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
-            usarMejorAtaqueMagico: usarAtaqueMagico,
-            jugadorNivel: combate.jugadorNivel,
-            jugadorProbCritico: combate.jugadorProbCritico,
-            jugadorDanoCritico: combate.jugadorDanoCritico,
-            jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
-            enemigoEvasion: calcularEvasionModificada(objetivo.evasion, efectosObjetivo),
-            enemigoDefensa: objetivo.defensa,
-            enemigoDefensaMagica: objetivo.defensaMagica,
-            enemigoNombre: objetivo.nombre,
-          });
+          accionAnimada = resolverBasico(objetivo, efectosObjetivo);
           aplicarBarreraAccion(accionAnimada,efectosObjetivo);
           consumirPrecisionTactica(efectos);
           efectosEnemigoPorId.set(objetivo.id,{defensa:objetivo.defensa,efectos:efectosObjetivo});
@@ -310,7 +374,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           if (!consumible) {
             return NextResponse.json({ error: "Objeto de combate no válido." }, { status: 400 });
           }
-          const curacion = Math.min(consumible.curacion, combate.jugadorHpMaximo - jugadorHp);
+          const curacion = Math.min(consumible.curacion, maximoJugador - jugadorHp);
           if (curacion + consumible.energia + consumible.mana <= 0) {
             return NextResponse.json({ error: "Ya tienes la salud al máximo." }, { status: 400 });
           }
@@ -359,21 +423,22 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
                 throw new Error("ENEMIGO_OBJETIVO_NO_ACTIVO");
               }
               const efectosObjetivo = leerEfectosCombate(enemigo.efectos);
+              const bono = bonoContra(enemigo);
               const resultado = resolverHabilidadJugador(habilidad!, {
-                contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosObjetivo }, false,{numeroObjetivos:seleccion.objetivos.length,principal:indiceObjetivo===0}) : undefined,
-                jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
-                jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
-                jugadorProbCritico: combate.jugadorProbCritico,
-                jugadorDanoCritico: combate.jugadorDanoCritico,
-                jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+                contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, 0, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosObjetivo }, false,{numeroObjetivos:seleccion.objetivos.length,principal:indiceObjetivo===0}) : undefined,
+                jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaque, efectos)) * bono.dano,
+                jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true)) * bono.dano,
+                jugadorProbCritico: combate.jugadorProbCritico * multiplicadorAscension(efectos) + bono.critico,
+                jugadorDanoCritico: combate.jugadorDanoCritico * multiplicadorAscension(efectos),
+                jugadorPrecision: calcularPrecisionModificada((combate.jugadorPrecision ?? 75) * multiplicadorAscension(efectos), efectos) + bono.precision,
                 enemigoEvasion: calcularEvasionModificada(enemigo.evasion, efectosObjetivo),
                 jugadorDefensa,
                 jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
                 jugadorNivel: combate.jugadorNivel,
                 jugadorHp,
-                jugadorHpMaximo: combate.jugadorHpMaximo,
+                jugadorHpMaximo: maximoJugador,
                 enemigoDefensa: enemigo.defensa,
-                enemigoDefensaMagica: enemigo.defensaMagica,
+                enemigoDefensaMagica: resistenciaRasgo(enemigo.defensaMagica),
                 enemigoNombre: enemigo.nombre,
                 bonusCuracion,
                 efectosJugador: efectos,
@@ -418,18 +483,18 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             ];
           } else {
             const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-              contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), instantaneaActorTactico(), true) : undefined,
-              jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
-              jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
-              jugadorProbCritico: combate.jugadorProbCritico,
-              jugadorDanoCritico: combate.jugadorDanoCritico,
-              jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+              contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, 0, instantaneaActorTactico(), instantaneaActorTactico(), true) : undefined,
+              jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaque, efectos)),
+              jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true)),
+              jugadorProbCritico: combate.jugadorProbCritico * multiplicadorAscension(efectos),
+              jugadorDanoCritico: combate.jugadorDanoCritico * multiplicadorAscension(efectos),
+              jugadorPrecision: calcularPrecisionModificada((combate.jugadorPrecision ?? 75) * multiplicadorAscension(efectos), efectos),
               enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
               jugadorDefensa,
               jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
               jugadorNivel: combate.jugadorNivel,
               jugadorHp,
-              jugadorHpMaximo: combate.jugadorHpMaximo,
+              jugadorHpMaximo: maximoJugador,
               enemigoDefensa,
               enemigoDefensaMagica: combate.enemigoDefensaMagica ?? enemigoDefensa,
               enemigoNombre: combate.enemigoNombre ?? "Enemigo",
@@ -467,20 +532,19 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           const enemigo = enemigosEnCombate.find((entrada) => entrada.id === enemigoInicial.id);
           if (!enemigo || enemigo.hp <= 0) continue;
           const efectosDelEnemigo = leerEfectosCombate(enemigo.efectos);
-          const ticksEnemigo = procesarTicksPeriodicos(
+          const ticksEnemigo = comenzarTurnoCombatiente(
             efectosDelEnemigo,
             enemigo.hp,
             enemigo.hpMaximo,
+            enemigo.defensa,
             enemigo.nombre,
           );
           log.push(...ticksEnemigo.mensajes.map((mensaje) => `${enemigo.nombre}: ${mensaje}`));
-          let enemigoActualizado: EnemigoEnCombate = {
+          const enemigoActualizado: EnemigoEnCombate = {
             ...enemigo,
             hp: ticksEnemigo.hp,
-            // procesarTicksPeriodicos solo calcula HP; la duración de estados se
-            // actualiza por separado en avanzarEfectosCombate más abajo.
-            defensa: enemigo.defensa,
-            efectos: efectosDelEnemigo,
+            defensa: ticksEnemigo.defensa,
+            efectos: ticksEnemigo.efectos,
           };
           if (enemigoActualizado.hp > 0 && jugadorHp > 0) {
             const accionDelEnemigo = resolverAtaqueEnemigo({
@@ -489,14 +553,26 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               enemigoProbCritico: enemigoActualizado.probCritico,
               enemigoDanoCritico: enemigoActualizado.danoCritico,
               enemigoPrecision: calcularPrecisionModificada(enemigoActualizado.precision, enemigoActualizado.efectos),
-              jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
-              jugadorDefensa,
+              jugadorEvasion: calcularEvasionModificada((combate.jugadorEvasion ?? 0) * multiplicadorAscension(efectos), efectos),
+              jugadorDefensa: jugadorDefensa * multiplicadorDefensaRasgo(claseRasgo, jugadorHp, maximoJugador, efectos),
               enemigoNombre: enemigoActualizado.nombre,
             });
+            registrarEsquivaHibrida(claseRasgo, accionDelEnemigo, efectos);
+            registrarEsquivaTier3(claseRasgo, accionDelEnemigo, efectos, enemigo.id);
+            registrarEsquivaTier35(claseRasgo, accionDelEnemigo, efectos, enemigo.id);
+            consumirNotaAlMargen(enemigoActualizado.efectos);
             aplicarBarreraAccion(accionDelEnemigo, efectos);
+            if (accionDelEnemigo.proteccion?.contraofensiva === usuario.id) registrarContraofensiva(efectos, enemigo.id);
+            limitarGolpeLetal(claseRasgo, jugadorHp, efectos, accionDelEnemigo);
             consumirPrecisionTactica(enemigoActualizado.efectos);
             const hpAntes = jugadorHp;
             jugadorHp = Math.max(0, jugadorHp - accionDelEnemigo.dano);
+            cargarLuzGuardia(claseRasgo, accionDelEnemigo.proteccion?.mitigado ?? 0, maximoJugador, efectos);
+            jugadorHp += curaConsagracion(accionDelEnemigo.proteccion, jugadorHp, maximoJugador);
+            if (accionDelEnemigo.proteccion?.ruptura?.creadorId === usuario.id) recursosHabilidad.mana += accionDelEnemigo.proteccion.ruptura.mana;
+            const represalia = crearRepresaliaRuptura(accionDelEnemigo.proteccion);
+            enemigoActualizado.hp = Math.max(0, enemigoActualizado.hp - represalia.dano);
+            accionDelEnemigo.texto += represalia.texto;
             impactos.push({
               enemigo: enemigoActualizado,
               dano: accionDelEnemigo.dano,
@@ -505,14 +581,27 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               hpAntes,
               hpDespues: jugadorHp,
             });
+            if (jugadorHp > 0 && activarDeudaOscura(claseRasgo, hayMaldicionBrujo(efectosDelEnemigo, usuario.id), efectos)) {
+              jugadorHp = Math.min(maximoJugador, jugadorHp + Math.max(1, Math.floor(maximoJugador * 0.05)));
+              recursosHabilidad.mana += 5;
+              log.push("Deuda oscura restaura vida y maná.");
+            }
+            if (jugadorHp > 0 && enemigo.posicion !== "retaguardia" && activarContraataque(claseRasgo, accionDelEnemigo, efectos)) {
+              const replica = resolverBasico(enemigoActualizado, enemigoActualizado.efectos);
+              aplicarBarreraAccion(replica, enemigoActualizado.efectos);
+              enemigoActualizado.hp = Math.max(0, enemigoActualizado.hp - replica.dano);
+              log.push("Respuesta de acero: " + replica.texto);
+            }
+            if (jugadorHp > 0 && activarSegundoAire(claseRasgo, accionDelEnemigo.dano, efectos)) {
+              recursosHabilidad.fraccionEnergiaFaltante = 0.15;
+              log.push("Segundo aire restaura energía.");
+            }
             textos.push(accionDelEnemigo.texto);
           } else if (enemigoActualizado.hp <= 0) {
             textos.push(`${enemigoActualizado.nombre} cae por los efectos acumulados.`);
             log.push(`☠️ ${enemigoActualizado.nombre} cae por los efectos acumulados.`);
           }
-          const avance = avanzarEfectosCombate(enemigoActualizado.efectos, enemigoActualizado.defensa);
-          enemigoActualizado = { ...enemigoActualizado, efectos: avance.efectos, defensa: avance.defensa };
-          log.push(...avance.mensajes.map((mensaje) => `${enemigoActualizado.nombre}: ${mensaje}`));
+          if (enemigoActualizado.hp <= 0) cobrarAlma(claseRasgo, usuario.id, efectos, efectosDelEnemigo);
           efectosEnemigoPorId.set(enemigoActualizado.id, {
             defensa: enemigoActualizado.defensa,
             efectos: leerEfectosCombate(enemigoActualizado.efectos),
@@ -558,6 +647,81 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         };
       }
 
+      if (actor === "jugador") {
+        if (habilidad?.efecto === "curacion") {
+          aplicarAmparo(claseRasgo, jobRasgo, contexto.jugadorHp, maximoJugador, accionAnimada, efectos, efectos);
+          jugadorDefensa += purificarConCura(claseRasgo, accionAnimada, efectos, efectos, perjuiciosAntes);
+        }
+        const objetivoRasgo = enemigosEnCombate.find(enemigo => enemigo.id === accionAnimada.enemigoObjetivoId);
+        registrarObjetivoRasgo(claseRasgo, objetivoRasgo?.id, efectos,
+          !!objetivoRasgo && objetivoRasgo.hp > (danoEnemigoPorId.get(objetivoRasgo.id) ?? 0));
+        if (objetivoRasgo) {
+          const extra = efectosEnemigoPorId.get(objetivoRasgo.id);
+          const ajenos = extra?.efectos ?? leerEfectosCombate(objetivoRasgo.efectos);
+          if (habilidad?.efecto === "dano" && accionAnimada.tipo !== "fallo") marcarNotaAlMargen(claseRasgo, efectos, ajenos);
+          const defensa = Math.max(0, (extra?.defensa ?? objetivoRasgo.defensa) - consumirAbsolucion(claseRasgo, accionAnimada, efectos, ajenos));
+          efectosEnemigoPorId.set(objetivoRasgo.id, { defensa, efectos: ajenos });
+        }
+        if (estribilloPendiente) {
+          recursosHabilidad.energia += 5;
+          recursosHabilidad.mana += 3;
+        }
+        prepararEstribillo(claseRasgo, habilidad, efectos);
+        resolverImpactosHibridosRoster(claseRasgo, usuario.id, subtipoArma, habilidad, efectos,
+          combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, enemigosEnCombate,
+          previosHibridos, danoEnemigoPorId, efectosEnemigoPorId, accionAnimada);
+        if (!accionAnimada.enemigoObjetivoId) {
+          resolverApoyoHibrido(claseRasgo, habilidad, efectos, efectos);
+          if (habilidad) {
+            marcarPresagio(claseRasgo, habilidad, accionAnimada, usuario.id, efectos);
+            anotarProteccionTier3(claseRasgo, usuario.id, habilidad, efectos);
+          }
+        }
+        if (claseRasgo === "mariscal" && golpeConLanza(subtipoArma, habilidad, accionAnimada)) ponerLineaLanzas(efectos);
+        const curaTier3 = resolverImpactosTier3Roster(claseRasgo, usuario.id, habilidad, efectos,
+          enemigosEnCombate, previosHibridos, danoEnemigoPorId, efectosEnemigoPorId, accionAnimada);
+        const curaAplicada = Math.max(0, Math.min(maximoJugador - jugadorHp, curaTier3));
+        jugadorHp += curaAplicada;
+        if (curaAplicada > 0) accionAnimada.texto += ` El rasgo restaura ${curaAplicada} PV.`;
+        if (objetivoRasgo) consumirHuellas(efectos, objetivoRasgo.efectos);
+        cerrarAccionTier3(claseRasgo, habilidad, accion === "atacar", subtipoArma, accionAnimada, efectos, objetivoRasgo?.id);
+        const impactoTier35 = resolverImpactosTier35Roster({
+          clase: claseRasgo, actorId: usuario.id, arma: subtipoArma, habilidad, propios: efectos, enemigos: enemigosEnCombate,
+          previos: previosHibridos, danos: danoEnemigoPorId, estados: efectosEnemigoPorId, accion: accionAnimada, job: jobRasgo,
+        });
+        const drenajeEspectral = Math.min(Math.max(0, maximoJugador - jugadorHp), impactoTier35.cura);
+        jugadorHp += drenajeEspectral;
+        if (drenajeEspectral > 0) accionAnimada.texto += ` Disparo de ultratumba restaura ${drenajeEspectral} PV.`;
+        recursosHabilidad.energia += impactoTier35.energia;
+        prepararCompas(claseRasgo, habilidad, usuario.id, [{ efectos, hpMaximo: maximoJugador }], jobRasgo);
+        const efectosAliadoTier35 = (id: string) => id === usuario.id ? efectos : undefined;
+        cerrarAccionTier35({
+          clase: claseRasgo, habilidad, basico: accion === "atacar", accion: accionAnimada, propios: efectos,
+          actorId: usuario.id, hpGanado: jugadorHp - contexto.jugadorHp, efectosAliado: efectosAliadoTier35,
+        });
+        const energiaAbordaje = cerrarAccionHibrida(claseRasgo, habilidad, accion === "atacar", accionAnimada, efectos, jobRasgo, impactoTier35.energia > 0);
+        recursosHabilidad.energia += energiaAbordaje;
+        if (energiaAbordaje > 0 || impactoTier35.energia > 0) premioAbordaje = oroAbordaje(jobRasgo, claseRasgo);
+        actualizarRachaSuperNovato(claseRasgo, efectos, habilidad);
+        const vidaAscension = ajustarVidaAscension(efectos, jugadorHp, maximoJugador);
+        jugadorHp = vidaAscension.hp;
+        maximoJugador = vidaAscension.maximo;
+        cerrarRasgoAccion(claseRasgo, efectos, habilidad);
+        if (claseRasgo === "arquero" && (accion === "atacar" || habilidad?.efecto === "dano")) {
+          const objetivo = enemigosEnCombate.find(enemigo => enemigo.id === accionAnimada.enemigoObjetivoId);
+          if (objetivo) {
+            const danoPrevio = danoEnemigoPorId.get(objetivo.id) ?? 0;
+            const extras = efectosEnemigoPorId.get(objetivo.id);
+            const efectosObjetivo = extras?.efectos ?? leerEfectosCombate(objetivo.efectos);
+            const adicional = resolverFlechasRasgo(jobRasgo, objetivo.hp - danoPrevio, accionAnimada, efectosObjetivo, () =>
+              resolverBasico({ ...objetivo, defensa: extras?.defensa ?? objetivo.defensa }, efectosObjetivo)
+            );
+            danoEnemigoPorId.set(objetivo.id, danoPrevio + adicional);
+            efectosEnemigoPorId.set(objetivo.id, { defensa: extras?.defensa ?? objetivo.defensa, efectos: efectosObjetivo });
+          }
+        }
+      }
+
       // La lista de enemigos es la fuente autoritativa. Los campos escalares se
       // conservan para compatibilidad con interfaces y registros antiguos.
       enemigosEnCombate = enemigosEnCombate.map((enemigo) => {
@@ -571,6 +735,12 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           efectos: extras?.efectos ?? enemigo.efectos,
         };
       });
+      for (const enemigo of enemigosEnCombate) {
+        if (enemigo.hp > 0 || !consumirSemillaSilvestre(enemigo.efectos)) continue;
+        const cura = curacionSemilla(jugadorHp, maximoJugador);
+        jugadorHp += cura;
+        if (cura > 0) log.push(`Semilla silvestre restaura ${cura} PV a ${personaje.nombre}.`);
+      }
       const enemigosVivos = enemigosEnCombate.filter((enemigo) => enemigo.hp > 0);
       const enemigoPrincipal = enemigosVivos[0] ?? enemigosEnCombate[0];
       enemigoHp = enemigosVivos.length > 0 ? enemigoPrincipal.hp : 0;
@@ -638,7 +808,8 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
-          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad, multiplicadorAscension(efectos));
+          if (premioAbordaje > 0) await tx.usuario.update({ where: { id: usuario.id }, data: { oro: { increment: premioAbordaje } } });
           if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -702,7 +873,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
                 metal: recompensaMision.metal,
               },
               resultadoFinal: "exito",
-              hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+              hpPerdido: Math.max(0, maximoJugador - jugadorHp),
               experienciaGanada,
             },
           });
@@ -723,7 +894,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               id: personaje.id,
             },
             data: {
-              hpActual: Math.max(1, jugadorHp),
+              hpActual: Math.max(1, limitarVidaFueraCombate(jugadorHp, efectos)),
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
               ...(expedicion.tipo === "normal" && modoDificultad === "normal"
@@ -769,6 +940,35 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
       // ==========================================================
       // DERROTA PVE
+      const avanceTurnos = avanzarSecuenciaTurnosVelocidad({
+        turnosPendientes: colaTurnosActuales,
+        actoresVivos: actoresVivosPve({
+          ...combate,
+          jugadorVelocidad: velocidadConDanza(combate.jugadorVelocidad, efectos) * (claseRasgo === "berserker"
+            ? multiplicadorAtaqueRasgo(claseRasgo, jugadorHp, maximoJugador, efectos)
+            : multiplicadorAscension(efectos)),
+        }, enemigosEnCombate, jugadorHp),
+        ronda: combate.ronda,
+        semilla: `pve:${combate.id}:ronda`,
+      });
+      const siguienteTurno = avanceTurnos.turnoActual?.equipo ?? "jugador";
+      const siguienteRonda = avanceTurnos.ronda;
+
+      if (jugadorHp > 0 && enemigoHp > 0 && siguienteTurno === "jugador") {
+        cooldowns = reducirCooldowns(cooldowns);
+        efectos = efectos.filter(efecto => !expiraPresagio(efecto, usuario.id));
+        acortarPerjuicioAsceta(claseRasgo, efectos);
+        const efectosActualizados = comenzarTurnoCombatiente(
+          efectos, jugadorHp, maximoJugador, jugadorDefensa, personaje.nombre
+        );
+
+        efectos = efectosActualizados.efectos;
+        jugadorHp = efectosActualizados.hp;
+        jugadorDefensa = efectosActualizados.defensa;
+        accionAnimada = adjuntarPulsosEstado(accionAnimada, "jugador", efectosActualizados);
+        log.push(...efectosActualizados.mensajes);
+      }
+
       // ==========================================================
 
       if (jugadorHp <= 0) {
@@ -828,7 +1028,8 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
-          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad, multiplicadorAscension(efectos));
+          if (premioAbordaje > 0) await tx.usuario.update({ where: { id: usuario.id }, data: { oro: { increment: premioAbordaje } } });
           if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -958,7 +1159,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               recompensa: liquidacion.recompensa as unknown as Prisma.InputJsonValue,
               experienciaGanada,
               resultadoFinal: "derrota",
-              hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+              hpPerdido: Math.max(0, maximoJugador - jugadorHp),
             },
           });
 
@@ -992,35 +1193,9 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       // SIGUIENTE TURNO PVE
       // ==========================================================
 
-      const avanceTurnos = avanzarSecuenciaTurnosVelocidad({
-        turnosPendientes: colaTurnosActuales,
-        actoresVivos: actoresVivosPve(combate, enemigosEnCombate, jugadorHp),
-        ronda: combate.ronda,
-        semilla: `pve:${combate.id}:ronda`,
-      });
-      const siguienteTurno = avanceTurnos.turnoActual?.equipo ?? "jugador";
-      const siguienteRonda = avanceTurnos.ronda;
-
-      // El cooldown avanza al completar el ciclo de iniciativa entero.
-      // Los efectos del jugador siguen procesándose al entrar en su turno.
-      if (avanceTurnos.nuevaRonda) {
-        cooldowns = reducirCooldowns(cooldowns);
-      }
-
-      if (actor === "enemigo" && siguienteTurno === "jugador") {
-        const efectosActualizados = procesarEfectosTurno(
-          efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, personaje.nombre
-        );
-
-        efectos = efectosActualizados.efectos;
-        jugadorHp = efectosActualizados.hp;
-        jugadorDefensa = efectosActualizados.defensa;
-        accionAnimada = adjuntarPulsosEstado(accionAnimada, "jugador", efectosActualizados);
-        log.push(...efectosActualizados.mensajes);
-      }
-
       const combateActualizado = await prisma.$transaction(async (tx) => {
-        await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
+        await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad, multiplicadorAscension(efectos));
+        if (premioAbordaje > 0) await tx.usuario.update({ where: { id: usuario.id }, data: { oro: { increment: premioAbordaje } } });
         if (consumible) {
             const restaurado = await tx.personaje.updateMany({
               where: { id: personaje.id, energiaActual: personaje.energiaActual, manaActual: personaje.manaActual },
@@ -1045,12 +1220,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           });
         }
         if (siguienteTurno === "jugador") {
-          await regenerarRecursosPorTurno(tx, usuario.id);
+          await regenerarRecursosPorTurno(tx, usuario.id, multiplicadorAscension(efectos));
         }
 
         return actualizarCombateVersionado(tx, combate.id, combate.version, {
             ...(filaActorTactica!==undefined?{jugadorPosicion:["mele","centro","retaguardia"][filaActorTactica]}:{}),
           jugadorHp,
+          jugadorHpMaximo: maximoJugador,
           jugadorDefensa,
           enemigoHp,
           enemigoDefensa,

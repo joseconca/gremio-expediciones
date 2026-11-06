@@ -1,3 +1,4 @@
+import { regenerarRecursosPorTurno } from "@/server/services/combate/accion-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 
@@ -393,6 +394,9 @@ export async function llegarExpedicion() {
         throw new Error("EXPEDICION_FASE_MODIFICADA");
       }
 
+      if (primerTurno === "jugador" && usuario.personaje?.profesionActivaId === "campeon_arena") {
+        await regenerarRecursosPorTurno(tx, usuario.id, 1, true);
+      }
       const nuevoCombate = await tx.combateActivo.create({
         data: {
           expedicionId: expedicion.id,

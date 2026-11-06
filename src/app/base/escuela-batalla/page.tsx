@@ -9,6 +9,7 @@ import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/progresion/habilidades/descripciones-habilidades";
+import { RASGOS_CLASE } from "@/lib/catalogos/rasgos-clase";
 import { CLASES, obtenerClasesHabilidadDisponibles } from "@/lib/progresion/clases";
 import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/habilidades/niveles-habilidad";
 import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
@@ -122,6 +123,7 @@ export default function EscuelaCombatePage() {
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const costeReseteo = costeReinicioHabilidades(nivelJob);
   const profesionId = datos?.profesionActivaId ?? "novato";
+  const rasgoActivo = datos ? RASGOS_CLASE[profesionId] : undefined;
   const esSuperNovato = profesionId === "superNovato";
   const incluirCatalogoDeRama = esSuperNovato || incluirOtrasClasesRama;
   const habilidadesPropias = aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId);
@@ -276,8 +278,15 @@ export default function EscuelaCombatePage() {
         {vista === "aprender" && (
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div>
+              <div className="min-w-0">
                 <h2 className="mt-1 text-xl font-black text-[#f0dfbd] sm:text-2xl">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
+                {rasgoActivo && (
+                  <div className="mt-2">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#ad9877]">Rasgo de clase</p>
+                    <h3 className="mt-1 text-sm font-bold text-amber-200">{rasgoActivo.nombre}</h3>
+                    <p className="mt-0.5 text-sm leading-5 text-[#d4c3a6]">{rasgoActivo.descripcion}</p>
+                  </div>
+                )}
               </div>
               <div className="grid grid-cols-2 gap-2 sm:min-w-[300px] sm:gap-3">
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">

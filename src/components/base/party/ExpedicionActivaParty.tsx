@@ -106,7 +106,7 @@ export default function ExpedicionActivaParty({
           ) : expedicion.fase === "combatiendo" && expedicion.combate ? (
             <div className="mt-2 rounded border border-[#7b332c] bg-[#542521] p-3">
               <p className="text-sm font-bold text-red-200">
-                ⚔️ {expedicion.combate.enemigoNombre} · Ronda {expedicion.combate.ronda}
+                ⚔️ {expedicion.combate.enemigoNombre} · Turno {expedicion.combate.ronda}
               </p>
               <p className="mt-1 text-xs text-slate-300">
                 {expedicion.combate.participantes.find((p) => p.usuarioId === estado.usuarioId)?.estado === "huyo"

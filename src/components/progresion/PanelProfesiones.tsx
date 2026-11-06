@@ -1,5 +1,6 @@
 "use client";
 
+import { RASGOS_CLASE } from "@/lib/catalogos/rasgos-clase";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
@@ -160,6 +161,7 @@ export default function PanelProfesiones({
     }
   };
 
+  const rasgoActivo = RASGOS_CLASE[datos?.profesionActivaId ?? "novato"];
   const nombreClase = (claseId: string) =>
     datos?.clases.find((clase) => clase.id === claseId)?.nombre ?? claseId;
 
@@ -238,6 +240,11 @@ export default function PanelProfesiones({
                     : 10}
                 </span>
               </p>
+              {rasgoActivo && (
+                <p className="mt-1 text-xs text-[#b6a183]">
+                  <strong className="text-[#e8d4ab]">{rasgoActivo.nombre}</strong> · {rasgoActivo.descripcion}
+                </p>
+              )}
             </div>
             <div className="shrink-0 border-l border-[#4d3927] pl-3 text-right">
               <p className="text-[9px] font-black uppercase tracking-[0.12em] text-[#94836b]">Puntos Job</p>
@@ -292,7 +299,7 @@ export default function PanelProfesiones({
                   const dominio = `Armas y equipo de mano dominados: ${clase.armasDominadas.join(", ") || "ninguno"}. Armas: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% ataque; escudo/mano secundaria: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% defensa. Armaduras corporales dominadas: ${clase.armadurasDominadas.join(", ") || "ninguna"}; aplican +${Math.round(clase.bonoDefensaArmaduraDominada * 100)}% defensa. Los tipos no dominados o sin bonificación positiva aportan el 75% de su estadística relevante.`;
                   const tooltip = clase.esMisterio
                     ? `Clase por descubrir. Requisitos necesarios: ${requisitos}.`
-                    : `${clase.descripcion} Requisitos: ${requisitos}. ${dominio}${progreso?.maestriaCompletada ? " Maestría completada." : ""}`;
+                    : `${clase.descripcion} ${RASGOS_CLASE[clase.id] ? `${RASGOS_CLASE[clase.id].nombre}. ${RASGOS_CLASE[clase.id].descripcion}` : ""} Requisitos: ${requisitos}. ${dominio}${progreso && progreso.nivelJob >= clase.nivelJobMaximo ? " Maestría completada." : ""}`;
 
                   return (
                     <article key={clase.id} title={tooltip} className={`absolute z-10 flex flex-col justify-between overflow-hidden rounded-md border px-2 py-1.5 shadow-md transition-colors ${

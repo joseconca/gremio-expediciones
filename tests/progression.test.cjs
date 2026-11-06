@@ -202,17 +202,12 @@ test("el grafo contiene las clases actuales y respeta los máximos por tier", ()
     [1, 4, 1, 14, 10, 23, 8],
   );
   for (const clase of clases) {
-    const maximoEsperado = clase.tier === 0 ? 20
-      : clase.tier === 1 ? 40
-      : clase.tier === 1.5 ? 80
-      : clase.tier === 2 ? 60
-      : clase.tier === 2.5 ? 70
-      : 80;
+    const maximoEsperado = 100;
     assert.equal(clase.nivelJobMaximo, maximoEsperado, `Máximo Job incorrecto para ${clase.nombre}`);
   }
   assert.deepEqual(CLASES.pirata.requisitos.map((requisito) => requisito.claseId), ["duelista", "cazador"]);
   assert.equal(CLASES.pirata.tier, 2.5);
-  assert.equal(CLASES.pirata.nivelJobMaximo, 70);
+  assert.equal(CLASES.pirata.nivelJobMaximo, 100);
   for (const padreId of ["caballero", "duelista", "sacerdote", "monje", "cazador", "explorador", "elementalista", "brujo"]) {
     assert.equal(clases.filter((clase) => clase.tier === 3 && clase.requisitos.some((requisito) => requisito.claseId === padreId)).length, 2, `${padreId} debe tener exactamente dos clases de Tier 3`);
   }
@@ -656,12 +651,12 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
   assert.equal(resultado.maestriaCompletada, false);
 });
 
-test("Tier 1 mantiene Job 40: Job 20 es intermedio y la maestría llega al máximo", () => {
+test("Tier 1 llega a Job 100 y conserva su desbloqueo intermedio en Job 20", () => {
   const { experienciaParaNivel } = require("../src/lib/progresion/experiencia.ts");
   assert.deepEqual([1, 2, 3, 4].map(experienciaParaNivel), [500, 1778, 3733, 6320]);
   assert.equal(experienciaJobParaNivel(1), 101);
   assert.equal(experienciaJobParaNivel(10), 134);
-  assert.equal(CLASES.espadachin.nivelJobMaximo, 40);
+  assert.equal(CLASES.espadachin.nivelJobMaximo, 100);
 
   const intermedio = aplicarExperienciaJob({
     nivelJob: 19, experienciaJob: 0, puntosHabilidadDisponibles: 0, maestriaCompletada: false,
@@ -670,11 +665,11 @@ test("Tier 1 mantiene Job 40: Job 20 es intermedio y la maestría llega al máxi
   assert.equal(intermedio.maestriaCompletada, false);
   assert.equal(intermedio.experienciaNecesariaSiguienteNivel, experienciaJobParaNivel(20));
 
-  const maestro = aplicarExperienciaJob(intermedio, 100_000, CLASES.espadachin.nivelJobMaximo);
-  assert.equal(maestro.nivelJob, 40);
+  const maestro = aplicarExperienciaJob(intermedio, 1_000_000, CLASES.espadachin.nivelJobMaximo);
+  assert.equal(maestro.nivelJob, 100);
   assert.equal(maestro.maestriaCompletada, true);
-  assert.equal(maestro.nivelesSubidos, 20);
-  assert.equal(maestro.puntosHabilidadDisponibles, 21);
+  assert.equal(maestro.nivelesSubidos, 80);
+  assert.equal(maestro.puntosHabilidadDisponibles, 81);
   assert.equal(maestro.experienciaJob, 0);
   assert.equal(maestro.experienciaNecesariaSiguienteNivel, null);
 });

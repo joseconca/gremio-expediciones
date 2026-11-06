@@ -1,3 +1,43 @@
+import { velocidadConDanza } from "@/lib/expediciones/combate/danzas-combate";
+import {
+  cerrarAccionTier35, corteEntrePlanos, esDanzaCompas, prepararCompas, resolverImpactosTier35Roster,
+} from "@/lib/expediciones/combate/rasgos-tier35";
+import {
+  multiplicadorCriticoTier3, potenciaRetaguardia, cerrarAccionTier3, consumirHuellas, criticoTier3, defensaReducida, esDisparoTier3,
+  marcarHuellas, potenciaVigia, precisionHuellas, resolverImpactosTier3Roster,
+  marcarPresagio, golpeConLanza, ponerLineaLanzas,
+  acortarPerjuicioAsceta, cobrarAlma, crearRefugio, esTecnicaDefensiva, expiraPresagio, prepararCostesTier3,
+} from "@/lib/expediciones/combate/rasgos-tier3";
+import { anotarProteccionTier3 } from "@/lib/expediciones/combate/protecciones-rasgos";
+import {
+  cerrarAccionHibrida, oroAbordaje, consumirSemillaSilvestre, consumirVotoAuxilio, curacionSemilla,
+  elegirReceptorSemilla, instantaneaHostilHibrida, multiplicadorOrden, resolverApoyoHibrido, resolverImpactosHibridosRoster,
+} from "@/lib/expediciones/combate/rasgos-hibridos";
+import {
+  actualizarRachaSuperNovato,
+  ajustarVidaAscension,
+  aplicarAmparo,
+  bonosContraObjetivo,
+  cerrarRasgoAccion,
+  consumirAbsolucion,
+  consumirEstribillo,
+  contarPerjuicios,
+  limitarVidaFueraCombate,
+  marcarNotaAlMargen,
+  multiplicadorAscension,
+  multiplicadorAtaqueRasgo,
+  obtenerClaseRasgo,
+  obtenerJobRasgo,
+  penetrarResistenciaMagica,
+  prepararEstribillo,
+  purificarConCura,
+  registrarObjetivoRasgo,
+  resolverFlechasRasgo,
+} from "@/lib/expediciones/combate/rasgos-clase";
+import {
+  prepararRasgoHabilidad,
+} from "@/lib/expediciones/combate/rasgos-clase";
+import { reducirCooldownsSiguienteParty } from "./contexto-combate";
 import { establecerCooldownHabilidad, reducirCooldowns, obtenerCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import { calcularPesosCuracion } from "@/lib/expediciones/combate/presupuesto-curacion";
 import { consumirPrecisionTactica } from "@/lib/expediciones/combate/estados-combate";
@@ -21,7 +61,7 @@ import {
   calcularEvasionModificada,
   calcularPrecisionModificada,
   leerEfectosCombate,
-  procesarEfectosTurno,
+  comenzarTurnoCombatiente,
   aplicarBarreraAccion,
   retirarEfectosHabilidad,
 } from "@/lib/expediciones/combate/estados-combate";
@@ -33,7 +73,7 @@ import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-c
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
 import { gastarRecursosHabilidad } from "@/server/services/combate/accion-combate";
-import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
+import { COLUMNAS_FORMACION_COMBATE, indiceCasillaFormacion, obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/combate/objetivos-combate";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
@@ -170,19 +210,7 @@ export async function ejecutarAccionCombateParty(
         turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
         ronda = siguiente.ronda;
         turnosPendientes = siguiente.turnosPendientes;
-        if (siguiente.nuevaRonda) {
-          // Huir consume el turno actual; si con ello termina el ciclo,
-          // los cooldowns avanzan igual que con cualquier otra acción.
-          for (const miembro of combate.participantes) {
-            const guardado = await tx.combatePartyParticipante.updateMany({
-              where: { id: miembro.id, combatePartyId: combate.id },
-              data: { cooldowns: reducirCooldowns(obtenerCooldowns(miembro.cooldowns)) as unknown as Prisma.InputJsonValue },
-            });
-            if (guardado.count !== 1) {
-              throw new PartyServiceError("No se pudieron actualizar los cooldowns al cerrar el ciclo de iniciativa.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
-            }
-          }
-        }
+        await reducirCooldownsSiguienteParty(tx, combate.participantes, turnoActualUsuarioId);
       } else if (!terminal) {
         // La huida fuera de turno no consume la acción que ya correspondía a otro actor.
         turnosPendientes = colaAntesDeHuida.filter((paso) => paso.actorId !== usuarioId);
@@ -250,6 +278,17 @@ export async function ejecutarAccionCombateParty(
       return h.slot?.startsWith("pasiva_") && definicion?.tipo === "pasiva" && puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)
         ? total + (ajustarHabilidadPorNivel(definicion, h.nivel).bonusCuracion ?? 0) : total;
     }, 0);
+    let maximoJugador = participante.jugadorHpMaximo;
+    for (const miembro of combate.participantes) {
+      const efectosGuardados = leerEfectosCombate(miembro.efectos);
+      const vigentes = efectosGuardados.filter(efecto => (efecto.familia !== "amparo" || efecto.creadorId !== usuarioId) && !expiraPresagio(efecto, usuarioId));
+      if (vigentes.length === efectosGuardados.length) continue;
+      await tx.combatePartyParticipante.updateMany({
+        where: { id: miembro.id },
+        data: { efectos: vigentes as unknown as Prisma.InputJsonValue },
+      });
+      miembro.efectos = vigentes as unknown as Prisma.JsonValue;
+    }
     let efectosJugador = leerEfectosCombate(participante.efectos);
     let cooldowns = obtenerCooldowns(participante.cooldowns);
     const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
@@ -288,26 +327,44 @@ export async function ejecutarAccionCombateParty(
     }
     let efectosEnemigo = leerEfectosCombate(enemigoSeleccionado.efectos);
     let enemigoHp = enemigoSeleccionado.hp;
-    const estadoInicioTurno = procesarEfectosTurno(
+    acortarPerjuicioAsceta(obtenerClaseRasgo(personaje), efectosJugador);
+    const estadoInicioTurno = comenzarTurnoCombatiente(
       efectosJugador,
       participante.jugadorHp,
-      participante.jugadorHpMaximo,
+      maximoJugador,
       participante.jugadorDefensa,
       personaje.id,
     );
     let jugadorHp = estadoInicioTurno.hp;
+    const hpAntesAccion = jugadorHp;
     let jugadorDefensa = estadoInicioTurno.defensa;
     efectosJugador = estadoInicioTurno.efectos;
     let enemigoDefensa = enemigoSeleccionado.defensa;
-    if (estadoInicioTurno.mensajes.length > 0) {
-      efectosJugador = estadoInicioTurno.efectos;
+    const claseRasgo = obtenerClaseRasgo(personaje);
+    const profesionesTier3 = combate.ronda === 1 || enemigosEnCombate.some(enemigo => enemigo.efectos.some(e =>
+      e.tipo === "dano_progresivo" || e.datosTacticos?.estados.some(estado => estado.clave === "circuito" || estado.familia === "herida")))
+      ? await tx.personaje.findMany({
+        where: { id: { in: combate.participantes.filter(p => p.estado === "activo").map(p => p.personajeId) } },
+        select: { id: true, profesionActivaId: true },
+      }) : [];
+    if (combate.ronda === 1 && (claseRasgo === "rastreador" || profesionesTier3.some(p => p.profesionActivaId === "rastreador"))) {
+      marcarHuellas(enemigosEnCombate);
+    }
+    const previosHibridos = instantaneaHostilHibrida(claseRasgo, enemigosEnCombate);
+    const jobRasgo = obtenerJobRasgo(personaje);
+    const ataqueRasgo = (ataque: number) => ataque * multiplicadorAtaqueRasgo(claseRasgo, jugadorHp, maximoJugador, efectosJugador, jobRasgo);
+    const resistenciaRasgo = (defensa: number) => claseRasgo === "mago" ? penetrarResistenciaMagica(defensa, jobRasgo) : defensa;
+
+    if (jugadorHp > 0 && consumirEstribillo(efectosJugador)) {
+      await gastarRecursosHabilidad(tx, personaje.id, null, { energia: 5, mana: 3 });
     }
     let habilidad: DefinicionHabilidad | null = null;
     let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; energia: number; mana: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
     let filaActorTactica: number | undefined;
+    let premioAbordaje = 0;
     let recursosHabilidad = { energia:0,mana:0 };
-    const instantaneaActorTactico = () => ({ id: usuarioId, hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo, ataque: participante.jugadorAtaque, ataqueMagico: participante.jugadorAtaqueMagico, defensa: jugadorDefensa, defensaMagica: participante.jugadorDefensaMagica, posicion: participante.jugadorPosicion, efectos: efectosJugador });
+    const instantaneaActorTactico = () => ({ id: usuarioId, hp: jugadorHp, hpMaximo: maximoJugador, ataque: participante.jugadorAtaque, ataqueMagico: participante.jugadorAtaqueMagico, defensa: jugadorDefensa, defensaMagica: participante.jugadorDefensaMagica, posicion: participante.jugadorPosicion, efectos: efectosJugador });
     const danoEnemigoPorId = new Map<string, number>();
     const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof leerEfectosCombate> }>();
     const objetivosAliadosModificados = new Map<string, {
@@ -320,24 +377,55 @@ export async function ejecutarAccionCombateParty(
       efectos: ReturnType<typeof leerEfectosCombate>;
     }>();
 
-    if (accionDesconocida === "atacar") {
-      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
-      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
-      const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
-      accion = resolverAtaqueJugador({
-        efectosEnemigo,
-        jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
-        jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
+    const prepararAliadoTier3 = (miembro: typeof participante) => {
+      const previo = objetivosAliadosModificados.get(miembro.usuarioId);
+      if (previo) return previo;
+      const actual = {
+        usuarioId: miembro.usuarioId, participanteId: miembro.id, personajeId: miembro.personajeId,
+        hpOriginal: miembro.jugadorHp, hp: miembro.jugadorHp, defensa: miembro.jugadorDefensa,
+        efectos: leerEfectosCombate(miembro.efectos),
+      };
+      objetivosAliadosModificados.set(miembro.usuarioId, actual);
+      return actual;
+    };
+    const efectosRunista = (id: string) => {
+      if (id === usuarioId) return claseRasgo === "runista" ? efectosJugador : undefined;
+      const miembro = combate.participantes.find(p => p.usuarioId === id && p.estado === "activo" && p.jugadorHp > 0);
+      if (miembro && profesionesTier3.some(p => p.id === miembro.personajeId && p.profesionActivaId === "runista")) {
+        return prepararAliadoTier3(miembro).efectos;
+      }
+    };
+
+    const bonoContra = (enemigo: EnemigoEnCombate) => {
+      const bono = bonosContraObjetivo(claseRasgo, enemigo.id, enemigo.hp, enemigo.hpMaximo, efectosJugador, jobRasgo);
+      return { ...bono, precision: bono.precision + precisionHuellas(efectosJugador, enemigo.efectos) };
+    };
+    const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+    const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+    const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
+    const resolverBasico = (objetivo: EnemigoEnCombate, efectosObjetivo: ReturnType<typeof leerEfectosCombate>) => {
+      const bono = bonoContra(objetivo);
+      return resolverAtaqueJugador({
+        efectosEnemigo: efectosObjetivo,
+        jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador)) * bono.dano,
+        jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true)) * bono.dano,
         usarMejorAtaqueMagico: usarAtaqueMagico,
+        danoMagicoDesdeAtaqueFisico: corteEntrePlanos(claseRasgo, efectosJugador, objetivo.defensa, objetivo.defensaMagica),
+        multiplicadorDano: multiplicadorOrden(efectosJugador) * potenciaVigia(claseRasgo, efectosJugador, esDisparoTier3(null, subtipoArma)) * potenciaRetaguardia(claseRasgo, objetivo.posicion === "retaguardia"),
         jugadorNivel: participante.jugadorNivel,
-        jugadorProbCritico: participante.jugadorProbCritico,
-        jugadorDanoCritico: participante.jugadorDanoCritico,
-        jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
-        enemigoEvasion: calcularEvasionModificada(enemigoSeleccionado.evasion, efectosEnemigo),
-        enemigoDefensa,
-        enemigoDefensaMagica: enemigoSeleccionado.defensaMagica,
-        enemigoNombre: enemigoSeleccionado.nombre,
+        jugadorProbCritico: participante.jugadorProbCritico * multiplicadorAscension(efectosJugador) + bono.critico + criticoTier3(claseRasgo, efectosJugador, objetivo.id, esDisparoTier3(null, subtipoArma)),
+        jugadorDanoCritico: participante.jugadorDanoCritico * multiplicadorAscension(efectosJugador) * multiplicadorCriticoTier3(claseRasgo, efectosJugador, objetivo.id),
+        jugadorPrecision: calcularPrecisionModificada((participante.jugadorPrecision) * multiplicadorAscension(efectosJugador), efectosJugador) + bono.precision,
+        enemigoEvasion: calcularEvasionModificada(objetivo.evasion, efectosObjetivo),
+        enemigoDefensa: claseRasgo === "verdugo" && defensaReducida(efectosObjetivo) ? objetivo.defensa * 0.5 : objetivo.defensa,
+        enemigoDefensaMagica: resistenciaRasgo(objetivo.defensaMagica),
+        enemigoNombre: objetivo.nombre,
       });
+    };
+    if (jugadorHp <= 0) {
+      accion = { actor: "jugador", tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Caes por los efectos acumulados." };
+    } else if (accionDesconocida === "atacar") {
+      accion = resolverBasico(enemigoSeleccionado, efectosEnemigo);
       aplicarBarreraAccion(accion,efectosEnemigo);
       consumirPrecisionTactica(efectosJugador);
       efectosEnemigoPorId.set(enemigoSeleccionado.id,{defensa:enemigoSeleccionado.defensa,efectos:efectosEnemigo});
@@ -361,7 +449,7 @@ export async function ejecutarAccionCombateParty(
       if (!definicion) {
         throw new PartyServiceError("No se encontró la definición de la habilidad.", 404, "HABILIDAD_NO_ENCONTRADA");
       }
-      habilidad = ajustarHabilidadPorNivel(definicion, habilidadAprendida.nivel);
+      habilidad = prepararRasgoHabilidad(personaje, ajustarHabilidadPorNivel(definicion, habilidadAprendida.nivel), efectosJugador, obtenerHabilidadPorId);
       if (habilidad.tipo !== "activa") {
         throw new PartyServiceError("Solo puedes utilizar habilidades activas durante el combate.", 400, "HABILIDAD_NO_ACTIVA");
       }
@@ -371,7 +459,9 @@ export async function ejecutarAccionCombateParty(
       if ((cooldowns[habilidad.id] ?? 0) > 0) {
         throw new PartyServiceError(`Esta habilidad está en cooldown durante ${cooldowns[habilidad.id]} turno(s).`, 409, "HABILIDAD_EN_COOLDOWN");
       }
+      habilidad = prepararCostesTier3(claseRasgo, habilidad, efectosJugador, personaje.manaActual, jugadorHp);
       validarCostesHabilidad(personaje, habilidad);
+      jugadorHp -= habilidad.costeVidaRasgo ?? 0;
 
       const reglaObjetivo = obtenerReglaObjetivoHabilidad(habilidad);
       const seleccionObjetivos = resolverObjetivosHabilidad({
@@ -415,7 +505,7 @@ export async function ejecutarAccionCombateParty(
       }
 
       if (reglaObjetivo.equipo === "aliado" || reglaObjetivo.equipo === "propio") {
-        const resultados = [];
+        const resultados: { objetivoUsuarioId: string; resultado: ReturnType<typeof resolverHabilidadJugador>; curacion: number }[] = [];
         const objetivosAliados = seleccionObjetivos.objetivos.filter((objetivo) => objetivo.equipo === "aliado");
         const pesos=calcularPesosCuracion(objetivosAliados.map(o=>{const p=combate.participantes.find(p=>p.usuarioId===o.id)!;return {id:o.id,hp:o.id===usuarioId?jugadorHp:p.jugadorHp,hpMaximo:p.jugadorHpMaximo};}));
         for (const [indiceObjetivo,objetivo] of objetivosAliados.entries()) {
@@ -425,22 +515,24 @@ export async function ejecutarAccionCombateParty(
           }
           const esPropio = aliado.usuarioId === usuarioId;
           const hpAliado = esPropio ? jugadorHp : aliado.jugadorHp;
+          const maximoAliado = esPropio ? maximoJugador : aliado.jugadorHpMaximo;
           const previos = retirarEfectosHabilidad(esPropio ? efectosJugador : leerEfectosCombate(aliado.efectos), habilidad.id, esPropio ? jugadorDefensa : aliado.jugadorDefensa);
           const efectosDelObjetivo = previos.efectos;
+          const perjuiciosAntes = contarPerjuicios(efectosDelObjetivo);
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
-            contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: aliado.jugadorHpMaximo, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true,{numeroObjetivos:objetivosAliados.length,principal:indiceObjetivo===0,...(habilidad.versionReglas===2&&habilidad.efecto==="curacion"&&habilidad.objetivo?.patron!=="individual"?{pesoCuracion:pesos[objetivo.id]}:{})}) : undefined,
+            contextoTactico: (habilidad.programaTactico || habilidad.versionReglas===2) ? crearContextoTecnicaTactica(personaje, 0, instantaneaActorTactico(), { id: aliado.usuarioId, hp: hpAliado, hpMaximo: maximoAliado, ataque: aliado.jugadorAtaque, ataqueMagico: aliado.jugadorAtaqueMagico, defensa: previos.defensa, defensaMagica: aliado.jugadorDefensaMagica, posicion: aliado.jugadorPosicion, efectos: efectosDelObjetivo }, true,{numeroObjetivos:objetivosAliados.length,principal:indiceObjetivo===0,...(habilidad.versionReglas===2&&habilidad.efecto==="curacion"&&habilidad.objetivo?.patron!=="individual"?{pesoCuracion:pesos[objetivo.id]}:{})}) : undefined,
             bonusCuracion,
-            jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
-            jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
-            jugadorProbCritico: participante.jugadorProbCritico,
-            jugadorDanoCritico: participante.jugadorDanoCritico,
-            jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
+            jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador)),
+            jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true)),
+            jugadorProbCritico: participante.jugadorProbCritico * multiplicadorAscension(efectosJugador),
+            jugadorDanoCritico: participante.jugadorDanoCritico * multiplicadorAscension(efectosJugador),
+            jugadorPrecision: calcularPrecisionModificada((participante.jugadorPrecision) * multiplicadorAscension(efectosJugador), efectosJugador),
             enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
             jugadorDefensa: previos.defensa,
             jugadorDefensaMagica: aliado.jugadorDefensaMagica,
             jugadorNivel: participante.jugadorNivel,
             jugadorHp: hpAliado,
-            jugadorHpMaximo: aliado.jugadorHpMaximo,
+            jugadorHpMaximo: maximoAliado,
             enemigoDefensa,
             enemigoDefensaMagica: combate.enemigoDefensaMagica,
             enemigoNombre: combate.enemigoNombre,
@@ -454,6 +546,20 @@ export async function ejecutarAccionCombateParty(
             ...(resultadoObjetivo.efectosJugadorActualizados ?? efectosDelObjetivo),
             ...resultadoObjetivo.efectos.filter((efecto) => efecto.objetivo === "jugador"),
           ];
+          if (habilidad.efecto === "curacion") {
+            aplicarAmparo(claseRasgo, jobRasgo, hpAliado, maximoAliado, resultadoObjetivo.accion,
+              esPropio ? efectosNuevosAliado : efectosJugador, efectosNuevosAliado, esPropio ? undefined : usuarioId);
+            resultadoObjetivo.jugadorDefensa += purificarConCura(claseRasgo, resultadoObjetivo.accion, efectosNuevosAliado, esPropio ? efectosNuevosAliado : efectosJugador, perjuiciosAntes);
+          }
+          const propios = esPropio ? efectosNuevosAliado : efectosJugador;
+          if (habilidad.efecto === "curacion") {
+            resultadoObjetivo.jugadorHp += consumirVotoAuxilio(claseRasgo, propios, aliado.usuarioId,
+              resultadoObjetivo.jugadorHp, maximoAliado, resultadoObjetivo.accion);
+          }
+          resolverApoyoHibrido(claseRasgo, habilidad, propios, efectosNuevosAliado);
+          prepararEstribillo(claseRasgo, habilidad, efectosNuevosAliado);
+          marcarPresagio(claseRasgo, habilidad, resultadoObjetivo.accion, usuarioId, efectosNuevosAliado);
+          anotarProteccionTier3(claseRasgo, usuarioId, habilidad, efectosNuevosAliado);
           objetivosAliadosModificados.set(aliado.usuarioId, {
             usuarioId: aliado.usuarioId,
             participanteId: aliado.id,
@@ -482,6 +588,30 @@ export async function ejecutarAccionCombateParty(
         }
         if (resultados.length === 0) {
           throw new PartyServiceError("No hay aliados vivos en el área de esa habilidad.", 409, "SIN_ALIADOS_OBJETIVO");
+        }
+        if (claseRasgo === "sacerdote" && habilidad.efecto === "curacion" && resultados[0].curacion > 0) {
+          const aliado = combate.participantes
+            .filter(p => p.usuarioId !== resultados[0].objetivoUsuarioId && p.estado === "activo" && p.jugadorHp > 0)
+            .sort((a, b) => a.jugadorHp / a.jugadorHpMaximo - b.jugadorHp / b.jugadorHpMaximo)[0];
+          if (aliado) {
+            const previo = objetivosAliadosModificados.get(aliado.usuarioId);
+            const propio = aliado.usuarioId === usuarioId;
+            const hp = previo?.hp ?? (propio ? jugadorHp : aliado.jugadorHp);
+            const extra = Math.min(aliado.jugadorHpMaximo - hp, Math.floor(resultados[0].curacion * 0.25));
+            if (extra > 0) {
+              objetivosAliadosModificados.set(aliado.usuarioId, {
+                usuarioId: aliado.usuarioId,
+                participanteId: aliado.id,
+                personajeId: aliado.personajeId,
+                hpOriginal: aliado.jugadorHp,
+                hp: hp + extra,
+                defensa: previo?.defensa ?? (propio ? jugadorDefensa : aliado.jugadorDefensa),
+                efectos: previo?.efectos ?? (propio ? efectosJugador : leerEfectosCombate(aliado.efectos)),
+              });
+              if (propio) jugadorHp += extra;
+              resultados[0].resultado.accion.texto += ` Gracia compartida restaura ${extra} PV a un segundo aliado.`;
+            }
+          }
         }
         const primera = resultados[0];
 
@@ -524,23 +654,24 @@ export async function ejecutarAccionCombateParty(
             throw new PartyServiceError("Uno de los enemigos elegidos ya no está activo.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
           }
           const efectosDelEnemigo = leerEfectosCombate(enemigo.efectos);
-          const resultado = resolverHabilidadJugador(habilidad!, {
-            contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, combate.ronda, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false,{numeroObjetivos:objetivosEnemigos.length,principal:indiceObjetivo===0}) : undefined,
+          const bono = bonoContra(enemigo);
+              const resultado = resolverHabilidadJugador(habilidad!, {
+            contextoTactico: (habilidad?.programaTactico || habilidad?.versionReglas===2) ? crearContextoTecnicaTactica(personaje, 0, instantaneaActorTactico(), { id: enemigo.id, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, ataque: enemigo.ataque, ataqueMagico: enemigo.ataqueMagico, defensa: enemigo.defensa, defensaMagica: enemigo.defensaMagica, posicion: enemigo.posicion, efectos: efectosDelEnemigo }, false,{numeroObjetivos:objetivosEnemigos.length,principal:indiceObjetivo===0}) : undefined,
             bonusCuracion,
             efectosEnemigo: efectosDelEnemigo,
-            jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
-            jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
-            jugadorProbCritico: participante.jugadorProbCritico,
-            jugadorDanoCritico: participante.jugadorDanoCritico,
-            jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
+            jugadorAtaque: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador)) * bono.dano,
+            jugadorAtaqueMagico: ataqueRasgo(calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true)) * bono.dano,
+            jugadorProbCritico: participante.jugadorProbCritico * multiplicadorAscension(efectosJugador) + bono.critico,
+            jugadorDanoCritico: participante.jugadorDanoCritico * multiplicadorAscension(efectosJugador),
+            jugadorPrecision: calcularPrecisionModificada((participante.jugadorPrecision) * multiplicadorAscension(efectosJugador), efectosJugador) + bono.precision,
             enemigoEvasion: calcularEvasionModificada(enemigo.evasion, efectosDelEnemigo),
             jugadorDefensa,
             jugadorDefensaMagica: participante.jugadorDefensaMagica,
             jugadorNivel: participante.jugadorNivel,
             jugadorHp,
-            jugadorHpMaximo: participante.jugadorHpMaximo,
+            jugadorHpMaximo: maximoJugador,
             enemigoDefensa: enemigo.defensa,
-            enemigoDefensaMagica: enemigo.defensaMagica,
+            enemigoDefensaMagica: resistenciaRasgo(enemigo.defensaMagica),
             enemigoNombre: enemigo.nombre,
             efectosJugador,
           });
@@ -587,7 +718,6 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa = enemigoActual?.defensa ?? enemigoDefensa;
       }
       establecerCooldownHabilidad(cooldowns,habilidad);
-      await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad);
     } else {
       if (typeof payload?.objetoInventarioId !== "string" || !payload.objetoInventarioId.trim()) {
         throw new PartyServiceError("Debes seleccionar una poción del inventario.", 400, "OBJETO_ID_REQUERIDO");
@@ -604,7 +734,7 @@ export async function ejecutarAccionCombateParty(
       const stats = calcularEstadisticasPersonaje({ ...personaje, nivelJob: personaje.progresosClase?.find((p) => p.claseId === personaje.profesionActivaId)?.nivelJob ?? 1 },
         personaje.habilidades.filter((h) => h.slot?.startsWith("pasiva_")), calcularModificadoresEquipo(equipo, personaje.profesionActivaId)).total;
       const restauracion = calcularRestauracionConsumible(definicion, {
-        hp: jugadorHp, hpMaximo: participante.jugadorHpMaximo,
+        hp: jugadorHp, hpMaximo: maximoJugador,
         energia: personaje.energiaActual, energiaMaxima: stats.energiaMaxima ?? 100,
         mana: personaje.manaActual, manaMaximo: stats.manaMaximo ?? 10,
       });
@@ -626,6 +756,108 @@ export async function ejecutarAccionCombateParty(
       };
     }
 
+    if (jugadorHp > 0) {
+      const objetivoRasgo = enemigosEnCombate.find(enemigo => enemigo.id === accion.enemigoObjetivoId);
+      registrarObjetivoRasgo(claseRasgo, objetivoRasgo?.id, efectosJugador,
+        !!objetivoRasgo && objetivoRasgo.hp > (danoEnemigoPorId.get(objetivoRasgo.id) ?? 0));
+      if (objetivoRasgo) {
+        const extra = efectosEnemigoPorId.get(objetivoRasgo.id);
+        const ajenos = extra?.efectos ?? leerEfectosCombate(objetivoRasgo.efectos);
+        if (habilidad?.efecto === "dano" && accion.tipo !== "fallo") marcarNotaAlMargen(claseRasgo, efectosJugador, ajenos);
+        const defensa = Math.max(0, (extra?.defensa ?? objetivoRasgo.defensa) - consumirAbsolucion(claseRasgo, accion, efectosJugador, ajenos));
+        efectosEnemigoPorId.set(objetivoRasgo.id, { defensa, efectos: ajenos });
+      }
+      resolverImpactosHibridosRoster(claseRasgo, usuarioId, subtipoArma, habilidad, efectosJugador,
+        participante.jugadorAtaqueMagico, enemigosEnCombate, previosHibridos,
+        danoEnemigoPorId, efectosEnemigoPorId, accion);
+      const curaTier3 = resolverImpactosTier3Roster(claseRasgo, usuarioId, habilidad, efectosJugador,
+        enemigosEnCombate, previosHibridos, danoEnemigoPorId, efectosEnemigoPorId, accion, efectosRunista);
+      const curaAplicada = Math.max(0, Math.min(maximoJugador - jugadorHp, curaTier3));
+      jugadorHp += curaAplicada;
+      if (curaAplicada > 0) accion.texto += ` El rasgo restaura ${curaAplicada} PV.`;
+      const refugio = claseRasgo === "guardian_bosque" && esTecnicaDefensiva(habilidad);
+      const linea = claseRasgo === "mariscal" && golpeConLanza(subtipoArma, habilidad, accion);
+      if (refugio) {
+        const columnas = COLUMNAS_FORMACION_COMBATE;
+        const casilla = (p: typeof participante) => indiceCasillaFormacion(p.jugadorPosicion, p.ordenTurno % columnas);
+        const origen = casilla(participante);
+        const vecino = combate.participantes.filter(p => {
+          if (p.usuarioId === usuarioId || p.estado !== "activo" || p.jugadorHp <= 0) return false;
+          const destino = casilla(p);
+          return Math.abs(Math.floor(origen / columnas) - Math.floor(destino / columnas)) +
+            Math.abs(origen % columnas - destino % columnas) <= 1;
+        }).sort((a, b) => a.jugadorHp / a.jugadorHpMaximo - b.jugadorHp / b.jugadorHpMaximo)[0];
+        if (vecino) {
+          const protegido = prepararAliadoTier3(vecino);
+          crearRefugio(usuarioId, vecino.usuarioId, vecino.jugadorHpMaximo, protegido.efectos);
+        }
+      }
+      if (linea) {
+        ponerLineaLanzas(efectosJugador);
+        for (const aliado of combate.participantes) {
+          if (aliado.usuarioId !== usuarioId && aliado.estado === "activo" && aliado.jugadorHp > 0) {
+            ponerLineaLanzas(prepararAliadoTier3(aliado).efectos);
+          }
+        }
+      }
+      if (objetivoRasgo) consumirHuellas(efectosJugador, objetivoRasgo.efectos);
+      cerrarAccionTier3(claseRasgo, habilidad, accionDesconocida === "atacar", subtipoArma, accion, efectosJugador, objetivoRasgo?.id);
+      const impactoTier35 = resolverImpactosTier35Roster({
+        clase: claseRasgo, actorId: usuarioId, arma: subtipoArma, habilidad, propios: efectosJugador, enemigos: enemigosEnCombate,
+        previos: previosHibridos, danos: danoEnemigoPorId, estados: efectosEnemigoPorId, accion: accion,
+      });
+      const drenajeEspectral = Math.min(Math.max(0, maximoJugador - jugadorHp), impactoTier35.cura);
+      jugadorHp += drenajeEspectral;
+      if (drenajeEspectral > 0) accion.texto += ` Disparo de ultratumba restaura ${drenajeEspectral} PV.`;
+      recursosHabilidad.energia += impactoTier35.energia;
+      const receptoresDanza = claseRasgo === "danzaespadas" && esDanzaCompas(habilidad)
+        ? [...objetivosAliadosModificados.values()]
+          .map(aliado => ({ efectos: aliado.efectos, hpMaximo: aliado.usuarioId === usuarioId ? maximoJugador
+            : combate.participantes.find(p => p.usuarioId === aliado.usuarioId)?.jugadorHpMaximo ?? 0 }))
+        : [];
+      prepararCompas(claseRasgo, habilidad, usuarioId, receptoresDanza, jobRasgo);
+      const aliadosVivos = combate.participantes.filter(p => p.estado === "activo" && p.jugadorHp > 0);
+      const efectosAliadoTier35 = (id: string) => {
+        if (id === usuarioId) return efectosJugador;
+        const aliado = aliadosVivos.find(p => p.usuarioId === id);
+        if (!aliado) return undefined;
+        const previo = objetivosAliadosModificados.get(id);
+        if (previo) return previo.efectos;
+        const vigentes = leerEfectosCombate(aliado.efectos);
+        return vigentes.some(efecto => efecto.creadorId === usuarioId ||
+          efecto.datosTacticos?.estados.some(estado => estado.creadorId === usuarioId))
+          ? prepararAliadoTier3(aliado).efectos : undefined;
+      };
+      cerrarAccionTier35({
+        clase: claseRasgo, habilidad, basico: accionDesconocida === "atacar", accion: accion, propios: efectosJugador,
+        actorId: usuarioId, hpGanado: jugadorHp - hpAntesAccion, efectosAliado: efectosAliadoTier35,
+        idsAliados: aliadosVivos.map(p => p.usuarioId),
+      });
+      const energiaAbordaje = cerrarAccionHibrida(claseRasgo, habilidad, accionDesconocida === "atacar", accion, efectosJugador, jobRasgo, impactoTier35.energia > 0);
+      recursosHabilidad.energia += energiaAbordaje;
+      if (energiaAbordaje > 0 || impactoTier35.energia > 0) premioAbordaje = oroAbordaje(jobRasgo, claseRasgo);
+      await gastarRecursosHabilidad(tx, personaje.id, habilidad, recursosHabilidad, multiplicadorAscension(efectosJugador));
+      if (premioAbordaje > 0) await tx.usuario.update({ where: { id: usuarioId }, data: { oro: { increment: premioAbordaje } } });
+      actualizarRachaSuperNovato(claseRasgo, efectosJugador, habilidad);
+      const vidaAscension = ajustarVidaAscension(efectosJugador, jugadorHp, maximoJugador);
+      jugadorHp = vidaAscension.hp;
+      maximoJugador = vidaAscension.maximo;
+      cerrarRasgoAccion(claseRasgo, efectosJugador, habilidad);
+      if (claseRasgo === "arquero" && (accionDesconocida === "atacar" || habilidad?.efecto === "dano")) {
+        const objetivo = enemigosEnCombate.find(enemigo => enemigo.id === accion.enemigoObjetivoId);
+        if (objetivo) {
+          const danoPrevio = danoEnemigoPorId.get(objetivo.id) ?? 0;
+          const extras = efectosEnemigoPorId.get(objetivo.id);
+          const efectosObjetivo = extras?.efectos ?? leerEfectosCombate(objetivo.efectos);
+          const adicional = resolverFlechasRasgo(jobRasgo, objetivo.hp - danoPrevio, accion, efectosObjetivo, () =>
+            resolverBasico({ ...objetivo, defensa: extras?.defensa ?? objetivo.defensa }, efectosObjetivo)
+          );
+          danoEnemigoPorId.set(objetivo.id, danoPrevio + adicional);
+          efectosEnemigoPorId.set(objetivo.id, { defensa: extras?.defensa ?? objetivo.defensa, efectos: efectosObjetivo });
+        }
+      }
+    }
+
     enemigosEnCombate = enemigosEnCombate.map((enemigo) => {
       const dano = danoEnemigoPorId.get(enemigo.id) ?? 0;
       const extras = efectosEnemigoPorId.get(enemigo.id);
@@ -636,6 +868,40 @@ export async function ejecutarAccionCombateParty(
         efectos: extras?.efectos ?? enemigo.efectos,
       };
     });
+    for (const miembro of combate.participantes) {
+      if (miembro.usuarioId === usuarioId || miembro.estado !== "activo" ||
+          !profesionesTier3.some(p => p.id === miembro.personajeId && p.profesionActivaId === "nigromante")) continue;
+      const derrotados = enemigosEnCombate.filter(enemigo => enemigo.hp <= 0 && (danoEnemigoPorId.get(enemigo.id) ?? 0) > 0);
+      for (const enemigo of derrotados) {
+        cobrarAlma("nigromante", miembro.usuarioId, prepararAliadoTier3(miembro).efectos,
+          [...(previosHibridos.get(enemigo.id) ?? []), ...enemigo.efectos]);
+      }
+    }
+    for (const enemigo of enemigosEnCombate) {
+      if (enemigo.hp > 0 || !consumirSemillaSilvestre(enemigo.efectos)) continue;
+      const receptor = elegirReceptorSemilla(combate.participantes.filter(p => p.estado === "activo").map(p => ({
+        miembro: p,
+        hp: p.usuarioId === usuarioId ? jugadorHp : objetivosAliadosModificados.get(p.usuarioId)?.hp ?? p.jugadorHp,
+        maximo: p.usuarioId === usuarioId ? maximoJugador : p.jugadorHpMaximo,
+      })));
+      if (!receptor) continue;
+      const { miembro, hp, maximo } = receptor;
+      const cura = curacionSemilla(hp, maximo);
+      if (miembro.usuarioId === usuarioId) jugadorHp += cura;
+      else {
+        const previo = objetivosAliadosModificados.get(miembro.usuarioId);
+        objetivosAliadosModificados.set(miembro.usuarioId, {
+          usuarioId: miembro.usuarioId,
+          participanteId: miembro.id,
+          personajeId: miembro.personajeId,
+          hpOriginal: miembro.jugadorHp,
+          hp: hp + cura,
+          defensa: previo?.defensa ?? miembro.jugadorDefensa,
+          efectos: previo?.efectos ?? leerEfectosCombate(miembro.efectos),
+        });
+      }
+      accion.texto += ` Semilla silvestre restaura ${cura} PV a un aliado.`;
+    }
     const enemigosVivosTrasAccion = enemigosEnCombate.filter((enemigo) => enemigo.hp > 0);
     const enemigoPrincipalTrasAccion = enemigosVivosTrasAccion[0] ?? enemigosEnCombate[0];
     enemigoHp = enemigosVivosTrasAccion.length > 0 ? enemigoPrincipalTrasAccion.hp : 0;
@@ -653,7 +919,6 @@ export async function ejecutarAccionCombateParty(
     let turnoActualUsuarioId: string | null = null;
     let ronda = combate.ronda;
     let turnosPendientes: PasoTurnoVelocidad[] = [];
-    let nuevaRonda = false;
     let fase = "activo";
     if (resultadoTerminal === "victoria") {
       fase = "victoria";
@@ -667,7 +932,15 @@ export async function ejecutarAccionCombateParty(
     } else {
       const siguiente = prepararSiguienteTurnoVelocidad(
         combate,
-        combate.participantes,
+        combate.participantes.map(miembro => {
+          const actua = miembro.usuarioId === usuarioId;
+          const efectos = actua ? efectosJugador
+            : objetivosAliadosModificados.get(miembro.usuarioId)?.efectos ?? leerEfectosCombate(miembro.efectos);
+          const factor = actua && claseRasgo === "berserker"
+            ? multiplicadorAtaqueRasgo(claseRasgo, jugadorHp, maximoJugador, efectos)
+            : multiplicadorAscension(efectos);
+          return { ...miembro, jugadorVelocidad: velocidadConDanza(miembro.jugadorVelocidad, efectos) * factor };
+        }),
         enemigosEnCombate,
         estadoParticipantes,
         colaTurnosActuales,
@@ -676,24 +949,10 @@ export async function ejecutarAccionCombateParty(
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
       ronda = siguiente.ronda;
       turnosPendientes = siguiente.turnosPendientes;
-      nuevaRonda = siguiente.nuevaRonda;
     }
 
-    if (nuevaRonda) {
-      // Un cooldown avanza al completarse todo el ciclo, con independencia
-      // de qué equipo haya ejecutado la última acción.
-      cooldowns = reducirCooldowns(cooldowns);
-      for (const miembro of combate.participantes) {
-        if (miembro.usuarioId === usuarioId) continue;
-        const guardado = await tx.combatePartyParticipante.updateMany({
-          where: { id: miembro.id, combatePartyId: combate.id },
-          data: { cooldowns: reducirCooldowns(obtenerCooldowns(miembro.cooldowns)) as unknown as Prisma.InputJsonValue },
-        });
-        if (guardado.count !== 1) {
-          throw new PartyServiceError("No se pudieron actualizar los cooldowns de la party.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
-        }
-      }
-    }
+    if (turnoActualUsuarioId === usuarioId) cooldowns = reducirCooldowns(cooldowns);
+    else await reducirCooldownsSiguienteParty(tx, combate.participantes, turnoActualUsuarioId);
 
     // Todos los cambios de recursos/inventario y el avance del turno son atómicos.
     const actualizado = await tx.combateParty.updateMany({
@@ -728,6 +987,7 @@ export async function ejecutarAccionCombateParty(
       where: { id: participante.id, jugadorHp: participante.jugadorHp },
       data: {
         jugadorHp,
+        jugadorHpMaximo: maximoJugador,
         jugadorDefensa,
         ...(filaActorTactica !== undefined ? { jugadorPosicion: ["mele", "centro", "retaguardia"][filaActorTactica] } : {}),
         estado: jugadorHp > 0 ? "activo" : "caido",
@@ -771,7 +1031,7 @@ export async function ejecutarAccionCombateParty(
             id: objetivoAliado.personajeId,
             estado: "combatiendo",
           },
-          data: { hpActual: objetivoAliado.hp },
+          data: { hpActual: limitarVidaFueraCombate(objetivoAliado.hp, objetivoAliado.efectos) },
         });
         if (personajeAliadoActualizado.count !== 1) {
           throw new PartyServiceError(
@@ -785,7 +1045,7 @@ export async function ejecutarAccionCombateParty(
 
     const personajeActualizado = await tx.personaje.updateMany({
       where: { id: personaje.id, usuarioId, estado: "combatiendo" },
-      data: { hpActual: jugadorHp },
+      data: { hpActual: limitarVidaFueraCombate(jugadorHp, efectosJugador) },
     });
     if (personajeActualizado.count !== 1) {
       throw new PartyServiceError("No se pudo sincronizar la salud del aventurero.", 409, "PERSONAJE_PARTY_MODIFICADO");
@@ -814,7 +1074,8 @@ export async function ejecutarAccionCombateParty(
     ) {
       const siguienteMiembro = combate.participantes.find((miembro) => miembro.usuarioId === turnoActualUsuarioId);
       if (siguienteMiembro && siguienteMiembro.estado === "activo" && siguienteMiembro.jugadorHp > 0) {
-        await regenerarRecursosTurnoParty(tx, siguienteMiembro.personajeId, siguienteMiembro.usuarioId);
+        await regenerarRecursosTurnoParty(tx, siguienteMiembro.personajeId, siguienteMiembro.usuarioId,
+          multiplicadorAscension(siguienteMiembro.usuarioId === usuarioId ? efectosJugador : leerEfectosCombate(siguienteMiembro.efectos)));
       }
     }
 

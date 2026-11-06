@@ -14,10 +14,8 @@ export function actualizarRelojContexto(
       if (!efecto.datosTacticos) return { ...efecto };
 
       const datos = efecto.datosTacticos;
-      const diferencia = Math.max(
-        0,
-        contexto.ciclo - (datos.limites._ciclo ?? contexto.ciclo)
-      );
+      const diferencia = contexto.relojPersonal ? 0 :
+        Math.max(0, contexto.ciclo - (datos.limites._ciclo ?? contexto.ciclo));
       const limites = Object.fromEntries(
         Object.entries(datos.limites).filter(
           ([clave]) =>
@@ -32,13 +30,9 @@ export function actualizarRelojContexto(
         datosTacticos: {
           ...datos,
           limites: { ...limites, _ciclo: contexto.ciclo },
-          estados: datos.estados
-            .map((estado) => ({
-              ...estado,
-              restantes:
-                estado.restantes - (estado.reloj === "ciclo" ? diferencia : 0),
-            }))
-            .filter((estado) => estado.restantes > 0),
+          estados: datos.estados.map(estado => ({
+            ...estado, restantes: estado.restantes - (estado.reloj === "ciclo" ? diferencia : 0),
+          })).filter(estado => estado.restantes > 0),
         },
       };
     });

@@ -1,3 +1,4 @@
+import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
 import type { Prisma } from "@prisma/client";
 import type { ParticipanteTurnoParty } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "./errores";
@@ -37,4 +38,23 @@ export async function cargarCombateParty(tx: Prisma.TransactionClient, expedicio
     throw new PartyServiceError("La expedición ya no está en fase de combate.", 409, "EXPEDICION_PARTY_NO_COMBATIENDO");
   }
   return combate;
+}
+
+/** Sólo se actualiza al participante cuyo turno se abre. */
+export async function reducirCooldownsSiguienteParty(
+  tx: Prisma.TransactionClient,
+  participantes: readonly { id: string; usuarioId: string; cooldowns: unknown }[],
+  usuarioId: string | null,
+) {
+  const siguiente = participantes.find(miembro => miembro.usuarioId === usuarioId);
+  if (!siguiente) return;
+  const cooldowns = obtenerCooldowns(siguiente.cooldowns);
+  if (Object.keys(cooldowns).length === 0) return;
+  const guardado = await tx.combatePartyParticipante.updateMany({
+    where: { id: siguiente.id, estado: "activo" },
+    data: { cooldowns: reducirCooldowns(cooldowns) as Prisma.InputJsonValue },
+  });
+  if (guardado.count !== 1) {
+    throw new PartyServiceError("El participante cambió al abrir su turno.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+  }
 }

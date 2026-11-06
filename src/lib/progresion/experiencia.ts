@@ -59,7 +59,7 @@ export function aplicarExperienciaJob(
   }
 
   puntosHabilidadDisponibles += nivelesSubidos;
-  const maestriaCompletada = progreso.maestriaCompletada || nivelJob >= maximo;
+  const maestriaCompletada = nivelJob >= maximo;
 
   return {
     nivelJob,

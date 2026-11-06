@@ -1,3 +1,27 @@
+import { velocidadConDanza } from "@/lib/expediciones/combate/danzas-combate";
+import { registrarContraofensiva, registrarEsquivaTier35 } from "@/lib/expediciones/combate/rasgos-tier35";
+import { cargarLuzGuardia, cobrarAlma, marcarHuellas, registrarEsquivaTier3 } from "@/lib/expediciones/combate/rasgos-tier3";
+import { crearRepresaliaRuptura, curaConsagracion } from "@/lib/expediciones/combate/protecciones-rasgos";
+import {
+  consumirSemillaSilvestre, curacionSemilla, elegirReceptorSemilla, registrarEsquivaHibrida, registrarVotoAuxilio,
+} from "@/lib/expediciones/combate/rasgos-hibridos";
+import {
+  activarContraataque,
+  activarDeudaOscura,
+  activarSegundoAire,
+  consumirNotaAlMargen,
+  guardarMarcaRasgo,
+  hayMaldicionBrujo,
+  leerMarcaRasgo,
+  limitarGolpeLetal,
+  limitarVidaFueraCombate,
+  multiplicadorAscension,
+  multiplicadorAtaqueRasgo,
+  multiplicadorDefensaRasgo,
+} from "@/lib/expediciones/combate/rasgos-clase";
+import { obtenerTurnoPersonal } from "@/lib/expediciones/combate/estados-combate";
+import { resolverAtaqueJugador } from "@/lib/expediciones/combate/ataques-basicos";
+import { gastarRecursosHabilidad } from "@/server/services/combate/accion-combate";
 import {
   consumirPrecisionTactica,
   calcularAtaqueModificado,
@@ -5,7 +29,7 @@ import {
   calcularPrecisionModificada,
   leerEfectosCombate,
   avanzarEfectosCombate,
-  procesarEfectosTurno,
+  comenzarTurnoCombatiente,
   aplicarBarreraAccion,
 } from "@/lib/expediciones/combate/estados-combate";
 import { Prisma } from "@prisma/client";
@@ -17,7 +41,7 @@ import { resolverResultadoCombateParty, obtenerLogCombateParty } from "@/lib/par
 import type { PasoTurnoVelocidad } from "@/lib/expediciones/combate/iniciativa-combate";
 import { obtenerColaActualParty, prepararSiguienteTurnoVelocidad } from "@/lib/party/iniciativa";
 import { PartyServiceError } from "./errores";
-import { obtenerCooldowns, reducirCooldowns } from "@/lib/expediciones/combate/cooldowns-habilidades";
+import { reducirCooldownsSiguienteParty } from "./contexto-combate";
 import { liquidarRecompensasParty } from "./liquidacion-recompensas";
 import { iniciarRegresoParty } from "./regreso-combate";
 import { regenerarRecursosTurnoParty } from "./recursos-turno";
@@ -84,6 +108,16 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     if (!turnoEnemigoActual || turnoEnemigoActual.equipo !== "enemigo") {
       throw new PartyServiceError("La cola de iniciativa no apunta a un enemigo activo.", 409, "TURNO_ENEMIGO_INICIATIVA_INVALIDA");
     }
+    const profesiones = await tx.personaje.findMany({
+      where: { id: { in: combate.participantes.map(miembro => miembro.personajeId) } },
+      select: { id: true, profesionActivaId: true },
+    });
+    const clases = new Map(profesiones.map(p => [p.id, p.profesionActivaId ?? "novato"]));
+    if (combate.ronda === 1 && combate.participantes.some(p => p.estado === "activo" && clases.get(p.personajeId) === "rastreador")) {
+      marcarHuellas(enemigosEnCombate);
+    }
+    const estadosDerrotados: EstadoEfectoHabilidad[][] = [];
+    const curacionPorUsuario = new Map<string, number>();
     const danoPorUsuario = new Map<string, number>();
     const barrerasConsumidas = new Map<string, EstadoEfectoHabilidad[]>();
     const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean; hpAntes: number; hpDespues: number }[] = [];
@@ -94,7 +128,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       if (enemigo.hp <= 0) continue;
 
       const efectosIniciales = leerEfectosCombate(enemigo.efectos);
-      const ticks = procesarEfectosTurno(
+      const ticks = comenzarTurnoCombatiente(
         efectosIniciales,
         enemigo.hp,
         enemigo.hpMaximo,
@@ -110,11 +144,12 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       log.push(...ticks.mensajes.map((mensaje) => enemigo.nombre + ": " + mensaje));
       if (enemigo.hp <= 0) {
         log.push(`☠️ ${enemigo.nombre} cae por los efectos acumulados.`);
+        estadosDerrotados.push(efectosIniciales);
         enemigosEnCombate[indiceEnemigo] = enemigo;
         continue;
       }
 
-      const objetivo = participantesActualizados
+      let objetivo = participantesActualizados
         .filter((p) => p.estado === "activo" && p.jugadorHp > 0)
         .map((p) => combate.participantes.find((miembro) => miembro.usuarioId === p.usuarioId)!)
         .sort((a, b) =>
@@ -124,20 +159,113 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         )[0];
       if (!objetivo) break;
 
-      const participanteHpActual = Math.max(0, objetivo.jugadorHp - (danoPorUsuario.get(objetivo.usuarioId) ?? 0));
-      const efectosObjetivo = barrerasConsumidas.get(objetivo.usuarioId) ?? leerEfectosCombate(objetivo.efectos);
+      const protegidoId = objetivo.usuarioId;
+      const interpuesto = combate.participantes.find(miembro => {
+        if (miembro.usuarioId === objetivo.usuarioId || miembro.estado !== "activo" || miembro.jugadorHp <= 0 ||
+            !["caballero", "cruzado"].includes(clases.get(miembro.personajeId) ?? "") || miembro.jugadorPosicion !== objetivo.jugadorPosicion) return false;
+        const efectos = leerEfectosCombate(miembro.efectos);
+        return leerMarcaRasgo(efectos, "_interposicion")?.valor !== obtenerTurnoPersonal(efectos);
+      });
+      objetivo = interpuesto ?? objetivo;
+      let claseObjetivo = clases.get(objetivo.personajeId) ?? "novato";
+      let participanteHpActual = Math.max(0, objetivo.jugadorHp - (danoPorUsuario.get(objetivo.usuarioId) ?? 0));
+      let efectosObjetivo = barrerasConsumidas.get(objetivo.usuarioId) ?? leerEfectosCombate(objetivo.efectos);
+      if (interpuesto) guardarMarcaRasgo(efectosObjetivo, "_interposicion", obtenerTurnoPersonal(efectosObjetivo));
       const accionEnemiga = resolverAtaqueEnemigo({
         efectosJugador: efectosObjetivo,
         enemigoAtaque: calcularAtaqueModificado(enemigo.ataque, enemigo.efectos),
         enemigoProbCritico: enemigo.probCritico,
         enemigoDanoCritico: enemigo.danoCritico,
         enemigoPrecision: calcularPrecisionModificada(enemigo.precision, enemigo.efectos),
-        jugadorEvasion: calcularEvasionModificada(objetivo.jugadorEvasion, efectosObjetivo),
-        jugadorDefensa: objetivo.jugadorDefensa,
+        jugadorEvasion: calcularEvasionModificada(objetivo.jugadorEvasion * multiplicadorAscension(efectosObjetivo), efectosObjetivo),
+        jugadorDefensa: objetivo.jugadorDefensa * multiplicadorDefensaRasgo(claseObjetivo, participanteHpActual, objetivo.jugadorHpMaximo, efectosObjetivo),
         enemigoNombre: enemigo.nombre,
       });
 
+      consumirNotaAlMargen(enemigo.efectos);
       aplicarBarreraAccion(accionEnemiga, efectosObjetivo);
+      const objetivoProteccion = objetivo.usuarioId;
+      const autorContraofensiva = accionEnemiga.proteccion?.contraofensiva;
+      const senor = autorContraofensiva && combate.participantes.find(p => p.usuarioId === autorContraofensiva &&
+        p.estado === "activo" && p.jugadorHp > 0 && clases.get(p.personajeId) === "senor_guerra");
+      if (senor) {
+        const efectosSenor = senor.usuarioId === objetivo.usuarioId ? efectosObjetivo
+          : barrerasConsumidas.get(senor.usuarioId) ?? leerEfectosCombate(senor.efectos);
+        registrarContraofensiva(efectosSenor, enemigo.id);
+        barrerasConsumidas.set(senor.usuarioId, efectosSenor);
+      }
+      cargarLuzGuardia(claseObjetivo, accionEnemiga.proteccion?.mitigado ?? 0, objetivo.jugadorHpMaximo, efectosObjetivo);
+      const ruptura = accionEnemiga.proteccion?.ruptura;
+      const abjurador = ruptura && combate.participantes.find(p => p.usuarioId === ruptura.creadorId && p.estado === "activo");
+      if (ruptura && abjurador && ruptura.mana > 0) {
+        await gastarRecursosHabilidad(tx, abjurador.personajeId, null, { energia: 0, mana: ruptura.mana });
+        log.push(`Ruptura controlada restaura ${ruptura.mana} de maná.`);
+      }
+      const represalia = crearRepresaliaRuptura(accionEnemiga.proteccion);
+      if (represalia.dano > 0) {
+        enemigo.hp = Math.max(0, enemigo.hp - represalia.dano);
+        accionEnemiga.texto += represalia.texto;
+        if (enemigo.hp <= 0) estadosDerrotados.push(efectosIniciales);
+      }
+      if (accionEnemiga.dano >= participanteHpActual) {
+        const guardiaReal = combate.participantes.find(p =>
+          p.usuarioId !== objetivo.usuarioId && p.estado === "activo" && p.jugadorHp > 0 &&
+          clases.get(p.personajeId) === "guardian_real" &&
+          !leerMarcaRasgo(barrerasConsumidas.get(p.usuarioId) ?? leerEfectosCombate(p.efectos), "_ultimoBastion"));
+        if (guardiaReal) {
+          barrerasConsumidas.set(objetivo.usuarioId, efectosObjetivo);
+          objetivo = guardiaReal;
+          claseObjetivo = "guardian_real";
+          participanteHpActual = guardiaReal.jugadorHp;
+          efectosObjetivo = barrerasConsumidas.get(guardiaReal.usuarioId) ?? leerEfectosCombate(guardiaReal.efectos);
+          guardarMarcaRasgo(efectosObjetivo, "_ultimoBastion", 1);
+          accionEnemiga.texto += " Último bastión redirige el golpe al Guardián real.";
+        }
+      }
+      limitarGolpeLetal(claseObjetivo, participanteHpActual, efectosObjetivo, accionEnemiga);
+      registrarEsquivaHibrida(claseObjetivo, accionEnemiga, efectosObjetivo);
+      registrarEsquivaTier3(claseObjetivo, accionEnemiga, efectosObjetivo, enemigo.id);
+      registrarEsquivaTier35(claseObjetivo, accionEnemiga, efectosObjetivo, enemigo.id);
+      const cura = objetivoProteccion === objetivo.usuarioId
+        ? curaConsagracion(accionEnemiga.proteccion, Math.max(0, participanteHpActual - accionEnemiga.dano), objetivo.jugadorHpMaximo) : 0;
+      if (cura > 0) {
+        curacionPorUsuario.set(objetivo.usuarioId, (curacionPorUsuario.get(objetivo.usuarioId) ?? 0) + cura);
+        log.push(`Consagración restaura ${cura} PV.`);
+      }
+      if (interpuesto) {
+        if (claseObjetivo === "cruzado" && accionEnemiga.dano > 0) registrarVotoAuxilio(efectosObjetivo, protegidoId);
+        accionEnemiga.texto = (claseObjetivo === "cruzado" ? "Voto de auxilio. " : "Interposición. ") + accionEnemiga.texto;
+      }
+      if (enemigo.posicion !== "retaguardia" && activarContraataque(claseObjetivo, accionEnemiga, efectosObjetivo)) {
+        const replica = resolverAtaqueJugador({
+          jugadorAtaque: calcularAtaqueModificado(objetivo.jugadorAtaque, efectosObjetivo),
+          jugadorNivel: objetivo.jugadorNivel,
+          jugadorProbCritico: objetivo.jugadorProbCritico,
+          jugadorDanoCritico: objetivo.jugadorDanoCritico,
+          jugadorPrecision: objetivo.jugadorPrecision,
+          enemigoEvasion: enemigo.evasion,
+          enemigoDefensa: enemigo.defensa,
+          enemigoNombre: enemigo.nombre,
+        });
+        aplicarBarreraAccion(replica, enemigo.efectos);
+        enemigo.hp = Math.max(0, enemigo.hp - replica.dano);
+        if (enemigo.hp <= 0) estadosDerrotados.push(efectosIniciales);
+        log.push("Respuesta de acero: " + replica.texto);
+      }
+      if (participanteHpActual > accionEnemiga.dano && activarSegundoAire(claseObjetivo, accionEnemiga.dano, efectosObjetivo)) {
+        await gastarRecursosHabilidad(tx, objetivo.personajeId, null, { energia: 0, mana: 0, fraccionEnergiaFaltante: 0.15 });
+      }
+      for (const brujo of combate.participantes) {
+        if (brujo.estado !== "activo" || brujo.jugadorHp <= (danoPorUsuario.get(brujo.usuarioId) ?? 0) +
+          (brujo.usuarioId === objetivo.usuarioId ? accionEnemiga.dano : 0)) continue;
+        const efectosBrujo = brujo.usuarioId === objetivo.usuarioId ? efectosObjetivo :
+          barrerasConsumidas.get(brujo.usuarioId) ?? leerEfectosCombate(brujo.efectos);
+        if (!activarDeudaOscura(clases.get(brujo.personajeId) ?? "", hayMaldicionBrujo(efectosIniciales, brujo.usuarioId), efectosBrujo)) continue;
+        barrerasConsumidas.set(brujo.usuarioId, efectosBrujo);
+        curacionPorUsuario.set(brujo.usuarioId, Math.max(1, Math.floor(brujo.jugadorHpMaximo * 0.05)));
+        await gastarRecursosHabilidad(tx, brujo.personajeId, null, { energia: 0, mana: 5 });
+        log.push("Deuda oscura restaura vida y maná.");
+      }
       barrerasConsumidas.set(objetivo.usuarioId, efectosObjetivo);
       consumirPrecisionTactica(enemigo.efectos);
       const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
@@ -203,10 +331,34 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       texto: "No quedan enemigos capaces de atacar.",
     };
 
+    if (estadosDerrotados.length > 0) {
+      for (const miembro of combate.participantes) {
+        if (miembro.estado !== "activo" || clases.get(miembro.personajeId) !== "nigromante") continue;
+        const efectos = barrerasConsumidas.get(miembro.usuarioId) ?? leerEfectosCombate(miembro.efectos);
+        for (const derrotado of estadosDerrotados) cobrarAlma("nigromante", miembro.usuarioId, efectos, derrotado);
+        barrerasConsumidas.set(miembro.usuarioId, efectos);
+      }
+    }
+    for (const enemigo of enemigosEnCombate) {
+      if (enemigo.hp > 0 || !consumirSemillaSilvestre(enemigo.efectos)) continue;
+      const receptor = elegirReceptorSemilla(combate.participantes.filter(p => p.estado === "activo").map(p => ({
+        miembro: p,
+        hp: p.jugadorHp > (danoPorUsuario.get(p.usuarioId) ?? 0)
+          ? Math.min(p.jugadorHpMaximo, p.jugadorHp - (danoPorUsuario.get(p.usuarioId) ?? 0) + (curacionPorUsuario.get(p.usuarioId) ?? 0))
+          : 0,
+        maximo: p.jugadorHpMaximo,
+      })));
+      if (!receptor) continue;
+      const id = receptor.miembro.usuarioId;
+      const cura = curacionSemilla(receptor.hp, receptor.maximo);
+      curacionPorUsuario.set(id, (curacionPorUsuario.get(id) ?? 0) + cura);
+      log.push(`Semilla silvestre restaura ${cura} PV a ${id}.`);
+    }
+
     for (const miembro of combate.participantes) {
       const dano = danoPorUsuario.get(miembro.usuarioId) ?? 0;
-      if ((dano <= 0 && !barrerasConsumidas.has(miembro.usuarioId)) || miembro.estado !== "activo" || miembro.jugadorHp <= 0) continue;
-      const nuevoHp = Math.max(0, miembro.jugadorHp - dano);
+      if ((dano <= 0 && !barrerasConsumidas.has(miembro.usuarioId) && !curacionPorUsuario.has(miembro.usuarioId)) || miembro.estado !== "activo" || miembro.jugadorHp <= 0) continue;
+      const nuevoHp = Math.min(miembro.jugadorHpMaximo, Math.max(0, miembro.jugadorHp - dano) + (curacionPorUsuario.get(miembro.usuarioId) ?? 0));
       const caido = nuevoHp <= 0;
       const actualizadoParticipante = await tx.combatePartyParticipante.updateMany({
         where: {
@@ -230,7 +382,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
           usuarioId: miembro.usuarioId,
           estado: "combatiendo",
         },
-        data: { hpActual: nuevoHp },
+        data: { hpActual: limitarVidaFueraCombate(nuevoHp, barrerasConsumidas.get(miembro.usuarioId) ?? leerEfectosCombate(miembro.efectos)) },
       });
       if (personajeActualizado.count !== 1) {
         throw new PartyServiceError("El personaje ya no está disponible para recibir el resultado del turno enemigo.", 409, "PERSONAJE_MODIFICADO");
@@ -253,7 +405,6 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     let turnoActualUsuarioId: string | null = null;
     let ronda = combate.ronda;
     let turnosPendientes: PasoTurnoVelocidad[] = [];
-    let nuevaRonda = false;
 
     if (resultado === "victoria") {
       fase = "victoria";
@@ -270,7 +421,14 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     } else {
       const siguiente = prepararSiguienteTurnoVelocidad(
         combate,
-        combate.participantes,
+        combate.participantes.map(miembro => {
+          const hp = participantesActualizados.find(p => p.usuarioId === miembro.usuarioId)?.jugadorHp ?? miembro.jugadorHp;
+          const efectos = barrerasConsumidas.get(miembro.usuarioId) ?? leerEfectosCombate(miembro.efectos);
+          const factor = clases.get(miembro.personajeId) === "berserker"
+            ? multiplicadorAtaqueRasgo("berserker", hp, miembro.jugadorHpMaximo, efectos)
+            : multiplicadorAscension(efectos);
+          return { ...miembro, jugadorVelocidad: velocidadConDanza(miembro.jugadorVelocidad, efectos) * factor };
+        }),
         enemigosEnCombate,
         participantesActualizados,
         colaTurnosActuales,
@@ -279,7 +437,6 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
       ronda = siguiente.ronda;
       turnosPendientes = siguiente.turnosPendientes;
-      nuevaRonda = siguiente.nuevaRonda;
     }
 
     if (
@@ -293,24 +450,13 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       if (siguienteMiembro) {
         const miembroOriginal = combate.participantes.find((miembro) => miembro.usuarioId === siguienteMiembro.usuarioId);
         if (miembroOriginal) {
-          await regenerarRecursosTurnoParty(tx, miembroOriginal.personajeId, miembroOriginal.usuarioId);
+          await regenerarRecursosTurnoParty(tx, miembroOriginal.personajeId, miembroOriginal.usuarioId,
+            multiplicadorAscension(barrerasConsumidas.get(miembroOriginal.usuarioId) ?? leerEfectosCombate(miembroOriginal.efectos)));
         }
       }
     }
 
-    // Los cooldowns avanzan una vez por ciclo completo, no por cada enemigo.
-    if (nuevaRonda) {
-      for (const miembro of combate.participantes) {
-        const cooldownsReducidos = reducirCooldowns(obtenerCooldowns(miembro.cooldowns));
-        const guardado = await tx.combatePartyParticipante.updateMany({
-          where: { id: miembro.id, combatePartyId: combate.id },
-          data: { cooldowns: cooldownsReducidos as unknown as Prisma.InputJsonValue },
-        });
-        if (guardado.count !== 1) {
-          throw new PartyServiceError("No se pudieron actualizar los cooldowns de la party.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
-        }
-      }
-    }
+    await reducirCooldownsSiguienteParty(tx, combate.participantes, turnoActualUsuarioId);
 
     const actualizado = await tx.combateParty.updateMany({
       where: {

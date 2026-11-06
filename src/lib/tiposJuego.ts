@@ -50,6 +50,8 @@ export type EfectoHabilidadActiva =
   | "bonus_ataque_magico";
 
 export type TipoEfectoTemporalHabilidad =
+  | "interno"
+  | "danza"
   | "tactico"
   | "bonus_defensa"
   | "debuff_defensa"
@@ -73,7 +75,9 @@ export interface EstadoSecundarioHabilidad {
 }
 
 export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
+  escudoDanza?: number;
   habilidadId: string;
+  rasgoProteccion?: import("./expediciones/combate/protecciones-rasgos").MarcaProteccion;
   turnosRestantes: number;
   creadorId?: string;
   datosTacticos?: {
@@ -397,6 +401,7 @@ export interface ReglaObjetivoHabilidad {
 
 /** HABILIDADES */
 export interface DefinicionHabilidad {
+  costeVidaRasgo?: number;
   rupturaDefensaTemporal?: number;
   versionReglas?: 2;
   disenoActiva?: import("./progresion/habilidades/diseno-habilidades").DisenoActiva;

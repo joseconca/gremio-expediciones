@@ -15,7 +15,9 @@ export type ContextoTecnicaTactica = {
   actorId: string;
   objetivoId: string;
   claseId: string;
+  nivelJob?: number;
   ciclo: number;
+  relojPersonal?: boolean;
   actorHp: number;
   actorHpMaximo: number;
   energia: number;

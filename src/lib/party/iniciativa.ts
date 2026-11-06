@@ -93,6 +93,5 @@ export function prepararSiguienteTurnoVelocidad(
     turnoActualUsuarioId: turno?.equipo === "jugador" ? turno.actorId : null,
     ronda: avance.ronda,
     turnosPendientes: avance.turnosPendientes,
-    nuevaRonda: avance.nuevaRonda,
   };
 }

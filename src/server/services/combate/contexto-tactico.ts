@@ -1,3 +1,6 @@
+import { potenciaDanza } from "@/lib/expediciones/combate/danzas-combate";
+import { multiplicadorAscension, obtenerJobRasgo } from "@/lib/expediciones/combate/rasgos-clase";
+import { obtenerTurnoPersonal } from "@/lib/expediciones/combate/estados-combate";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -64,6 +67,9 @@ export function crearContextoTecnicaTactica(
       : [];
   })).values()].slice(0, 3);
 
+  const factor = multiplicadorAscension(actor.efectos);
+  const energiaMaxima = Math.floor((stats.energiaMaxima ?? 100) * factor);
+  const manaMaximo = Math.floor((stats.manaMaximo ?? 10) * factor);
   const fila = (posicion: string | null | undefined) => ({
     mele: 0,
     centro: 1,
@@ -76,15 +82,17 @@ export function crearContextoTecnicaTactica(
     actorId: actor.id,
     objetivoId: objetivo.id,
     claseId: personaje.profesionActivaId ?? "novato",
-    ciclo,
+    nivelJob: personaje.nivelJob ?? obtenerJobRasgo(personaje),
+    ciclo: ciclo === 0 ? obtenerTurnoPersonal(actor.efectos) : ciclo,
+    relojPersonal: ciclo === 0,
     actorHp: actor.hp,
     actorHpMaximo: actor.hpMaximo,
-    energia: Math.min(personaje.energiaActual, stats.energiaMaxima ?? 100),
-    energiaMaxima: stats.energiaMaxima ?? 100,
-    mana: Math.min(personaje.manaActual, stats.manaMaximo ?? 10),
-    manaMaximo: stats.manaMaximo ?? 10,
-    ataque: actor.ataque,
-    ataqueMagico: actor.ataqueMagico,
+    energia: Math.min(personaje.energiaActual, energiaMaxima),
+    energiaMaxima,
+    mana: Math.min(personaje.manaActual, manaMaximo),
+    manaMaximo,
+    ataque: actor.ataque * (1 + potenciaDanza(actor.efectos, "victoria")),
+    ataqueMagico: actor.ataqueMagico * (1 + potenciaDanza(actor.efectos, "victoria")),
     defensaActor: actor.defensa,
     defensaMagicaActor: actor.defensaMagica,
     efectosActor: actor.efectos,

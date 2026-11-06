@@ -1,3 +1,4 @@
+import { regenerarRecursosPorTurno } from "@/server/services/combate/accion-combate";
 import { incluirPersonajeParty as incluirPersonaje } from "./consultas";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -214,6 +215,10 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         : `🔴 ${enemigosEnCombate.find((enemigo) => enemigo.id === turnoInicial?.actorId)?.nombre ?? enemigoBase.nombre} tiene la iniciativa y actuará primero.`,
     ];
 
+    if (turnoInicial?.equipo === "jugador" && expedicion.participantes.some(p =>
+      p.usuarioId === turnoInicial.actorId && p.personaje?.profesionActivaId === "campeon_arena")) {
+      await regenerarRecursosPorTurno(tx, turnoInicial.actorId, 1, true);
+    }
     const combate = await tx.combateParty.create({
       data: {
         expedicionPartyId,

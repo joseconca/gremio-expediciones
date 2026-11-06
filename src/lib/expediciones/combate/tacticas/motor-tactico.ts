@@ -186,7 +186,7 @@ export function ejecutarComandosTacticos(mundo: MundoTactico, actorId: string, o
       case "invocar": {
         // Reemplazar no es morir ni acabar de forma natural.
         actor.estados = actor.estados.filter(e => e.familia !== "acompanante");
-        aplicarEstadoTactico(mundo, actorId, { id: `${actorId}:acompanante`, creadorId: actorId, fuenteId, familia: "acompanante", clave: c.clave, valor: c.potencia, restantes: c.duracion, reloj: "ciclo", cargas: 3, mantenimientoMana: entero(c.mantenimiento), destinatarioId: objetivoId,manual:c.manual });
+        aplicarEstadoTactico(mundo, actorId, { id: `${actorId}:acompanante`, creadorId: actorId, fuenteId, familia: "acompanante", clave: c.clave, valor: c.potencia, ...(c.elemento ? { elemento: c.elemento } : {}), restantes: c.duracion, reloj: "ciclo", cargas: 3, mantenimientoMana: entero(c.mantenimiento), destinatarioId: objetivoId,manual:c.manual });
         break;
       }
       case "ordenar": {

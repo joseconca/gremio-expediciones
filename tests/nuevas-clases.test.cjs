@@ -27,7 +27,7 @@ test("los requisitos 20/20/30/30 son independientes de los máximos Job", () => 
       const incompletos = completos.map((p, indice) => ({ ...p, nivelJob: indice === i ? umbral - 1 : umbral }));
       assert.equal(evaluarDesbloqueoClase(clase.id, incompletos).puedeDesbloquear, false, `${clase.id}: requisito ${i}`);
     }
-    assert.equal(clase.nivelJobMaximo, clase.tier === 2 ? 60 : clase.tier === 2.5 ? 70 : 80);
+    assert.equal(clase.nivelJobMaximo, 100);
   }
   assert.deepEqual(CLASES.corsario.requisitos, [{ claseId: "pirata", nivelJob: 30 }]);
   assert.deepEqual(CLASES.ninja.requisitos.map((r) => r.claseId), ["bardo", "explorador", "mago"]);

@@ -1,5 +1,6 @@
 "use client";
 
+import { MARCA_REACTIVO } from "@/lib/expediciones/combate/rasgos-hibridos";
 import Image from "next/image";
 import { describirEstadoCombate, describirBonificacionesComida } from "@/lib/expediciones/presentacion/descripciones-efectos";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/habilidades/niveles-habilidad";
@@ -8,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/base/taberna";
 import { leerEfectosCombate } from "@/lib/expediciones/combate/estados-combate";
-import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
+import type { TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
 
 type Indicador = {
   id: string;
@@ -19,9 +20,10 @@ type Indicador = {
   turnosRestantes: number | null;
 };
 
-const CONFIGURACION_ESTADO: Record<TipoEfectoTemporalHabilidad, { nombre: string; emoji: string; sprite: string }> = {
+const CONFIGURACION_ESTADO: Record<Exclude<TipoEfectoTemporalHabilidad, "interno">, { nombre: string; emoji: string; sprite: string }> = {
   tactico: { nombre: "Preparaciones tácticas", emoji: "✦", sprite: "bonus_precision.svg" },
   curacion_progresiva: { nombre: "Curación progresiva", emoji: "💚", sprite: "curacion_progresiva.svg" },
+  danza: { nombre: "Danza", emoji: "🎵", sprite: "bonus_ataque.svg" },
   dano_progresivo: { nombre: "Daño progresivo", emoji: "🩸", sprite: "dano_progresivo.svg" },
   bonus_defensa: { nombre: "Defensa aumentada", emoji: "🛡️", sprite: "bonus_defensa.svg" },
   debuff_defensa: { nombre: "Defensa reducida", emoji: "💔", sprite: "debuff_defensa.svg" },
@@ -91,17 +93,18 @@ export default function IndicadoresEfectosCombate({
   bonificacionesComida?: unknown;
   habilidades?: { habilidadId: string; slot?: string | null; nivel?: number }[];
 }) {
-  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e=>e.tipo !== "tactico" || e.datosTacticos?.estados.some(s=>!s.clave.startsWith("_"))).map((efecto: EstadoEfectoHabilidad) => {
-    const configuracion = CONFIGURACION_ESTADO[efecto.tipo];
+  const indicadores: Indicador[] = leerEfectosCombate(efectos).filter(e => e.habilidadId === MARCA_REACTIVO || (e.tipo !== "interno" && (e.tipo !== "tactico" || e.datosTacticos?.estados.some(s => !s.clave.startsWith("_"))))).map((efecto) => {
+    const reactivo = efecto.tipo === "interno" && efecto.habilidadId === MARCA_REACTIVO;
+    const configuracion = CONFIGURACION_ESTADO[efecto.tipo === "interno" ? "tactico" : efecto.tipo];
     const habilidad = obtenerHabilidadPorId(efecto.habilidadId);
     const turnos = Math.max(1, Math.floor(efecto.turnosRestantes));
     return {
       id: `estado:${efecto.habilidadId}:${efecto.tipo}:${efecto.objetivo ?? "enemigo"}`,
-      nombre: habilidad?.nombre ?? configuracion.nombre,
-      descripcion: describirEstadoCombate(efecto),
+      nombre: reactivo ? "Reactivo" : habilidad?.nombre ?? configuracion.nombre,
+      descripcion: reactivo ? "Otra aplicación de Reactivo detona la marca." : describirEstadoCombate(efecto),
       src: `/sprites/effects/state/${configuracion.sprite}`,
       emoji: configuracion.emoji,
-      turnosRestantes: turnos,
+      turnosRestantes: reactivo ? null : turnos,
     };
   });
 

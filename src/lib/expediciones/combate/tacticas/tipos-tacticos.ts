@@ -3,6 +3,7 @@ export type ElementoTactico = "fisico" | "arcano" | "fuego" | "hielo" | "agua" |
 export type FamiliaTactica = "marca" | "preparacion" | "guardia" | "herida" | "regeneracion" | "sello" | "vinculo" | "campo" | "acompanante" | "pacto" | "exposicion" | "precision" | "resistencia";
 export type EstadoTactico = {
   id: string;
+  rasgoProteccion?: import("../protecciones-rasgos").MarcaProteccion;
   fuenteId: string;
   creadorId: string;
   familia: FamiliaTactica;
@@ -72,7 +73,7 @@ export type ComandoTactico =
   | { tipo: "limpiar"; objetivo: "actor" | "objetivo"; familia?: FamiliaTactica; maximo: number }
   | { tipo: "robar"; familia: "guardia" | "precision" | "resistencia"; fraccion: number }
   | { tipo: "transferir"; familia: "regeneracion" | "guardia"; fraccion: number }
-  | { tipo: "invocar"; clave: string; potencia: number; duracion: number; mantenimiento: number; manual?: boolean }
+  | { tipo: "invocar"; clave: string; potencia: number; duracion: number; mantenimiento: number; manual?: boolean; elemento?: ElementoTactico }
   | { tipo: "ordenar"; modo: "asalto" | "amparo" }
   | { tipo: "sacrificar"; familia: "acompanante" | "guardia" | "herida" | "pacto" | "campo" | "preparacion"; fraccion: number; resultado?: "cura_actor" }
   | { tipo: "interrumpir"; debilitamiento: number }

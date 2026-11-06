@@ -1,3 +1,7 @@
+import { factorCuracionArconte, prepararTecnicaTier35 } from "./combate/rasgos-tier35";
+import { multiplicadorCriticoTier3, prepararTecnicaTier3 } from "./combate/rasgos-tier3";
+import type { ImpactoProtegido } from "./combate/protecciones-rasgos";
+import { prepararAtaqueHibrido } from "./combate/rasgos-hibridos";
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
 import { obtenerPresentacionProyectilHabilidad } from "./presentacion/presentacion-combate";
 import {
@@ -22,6 +26,9 @@ export type AccionAnimadaCombate = {
     | "escudo"
     | "curacion";
   dano: number;
+  esquivado?: boolean;
+  proteccion?: ImpactoProtegido;
+  tipoDanoBasico?: "fisico" | "magico";
   critico: boolean;
   curacion?: number;
   /** Visual hint only; it never participates in combat resolution. */
@@ -98,6 +105,7 @@ interface CombateParaHabilidad {
   jugadorDefensa: number;
   jugadorDefensaMagica?: number;
   enemigoDefensaMagica?: number;
+  multiplicadorDefensaFisica?: number;
   jugadorNivel: number;
   jugadorHp: number;
   jugadorHpMaximo: number;
@@ -248,24 +256,32 @@ function resolverHabilidadBase(
           ...resultadoBasico(),
         };
       }
-      if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
-        return { accion: presentarAccion(falloPorPrecision("jugador", combate.enemigoNombre)), ...resultadoBasico() };
+      const tiradaImpacto = dado === 20 ? 0 : Math.random();
+      if (tiradaImpacto > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
+        const fallo = falloPorPrecision("jugador", combate.enemigoNombre);
+        fallo.esquivado = tiradaImpacto <= calcularProbabilidadImpacto(combate.jugadorPrecision);
+        return { accion: presentarAccion(fallo), ...resultadoBasico() };
       }
 
       const variacion = 0.8 + Math.random() * 0.4;
       const defensaMagica = combate.enemigoDefensaMagica ?? enemigoDefensa;
+      const defensaFisica = enemigoDefensa * (combate.multiplicadorDefensaFisica ?? 1);
       const defensaSinRuptura = habilidad.tipoDano === "magico"
         ? defensaMagica
         : habilidad.tipoDano === "hibrido"
-          ? Math.floor((enemigoDefensa + defensaMagica) / 2)
-          : enemigoDefensa;
+          ? Math.floor((defensaFisica + defensaMagica) / 2)
+          : defensaFisica;
       const defensa = calcularDefensaTactica(defensaSinRuptura,combate.efectosEnemigo??[]) * (1-(habilidad.rupturaDefensaTemporal??0));
       const danoBase = Math.floor(ataqueEfectivo * variacion * (habilidad.multiplicadorDano ?? 1));
       const danoNormal = calcularDanoMitigado(danoBase, defensa);
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
-      const multiplicadorCritico = (combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0);
+      const contextoCritico = combate.contextoTactico;
+      const factorCritico = contextoCritico
+        ? multiplicadorCriticoTier3(contextoCritico.claseId, contextoCritico.efectosActor, contextoCritico.objetivoId)
+        : 1;
+      const multiplicadorCritico = ((combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0)) * factorCritico;
       let dano = esCritico ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico)) : danoNormal;
-      const impacto = { dano, critico: esCritico, texto: "" };
+      const impacto: { dano: number; critico: boolean; texto: string; proteccion?: ImpactoProtegido } = { dano, critico: esCritico, texto: "" };
       aplicarBarreraAccion(impacto, combate.efectosEnemigo ?? []);
       const bloqueado = impacto.dano === 0 && dano > 0;
       dano = impacto.dano;
@@ -281,6 +297,7 @@ function resolverHabilidadBase(
           actor: "jugador", tipo: "habilidad",
           animacion: esCritico && habilidad.animacion === "ofensiva" ? "ofensiva_potenciada" : habilidad.animacion ?? "ofensiva",
           dano, critico: impacto.critico,
+          ...(impacto.proteccion ? { proteccion: impacto.proteccion } : {}),
           curacion: jugadorHp > combate.jugadorHp ? jugadorHp - combate.jugadorHp : undefined,
           texto: bloqueado ? impacto.texto : esCritico
             ? `💥 ¡${habilidad.nombre} crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
@@ -301,7 +318,7 @@ function resolverHabilidadBase(
       const cantidadCritica = esCritico
         ? Math.floor(cantidadBase * multiplicadorCritico)
         : cantidadBase;
-      const cantidad = Math.max(0, Math.floor(cantidadCritica * (1 + bonusCuracion)));
+      const cantidad = Math.max(0, Math.floor(cantidadCritica * (1 + bonusCuracion) * factorCuracionArconte(combate.contextoTactico)));
       const curado = Math.min(cantidad, Math.max(0, combate.jugadorHpMaximo - jugadorHp));
       jugadorHp += curado;
       agregarEstadosExtra();
@@ -396,7 +413,7 @@ export function resolverHabilidadJugador(habilidad:DefinicionHabilidad, combate:
     efectosObjetivo:aliado?(combate.efectosJugador??[]):(combate.efectosEnemigo??[]),objetivoAliado:aliado,filaActor:1,filaObjetivo:1,
   };
   const c=actualizarRelojContexto(contexto);
-  const preparada=prepararHabilidadRedisenada(habilidad,c);
+  const preparada = prepararTecnicaTier35(prepararTecnicaTier3(prepararAtaqueHibrido(prepararHabilidadRedisenada(habilidad, c), c), c), c);
   const base=resolverHabilidadBase(preparada,{...combate,contextoTactico:c,efectosEnemigo:c.objetivoAliado?combate.efectosEnemigo:c.efectosObjetivo,baseCuracionHpMaximo:(c.numeroObjetivos??1)>1?c.actorHpMaximo:combate.baseCuracionHpMaximo});
   return aplicarMecanicasHabilidad(habilidad,c,base);
 }

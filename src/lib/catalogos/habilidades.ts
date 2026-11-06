@@ -53,7 +53,7 @@ export const ESCUELAS: Escuela[] = [
   { claseId: "arconte", costes: [[0, 26], [0, 34], [0, 28]], ataque: { nombre: "Convergencia sagrada", descripcion: "Inflige daño mágico a una fila enemiga.", tipoDano: "magico", objetivo: fila, multiplicadorDano: 1.2 }, tactica: { nombre: "Luz del arconte", descripcion: "Cura un 15 % de vida a todos los aliados y elimina sus perjuicios.", efecto: "curacion", curacionPorcentaje: 0.15, limpiarEstadosNegativos: true, objetivo: grupo, cooldownTurnos: 6, costeMana: 16 }, pasiva: { nombre: "Gracia arcana", descripcion: "Mejora la curación un 10 % y el ataque mágico en 3.", bonusCuracion: 0.1, bonusAtaqueMagico: 3 } },
   { claseId: "justiciero", costes: [[30, 10], [25, 12], [40, 18]], ataque: { nombre: "Puño de justicia", descripcion: "Inflige daño híbrido y recupera un 20 % del daño causado.", tipoDano: "hibrido", roboVida: 0.2 }, tactica: { nombre: "Amparo del justo", descripcion: "Cura un 18 % de vida a un aliado y mejora su defensa un 12 % durante dos turnos.", efecto: "curacion", curacionPorcentaje: 0.18, objetivo: aliado, estadosSecundarios: [{ tipo: "bonus_defensa", valor: 0.12, duracionTurnos: 2, objetivo: "jugador" }] }, pasiva: { nombre: "Convicción", descripcion: "Aumenta la defensa física y mágica en 3.", bonusDefensa: 3, bonusDefensaMagica: 3 } },
   { claseId: "hoja_velo", costes: [[35, 4], [30, 3], [45, 7]], ataque: { nombre: "Corte del velo", descripcion: "Usa el ataque físico para infligir daño mágico y una herida espectral durante dos turnos.", tipoDano: "magico", escaladoDano: "fisico", danoProgresivoPorcentaje: 0.12, duracionTurnos: 2, presentacionVisual: { modo: "cuerpo_a_cuerpo", elemento: "arcano", impacto: "destello" } }, tactica: { nombre: "Filo entre mundos", descripcion: "Mejora tu ataque físico un 20 % durante tres turnos.", estadosSecundarios: [{ tipo: "bonus_ataque", valor: 0.2, duracionTurnos: 3, objetivo: "jugador" }] }, pasiva: { nombre: "Acero del velo", descripcion: "Aumenta el ataque físico en 6.", bonusAtaque: 6 } },
-  { claseId: "danzaespadas", costes: [[40, 5], [35, 5], [40, 5]], ataque: { nombre: "Danza cortante", descripcion: "Golpea una fila con un 10 % adicional de probabilidad crítica.", objetivo: fila, multiplicadorDano: 1.1, probabilidadCritico: 0.1 }, tactica: { nombre: "Danza de la victoria", descripcion: "Mejora el ataque del grupo un 12 % y su evasión un 6 % durante tres turnos.", objetivo: grupo, estadosSecundarios: [{ tipo: "bonus_ataque", valor: 0.12, duracionTurnos: 3, objetivo: "jugador" }, { tipo: "bonus_evasion", valor: 0.06, duracionTurnos: 3, objetivo: "jugador" }] }, pasiva: { nombre: "Gracia del acero", descripcion: "Aumenta la evasión un 5 %.", bonusEvasion: 0.05 } },
+  { claseId: "danzaespadas", costes: [[25, 3], [35, 5], [35, 5]], ataque: { nombre: "Danza del viento", descripcion: "Aumenta la velocidad y la esquiva de una fila aliada." }, tactica: { nombre: "Danza de la victoria", descripcion: "Aumenta el ataque físico y mágico de una fila aliada." }, pasiva: { nombre: "Gracia del acero", descripcion: "Concede guardia al usar una técnica de apoyo." } },
   { claseId: "corsario", costes: [[40, 0], [25, 0], [55, 0]], ataque: { nombre: "Abordaje", descripcion: "Golpea y reduce defensa un 12 % y precisión en 8 durante dos turnos.", estadosSecundarios: [{ tipo: "debuff_defensa", valor: 0.12, duracionTurnos: 2, objetivo: "enemigo" }, { tipo: "debuff_precision", valor: 8, duracionTurnos: 2, objetivo: "enemigo" }] }, tactica: { nombre: "Maniobra de escape", descripcion: "Mejora tu evasión un 15 % durante tres turnos.", estadosSecundarios: [{ tipo: "bonus_evasion", valor: 0.15, duracionTurnos: 3, objetivo: "jugador" }] }, pasiva: { nombre: "Veterano del abordaje", descripcion: "Aumenta el ataque en 4 y la velocidad en 2.", bonusAtaque: 4, bonusVelocidad: 2 } },
 ];
 
@@ -83,7 +83,7 @@ export const TECNICAS_AVANZADAS: Record<string, Tecnica> = {
   arconte: { nombre: "Mandato celestial", descripcion: "Mejora el ataque mágico de todos los aliados un 20 % durante tres turnos.", efecto: "estado", objetivo: grupo, multiplicadorDano: undefined, estadosSecundarios: [{ tipo: "bonus_ataque_magico", valor: 0.2, duracionTurnos: 3, objetivo: "jugador" }] },
   justiciero: { nombre: "Veredicto sagrado", descripcion: "Inflige daño híbrido a una fila enemiga.", tipoDano: "hibrido", objetivo: fila, multiplicadorDano: 1.25 },
   hoja_velo: { nombre: "Ruptura entre mundos", descripcion: "Usa el ataque físico para infligir daño mágico a una fila.", tipoDano: "magico", escaladoDano: "fisico", objetivo: fila, multiplicadorDano: 1.25, presentacionVisual: { modo: "cuerpo_a_cuerpo", elemento: "arcano", impacto: "destello" } },
-  danzaespadas: { nombre: "Último compás", descripcion: "Un ataque físico preciso con un 15 % adicional de probabilidad crítica.", multiplicadorDano: 1.75, probabilidadCritico: 0.15 },
+  danzaespadas: { nombre: "Gran compás", descripcion: "Duplica durante un turno la potencia de sus danzas activas." },
   corsario: { nombre: "Salva de abordaje", descripcion: "Dispara a una fila y reduce su precisión en 10 durante dos turnos.", objetivo: fila, multiplicadorDano: 1.15, estadosSecundarios: [{ tipo: "debuff_precision", valor: 10, duracionTurnos: 2, objetivo: "enemigo" }] },
 };
 
@@ -633,7 +633,7 @@ export const DISENO_HABILIDADES: Record<string,DisenoClase> = {
   inquisidor:{activas:[golpe(0.95,disipar,preparar("testimonio")),cura(0.12,limpiar,preparar("testimonio")),golpe(1.45,consumir("testimonio"),marca("sentencia"))],pasivas:[p("limpieza","estabilizar"),p("disipacion","exponer")]},
   heraldo_guerra:{activas:[golpe(1.1,preparar("orden")),areaDiseno(apoyo(guardia(0.21),preparar("orden"))),areaDiseno(apoyo(guardia(0.18),preparar("concentracion"),consumir("orden","guardia")))],pasivas:[p("cambiar_objetivo","precision"),p("alternar","mana")]},
   ninja:{activas:[herida(golpe(1.1,preparar("senuelo"))),propio(apoyo(mover(2),guardia(0.08),preparar("senuelo"))),elemental(areaDiseno(golpe(1.8,consumir("senuelo"))),"fuego")],pasivas:[p("movilidad","precision"),p("consumo","estabilizar")]},
-  alquimista:{activas:[golpe(0.95,marca("reactivo")),cura(0.13,limpiar),areaDiseno(golpe(1.8,consumir("reactivo"),disipar))],pasivas:[p("sobrecuracion","guardar_preparacion"),p("limpieza","regeneracion")]},
+  alquimista:{activas:[golpe(0.95),cura(0.13,limpiar),areaDiseno(golpe(1.8,disipar))],pasivas:[p("sobrecuracion","guardar_preparacion"),p("limpieza","regeneracion")]},
   herrero:{activas:[golpe(1.1,disipar),apoyo(guardia(0.13),preparar("refuerzo")),areaDiseno(golpe(1.8,consumir("refuerzo")))],pasivas:[p("guardia","regeneracion"),p("consumo","guardia")]},
   verdugo:{activas:[golpe(1.15,disipar,preparar("ejecucion")),golpe(1.35,preparar("ejecucion")),golpe(1.85,consumir("ejecucion","potencia"))],pasivas:[p("enemigo_protegido","guardar_preparacion"),p("objetivo_herido","precision")]},
   saqueador:{activas:[{...herida(golpe(1.05),0.16),drenaje:.1},propio(cura(0.1,mover(2))),golpe(1.25,{...sacrificar("herida"),resultado:"cura_actor"})],pasivas:[p("herida","precision"),p("sacrificio","regeneracion")]},
@@ -648,7 +648,7 @@ export const DISENO_HABILIDADES: Record<string,DisenoClase> = {
   arconte:{activas:[areaDiseno(golpe(1.85,preparar("luz"))),areaDiseno(cura(0.26,limpiar,preparar("luz"))),areaDiseno(apoyo(guardia(0.23),consumir("luz","guardia")))],pasivas:[p("apoyo","resistir"),p("sobrecuracion","curacion")]},
   justiciero:{activas:[golpe(1.25,preparar("deuda")),cura(0.15,guardia(0.06),preparar("deuda")),areaDiseno(golpe(1.85,consumir("deuda")))],pasivas:[p("cura_efectiva","estabilizar"),p("sobrecuracion","resistir")]},
   hoja_velo:{activas:[golpe(1.25,consumir("velo")),propio(apoyo(mover(1),preparar("velo"),guardia(0.08))),areaDiseno(golpe(1.85,consumir("velo","potencia")))],pasivas:[p("ruptura","precision"),p("movilidad","guardar_preparacion")]},
-  danzaespadas:{activas:[areaDiseno(golpe(1.8,preparar("compas"))),areaDiseno(apoyo(guardia(0.2),preparar("compas"))),golpe(1.8,consumir("compas","potencia"))],pasivas:[p("movilidad","mana"),p("alternar","precision")]},
+  danzaespadas:{activas:[areaDiseno(apoyo()),areaDiseno(apoyo()),propio(apoyo())],pasivas:[p("apoyo","guardia"),p("alternar","precision")]},
   corsario:{activas:[golpe(1.2,marca("incursion"),preparar("incursion")),propio(apoyo(mover(2),guardia(0.1),preparar("incursion"))),areaDiseno(golpe(1.85,consumir("incursion")))],pasivas:[p("objetivo_marcado","energia"),p("consumo","curacion")]},
 };
 
@@ -945,9 +945,9 @@ export const NOMBRES_REDISENIO: Record<string,string> = {
   "hoja_velo_avanzada": "Ruptura entre mundos",
   "hoja_velo_pasiva": "Acero del velo",
   "hoja_velo_maestria": "Maestría de tránsito",
-  "danzaespadas_ataque": "Danza cortante",
+  "danzaespadas_ataque": "Danza del viento",
   "danzaespadas_tactica": "Danza de la victoria",
-  "danzaespadas_avanzada": "Último compás",
+  "danzaespadas_avanzada": "Gran compás",
   "danzaespadas_pasiva": "Gracia del acero",
   "danzaespadas_maestria": "Maestría del compás",
   "corsario_ataque": "Abordaje",
@@ -1256,9 +1256,9 @@ export const CATALOGO_TECNICAS_ADICIONALES = {
     "programa": "anclar"
   },
   "danzaespadas": {
-    "nombre": "Romper el compás",
-    "descripcion": "Renuncia al compás para trasladar protección a un aliado y volver a la fila central.",
-    "programa": "romper_compas"
+    "nombre": "Danza del resguardo",
+    "descripcion": "Da un escudo a cada aliado de la fila y reduce el daño recibido.",
+    "programa": "danza_resguardo"
   },
   "corsario": {
     "nombre": "Abandonar abordaje",

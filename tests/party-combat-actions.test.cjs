@@ -30,6 +30,11 @@ function loadService(prisma, testOptions = {}) {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "El aventurero inflige 12 de daño." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "El enemigo inflige 10 de daño." }),
     },
+    ...(testOptions.sinRasgos ? { "@/lib/expediciones/combate/rasgos-clase": {
+      ...require("../src/lib/expediciones/combate/rasgos-clase.ts"),
+      obtenerClaseRasgo: () => "sin_rasgo",
+      prepararRasgoHabilidad: (_personaje, habilidad) => habilidad,
+    } } : {}),
     "@/lib/expediciones/combate": {
       resolverHabilidadJugador: (habilidad, combate) => {
         if (testOptions.resolverHabilidadesReales) return require("../src/lib/expediciones/combate.ts").resolverHabilidadJugador(habilidad, combate);
@@ -291,7 +296,7 @@ function mockPrisma(combat, options = {}) {
     suerte: 5,
     velocidadMejoras: 0,
     capacidadCarruajeMejoras: 0,
-    equipoEquipado: null,
+    equipoEquipado: options.equipoEquipado ?? null,
     energiaActual: options.energiaActual ?? 20,
     manaActual: options.manaActual ?? 10,
     habilidades: options.habilidades ?? [],
@@ -454,6 +459,10 @@ function mockPrisma(combat, options = {}) {
     },
 
     personaje: {
+      findMany: async () => combat.participantes.map(p => ({
+        id: p.personajeId,
+        profesionActivaId: p.usuarioId === "u1" ? character.profesionActivaId : "novato",
+      })),
       findUnique: async () => character,
       updateMany: async ({ where, data }) => {
         calls.characterWrites.push({ where, data });
@@ -505,7 +514,7 @@ test("las 245 activas con cinco ranuras y tres pasivas persisten en party el mis
       const habilidades=[...otras.map((a,i)=>({habilidadId:a.id,nivel:1,slot:`activa_${i+1}`})),{habilidadId:h.id,nivel:1,slot:"activa_5"},...pasivas.map((p,i)=>({habilidadId:p.id,nivel:1,slot:`pasiva_${i+1}`}))];
       const actor=mkParticipant("u1",0,50,100);
       const combat=mkCombat({participantes:[actor],enemigoHp:100000,enemigoHpMaximo:100000});
-      const options={profesionActivaId:h.claseId,resolverHabilidadesReales:true,efectosReales:true,energiaActual:100,manaActual:1000,habilidades,habilidadesPorId:Object.fromEntries(legales.map(a=>[a.id,a]))};
+      const options={profesionActivaId:h.claseId,sinRasgos:true,resolverHabilidadesReales:true,efectosReales:true,energiaActual:100,manaActual:1000,habilidades,habilidadesPorId:Object.fromEntries(legales.map(a=>[a.id,a]))};
       const {prisma,character}=mockPrisma(combat,options);
       const stats=calcularEstadisticasPersonaje(character,pasivas).total;
       const aliado=h.objetivo?.equipo!=="enemigo"&&h.efecto!=="dano";
@@ -515,7 +524,7 @@ test("las 245 activas con cinco ranuras y tres pasivas persisten en party el mis
       assert.equal(real.accion.dano,esperado.accion.dano,h.id+": daño");
       assert.equal(combat.participantes[0].jugadorHp,esperado.actorHpActualizado,h.id+": PV del actor");
       assert.equal(combat.participantes[0].jugadorDefensa,esperado.jugadorDefensa,h.id+": defensa");
-      const normalizar=e=>JSON.parse(JSON.stringify(e??[]));
+      const normalizar=e=>JSON.parse(JSON.stringify((e??[]).filter(efecto => efecto.tipo !== "interno")));
       assert.deepEqual(normalizar(combat.participantes[0].efectos),normalizar(esperado.efectosActorActualizados),h.id+": efectos del actor");
       if(!aliado)assert.deepEqual(normalizar(combat.enemigos[0].efectos),normalizar(esperado.efectosEnemigoActualizados),h.id+": efectos del rival");
       comprobadas++;
@@ -669,7 +678,7 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   assert.equal(result.objetivoUsuarioId, "u2");
   assert.equal(combat.participantes[1].jugadorHp, 10);
   assert.equal(combat.turnoActualUsuarioId, "u1");
-  assert.equal(combat.ronda, 1, "el ciclo no avanza de ronda hasta consumir toda la cola");
+  assert.equal(combat.ronda, 2, "el contador avanza en cada turno");
   assert.equal(calls.characterWrites.filter((write) => write.data.hpActual === 10).length, 1);
   assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 40 && write.data.manaActual === 12), true);
 });
@@ -972,7 +981,7 @@ test("los efectos del aventurero se procesan al empezar su turno", async () => {
   const { prisma, calls } = mockPrisma(combat);
   const service = loadService(prisma);
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
-  assert.equal(result.jugadorHp, 30);
+  assert.equal(result.jugadorHp, 20);
   assert.equal(calls.participantWrites.some((c) => Array.isArray(c.data.efectos)), true);
 });
 
@@ -1215,7 +1224,7 @@ test("perder o huir del boss diario permite reintentarlo sin iniciar la espera",
   for (const huir of [false, true]) {
     const combat = mkCombat({ enemigoHp: 40, faseTurno: huir ? "jugador" : "enemigo", turnoActualUsuarioId: huir ? "u1" : null,
       participantes: [mkParticipant("u1", 0, 1), mkParticipant("u2", 1, 0, 100, "caido")] });
-    const { prisma, calls } = mockPrisma(combat, { tipo: "elite" });
+    const { prisma, calls } = mockPrisma(combat, { tipo: "elite", profesionActivaId: "mago" });
     const service = loadService(prisma);
     const resultado = huir
       ? await service.ejecutarAccionCombateParty("u1", "expedition-1", "escapar")
@@ -1365,4 +1374,193 @@ test("las acciones de combate grupal se ejecutan desde sus respectivos servicios
   const acciones = fs.readFileSync(path.resolve(__dirname, "../src/server/services/party/combate-party-actions.ts"), "utf8");
   assert.match(ruta, /services\/party\/turno-enemigo/);
   assert.doesNotMatch(acciones, /export \{ ejecutarTurnoEnemigoParty \}/);
+});
+
+test("al abrir un turno de party sólo bajan las recargas de su propietario", async () => {
+  const { reducirCooldownsSiguienteParty } = require("../src/server/services/party/contexto-combate.ts");
+  const escrituras = [];
+  const tx = { combatePartyParticipante: {
+    updateMany: async (peticion) => { escrituras.push(peticion); return { count: 1 }; },
+  } };
+  const participantes = [
+    { id: "uno", usuarioId: "u1", cooldowns: { golpe: 4 } },
+    { id: "dos", usuarioId: "u2", cooldowns: { golpe: 2, cura: 1 } },
+  ];
+  await reducirCooldownsSiguienteParty(tx, participantes, "u2");
+  assert.equal(escrituras.length, 1);
+  assert.equal(escrituras[0].where.id, "dos");
+  assert.deepEqual(escrituras[0].data.cooldowns, { golpe: 1 });
+  await reducirCooldownsSiguienteParty(tx, participantes, null);
+  assert.equal(escrituras.length, 1);
+});
+
+test("Voto de auxilio intercepta en su fila y potencia la cura del aliado protegido", async () => {
+  const cura = { id: "cura_voto", claseId: "cruzado", nombre: "Cura", tipo: "activa", efecto: "curacion",
+    objetivo: { equipo: "aliado", patron: "individual", incluirPropio: true } };
+  const cruzado = mkParticipant("u1", 0, 90);
+  const protegido = { ...mkParticipant("u2", 1, 30), jugadorPosicion: cruzado.jugadorPosicion };
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, participantes: [cruzado, protegido],
+    turnosPendientes: [{ actorId: "enemigo-1", equipo: "enemigo" }, { actorId: "u1", equipo: "jugador" }, { actorId: "u2", equipo: "jugador" }] });
+  const options = { profesionActivaId: "cruzado", habilidadesPorId: { [cura.id]: cura },
+    habilidades: [{ habilidadId: cura.id, nivel: 1, slot: "activa_1" }] };
+  const { prisma } = mockPrisma(combat, options);
+  const servicio = loadService(prisma, options);
+  const ataque = await servicio.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(ataque.objetivoUsuarioId, "u1");
+  assert.equal(cruzado.jugadorHp, 80);
+  assert.equal(protegido.jugadorHp, 30);
+  const respuesta = await servicio.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad",
+    { habilidadId: cura.id, objetivoId: "u2" });
+  assert.equal(respuesta.accion.curacion, 25);
+  assert.equal(protegido.jugadorHp, 55);
+  assert.equal(cruzado.efectos.some(efecto => efecto.habilidadId === "_votoAuxilio"), false);
+});
+
+test("Semilla silvestre cura al aliado vivo más herido cuando el enemigo muere por sangrado", async () => {
+  const { resolverImpactoHibrido } = require("../src/lib/expediciones/combate/rasgos-hibridos.ts");
+  const efectos = [{ habilidadId: "herida", tipo: "dano_progresivo", valor: 10, duracionTurnos: 2, turnosRestantes: 2 }];
+  resolverImpactoHibrido("druida", "u1", "baston", { claseId: "druida", efecto: "dano", disenoActiva: { elemento: "naturaleza" } },
+    [], [], efectos, 5, 20, 5, { dano: 1, texto: "" });
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, enemigoHp: 5, efectosEnemigo: efectos,
+    participantes: [mkParticipant("u1", 0, 60, 100), mkParticipant("u2", 1, 30, 200), mkParticipant("u3", 2, 0, 100, "caido")] });
+  const { prisma } = mockPrisma(combat);
+  const resultado = await loadService(prisma).ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(resultado.fase, "victoria");
+  assert.deepEqual(combat.participantes.map(p => p.jugadorHp), [60, 46, 0]);
+  assert.equal(combat.enemigos[0].efectos.some(efecto => efecto.habilidadId === "_semillaSilvestre"), false);
+});
+
+test("Al abordaje abona una sola vez el oro del tramo Job y recupera energía en party", async () => {
+  const tecnica = { id: "golpe_pirata", claseId: "pirata", nombre: "Golpe", tipo: "activa", efecto: "dano" };
+  const actor = mkParticipant("u1", 0);
+  actor.efectos = [{ tipo: "interno", habilidadId: "_abordaje", familia: "basico", valor: 0, duracionTurnos: 2, turnosRestantes: 2 }];
+  const combat = mkCombat({ participantes: [actor], enemigoHp: 100 });
+  const options = { profesionActivaId: "pirata", nivelJob: 20, habilidadesPorId: { [tecnica.id]: tecnica },
+    habilidades: [{ habilidadId: tecnica.id, nivel: 1, slot: "activa_1" }] };
+  const { prisma, calls } = mockPrisma(combat, options);
+  const resultado = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad",
+    { habilidadId: tecnica.id, objetivoId: "enemigo-1" });
+  assert.match(resultado.accion.texto, /8 de energía y gana 15 de oro/);
+  const abonos = calls.userWrites.filter(escritura => escritura.data.oro);
+  assert.equal(abonos.length, 1);
+  assert.equal(abonos[0].where.id, "u1");
+  assert.equal(abonos[0].data.oro.increment, 15);
+});
+
+test("Último bastión redirige un golpe letal desde otra fila y gasta su único uso del combate", async () => {
+  const guardian = mkParticipant("u1", 0, 90);
+  const aliado = mkParticipant("u2", 1, 5);
+  assert.notEqual(aliado.jugadorPosicion, guardian.jugadorPosicion);
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, participantes: [guardian, aliado] });
+  const options = { profesionActivaId: "guardian_real" };
+  const { prisma } = mockPrisma(combat, options);
+  const resultado = await loadService(prisma, options).ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(resultado.objetivoUsuarioId, "u1");
+  assert.equal(guardian.jugadorHp, 80);
+  assert.equal(aliado.jugadorHp, 5);
+  assert.ok(guardian.efectos.some(efecto => efecto.habilidadId === "_ultimoBastion"));
+});
+
+test("Línea de lanzas protege al Mariscal y a todos sus aliados vivos con independencia de la fila", async () => {
+  const mariscal = mkParticipant("u1", 0, 90);
+  const aliados = [mkParticipant("u2", 1, 60), { ...mkParticipant("u3", 2, 45), jugadorPosicion: "retaguardia" }];
+  const caido = mkParticipant("u4", 3, 0, 100, "caido");
+  const combat = mkCombat({ participantes: [mariscal, ...aliados, caido] });
+  const options = { profesionActivaId: "mariscal", equipoEquipado: { arma: { objetoId: "lanza_madera" } },
+    objetosPorId: { lanza_madera: { subtipo: "lanza" } } };
+  const { prisma } = mockPrisma(combat, options);
+  await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  for (const miembro of [mariscal, ...aliados]) {
+    assert.equal(miembro.efectos.find(efecto => efecto.habilidadId === "_lineaLanzas")?.valor, 0.2);
+  }
+  assert.equal(caido.efectos.some(efecto => efecto.habilidadId === "_lineaLanzas"), false);
+});
+
+test("Ruptura controlada puede derrotar al enemigo que rompe la barrera", async () => {
+  const abjurador = mkParticipant("u1", 0, 70);
+  abjurador.efectos = [{ tipo: "barrera", habilidadId: "escudo", valor: 1, duracionTurnos: 2, turnosRestantes: 2,
+    rasgoProteccion: { tipo: "ruptura", creadorId: "u1", mana: 20 } }];
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, enemigoHp: 3, participantes: [abjurador] });
+  const { prisma } = mockPrisma(combat, { profesionActivaId: "abjurador" });
+  const resultado = await loadService(prisma).ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(resultado.fase, "victoria");
+  assert.equal(combat.enemigoHp, 0);
+  assert.equal(abjurador.jugadorHp, 70);
+});
+
+test("Contraofensiva se prepara para el Señor de la guerra cuando su guardia protege a otro participante", async () => {
+  const senor = mkParticipant("u1", 0, 90);
+  const protegido = mkParticipant("u2", 1, 40);
+  protegido.efectos = [{ tipo: "tactico", habilidadId: "tactica:u2", valor: 0, duracionTurnos: 1, turnosRestantes: 1,
+    datosTacticos: { version: 2, propietarioId: "u2", limites: {}, estados: [
+      { id: "guardia-u1", fuenteId: "senor_guerra_tactica", creadorId: "u1", familia: "guardia", clave: "guardia",
+        valor: 25, restantes: 2, reloj: "turno", cargas: 1, rasgoProteccion: { tipo: "contraofensiva", creadorId: "u1" } },
+    ] } }];
+  const golpe = { id: "golpe_pesado", claseId: "senor_guerra", nombre: "Golpe pesado", tipo: "activa", efecto: "dano",
+    tipoDano: "fisico", multiplicadorDano: 1.85 };
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null, enemigoHp: 100, enemigoDefensa: 20,
+    participantes: [senor, protegido], turnosPendientes: [{ actorId: "enemigo-1", equipo: "enemigo" },
+      { actorId: "u1", equipo: "jugador" }, { actorId: "u2", equipo: "jugador" }] });
+  const options = { profesionActivaId: "senor_guerra", habilidadesPorId: { [golpe.id]: golpe },
+    habilidades: [{ habilidadId: golpe.id, nivel: 1, slot: "activa_1" }] };
+  const { prisma } = mockPrisma(combat, options);
+  const servicio = loadService(prisma, options);
+  await servicio.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(protegido.jugadorHp, 40);
+  assert.equal(senor.efectos.find(efecto => efecto.habilidadId === "_contraofensiva")?.familia, "enemigo-1");
+  await servicio.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad",
+    { habilidadId: golpe.id, objetivoId: "enemigo-1" });
+  assert.equal(combat.enemigos[0].defensa, 16);
+  assert.equal(senor.efectos.some(efecto => efecto.habilidadId === "_contraofensiva"), false);
+});
+
+test("el Corsario cobra el doble que Pirata una sola vez cuando alterna y alcanza al agresor", async () => {
+  const tecnica = { id: "golpe_corsario", claseId: "corsario", nombre: "Golpe", tipo: "activa", efecto: "dano" };
+  const actor = mkParticipant("u1", 0);
+  actor.efectos = [
+    { tipo: "interno", habilidadId: "_abordaje", familia: "basico", valor: 0, duracionTurnos: 2, turnosRestantes: 2 },
+    { tipo: "interno", habilidadId: "_banderaAbordaje", familia: "enemigo-1", valor: 1, duracionTurnos: 2, turnosRestantes: 2 },
+  ];
+  const combat = mkCombat({ participantes: [actor], enemigoHp: 100 });
+  const options = { profesionActivaId: "corsario", nivelJob: 20, habilidadesPorId: { [tecnica.id]: tecnica },
+    habilidades: [{ habilidadId: tecnica.id, nivel: 1, slot: "activa_1" }] };
+  const { prisma, calls } = mockPrisma(combat, options);
+  const resultado = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad",
+    { habilidadId: tecnica.id, objetivoId: "enemigo-1" });
+  assert.match(resultado.accion.texto, /restaura 10 de energía/);
+  const abonos = calls.userWrites.filter(escritura => escritura.data.oro);
+  assert.equal(abonos.length, 1);
+  assert.equal(abonos[0].data.oro.increment, 30);
+});
+
+test("Danzaespadas da tres mejoras distintas a la fila y los básicos las prolongan juntas", async () => {
+  const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
+  const habilidades = ["danzaespadas_tactica", "danzaespadas_ataque", "danzaespadas_tecnica_adicional", "danzaespadas_avanzada"].map(obtenerHabilidadPorId);
+  const [victoria, viento, resguardo, granCompas] = habilidades;
+  const actor = mkParticipant("u1", 0);
+  const aliados = [mkParticipant("u2", 1), mkParticipant("u3", 2, 200, 200)];
+  const combat = mkCombat({ participantes: [actor, ...aliados], enemigoHp: 1000 });
+  const options = { profesionActivaId: "danzaespadas", nivelJob: 100, energiaActual: 500, manaActual: 500,
+    resolverHabilidadesReales: true, efectosReales: true,
+    habilidadesPorId: Object.fromEntries(habilidades.map(h => [h.id, h])),
+    habilidades: habilidades.map((h, i) => ({ habilidadId: h.id, nivel: 1, slot: "activa_" + (i + 1) })) };
+  const { prisma } = mockPrisma(combat, options);
+  const servicio = loadService(prisma, options);
+  const usar = (accion, habilidadId, objetivoId) => {
+    combat.faseTurno = "jugador";
+    combat.turnoActualUsuarioId = "u1";
+    return servicio.ejecutarAccionCombateParty("u1", "expedition-1", accion, { habilidadId, objetivoId });
+  };
+  for (const habilidad of [victoria, viento, resguardo]) await usar("usar_habilidad", habilidad.id, "u2");
+  const danzas = p => p.efectos.filter(e => e.tipo === "danza");
+  assert.equal(danzas(actor).length, 0);
+  for (const aliado of aliados) {
+    assert.deepEqual(danzas(aliado).map(e => [e.familia, e.valor]), [["victoria", 0.2], ["viento", 0.15], ["resguardo", 0.2]]);
+    assert.equal(danzas(aliado)[2].escudoDanza, aliado.jugadorHpMaximo * 0.2);
+  }
+  await usar("usar_habilidad", granCompas.id, "u1");
+  await usar("atacar");
+  for (const aliado of aliados) {
+    assert.deepEqual(danzas(aliado).map(e => e.turnosRestantes), [4, 4, 4, 2]);
+  }
 });

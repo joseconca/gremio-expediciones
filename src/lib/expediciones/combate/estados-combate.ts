@@ -1,7 +1,9 @@
+import { esquivaConDanza, mitigarDanoDanza, potenciaDanza, protegerConDanza } from "./danzas-combate";
+import { mitigarPresagio, registrarMitigacion, type ImpactoProtegido } from "./protecciones-rasgos";
 import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "../../tiposJuego";
 
 const TIPOS_VALIDOS: readonly TipoEfectoTemporalHabilidad[] = [
-  "tactico",
+  "interno", "tactico", "danza",
   "bonus_defensa", "debuff_defensa", "bonus_ataque", "debuff_ataque",
   "bonus_ataque_magico", "debuff_precision", "bonus_evasion",
   "bonus_precision", "barrera",
@@ -43,16 +45,16 @@ export function procesarTicksPeriodicos(
   const mensajes: string[] = [];
   let danoAplicado = 0;
   let curacionAplicada = 0;
-  const candidatos=efectos.flatMap<{ref:object;clave:string;valor:number}>(efecto=>efecto.tipo==="tactico"?(efecto.datosTacticos?.estados??[]).filter(s=>s.reloj==="turno"&&["herida","regeneracion"].includes(s.familia)).map(s=>({ref:s,clave:`${s.familia==="herida"?s.clave:"regeneracion"}:${s.creadorId}`,valor:s.valor})):efecto.tipo==="dano_progresivo"||efecto.tipo==="curacion_progresiva"?[{ref:efecto,clave:`${efecto.tipo==="curacion_progresiva"?"regeneracion":efecto.familia??efecto.habilidadId}:${efecto.creadorId??efecto.habilidadId}`,valor:efecto.valor}]:[]);
+  const candidatos=efectos.flatMap<{ref:object;clave:string;valor:number}>(efecto=>efecto.tipo==="tactico"?(efecto.datosTacticos?.estados??[]).filter(s=>["herida","regeneracion"].includes(s.familia)).map(s=>({ref:s,clave:`${s.familia==="herida"?s.clave:"regeneracion"}:${s.creadorId}`,valor:s.valor})):efecto.tipo==="dano_progresivo"||efecto.tipo==="curacion_progresiva"?[{ref:efecto,clave:`${efecto.tipo==="curacion_progresiva"?"regeneracion":efecto.familia??efecto.habilidadId}:${efecto.creadorId??efecto.habilidadId}`,valor:efecto.valor}]:[]);
   const mayores=new Map<string,typeof candidatos[number]>();
   for(const candidato of candidatos)if(candidato.valor>(mayores.get(candidato.clave)?.valor??-1))mayores.set(candidato.clave,candidato);
   const activos=new Set([...mayores.values()].map(e=>e.ref));
   for (const efecto of efectos) {
     if (efecto.tipo === "tactico" && efecto.datosTacticos) {
       for (const estado of efecto.datosTacticos.estados) {
-        if (estado.reloj !== "turno" || estado.restantes <= 0 || hp <= 0 || !activos.has(estado)) continue;
+        if (estado.restantes <= 0 || hp <= 0 || !activos.has(estado)) continue;
         if (estado.familia === "herida") {
-          const dano = Math.min(hp,Math.max(0,Math.floor(estado.valor)));
+          const dano = Math.min(hp, mitigarDanoDanza(Math.max(0, Math.floor(estado.valor)), efectos));
           hp -= dano; danoAplicado += dano;
           if(dano > 0) mensajes.push(`🩸 ${nombreObjetivo} recibe ${dano} de daño de ${estado.fuenteId}.`);
         } else if (estado.familia === "regeneracion") {
@@ -65,7 +67,7 @@ export function procesarTicksPeriodicos(
     }
     if (efecto.tipo === "dano_progresivo" && hp > 0 && activos.has(efecto)) {
       const danoSolicitado = Math.max(0, Math.floor(efecto.valor));
-      const dano = Math.min(hp, danoSolicitado);
+      const dano = Math.min(hp, mitigarDanoDanza(danoSolicitado, efectos));
       hp = Math.max(0, hp - dano);
       danoAplicado += dano;
       if (dano > 0) mensajes.push(`🩸 ${nombreObjetivo} recibe ${dano} de daño progresivo de ${efecto.habilidadId}.`);
@@ -88,9 +90,13 @@ export function avanzarEfectosCombate(
   const nuevos: EstadoEfectoHabilidad[] = [];
   const mensajes: string[] = [];
   for (const efecto of efectos) {
+    if (efecto.tipo === "interno" || efecto.familia === "amparo" && efecto.creadorId) {
+      nuevos.push({ ...efecto });
+      continue;
+    }
     if (efecto.tipo === "tactico") {
       const datos = efecto.datosTacticos;
-      if (datos?.version === 2) nuevos.push({ ...efecto, datosTacticos: { ...datos, estados: datos.estados.map(e => e.reloj === "turno" ? { ...e, restantes: e.restantes - 1 } : { ...e }).filter(e => e.restantes > 0) } });
+      if (datos?.version === 2) nuevos.push({ ...efecto, datosTacticos: { ...datos, estados: datos.estados.map(e => ({ ...e, restantes: e.restantes - 1 })).filter(e => e.restantes > 0) } });
       continue;
     }
     const restantes = efecto.turnosRestantes - 1;
@@ -156,7 +162,7 @@ export function calcularAtaqueModificado(
   efectos: readonly EstadoEfectoHabilidad[],
   magico = false,
 ): number {
-  let ataque = ataqueBase;
+  let ataque = ataqueBase * (1 + potenciaDanza(efectos, "victoria"));
   for (const efecto of efectos) {
     if (magico && efecto.tipo === "bonus_ataque_magico") ataque *= 1 + efecto.valor;
     if (!magico && efecto.tipo === "bonus_ataque") ataque *= 1 + efecto.valor;
@@ -177,13 +183,24 @@ export function calcularDefensaTactica(defensa: number, efectos: readonly Estado
 }
 
 /** Consume una única barrera al recibir daño directo; los fallos y pulsos no la gastan. */
-export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; texto: string }, efectos: EstadoEfectoHabilidad[]): void {
+export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; texto: string; proteccion?: ImpactoProtegido }, efectos: EstadoEfectoHabilidad[]): void {
   if (accion.dano <= 0) return;
-  const barrera = efectos.findIndex(e=>e.tipo === "barrera" && e.turnosRestantes > 0 && e.valor >= 1);
+  const barrera = efectos.findIndex(e=>e.tipo === "barrera" && e.familia !== "amparo" && e.turnosRestantes > 0 && e.valor >= 1);
   if (barrera >= 0) {
-    efectos.splice(barrera,1); accion.dano = 0; accion.critico = false;
+    const [rota] = efectos.splice(barrera, 1);
+    registrarMitigacion(accion, accion.dano, rota.rasgoProteccion, true);
+    accion.dano = 0; accion.critico = false;
     accion.texto = "🛡️ La barrera bloquea el ataque y se disipa.";
     return;
+  }
+  const amparo = efectos.findIndex(e => e.familia === "amparo" && e.tipo === "barrera");
+  if (amparo >= 0) {
+    const absorbido = Math.min(accion.dano, efectos[amparo].valor);
+    accion.dano -= absorbido;
+    registrarMitigacion(accion, absorbido);
+    efectos[amparo].valor -= absorbido;
+    if (efectos[amparo].valor <= 0) efectos.splice(amparo, 1);
+    accion.texto += ` Amparo absorbe ${absorbido} de daño.`;
   }
   const tacticos = efectos.flatMap(e=>e.datosTacticos?.estados ?? []);
   const guardias=tacticos.filter(s=>s.familia === "guardia");
@@ -192,8 +209,11 @@ export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; t
     const absorbido = Math.min(accion.dano,Math.floor(guardia.valor));
     for(const e of guardias)e.valor=Math.max(0,e.valor-absorbido);
     accion.dano -= absorbido;
+    registrarMitigacion(accion, absorbido, guardia.rasgoProteccion, accion.dano <= 0, guardia.valor <= 0);
     if (absorbido > 0) accion.texto += ` La guardia absorbe ${absorbido} de daño.`;
   }
+  protegerConDanza(accion, efectos);
+  mitigarPresagio(accion, efectos);
   const exposicion = tacticos.filter(s=>s.familia === "exposicion").sort((a,b)=>b.valor-a.valor)[0];
   if (exposicion) exposicion.restantes = 0;
   for(const e of efectos) if(e.datosTacticos) e.datosTacticos.estados = e.datosTacticos.estados.filter(s=>s.restantes > 0 && (s.familia !== "guardia" || s.valor > 0));
@@ -201,7 +221,7 @@ export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; t
 }
 
 export function calcularEvasionModificada(evasionBase: number, efectos: readonly EstadoEfectoHabilidad[]): number {
-  return Math.min(0.6, Math.max(0, evasionBase + efectos.reduce((total, e) => total + (e.tipo === "bonus_evasion" ? e.valor : 0), 0)));
+  return Math.min(0.6, Math.max(0, evasionBase + esquivaConDanza(efectos) + efectos.reduce((total, e) => total + (e.tipo === "bonus_evasion" ? e.valor : 0), 0)));
 }
 
 /** La precisión preparada se gasta en el siguiente intento de ataque. */
@@ -214,4 +234,21 @@ export function aplicarResistenciaPerjuicio(valor:number,efectos:EstadoEfectoHab
   const resistencia=candidatos[0];if(!resistencia)return valor;
   for(const e of efectos)if(e.datosTacticos)e.datosTacticos.estados=e.datosTacticos.estados.filter(s=>s!==resistencia);
   return valor*(1-Math.min(.3,resistencia.valor));
+}
+
+export function obtenerTurnoPersonal(efectos: readonly EstadoEfectoHabilidad[]): number {
+  return efectos.find(efecto => efecto.tipo === "interno" && efecto.habilidadId === "_turno")?.valor ?? 0;
+}
+
+function avanzarRelojPersonal(efectos: EstadoEfectoHabilidad[]): EstadoEfectoHabilidad[] {
+  const turno = efectos.find(efecto => efecto.tipo === "interno" && efecto.habilidadId === "_turno");
+  if (turno) turno.valor += 1;
+  else efectos.push({ tipo: "interno", habilidadId: "_turno", valor: 1, duracionTurnos: 2, turnosRestantes: 2 });
+  return efectos;
+}
+
+export function comenzarTurnoCombatiente(...args: Parameters<typeof procesarEfectosTurno>) {
+  const resultado = procesarEfectosTurno(...args);
+  avanzarRelojPersonal(resultado.efectos);
+  return resultado;
 }

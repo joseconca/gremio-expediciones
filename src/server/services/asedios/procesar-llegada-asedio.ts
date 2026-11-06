@@ -1,3 +1,4 @@
+import { regenerarRecursosPorTurno } from "@/server/services/combate/accion-combate";
 import { prisma } from "@/lib/prisma";
 
 import {
@@ -393,6 +394,10 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
      */
     const estadoDefensorAnterior = personajeDefensor.estado;
 
+    const personajeInicial = primerTurno === "atacante" ? personajeAtacante : personajeDefensor;
+    if (personajeInicial.profesionActivaId === "campeon_arena") {
+      await regenerarRecursosPorTurno(tx, personajeInicial.usuarioId, 1, true);
+    }
     const nuevoCombate = await tx.combateActivo.create({
       data: {
         expedicionId: expedicion.id,

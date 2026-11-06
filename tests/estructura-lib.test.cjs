@@ -218,7 +218,7 @@ test("las APIs de ataques, preparación y contratos de venta no mantienen reexpo
 test("los servicios party usan la normalización central de cooldowns persistidos", () => {
   const modulos = [
     "src/server/services/party/combate-party-actions.ts",
-    "src/server/services/party/turno-enemigo.ts",
+    "src/server/services/party/contexto-combate.ts",
   ];
   for (const modulo of modulos) {
     const codigo = fs.readFileSync(path.join(root, modulo), "utf8");
@@ -243,8 +243,8 @@ test("los orquestadores de combate consumen efectos desde su motor, sin envoltor
   const pvp = fs.readFileSync(path.join(root, "src/server/services/combate/pvp.ts"), "utf8");
   const party = fs.readFileSync(path.join(root, "src/server/services/party/combate-party-actions.ts"), "utf8");
   assert.doesNotMatch(accion, /(?:export )?function (?:obtenerEfectos|actualizarEfectosAlInicioTurnoJugador)\(/);
-  assert.match(pve, /procesarEfectosTurno\(/);
-  assert.match(pvp, /procesarEfectosTurno\(/);
+  assert.match(pve, /comenzarTurnoCombatiente\(/);
+  assert.match(pvp, /comenzarTurnoCombatiente\(/);
   assert.doesNotMatch(pve + pvp, /actualizarEfectosAlInicioTurnoJugador/);
   assert.doesNotMatch(party, /function (?:obtenerEfectos|convertirEfectos)\(/);
   assert.match(party, /leerEfectosCombate\(participante\.efectos\)/);

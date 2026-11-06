@@ -461,7 +461,7 @@ export default function AsedioModal({
           <div className="flex shrink-0 items-center gap-2">
             <button type="button" className={styles.info} onClick={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }}>Info</button>
             <span className="rounded bg-stone-900 px-3 py-1 font-mono text-[10px] tracking-widest text-stone-500 shadow-inner sm:text-xs">
-              RONDA {combate.ronda}
+              TURNO {combate.ronda}
             </span>
 
             <span

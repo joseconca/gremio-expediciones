@@ -102,7 +102,7 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
       return op;
     })};
     mejorada.disenoActiva.drenaje=mejorada.roboVida;
-    mejorada.descripcion=describirDisenoActiva(mejorada.disenoActiva);
+    mejorada.descripcion=describirDisenoActiva(mejorada.disenoActiva, habilidad.id);
   }
   return mejorada;
 }

@@ -90,7 +90,7 @@ test("la iniciativa de party mantiene la cola válida y reconstruye turnos pendi
   const avance = prepararSiguienteTurnoVelocidad(combate, participantes, enemigos);
   assert.equal(avance.faseTurno, "enemigo");
   assert.equal(avance.turnoActualUsuarioId, null);
-  assert.equal(avance.ronda, 2);
+  assert.equal(avance.ronda, 3);
   const sinCola = { ...combate, turnosPendientes: [] };
   const colaReconstruida = obtenerColaActualParty(sinCola, participantes, enemigos);
   assert.equal(colaReconstruida[0].actorId, "u1");

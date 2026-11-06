@@ -87,10 +87,10 @@ export function crearTecnicaAdicional(claseId: string, actor: UnidadTactica): Te
     redistribuir: [transferirGuardia],
     saldar: [consumir("deuda"), guardia("agravio_saldado", "objetivo")],
     anclar: [consumir("velo"), limpiar("exposicion")],
-    romper_compas: [consumir("compas"), transferirGuardia, retirar(1)],
+    danza_resguardo: [],
     abandonar_abordaje: [consumir("incursion"), retirar(2), guardia("abordaje_abandonado")],
   };
-  const aliados = new Set(["transferir_regeneracion", "transferir_guardia", "cerrar_herida", "guardia_cura", "trasplantar", "renovar_voto", "evacuacion", "clausura", "orden_amparo", "sendero", "silencio", "archivar", "neutralizar", "disolver_formacion", "ceder_ventana", "circuito_abierto", "descargar_barrera", "cerrar_frente", "redistribuir", "saldar", "romper_compas"]);
+  const aliados = new Set(["transferir_regeneracion", "transferir_guardia", "cerrar_herida", "guardia_cura", "trasplantar", "renovar_voto", "evacuacion", "clausura", "orden_amparo", "sendero", "silencio", "archivar", "neutralizar", "disolver_formacion", "ceder_ventana", "circuito_abierto", "descargar_barrera", "cerrar_frente", "redistribuir", "saldar", "danza_resguardo"]);
   const enemigos = new Set(["observar", "senal", "brasa_ruptura", "lectura", "cambiar_presa", "mojado", "romper_maleficio", "robar_guardia", "cortar_retirada", "invalidar_rastro", "descanso", "cauterizar"]);
   return {
     id: `${claseId}_tecnica_adicional`, claseId, nombre: datos.nombre,
@@ -98,7 +98,7 @@ export function crearTecnicaAdicional(claseId: string, actor: UnidadTactica): Te
     costeMana: clase.recursoCombate === "mana" ? 10 : clase.recursoCombate === "ambos" ? 3 : 0,
     cooldown: 4,
     objetivo: aliados.has(datos.programa) ? "aliado" : enemigos.has(datos.programa) ? "enemigo" : "propio",
-    alcance: "individual", comandos: programas[datos.programa],
+    alcance: datos.programa === "danza_resguardo" ? "fila" : "individual", comandos: programas[datos.programa],
   };
 }
 
@@ -116,12 +116,13 @@ export const HABILIDADES_ADICIONALES: DefinicionHabilidad[] = Object.keys(CATALO
   if(datos.programa==="trasplantar")operaciones.push({tipo:"adelantar",familia:"regeneracion",objetivo:"objetivo"});
   if(datos.programa==="descargar_barrera")operaciones.push({tipo:"disipar",objetivo:"actor",negativo:true});
   if(datos.programa==="redistribuir")operaciones.push({tipo:"consumir_preparacion",clave:"luz",efecto:"cura",factor:.15});
-  const diseno:DisenoActiva={efecto:"estado",propio:tecnica.objetivo==="propio",operaciones};
+  const diseno:DisenoActiva={efecto:"estado",propio:tecnica.objetivo==="propio",operaciones,
+    ...(tecnica.alcance === "fila" ? { area: "fila" as const } : {})};
   return {
-    id: tecnica.id, claseId, nombre: datos.nombre, descripcion: describirDisenoActiva(diseno),
+    id: tecnica.id, claseId, nombre: datos.nombre, descripcion: describirDisenoActiva(diseno, tecnica.id),
     tipo: "activa", efecto: "estado", animacion: "defensiva", rareza: "basico", precio: 0, costePuntosHabilidad: 1,
     nivelJobRequerido: claseId === "novato" ? 10 : CLASES[claseId].tier === 1 ? 15 : 20,
     costeEnergia: tecnica.costeEnergia, costeMana: tecnica.costeMana, cooldownTurnos: tecnica.cooldown,
-    objetivo: { equipo: tecnica.objetivo, patron: "individual", ...(tecnica.objetivo!=="enemigo"?{incluirPropio:true}:{}) }, versionReglas:2,disenoActiva:diseno,
+    objetivo: { equipo: tecnica.objetivo, patron: tecnica.alcance, ...(tecnica.objetivo!=="enemigo"?{incluirPropio:true}:{}) }, versionReglas:2,disenoActiva:diseno,
   };
 });
