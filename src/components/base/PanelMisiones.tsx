@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import type { ExpedicionActiva, Personaje } from "@/store/useGameStore";
 import type { ReporteExpedicion } from "@/lib/tiposJuego";
 import HojaReporteExpedicion from "@/components/reportes/HojaReporteExpedicion";
+import estilos from "./PlazaGremio.module.css";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -467,305 +468,198 @@ export default function PanelMisiones({
 
   const reporteAnexo = expedicionActiva ? crearReporteAnexoRegreso(expedicionActiva) : null;
 
-  const vetasMadera = [
-    {
-      id: 1,
-      left: "6%",
-      d: "M8,0 Q16,25 8,50 T12,100",
-      stroke: 2.5,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 2,
-      left: "14%",
-      d: "M12,0 C4,30 18,70 10,100",
-      stroke: 3,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 3,
-      left: "22%",
-      d: "M10,0 Q2,20 10,45 T6,80 Q12,95 8,100",
-      stroke: 3.5,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 4,
-      left: "31%",
-      d: "M8,0 C16,40 2,60 10,100",
-      stroke: 2.8,
-      clase: "text-amber-950/70",
-    },
-    {
-      id: 5,
-      left: "38%",
-      d: "M14,0 Q6,30 14,60 T10,100",
-      stroke: 3.2,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 6,
-      left: "47%",
-      d: "M6,0 C14,25 4,75 12,100",
-      stroke: 3,
-      clase: "text-amber-950/90",
-    },
-    {
-      id: 7,
-      left: "55%",
-      d: "M11,0 Q18,40 10,70 T14,100",
-      stroke: 2.5,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 8,
-      left: "64%",
-      d: "M13,0 C5,20 18,60 9,100",
-      stroke: 3.5,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 9,
-      left: "72%",
-      d: "M9,0 Q2,35 12,65 T10,100",
-      stroke: 2.8,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 10,
-      left: "81%",
-      d: "M12,0 C18,30 4,70 14,100",
-      stroke: 3.2,
-      clase: "text-amber-950/90",
-    },
-    {
-      id: 11,
-      left: "89%",
-      d: "M10,0 Q16,25 8,55 T12,100",
-      stroke: 3,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 12,
-      left: "95%",
-      d: "M7,0 C14,40 2,60 10,100",
-      stroke: 2.5,
-      clase: "text-amber-950/60",
-    },
-  ];
+  const party = estadoParty?.party;
+  const esLider = Boolean(party && party.liderUsuarioId === estadoParty?.usuarioId);
 
   return (
-    <div className="mb-4 overflow-hidden rounded-lg border-2 border-amber-950/80 bg-[#4a2f1b] shadow-[0_8px_24px_rgba(0,0,0,0.4)] sm:mb-8">
-      <div className="relative p-3 sm:p-6">
-        {/* Clavos decorativos */}
-        <span className="absolute left-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
-        <span className="absolute right-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
+    <section className={estilos.tablon} aria-labelledby="titulo-tablon">
+      <header className={estilos.cartel}>
+        <p className="text-[11px] font-bold uppercase tracking-[0.19em] text-amber-200/80">Plaza del gremio</p>
+        <h1 id="titulo-tablon" className="mt-0.5 font-serif text-[clamp(1.5rem,4.3vw,2.3rem)] leading-tight font-bold text-amber-50">
+          Tablón de expediciones
+        </h1>
+      </header>
+      <div className="relative grid grid-cols-1 gap-2.5 px-3 pb-3 sm:gap-3 sm:px-5 sm:pb-5">
+        <div id="party-expedition-slot" className="space-y-2 empty:hidden" aria-live="polite" />
 
-        {/* Vetado de la madera */}
-        <div className="pointer-events-none absolute inset-0 opacity-20">
-          {vetasMadera.map((veta) => (
-            <svg
-              key={veta.id}
-              className={`absolute inset-y-0 -ml-2 h-full w-4 ${veta.clase}`}
-              style={{ left: veta.left }}
-              preserveAspectRatio="none"
-              viewBox="0 0 20 100"
-            >
-              <path
-                d={veta.d}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={veta.stroke}
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-          ))}
-        </div>
+        <PanelMovimientosReino
+          caravanas={caravanasEntrantes}
+          asedios={asediosEntrantes}
+          onComenzarAsedio={onComenzarAsedio}
+          comenzandoAsedio={comenzandoAsedio}
+        />
 
-        <div className="relative">
-          <div className="mb-3 flex items-center gap-3 sm:mb-5">
-            <h2 className="text-base font-black uppercase tracking-[0.1em] text-amber-100 sm:text-xl sm:tracking-[0.15em]">
-              {estadoParty?.party
-                ? estadoParty.party.liderUsuarioId === estadoParty.usuarioId
-                  ? "Expediciones de la compañía"
-                  : `Compañía de ${estadoParty.party.lider.nombre}`
-                : "Contratos disponibles"}
-            </h2>
+        {/* AVENTURERO OCIOSO */}
+        {personaje.estado === "ocioso" && (
+          <div className={`${estilos.encargo} flex flex-col items-stretch justify-between gap-2.5 p-3 sm:flex-row sm:items-center sm:gap-4 sm:px-4`}>
+            <div className="min-w-0">
+              <h2 className="font-serif text-lg leading-tight font-bold text-[#462a18]">
+                {party
+                  ? esLider
+                    ? "Expediciones de la compañía"
+                    : `Compañía de ${party.lider.nombre}`
+                  : "Contratos disponibles"}
+              </h2>
+              <p className="mt-1 text-sm leading-snug text-[#563b25]">
+                {cargandoEstadoParty
+                  ? "Comprobando el estado de la compañía..."
+                  : party && !esLider
+                    ? `Sigues en la compañía de ${party.lider.nombre}. Tu aventurero esperará aquí a que el líder organice la siguiente expedición.`
+                    : party
+                      ? "Como líder, elige un contrato y saldréis juntos en una expedición compartida."
+                      : "Revisa el mapa para encontrar un nuevo contrato."}
+              </p>
+            </div>
+
+            {!cargandoEstadoParty && (!party || esLider) && (
+              <Link
+                href="/expediciones"
+                className="flex min-h-11 shrink-0 items-center justify-center rounded-sm border border-[#332315] bg-[#5a3820] px-4 py-2.5 text-center text-sm font-bold text-amber-50 shadow-sm hover:bg-[#704827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#59351b]"
+              >
+                <span>{party ? "Elegir expedición compartida" : "Ver mapa"}</span>
+              </Link>
+            )}
           </div>
-          <div id="party-expedition-slot" className="mb-3 space-y-2" aria-live="polite" />
+        )}
 
-          <PanelMovimientosReino
-            caravanas={caravanasEntrantes}
-            asedios={asediosEntrantes}
-            onComenzarAsedio={onComenzarAsedio}
-            comenzandoAsedio={comenzandoAsedio}
-          />
+        {/* AVENTURERO DE VIAJE */}
+        {personaje.estado === "de_viaje" && expedicionActiva && (
+          <div
+            className={`relative isolate w-full overflow-hidden border p-3 text-[#352b25] shadow-[2px_4px_0_rgba(0,0,0,0.28),inset_0_0_0_2px_rgba(255,255,255,0.38)] transition-transform duration-200 hover:-translate-y-0.5 sm:p-4 ${expedicionActiva.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : expedicionActiva.tipo === "asedio" ? "border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_54%,#d48b81_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}
+            style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
+          >
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35">
+              <div className={`absolute inset-0 ${expedicionActiva.tipo === "asedio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" : expedicionActiva.tipo === "comercio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(106,75,39,0.12)_22px,transparent_23px)]" : "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(65,65,58,0.10)_22px,transparent_23px)]"}`} />
+            </div>
+            <span aria-hidden="true" className={`absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,240,220,0.6)] ${expedicionActiva.tipo === "asedio" ? "border-[#52221c] bg-[#782b22]" : expedicionActiva.tipo === "comercio" ? "border-[#6d281e] bg-[#a43c2b]" : "border-[#77756b] bg-[#9d9b90]"}`} />
+            <div
+              className="relative z-10 flex cursor-pointer flex-col items-center justify-between gap-4 px-1 pb-1 pt-5 md:flex-row"
+              onClick={onToggleExpedicion}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  onToggleExpedicion();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expedicionExpandida}
+            >
+              <div className="flex min-w-0 items-center gap-3">
+                <p className={`font-serif font-black ${expedicionActiva.tipo === "asedio" ? "text-[#722a24]" : expedicionActiva.tipo === "comercio" ? "text-[#4d3a20]" : "text-[#343b3a]"}`}>
+                  {expedicionActiva.nombre}
+                </p>
 
-          {/* AVENTURERO OCIOSO */}
-          {personaje.estado === "ocioso" && (
-            <div className="flex flex-col items-stretch justify-between gap-3 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-3 sm:items-center sm:gap-6 sm:p-4">
-              <div>
-                <p className="mt-1 text-sm font-semibold text-amber-100/80">
-                  {cargandoEstadoParty
-                    ? "Comprobando el estado de la compañía..."
-                    : estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId
-                      ? `Sigues en la compañía de ${estadoParty.party.lider.nombre}. Tu aventurero esperará aquí a que el líder organice la siguiente expedición.`
-                      : estadoParty?.party
-                        ? "Como líder, elige un contrato y saldréis juntos en una expedición compartida."
-                        : "Revisa el mapa para encontrar un nuevo contrato."}
+                <p className={`text-sm ${expedicionActiva.tipo === "asedio" ? "text-[#713d37]" : expedicionActiva.tipo === "comercio" ? "text-[#664a2d]" : "text-[#515651]"}`}>
+                  {expedicionActiva.fase === "combatiendo"
+                    ? `⚔️ ${personaje.nombre} está combatiendo`
+                    : listoParaResolver
+                    ? expedicionActiva.fase === "regresando"
+                      ? `¡${personaje.nombre} ha regresado al gremio!`
+                      : `¡${personaje.nombre} ha llegado a su destino!`
+                    : expedicionActiva.fase === "regresando"
+                    ? "Regresando..."
+                    : "Aventurero de camino..."}
                 </p>
               </div>
 
-              {!cargandoEstadoParty && (!estadoParty?.party || estadoParty.party.liderUsuarioId === estadoParty.usuarioId) && (
-                <Link
-                  href="/expediciones"
-                  className="group relative flex min-h-11 items-center justify-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-5 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)] sm:px-6"
+              {listoParaResolver ? (
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onResolverLlegada();
+                  }}
+                  className="min-h-11 animate-pulse rounded-lg bg-emerald-600 px-3 py-2 text-sm font-bold text-white hover:bg-emerald-500 sm:px-6 sm:text-base"
                 >
-                  <span>{estadoParty?.party ? "Elegir expedición compartida" : "Ver mapa"}</span>
-                </Link>
+                  {expedicionActiva.fase === "regresando"
+                    ? "🏠 Recibir al aventurero"
+                    : expedicionActiva.tipo === "comercio"
+                    ? "🤝 Resolver comercio"
+                    : expedicionActiva.tipo === "asedio"
+                    ? "⚔️ Comenzar asedio"
+                    : "⚔️ Enfrentarse al enemigo"}
+                </button>
+              ) : (
+                <div className={`border px-3 py-2 text-center font-mono text-xl shadow-inner sm:px-4 sm:text-2xl ${expedicionActiva.tipo === "asedio" ? "border-[#ad6157] bg-[#f7d9d2]/70 text-[#792e28]" : expedicionActiva.tipo === "comercio" ? "border-[#a58a58] bg-[#f6e8c7]/75 text-[#4c653b]" : "border-[#bbb9ad] bg-[#fffef7]/75 text-[#505c55]"}`}>
+                  ⏳ {formatoTiempo(tiempoRestante)}
+                </div>
               )}
-            </div>
-          )}
 
-          {/* AVENTURERO DE VIAJE */}
-          {personaje.estado === "de_viaje" && expedicionActiva && (
-            <div
-              className={`relative isolate w-full overflow-hidden border p-3 text-[#352b25] shadow-[2px_4px_0_rgba(0,0,0,0.28),inset_0_0_0_2px_rgba(255,255,255,0.38)] transition-transform duration-200 hover:-translate-y-0.5 sm:p-4 ${expedicionActiva.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : expedicionActiva.tipo === "asedio" ? "border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_54%,#d48b81_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}
-              style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
-            >
-              <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35">
-                <div className={`absolute inset-0 ${expedicionActiva.tipo === "asedio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" : expedicionActiva.tipo === "comercio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(106,75,39,0.12)_22px,transparent_23px)]" : "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(65,65,58,0.10)_22px,transparent_23px)]"}`} />
-              </div>
-              <span aria-hidden="true" className={`absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,240,220,0.6)] ${expedicionActiva.tipo === "asedio" ? "border-[#52221c] bg-[#782b22]" : expedicionActiva.tipo === "comercio" ? "border-[#6d281e] bg-[#a43c2b]" : "border-[#77756b] bg-[#9d9b90]"}`} />
-              <div
-                className="relative z-10 flex cursor-pointer flex-col items-center justify-between gap-4 px-1 pb-1 pt-5 md:flex-row"
-                onClick={onToggleExpedicion}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    onToggleExpedicion();
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-expanded={expedicionExpandida}
+              <span
+                className={`pointer-events-none absolute right-1 top-15 z-10 text-lg leading-none ${expedicionActiva.tipo === "asedio" ? "text-[#8a3027]" : expedicionActiva.tipo === "comercio" ? "text-[#785b31]" : "text-[#72746c]"}`}
+                aria-hidden="true"
               >
-                <div className="flex min-w-0 items-center gap-3">
-                  <p className={`font-serif font-black ${expedicionActiva.tipo === "asedio" ? "text-[#722a24]" : expedicionActiva.tipo === "comercio" ? "text-[#4d3a20]" : "text-[#343b3a]"}`}>
-                    {expedicionActiva.nombre}
-                  </p>
+                {expedicionExpandida ? "⌃" : "⌄"}
+              </span>
+            </div>
 
-                  <p className={`text-sm ${expedicionActiva.tipo === "asedio" ? "text-[#713d37]" : expedicionActiva.tipo === "comercio" ? "text-[#664a2d]" : "text-[#515651]"}`}>
-                    {expedicionActiva.fase === "combatiendo"
-                      ? `⚔️ ${personaje.nombre} está combatiendo`
-                      : listoParaResolver
-                      ? expedicionActiva.fase === "regresando"
-                        ? `¡${personaje.nombre} ha regresado al gremio!`
-                        : `¡${personaje.nombre} ha llegado a su destino!`
-                      : expedicionActiva.fase === "regresando"
-                      ? "Regresando..."
-                      : "Aventurero de camino..."}
-                  </p>
+            {expedicionExpandida && (
+              <div
+                className="relative z-10 mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <div className="h-[280px] w-full sm:h-[360px]">
+                  <MissionMap
+                    baseCoords={baseCoords!}
+                    misiones={[]}
+                    destinoExpedicion={expedicionActiva.destinoCoords}
+                    fechaSalida={expedicionActiva.fechaSalida}
+                    fechaLlegada={expedicionActiva.fechaLlegada}
+                    claseHeroe={personaje.clase}
+                    sexoHeroe={personaje.sexo}
+                    profesionActivaIdHeroe={personaje.profesionActivaId}
+                    regresando={expedicionActiva.fase === "regresando"}
+                    rutasEntrantes={caravanasEntrantes
+                      .filter((caravana) => caravana.origenCoords)
+                      .map((caravana) => ({
+                        id: caravana.id,
+                        origenCoords: caravana.origenCoords!,
+                        fechaSalida: caravana.fechaSalida,
+                        fechaLlegada: caravana.fechaLlegada,
+                        nombreHeroe: caravana.nombreAventurero,
+                        claseHeroe: caravana.claseAventurero,
+                        sexoHeroe: caravana.sexoAventurero,
+                      }))}
+                    onSelectMission={() => undefined}
+                  />
                 </div>
 
-                {listoParaResolver ? (
-                  <button
-                    type="button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      onResolverLlegada();
-                    }}
-                    className="min-h-11 animate-pulse rounded-lg bg-emerald-600 px-3 py-2 text-sm font-bold text-white hover:bg-emerald-500 sm:px-6 sm:text-base"
-                  >
-                    {expedicionActiva.fase === "regresando"
-                      ? "🏠 Recibir al aventurero"
-                      : expedicionActiva.tipo === "comercio"
-                      ? "🤝 Resolver comercio"
-                      : expedicionActiva.tipo === "asedio"
-                      ? "⚔️ Comenzar asedio"
-                      : "⚔️ Enfrentarse al enemigo"}
-                  </button>
-                ) : (
-                  <div className={`border px-3 py-2 text-center font-mono text-xl shadow-inner sm:px-4 sm:text-2xl ${expedicionActiva.tipo === "asedio" ? "border-[#ad6157] bg-[#f7d9d2]/70 text-[#792e28]" : expedicionActiva.tipo === "comercio" ? "border-[#a58a58] bg-[#f6e8c7]/75 text-[#4c653b]" : "border-[#bbb9ad] bg-[#fffef7]/75 text-[#505c55]"}`}>
-                    ⏳ {formatoTiempo(tiempoRestante)}
+                {expedicionActiva.fase === "regresando" && reporteAnexo && (
+                  <div className="border-t border-[#92744a]/70 bg-[#2c2115]/95 p-2.5 sm:p-3">
+                    <HojaReporteExpedicion
+                      reporte={reporteAnexo}
+                      presentacion="anexo"
+                      onCerrar={() => undefined}
+                    />
                   </div>
                 )}
 
-                <span
-                  className={`pointer-events-none absolute right-1 top-15 z-10 text-lg leading-none ${expedicionActiva.tipo === "asedio" ? "text-[#8a3027]" : expedicionActiva.tipo === "comercio" ? "text-[#785b31]" : "text-[#72746c]"}`}
-                  aria-hidden="true"
-                >
-                  {expedicionExpandida ? "⌃" : "⌄"}
-                </span>
-              </div>
-
-              {expedicionExpandida && (
-                <div
-                  className="relative z-10 mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <div className="h-[280px] w-full sm:h-[360px]">
-                    <MissionMap
-                      baseCoords={baseCoords!}
-                      misiones={[]}
-                      destinoExpedicion={expedicionActiva.destinoCoords}
-                      fechaSalida={expedicionActiva.fechaSalida}
-                      fechaLlegada={expedicionActiva.fechaLlegada}
-                      claseHeroe={personaje.clase}
-                      sexoHeroe={personaje.sexo}
-                      profesionActivaIdHeroe={personaje.profesionActivaId}
-                      regresando={expedicionActiva.fase === "regresando"}
-                      rutasEntrantes={caravanasEntrantes
-                        .filter((caravana) => caravana.origenCoords)
-                        .map((caravana) => ({
-                          id: caravana.id,
-                          origenCoords: caravana.origenCoords!,
-                          fechaSalida: caravana.fechaSalida,
-                          fechaLlegada: caravana.fechaLlegada,
-                          nombreHeroe: caravana.nombreAventurero,
-                          claseHeroe: caravana.claseAventurero,
-                          sexoHeroe: caravana.sexoAventurero,
-                        }))}
-                      onSelectMission={() => undefined}
-                    />
+                {expedicionActiva.fase === "en_viaje" && (
+                  <div className="border-t border-slate-700 bg-slate-950/50 p-3">
+                    <button
+                      type="button"
+                      onClick={onConfirmarRegreso}
+                      className="min-h-11 w-full rounded-lg border border-red-900/60 bg-red-950/40 px-3 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200 sm:px-4"
+                    >
+                      ↩️ Regresar de inmediato
+                    </button>
                   </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
-                  {expedicionActiva.fase === "regresando" && reporteAnexo && (
-                    <div className="border-t border-[#92744a]/70 bg-[#2c2115]/95 p-2.5 sm:p-3">
-                      <HojaReporteExpedicion
-                        reporte={reporteAnexo}
-                        presentacion="anexo"
-                        onCerrar={() => undefined}
-                      />
-                    </div>
-                  )}
-
-                  {expedicionActiva.fase === "en_viaje" && (
-                    <div className="border-t border-slate-700 bg-slate-950/50 p-3">
-                      <button
-                        type="button"
-                        onClick={onConfirmarRegreso}
-                        className="min-h-11 w-full rounded-lg border border-red-900/60 bg-red-950/40 px-3 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200 sm:px-4"
-                      >
-                        ↩️ Regresar de inmediato
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Compatibilidad con personajes que conservan el antiguo estado de descanso. */}
-          {personaje.estado === "descansando" && (
-            <div className="rounded-md border border-emerald-900/70 bg-emerald-950/20 p-4">
-              <p className="font-bold text-emerald-200">
-                No necesitas recuperar al aventurero en la base. Al iniciar la próxima expedición tendrá la vida, la energía y el maná completos.
-              </p>
-            </div>
-          )}
-        </div>
+        {/* Compatibilidad con personajes que conservan el antiguo estado de descanso. */}
+        {personaje.estado === "descansando" && (
+          <div className="rounded-md border border-emerald-900/70 bg-emerald-950/20 p-4">
+            <p className="font-bold text-emerald-200">
+              No necesitas recuperar al aventurero en la base. Al iniciar la próxima expedición tendrá la vida, la energía y el maná completos.
+            </p>
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }

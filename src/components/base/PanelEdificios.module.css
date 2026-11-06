@@ -1,0 +1,162 @@
+.terreno {
+  --poblado-ancho-camino: clamp(1.8rem, 4.6vw, 2.9rem);
+  --poblado-oscuridad: calc(1 - var(--poblado-claridad));
+  --poblado-noche: rgb(10 21 49 / calc(0.69 * var(--poblado-oscuridad)));
+  --poblado-luz-difusa: rgb(255 232 164 / calc(0.12 * var(--poblado-sol-directo)));
+  --poblado-camino-diurno: color-mix(in srgb, #a58150, #d3aa70 calc(100% * var(--poblado-sol-directo)));
+  --poblado-color-camino: color-mix(in srgb, #59546a, var(--poblado-camino-diurno) calc(100% * var(--poblado-claridad)));
+  --poblado-borde-camino: color-mix(in srgb, #3c3b51, #705837 calc(100% * var(--poblado-claridad)));
+  --poblado-filtro-arte: brightness(calc(0.67 + 0.33 * var(--poblado-claridad) + 0.16 * var(--poblado-sol-directo)))
+    saturate(calc(0.8 + 0.2 * var(--poblado-claridad))) sepia(calc(0.38 * var(--poblado-calidez)));
+  background:
+    radial-gradient(ellipse 62% 36rem at var(--poblado-sol-x) var(--poblado-sol-y), rgb(255 156 79 / calc(0.62 * var(--poblado-calidez))), transparent) no-repeat,
+    radial-gradient(ellipse 82% 44rem at var(--poblado-sol-x) var(--poblado-sol-y), rgb(255 243 193 / calc(0.24 * var(--poblado-claridad) + 0.25 * var(--poblado-sol-directo))), transparent) no-repeat,
+    radial-gradient(ellipse 63% 34rem at 62% 4rem, rgb(130 169 239 / calc(0.27 * var(--poblado-oscuridad))), transparent) no-repeat,
+    linear-gradient(var(--poblado-luz-difusa), var(--poblado-luz-difusa)),
+    linear-gradient(var(--poblado-noche), var(--poblado-noche)),
+    linear-gradient(180deg, #15261b99, transparent 19rem) no-repeat,
+    #2c402a url("/sprites/buildings/terreno-poblado.svg") 0 0 / 168px auto repeat;
+}
+
+.escena {
+  width: 100%;
+}
+
+.mapa {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.caminos {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.bordeCamino {
+  stroke: var(--poblado-borde-camino, #705837);
+  stroke-width: calc(var(--poblado-ancho-camino, 1.6rem) + 6px);
+}
+
+.senda {
+  stroke: var(--poblado-color-camino, #a58150);
+  stroke-width: var(--poblado-ancho-camino, 1.6rem);
+}
+
+.edificios {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.parcela {
+  /* Los sprites tienen 4 px transparentes de margen a cada lado del lienzo de 128 px. */
+  --margen-transparente: 0.03125;
+  --ancho-limite-izquierdo: calc((var(--entrada-x) - 0.25rem) / (var(--sprite-x) - var(--margen-transparente)));
+  --ancho-limite-derecho: calc((100% - var(--entrada-x) - 0.25rem) / (1 - var(--sprite-x) - var(--margen-transparente)));
+  --ancho-parcela: min(50%, 20rem, var(--ancho-limite-izquierdo), var(--ancho-limite-derecho));
+  position: absolute;
+  left: calc(var(--entrada-x) - var(--ancho-parcela) * var(--sprite-x));
+  width: var(--ancho-parcela);
+}
+
+.sprite,
+.sombraProyectada,
+.accesos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  transform: translateY(var(--sprite-y));
+}
+
+.sprite {
+  z-index: 1;
+  height: auto;
+  image-rendering: pixelated;
+  filter: var(--poblado-filtro-arte, brightness(1)) drop-shadow(0 3px 1px #17241180);
+  pointer-events: none;
+}
+
+.sombraProyectada {
+  height: auto;
+  opacity: calc(0.37 * var(--poblado-claridad, 1));
+  filter: brightness(0) blur(0.7px);
+  /* La proyección gira desde el pie del edificio, donde empieza el ramal. */
+  transform-origin: calc(var(--sprite-x) * 100%) calc(-1 * var(--sprite-y));
+  transform: translateY(var(--sprite-y)) skewX(var(--poblado-sombra-inclinacion, 0deg))
+    scaleY(calc(-1 * var(--poblado-sombra-largo, 0.15)));
+  pointer-events: none;
+}
+
+.sombra {
+  position: absolute;
+  left: calc(var(--sprite-x) * 100%);
+  width: 55%;
+  height: clamp(0.75rem, 2.2vw, 1.35rem);
+  transform: translate(-50%, -55%);
+  border-radius: 50%;
+  background-color: #17241165;
+  pointer-events: none;
+}
+
+.accesos {
+  z-index: 2;
+  display: flex;
+}
+
+.acceso {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 44px;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 0.25rem;
+}
+
+.acceso:focus-visible {
+  outline: 2px solid #ffe5a0;
+  outline-offset: 3px;
+}
+
+.rotulo {
+  display: inline-block;
+  padding: 0.2rem clamp(0.2rem, 1vw, 0.65rem);
+  transform: translateY(-70%);
+  color: #fff0ce;
+  background: linear-gradient(#563a21, #342215);
+  border: 1px solid #ac814d;
+  border-radius: 0.15rem;
+  box-shadow: 0 2px 3px #172411a6;
+  font-family: Georgia, serif;
+  font-size: clamp(0.8125rem, 1.95vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.vacio {
+  padding: 1.75rem 0.5rem 2rem;
+  text-align: center;
+  color: #ffe5af;
+  text-shadow: 0 1px 3px #1b2412;
+}
+
+.vacio p:first-child {
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+
+.vacio p + p {
+  font-size: 0.85rem;
+}

@@ -2,8 +2,33 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { createElement } = require("react");
+const { renderToStaticMarkup } = require("react-dom/server");
+const ts = require("typescript");
+
+require("./load-typescript.cjs");
+require.extensions[".tsx"] = (module, filename) => module._compile(
+  ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2022,
+      jsx: ts.JsxEmit.ReactJSX,
+      esModuleInterop: true,
+    },
+    fileName: filename,
+  }).outputText,
+  filename,
+);
+require.extensions[".css"] = (module) => { module.exports = {}; };
+
+const PanelEdificios = require("../src/components/base/PanelEdificios.tsx").default;
+const { trazarPoblado } = require("../src/components/base/plano-poblado.ts");
+const { calcularLuzPoblado } = require("../src/components/base/luz-poblado.ts");
+const { CONFIGURACION_EDIFICIOS } = require("../src/lib/base/edificios.ts");
 
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
+const edificio = (id, nivel = 1) => ({ id, nivel, ...CONFIGURACION_EDIFICIOS[id] });
+const renderPoblado = (...edificios) => renderToStaticMarkup(createElement(PanelEdificios, { edificios }));
 
 test("Armería deja la gestión de equipo y mochila en Personaje, y Escuela conserva las secciones de aprendizaje", () => {
   const armeria = read("src/app/base/armeria/page.tsx");
@@ -29,14 +54,15 @@ test("la Botica forma parte del poblado y conserva su sprite propio", () => {
   const configuracion = read("src/lib/base/edificios.ts");
   const tienda = read("src/app/base/botica/page.tsx");
   const estado = read("src/store/useGameStore.ts");
-  const panel = read("src/components/base/PanelEdificios.tsx");
+  const panel = renderPoblado(edificio("botica"));
   const compra = read("src/app/api/objetos/comprar/route.ts");
   const boticaSprite = path.join(__dirname, "..", "public/sprites/buildings/botica.png");
   const mercadoSprite = path.join(__dirname, "..", "public/sprites/buildings/mercado.png");
 
   assert.match(configuracion, /botica:\s*\{[\s\S]*?costeConstruccion: 900,[\s\S]*?costeMadera: 6,[\s\S]*?costePiedra: 5,[\s\S]*?costeMetal: 1,[\s\S]*?nivelMax: 3,[\s\S]*?ruta: "\/base\/botica"/);
   assert.match(estado, /EDIFICIOS_BASE\.botica/);
-  assert.match(panel, /"botica"/);
+  assert.match(panel, /data-edificio="botica"/);
+  assert.match(panel, /src="\/sprites\/buildings\/botica\.png"/);
   assert.match(tienda, /Mostrador del boticario/);
   assert.match(tienda, /OBJETOS[\s\S]*?vendibleEnBotica/);
   assert.match(compra, /nivelBotica/);
@@ -143,41 +169,29 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(escuela, /\/api\/habilidades\/mejorar/);
 });
 
-test("los edificios individuales se abren desde el rótulo y el sprite, sin botón Entrar ni descripción fija", () => {
-  const card = read("src/components/base/EdificioCard.tsx");
-  assert.match(card, /<Link\s+href=\{configuracion\.ruta\}[\s\S]*?aria-describedby=\{"descripcion-edificio-" \+ edificio\.id\}/);
-  assert.match(card, /role="tooltip"/);
-  assert.match(card, /title=\{edificio\.descripcion\}/);
-  assert.match(card, /data-world-layer="building"/);
-  assert.match(card, /href=\{configuracion\.ruta\}/);
-  assert.doesNotMatch(card, /Entrar\s*<span aria-hidden/);
-  assert.doesNotMatch(card, /<p[^>]*>\s*\{edificio\.descripcion\}\s*<\/p>/);
-  assert.match(card, /h-11 items-center[\s\S]*?sm:h-\[52px\]/);
-  assert.match(card, /whitespace-nowrap text-\[11px\]/);
+test("cada edificio construido tiene un solo enlace con su rótulo y descripción", () => {
+  const panel = renderPoblado(edificio("taberna"), edificio("botica", 0));
+  assert.match(panel, /data-world-layer="building" data-edificio="taberna"/);
+  assert.match(panel, /<a aria-label="Entrar en Taberna" title="[^"]+" href="\/base\/taberna"><span>Taberna<\/span><\/a>/);
+  assert.equal((panel.match(/href="\/base\/taberna"/g) || []).length, 1);
+  assert.doesNotMatch(panel, /data-edificio="botica"|\/base\/botica/);
 });
 
-test("los rótulos de Armería/Herrería comparten altura y mantienen nombres en una línea", () => {
-  const complejo = read("src/components/base/ComplejoArmeria.tsx");
-  assert.ok(complejo.includes("h-11 items-center") && complejo.includes("sm:h-[52px]"));
-  assert.match(complejo, /whitespace-nowrap/);
-});
+test("Armería y Herrería comparten parcela con accesos independientes solo si se construyen ambas", () => {
+  const armeria = edificio("armeria");
+  const parcial = renderPoblado(armeria, edificio("herreria", 0));
+  assert.match(parcial, /src="\/sprites\/buildings\/armeria\.png"/);
+  assert.doesNotMatch(parcial, /\/base\/herreria|armeria-herreria\.png/);
 
-test("el complejo Armería y Herrería permite entrar desde cada nombre y desde su zona del sprite", () => {
-  const complejo = read("src/components/base/ComplejoArmeria.tsx");
-  assert.match(complejo, /href=\{CONFIGURACION_EDIFICIOS\.armeria\.ruta\}/);
-  assert.match(complejo, /href=\{CONFIGURACION_EDIFICIOS\.herreria\.ruta\}/);
-  assert.match(complejo, /aria-describedby="descripcion-armeria"/);
-  assert.match(complejo, /aria-describedby="descripcion-herreria"/);
-  assert.match(complejo, /id="descripcion-armeria" role="tooltip"/);
-  assert.match(complejo, /id="descripcion-herreria" role="tooltip"/);
-  assert.match(complejo, /title=\{armeria\.descripcion\}/);
-  assert.match(complejo, /title=\{herreria\.descripcion\}/);
-  assert.match(complejo, /w-1\/2[\s\S]*?CONFIGURACION_EDIFICIOS\.herreria\.ruta/);
-  assert.doesNotMatch(complejo, /Sin herrería/);
-  assert.doesNotMatch(complejo, /<p[^>]*>\s*\{armeria\.descripcion\}\s*<\/p>/);
-  assert.doesNotMatch(complejo, /<p[^>]*>\s*\{herreria\.descripcion\}\s*<\/p>/);
-  assert.doesNotMatch(complejo, /Armería\s*<span aria-hidden/);
-  assert.doesNotMatch(complejo, /Herrería\s*<span aria-hidden/);
+  const complejo = renderPoblado(armeria, edificio("herreria"));
+  assert.match(complejo, /src="\/sprites\/buildings\/armeria-herreria\.png"/);
+  assert.match(complejo, /aria-label="Entrar en Armería"[^>]+href="\/base\/armeria"/);
+  assert.match(complejo, /aria-label="Entrar en Herrería"[^>]+href="\/base\/herreria"/);
+  assert.equal((complejo.match(/data-world-layer="building"/g) || []).length, 1);
+
+  const heredado = renderPoblado(edificio("armeria", 0), edificio("herreria"));
+  assert.match(heredado, /src="\/sprites\/buildings\/herreria\.png"/);
+  assert.doesNotMatch(heredado, /\/base\/armeria/);
 });
 
 
@@ -190,12 +204,49 @@ test("la Armería separa las armas, armaduras y accesorios en secciones independ
   assert.match(read("src/app/base/armeria/page.tsx"), /<CatalogoArmeria/);
 });
 
-test("el poblado usa todo el ancho, elimina el panel verde común y añade una cuarta columna en escritorio", () => {
-  const panel = read("src/components/base/PanelEdificios.tsx");
-  assert.match(panel, /className="w-full"/);
-  assert.ok(panel.includes("grid-cols-2") && panel.includes("md:grid-cols-3 lg:grid-cols-4"));
-  assert.ok(!panel.includes("bg-[#1d2a1b]"));
-  assert.doesNotMatch(panel, /radial-gradient/);
+test("el camino del poblado crece y cada ramal une un cruce con una entrada construida", () => {
+  const taberna = edificio("taberna");
+  const mercado = edificio("mercado");
+  const botica = edificio("botica");
+  const pequeno = trazarPoblado([taberna, mercado, { ...botica, nivel: 0 }]);
+  const grande = trazarPoblado([botica, mercado, taberna]);
+  assert.ok(grande.alto > pequeno.alto);
+  assert.equal(pequeno.parcelas.length, 2);
+  assert.equal(grande.parcelas.length, 3);
+
+  const [principal, ...ramales] = grande.caminos;
+  assert.deepEqual(principal.slice(0, 2), [{ x: grande.ancho / 2, y: 0 }, { x: grande.ancho / 2, y: 50 }]);
+  assert.deepEqual(ramales.map((ramal) => ramal[0]), principal.slice(2));
+  assert.deepEqual(ramales.map((ramal) => ramal.at(-1)), grande.parcelas.map((parcela) => parcela.entrada));
+  assert.match(renderPoblado(taberna, mercado, botica), /data-world-layer="paths"[^>]*>[\s\S]*<path d="M 500 0 L 500 50/);
+  assert.doesNotMatch(renderPoblado(edificio("taberna", 0)), /data-world-layer="paths"/);
+});
+
+test("la muralla no ocupa una parcela ni altera las entradas del poblado", () => {
+  const taberna = edificio("taberna");
+  assert.deepEqual(trazarPoblado([taberna, edificio("muralla")]), trazarPoblado([taberna]));
+  assert.deepEqual(trazarPoblado([edificio("muralla")]).caminos, []);
+  assert.doesNotMatch(renderPoblado(taberna, edificio("muralla")), /data-edificio="muralla"/);
+});
+
+test("la luz local recorre la escena de este a oeste y se apaga de noche", () => {
+  const manana = calcularLuzPoblado(7.5);
+  const mediodia = calcularLuzPoblado(12);
+  const atardecer = calcularLuzPoblado(18.5);
+  assert.ok(manana.posicionX > mediodia.posicionX && atardecer.posicionX < mediodia.posicionX);
+  assert.ok(manana.posicionY > mediodia.posicionY && atardecer.posicionY > mediodia.posicionY);
+  assert.ok(manana.sombraX < 0 && atardecer.sombraX > 0);
+  assert.equal(mediodia.sombraX, 0);
+  assert.ok(manana.inclinacionSombra < 0 && atardecer.inclinacionSombra > 0);
+  assert.equal(mediodia.inclinacionSombra, 0);
+  assert.ok(manana.largoSombra > mediodia.largoSombra);
+  assert.ok(manana.solDirecto > atardecer.solDirecto);
+  assert.equal(mediodia.solDirecto, 1);
+  assert.ok(manana.calidez > mediodia.calidez && atardecer.calidez > mediodia.calidez);
+  assert.equal(mediodia.claridad, 1);
+  assert.equal(calcularLuzPoblado(3).claridad, 0);
+  assert.equal(calcularLuzPoblado(22).claridad, 0);
+  assert.equal(calcularLuzPoblado(22).solDirecto, 0);
 });
 
 test("las ocho páginas de edificios muestran la descripción en la cabecera común", () => {
@@ -235,15 +286,8 @@ test("la hoja de personaje agrupa las bonificaciones de todos los objetos en una
   assert.doesNotMatch(hoja, /equipoPorObjeto \?\? \[\]\)\.map/);
 });
 
-test("los sprites y carteles de los edificios no crecen ni se iluminan al pasar el cursor", () => {
-  const card = read("src/components/base/EdificioCard.tsx");
-  const complejo = read("src/components/base/ComplejoArmeria.tsx");
-
-  assert.doesNotMatch(card, /hover:scale-/);
-  assert.doesNotMatch(card, /hover:border-amber/);
-  assert.doesNotMatch(card, /hover:from-\[#956336\]|hover:to-\[#694325\]/);
-  assert.doesNotMatch(complejo, /hover:scale-|hover:border-amber/);
-  assert.doesNotMatch(complejo, /hover:bg-amber-300\/10|hover:text-amber-100/);
-  assert.match(card, /focus-visible:ring-2/);
-  assert.match(complejo, /focus-visible:ring-2/);
+test("el foco de teclado identifica el acceso sin agrandar los sprites ni los rótulos", () => {
+  const estilos = read("src/components/base/PanelEdificios.module.css");
+  assert.match(estilos, /\.acceso:focus-visible\s*\{[^}]*outline:/);
+  assert.doesNotMatch(estilos, /:hover/);
 });

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="128" viewBox="0 0 144 128">
+  <defs>
+    <filter id="grano" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".17" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <path fill="#243624" opacity=".44" d="M5 25h17v-4h12v4h10v10H33v6H16v-4H5zm81 65h15v-5h16v5h10v9h-17v5H95v-5h-9zM44 111h10v-3h7v3h10v8H54v-2H44z"/>
+  <path fill="#5f703d" opacity=".24" d="M80 16h14v-4h9v4h10v8h-13v4H89v-4h-9zM40 59h9v-3h12v3h13v9H64v3H50v-3H40zm79 5h11v-3h9v3h5v8h-11v-2h-14z"/>
+  <rect width="144" height="128" filter="url(#grano)" opacity=".16" style="mix-blend-mode:soft-light"/>
+  <path fill="#71864d" opacity=".44" d="M17 13h2v3h2v-2h2v4h-6zm36 12h2v3h2v-4h2v6h-6zm70-12h2v4h2v-2h2v4h-6zM15 82h2v3h2v-5h2v7h-6zm64-10h2v4h2v-3h2v5h-6zm29-32h2v4h2v-2h2v4h-6zM36 100h2v4h2v-3h2v5h-6zm90 12h2v3h2v-4h2v6h-6z"/>
+  <path fill="#92a16d" opacity=".36" d="M33 48h3v2h-3zm36-11h2v2h-2zm26 22h4v2h-4zm-35 53h3v2h-3zm-48 3h3v2h-3zm120-68h4v2h-4zm-57-40h3v2h-3z"/>
+</svg>

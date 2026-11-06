@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
 import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
 import CombateModal from "@/components/combate/CombateModal";
@@ -10,6 +11,8 @@ import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import PanelMisiones from "@/components/base/PanelMisiones";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
 import PanelParty from "@/components/base/PanelParty";
+import { CONFIGURACION_EDIFICIOS } from "@/lib/base/edificios";
+import estilos from "@/components/base/PlazaGremio.module.css";
 
 interface EstadoPartyBase {
   usuarioId: string;
@@ -348,9 +351,13 @@ export default function BasePage() {
     : combateLocal;
 
   const esAtacante = Boolean(expedicionActiva?.combateActivo);
+  const instalaciones = Object.values(edificios);
+  const muralla = edificios.muralla;
+  const hayMuralla = muralla.nivel > 0;
+  const mostrarCamino = !modoConstruccion && instalaciones.some(({ id, nivel }) => id !== "muralla" && nivel > 0);
 
   return (
-    <main className="min-h-screen p-3 pb-8 sm:p-4 sm:pb-8 md:p-8">
+    <main className="relative pb-5 sm:pb-8">
       {/* ---- MODAL DE COMBATE NORMAL ---- */}
       {combateAbierto &&
         expedicionActiva?.combateActivo &&
@@ -433,75 +440,68 @@ export default function BasePage() {
         </div>
       )}
       <PanelParty />
+      {hayMuralla && (
+        <div className={estilos.muralla} data-world-layer="wall">
+          <Link href={CONFIGURACION_EDIFICIOS.muralla.ruta} className={estilos.accesoMuralla} title={muralla.descripcion}>
+            <span>{muralla.nombre}</span>
+          </Link>
+        </div>
+      )}
       <div className="mx-auto w-full max-w-6xl">
-        <div className="min-w-0 w-full">
-        {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}
-
-        {/* 1. PANEL DE MISIONES */}
-        {personaje && (
-          <PanelMisiones
-            personaje={personaje}
-            estadoParty={estadoPartyBase}
-            cargandoEstadoParty={cargandoEstadoPartyBase}
-            expedicionActiva={expedicionActiva}
-            baseCoords={baseCoords}
-            caravanasEntrantes={caravanasEntrantes}
-            asediosEntrantes={asediosEntrantes}
-            onComenzarAsedio={() => void handleComenzarAsedioDefensor()}
-            comenzandoAsedio={comenzandoAsedio}
-            tiempoRestante={tiempoRestante}
-            listoParaResolver={listoParaResolver}
-            expedicionExpandida={expedicionExpandida}
-            onToggleExpedicion={() =>
-              setExpedicionExpandida((expandida) => !expandida)
-            }
-            onResolverLlegada={() => void handleResolverLlegada()}
-            onConfirmarRegreso={() => setConfirmarRegreso(true)}
-          />
-        )}
-
-        {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
-        {/* Edificios */}
-        <div className="mb-3 flex items-center justify-between gap-3 sm:mb-5">
-          <div className="min-w-0">
-            <h2 className="text-lg font-black tracking-[0.1em] text-amber-100 sm:text-2xl sm:tracking-[0.15em]">
-              {modoConstruccion ? "Construcción" : "Campamento"}
+        <div id="tablon-expediciones" className={`${estilos.plaza} ${hayMuralla ? estilos.plazaConMuralla : ""} ${mostrarCamino ? estilos.plazaConCamino : ""}`}>
+          {personaje && (
+            <PanelMisiones
+              personaje={personaje}
+              estadoParty={estadoPartyBase}
+              cargandoEstadoParty={cargandoEstadoPartyBase}
+              expedicionActiva={expedicionActiva}
+              baseCoords={baseCoords}
+              caravanasEntrantes={caravanasEntrantes}
+              asediosEntrantes={asediosEntrantes}
+              onComenzarAsedio={() => void handleComenzarAsedioDefensor()}
+              comenzandoAsedio={comenzandoAsedio}
+              tiempoRestante={tiempoRestante}
+              listoParaResolver={listoParaResolver}
+              expedicionExpandida={expedicionExpandida}
+              onToggleExpedicion={() => setExpedicionExpandida((expandida) => !expandida)}
+              onResolverLlegada={() => void handleResolverLlegada()}
+              onConfirmarRegreso={() => setConfirmarRegreso(true)}
+            />
+          )}
+          <div className="relative flex w-full items-center justify-between gap-3 px-3 sm:px-5">
+            <h2 className="font-serif text-xl font-bold text-amber-50 drop-shadow-[0_2px_1px_#202d18] sm:text-2xl">
+              {modoConstruccion ? "Construcción" : "Poblado"}
             </h2>
+            <button
+              type="button"
+              onClick={() => setModoConstruccion((abierto) => !abierto)}
+              className="min-h-11 shrink-0 rounded-sm border border-[#977447] bg-[#34271b] px-3 py-2 text-sm font-bold text-amber-100 shadow-sm hover:bg-[#513a24] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-200"
+            >
+              {modoConstruccion ? "← Volver al poblado" : (
+                <>
+                  <span className="sm:hidden">Construir</span>
+                  <span className="hidden sm:inline">Construir y mejorar</span>
+                </>
+              )}
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setModoConstruccion(!modoConstruccion)}
-            className={`min-h-10 shrink-0 rounded-md border-x border-b-4 border-amber-950 px-3 py-2 text-xs font-bold transition-colors sm:px-4 sm:text-sm ${
-              modoConstruccion
-                ? "border-amber-400 bg-amber-700/40 text-amber-200/90"
-                : "border-stone-700 bg-stone-500 text-stone-100 hover:bg-stone-400"
-            }`}
-          >
-            {modoConstruccion ? "← Volver" : (
-              <>
-                <span className="sm:hidden">+ Construir</span>
-                <span className="hidden sm:inline">Construir y mejorar edificios</span>
-              </>
-            )}
-          </button>
         </div>
-
         {modoConstruccion ? (
-          <PanelConstruccion
-            edificios={Object.values(edificios)}
-            oro={oro}
-            madera={madera}
-            piedra={piedra}
-            metal={metal}
-            armeriaNivel={edificios.armeria.nivel}
-            obtenerCosteMejora={obtenerCosteMejora}
-            mejorarEdificio={mejorarEdificio}
-          />
+          <div className="px-3 sm:px-5">
+            <PanelConstruccion
+              edificios={instalaciones}
+              oro={oro}
+              madera={madera}
+              piedra={piedra}
+              metal={metal}
+              armeriaNivel={edificios.armeria.nivel}
+              obtenerCosteMejora={obtenerCosteMejora}
+              mejorarEdificio={mejorarEdificio}
+            />
+          </div>
         ) : (
-          <PanelEdificios edificios={Object.values(edificios)} />
+          <PanelEdificios edificios={instalaciones} />
         )}
-        </div>
       </div>
     </main>
   );

@@ -1,0 +1,113 @@
+.plaza {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  padding-block: clamp(1.5rem, 4vw, 3rem) 0.65rem;
+  scroll-margin-top: 7.5rem;
+}
+
+.plazaConCamino::before {
+  position: absolute;
+  inset: 50% auto 0 50%;
+  width: var(--poblado-ancho-camino);
+  translate: -50% 0;
+  background: var(--poblado-color-camino);
+  box-shadow: -3px 0 var(--poblado-borde-camino), 3px 0 var(--poblado-borde-camino);
+  pointer-events: none;
+  content: "";
+}
+
+.plazaConMuralla {
+  padding-top: clamp(3.6rem, 5.8vw, 4.4rem);
+}
+
+.muralla {
+  position: absolute;
+  inset: 0.25rem 0 auto;
+  height: clamp(5.2rem, 8vw, 7rem);
+  pointer-events: none;
+}
+
+.muralla::before {
+  position: absolute;
+  inset: 0;
+  background: url("/sprites/buildings/empalizada-poblado.svg") center top / auto 100% repeat-x;
+  filter: var(--poblado-filtro-arte, brightness(1)) drop-shadow(var(--poblado-sombra-x, 0px) 6px 4px #10190988);
+  content: "";
+}
+
+.accesoMuralla {
+  position: absolute;
+  z-index: 1;
+  inset: 0.1rem max(0.75rem, (100% - 70rem) / 2) auto auto;
+  display: grid;
+  min-height: 44px;
+  padding-inline: 0.2rem;
+  scroll-margin-top: 7.5rem;
+  place-items: center;
+  color: #fff0ce;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  pointer-events: auto;
+}
+
+.accesoMuralla span {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #ac814d;
+  border-radius: 0.15rem;
+  background: linear-gradient(#563a21, #342215);
+  box-shadow: 0 2px 3px #172411a6;
+}
+
+.accesoMuralla:focus-visible {
+  outline: 2px solid #ffe5a0;
+  outline-offset: 2px;
+}
+
+.tablon {
+  position: relative;
+  width: min(100% - 1.5rem, 52rem);
+  margin-block: 0.5rem 1.25rem;
+  border: 2px solid #332216;
+  border-radius: 0.3rem;
+  background:
+    repeating-linear-gradient(0deg, #2c190b2e 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(0deg, #291b12 0 2px, transparent 2px 2.25rem),
+    linear-gradient(105deg, #624025, #4e311c 68%, #583a22);
+  box-shadow: inset 0 0 0 2px #c091574d, 0 6px 0 #332719c9, 0 14px 24px #18241080;
+}
+
+.tablon::before,
+.tablon::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.tablon::before {
+  inset: -0.6rem -0.35rem auto;
+  height: 0.8rem;
+  border: 2px solid #38271a;
+  border-radius: 0.25rem;
+  background: linear-gradient(#b1844e, #795332 52%, #57391f 54%);
+  box-shadow: 0 2px 2px #291a10;
+}
+
+.tablon::after {
+  inset: 100% 1.4rem auto;
+  height: 1.05rem;
+  background: linear-gradient(90deg, #4b3421 0 0.75rem, transparent 0.75rem calc(100% - 0.75rem), #4b3421 calc(100% - 0.75rem));
+}
+
+.cartel {
+  padding: 1rem 0.7rem 0.8rem;
+  text-align: center;
+  text-shadow: 0 2px #302013;
+}
+
+.encargo {
+  border: 1px solid #af8955;
+  background: linear-gradient(135deg, #f3e4c4, #e7cda0);
+  box-shadow: inset 0 0 0 2px #fff7e058, 0 2px 0 #31201380;
+}

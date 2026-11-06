@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useGameStore } from "@/store/useGameStore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Sugerencias from "@/components/Sugerencias";
@@ -11,6 +11,8 @@ import { obtenerSpriteHeroe } from "@/lib/sprites/heroes";
 import { experienciaJobParaNivel, experienciaParaNivel } from "@/lib/progresion/experiencia";
 import { CLASES } from "@/lib/progresion/clases";
 import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/base/edificios";
+import estilosPoblado from "@/components/base/PanelEdificios.module.css";
+import { calcularLuzPoblado } from "@/components/base/luz-poblado";
 
 // Componente reutilizable para los recursos
 const ICONOS_EDIFICIO: Record<IdEdificio, string> = {
@@ -48,6 +50,7 @@ export default function BaseLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const enPoblado = pathname === "/base";
 
   const {
     oro,
@@ -63,6 +66,26 @@ export default function BaseLayout({
   } = useGameStore();
 
   const [mostrarEdificios, setMostrarEdificios] = useState(false);
+  const [luzPoblado, setLuzPoblado] = useState(() => calcularLuzPoblado(12));
+
+  useEffect(() => {
+    if (!enPoblado) return;
+
+    const actualizarLuz = () => {
+      const ahora = new Date();
+      setLuzPoblado(calcularLuzPoblado(ahora.getHours() + ahora.getMinutes() / 60));
+    };
+
+    const inicio = window.setTimeout(actualizarLuz, 0);
+    const intervalo = window.setInterval(actualizarLuz, 60_000);
+    document.addEventListener("visibilitychange", actualizarLuz);
+
+    return () => {
+      window.clearTimeout(inicio);
+      window.clearInterval(intervalo);
+      document.removeEventListener("visibilitychange", actualizarLuz);
+    };
+  }, [enPoblado]);
 
   useEffect(() => {
     cargarJugador();
@@ -105,8 +128,20 @@ export default function BaseLayout({
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-950/20">
-      <header className="pointer-events-none sticky top-0 z-50 flex flex-col items-center gap-1 border-b border-stone-800/80 bg-stone-950/95 pb-1 backdrop-blur-md md:flex-row md:items-start md:justify-between">
+    <div
+      className={`min-h-screen flex flex-col ${enPoblado ? estilosPoblado.terreno : "bg-stone-950/20"}`}
+      style={enPoblado ? {
+        "--poblado-claridad": luzPoblado.claridad,
+        "--poblado-calidez": luzPoblado.calidez,
+        "--poblado-sol-directo": luzPoblado.solDirecto,
+        "--poblado-sol-x": `${luzPoblado.posicionX}%`,
+        "--poblado-sol-y": `${luzPoblado.posicionY}rem`,
+        "--poblado-sombra-x": `${luzPoblado.sombraX}px`,
+        "--poblado-sombra-inclinacion": `${luzPoblado.inclinacionSombra}deg`,
+        "--poblado-sombra-largo": luzPoblado.largoSombra,
+      } as CSSProperties : undefined}
+    >
+      <header className={`pointer-events-none sticky top-0 z-50 flex flex-col items-center gap-1 border-b pb-1 backdrop-blur-md md:flex-row md:items-start md:justify-between ${enPoblado ? "border-[#4c5c35] bg-[#222b1a]/90" : "border-stone-800/80 bg-stone-950/95"}`}>
         
         {/* PANEL DEL HÉROE GLOBAL */}
         {personaje && (
@@ -202,6 +237,14 @@ export default function BaseLayout({
             />
           )}
 
+          {enPoblado && (
+            <Link
+              href="#tablon-expediciones"
+              className="hidden min-h-10 items-center rounded-b-md border-x border-b border-[#75603e] bg-[#37291a] px-3 text-sm font-bold text-amber-100 hover:bg-[#4c371f] focus-visible:outline-2 focus-visible:outline-amber-200 md:inline-flex"
+            >
+              Tablón
+            </Link>
+          )}
           <Sugerencias />
           </div>
         </div>
@@ -273,12 +316,12 @@ export default function BaseLayout({
         className={`mobile-game-nav fixed inset-x-0 bottom-0 z-40 grid gap-1 border-t border-amber-900/70 bg-stone-950/95 px-2 pt-1.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${edificios.escuelaCombate.nivel > 0 ? "grid-cols-5" : "grid-cols-4"}`}
       >
         <Link
-          href="/base"
-          aria-current={pathname === "/base" ? "page" : undefined}
-          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${pathname === "/base" ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+          href={enPoblado ? "#tablon-expediciones" : "/base"}
+          aria-current={enPoblado ? "page" : undefined}
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${enPoblado ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
         >
-          <span className="text-lg leading-5" aria-hidden="true">🏰</span>
-          <span>Base</span>
+          <span className="text-lg leading-5" aria-hidden="true">{enPoblado ? "📜" : "🏰"}</span>
+          <span>{enPoblado ? "Tablón" : "Base"}</span>
         </Link>
         <Link
           href="/expediciones"
