@@ -9,7 +9,7 @@
 
 .plazaConCamino::before {
   position: absolute;
-  inset: 50% auto 0 50%;
+  inset: 7rem auto 0 50%;
   width: var(--poblado-ancho-camino);
   translate: -50% 0;
   background: var(--poblado-color-camino);
@@ -66,9 +66,23 @@
 }
 
 .tablon {
+  --alto-tablon: 25rem;
   position: relative;
   width: min(100% - 1.5rem, 52rem);
+  min-height: var(--alto-tablon);
   margin-block: 0.5rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .tablon {
+    --alto-tablon: 21rem;
+  }
+}
+
+.maderaTablon {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--alto-tablon);
   border: 2px solid #332216;
   border-radius: 0.3rem;
   background:
@@ -76,16 +90,17 @@
     repeating-linear-gradient(0deg, #291b12 0 2px, transparent 2px 2.25rem),
     linear-gradient(105deg, #624025, #4e311c 68%, #583a22);
   box-shadow: inset 0 0 0 2px #c091574d, 0 6px 0 #332719c9, 0 14px 24px #18241080;
+  pointer-events: none;
 }
 
-.tablon::before,
-.tablon::after {
+.maderaTablon::before,
+.maderaTablon::after {
   position: absolute;
   pointer-events: none;
   content: "";
 }
 
-.tablon::before {
+.maderaTablon::before {
   inset: -0.6rem -0.35rem auto;
   height: 0.8rem;
   border: 2px solid #38271a;
@@ -94,13 +109,14 @@
   box-shadow: 0 2px 2px #291a10;
 }
 
-.tablon::after {
+.maderaTablon::after {
   inset: 100% 1.4rem auto;
   height: 1.05rem;
   background: linear-gradient(90deg, #4b3421 0 0.75rem, transparent 0.75rem calc(100% - 0.75rem), #4b3421 calc(100% - 0.75rem));
 }
 
 .cartel {
+  position: relative;
   padding: 1rem 0.7rem 0.8rem;
   text-align: center;
   text-shadow: 0 2px #302013;

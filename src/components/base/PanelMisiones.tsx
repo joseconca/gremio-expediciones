@@ -473,6 +473,7 @@ export default function PanelMisiones({
 
   return (
     <section className={estilos.tablon} aria-labelledby="titulo-tablon">
+      <div className={estilos.maderaTablon} aria-hidden="true" />
       <header className={estilos.cartel}>
         <p className="text-[11px] font-bold uppercase tracking-[0.19em] text-amber-200/80">Plaza del gremio</p>
         <h1 id="titulo-tablon" className="mt-0.5 font-serif text-[clamp(1.5rem,4.3vw,2.3rem)] leading-tight font-bold text-amber-50">
