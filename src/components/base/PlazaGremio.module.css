@@ -10,10 +10,13 @@
 .plazaConCamino::before {
   position: absolute;
   inset: 7rem auto 0 50%;
-  width: var(--poblado-ancho-camino);
+  width: calc(var(--poblado-ancho-camino) + 12px);
   translate: -50% 0;
-  background: var(--poblado-color-camino);
-  box-shadow: -3px 0 var(--poblado-borde-camino), 3px 0 var(--poblado-borde-camino);
+  background:
+    url("/sprites/buildings/textura-senda.svg") center bottom / 92px 76px repeat,
+    linear-gradient(90deg, transparent, var(--poblado-borde-camino) 5px,
+      var(--poblado-color-camino) 7px calc(100% - 7px),
+      var(--poblado-borde-camino) calc(100% - 5px), transparent);
   pointer-events: none;
   content: "";
 }

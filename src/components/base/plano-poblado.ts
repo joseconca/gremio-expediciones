@@ -20,6 +20,20 @@ interface PuntoPoblado {
   y: number;
 }
 
+export function dibujarSenda(puntos: readonly PuntoPoblado[], vertical: boolean) {
+  return puntos.map(({ x, y }, indice) => {
+    const anterior = puntos[indice - 1];
+    if (!anterior) return `M ${x} ${y}`;
+    if (anterior.x === x || anterior.y === y) return `L ${x} ${y}`;
+    if (vertical) {
+      const medio = (anterior.y + y) / 2;
+      return `C ${anterior.x} ${medio} ${x} ${medio} ${x} ${y}`;
+    }
+    const medio = (anterior.x + x) / 2;
+    return `C ${medio} ${anterior.y} ${medio} ${y} ${x} ${y}`;
+  }).join(" ");
+}
+
 function ordenEdificio(edificio: Edificio) {
   const indice = ORDEN_POBLADO.indexOf(edificio.id);
   return indice === -1 ? ORDEN_POBLADO.length : indice;

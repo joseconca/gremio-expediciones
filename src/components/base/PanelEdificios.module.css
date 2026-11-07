@@ -3,9 +3,10 @@
   --poblado-oscuridad: calc(1 - var(--poblado-claridad));
   --poblado-noche: rgb(10 21 49 / calc(0.69 * var(--poblado-oscuridad)));
   --poblado-luz-difusa: rgb(255 232 164 / calc(0.12 * var(--poblado-sol-directo)));
-  --poblado-camino-diurno: color-mix(in srgb, #a58150, #d3aa70 calc(100% * var(--poblado-sol-directo)));
+  --poblado-camino-diurno: color-mix(in srgb, #9d7b53, #bc965f calc(100% * var(--poblado-sol-directo)));
   --poblado-color-camino: color-mix(in srgb, #59546a, var(--poblado-camino-diurno) calc(100% * var(--poblado-claridad)));
   --poblado-borde-camino: color-mix(in srgb, #3c3b51, #705837 calc(100% * var(--poblado-claridad)));
+  --poblado-visibilidad-grano: calc(0.48 + 0.52 * var(--poblado-claridad));
   --poblado-filtro-arte: brightness(calc(0.67 + 0.33 * var(--poblado-claridad) + 0.16 * var(--poblado-sol-directo)))
     saturate(calc(0.8 + 0.2 * var(--poblado-claridad))) sepia(calc(0.38 * var(--poblado-calidez)));
   background:
@@ -40,14 +41,25 @@
   stroke-linecap: round;
 }
 
+.verge {
+  stroke: var(--poblado-borde-camino, #705837);
+  stroke-width: calc(var(--poblado-ancho-camino, 1.6rem) + 12px);
+  opacity: 0.4;
+}
+
 .bordeCamino {
   stroke: var(--poblado-borde-camino, #705837);
-  stroke-width: calc(var(--poblado-ancho-camino, 1.6rem) + 6px);
+  stroke-width: calc(var(--poblado-ancho-camino, 1.6rem) + 4px);
 }
 
 .senda {
   stroke: var(--poblado-color-camino, #a58150);
   stroke-width: var(--poblado-ancho-camino, 1.6rem);
+}
+
+.granoSenda {
+  stroke-width: calc(var(--poblado-ancho-camino, 1.6rem) - 3px);
+  opacity: var(--poblado-visibilidad-grano, 1);
 }
 
 .edificios {

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { useId, type CSSProperties } from "react";
 import { CONFIGURACION_EDIFICIOS, type Edificio, type IdEdificio } from "@/lib/base/edificios";
-import { trazarPoblado } from "./plano-poblado";
+import { dibujarSenda, trazarPoblado } from "./plano-poblado";
 import styles from "./PanelEdificios.module.css";
 
 // Posición de la puerta (en píxeles) dentro de cada sprite de 128 × 64.
@@ -23,9 +23,10 @@ interface PanelEdificiosProps {
 }
 
 export default function PanelEdificios({ edificios }: PanelEdificiosProps) {
+  const idSenda = useId();
   const plano = trazarPoblado(edificios);
   const camino = plano.caminos
-    .map((puntos) => `M ${puntos.map(({ x, y }) => `${x} ${y}`).join(" L ")}`)
+    .map((puntos, indice) => dibujarSenda(puntos, indice === 0))
     .join(" ");
 
   return (
@@ -39,8 +40,22 @@ export default function PanelEdificios({ edificios }: PanelEdificiosProps) {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <path d={camino} className={styles.bordeCamino} vectorEffect="non-scaling-stroke" />
-            <path d={camino} className={styles.senda} vectorEffect="non-scaling-stroke" />
+            <defs>
+              <path d={camino} id={`${idSenda}-trazado`} vectorEffect="non-scaling-stroke" />
+              <pattern id={`${idSenda}-textura`} width="112" height="76" patternUnits="userSpaceOnUse">
+                <image href="/sprites/buildings/textura-senda.svg" width="112" height="76" />
+              </pattern>
+              <filter id={`${idSenda}-borde`} x="-10%" y="-10%" width="120%" height="120%" colorInterpolationFilters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.18 0.27" numOctaves="2" seed="16" result="grano" />
+                <feDisplacementMap in="SourceGraphic" in2="grano" scale="12" xChannelSelector="R" yChannelSelector="G" />
+              </filter>
+            </defs>
+            <g filter={`url(#${idSenda}-borde)`}>
+              <use href={`#${idSenda}-trazado`} className={styles.verge} />
+              <use href={`#${idSenda}-trazado`} className={styles.bordeCamino} />
+              <use href={`#${idSenda}-trazado`} className={styles.senda} />
+            </g>
+            <use href={`#${idSenda}-trazado`} className={styles.granoSenda} stroke={`url(#${idSenda}-textura)`} />
           </svg>
 
           <ul className={styles.edificios} aria-label="Edificios construidos">
