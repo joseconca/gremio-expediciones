@@ -13,6 +13,16 @@ export interface HabitantePoblado {
 
 type Plano = ReturnType<typeof trazarPoblado>;
 
+function estanciaEnPuerta(punto: DOMPoint, llegada: number, estancia: number) {
+  if (!estancia) return [];
+  const fundido = 180;
+  return [
+    { punto, tiempo: llegada + fundido, opacity: 0 },
+    { punto, tiempo: llegada + estancia - fundido, opacity: 0 },
+    { punto, tiempo: llegada + estancia, opacity: 1 },
+  ];
+}
+
 function rutaEntreEdificios(plano: Plano, origen: number, destino: number) {
   const edificioDestino = plano.parcelas[destino];
   if (!edificioDestino) return "";
@@ -26,7 +36,7 @@ function rutaEntreEdificios(plano: Plano, origen: number, destino: number) {
   ].filter(Boolean).join(" ");
 }
 
-function Habitante({ personaje, ancho, x, y, ruta = "", fase = 0, soloDeDia = false }: {
+function Habitante({ personaje, ancho, x, y, ruta = "", fase = 0, soloDeDia = false, puertas = 0 }: {
   personaje: HabitantePoblado;
   ancho: number;
   x: number;
@@ -34,6 +44,7 @@ function Habitante({ personaje, ancho, x, y, ruta = "", fase = 0, soloDeDia = fa
   ruta?: string;
   fase?: number;
   soloDeDia?: boolean;
+  puertas?: 0 | 1 | 2;
 }) {
   const figura = useRef<HTMLDivElement>(null);
   const cuerpo = useRef<HTMLDivElement>(null);
@@ -53,21 +64,33 @@ function Habitante({ personaje, ancho, x, y, ruta = "", fase = 0, soloDeDia = fa
 
       const longitud = camino.getTotalLength();
       const puntos = Array.from({ length: 41 }, (_, indice) => camino.getPointAtLength(longitud * indice / 40));
-      const vuelta = [...puntos, ...puntos.slice(0, -1).reverse()];
       const escala = (actor.parentElement?.clientWidth ?? ancho) / ancho;
       const distancia = puntos.slice(1).reduce((total, punto, indice) =>
         total + Math.hypot((punto.x - puntos[indice].x) * escala, punto.y - puntos[indice].y), 0);
-      const duracion = Math.max(5000, distancia * 36) * 2;
+      const tramo = Math.max(5000, distancia * 36);
+      const estanciaDestino = puertas > 0 ? 2600 : 0;
+      const estanciaOrigen = puertas === 2 ? 3500 : 0;
+      const regreso = tramo + estanciaDestino;
+      const duracion = regreso + tramo + estanciaOrigen;
+      const pasos = [
+        ...puntos.map((punto, indice) => ({ punto, tiempo: tramo * (indice / 40), opacity: 1 })),
+        ...estanciaEnPuerta(puntos[40], tramo, estanciaDestino),
+        ...puntos.slice(0, -1).reverse().map((punto, indice) =>
+          ({ punto, tiempo: regreso + tramo * ((indice + 1) / 40), opacity: 1 })),
+        ...estanciaEnPuerta(puntos[0], regreso + tramo, estanciaOrigen),
+      ];
       const opciones = { duration: duracion, iterations: Infinity, delay: -duracion * fase };
       let orientacion = 1;
 
       animaciones = [
-        actor.animate(vuelta.map((punto) => ({ left: `${punto.x * 100 / ancho}%`, top: `${punto.y}px` })), opciones),
-        sprite.animate(vuelta.map((punto, indice) => {
-          const siguiente = vuelta[indice + 1] ?? vuelta[1];
-          const diferencia = siguiente.x - punto.x;
+        actor.animate(pasos.map(({ punto, tiempo, opacity }) => ({
+          left: `${punto.x * 100 / ancho}%`, top: `${punto.y}px`, offset: tiempo / duracion, opacity,
+        })), opciones),
+        sprite.animate(pasos.map(({ punto, tiempo }, indice) => {
+          const siguiente = pasos[indice + 1] ?? pasos[1];
+          const diferencia = siguiente.punto.x - punto.x;
           if (diferencia) orientacion = Math.sign(diferencia);
-          return { transform: `scaleX(${orientacion})`, easing: "steps(1, end)" };
+          return { transform: `scaleX(${orientacion})`, easing: "steps(1, end)", offset: tiempo / duracion };
         }), opciones),
       ];
     }
@@ -78,7 +101,7 @@ function Habitante({ personaje, ancho, x, y, ruta = "", fase = 0, soloDeDia = fa
       animaciones.forEach((animacion) => animacion.cancel());
       movimientoReducido.removeEventListener("change", iniciar);
     };
-  }, [ancho, fase, ruta]);
+  }, [ancho, fase, puertas, ruta]);
 
   return (
     <>
@@ -108,12 +131,13 @@ export default function PersonajesPoblado({ plano, aventureros }: { plano: Plano
       {cantidad > 0 && (
         <Habitante personaje={{ id: "mercader", nombre: "Mercader", clase: "comerciante" }} ancho={plano.ancho}
           x={plano.parcelas[0].cruce.x - 65} y={plano.parcelas[0].cruce.y} soloDeDia
-          ruta={rutaEntreEdificios(plano, cantidad > 1 ? 0 : -1, Math.min(1, cantidad - 1))} fase={0.63} />
+          ruta={rutaEntreEdificios(plano, cantidad > 1 ? 0 : -1, Math.min(1, cantidad - 1))}
+          puertas={cantidad > 1 ? 2 : 1} fase={0.63} />
       )}
       {cantidad > 2 && (
         <Habitante personaje={{ id: "vecina", nombre: "Vecina", clase: "comerciante", sexo: "chica" }} ancho={plano.ancho}
           x={plano.parcelas[2].cruce.x - 65} y={plano.parcelas[2].cruce.y} soloDeDia
-          ruta={rutaEntreEdificios(plano, 1, 2)} fase={0.41} />
+          ruta={rutaEntreEdificios(plano, 1, 2)} puertas={2} fase={0.41} />
       )}
       {aventureros.map((personaje, indice) => (
         <Habitante key={personaje.id} personaje={personaje} ancho={plano.ancho}
