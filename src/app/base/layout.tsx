@@ -130,6 +130,7 @@ export default function BaseLayout({
   return (
     <div
       className={`min-h-screen flex flex-col ${enPoblado ? estilosPoblado.terreno : "bg-stone-950/20"}`}
+      data-noche-poblado={enPoblado && luzPoblado.claridad === 0 ? "" : undefined}
       style={enPoblado ? {
         "--poblado-claridad": luzPoblado.claridad,
         "--poblado-calidez": luzPoblado.calidez,

@@ -121,8 +121,67 @@
 }
 
 .accesos {
-  z-index: 2;
+  z-index: 3;
   display: flex;
+}
+
+.habitantes {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rutaHabitante {
+  position: absolute;
+}
+
+.habitante {
+  position: absolute;
+  height: clamp(2rem, 4.3vw, 3rem);
+  aspect-ratio: 1 / 2;
+  translate: -50% -100%;
+}
+
+.habitante::before {
+  position: absolute;
+  inset: auto 10% 0;
+  height: 12%;
+  border-radius: 50%;
+  background: #13190d75;
+  content: "";
+}
+
+.cuerpoHabitante {
+  position: absolute;
+  inset: 0;
+  filter: var(--poblado-filtro-arte, brightness(1));
+}
+
+.nombreHabitante {
+  position: absolute;
+  bottom: 96%;
+  left: 50%;
+  max-width: 5.5rem;
+  overflow: hidden;
+  padding-inline: 0.25rem;
+  border-radius: 0.2rem;
+  background: #21190edb;
+  color: #ffe5b1;
+  font-size: 0.65rem;
+  line-height: 1rem;
+  text-overflow: ellipsis;
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+[data-noche-poblado] .habitanteDiurno {
+  display: none;
+}
+
+.plazaVacia {
+  position: relative;
+  min-height: 6.5rem;
 }
 
 .acceso {

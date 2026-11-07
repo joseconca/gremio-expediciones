@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useId, type CSSProperties } from "react";
 import { CONFIGURACION_EDIFICIOS, type Edificio, type IdEdificio } from "@/lib/base/edificios";
 import { dibujarSenda, trazarPoblado } from "./plano-poblado";
+import PersonajesPoblado, { type HabitantePoblado } from "./PersonajesPoblado";
 import styles from "./PanelEdificios.module.css";
 
 // Posición de la puerta (en píxeles) dentro de cada sprite de 128 × 64.
@@ -20,9 +21,10 @@ const PUERTAS: Partial<Record<IdEdificio | "armeria-herreria", readonly [number,
 
 interface PanelEdificiosProps {
   edificios: Edificio[];
+  aventureros?: HabitantePoblado[];
 }
 
-export default function PanelEdificios({ edificios }: PanelEdificiosProps) {
+export default function PanelEdificios({ edificios, aventureros = [] }: PanelEdificiosProps) {
   const idSenda = useId();
   const plano = trazarPoblado(edificios);
   const camino = plano.caminos
@@ -113,11 +115,15 @@ export default function PanelEdificios({ edificios }: PanelEdificiosProps) {
               );
             })}
           </ul>
+          <PersonajesPoblado plano={plano} aventureros={aventureros} />
         </div>
       ) : (
         <div className={styles.vacio}>
           <p>La plaza aún está vacía</p>
           <p>Construye tu primera instalación para dar vida al poblado.</p>
+          <div className={styles.plazaVacia}>
+            <PersonajesPoblado plano={plano} aventureros={aventureros} />
+          </div>
         </div>
       )}
     </section>

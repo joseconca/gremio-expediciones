@@ -11,18 +11,9 @@ import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import PanelMisiones from "@/components/base/PanelMisiones";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
 import PanelParty from "@/components/base/PanelParty";
+import type { EstadoParty } from "@/components/base/party/tipos";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/base/edificios";
 import estilos from "@/components/base/PlazaGremio.module.css";
-
-interface EstadoPartyBase {
-  usuarioId: string;
-  party: {
-    id: string;
-    liderUsuarioId: string;
-    lider: { nombre: string };
-  } | null;
-  expedicionActiva: { id: string; fase: string; nombre: string } | null;
-}
 
 interface CaravanaEntrante {
   id: string;
@@ -68,7 +59,7 @@ export default function BasePage() {
   } = useGameStore();
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
-  const [estadoPartyBase, setEstadoPartyBase] = useState<EstadoPartyBase | null>(null);
+  const [estadoPartyBase, setEstadoPartyBase] = useState<EstadoParty | null>(null);
   const [cargandoEstadoPartyBase, setCargandoEstadoPartyBase] = useState(true);
   const [listoParaResolver, setListoParaResolver] = useState(false);
   const [reporte, setReporte] = useState<ReporteExpedicionTipo | null>(null);
@@ -98,7 +89,7 @@ export default function BasePage() {
         const respuesta = await fetch("/api/party", { cache: "no-store" });
         const datos = await respuesta.json();
         if (!respuesta.ok) throw new Error(datos.error || "No se pudo consultar la party.");
-        if (activo) setEstadoPartyBase(datos as EstadoPartyBase);
+        if (activo) setEstadoPartyBase(datos as EstadoParty);
       } catch (error) {
         if (activo) {
           console.error("Error consultando party para contratos de base:", error);
@@ -355,6 +346,20 @@ export default function BasePage() {
   const muralla = edificios.muralla;
   const hayMuralla = muralla.nivel > 0;
   const mostrarCamino = !modoConstruccion && instalaciones.some(({ id, nivel }) => id !== "muralla" && nivel > 0);
+  const party = estadoPartyBase?.party;
+  const usuarioId = estadoPartyBase?.usuarioId;
+  const esAnfitrion = party?.liderUsuarioId === usuarioId;
+  const expedicionCompartida = estadoPartyBase?.expedicionActiva;
+  const aventureroEnBase = estadoPartyBase && personaje?.estado === "ocioso"
+    && !expedicionActiva && combateEntrante?.fase !== "activo" && !expedicionCompartida
+    && !estadoPartyBase.trasladosPropios.length && (!party || esAnfitrion);
+  const aventurerosPresentes = [
+    ...(aventureroEnBase ? [{ ...personaje, id: "jugador" }] : []),
+    ...(esAnfitrion && !expedicionCompartida ? (party?.miembros ?? []).flatMap(({ usuarioId: miembroId, usuario }) =>
+      miembroId !== usuarioId && usuario.personaje?.estado === "ocioso"
+        ? [{ ...usuario.personaje, id: miembroId }]
+        : []) : []),
+  ];
 
   return (
     <main className="relative pb-5 sm:pb-8">
@@ -500,7 +505,7 @@ export default function BasePage() {
             />
           </div>
         ) : (
-          <PanelEdificios edificios={instalaciones} />
+          <PanelEdificios edificios={instalaciones} aventureros={aventurerosPresentes} />
         )}
       </div>
     </main>
